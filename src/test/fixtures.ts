@@ -19,6 +19,10 @@ type WordFixtureOverrides = Partial<WordItem> & {
 interface MakeCatalogOptions {
   duplicateLemma?: string
   wordOverrides?: Partial<Record<Level, WordFixtureOverrides>>
+  wordlists?: Record<Level, WordItem[]>
+  phrasalVerbs?: ContentCatalog['phrasalVerbs']
+  grammarNodes?: GrammarNode[]
+  stories?: ContentCatalog['stories']
 }
 
 export function makeWord(overrides: WordFixtureOverrides = {}): WordItem {
@@ -147,46 +151,108 @@ export function makeCatalog(options: MakeCatalogOptions = {}): ContentCatalog {
     중학교: { lemma: 'achieve', difficulty: 'hard' },
   }
 
-  const wordlists = Object.fromEntries(
-    LEVELS.map((level) => {
-      const { lemma, difficulty } = levelWords[level]
-      const duplicateLemma = level === '유치원' ? options.duplicateLemma : undefined
-      const resolvedLemma = duplicateLemma ?? lemma
+  const wordlists =
+    options.wordlists ??
+    (Object.fromEntries(
+      LEVELS.map((level) => {
+        const { lemma, difficulty } = levelWords[level]
+        const duplicateLemma = level === '유치원' ? options.duplicateLemma : undefined
+        const resolvedLemma = duplicateLemma ?? lemma
 
-      return [
+        return [
+          level,
+          [
+            makeWord({
+              id: `word-${lemma}`,
+              word: resolvedLemma,
+              lemma: resolvedLemma,
+              level,
+              familyId: `family-${lemma}`,
+              difficulty,
+              ...options.wordOverrides?.[level],
+            }),
+          ],
+        ]
+      }),
+    ) as Record<Level, WordItem[]>)
+
+  const stories =
+    options.stories ??
+    (Object.fromEntries(
+      LEVELS.map((level) => [
         level,
-        [
-          makeWord({
-            id: `word-${lemma}`,
-            word: resolvedLemma,
-            lemma: resolvedLemma,
-            level,
-            familyId: `family-${lemma}`,
-            difficulty,
-            ...options.wordOverrides?.[level],
-          }),
-        ],
-      ]
-    }),
-  ) as Record<Level, WordItem[]>
+        makeStory(level, {
+          usedWords: wordlists[level].map((word) => ({
+            lemma: word.lemma,
+            partOfSpeech: word.entries[0]?.partOfSpeech ?? 'word',
+            forms: [word.word],
+          })),
+        }),
+      ]),
+    ) as ContentCatalog['stories'])
 
   return {
     wordlists,
-    phrasalVerbs: {
-      top: [],
-      byLevel: {
-        기초: [],
-        유치원: [],
-        초등학교: [],
-        중학교: [],
+    phrasalVerbs:
+      options.phrasalVerbs ??
+      {
+        top: [],
+        byLevel: {
+          기초: [],
+          유치원: [],
+          초등학교: [],
+          중학교: [],
+        },
       },
-    },
-    stories: {
-      기초: makeStory('기초'),
-      유치원: makeStory('유치원'),
-      초등학교: makeStory('초등학교'),
-      중학교: makeStory('중학교'),
-    },
-    grammarNodes: makeGrammarNodes(),
+    stories,
+    grammarNodes: options.grammarNodes ?? makeGrammarNodes(),
   }
+}
+
+export function makeReleaseCatalog(): ContentCatalog {
+  const wordCounts: Record<Level, number> = {
+    기초: 500,
+    유치원: 500,
+    초등학교: 1500,
+    중학교: 2500,
+  }
+
+  const wordlists = Object.fromEntries(
+    LEVELS.map((level) => [
+      level,
+      Array.from({ length: wordCounts[level] }, (_, index) => {
+        const key = `${level}-${index + 1}`
+        return makeWord({
+          id: `word-${key}`,
+          word: `word-${key}`,
+          lemma: `lemma-${key}`,
+          level,
+          familyId: `family-${key}`,
+        })
+      }),
+    ]),
+  ) as Record<Level, WordItem[]>
+
+  const byLevel = Object.fromEntries(
+    LEVELS.map((level) => [
+      level,
+      Array.from({ length: 250 }, (_, index) => {
+        const key = `${level}-${index + 1}`
+        return makePhrasalVerb({
+          id: `phrasal-${key}`,
+          baseVerb: `verb-${key}`,
+          phrasalVerb: `verb-${key} up`,
+          levelHint: level,
+        })
+      }),
+    ]),
+  ) as Record<Level, PhrasalVerbItem[]>
+
+  return makeCatalog({
+    wordlists,
+    phrasalVerbs: {
+      top: LEVELS.flatMap((level) => byLevel[level]),
+      byLevel,
+    },
+  })
 }
