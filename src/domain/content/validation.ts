@@ -11,7 +11,17 @@ import type {
 
 type UnknownRecord = Record<string, unknown>
 
-const GRAMMAR_LEVELS: readonly GrammarLevel[] = ['A1', 'A2', 'B1', 'B2', 'C1']
+const GRAMMAR_LEVEL_NODE_COUNTS: ReadonlyArray<readonly [GrammarLevel, number]> = [
+  ['A1', 8],
+  ['A2', 9],
+  ['B1', 9],
+  ['B2', 9],
+  ['C1', 7],
+]
+const GRAMMAR_LEVELS = GRAMMAR_LEVEL_NODE_COUNTS.map(([level]) => level)
+const EXPECTED_GRAMMAR_NODE_IDS = GRAMMAR_LEVEL_NODE_COUNTS.flatMap(([level, count]) =>
+  Array.from({ length: count }, (_, index) => `${level}-G${String(index + 1).padStart(2, '0')}`),
+)
 const GRAMMAR_DIFFICULTY_TAGS: readonly GrammarDifficultyTag[] = [
   'core',
   'expansion',
@@ -20,7 +30,7 @@ const GRAMMAR_DIFFICULTY_TAGS: readonly GrammarDifficultyTag[] = [
   'precision',
 ]
 const GRAMMAR_NODE_ID = /^(A1|A2|B1|B2|C1)-G\d{2}$/
-const GRAMMAR_NODE_COUNT = 42
+const GRAMMAR_NODE_COUNT = EXPECTED_GRAMMAR_NODE_IDS.length
 const RELEASE_WORD_COUNTS: Record<Level, number> = {
   기초: 500,
   유치원: 500,
@@ -44,10 +54,12 @@ interface ValidatedId {
 }
 
 interface ValidatedPhrasalIdentity extends ValidatedId {
+  itemPath: string
   levelHint?: Level
+  contentKey?: string
 }
 
-interface LeveledPhrasalIdentity extends ValidatedId {
+interface LeveledPhrasalIdentity extends ValidatedPhrasalIdentity {
   level: Level
 }
 
@@ -69,6 +81,10 @@ function isNonBlankStringArray(value: unknown): value is string[] {
 
 function isFiniteNumber(value: unknown): value is number {
   return typeof value === 'number' && Number.isFinite(value)
+}
+
+function isRate(value: unknown): value is number {
+  return isFiniteNumber(value) && value >= 0 && value <= 1
 }
 
 function isLevel(value: unknown): value is Level {
@@ -288,6 +304,36 @@ function validateNonBlankArray(
   }
 }
 
+function makePhrasalContentKey(item: UnknownRecord): string | undefined {
+  if (
+    !isNonBlankString(item.baseVerb) ||
+    !isNonBlankString(item.particle) ||
+    !isNonBlankString(item.phrasalVerb) ||
+    !isLevel(item.levelHint) ||
+    !isNonBlankStringArray(item.meaningKo) ||
+    item.meaningKo.length < 1 ||
+    !isNonBlankStringArray(item.examples) ||
+    item.examples.length < 2 ||
+    item.partOfSpeech !== 'phrasalVerb' ||
+    !isNonBlankString(item.usageNotes) ||
+    !isDifficulty(item.difficulty)
+  ) {
+    return undefined
+  }
+
+  return JSON.stringify([
+    item.baseVerb,
+    item.particle,
+    item.phrasalVerb,
+    item.levelHint,
+    item.meaningKo,
+    item.examples,
+    item.partOfSpeech,
+    item.usageNotes,
+    item.difficulty,
+  ])
+}
+
 function validatePhrasalVerbItem(
   item: unknown,
   path: string,
@@ -326,9 +372,14 @@ function validatePhrasalVerbItem(
   const identity: ValidatedPhrasalIdentity = {
     id: item.id,
     idPath: `${path}.id`,
+    itemPath: path,
   }
   if (isLevel(item.levelHint)) {
     identity.levelHint = item.levelHint
+  }
+  const contentKey = makePhrasalContentKey(item)
+  if (contentKey !== undefined) {
+    identity.contentKey = contentKey
   }
   return identity
 }
@@ -343,7 +394,7 @@ function duplicateId(path: string, id: string, subject = 'Content'): ValidationI
 
 function validatePhrasalVerbs(
   value: unknown,
-  wordIds: Set<string>,
+  contentIds: Set<string>,
   mode: ValidationMode,
   issues: ValidationIssue[],
 ): void {
@@ -411,18 +462,19 @@ function validatePhrasalVerbs(
           })
         }
 
-        byLevelItems.push({ id: identity.id, idPath: identity.idPath, level })
+        byLevelItems.push({ ...identity, level })
       })
     }
   }
 
   const topById = new Map<string, ValidatedPhrasalIdentity>()
   for (const item of topItems) {
-    if (wordIds.has(item.id) || topById.has(item.id)) {
+    if (contentIds.has(item.id) || topById.has(item.id)) {
       issues.push(duplicateId(item.idPath, item.id, 'Phrasal verb'))
     }
     if (!topById.has(item.id)) {
       topById.set(item.id, item)
+      contentIds.add(item.id)
     }
   }
 
@@ -443,8 +495,24 @@ function validatePhrasalVerbs(
       byLevelById.set(item.id, item)
     }
 
-    if (!topById.has(item.id) && wordIds.has(item.id)) {
-      issues.push(duplicateId(item.idPath, item.id, 'Phrasal verb'))
+    const canonical = topById.get(item.id)
+    if (
+      canonical?.contentKey !== undefined &&
+      item.contentKey !== undefined &&
+      canonical.contentKey !== item.contentKey
+    ) {
+      issues.push({
+        code: 'PHRASAL_CONTENT_MISMATCH',
+        path: item.itemPath,
+        message: `Phrasal verb id "${item.id}" differs between top and byLevel.`,
+      })
+    }
+
+    if (!previous && !canonical) {
+      if (contentIds.has(item.id)) {
+        issues.push(duplicateId(item.idPath, item.id, 'Phrasal verb'))
+      }
+      contentIds.add(item.id)
     }
   }
 
@@ -531,11 +599,11 @@ function validateGrammarNode(
   if (!isRecord(node.masteryRule)) {
     issues.push(invalidCatalog(`${path}.masteryRule`, 'masteryRule must be an object.'))
   } else {
-    if (!isFiniteNumber(node.masteryRule.quizAccuracy)) {
+    if (!isRate(node.masteryRule.quizAccuracy)) {
       issues.push(
         invalidCatalog(
           `${path}.masteryRule.quizAccuracy`,
-          'quizAccuracy must be a finite number.',
+          'quizAccuracy must be a number between 0 and 1.',
         ),
       )
     }
@@ -547,11 +615,11 @@ function validateGrammarNode(
         ),
       )
     }
-    if (!isFiniteNumber(node.masteryRule.errorTolerance)) {
+    if (!isRate(node.masteryRule.errorTolerance)) {
       issues.push(
         invalidCatalog(
           `${path}.masteryRule.errorTolerance`,
-          'errorTolerance must be a finite number.',
+          'errorTolerance must be a number between 0 and 1.',
         ),
       )
     }
@@ -560,7 +628,11 @@ function validateGrammarNode(
   return isNonBlankString(id) ? { id, idPath: `${path}.id` } : undefined
 }
 
-function validateGrammarNodes(value: unknown, issues: ValidationIssue[]): void {
+function validateGrammarNodes(
+  value: unknown,
+  contentIds: Set<string>,
+  issues: ValidationIssue[],
+): void {
   if (!Array.isArray(value)) {
     issues.push(invalidCatalog('grammarNodes', 'grammarNodes must be an array.'))
     return
@@ -574,16 +646,38 @@ function validateGrammarNodes(value: unknown, issues: ValidationIssue[]): void {
     })
   }
 
-  const ids = new Set<string>()
   value.forEach((node, index) => {
     const identity = validateGrammarNode(node, `grammarNodes[${index}]`, issues)
+    const expectedId = EXPECTED_GRAMMAR_NODE_IDS[index]
+
+    if (identity && identity.id !== expectedId) {
+      issues.push({
+        code: 'GRAMMAR_NODE_SET_MISMATCH',
+        path: identity.idPath,
+        message: expectedId
+          ? `Expected grammar node id "${expectedId}" at index ${index}; found "${identity.id}".`
+          : `Grammar node id "${identity.id}" is not in the authoritative node set.`,
+      })
+    }
+
+    if (isRecord(node) && expectedId !== undefined) {
+      const expectedPrerequisite = index === 0 ? null : EXPECTED_GRAMMAR_NODE_IDS[index - 1]
+      if (node.prerequisite !== expectedPrerequisite) {
+        issues.push({
+          code: 'GRAMMAR_PREREQUISITE_MISMATCH',
+          path: `grammarNodes[${index}].prerequisite`,
+          message: `Grammar node "${expectedId}" must reference ${expectedPrerequisite ?? 'null'} as its prerequisite.`,
+        })
+      }
+    }
+
     if (!identity) {
       return
     }
-    if (ids.has(identity.id)) {
+    if (contentIds.has(identity.id)) {
       issues.push(duplicateId(identity.idPath, identity.id, 'Grammar node'))
     } else {
-      ids.add(identity.id)
+      contentIds.add(identity.id)
     }
   })
 }
@@ -649,11 +743,11 @@ function validateStory(
         ),
       )
     }
-    if (!isFiniteNumber(value.coverage.coverageRate)) {
+    if (!isRate(value.coverage.coverageRate)) {
       issues.push(
         invalidCatalog(
           `${path}.coverage.coverageRate`,
-          'coverageRate must be a finite number.',
+          'coverageRate must be a number between 0 and 1.',
         ),
       )
     }
@@ -720,9 +814,9 @@ export function validateCatalog(catalog: unknown, mode: ValidationMode): Validat
     }
   }
 
-  const wordIds = validateWordInvariants(words, issues)
-  validatePhrasalVerbs(catalog.phrasalVerbs, wordIds, mode, issues)
-  validateGrammarNodes(catalog.grammarNodes, issues)
+  const contentIds = validateWordInvariants(words, issues)
+  validatePhrasalVerbs(catalog.phrasalVerbs, contentIds, mode, issues)
+  validateGrammarNodes(catalog.grammarNodes, contentIds, issues)
   validateStories(catalog.stories, issues)
 
   return issues
@@ -735,25 +829,59 @@ export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[
   }
 
   const issues: ValidationIssue[] = []
+  const lemmaLevels = new Map<string, number>()
+  const wordlists = value.wordlists
+  const stories = value.stories
 
-  for (const level of LEVELS) {
-    const words = value.wordlists[level]
-    const story = value.stories[level]
-    if (!Array.isArray(words) || !isRecord(story) || !isRecord(story.coverage)) {
-      continue
+  LEVELS.forEach((level, levelIndex) => {
+    const words = wordlists[level]
+    if (!Array.isArray(words)) {
+      return
     }
-    if (story.coverage.mustCoverAll !== true) {
-      continue
-    }
-
-    if (Array.isArray(story.usedWords)) {
-      const usedLemmas = new Set<string>()
-      for (const usedWord of story.usedWords) {
-        if (isRecord(usedWord) && isNonBlankString(usedWord.lemma)) {
-          usedLemmas.add(usedWord.lemma)
-        }
+    for (const word of words) {
+      if (isRecord(word) && isNonBlankString(word.lemma) && !lemmaLevels.has(word.lemma)) {
+        lemmaLevels.set(word.lemma, levelIndex)
       }
+    }
+  })
 
+  LEVELS.forEach((level, storyLevelIndex) => {
+    const words = wordlists[level]
+    const story = stories[level]
+    if (!Array.isArray(words) || !isRecord(story) || !isRecord(story.coverage)) {
+      return
+    }
+    const coverage = story.coverage
+
+    const usedLemmas = new Set<string>()
+    if (Array.isArray(story.usedWords)) {
+      story.usedWords.forEach((usedWord, index) => {
+        if (!isRecord(usedWord) || !isNonBlankString(usedWord.lemma)) {
+          return
+        }
+        usedLemmas.add(usedWord.lemma)
+
+        const wordLevelIndex = lemmaLevels.get(usedWord.lemma)
+        if (wordLevelIndex === undefined) {
+          issues.push({
+            code: 'STORY_UNKNOWN_WORD',
+            path: `stories.${level}.usedWords[${index}].lemma`,
+            message: `Story for ${level} uses unknown lemma "${usedWord.lemma}".`,
+          })
+        } else if (
+          coverage.allowUpperLevelWords === false &&
+          wordLevelIndex > storyLevelIndex
+        ) {
+          issues.push({
+            code: 'STORY_UPPER_LEVEL_WORD',
+            path: `stories.${level}.usedWords[${index}].lemma`,
+            message: `Story for ${level} cannot use upper-level lemma "${usedWord.lemma}".`,
+          })
+        }
+      })
+    }
+
+    if (coverage.mustCoverAll === true && Array.isArray(story.usedWords)) {
       const requiredLemmas = new Set<string>()
       for (const word of words) {
         if (isRecord(word) && isNonBlankString(word.lemma)) {
@@ -772,14 +900,14 @@ export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[
       }
     }
 
-    if (story.coverage.coverageRate !== 1) {
+    if (coverage.mustCoverAll === true && coverage.coverageRate !== 1) {
       issues.push({
         code: 'STORY_COVERAGE_RATE',
         path: `stories.${level}.coverage.coverageRate`,
         message: `Story for ${level} must have coverageRate 1 when mustCoverAll is true.`,
       })
     }
-  }
+  })
 
   return issues
 }

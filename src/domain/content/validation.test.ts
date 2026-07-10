@@ -333,6 +333,30 @@ describe('validateCatalog', () => {
     )
   })
 
+  test.each([
+    [
+      'levelHint',
+      () => makePhrasalVerb({ levelHint: '유치원' }),
+    ],
+    [
+      'meaningKo',
+      () => makePhrasalVerb({ meaningKo: ['일어나다'] }),
+    ],
+  ] as const)('top과 byLevel의 %s 콘텐츠가 다르면 거부한다', (_field, makeTop) => {
+    const byLevel = makePhrasalVerb()
+    const issues = validateCatalog(
+      makePhrasalCatalog([makeTop()], { 기초: [byLevel] }),
+      'development',
+    )
+
+    expect(issues).toContainEqual(
+      expect.objectContaining({
+        code: 'PHRASAL_CONTENT_MISMATCH',
+        path: 'phrasalVerbs.byLevel.기초[0]',
+      }),
+    )
+  })
+
   test('문법 노드가 42개가 아니면 거부한다', () => {
     const issues = validateCatalog(
       makeCatalog({ grammarNodes: makeGrammarNodes().slice(0, 41) }),
@@ -341,6 +365,33 @@ describe('validateCatalog', () => {
 
     expect(issues).toContainEqual(
       expect.objectContaining({ code: 'GRAMMAR_NODE_COUNT', path: 'grammarNodes' }),
+    )
+  })
+
+  test('42개여도 예상 집합 밖의 문법 ID를 거부한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[7] = { ...nodes[7]!, id: 'A1-G42' }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
+      expect.objectContaining({
+        code: 'GRAMMAR_NODE_SET_MISMATCH',
+        path: 'grammarNodes[7].id',
+      }),
+    )
+  })
+
+  test.each([
+    [0, 'A1-G42'],
+    [1, 'A1-G42'],
+  ] as const)('%i번 문법 노드의 잘못된 선행 ID를 거부한다', (index, prerequisite) => {
+    const nodes = makeGrammarNodes()
+    nodes[index] = { ...nodes[index]!, prerequisite }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
+      expect.objectContaining({
+        code: 'GRAMMAR_PREREQUISITE_MISMATCH',
+        path: `grammarNodes[${index}].prerequisite`,
+      }),
     )
   })
 
@@ -374,6 +425,17 @@ describe('validateCatalog', () => {
 
     expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
       expect.objectContaining({ code: 'DUPLICATE_ID', path: 'grammarNodes[1].id' }),
+    )
+  })
+
+  test('문법 ID가 이전 단어 ID와 겹치면 문법 경로를 거부한다', () => {
+    const issues = validateCatalog(
+      makeCatalog({ wordOverrides: { 기초: { id: 'A1-G01' } } }),
+      'development',
+    )
+
+    expect(issues).toContainEqual(
+      expect.objectContaining({ code: 'DUPLICATE_ID', path: 'grammarNodes[0].id' }),
     )
   })
 
@@ -443,6 +505,44 @@ describe('validateCatalog', () => {
     expect(() => validateCatalog(malformed, 'development')).not.toThrow()
     expect(validateCatalog(malformed, 'development')).toContainEqual(
       expect.objectContaining({ code: 'INVALID_CATALOG', path }),
+    )
+  })
+
+  test('문법 masteryRule 비율이 0과 1 사이가 아니면 거부한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = {
+      ...nodes[0]!,
+      masteryRule: {
+        ...nodes[0]!.masteryRule,
+        quizAccuracy: -0.01,
+        errorTolerance: 1.01,
+      },
+    }
+    const issues = validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')
+
+    expect(issues).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'INVALID_CATALOG',
+          path: 'grammarNodes[0].masteryRule.quizAccuracy',
+        }),
+        expect.objectContaining({
+          code: 'INVALID_CATALOG',
+          path: 'grammarNodes[0].masteryRule.errorTolerance',
+        }),
+      ]),
+    )
+  })
+
+  test('스토리 coverageRate가 0과 1 사이가 아니면 거부한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.coverage.coverageRate = 1.01
+
+    expect(validateCatalog(catalog, 'development')).toContainEqual(
+      expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'stories.기초.coverage.coverageRate',
+      }),
     )
   })
 
@@ -533,5 +633,41 @@ describe('validateStoryCoverage', () => {
         path: 'stories.기초.coverage.coverageRate',
       }),
     )
+  })
+
+  test('기초 스토리의 상위 레벨 단어와 알 수 없는 단어를 각 경로에서 거부한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.usedWords.push(
+      { lemma: 'answer', partOfSpeech: 'noun', forms: ['answer'] },
+      { lemma: 'mystery', partOfSpeech: 'noun', forms: ['mystery'] },
+    )
+
+    expect(validateStoryCoverage(catalog)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'STORY_UPPER_LEVEL_WORD',
+          path: 'stories.기초.usedWords[1].lemma',
+        }),
+        expect.objectContaining({
+          code: 'STORY_UNKNOWN_WORD',
+          path: 'stories.기초.usedWords[2].lemma',
+        }),
+      ]),
+    )
+  })
+
+  test('상위 레벨 스토리에서 하위 레벨 단어를 허용한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.중학교.usedWords.push({
+      lemma: 'play',
+      partOfSpeech: 'verb',
+      forms: ['play'],
+    })
+
+    const levelIssues = validateStoryCoverage(catalog).filter(({ code }) =>
+      ['STORY_UPPER_LEVEL_WORD', 'STORY_UNKNOWN_WORD'].includes(code),
+    )
+
+    expect(levelIssues).toEqual([])
   })
 })
