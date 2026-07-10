@@ -1,0 +1,40 @@
+{
+  "schemaVersion": "1.0.0",
+  "matrix": {
+    "veryEasy": {
+      "veryEasy": 0.45,
+      "easy": 0.30,
+      "normal": 0.20,
+      "hard": 0.04,
+      "veryHard": 0.01
+    },
+    "easy": {
+      "veryEasy": 0.25,
+      "easy": 0.35,
+      "normal": 0.25,
+      "hard": 0.10,
+      "veryHard": 0.05
+    },
+    "normal": {
+      "veryEasy": 0.10,
+      "easy": 0.25,
+      "normal": 0.40,
+      "hard": 0.15,
+      "veryHard": 0.10
+    },
+    "hard": {
+      "veryEasy": 0.05,
+      "easy": 0.15,
+      "normal": 0.30,
+      "hard": 0.30,
+      "veryHard": 0.20
+    },
+    "veryHard": {
+      "veryEasy": 0.02,
+      "easy": 0.08,
+      "normal": 0.20,
+      "hard": 0.35,
+      "veryHard": 0.35
+    }
+  }
+}

@@ -1,0 +1,1166 @@
+[
+  {
+    "id": "A1-G01",
+    "level": "A1",
+    "title": "문장뼈대(SVC/SVO)",
+    "prerequisite": null,
+    "difficultyTag": "core",
+    "canDo": [
+      "문장에서 주어, 동사, 목적어와 보어를 구분할 수 있다.",
+      "SVC와 SVO 어순으로 기본 문장을 만들 수 있다.",
+      "단수와 복수 주어에 맞는 동사를 선택할 수 있다."
+    ],
+    "summary": "영어 문장의 중심인 주어와 동사를 기준으로 SVC와 SVO의 기본 어순을 익힌다.",
+    "patterns": [
+      "S + linking verb + C",
+      "S + transitive verb + O"
+    ],
+    "examples": [
+      "The soup smells wonderful.",
+      "My brother reads science magazines."
+    ],
+    "errorCodes": ["WO-01", "SV-01"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G02",
+    "level": "A1",
+    "title": "be동사/일반동사 현재 + 부정/의문 + WH-질문 기초",
+    "prerequisite": "A1-G01",
+    "difficultyTag": "core",
+    "canDo": [
+      "be동사와 일반동사의 현재형을 알맞게 선택할 수 있다.",
+      "do 또는 does를 사용해 부정문과 예·아니오 의문문을 만들 수 있다.",
+      "who, what, where, when을 사용해 기본 정보 질문을 할 수 있다."
+    ],
+    "summary": "be동사와 일반동사의 현재형을 구별하고 평서문을 부정문과 여러 질문으로 바꾼다.",
+    "patterns": [
+      "S + am/is/are + C / Am/Is/Are + S + C?",
+      "S + do/does not + V / Do/Does + S + V?",
+      "WH-word + do/does + S + V?"
+    ],
+    "examples": [
+      "Mina is at home, but her parents are not there.",
+      "Where does your cousin work?"
+    ],
+    "errorCodes": ["TENSE-01", "SV-02", "WO-02"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G03",
+    "level": "A1",
+    "title": "there is/are + 명사 복수",
+    "prerequisite": "A1-G02",
+    "difficultyTag": "core",
+    "canDo": [
+      "새로 소개하는 사람이나 사물의 존재를 there is 또는 there are로 말할 수 있다.",
+      "뒤따르는 명사의 단수와 복수에 맞춰 be동사를 선택할 수 있다.",
+      "존재문의 부정형과 의문형을 만들 수 있다."
+    ],
+    "summary": "there is와 there are를 사용해 장소에 존재하는 사람이나 사물을 수에 맞게 소개한다.",
+    "patterns": [
+      "There is + a/an + singular noun + place phrase",
+      "There are + plural noun + place phrase",
+      "Is/Are there + noun + place phrase?"
+    ],
+    "examples": [
+      "There is a pharmacy across the street.",
+      "Are there any clean cups in the kitchen?"
+    ],
+    "errorCodes": ["SV-03", "ART-01"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G04",
+    "level": "A1",
+    "title": "현재진행/단순과거 기초",
+    "prerequisite": "A1-G03",
+    "difficultyTag": "core",
+    "canDo": [
+      "지금 진행 중인 행동을 현재진행형으로 표현할 수 있다.",
+      "끝난 과거 행동을 규칙 또는 핵심 불규칙 과거형으로 말할 수 있다.",
+      "현재와 과거를 나타내는 시간 표현에 맞춰 시제를 선택할 수 있다."
+    ],
+    "summary": "지금 일어나는 행동과 이미 끝난 행동을 현재진행형과 단순과거로 구별한다.",
+    "patterns": [
+      "S + am/is/are + V-ing",
+      "S + V-ed / irregular past form",
+      "Did + S + base verb?"
+    ],
+    "examples": [
+      "The children are building a sandcastle now.",
+      "We took the train to Busan yesterday."
+    ],
+    "errorCodes": ["TENSE-01", "TENSE-02"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G05",
+    "level": "A1",
+    "title": "인칭/소유/목적격 대명사",
+    "prerequisite": "A1-G04",
+    "difficultyTag": "core",
+    "canDo": [
+      "문장 주어 자리에서 알맞은 주격 대명사를 사용할 수 있다.",
+      "동사나 전치사 뒤에서 알맞은 목적격 대명사를 사용할 수 있다.",
+      "소유형용사와 소유대명사를 구별해 소유 관계를 표현할 수 있다."
+    ],
+    "summary": "대명사의 문장 내 역할을 구별해 주격, 목적격, 소유형용사와 소유대명사를 정확히 쓴다.",
+    "patterns": [
+      "Subject pronoun + V + object pronoun",
+      "Possessive adjective + noun / noun + be + possessive pronoun"
+    ],
+    "examples": [
+      "She called me after class.",
+      "This is our table, and that one is theirs."
+    ],
+    "errorCodes": ["WO-03", "SV-01"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G06",
+    "level": "A1",
+    "title": "관사/지시사/기본 전치사",
+    "prerequisite": "A1-G05",
+    "difficultyTag": "core",
+    "canDo": [
+      "처음 언급하는 단수 가산명사에 a 또는 an을 붙일 수 있다.",
+      "특정 대상을 the와 this, that, these, those로 가리킬 수 있다.",
+      "시간과 장소에 맞는 in, on, at을 선택할 수 있다."
+    ],
+    "summary": "관사와 지시사로 명사의 범위를 정하고 기본 전치사로 시간과 장소를 연결한다.",
+    "patterns": [
+      "a/an + singular count noun / the + specific noun",
+      "this/that + singular noun / these/those + plural noun",
+      "at + time / on + day / in + month or place"
+    ],
+    "examples": [
+      "I saw a dog in the park, and the dog followed me.",
+      "These keys are on the desk beside that lamp."
+    ],
+    "errorCodes": ["ART-01", "PREP-01"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G07",
+    "level": "A1",
+    "title": "can/can't + 명령문",
+    "prerequisite": "A1-G06",
+    "difficultyTag": "core",
+    "canDo": [
+      "can과 can't로 능력과 허가를 표현할 수 있다.",
+      "Can I 또는 Can you로 허가와 요청을 묻고 답할 수 있다.",
+      "동사원형으로 긍정 명령문과 부정 명령문을 만들 수 있다."
+    ],
+    "summary": "can을 이용해 능력, 허가와 요청을 말하고 동사원형으로 간단한 지시를 한다.",
+    "patterns": [
+      "S + can/can't + base verb",
+      "Can + S + base verb?",
+      "Base verb + object / Don't + base verb"
+    ],
+    "examples": [
+      "Can I borrow your umbrella?",
+      "Please close the window, but don't lock it."
+    ],
+    "errorCodes": ["MODAL-01", "WO-04"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A1-G08",
+    "level": "A1",
+    "title": "and/but/because + 빈도부사",
+    "prerequisite": "A1-G07",
+    "difficultyTag": "core",
+    "canDo": [
+      "and, but, because로 정보의 추가, 대조와 이유를 연결할 수 있다.",
+      "always, usually, often, sometimes, never로 빈도를 말할 수 있다.",
+      "빈도부사를 be동사와 일반동사에 맞는 위치에 놓을 수 있다."
+    ],
+    "summary": "기본 접속사로 짧은 문장을 연결하고 빈도부사의 위치로 일상의 반복 정도를 나타낸다.",
+    "patterns": [
+      "clause + and/but/because + clause",
+      "S + frequency adverb + main verb",
+      "S + be + frequency adverb + C"
+    ],
+    "examples": [
+      "I usually walk to work, but I take the bus when it rains.",
+      "Leo is often tired because he goes to bed late."
+    ],
+    "errorCodes": ["CLAUSE-01", "WO-05"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G01",
+    "level": "A2",
+    "title": "미래(will/be going to) + 계획/의도",
+    "prerequisite": "A1-G08",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "즉석 결정과 예측에 will을 사용할 수 있다.",
+      "미리 세운 계획과 근거 있는 예측에 be going to를 사용할 수 있다.",
+      "미래 계획과 의도를 부정문과 의문문으로 주고받을 수 있다."
+    ],
+    "summary": "상황에 따라 will과 be going to를 선택해 미래의 결정, 예측과 계획을 표현한다.",
+    "patterns": [
+      "S + will + base verb",
+      "S + am/is/are going to + base verb",
+      "Will + S + base verb?"
+    ],
+    "examples": [
+      "I'll answer the phone.",
+      "We are going to visit Jeju during the school break."
+    ],
+    "errorCodes": ["TENSE-04", "MODAL-02"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G02",
+    "level": "A2",
+    "title": "현재완료(have p.p.) + since/for/just/already/yet",
+    "prerequisite": "A2-G01",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "경험, 결과와 계속되는 상태를 현재완료로 표현할 수 있다.",
+      "since와 for를 시작 시점과 기간에 맞게 사용할 수 있다.",
+      "just, already, yet을 문장 종류와 의미에 맞는 위치에 놓을 수 있다."
+    ],
+    "summary": "과거 사건과 현재의 관련성을 현재완료로 나타내고 시간 부사로 의미를 세밀하게 구분한다.",
+    "patterns": [
+      "S + have/has + past participle + since/for + time",
+      "S + have/has + just/already + past participle",
+      "S + have/has not + past participle + yet"
+    ],
+    "examples": [
+      "I have lived in this neighborhood for six years.",
+      "Has Daniel finished the report yet?"
+    ],
+    "errorCodes": ["TENSE-03", "PREP-02"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G03",
+    "level": "A2",
+    "title": "비교급/최상급 + as ... as",
+    "prerequisite": "A2-G02",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "두 대상을 비교급과 than으로 비교할 수 있다.",
+      "셋 이상의 대상에서 최상급을 사용해 가장 두드러진 대상을 말할 수 있다.",
+      "as ... as와 not as ... as로 동등하거나 다른 정도를 표현할 수 있다."
+    ],
+    "summary": "형용사와 부사의 비교 형태를 사용해 대상 간 정도의 차이와 동등성을 나타낸다.",
+    "patterns": [
+      "A + be + comparative + than + B",
+      "A + be + the + superlative + in/of + group",
+      "A + be + (not) as + adjective + as + B"
+    ],
+    "examples": [
+      "This route is shorter than the highway.",
+      "Maya is as patient as her teacher."
+    ],
+    "errorCodes": ["WO-06", "ART-02"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G04",
+    "level": "A2",
+    "title": "수량표현/결정사 확장",
+    "prerequisite": "A2-G03",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "긍정문과 의문·부정문에서 some과 any를 구별할 수 있다.",
+      "가산명사와 불가산명사에 맞춰 many, much, few, little을 사용할 수 있다.",
+      "수량 표현에 맞춰 명사의 단복수와 동사 수를 일치시킬 수 있다."
+    ],
+    "summary": "명사의 가산성과 문장 맥락을 판단해 수량을 나타내는 결정사를 정확히 선택한다.",
+    "patterns": [
+      "some/any + plural count noun or uncount noun",
+      "many/few + plural count noun",
+      "much/little + uncount noun"
+    ],
+    "examples": [
+      "We have a few chairs but very little space.",
+      "Is there any milk, or should I buy some?"
+    ],
+    "errorCodes": ["ART-03", "SV-04"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G05",
+    "level": "A2",
+    "title": "조동사 must/have to/should/may/could(과거능력/가능성 구분)",
+    "prerequisite": "A2-G04",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "must와 have to로 강한 의무의 출처 차이를 나타낼 수 있다.",
+      "should로 조언하고 may와 could로 가능성을 조심스럽게 표현할 수 있다.",
+      "could의 과거 일반 능력과 현재·미래 가능성 의미를 구별할 수 있다."
+    ],
+    "summary": "의무, 조언, 능력과 가능성의 강도에 맞춰 여러 조동사를 선택한다.",
+    "patterns": [
+      "S + must/have to/should + base verb",
+      "S + may/could + base verb",
+      "S + could + base verb + when + past time"
+    ],
+    "examples": [
+      "Employees have to wear an ID card, and visitors must sign in.",
+      "I could swim at six, but the water may be too cold today."
+    ],
+    "errorCodes": ["MODAL-03", "TENSE-04"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G06",
+    "level": "A2",
+    "title": "수동태(현재/과거) + by 행위자 기초",
+    "prerequisite": "A2-G05",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "행위보다 대상이 중요할 때 현재 또는 과거 수동태를 사용할 수 있다.",
+      "수동태에서 be동사의 시제와 주어의 수를 일치시킬 수 있다.",
+      "행위자를 밝힐 필요가 있을 때 by 구를 덧붙일 수 있다."
+    ],
+    "summary": "행동을 받는 대상을 주어로 삼아 현재와 과거의 수동 표현을 구성한다.",
+    "patterns": [
+      "S + am/is/are + past participle",
+      "S + was/were + past participle + by + agent"
+    ],
+    "examples": [
+      "The museum is closed on Mondays.",
+      "The winning photo was taken by a local student."
+    ],
+    "errorCodes": ["TENSE-05", "SV-05"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G07",
+    "level": "A2",
+    "title": "관계절 입문(who/which/that/where/when/whose)",
+    "prerequisite": "A2-G06",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "사람과 사물을 설명할 때 who, which, that으로 관계절을 만들 수 있다.",
+      "장소와 시간을 where와 when으로 이어 설명할 수 있다.",
+      "whose를 사용해 선행사의 소유 관계를 나타낼 수 있다."
+    ],
+    "summary": "관계사를 사용해 명사 뒤에 필요한 설명을 붙이고 두 문장을 자연스럽게 결합한다.",
+    "patterns": [
+      "noun + who/which/that + verb",
+      "place/time + where/when + subject + verb",
+      "person + whose + noun + verb"
+    ],
+    "examples": [
+      "The woman who lives upstairs is a violinist.",
+      "This is the café where we first met."
+    ],
+    "errorCodes": ["CLAUSE-02", "WO-07"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G08",
+    "level": "A2",
+    "title": "재귀대명사",
+    "prerequisite": "A2-G07",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "주어와 목적어가 같은 대상을 가리킬 때 재귀대명사를 사용할 수 있다.",
+      "주어 또는 명사를 강조하는 재귀대명사의 위치를 선택할 수 있다.",
+      "일반 목적격 대명사와 재귀대명사를 문맥에 맞게 구별할 수 있다."
+    ],
+    "summary": "재귀대명사의 반사 용법과 강조 용법을 구별해 불필요한 myself류의 사용을 피한다.",
+    "patterns": [
+      "S + V + reflexive pronoun",
+      "S + reflexive pronoun + V / S + V + object + reflexive pronoun"
+    ],
+    "examples": [
+      "The children introduced themselves to the new coach.",
+      "I fixed the bicycle myself."
+    ],
+    "errorCodes": ["WO-08", "PREP-03"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "A2-G09",
+    "level": "A2",
+    "title": "to부정사/동명사 + 부가의문(tag question)",
+    "prerequisite": "A2-G08",
+    "difficultyTag": "expansion",
+    "canDo": [
+      "대표 동사 뒤에서 to부정사와 동명사를 알맞게 선택할 수 있다.",
+      "to부정사로 목적을 말하고 동명사를 문장 주어나 목적어로 사용할 수 있다.",
+      "평서문의 동사와 극성에 맞는 부가의문을 덧붙일 수 있다."
+    ],
+    "summary": "to부정사와 동명사의 기본 역할을 익히고 부가의문으로 상대의 확인을 구한다.",
+    "patterns": [
+      "verb + to + base verb / verb + V-ing",
+      "affirmative clause, negative auxiliary + pronoun?",
+      "negative clause, affirmative auxiliary + pronoun?"
+    ],
+    "examples": [
+      "Nora enjoys cooking, doesn't she?",
+      "You didn't forget to call Sam, did you?"
+    ],
+    "errorCodes": ["CLAUSE-03", "WO-09"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G01",
+    "level": "B1",
+    "title": "시제 통합(현재완료 vs 과거, 과거완료 입문)",
+    "prerequisite": "A2-G09",
+    "difficultyTag": "integration",
+    "canDo": [
+      "끝난 과거 시점과 현재 관련성에 따라 단순과거와 현재완료를 선택할 수 있다.",
+      "두 과거 사건의 순서를 과거완료와 단순과거로 분명히 나타낼 수 있다.",
+      "시간 부사와 사건 경계를 근거로 시제 선택을 설명할 수 있다."
+    ],
+    "summary": "사건의 시점과 현재 관련성, 과거 사건 간 선후 관계를 기준으로 완료 시제를 통합한다.",
+    "patterns": [
+      "S + have/has + past participle / S + past verb + finished time",
+      "S + had + past participle + before + S + past verb"
+    ],
+    "examples": [
+      "I have seen that film twice, but I last watched it in May.",
+      "The train had left before we reached the station."
+    ],
+    "errorCodes": ["TENSE-03", "TENSE-06"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G02",
+    "level": "B1",
+    "title": "조건문 0/1/2 + wish 기초",
+    "prerequisite": "B1-G01",
+    "difficultyTag": "integration",
+    "canDo": [
+      "일반적 사실, 현실적 미래와 가상 현재를 0·1·2형 조건문으로 구별할 수 있다.",
+      "if절과 결과절에 맞는 시제와 조동사를 배치할 수 있다.",
+      "wish 뒤의 과거형으로 현재 사실과 다른 바람을 표현할 수 있다."
+    ],
+    "summary": "조건의 현실성에 따라 동사 형태를 조절하고 wish로 현재의 아쉬움을 나타낸다.",
+    "patterns": [
+      "If + present, present / If + present, will + base verb",
+      "If + past, would + base verb",
+      "S + wish + S + past verb"
+    ],
+    "examples": [
+      "If water reaches zero degrees, it freezes.",
+      "I wish I knew how to solve this problem."
+    ],
+    "errorCodes": ["TENSE-07", "CLAUSE-04"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G03",
+    "level": "B1",
+    "title": "간접화법(평서/의문/명령, 간접명령문 포함)",
+    "prerequisite": "B1-G02",
+    "difficultyTag": "integration",
+    "canDo": [
+      "평서문을 reporting verb와 that절을 사용한 간접화법으로 바꿀 수 있다.",
+      "직접의문문을 평서문 어순의 간접의문으로 전달할 수 있다.",
+      "명령과 요청을 tell 또는 ask + 목적어 + to부정사로 전달할 수 있다."
+    ],
+    "summary": "다른 사람의 말, 질문과 지시를 관점과 시제, 어순을 조정해 간접적으로 전달한다.",
+    "patterns": [
+      "S + said (that) + reported clause",
+      "S + asked + if/wh-clause with statement order",
+      "S + told/asked + object + (not) to + base verb"
+    ],
+    "examples": [
+      "Jin said that he was working from home.",
+      "The guide asked us not to touch the paintings."
+    ],
+    "errorCodes": ["TENSE-08", "CLAUSE-05"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G04",
+    "level": "B1",
+    "title": "명사절/간접의문문(that/if/whether/wh-)",
+    "prerequisite": "B1-G03",
+    "difficultyTag": "integration",
+    "canDo": [
+      "that절을 주절의 주어 보충이나 목적어로 사용할 수 있다.",
+      "if와 whether로 예·아니오 정보가 담긴 명사절을 만들 수 있다.",
+      "wh-간접의문문에서 의문문 도치를 없애고 평서문 어순을 유지할 수 있다."
+    ],
+    "summary": "that, if, whether와 wh-절을 명사처럼 사용해 생각과 질문의 내용을 문장에 포함한다.",
+    "patterns": [
+      "S + V + that + S + V",
+      "S + V + if/whether + S + V",
+      "S + V + wh-word + S + V"
+    ],
+    "examples": [
+      "We believe that the plan can work.",
+      "Could you tell me where the nearest ATM is?"
+    ],
+    "errorCodes": ["CLAUSE-06", "WO-10"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G05",
+    "level": "B1",
+    "title": "관계절 확장(제한/비제한, 생략)",
+    "prerequisite": "B1-G04",
+    "difficultyTag": "integration",
+    "canDo": [
+      "필수 정보를 주는 제한적 관계절과 덧붙이는 비제한적 관계절을 구별할 수 있다.",
+      "비제한적 관계절을 쉼표로 분리하고 적절한 관계사를 사용할 수 있다.",
+      "제한적 관계절에서 목적격 관계대명사를 생략할 수 있는지 판단할 수 있다."
+    ],
+    "summary": "관계절의 정보 역할에 따라 쉼표와 관계사를 선택하고 가능한 목적격 생략을 적용한다.",
+    "patterns": [
+      "defining noun + who/which/that + clause",
+      "noun, who/which + non-defining clause, + main clause",
+      "noun + (whom/which/that) + S + V"
+    ],
+    "examples": [
+      "The book that you lent me was fascinating.",
+      "Ms. Patel, who leads the design team, joined us for lunch."
+    ],
+    "errorCodes": ["CLAUSE-07", "WO-07"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G06",
+    "level": "B1",
+    "title": "조동사 추측(might/must/can't) + 수동 확장",
+    "prerequisite": "B1-G05",
+    "difficultyTag": "integration",
+    "canDo": [
+      "근거의 확실성에 따라 might, must, can't로 현재 상황을 추측할 수 있다.",
+      "행위자를 강조하지 않는 조동사 수동태를 만들 수 있다.",
+      "문맥에서 능력·의무와 추측 의미의 조동사를 구별할 수 있다."
+    ],
+    "summary": "추측의 확실성을 조동사로 조절하고 조동사 뒤의 수동 구조로 대상에 초점을 둔다.",
+    "patterns": [
+      "S + might/must/can't + base verb",
+      "S + modal + be + past participle"
+    ],
+    "examples": [
+      "The lights are off, so they might be asleep.",
+      "All applications must be submitted by Friday."
+    ],
+    "errorCodes": ["MODAL-04", "CLAUSE-08"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G07",
+    "level": "B1",
+    "title": "used to/would + 습관/상태 구분",
+    "prerequisite": "B1-G06",
+    "difficultyTag": "integration",
+    "canDo": [
+      "지금은 달라진 과거 습관과 상태를 used to로 표현할 수 있다.",
+      "반복된 과거 행동을 문맥 속에서 would로 묘사할 수 있다.",
+      "상태동사에는 would 대신 used to를 써야 하는 경우를 구별할 수 있다."
+    ],
+    "summary": "used to와 would의 적용 범위를 구별해 과거의 상태와 반복 습관을 회상한다.",
+    "patterns": [
+      "S + used to + base verb",
+      "past-time context + S + would + base verb"
+    ],
+    "examples": [
+      "I used to live near the river.",
+      "Every summer, my grandfather would take us fishing."
+    ],
+    "errorCodes": ["TENSE-09", "WO-11"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G08",
+    "level": "B1",
+    "title": "연결어 논리전개(however/therefore/although/while)",
+    "prerequisite": "B1-G07",
+    "difficultyTag": "integration",
+    "canDo": [
+      "however와 although를 문장 구조에 맞게 사용해 대조와 양보를 나타낼 수 있다.",
+      "therefore로 앞선 원인에서 이어지는 결과를 제시할 수 있다.",
+      "while로 두 사실을 대비하거나 동시에 일어나는 사건을 연결할 수 있다."
+    ],
+    "summary": "접속사와 연결부사의 문법적 차이를 지키며 대조, 양보와 결과의 논리를 전개한다.",
+    "patterns": [
+      "Although + clause, main clause / main clause; however, clause",
+      "cause clause; therefore, result clause",
+      "While + clause, contrasting clause"
+    ],
+    "examples": [
+      "Although the task was difficult, the team finished it on time.",
+      "The road was flooded; therefore, the buses were delayed."
+    ],
+    "errorCodes": ["CLAUSE-09", "REG-01"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B1-G09",
+    "level": "B1",
+    "title": "동명사/부정사 의미차(stop to do / stop doing)",
+    "prerequisite": "B1-G08",
+    "difficultyTag": "integration",
+    "canDo": [
+      "stop to do와 stop doing의 목적과 중단 의미를 구별할 수 있다.",
+      "remember와 forget 뒤의 to부정사와 동명사가 가리키는 시간을 구별할 수 있다.",
+      "의미가 달라지는 동사 뒤에서 적절한 준동사 형태를 선택할 수 있다."
+    ],
+    "summary": "같은 동사 뒤에서도 to부정사와 동명사가 만드는 시간 관계와 의미 차이를 구별한다.",
+    "patterns": [
+      "stop + to + base verb / stop + V-ing",
+      "remember/forget + to + base verb / remember/forget + V-ing"
+    ],
+    "examples": [
+      "We stopped to buy some water on the way home.",
+      "Please stop checking your phone during meetings."
+    ],
+    "errorCodes": ["CLAUSE-10", "WO-12"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G01",
+    "level": "B2",
+    "title": "완료진행/미래완료/시제 뉘앙스 선택",
+    "prerequisite": "B1-G09",
+    "difficultyTag": "complex",
+    "canDo": [
+      "완료진행형으로 지속 시간이나 최근 활동의 흔적을 강조할 수 있다.",
+      "미래완료로 미래 기준 시점 이전에 끝날 일을 표현할 수 있다.",
+      "완료형과 완료진행형의 결과 중심·과정 중심 뉘앙스를 선택할 수 있다."
+    ],
+    "summary": "사건의 완료, 지속과 관찰 가능한 결과 중 무엇을 강조할지에 따라 고급 시제를 선택한다.",
+    "patterns": [
+      "S + have/has been + V-ing + for/since",
+      "S + will have + past participle + by + future time",
+      "S + had been + V-ing + before + past event"
+    ],
+    "examples": [
+      "She has been rehearsing all morning, so her voice is tired.",
+      "By next June, I will have completed the certification."
+    ],
+    "errorCodes": ["TENSE-10", "TENSE-11"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G02",
+    "level": "B2",
+    "title": "가정법 3형/혼합가정법",
+    "prerequisite": "B2-G01",
+    "difficultyTag": "complex",
+    "canDo": [
+      "과거 사실과 반대되는 조건과 결과를 3형 가정법으로 표현할 수 있다.",
+      "과거 조건의 현재 결과를 혼합가정법으로 연결할 수 있다.",
+      "현재 상태의 과거 결과를 나타내는 혼합 시제 조합을 판단할 수 있다."
+    ],
+    "summary": "현실과 다른 과거 조건 및 시간대를 넘는 결과를 완료형과 조동사로 정밀하게 연결한다.",
+    "patterns": [
+      "If + S + had + past participle, S + would have + past participle",
+      "If + S + had + past participle, S + would + base verb now",
+      "If + S + past verb, S + would have + past participle"
+    ],
+    "examples": [
+      "If we had checked the forecast, we would have brought umbrellas.",
+      "If Lena had accepted that job, she would live in Berlin now."
+    ],
+    "errorCodes": ["TENSE-12", "CLAUSE-11"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G03",
+    "level": "B2",
+    "title": "modal perfect(should have/might have/must have)",
+    "prerequisite": "B2-G02",
+    "difficultyTag": "complex",
+    "canDo": [
+      "should have로 실행되지 않은 과거의 의무나 후회를 표현할 수 있다.",
+      "might have로 불확실한 과거 가능성을 제시할 수 있다.",
+      "must have와 can't have로 근거에 기반한 과거 추측을 구별할 수 있다."
+    ],
+    "summary": "조동사 완료형을 사용해 과거 사건에 대한 평가, 가능성과 확신의 정도를 나타낸다.",
+    "patterns": [
+      "S + should/might/must + have + past participle",
+      "S + can't/couldn't + have + past participle"
+    ],
+    "examples": [
+      "You should have told me about the schedule change.",
+      "The package must have arrived while we were out."
+    ],
+    "errorCodes": ["MODAL-05", "TENSE-13"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G04",
+    "level": "B2",
+    "title": "분사절/축약관계절/절 압축(완료분사 포함)",
+    "prerequisite": "B2-G03",
+    "difficultyTag": "complex",
+    "canDo": [
+      "주절과 주어가 같은 부사절을 현재분사 또는 과거분사절로 압축할 수 있다.",
+      "관계절을 능동·수동 의미에 맞는 분사구로 줄일 수 있다.",
+      "완료분사로 주절보다 먼저 끝난 사건을 분명하게 나타낼 수 있다."
+    ],
+    "summary": "주어와 시간 관계를 점검하며 부사절과 관계절을 분사 구조로 압축해 정보 밀도를 높인다.",
+    "patterns": [
+      "V-ing / past participle phrase, main clause with the same subject",
+      "noun + V-ing/past participle phrase",
+      "Having + past participle, main clause"
+    ],
+    "examples": [
+      "Having finished the presentation, Mia answered questions.",
+      "The documents stored on this server are encrypted."
+    ],
+    "errorCodes": ["CLAUSE-12", "SV-06"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G05",
+    "level": "B2",
+    "title": "강조/도치/분열문(It is ... that)",
+    "prerequisite": "B2-G04",
+    "difficultyTag": "complex",
+    "canDo": [
+      "부정 의미 부사를 문두에 놓고 조동사 도치를 적용할 수 있다.",
+      "It is/was ... that 분열문으로 사람, 사물이나 시간을 강조할 수 있다.",
+      "일반 어순과 강조 구문의 초점 차이를 설명하고 상황에 맞게 선택할 수 있다."
+    ],
+    "summary": "도치와 분열문을 사용해 핵심 정보에 초점을 주되 필요한 보조동사와 어순을 지킨다.",
+    "patterns": [
+      "Negative adverbial + auxiliary + S + base verb",
+      "It is/was + focused element + that/who + clause"
+    ],
+    "examples": [
+      "Rarely do we see such careful craftsmanship.",
+      "It was Hana who noticed the calculation error."
+    ],
+    "errorCodes": ["WO-13", "CLAUSE-13"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G06",
+    "level": "B2",
+    "title": "사역/지각/수동 패턴(have/get O p.p.)",
+    "prerequisite": "B2-G05",
+    "difficultyTag": "complex",
+    "canDo": [
+      "have 또는 get + 목적어 + 과거분사로 서비스를 받거나 일을 처리하게 함을 표현할 수 있다.",
+      "make, let, have 뒤에서 목적어와 동사원형의 관계를 구성할 수 있다.",
+      "지각동사 뒤의 동사원형과 현재분사를 완료·진행 관점에 따라 선택할 수 있다."
+    ],
+    "summary": "사역과 지각의 의미 관계에 따라 목적어 뒤의 동사원형, 분사와 수동 구조를 선택한다.",
+    "patterns": [
+      "S + have/get + O + past participle",
+      "S + make/let/have + O + base verb",
+      "S + see/hear + O + base verb/V-ing"
+    ],
+    "examples": [
+      "We had the air conditioner repaired before summer.",
+      "I heard someone knocking at the back door."
+    ],
+    "errorCodes": ["CLAUSE-14", "WO-14"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G07",
+    "level": "B2",
+    "title": "전치사+관계대명사(in which/to whom)",
+    "prerequisite": "B2-G06",
+    "difficultyTag": "complex",
+    "canDo": [
+      "격식 문장에서 전치사를 which 또는 whom 앞에 배치할 수 있다.",
+      "선행사와 동사·형용사의 결합을 근거로 알맞은 전치사를 선택할 수 있다.",
+      "whereby를 사용해 어떤 과정이나 수단이 작동하는 방식을 설명할 수 있다."
+    ],
+    "summary": "전치사와 관계대명사를 결합해 장소, 대상과 수단의 관계를 격식 있고 정확하게 표현한다.",
+    "patterns": [
+      "noun + preposition + which/whom + S + V",
+      "noun + whereby + S + V"
+    ],
+    "examples": [
+      "The committee reached an agreement to which everyone could commit.",
+      "They developed a process whereby waste heat is reused."
+    ],
+    "errorCodes": ["PREP-04", "CLAUSE-15"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G08",
+    "level": "B2",
+    "title": "명사화/학술문체 기초",
+    "prerequisite": "B2-G07",
+    "difficultyTag": "complex",
+    "canDo": [
+      "동사나 형용사를 명사화해 과정과 개념을 문장의 초점으로 만들 수 있다.",
+      "명사화된 주어와 의미가 분명한 동사를 결합해 학술 문장을 만들 수 있다.",
+      "과도한 명사화를 동사 중심 문장으로 풀어 가독성을 조절할 수 있다."
+    ],
+    "summary": "명사화를 활용해 정보를 압축하되 행위자와 핵심 동작이 흐려지지 않도록 학술 문체를 조절한다.",
+    "patterns": [
+      "the + nominalized noun + of + noun + academic verb",
+      "It is adjective + to-infinitive / that-clause",
+      "verb clause ↔ nominalization + support verb"
+    ],
+    "examples": [
+      "The rapid expansion of the city has increased housing demand.",
+      "A careful analysis of the samples revealed two distinct patterns."
+    ],
+    "errorCodes": ["REG-02", "CLAUSE-16"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "B2-G09",
+    "level": "B2",
+    "title": "복합 한정어(관사/수량/지시/한정어 순서)",
+    "prerequisite": "B2-G08",
+    "difficultyTag": "complex",
+    "canDo": [
+      "전치한정사, 중앙한정사와 후치한정사의 기본 순서를 지킬 수 있다.",
+      "관사, 지시사와 소유격이 같은 자리를 경쟁한다는 점을 적용할 수 있다.",
+      "여러 수량어와 형용사가 포함된 긴 명사구를 자연스럽게 구성할 수 있다."
+    ],
+    "summary": "한정사의 결합 가능성과 순서를 적용해 수량과 특정성이 복합된 긴 명사구를 정확히 만든다.",
+    "patterns": [
+      "predeterminer + central determiner + postdeterminer + adjective + noun",
+      "all/both + the/these/my + number + plural noun"
+    ],
+    "examples": [
+      "All three remaining proposals require further review.",
+      "Both my younger sisters study environmental science."
+    ],
+    "errorCodes": ["ART-04", "WO-15"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G01",
+    "level": "C1",
+    "title": "담화 문법(참조/대용/생략/결속장치)",
+    "prerequisite": "B2-G09",
+    "difficultyTag": "precision",
+    "canDo": [
+      "대명사와 지시 표현의 선행사를 문단 안에서 모호하지 않게 관리할 수 있다.",
+      "one, do so와 절 생략을 사용해 불필요한 반복을 줄일 수 있다.",
+      "결속장치를 정보 관계에 맞게 배치해 여러 문장을 일관된 문단으로 연결할 수 있다."
+    ],
+    "summary": "참조, 대용과 생략을 조절해 반복을 줄이고 문장 사이의 의미 관계를 선명하게 유지한다.",
+    "patterns": [
+      "noun phrase + reference with this/that/these/those + summary noun",
+      "repeated noun/verb phrase → one/ones or do so",
+      "auxiliary + ellipsis: S + auxiliary, and so/neither + auxiliary + S"
+    ],
+    "examples": [
+      "The first proposal reduced costs; this advantage made it attractive to the board.",
+      "Some teams adopted the new process, while others chose not to."
+    ],
+    "errorCodes": ["REG-03", "CLAUSE-17"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G02",
+    "level": "C1",
+    "title": "고급 도치/전위/fronting(so/such ... that 도치 포함)",
+    "prerequisite": "C1-G01",
+    "difficultyTag": "precision",
+    "canDo": [
+      "제한·부정 표현을 전면에 두고 주어와 조동사를 정확히 도치할 수 있다.",
+      "목적어나 보어를 전위해 기존 정보와 새 정보의 흐름을 조절할 수 있다.",
+      "so 또는 such를 문두로 이동한 강조 도치를 정확히 구성할 수 있다."
+    ],
+    "summary": "전위와 다양한 도치 구조로 초점과 리듬을 바꾸면서 조동사와 절 어순을 정밀하게 제어한다.",
+    "patterns": [
+      "Only/Not until + phrase/clause + auxiliary + S + base verb",
+      "So + adjective + be + S + that + clause",
+      "Such + be + noun phrase + that + clause"
+    ],
+    "examples": [
+      "Only after the audit did the company revise its policy.",
+      "So compelling was the evidence that the committee reopened the case."
+    ],
+    "errorCodes": ["WO-16", "CLAUSE-18"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G03",
+    "level": "C1",
+    "title": "stance/hedging(완곡·태도 표현)",
+    "prerequisite": "C1-G02",
+    "difficultyTag": "precision",
+    "canDo": [
+      "may, might와 appear to를 사용해 주장 강도를 낮출 수 있다.",
+      "evidence suggests와 it is likely 같은 틀로 근거와 태도를 분리할 수 있다.",
+      "확신도에 따라 완곡 표현을 강화하거나 줄여 독자에게 적절한 태도를 전달할 수 있다."
+    ],
+    "summary": "조동사와 태도 표현을 조합해 주장에 대한 확신, 거리두기와 예의를 세밀하게 조절한다.",
+    "patterns": [
+      "S + may/might/appears to + base verb",
+      "It is possible/likely that + clause",
+      "The evidence suggests/indicates that + clause"
+    ],
+    "examples": [
+      "The decline may partly reflect changes in reporting practices.",
+      "It appears that the initial estimate was overly optimistic."
+    ],
+    "errorCodes": ["REG-04", "MODAL-06"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G04",
+    "level": "C1",
+    "title": "문장 밀도 제어(압축/확장/리듬)",
+    "prerequisite": "C1-G03",
+    "difficultyTag": "precision",
+    "canDo": [
+      "관계절, 분사구와 명사화를 활용해 반복 정보를 압축할 수 있다.",
+      "지나치게 밀집된 문장을 유한절로 확장해 논리 관계를 명확히 할 수 있다.",
+      "긴 문장과 짧은 문장의 배치를 조절해 읽기 리듬과 강조를 만들 수 있다."
+    ],
+    "summary": "독자의 처리 부담과 강조점을 고려해 절을 압축하거나 확장하고 문장 길이의 리듬을 조절한다.",
+    "patterns": [
+      "full relative/adverb clause ↔ participle or prepositional phrase",
+      "nominalization ↔ subject + active verb clause",
+      "dense claim; short emphasis sentence."
+    ],
+    "examples": [
+      "The policy, introduced after months of consultation, reduced processing time.",
+      "The model failed to account for seasonal demand. That omission mattered."
+    ],
+    "errorCodes": ["REG-05", "CLAUSE-19"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G05",
+    "level": "C1",
+    "title": "레지스터 전환(구어/업무/학술)",
+    "prerequisite": "C1-G04",
+    "difficultyTag": "precision",
+    "canDo": [
+      "같은 요청을 친근한 구어체와 공손한 업무 문체로 바꿔 쓸 수 있다.",
+      "일상 동사구를 정확한 학술 어휘와 명사구로 전환할 수 있다.",
+      "독자, 목적과 매체에 맞춰 축약형, 대명사와 문장 복잡도를 조절할 수 있다."
+    ],
+    "summary": "상황과 독자에 맞춰 어휘, 문장 구조와 공손성의 수준을 바꾸면서 의미를 유지한다.",
+    "patterns": [
+      "Can you + base verb? ↔ I would appreciate it if you could + base verb",
+      "phrasal verb in speech ↔ precise single verb in formal writing",
+      "personal claim with I/we ↔ impersonal or evidence-led academic claim"
+    ],
+    "examples": [
+      "Could you send me the revised figures by noon?",
+      "The study determined that income alone did not explain the difference."
+    ],
+    "errorCodes": ["REG-06", "REG-07"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G06",
+    "level": "C1",
+    "title": "오류 최소화(관사/전치사/시제선택/수일치)",
+    "prerequisite": "C1-G05",
+    "difficultyTag": "precision",
+    "canDo": [
+      "담화에서 이미 특정된 명사와 일반 개념에 맞춰 관사 또는 무관사를 선택할 수 있다.",
+      "동사·형용사·명사의 결합에 필요한 전치사를 검토하고 교정할 수 있다.",
+      "사건의 시간 경계와 주어의 핵을 확인해 시제와 수일치 오류를 최소화할 수 있다."
+    ],
+    "summary": "관사, 전치사, 시제와 수일치를 의미 단위별로 재검토해 고급 글의 잔여 오류를 줄인다.",
+    "patterns": [
+      "a/an + new singular count noun / the + identifiable noun / zero article + general plural or uncount noun",
+      "head noun + singular/plural verb despite intervening phrases",
+      "time frame + aspect choice: past, present perfect or past perfect"
+    ],
+    "examples": [
+      "The impact of the new regulations on small firms remains uncertain.",
+      "Research on urban mobility has increased significantly over the past decade."
+    ],
+    "errorCodes": ["ART-05", "PREP-05", "TENSE-14", "SV-07"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  },
+  {
+    "id": "C1-G07",
+    "level": "C1",
+    "title": "비원어민 직역 교정(자연 어순/콜로케이션)",
+    "prerequisite": "C1-G06",
+    "difficultyTag": "precision",
+    "canDo": [
+      "모국어 어순을 직역한 문장을 영어의 정보 배치에 맞게 재구성할 수 있다.",
+      "문맥에 맞는 동사-명사와 형용사-명사 콜로케이션을 선택할 수 있다.",
+      "불필요한 주어 생략이나 연결어 반복을 찾아 자연스러운 영어 문장으로 교정할 수 있다."
+    ],
+    "summary": "직역에서 생기는 어순과 단어 결합 문제를 찾아 영어다운 정보 흐름과 콜로케이션으로 바꾼다.",
+    "patterns": [
+      "S + V + manner + place + time",
+      "make/take/have + conventional noun collocation",
+      "given information before new or emphasized information"
+    ],
+    "examples": [
+      "We made a decision after carefully reviewing the evidence.",
+      "The team discussed the proposal in detail at yesterday's meeting."
+    ],
+    "errorCodes": ["WO-17", "REG-08", "PREP-06"],
+    "masteryRule": {
+      "quizAccuracy": 0.8,
+      "productionPass": true,
+      "errorTolerance": 0.2
+    }
+  }
+]
