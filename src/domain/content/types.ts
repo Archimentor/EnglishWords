@@ -4,6 +4,8 @@ export type Level = (typeof LEVELS)[number]
 export const DIFFICULTIES = ['veryEasy', 'easy', 'normal', 'hard', 'veryHard'] as const
 export type Difficulty = (typeof DIFFICULTIES)[number]
 
+export type ContentKind = 'word' | 'phrasalVerb'
+
 export const GRAMMAR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
 export type GrammarLevel = (typeof GRAMMAR_LEVELS)[number]
 
@@ -46,6 +48,20 @@ export interface PhrasalVerbItem {
   partOfSpeech: 'phrasalVerb'
   usageNotes: string
   difficulty: Difficulty
+}
+
+export interface StudyItem {
+  id: string
+  kind: ContentKind
+  term: string
+  lemma: string
+  level: Level
+  difficulty: Difficulty
+  partsOfSpeech: string[]
+  forms: string[]
+  meanings: string[]
+  ipa: string | null
+  examples: string[]
 }
 
 export interface StoryContent {
@@ -92,6 +108,11 @@ export interface ContentCatalog {
   }
   stories: Record<Level, StoryContent>
   grammarNodes: GrammarNode[]
+}
+
+export interface RuntimeCatalog extends ContentCatalog {
+  itemsByLevel: Record<Level, StudyItem[]>
+  itemsById: Record<string, StudyItem>
 }
 
 export type ValidationMode = 'development' | 'release'
