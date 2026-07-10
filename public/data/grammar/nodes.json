@@ -1036,7 +1036,8 @@
     ],
     "summary": "조동사와 태도 표현을 조합해 주장에 대한 확신, 거리두기와 예의를 세밀하게 조절한다.",
     "patterns": [
-      "S + may/might/appears to + base verb",
+      "S + may/might + base verb",
+      "S + appears to + base verb",
       "It is possible/likely that + clause",
       "The evidence suggests/indicates that + clause"
     ],

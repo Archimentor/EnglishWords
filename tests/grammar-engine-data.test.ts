@@ -174,6 +174,18 @@ describe('문법 커리큘럼 데이터', () => {
       })
     })
   })
+
+  test('C1-G03은 조동사와 appear to 완곡 표현을 별도의 올바른 패턴으로 제시한다', () => {
+    const nodes = readJson<GrammarNode[]>('../public/data/grammar/nodes.json')
+    const hedgingNode = nodes.find(({ id }) => id === 'C1-G03')
+
+    expect(hedgingNode?.patterns).toEqual([
+      'S + may/might + base verb',
+      'S + appears to + base verb',
+      'It is possible/likely that + clause',
+      'The evidence suggests/indicates that + clause',
+    ])
+  })
 })
 
 describe('문법 노드 JSON 스키마', () => {
