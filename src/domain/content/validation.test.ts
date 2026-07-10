@@ -31,7 +31,10 @@ describe('validateCatalog', () => {
   })
 
   test('뒤 레벨에서 다시 등장한 lemma를 거부한다', () => {
-    const issues = validateCatalog(makeCatalog({ duplicateLemma: 'play' }), 'development')
+    const issues = validateCatalog(
+      makeCatalog({ wordOverrides: { 유치원: { word: 'play', lemma: 'play' } } }),
+      'development',
+    )
 
     expect(issues).toContainEqual(
       expect.objectContaining({
@@ -144,8 +147,9 @@ describe('validateCatalog', () => {
     ['배열', [], 'catalog'],
     ['wordlists 누락', {}, 'wordlists'],
   ])('%s 입력에서 예외 대신 INVALID_CATALOG를 반환한다', (_name, catalog, path) => {
-    expect(() => validateCatalog(catalog, 'development')).not.toThrow()
-    expect(validateCatalog(catalog, 'development')).toContainEqual(
+    const issues = validateCatalog(catalog, 'development')
+
+    expect(issues).toContainEqual(
       expect.objectContaining({ code: 'INVALID_CATALOG', path }),
     )
   })
@@ -160,8 +164,9 @@ describe('validateCatalog', () => {
       },
     }
 
-    expect(() => validateCatalog(malformedCatalog, 'development')).not.toThrow()
-    expect(validateCatalog(malformedCatalog, 'development')).toContainEqual(
+    const issues = validateCatalog(malformedCatalog, 'development')
+
+    expect(issues).toContainEqual(
       expect.objectContaining({
         code: 'INVALID_CATALOG',
         path: 'wordlists.기초[0].id',
@@ -240,9 +245,9 @@ describe('validateCatalog', () => {
     ],
   ])('%s에서 예외 대신 INVALID_CATALOG를 반환한다', (_name, mutate, path) => {
     const malformed = mutate(makeCatalog())
+    const issues = validateCatalog(malformed, 'development')
 
-    expect(() => validateCatalog(malformed, 'development')).not.toThrow()
-    expect(validateCatalog(malformed, 'development')).toContainEqual(
+    expect(issues).toContainEqual(
       expect.objectContaining({ code: 'INVALID_CATALOG', path }),
     )
   })
@@ -501,9 +506,9 @@ describe('validateCatalog', () => {
     ],
   ])('%s 문법 값에서 예외 대신 INVALID_CATALOG를 반환한다', (_name, mutate, path) => {
     const malformed = mutate(makeCatalog())
+    const issues = validateCatalog(malformed, 'development')
 
-    expect(() => validateCatalog(malformed, 'development')).not.toThrow()
-    expect(validateCatalog(malformed, 'development')).toContainEqual(
+    expect(issues).toContainEqual(
       expect.objectContaining({ code: 'INVALID_CATALOG', path }),
     )
   })
@@ -599,9 +604,9 @@ describe('validateCatalog', () => {
     ],
   ])('%s에서 예외 대신 INVALID_CATALOG를 반환한다', (_name, mutate, path) => {
     const malformed = mutate(makeCatalog())
+    const issues = validateCatalog(malformed, 'development')
 
-    expect(() => validateCatalog(malformed, 'development')).not.toThrow()
-    expect(validateCatalog(malformed, 'development')).toContainEqual(
+    expect(issues).toContainEqual(
       expect.objectContaining({ code: 'INVALID_CATALOG', path }),
     )
   })

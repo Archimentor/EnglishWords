@@ -17,7 +17,6 @@ type WordFixtureOverrides = Partial<WordItem> & {
 }
 
 interface MakeCatalogOptions {
-  duplicateLemma?: string
   wordOverrides?: Partial<Record<Level, WordFixtureOverrides>>
   wordlists?: Record<Level, WordItem[]>
   phrasalVerbs?: ContentCatalog['phrasalVerbs']
@@ -156,16 +155,14 @@ export function makeCatalog(options: MakeCatalogOptions = {}): ContentCatalog {
     (Object.fromEntries(
       LEVELS.map((level) => {
         const { lemma, difficulty } = levelWords[level]
-        const duplicateLemma = level === '유치원' ? options.duplicateLemma : undefined
-        const resolvedLemma = duplicateLemma ?? lemma
 
         return [
           level,
           [
             makeWord({
               id: `word-${lemma}`,
-              word: resolvedLemma,
-              lemma: resolvedLemma,
+              word: lemma,
+              lemma,
               level,
               familyId: `family-${lemma}`,
               difficulty,

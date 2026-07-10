@@ -4,13 +4,17 @@ export type Level = (typeof LEVELS)[number]
 export const DIFFICULTIES = ['veryEasy', 'easy', 'normal', 'hard', 'veryHard'] as const
 export type Difficulty = (typeof DIFFICULTIES)[number]
 
-export type GrammarLevel = 'A1' | 'A2' | 'B1' | 'B2' | 'C1'
-export type GrammarDifficultyTag =
-  | 'core'
-  | 'expansion'
-  | 'integration'
-  | 'complex'
-  | 'precision'
+export const GRAMMAR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1'] as const
+export type GrammarLevel = (typeof GRAMMAR_LEVELS)[number]
+
+export const GRAMMAR_DIFFICULTY_TAGS = [
+  'core',
+  'expansion',
+  'integration',
+  'complex',
+  'precision',
+] as const
+export type GrammarDifficultyTag = (typeof GRAMMAR_DIFFICULTY_TAGS)[number]
 
 export interface WordEntry {
   partOfSpeech: string
