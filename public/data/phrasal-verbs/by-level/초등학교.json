@@ -1,0 +1,32 @@
+[
+  {
+    "id": "phrasal-look-for",
+    "baseVerb": "look",
+    "particle": "for",
+    "phrasalVerb": "look for",
+    "levelHint": "초등학교",
+    "meaningKo": ["찾다", "찾아보다"],
+    "examples": [
+      "I look for my keys every morning.",
+      "They look for a quiet place to study."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "잃어버렸거나 필요한 사람이나 사물을 찾는 과정에 쓴다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-find-out",
+    "baseVerb": "find",
+    "particle": "out",
+    "phrasalVerb": "find out",
+    "levelHint": "초등학교",
+    "meaningKo": ["알아내다", "확인하다"],
+    "examples": [
+      "We need to find out what happened.",
+      "She will find out the answer tomorrow."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "조사하거나 질문해서 몰랐던 사실이나 정보를 알게 될 때 쓴다.",
+    "difficulty": "normal"
+  }
+]

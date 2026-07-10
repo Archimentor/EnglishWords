@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "level": "유치원",
+  "title": "학교의 하루",
+  "isManual": true,
+  "coverage": {
+    "mustCoverAll": true,
+    "allowUpperLevelWords": false,
+    "coverageRate": 1
+  },
+  "usedWords": [
+    {
+      "lemma": "book",
+      "partOfSpeech": "noun",
+      "forms": ["book", "books"]
+    },
+    {
+      "lemma": "chair",
+      "partOfSpeech": "noun",
+      "forms": ["chair", "chairs"]
+    },
+    {
+      "lemma": "draw",
+      "partOfSpeech": "verb",
+      "forms": ["draw", "draws", "drew", "drawing", "drawn"]
+    },
+    {
+      "lemma": "friend",
+      "partOfSpeech": "noun",
+      "forms": ["friend", "friends"]
+    },
+    {
+      "lemma": "green",
+      "partOfSpeech": "adjective",
+      "forms": ["green", "greener", "greenest"]
+    },
+    {
+      "lemma": "jump",
+      "partOfSpeech": "verb",
+      "forms": ["jump", "jumps", "jumped", "jumping", "jumped"]
+    },
+    {
+      "lemma": "school",
+      "partOfSpeech": "noun",
+      "forms": ["school", "schools"]
+    },
+    {
+      "lemma": "teacher",
+      "partOfSpeech": "noun",
+      "forms": ["teacher", "teachers"]
+    }
+  ],
+  "storyText": "At school, a teacher puts a green book on a chair. I draw with my friend, and then we jump outside."
+}

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "phrasal-wake-up",
+    "baseVerb": "wake",
+    "particle": "up",
+    "phrasalVerb": "wake up",
+    "levelHint": "기초",
+    "meaningKo": ["잠에서 깨다", "잠을 깨우다"],
+    "examples": [
+      "I wake up at seven every morning.",
+      "Please wake up your brother before breakfast."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "잠에서 깨거나 누군가를 잠에서 깨우는 상황에 쓴다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-sit-down",
+    "baseVerb": "sit",
+    "particle": "down",
+    "phrasalVerb": "sit down",
+    "levelHint": "기초",
+    "meaningKo": ["앉다", "자리에 앉다"],
+    "examples": [
+      "Please sit down next to me.",
+      "We sit down together for dinner."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "서 있는 사람이 의자나 자리에 앉는 동작을 나타낼 때 쓴다.",
+    "difficulty": "veryEasy"
+  }
+]

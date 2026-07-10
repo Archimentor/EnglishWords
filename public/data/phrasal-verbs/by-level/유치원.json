@@ -1,0 +1,32 @@
+[
+  {
+    "id": "phrasal-stand-up",
+    "baseVerb": "stand",
+    "particle": "up",
+    "phrasalVerb": "stand up",
+    "levelHint": "유치원",
+    "meaningKo": ["일어서다", "서다"],
+    "examples": [
+      "Please stand up when your name is called.",
+      "The children stand up to sing."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "앉거나 누워 있던 사람이 몸을 일으켜 설 때 쓴다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-put-on",
+    "baseVerb": "put",
+    "particle": "on",
+    "phrasalVerb": "put on",
+    "levelHint": "유치원",
+    "meaningKo": ["입다", "신다", "착용하다"],
+    "examples": [
+      "Put on your coat before you go outside.",
+      "She will put on her new shoes."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "옷, 신발, 모자처럼 몸에 착용하는 것을 입거나 신는 동작에 쓴다.",
+    "difficulty": "easy"
+  }
+]

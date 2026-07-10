@@ -1,0 +1,122 @@
+[
+  {
+    "id": "phrasal-wake-up",
+    "baseVerb": "wake",
+    "particle": "up",
+    "phrasalVerb": "wake up",
+    "levelHint": "기초",
+    "meaningKo": ["잠에서 깨다", "잠을 깨우다"],
+    "examples": [
+      "I wake up at seven every morning.",
+      "Please wake up your brother before breakfast."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "잠에서 깨거나 누군가를 잠에서 깨우는 상황에 쓴다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-sit-down",
+    "baseVerb": "sit",
+    "particle": "down",
+    "phrasalVerb": "sit down",
+    "levelHint": "기초",
+    "meaningKo": ["앉다", "자리에 앉다"],
+    "examples": [
+      "Please sit down next to me.",
+      "We sit down together for dinner."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "서 있는 사람이 의자나 자리에 앉는 동작을 나타낼 때 쓴다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stand-up",
+    "baseVerb": "stand",
+    "particle": "up",
+    "phrasalVerb": "stand up",
+    "levelHint": "유치원",
+    "meaningKo": ["일어서다", "서다"],
+    "examples": [
+      "Please stand up when your name is called.",
+      "The children stand up to sing."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "앉거나 누워 있던 사람이 몸을 일으켜 설 때 쓴다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-put-on",
+    "baseVerb": "put",
+    "particle": "on",
+    "phrasalVerb": "put on",
+    "levelHint": "유치원",
+    "meaningKo": ["입다", "신다", "착용하다"],
+    "examples": [
+      "Put on your coat before you go outside.",
+      "She will put on her new shoes."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "옷, 신발, 모자처럼 몸에 착용하는 것을 입거나 신는 동작에 쓴다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-look-for",
+    "baseVerb": "look",
+    "particle": "for",
+    "phrasalVerb": "look for",
+    "levelHint": "초등학교",
+    "meaningKo": ["찾다", "찾아보다"],
+    "examples": [
+      "I look for my keys every morning.",
+      "They look for a quiet place to study."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "잃어버렸거나 필요한 사람이나 사물을 찾는 과정에 쓴다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-find-out",
+    "baseVerb": "find",
+    "particle": "out",
+    "phrasalVerb": "find out",
+    "levelHint": "초등학교",
+    "meaningKo": ["알아내다", "확인하다"],
+    "examples": [
+      "We need to find out what happened.",
+      "She will find out the answer tomorrow."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "조사하거나 질문해서 몰랐던 사실이나 정보를 알게 될 때 쓴다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-carry-on",
+    "baseVerb": "carry",
+    "particle": "on",
+    "phrasalVerb": "carry on",
+    "levelHint": "중학교",
+    "meaningKo": ["계속하다", "이어가다"],
+    "examples": [
+      "Please carry on with your work.",
+      "They carry on talking despite the noise."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "중단될 수 있는 상황에서도 활동이나 행동을 계속할 때 쓴다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-deal-with",
+    "baseVerb": "deal",
+    "particle": "with",
+    "phrasalVerb": "deal with",
+    "levelHint": "중학교",
+    "meaningKo": ["다루다", "처리하다", "대처하다"],
+    "examples": [
+      "We must deal with this problem today.",
+      "She knows how to deal with difficult customers."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "문제나 상황을 처리하거나 사람을 상대하고 대처할 때 쓴다.",
+    "difficulty": "veryHard"
+  }
+]

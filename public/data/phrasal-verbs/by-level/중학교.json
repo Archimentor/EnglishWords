@@ -1,0 +1,32 @@
+[
+  {
+    "id": "phrasal-carry-on",
+    "baseVerb": "carry",
+    "particle": "on",
+    "phrasalVerb": "carry on",
+    "levelHint": "중학교",
+    "meaningKo": ["계속하다", "이어가다"],
+    "examples": [
+      "Please carry on with your work.",
+      "They carry on talking despite the noise."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "중단될 수 있는 상황에서도 활동이나 행동을 계속할 때 쓴다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-deal-with",
+    "baseVerb": "deal",
+    "particle": "with",
+    "phrasalVerb": "deal with",
+    "levelHint": "중학교",
+    "meaningKo": ["다루다", "처리하다", "대처하다"],
+    "examples": [
+      "We must deal with this problem today.",
+      "She knows how to deal with difficult customers."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "문제나 상황을 처리하거나 사람을 상대하고 대처할 때 쓴다.",
+    "difficulty": "veryHard"
+  }
+]

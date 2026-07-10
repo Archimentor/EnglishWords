@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://english-words.local/schema/phrasal.schema.json",
+  "title": "Phrasal Verb List",
+  "description": "상위 구동사 또는 한 학습 레벨의 PhrasalVerbItem 목록 계약",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "$ref": "#/$defs/PhrasalVerbItem"
+  },
+  "$defs": {
+    "PhrasalVerbItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "baseVerb",
+        "particle",
+        "phrasalVerb",
+        "levelHint",
+        "meaningKo",
+        "examples",
+        "partOfSpeech",
+        "usageNotes",
+        "difficulty"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "baseVerb": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "particle": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "phrasalVerb": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "levelHint": {
+          "type": "string",
+          "enum": ["기초", "유치원", "초등학교", "중학교"]
+        },
+        "meaningKo": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        },
+        "examples": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        },
+        "partOfSpeech": {
+          "type": "string",
+          "const": "phrasalVerb"
+        },
+        "usageNotes": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["veryEasy", "easy", "normal", "hard", "veryHard"]
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

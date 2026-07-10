@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "level": "초등학교",
+  "title": "신중한 학생",
+  "isManual": true,
+  "coverage": {
+    "mustCoverAll": true,
+    "allowUpperLevelWords": false,
+    "coverageRate": 1
+  },
+  "usedWords": [
+    {
+      "lemma": "answer",
+      "partOfSpeech": "noun",
+      "forms": ["answer", "answers"]
+    },
+    {
+      "lemma": "because",
+      "partOfSpeech": "conjunction",
+      "forms": ["because"]
+    },
+    {
+      "lemma": "careful",
+      "partOfSpeech": "adjective",
+      "forms": ["careful", "more careful", "most careful"]
+    },
+    {
+      "lemma": "decide",
+      "partOfSpeech": "verb",
+      "forms": ["decide", "decides", "decided", "deciding", "decided"]
+    },
+    {
+      "lemma": "different",
+      "partOfSpeech": "adjective",
+      "forms": ["different"]
+    },
+    {
+      "lemma": "explore",
+      "partOfSpeech": "verb",
+      "forms": ["explore", "explores", "explored", "exploring", "explored"]
+    },
+    {
+      "lemma": "improve",
+      "partOfSpeech": "verb",
+      "forms": ["improve", "improves", "improved", "improving", "improved"]
+    },
+    {
+      "lemma": "question",
+      "partOfSpeech": "noun",
+      "forms": ["question", "questions"]
+    }
+  ],
+  "storyText": "A careful student reads each question because she wants the right answer. She will decide, explore different ideas, and improve her work."
+}

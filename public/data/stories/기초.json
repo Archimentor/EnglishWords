@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "level": "기초",
+  "title": "함께 노는 친구들",
+  "isManual": true,
+  "coverage": {
+    "mustCoverAll": true,
+    "allowUpperLevelWords": false,
+    "coverageRate": 1
+  },
+  "usedWords": [
+    {
+      "lemma": "baby",
+      "partOfSpeech": "noun",
+      "forms": ["baby", "babies"]
+    },
+    {
+      "lemma": "ball",
+      "partOfSpeech": "noun",
+      "forms": ["ball", "balls"]
+    },
+    {
+      "lemma": "bird",
+      "partOfSpeech": "noun",
+      "forms": ["bird", "birds"]
+    },
+    {
+      "lemma": "cat",
+      "partOfSpeech": "noun",
+      "forms": ["cat", "cats"]
+    },
+    {
+      "lemma": "dog",
+      "partOfSpeech": "noun",
+      "forms": ["dog", "dogs"]
+    },
+    {
+      "lemma": "eat",
+      "partOfSpeech": "verb",
+      "forms": ["eat", "eats", "ate", "eating", "eaten"]
+    },
+    {
+      "lemma": "happy",
+      "partOfSpeech": "adjective",
+      "forms": ["happy", "happier", "happiest"]
+    },
+    {
+      "lemma": "play",
+      "partOfSpeech": "verb",
+      "forms": ["play", "plays", "played", "playing", "played"]
+    }
+  ],
+  "storyText": "A happy baby sees a bird, a cat, and a dog. They eat, play with a ball, and rest together."
+}

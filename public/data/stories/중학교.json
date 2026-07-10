@@ -1,0 +1,54 @@
+{
+  "schemaVersion": "1.0.0",
+  "level": "중학교",
+  "title": "근거와 목표",
+  "isManual": true,
+  "coverage": {
+    "mustCoverAll": true,
+    "allowUpperLevelWords": false,
+    "coverageRate": 1
+  },
+  "usedWords": [
+    {
+      "lemma": "achieve",
+      "partOfSpeech": "verb",
+      "forms": ["achieve", "achieves", "achieved", "achieving", "achieved"]
+    },
+    {
+      "lemma": "although",
+      "partOfSpeech": "conjunction",
+      "forms": ["although"]
+    },
+    {
+      "lemma": "compare",
+      "partOfSpeech": "verb",
+      "forms": ["compare", "compares", "compared", "comparing", "compared"]
+    },
+    {
+      "lemma": "evidence",
+      "partOfSpeech": "noun",
+      "forms": ["evidence"]
+    },
+    {
+      "lemma": "influence",
+      "partOfSpeech": "noun",
+      "forms": ["influence", "influences"]
+    },
+    {
+      "lemma": "maintain",
+      "partOfSpeech": "verb",
+      "forms": ["maintain", "maintains", "maintained", "maintaining", "maintained"]
+    },
+    {
+      "lemma": "require",
+      "partOfSpeech": "verb",
+      "forms": ["require", "requires", "required", "requiring", "required"]
+    },
+    {
+      "lemma": "respond",
+      "partOfSpeech": "verb",
+      "forms": ["respond", "responds", "responded", "responding", "responded"]
+    }
+  ],
+  "storyText": "To achieve a goal, compare each claim with evidence. Although opinions influence us, good work may require us to maintain focus and respond clearly."
+}
