@@ -433,6 +433,18 @@ describe('validateCatalog', () => {
     )
   })
 
+  test('문법 노드의 예문이 두 개보다 적으면 거부한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = { ...nodes[0]!, examples: ['The child is happy.'] }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
+      expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'grammarNodes[0].examples',
+      }),
+    )
+  })
+
   test('문법 ID가 이전 단어 ID와 겹치면 문법 경로를 거부한다', () => {
     const issues = validateCatalog(
       makeCatalog({ wordOverrides: { 기초: { id: 'A1-G01' } } }),

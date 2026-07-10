@@ -101,7 +101,7 @@ function validateGrammarNode(
 
   validateNonBlankArray(node.canDo, `${path}.canDo`, 3, issues)
   validateNonBlankArray(node.patterns, `${path}.patterns`, 1, issues)
-  validateNonBlankArray(node.examples, `${path}.examples`, 1, issues)
+  validateNonBlankArray(node.examples, `${path}.examples`, 2, issues)
   validateNonBlankArray(node.errorCodes, `${path}.errorCodes`, 1, issues)
 
   if (!isRecord(node.masteryRule)) {

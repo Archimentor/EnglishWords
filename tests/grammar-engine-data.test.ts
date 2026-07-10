@@ -175,6 +175,35 @@ describe('문법 커리큘럼 데이터', () => {
     })
   })
 
+  test('A1-G06은 시간과 장소 전치사의 서로 다른 기준을 정확히 제시한다', () => {
+    const nodes = readJson<GrammarNode[]>('../public/data/grammar/nodes.json')
+    const prepositionNode = nodes.find(({ id }) => id === 'A1-G06')
+
+    expect(prepositionNode?.patterns).toEqual([
+      'a/an + singular count noun / the + specific noun',
+      'this/that + singular noun / these/those + plural noun',
+      'at + clock time / on + day or date / in + month or year',
+      'at + point / on + surface / in + enclosed area',
+    ])
+  })
+
+  test('B2-G09은 all과 both의 한정어 배열을 별도 패턴으로 제시한다', () => {
+    const nodes = readJson<GrammarNode[]>('../public/data/grammar/nodes.json')
+    const determinerNode = nodes.find(({ id }) => id === 'B2-G09')
+
+    expect(determinerNode).toMatchObject({
+      patterns: [
+        'predeterminer + central determiner + postdeterminer + adjective + noun',
+        'all + [the/these/my] + number + plural noun',
+        'both + [the/these/my] + adjective + plural noun',
+      ],
+      examples: [
+        'All three remaining proposals require further review.',
+        'Both my younger sisters study environmental science.',
+      ],
+    })
+  })
+
   test('C1-G03은 조동사와 appear to 완곡 표현을 별도의 올바른 패턴으로 제시한다', () => {
     const nodes = readJson<GrammarNode[]>('../public/data/grammar/nodes.json')
     const hedgingNode = nodes.find(({ id }) => id === 'C1-G03')
@@ -223,7 +252,7 @@ describe('문법 노드 JSON 스키마', () => {
     ])
     expect(schema.properties.canDo?.minItems).toBe(3)
     expect(schema.properties.patterns?.minItems).toBe(1)
-    expect(schema.properties.examples?.minItems).toBe(1)
+    expect(schema.properties.examples?.minItems).toBe(2)
     expect(schema.properties.errorCodes?.minItems).toBe(1)
 
     const mastery = schema.properties.masteryRule
