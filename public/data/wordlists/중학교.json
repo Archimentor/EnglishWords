@@ -1,0 +1,216 @@
+[
+  {
+    "id": "word-achieve",
+    "word": "achieve",
+    "lemma": "achieve",
+    "level": "중학교",
+    "familyId": "achieve-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "achieve",
+          "s3": "achieves",
+          "past": "achieved",
+          "participle": "achieving",
+          "pastParticiple": "achieved"
+        },
+        "meanings": ["이루다", "달성하다"],
+        "ipa": "/əˈtʃiv/",
+        "examples": [
+          "You can achieve your goal with steady effort.",
+          "Our team worked hard to achieve a higher score."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-although",
+    "word": "although",
+    "lemma": "although",
+    "level": "중학교",
+    "familyId": "although-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "conjunction",
+        "forms": ["although"],
+        "meanings": ["비록 ~이지만"],
+        "ipa": "/ɔlˈðoʊ/",
+        "examples": [
+          "Although it was cold, we continued the hike.",
+          "She joined the discussion although she felt nervous."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-compare",
+    "word": "compare",
+    "lemma": "compare",
+    "level": "중학교",
+    "familyId": "compare-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "compare",
+          "s3": "compares",
+          "past": "compared",
+          "participle": "comparing",
+          "pastParticiple": "compared"
+        },
+        "meanings": ["비교하다"],
+        "ipa": "/kəmˈpɛr/",
+        "examples": [
+          "We compare the two reports before choosing one.",
+          "Compare your result with the example in the book."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-evidence",
+    "word": "evidence",
+    "lemma": "evidence",
+    "level": "중학교",
+    "familyId": "evidence-family",
+    "isFamilyHead": true,
+    "difficulty": "veryHard",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["evidence"],
+        "meanings": ["증거", "근거"],
+        "ipa": "/ˈɛvɪdəns/",
+        "examples": [
+          "The photograph is strong evidence of the change.",
+          "We need more evidence before reaching a conclusion."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-influence",
+    "word": "influence",
+    "lemma": "influence",
+    "level": "중학교",
+    "familyId": "influence-family",
+    "isFamilyHead": true,
+    "difficulty": "veryHard",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["influence", "influences"],
+        "meanings": ["영향", "영향력"],
+        "ipa": "/ˈɪnfluəns/",
+        "examples": [
+          "Parents have a strong influence on young children.",
+          "Social media can be a positive influence when used wisely."
+        ]
+      },
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "influence",
+          "s3": "influences",
+          "past": "influenced",
+          "participle": "influencing",
+          "pastParticiple": "influenced"
+        },
+        "meanings": ["영향을 주다"],
+        "ipa": "/ˈɪnfluəns/",
+        "examples": [
+          "Friends can influence the choices we make.",
+          "Weather may influence how people travel."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-maintain",
+    "word": "maintain",
+    "lemma": "maintain",
+    "level": "중학교",
+    "familyId": "maintain-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "maintain",
+          "s3": "maintains",
+          "past": "maintained",
+          "participle": "maintaining",
+          "pastParticiple": "maintained"
+        },
+        "meanings": ["유지하다", "관리하다"],
+        "ipa": "/meɪnˈteɪn/",
+        "examples": [
+          "Regular exercise helps maintain good health.",
+          "Workers maintain the bridge to keep it safe."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-require",
+    "word": "require",
+    "lemma": "require",
+    "level": "중학교",
+    "familyId": "require-family",
+    "isFamilyHead": true,
+    "difficulty": "veryHard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "require",
+          "s3": "requires",
+          "past": "required",
+          "participle": "requiring",
+          "pastParticiple": "required"
+        },
+        "meanings": ["필요로 하다", "요구하다"],
+        "ipa": "/rɪˈkwaɪr/",
+        "examples": [
+          "This project will require careful planning.",
+          "School rules require students to arrive on time."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-respond",
+    "word": "respond",
+    "lemma": "respond",
+    "level": "중학교",
+    "familyId": "respond-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "respond",
+          "s3": "responds",
+          "past": "responded",
+          "participle": "responding",
+          "pastParticiple": "responded"
+        },
+        "meanings": ["응답하다", "반응하다"],
+        "ipa": "/rɪˈspɑnd/",
+        "examples": [
+          "Please respond to the email by Friday.",
+          "Plants respond to changes in light."
+        ]
+      }
+    ]
+  }
+]

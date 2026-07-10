@@ -1,0 +1,193 @@
+[
+  {
+    "id": "word-baby",
+    "word": "baby",
+    "lemma": "baby",
+    "level": "기초",
+    "familyId": "baby-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["baby", "babies"],
+        "meanings": ["아기"],
+        "ipa": "/ˈbeɪbi/",
+        "examples": [
+          "The baby is sleeping.",
+          "A baby needs gentle care."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-ball",
+    "word": "ball",
+    "lemma": "ball",
+    "level": "기초",
+    "familyId": "ball-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["ball", "balls"],
+        "meanings": ["공"],
+        "ipa": "/bɔl/",
+        "examples": [
+          "The ball is red.",
+          "Kick the ball to me."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bird",
+    "word": "bird",
+    "lemma": "bird",
+    "level": "기초",
+    "familyId": "bird-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["bird", "birds"],
+        "meanings": ["새"],
+        "ipa": "/bɝd/",
+        "examples": [
+          "A bird sings in the tree.",
+          "The bird has blue wings."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-cat",
+    "word": "cat",
+    "lemma": "cat",
+    "level": "기초",
+    "familyId": "cat-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["cat", "cats"],
+        "meanings": ["고양이"],
+        "ipa": "/kæt/",
+        "examples": [
+          "The cat is on the bed.",
+          "My cat likes warm milk."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-dog",
+    "word": "dog",
+    "lemma": "dog",
+    "level": "기초",
+    "familyId": "dog-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["dog", "dogs"],
+        "meanings": ["개", "강아지"],
+        "ipa": "/dɔɡ/",
+        "examples": [
+          "The dog runs fast.",
+          "Our dog waits by the door."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-eat",
+    "word": "eat",
+    "lemma": "eat",
+    "level": "기초",
+    "familyId": "eat-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "eat",
+          "s3": "eats",
+          "past": "ate",
+          "participle": "eating",
+          "pastParticiple": "eaten"
+        },
+        "meanings": ["먹다"],
+        "ipa": "/it/",
+        "examples": [
+          "I eat an apple.",
+          "We eat lunch together."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-happy",
+    "word": "happy",
+    "lemma": "happy",
+    "level": "기초",
+    "familyId": "happy-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": ["happy", "happier", "happiest"],
+        "meanings": ["행복한", "기쁜"],
+        "ipa": "/ˈhæpi/",
+        "examples": [
+          "I am happy today.",
+          "The happy child smiles."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-play",
+    "word": "play",
+    "lemma": "play",
+    "level": "기초",
+    "familyId": "play-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "play",
+          "s3": "plays",
+          "past": "played",
+          "participle": "playing",
+          "pastParticiple": "played"
+        },
+        "meanings": ["놀다", "경기하다", "연주하다"],
+        "ipa": "/pleɪ/",
+        "examples": [
+          "The children play outside.",
+          "We play soccer after school.",
+          "I play the piano for Mom."
+        ]
+      },
+      {
+        "partOfSpeech": "noun",
+        "forms": ["play", "plays"],
+        "meanings": ["연극"],
+        "ipa": "/pleɪ/",
+        "examples": [
+          "Our class puts on a play.",
+          "We watched a funny play."
+        ]
+      }
+    ]
+  }
+]

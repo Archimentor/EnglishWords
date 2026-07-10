@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://english-words.local/schema/wordlist.schema.json",
+  "title": "Level Wordlist",
+  "description": "한 학습 레벨의 WordItem 목록 계약",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "$ref": "#/$defs/WordItem"
+  },
+  "$defs": {
+    "WordItem": {
+      "type": "object",
+      "required": [
+        "id",
+        "word",
+        "lemma",
+        "level",
+        "familyId",
+        "isFamilyHead",
+        "difficulty",
+        "entries"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "word": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "lemma": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "level": {
+          "type": "string",
+          "enum": ["기초", "유치원", "초등학교", "중학교"]
+        },
+        "familyId": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "isFamilyHead": {
+          "type": "boolean"
+        },
+        "difficulty": {
+          "type": "string",
+          "enum": ["veryEasy", "easy", "normal", "hard", "veryHard"]
+        },
+        "entries": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/WordEntry"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "WordEntry": {
+      "type": "object",
+      "required": [
+        "partOfSpeech",
+        "forms",
+        "meanings",
+        "ipa",
+        "examples"
+      ],
+      "properties": {
+        "partOfSpeech": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "forms": {
+          "oneOf": [
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "pattern": "\\S"
+              }
+            },
+            {
+              "type": "object",
+              "minProperties": 1,
+              "propertyNames": {
+                "pattern": "\\S"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "pattern": "\\S"
+              }
+            }
+          ]
+        },
+        "meanings": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        },
+        "ipa": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "examples": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

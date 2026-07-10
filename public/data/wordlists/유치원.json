@@ -1,0 +1,182 @@
+[
+  {
+    "id": "word-book",
+    "word": "book",
+    "lemma": "book",
+    "level": "유치원",
+    "familyId": "book-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["book", "books"],
+        "meanings": ["책"],
+        "ipa": "/bʊk/",
+        "examples": [
+          "This book has big pictures.",
+          "I read a book before bed."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-chair",
+    "word": "chair",
+    "lemma": "chair",
+    "level": "유치원",
+    "familyId": "chair-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["chair", "chairs"],
+        "meanings": ["의자"],
+        "ipa": "/tʃɛr/",
+        "examples": [
+          "Please sit on the chair.",
+          "The blue chair is by the desk."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-draw",
+    "word": "draw",
+    "lemma": "draw",
+    "level": "유치원",
+    "familyId": "draw-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "draw",
+          "s3": "draws",
+          "past": "drew",
+          "participle": "drawing",
+          "pastParticiple": "drawn"
+        },
+        "meanings": ["그리다"],
+        "ipa": "/drɔ/",
+        "examples": [
+          "I draw a house with crayons.",
+          "They draw animals in art class."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-friend",
+    "word": "friend",
+    "lemma": "friend",
+    "level": "유치원",
+    "familyId": "friend-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["friend", "friends"],
+        "meanings": ["친구"],
+        "ipa": "/frɛnd/",
+        "examples": [
+          "My friend shares her toys.",
+          "A good friend listens to you."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-green",
+    "word": "green",
+    "lemma": "green",
+    "level": "유치원",
+    "familyId": "green-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": ["green", "greener", "greenest"],
+        "meanings": ["초록색의"],
+        "ipa": "/ɡrin/",
+        "examples": [
+          "The frog is green.",
+          "I have a green backpack."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-jump",
+    "word": "jump",
+    "lemma": "jump",
+    "level": "유치원",
+    "familyId": "jump-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "jump",
+          "s3": "jumps",
+          "past": "jumped",
+          "participle": "jumping",
+          "pastParticiple": "jumped"
+        },
+        "meanings": ["뛰다"],
+        "ipa": "/dʒʌmp/",
+        "examples": [
+          "I jump over the line.",
+          "Rabbits jump very high."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-school",
+    "word": "school",
+    "lemma": "school",
+    "level": "유치원",
+    "familyId": "school-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["school", "schools"],
+        "meanings": ["학교"],
+        "ipa": "/skul/",
+        "examples": [
+          "Our school has a playground.",
+          "I walk to school with my sister."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-teacher",
+    "word": "teacher",
+    "lemma": "teacher",
+    "level": "유치원",
+    "familyId": "teacher-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["teacher", "teachers"],
+        "meanings": ["선생님"],
+        "ipa": "/ˈtitʃɚ/",
+        "examples": [
+          "The teacher reads us a story.",
+          "Our teacher helps every student."
+        ]
+      }
+    ]
+  }
+]

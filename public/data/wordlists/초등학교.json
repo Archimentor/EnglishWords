@@ -1,0 +1,204 @@
+[
+  {
+    "id": "word-answer",
+    "word": "answer",
+    "lemma": "answer",
+    "level": "초등학교",
+    "familyId": "answer-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["answer", "answers"],
+        "meanings": ["대답", "정답"],
+        "ipa": "/ˈænsɚ/",
+        "examples": [
+          "Write your answer on the line.",
+          "Her answer was clear and polite."
+        ]
+      },
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "answer",
+          "s3": "answers",
+          "past": "answered",
+          "participle": "answering",
+          "pastParticiple": "answered"
+        },
+        "meanings": ["대답하다"],
+        "ipa": "/ˈænsɚ/",
+        "examples": [
+          "Please answer the first question.",
+          "I answer my teacher in a full sentence."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-because",
+    "word": "because",
+    "lemma": "because",
+    "level": "초등학교",
+    "familyId": "because-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "conjunction",
+        "forms": ["because"],
+        "meanings": ["~이기 때문에"],
+        "ipa": "/bɪˈkɔz/",
+        "examples": [
+          "We stayed inside because it was raining.",
+          "I smiled because my team won."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-careful",
+    "word": "careful",
+    "lemma": "careful",
+    "level": "초등학교",
+    "familyId": "careful-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": ["careful", "more careful", "most careful"],
+        "meanings": ["조심하는", "주의 깊은"],
+        "ipa": "/ˈkɛrfəl/",
+        "examples": [
+          "Be careful when you cross the street.",
+          "A careful reader checks every detail."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-decide",
+    "word": "decide",
+    "lemma": "decide",
+    "level": "초등학교",
+    "familyId": "decide-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "decide",
+          "s3": "decides",
+          "past": "decided",
+          "participle": "deciding",
+          "pastParticiple": "decided"
+        },
+        "meanings": ["결정하다"],
+        "ipa": "/dɪˈsaɪd/",
+        "examples": [
+          "We decide which game to play.",
+          "She will decide after reading both choices."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-different",
+    "word": "different",
+    "lemma": "different",
+    "level": "초등학교",
+    "familyId": "different-family",
+    "isFamilyHead": true,
+    "difficulty": "normal",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": ["different"],
+        "meanings": ["다른"],
+        "ipa": "/ˈdɪfərənt/",
+        "examples": [
+          "My idea is different from yours.",
+          "The two leaves have different shapes."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-explore",
+    "word": "explore",
+    "lemma": "explore",
+    "level": "초등학교",
+    "familyId": "explore-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "explore",
+          "s3": "explores",
+          "past": "explored",
+          "participle": "exploring",
+          "pastParticiple": "explored"
+        },
+        "meanings": ["탐험하다", "자세히 살펴보다"],
+        "ipa": "/ɪkˈsplɔr/",
+        "examples": [
+          "We explore the forest with a guide.",
+          "Scientists explore new ways to save water."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-improve",
+    "word": "improve",
+    "lemma": "improve",
+    "level": "초등학교",
+    "familyId": "improve-family",
+    "isFamilyHead": true,
+    "difficulty": "hard",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "improve",
+          "s3": "improves",
+          "past": "improved",
+          "participle": "improving",
+          "pastParticiple": "improved"
+        },
+        "meanings": ["개선하다", "향상되다"],
+        "ipa": "/ɪmˈpruv/",
+        "examples": [
+          "Daily practice can improve your spelling.",
+          "My reading skills improve when I read often."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-question",
+    "word": "question",
+    "lemma": "question",
+    "level": "초등학교",
+    "familyId": "question-family",
+    "isFamilyHead": true,
+    "difficulty": "easy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": ["question", "questions"],
+        "meanings": ["질문", "문제"],
+        "ipa": "/ˈkwɛstʃən/",
+        "examples": [
+          "I asked a question about the lesson.",
+          "The last question on the test was difficult."
+        ]
+      }
+    ]
+  }
+]
