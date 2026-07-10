@@ -2,7 +2,6 @@ import { LEVELS } from '../types'
 import type { ContentCatalog, Level, ValidationIssue } from '../types'
 import {
   invalidCatalog,
-  isFiniteNumber,
   isLevel,
   isNonBlankString,
   isRate,
@@ -42,8 +41,10 @@ function validateStory(
     return
   }
 
-  if (!isFiniteNumber(value.schemaVersion)) {
-    issues.push(invalidCatalog(`${path}.schemaVersion`, 'schemaVersion must be a finite number.'))
+  if (!isNonBlankString(value.schemaVersion)) {
+    issues.push(
+      invalidCatalog(`${path}.schemaVersion`, 'schemaVersion must be a non-blank string.'),
+    )
   }
   if (!isLevel(value.level) || value.level !== level) {
     issues.push(invalidCatalog(`${path}.level`, `level must match its ${level} story container.`))

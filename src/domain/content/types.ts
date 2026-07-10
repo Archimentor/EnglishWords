@@ -49,7 +49,7 @@ export interface PhrasalVerbItem {
 }
 
 export interface StoryContent {
-  schemaVersion: number
+  schemaVersion: string
   level: Level
   title: string
   isManual: boolean

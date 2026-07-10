@@ -121,7 +121,7 @@ export function makeStory(
   overrides: Partial<StoryContent> = {},
 ): StoryContent {
   return {
-    schemaVersion: 1,
+    schemaVersion: '1.0.0',
     level,
     title: `${level} 대표 이야기`,
     isManual: true,

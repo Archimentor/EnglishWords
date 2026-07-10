@@ -563,6 +563,38 @@ describe('validateCatalog', () => {
     )
   })
 
+  test('스토리 schemaVersion 문자열 1.0.0을 허용한다', () => {
+    const catalog = makeCatalog()
+    const versionedCatalog = {
+      ...catalog,
+      stories: Object.fromEntries(
+        Object.entries(catalog.stories).map(([level, story]) => [
+          level,
+          { ...story, schemaVersion: '1.0.0' },
+        ]),
+      ),
+    }
+
+    expect(validateCatalog(versionedCatalog, 'development')).toEqual([])
+  })
+
+  test.each([1, ''])('스토리 schemaVersion %j을 정확한 경로에서 거부한다', (schemaVersion) => {
+    const catalog = makeCatalog()
+    const malformed = {
+      ...catalog,
+      stories: {
+        ...catalog.stories,
+        기초: { ...catalog.stories.기초, schemaVersion },
+      },
+    }
+
+    expect(validateCatalog(malformed, 'development')).toContainEqual({
+      code: 'INVALID_CATALOG',
+      path: 'stories.기초.schemaVersion',
+      message: 'schemaVersion must be a non-blank string.',
+    })
+  })
+
   test('작은 카탈로그는 릴리스 모드에서 단어와 구동사 수량 부족을 보고한다', () => {
     const issues = validateCatalog(makeCatalog(), 'release')
 
