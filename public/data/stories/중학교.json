@@ -31,8 +31,8 @@
     },
     {
       "lemma": "influence",
-      "partOfSpeech": "noun",
-      "forms": ["influence", "influences"]
+      "partOfSpeech": "verb",
+      "forms": ["influence", "influences", "influenced", "influencing", "influenced"]
     },
     {
       "lemma": "maintain",

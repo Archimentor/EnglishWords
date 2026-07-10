@@ -284,21 +284,30 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
     expect(story.title.length).toBeLessThanOrEqual(20)
     expect(story.usedWords.map(({ lemma }) => lemma)).toEqual(words.map(({ lemma }) => lemma))
 
-    story.usedWords.forEach((usedWord, index) => {
-      const word = words[index]
-      const entry = word?.entries[0]
+    story.usedWords.forEach((usedWord) => {
+      const word = words.find(({ lemma }) => lemma === usedWord.lemma)
+      const hasMatchingEntry = word?.entries.some((entry) => {
+        const normalizedForms = formStrings(entry.forms)
+
+        return entry.partOfSpeech === usedWord.partOfSpeech
+          && normalizedForms.length === usedWord.forms.length
+          && normalizedForms.every((form, index) => form === usedWord.forms[index])
+      })
 
       expect(word).toBeDefined()
-      expect(entry).toBeDefined()
-      expect(usedWord).toEqual({
-        lemma: word?.lemma,
-        partOfSpeech: entry?.partOfSpeech,
-        forms: entry ? formStrings(entry.forms) : [],
-      })
+      expect(hasMatchingEntry).toBe(true)
       expect(standalonePattern(usedWord.lemma).test(story.storyText)).toBe(true)
     })
 
     expect(collectStrings(story).some((value) => PLACEHOLDER_PATTERN.test(value))).toBe(false)
+  })
+
+  test('중학교 스토리는 influence를 동사 품사로 사용한다', () => {
+    const influence = loadCatalog().stories.중학교.usedWords.find(
+      ({ lemma }) => lemma === 'influence',
+    )
+
+    expect(influence?.partOfSpeech).toBe('verb')
   })
 })
 
