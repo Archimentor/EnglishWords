@@ -1,3 +1,5 @@
+import { cp, mkdtemp, rm, writeFile } from 'node:fs/promises'
+import { tmpdir } from 'node:os'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -119,6 +121,37 @@ describe('data catalog contract', () => {
     ).resolves.toBe(2)
     expect(missingErrors.join('\n')).toContain(missingRoot)
     expect(missingErrors.join('\n')).toMatch(/\.json/)
+  })
+
+  test('CLI reports malformed JSON structure as validation issues', async () => {
+    const tempDirectory = await mkdtemp(resolve(tmpdir(), 'englishwords-data-contract-'))
+    const tempRoot = resolve(tempDirectory, 'data')
+
+    try {
+      await cp(DATA_ROOT, tempRoot, { recursive: true })
+      await writeFile(
+        resolve(tempRoot, 'phrasal-verbs/top-1000.json'),
+        'null\n',
+        'utf8',
+      )
+      const logs: string[] = []
+      const errors: string[] = []
+
+      await expect(
+        main(['--mode=development'], {
+          dataRoot: tempRoot,
+          log: (line) => logs.push(line),
+          error: (line) => errors.push(line),
+        }),
+      ).resolves.toBe(1)
+      expect(logs).toEqual([])
+      expect(errors.join('\n')).toContain(
+        'INVALID_CATALOG phrasalVerbs.top: phrasalVerbs.top must be an array.',
+      )
+      expect(errors.join('\n')).not.toMatch(/\.length|reading ['"]length['"]/)
+    } finally {
+      await rm(tempDirectory, { recursive: true, force: true })
+    }
   })
 
   test('formats one exact line per validation issue', () => {

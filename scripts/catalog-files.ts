@@ -58,16 +58,32 @@ export async function readCatalogFromDisk(dataRoot: string): Promise<ContentCata
   }
 }
 
-export function catalogCounts(catalog: ContentCatalog): {
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+function arrayLength(value: unknown): number {
+  return Array.isArray(value) ? value.length : 0
+}
+
+export function catalogCounts(catalog: unknown): {
   words: number
   phrasalVerbs: number
   grammarNodes: number
   stories: number
 } {
+  if (!isRecord(catalog)) {
+    return { words: 0, phrasalVerbs: 0, grammarNodes: 0, stories: 0 }
+  }
+
+  const wordlists = isRecord(catalog.wordlists) ? catalog.wordlists : {}
+  const phrasalVerbs = isRecord(catalog.phrasalVerbs) ? catalog.phrasalVerbs : {}
+  const stories = isRecord(catalog.stories) ? catalog.stories : {}
+
   return {
-    words: Object.values(catalog.wordlists).reduce((total, words) => total + words.length, 0),
-    phrasalVerbs: catalog.phrasalVerbs.top.length,
-    grammarNodes: catalog.grammarNodes.length,
-    stories: Object.keys(catalog.stories).length,
+    words: Object.values(wordlists).reduce((total, words) => total + arrayLength(words), 0),
+    phrasalVerbs: arrayLength(phrasalVerbs.top),
+    grammarNodes: arrayLength(catalog.grammarNodes),
+    stories: Object.keys(stories).length,
   }
 }
