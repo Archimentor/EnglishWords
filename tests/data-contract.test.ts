@@ -16,7 +16,7 @@ import {
 const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url))
 const DATA_ROOT = resolve(TEST_DIRECTORY, '../public/data')
 const EXPECTED_COUNTS = {
-  words: 324,
+  words: 424,
   phrasalVerbs: 8,
   grammarNodes: 42,
   stories: 4,
@@ -44,7 +44,7 @@ describe('data catalog contract', () => {
       }),
     ).resolves.toBe(0)
     expect(errors).toEqual([])
-    expect(logs.join('\n')).toMatch(/words=324/)
+    expect(logs.join('\n')).toMatch(/words=424/)
     expect(logs.join('\n')).toMatch(/phrasalVerbs=8/)
     expect(logs.join('\n')).toMatch(/grammarNodes=42/)
     expect(logs.join('\n')).toMatch(/stories=4/)

@@ -112,7 +112,7 @@ describe('representative wordlist data', () => {
     const words = loadWordlists()[level]
 
     if (level === '기초') {
-      expect(words).toHaveLength(300)
+      expect(words).toHaveLength(400)
       expect(words.slice(0, 5).map(({ lemma }) => lemma))
         .toEqual(['apple', 'baby', 'bag', 'ball', 'bed'])
     } else {
@@ -126,15 +126,15 @@ describe('representative wordlist data', () => {
     }
   })
 
-  test('324개 항목의 ID, lemma, 예문이 중복되지 않고 모든 난이도를 대표한다', () => {
+  test('424개 항목의 ID, lemma, 예문이 중복되지 않고 모든 난이도를 대표한다', () => {
     const words = LEVELS.flatMap((level) => loadWordlists()[level])
     const examples = words.flatMap(({ entries }) =>
       entries.flatMap((entry) => entry.examples),
     )
 
-    expect(words).toHaveLength(324)
-    expect(new Set(words.map(({ id }) => id)).size).toBe(324)
-    expect(new Set(words.map(({ lemma }) => lemma)).size).toBe(324)
+    expect(words).toHaveLength(424)
+    expect(new Set(words.map(({ id }) => id)).size).toBe(424)
+    expect(new Set(words.map(({ lemma }) => lemma)).size).toBe(424)
     expect(new Set(words.map(({ difficulty }) => difficulty))).toEqual(new Set(DIFFICULTIES))
     expect(new Set(examples).size).toBe(examples.length)
   })

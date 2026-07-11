@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
+import { tokenizeStory } from '../../src/features/story/storyTokens'
 import {
   BASIC_EDITORIAL_WORDS,
   buildBasicEditorialStory,
@@ -8,9 +9,9 @@ import {
 } from './buildBasicEditorial'
 
 describe('basic editorial word batch', () => {
-  test('contains the first 300 directly reviewed foundational words', () => {
-    expect(BASIC_EDITORIAL_WORDS).toHaveLength(300)
-    expect(new Set(BASIC_EDITORIAL_WORDS.map(({ lemma }) => lemma)).size).toBe(300)
+  test('contains the first 400 directly reviewed foundational words', () => {
+    expect(BASIC_EDITORIAL_WORDS).toHaveLength(400)
+    expect(new Set(BASIC_EDITORIAL_WORDS.map(({ lemma }) => lemma)).size).toBe(400)
     expect(BASIC_EDITORIAL_WORDS.every(({ meaning }) => /[가-힣]/.test(meaning))).toBe(true)
   })
 
@@ -26,7 +27,7 @@ describe('basic editorial word batch', () => {
 
     const words = buildBasicEditorialWords(ipa)
 
-    expect(words).toHaveLength(300)
+    expect(words).toHaveLength(400)
     expect(words[0]).toMatchObject({ level: '기초', lemma: 'apple' })
     expect(words.find(({ lemma }) => lemma === 'go')?.entries[0]).toMatchObject({
       partOfSpeech: 'verb',
@@ -44,7 +45,7 @@ describe('basic editorial word batch', () => {
     const story = buildBasicEditorialStory(words)
 
     expect(story.coverage.coverageRate).toBe(1)
-    expect(story.usedWords).toHaveLength(300)
+    expect(story.usedWords).toHaveLength(400)
     expect(story.usedWords.every(({ lemma, forms }) => {
       const word = words.find((candidate) => candidate.lemma === lemma)!
       const entry = word.entries[0]!
@@ -52,5 +53,6 @@ describe('basic editorial word batch', () => {
       return forms.join('|') === entryForms.join('|')
         && new RegExp(`\\b${lemma}\\b`, 'i').test(story.storyText)
     })).toBe(true)
+    expect(() => tokenizeStory(story.storyText, story.usedWords, words)).not.toThrow()
   })
 })
