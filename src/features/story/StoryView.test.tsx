@@ -186,6 +186,51 @@ test('resets the selected detail when the displayed story changes', async () => 
   expect(screen.queryByRole('heading', { name: 'play 단어 상세' })).not.toBeInTheDocument()
 })
 
+test('does not restore a stale selection when returning to an earlier story object', async () => {
+  const user = userEvent.setup()
+  const play = makeWord()
+  const playStory = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [
+      {
+        lemma: 'play',
+        partOfSpeech: 'verb',
+        forms: ['played'],
+      },
+    ],
+  })
+  const book = makeWord({
+    id: 'word-book',
+    word: 'book',
+    lemma: 'book',
+    level: '유치원',
+    entryOverrides: { forms: ['book'] },
+  })
+  const bookStory = makeStory('유치원', {
+    storyText: 'I carry a book.',
+    usedWords: [
+      {
+        lemma: 'book',
+        partOfSpeech: 'verb',
+        forms: ['book'],
+      },
+    ],
+  })
+
+  const { rerender } = render(
+    <StoryView story={playStory} levelWords={[play]} targetWordCount={500} />,
+  )
+  await user.click(screen.getByRole('button', { name: 'story word: played' }))
+  rerender(
+    <StoryView story={bookStory} levelWords={[book]} targetWordCount={500} />,
+  )
+  rerender(
+    <StoryView story={playStory} levelWords={[play]} targetWordCount={500} />,
+  )
+
+  expect(screen.queryByRole('heading', { name: 'play 단어 상세' })).not.toBeInTheDocument()
+})
+
 test('moves focus and scrolls the selected word detail into view', async () => {
   const user = userEvent.setup()
   const scrollIntoView = vi.fn()

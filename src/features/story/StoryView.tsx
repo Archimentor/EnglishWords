@@ -24,8 +24,15 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
     word: WordItem
     entry: WordEntry
   } | null>(null)
+  const [selectedStory, setSelectedStory] = useState(story)
   const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
   const detailRef = useRef<HTMLElement | null>(null)
+
+  if (selectedStory !== story) {
+    setSelectedStory(story)
+    setSelectedWord(null)
+  }
+
   const levelLemmas = new Set(levelWords.map(({ lemma }) => lemma))
   const coveredLemmas = new Set(
     story.usedWords
