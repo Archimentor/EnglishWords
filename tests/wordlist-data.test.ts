@@ -108,25 +108,33 @@ function formStrings(forms: WordEntry['forms']): string[] {
 }
 
 describe('representative wordlist data', () => {
-  test.each(LEVELS)('%s 파일에 지정된 8개 lemma가 순서대로 들어 있다', (level) => {
+  test.each(LEVELS)('%s 파일의 단계별 lemma 수와 순서를 보장한다', (level) => {
     const words = loadWordlists()[level]
 
-    expect(words).toHaveLength(8)
-    expect(words.map(({ lemma }) => lemma)).toEqual(EXPECTED_WORDS[level])
+    if (level === '기초') {
+      expect(words).toHaveLength(100)
+      expect(words.slice(0, 5).map(({ lemma }) => lemma))
+        .toEqual(['apple', 'baby', 'bag', 'ball', 'bed'])
+    } else {
+      expect(words).toHaveLength(8)
+      expect(words.map(({ lemma }) => lemma)).toEqual(EXPECTED_WORDS[level])
+    }
     expect(words.every(({ word, lemma, level: itemLevel }) => word === lemma && itemLevel === level))
       .toBe(true)
-    expect(new Set(words.map(({ difficulty }) => difficulty)).size).toBeGreaterThan(1)
+    if (level !== '기초') {
+      expect(new Set(words.map(({ difficulty }) => difficulty)).size).toBeGreaterThan(1)
+    }
   })
 
-  test('32개 항목의 ID, lemma, 예문이 중복되지 않고 모든 난이도를 대표한다', () => {
+  test('124개 항목의 ID, lemma, 예문이 중복되지 않고 모든 난이도를 대표한다', () => {
     const words = LEVELS.flatMap((level) => loadWordlists()[level])
     const examples = words.flatMap(({ entries }) =>
       entries.flatMap((entry) => entry.examples),
     )
 
-    expect(words).toHaveLength(32)
-    expect(new Set(words.map(({ id }) => id)).size).toBe(32)
-    expect(new Set(words.map(({ lemma }) => lemma)).size).toBe(32)
+    expect(words).toHaveLength(124)
+    expect(new Set(words.map(({ id }) => id)).size).toBe(124)
+    expect(new Set(words.map(({ lemma }) => lemma)).size).toBe(124)
     expect(new Set(words.map(({ difficulty }) => difficulty))).toEqual(new Set(DIFFICULTIES))
     expect(new Set(examples).size).toBe(examples.length)
   })

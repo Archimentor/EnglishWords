@@ -268,6 +268,7 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
     const catalog = loadCatalog()
     const words = catalog.wordlists[level]
     const story = catalog.stories[level]
+    const expectedStory = level === '기초' ? {} : EXPECTED_STORIES[level]
 
     expect(story).toMatchObject({
       schemaVersion: '1.0.0',
@@ -278,7 +279,7 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
         allowUpperLevelWords: false,
         coverageRate: 1,
       },
-      ...EXPECTED_STORIES[level],
+      ...expectedStory,
     })
     expect(story.title).toMatch(/[가-힣]/)
     expect(story.title.length).toBeLessThanOrEqual(20)

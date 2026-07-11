@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "level": "기초",
-  "title": "함께 노는 친구들",
+  "title": "작은 것들로 시작한 하루",
   "isManual": true,
   "coverage": {
     "mustCoverAll": true,
@@ -10,45 +10,900 @@
   },
   "usedWords": [
     {
+      "lemma": "apple",
+      "partOfSpeech": "noun",
+      "forms": [
+        "apple",
+        "apples"
+      ]
+    },
+    {
       "lemma": "baby",
       "partOfSpeech": "noun",
-      "forms": ["baby", "babies"]
+      "forms": [
+        "baby",
+        "babies"
+      ]
+    },
+    {
+      "lemma": "bag",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bag",
+        "bags"
+      ]
     },
     {
       "lemma": "ball",
       "partOfSpeech": "noun",
-      "forms": ["ball", "balls"]
+      "forms": [
+        "ball",
+        "balls"
+      ]
+    },
+    {
+      "lemma": "bed",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bed",
+        "beds"
+      ]
     },
     {
       "lemma": "bird",
       "partOfSpeech": "noun",
-      "forms": ["bird", "birds"]
+      "forms": [
+        "bird",
+        "birds"
+      ]
+    },
+    {
+      "lemma": "fish",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fish",
+        "fishes"
+      ]
+    },
+    {
+      "lemma": "boy",
+      "partOfSpeech": "noun",
+      "forms": [
+        "boy",
+        "boys"
+      ]
+    },
+    {
+      "lemma": "bread",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bread"
+      ]
+    },
+    {
+      "lemma": "bus",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bus",
+        "buses"
+      ]
+    },
+    {
+      "lemma": "cake",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cake",
+        "cakes"
+      ]
+    },
+    {
+      "lemma": "car",
+      "partOfSpeech": "noun",
+      "forms": [
+        "car",
+        "cars"
+      ]
     },
     {
       "lemma": "cat",
       "partOfSpeech": "noun",
-      "forms": ["cat", "cats"]
+      "forms": [
+        "cat",
+        "cats"
+      ]
+    },
+    {
+      "lemma": "hat",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hat",
+        "hats"
+      ]
+    },
+    {
+      "lemma": "child",
+      "partOfSpeech": "noun",
+      "forms": [
+        "child",
+        "children"
+      ]
+    },
+    {
+      "lemma": "city",
+      "partOfSpeech": "noun",
+      "forms": [
+        "city",
+        "cities"
+      ]
+    },
+    {
+      "lemma": "class",
+      "partOfSpeech": "noun",
+      "forms": [
+        "class",
+        "classes"
+      ]
+    },
+    {
+      "lemma": "clock",
+      "partOfSpeech": "noun",
+      "forms": [
+        "clock",
+        "clocks"
+      ]
+    },
+    {
+      "lemma": "clothes",
+      "partOfSpeech": "noun",
+      "forms": [
+        "clothes"
+      ]
+    },
+    {
+      "lemma": "cup",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cup",
+        "cups"
+      ]
+    },
+    {
+      "lemma": "day",
+      "partOfSpeech": "noun",
+      "forms": [
+        "day",
+        "days"
+      ]
     },
     {
       "lemma": "dog",
       "partOfSpeech": "noun",
-      "forms": ["dog", "dogs"]
+      "forms": [
+        "dog",
+        "dogs"
+      ]
+    },
+    {
+      "lemma": "door",
+      "partOfSpeech": "noun",
+      "forms": [
+        "door",
+        "doors"
+      ]
+    },
+    {
+      "lemma": "egg",
+      "partOfSpeech": "noun",
+      "forms": [
+        "egg",
+        "eggs"
+      ]
+    },
+    {
+      "lemma": "family",
+      "partOfSpeech": "noun",
+      "forms": [
+        "family",
+        "families"
+      ]
+    },
+    {
+      "lemma": "flower",
+      "partOfSpeech": "noun",
+      "forms": [
+        "flower",
+        "flowers"
+      ]
+    },
+    {
+      "lemma": "ice",
+      "partOfSpeech": "noun",
+      "forms": [
+        "ice",
+        "ices"
+      ]
+    },
+    {
+      "lemma": "game",
+      "partOfSpeech": "noun",
+      "forms": [
+        "game",
+        "games"
+      ]
+    },
+    {
+      "lemma": "girl",
+      "partOfSpeech": "noun",
+      "forms": [
+        "girl",
+        "girls"
+      ]
+    },
+    {
+      "lemma": "hand",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hand",
+        "hands"
+      ]
+    },
+    {
+      "lemma": "house",
+      "partOfSpeech": "noun",
+      "forms": [
+        "house",
+        "houses"
+      ]
+    },
+    {
+      "lemma": "key",
+      "partOfSpeech": "noun",
+      "forms": [
+        "key",
+        "keys"
+      ]
+    },
+    {
+      "lemma": "kitchen",
+      "partOfSpeech": "noun",
+      "forms": [
+        "kitchen",
+        "kitchens"
+      ]
+    },
+    {
+      "lemma": "letter",
+      "partOfSpeech": "noun",
+      "forms": [
+        "letter",
+        "letters"
+      ]
+    },
+    {
+      "lemma": "milk",
+      "partOfSpeech": "noun",
+      "forms": [
+        "milk"
+      ]
+    },
+    {
+      "lemma": "money",
+      "partOfSpeech": "noun",
+      "forms": [
+        "money"
+      ]
+    },
+    {
+      "lemma": "moon",
+      "partOfSpeech": "noun",
+      "forms": [
+        "moon",
+        "moons"
+      ]
+    },
+    {
+      "lemma": "morning",
+      "partOfSpeech": "noun",
+      "forms": [
+        "morning",
+        "mornings"
+      ]
+    },
+    {
+      "lemma": "name",
+      "partOfSpeech": "noun",
+      "forms": [
+        "name",
+        "names"
+      ]
+    },
+    {
+      "lemma": "night",
+      "partOfSpeech": "noun",
+      "forms": [
+        "night",
+        "nights"
+      ]
+    },
+    {
+      "lemma": "parent",
+      "partOfSpeech": "noun",
+      "forms": [
+        "parent",
+        "parents"
+      ]
+    },
+    {
+      "lemma": "park",
+      "partOfSpeech": "noun",
+      "forms": [
+        "park",
+        "parks"
+      ]
+    },
+    {
+      "lemma": "pen",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pen",
+        "pens"
+      ]
+    },
+    {
+      "lemma": "picture",
+      "partOfSpeech": "noun",
+      "forms": [
+        "picture",
+        "pictures"
+      ]
+    },
+    {
+      "lemma": "room",
+      "partOfSpeech": "noun",
+      "forms": [
+        "room",
+        "rooms"
+      ]
+    },
+    {
+      "lemma": "king",
+      "partOfSpeech": "noun",
+      "forms": [
+        "king",
+        "kings"
+      ]
+    },
+    {
+      "lemma": "shoe",
+      "partOfSpeech": "noun",
+      "forms": [
+        "shoe",
+        "shoes"
+      ]
+    },
+    {
+      "lemma": "sister",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sister",
+        "sisters"
+      ]
+    },
+    {
+      "lemma": "song",
+      "partOfSpeech": "noun",
+      "forms": [
+        "song",
+        "songs"
+      ]
+    },
+    {
+      "lemma": "table",
+      "partOfSpeech": "noun",
+      "forms": [
+        "table",
+        "tables"
+      ]
+    },
+    {
+      "lemma": "be",
+      "partOfSpeech": "verb",
+      "forms": [
+        "be",
+        "is",
+        "was",
+        "being",
+        "been"
+      ]
+    },
+    {
+      "lemma": "come",
+      "partOfSpeech": "verb",
+      "forms": [
+        "come",
+        "comes",
+        "came",
+        "coming",
+        "come"
+      ]
+    },
+    {
+      "lemma": "do",
+      "partOfSpeech": "verb",
+      "forms": [
+        "do",
+        "does",
+        "did",
+        "doing",
+        "done"
+      ]
+    },
+    {
+      "lemma": "drink",
+      "partOfSpeech": "verb",
+      "forms": [
+        "drink",
+        "drinks",
+        "drank",
+        "drinking",
+        "drunk"
+      ]
     },
     {
       "lemma": "eat",
       "partOfSpeech": "verb",
-      "forms": ["eat", "eats", "ate", "eating", "eaten"]
+      "forms": [
+        "eat",
+        "eats",
+        "ate",
+        "eating",
+        "eaten"
+      ]
     },
     {
-      "lemma": "happy",
-      "partOfSpeech": "adjective",
-      "forms": ["happy", "happier", "happiest"]
+      "lemma": "find",
+      "partOfSpeech": "verb",
+      "forms": [
+        "find",
+        "finds",
+        "found",
+        "finding",
+        "found"
+      ]
+    },
+    {
+      "lemma": "get",
+      "partOfSpeech": "verb",
+      "forms": [
+        "get",
+        "gets",
+        "got",
+        "getting",
+        "got"
+      ]
+    },
+    {
+      "lemma": "give",
+      "partOfSpeech": "verb",
+      "forms": [
+        "give",
+        "gives",
+        "gave",
+        "giving",
+        "given"
+      ]
+    },
+    {
+      "lemma": "go",
+      "partOfSpeech": "verb",
+      "forms": [
+        "go",
+        "goes",
+        "went",
+        "going",
+        "gone"
+      ]
+    },
+    {
+      "lemma": "have",
+      "partOfSpeech": "verb",
+      "forms": [
+        "have",
+        "has",
+        "had",
+        "having",
+        "had"
+      ]
+    },
+    {
+      "lemma": "help",
+      "partOfSpeech": "verb",
+      "forms": [
+        "help",
+        "helps",
+        "helped",
+        "helping",
+        "helped"
+      ]
+    },
+    {
+      "lemma": "know",
+      "partOfSpeech": "verb",
+      "forms": [
+        "know",
+        "knows",
+        "knew",
+        "knowing",
+        "known"
+      ]
+    },
+    {
+      "lemma": "like",
+      "partOfSpeech": "verb",
+      "forms": [
+        "like",
+        "likes",
+        "liked",
+        "liking",
+        "liked"
+      ]
+    },
+    {
+      "lemma": "look",
+      "partOfSpeech": "verb",
+      "forms": [
+        "look",
+        "looks",
+        "looked",
+        "looking",
+        "looked"
+      ]
+    },
+    {
+      "lemma": "make",
+      "partOfSpeech": "verb",
+      "forms": [
+        "make",
+        "makes",
+        "made",
+        "making",
+        "made"
+      ]
     },
     {
       "lemma": "play",
       "partOfSpeech": "verb",
-      "forms": ["play", "plays", "played", "playing", "played"]
+      "forms": [
+        "play",
+        "plays",
+        "played",
+        "playing",
+        "played"
+      ]
+    },
+    {
+      "lemma": "read",
+      "partOfSpeech": "verb",
+      "forms": [
+        "read",
+        "reads",
+        "read",
+        "reading",
+        "read"
+      ]
+    },
+    {
+      "lemma": "run",
+      "partOfSpeech": "verb",
+      "forms": [
+        "run",
+        "runs",
+        "ran",
+        "running",
+        "run"
+      ]
+    },
+    {
+      "lemma": "see",
+      "partOfSpeech": "verb",
+      "forms": [
+        "see",
+        "sees",
+        "saw",
+        "seeing",
+        "seen"
+      ]
+    },
+    {
+      "lemma": "sit",
+      "partOfSpeech": "verb",
+      "forms": [
+        "sit",
+        "sits",
+        "sat",
+        "sitting",
+        "sat"
+      ]
+    },
+    {
+      "lemma": "sleep",
+      "partOfSpeech": "verb",
+      "forms": [
+        "sleep",
+        "sleeps",
+        "slept",
+        "sleeping",
+        "slept"
+      ]
+    },
+    {
+      "lemma": "take",
+      "partOfSpeech": "verb",
+      "forms": [
+        "take",
+        "takes",
+        "took",
+        "taking",
+        "taken"
+      ]
+    },
+    {
+      "lemma": "talk",
+      "partOfSpeech": "verb",
+      "forms": [
+        "talk",
+        "talks",
+        "talked",
+        "talking",
+        "talked"
+      ]
+    },
+    {
+      "lemma": "walk",
+      "partOfSpeech": "verb",
+      "forms": [
+        "walk",
+        "walks",
+        "walked",
+        "walking",
+        "walked"
+      ]
+    },
+    {
+      "lemma": "write",
+      "partOfSpeech": "verb",
+      "forms": [
+        "write",
+        "writes",
+        "wrote",
+        "writing",
+        "written"
+      ]
+    },
+    {
+      "lemma": "big",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "big",
+        "biger",
+        "bigest"
+      ]
+    },
+    {
+      "lemma": "black",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "black",
+        "blacker",
+        "blackest"
+      ]
+    },
+    {
+      "lemma": "blue",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "blue",
+        "blueer",
+        "blueest"
+      ]
+    },
+    {
+      "lemma": "clean",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "clean",
+        "cleaner",
+        "cleanest"
+      ]
+    },
+    {
+      "lemma": "cold",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "cold",
+        "colder",
+        "coldest"
+      ]
+    },
+    {
+      "lemma": "fast",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "fast",
+        "faster",
+        "fastest"
+      ]
+    },
+    {
+      "lemma": "good",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "good",
+        "better",
+        "best"
+      ]
+    },
+    {
+      "lemma": "juice",
+      "partOfSpeech": "noun",
+      "forms": [
+        "juice",
+        "juices"
+      ]
+    },
+    {
+      "lemma": "happy",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "happy",
+        "happier",
+        "happiest"
+      ]
+    },
+    {
+      "lemma": "hot",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "hot",
+        "hoter",
+        "hotest"
+      ]
+    },
+    {
+      "lemma": "little",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "little",
+        "less",
+        "least"
+      ]
+    },
+    {
+      "lemma": "long",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "long",
+        "longer",
+        "longest"
+      ]
+    },
+    {
+      "lemma": "new",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "new",
+        "newer",
+        "newest"
+      ]
+    },
+    {
+      "lemma": "old",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "old",
+        "older",
+        "oldest"
+      ]
+    },
+    {
+      "lemma": "red",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "red",
+        "reder",
+        "redest"
+      ]
+    },
+    {
+      "lemma": "sad",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "sad",
+        "sader",
+        "sadest"
+      ]
+    },
+    {
+      "lemma": "short",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "short",
+        "shorter",
+        "shortest"
+      ]
+    },
+    {
+      "lemma": "small",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "small",
+        "smaller",
+        "smallest"
+      ]
+    },
+    {
+      "lemma": "strong",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "strong",
+        "stronger",
+        "strongest"
+      ]
+    },
+    {
+      "lemma": "tall",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "tall",
+        "taller",
+        "tallest"
+      ]
+    },
+    {
+      "lemma": "tired",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "tired",
+        "tireder",
+        "tiredest"
+      ]
+    },
+    {
+      "lemma": "warm",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "warm",
+        "warmer",
+        "warmest"
+      ]
+    },
+    {
+      "lemma": "white",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "white",
+        "whiteer",
+        "whiteest"
+      ]
+    },
+    {
+      "lemma": "yellow",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "yellow",
+        "yellower",
+        "yellowest"
+      ]
+    },
+    {
+      "lemma": "young",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "young",
+        "younger",
+        "youngest"
+      ]
     }
   ],
-  "storyText": "A happy baby sees a bird, a cat, and a dog. They eat, play with a ball, and rest together."
+  "storyText": "To be kind is good. The apple is here. The baby is here. The bag is here. The ball is here. The bed is here. The bird is here. The fish is here. The boy is here. Bread is warm. The bus is here. The cake is here. The car is here. The cat is here. The hat is here. The child is here. The city is here. The class is here. The clock is here. My clothes are clean. The cup is here. The day is here. The dog is here. The door is here. The egg is here. The family is here. The flower is here. The ice is here. The game is here. The girl is here. The hand is here. The house is here. The key is here. The kitchen is here. The letter is here. Milk is in the cup. Money is in my bag. The moon is here. The morning is here. The name is here. The night is here. The parent is here. The park is here. The pen is here. The picture is here. The room is here. The king is here. The shoe is here. The sister is here. The song is here. The table is here. To be kind is good. Come here, please. I do my homework. I drink water. I eat an apple. I find my key. I get a gift. I give Mom a flower. I go home. I have a book. I help my friend. I know your name. I like music. I look at the moon. I make a cake. The children play outside. I read a book. I run in the park. I see a bird. I sit on a chair. I sleep at night. I take a bus. I talk to my teacher. I walk to school. I write a letter. The ball is big. The ball is black. The ball is blue. The ball is clean. The ball is cold. The ball is fast. The ball is good. The juice is here. I am happy today. The ball is hot. The ball is little. The ball is long. The ball is new. The ball is old. The ball is red. The ball is sad. The ball is short. The ball is small. The ball is strong. The ball is tall. I am tired today. The ball is warm. The ball is white. The ball is yellow. The ball is young."
 }
