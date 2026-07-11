@@ -12,8 +12,9 @@ export function Flashcard({ item, flipped, onToggle, onSpeak }: FlashcardProps) 
   const detailsId = useId()
 
   return (
-    <article>
+    <article className="flashcard" data-state={flipped ? 'flipped' : 'front'}>
       <button
+        className="flashcard-face"
         type="button"
         aria-label={`${item.term} 카드 뒤집기`}
         aria-pressed={flipped}
@@ -21,11 +22,15 @@ export function Flashcard({ item, flipped, onToggle, onSpeak }: FlashcardProps) 
         aria-controls={detailsId}
         onClick={onToggle}
       >
-        <strong>{item.term}</strong>
-        <span>{item.ipa ?? '발음기호 없음'}</span>
+        <strong className="flashcard-term">{item.term}</strong>
+        <span className="flashcard-ipa">{item.ipa ?? '발음기호 없음'}</span>
       </button>
-      {flipped ? (
-        <section id={detailsId} aria-label={`${item.term} 카드 내용`}>
+      <section
+        id={detailsId}
+        className="flashcard-details"
+        aria-label={`${item.term} 카드 내용`}
+        hidden={!flipped}
+      >
           <h3>뜻</h3>
           <ul>
             {item.meanings.map((meaning) => <li key={meaning}>{meaning}</li>)}
@@ -34,9 +39,9 @@ export function Flashcard({ item, flipped, onToggle, onSpeak }: FlashcardProps) 
           <ul>
             {item.examples.map((example) => <li key={example}>{example}</li>)}
           </ul>
-        </section>
-      ) : null}
+      </section>
       <button
+        className="button button--secondary speech-button"
         type="button"
         aria-label={`${item.term} 발음 듣기`}
         onClick={onSpeak}

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useId, useRef } from 'react'
 import type { GradedAnswer, QuizQuestion as QuizQuestionModel } from '../../domain/quiz/types'
 
 interface QuizQuestionProps {
@@ -39,6 +39,7 @@ export function QuizQuestion({
   speechError,
 }: QuizQuestionProps) {
   const promptRef = useRef<HTMLHeadingElement>(null)
+  const feedbackId = useId()
 
   useEffect(() => {
     promptRef.current?.focus()
@@ -51,20 +52,34 @@ export function QuizQuestion({
     : null
 
   return (
-    <section aria-labelledby="quiz-question-title">
+    <section
+      className="quiz-question panel"
+      data-input-mode={question.inputMode}
+      aria-labelledby="quiz-question-title"
+    >
       <h2 id="quiz-question-title">퀴즈 문제</h2>
-      <h3 ref={promptRef} tabIndex={-1} data-testid="quiz-prompt">
+      <h3 className="quiz-prompt" ref={promptRef} tabIndex={-1} data-testid="quiz-prompt">
         <Prompt question={question} />
       </h3>
 
       {question.inputMode === 'choice' ? (
-        <fieldset>
+        <fieldset className="answer-grid" aria-describedby={feedback ? feedbackId : undefined}>
           <legend>답을 선택하세요</legend>
           {question.options.map((option) => (
             <button
               key={option}
+              className="quiz-option"
               type="button"
               disabled={graded !== null}
+              data-state={
+                !graded
+                  ? 'idle'
+                  : option === question.correctAnswer
+                    ? 'correct'
+                    : option === graded.answer
+                      ? 'incorrect'
+                      : 'locked'
+              }
               onClick={() => onChoose(option)}
             >
               {option}
@@ -73,6 +88,7 @@ export function QuizQuestion({
         </fieldset>
       ) : (
         <form
+          className="quiz-answer-form"
           onSubmit={(event) => {
             event.preventDefault()
             onSubmit()
@@ -86,9 +102,12 @@ export function QuizQuestion({
           <label htmlFor={`quiz-answer-${question.id}`}>답안</label>
           <input
             id={`quiz-answer-${question.id}`}
+            className="answer-input"
             type="text"
             value={draft}
             disabled={graded !== null}
+            aria-invalid={graded && !graded.isCorrect ? true : undefined}
+            aria-describedby={feedback ? feedbackId : undefined}
             onChange={(event) => onDraftChange(event.target.value)}
           />
           <button
@@ -100,8 +119,19 @@ export function QuizQuestion({
         </form>
       )}
 
-      {speechError ? <p role="status">{speechError}</p> : null}
-      {feedback ? <p role="status">{feedback}</p> : null}
+      {speechError ? (
+        <p className="inline-status" data-tone="error" role="status">{speechError}</p>
+      ) : null}
+      {feedback ? (
+        <p
+          id={feedbackId}
+          className="quiz-feedback"
+          data-state={graded?.isCorrect ? 'correct' : 'incorrect'}
+          role="status"
+        >
+          {feedback}
+        </p>
+      ) : null}
     </section>
   )
 }

@@ -15,18 +15,22 @@ interface DifficultyPickerProps {
 
 export function DifficultyPicker({ value, onChange }: DifficultyPickerProps) {
   return (
-    <fieldset>
+    <fieldset className="control-group difficulty-picker">
       <legend>학습 난이도</legend>
-      {DIFFICULTIES.map((difficulty) => (
-        <button
-          key={difficulty}
-          type="button"
-          aria-pressed={value === difficulty}
-          onClick={() => onChange(difficulty)}
-        >
-          {LABELS[difficulty]}
-        </button>
-      ))}
+      <div className="segmented-control">
+        {DIFFICULTIES.map((difficulty) => (
+          <button
+            key={difficulty}
+            className="segment-button"
+            type="button"
+            aria-pressed={value === difficulty}
+            data-state={value === difficulty ? 'active' : 'inactive'}
+            onClick={() => onChange(difficulty)}
+          >
+            {LABELS[difficulty]}
+          </button>
+        ))}
+      </div>
     </fieldset>
   )
 }

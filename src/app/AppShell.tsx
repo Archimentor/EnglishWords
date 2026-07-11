@@ -19,10 +19,13 @@ export function AppShell({
   children,
 }: AppShellProps) {
   return (
-    <>
-      <header>
-        <p>학습 워크스페이스</p>
-        <h1>영단어 5000 마스터</h1>
+    <div className="app-shell">
+      <a className="skip-link" href="#main-content">본문으로 건너뛰기</a>
+      <header className="app-header">
+        <div className="app-brand">
+          <p className="app-eyebrow">학습 워크스페이스</p>
+          <h1 className="app-title">영단어 5000 마스터</h1>
+        </div>
         <Navigation navigation={state.navigation} dispatch={dispatch} />
         <ContextNav navigation={state.navigation} dispatch={dispatch} />
         <KpiStrip
@@ -31,7 +34,14 @@ export function AppShell({
           mastery={state.mastery}
         />
       </header>
-      <main>{children}</main>
-    </>
+      <main
+        id="main-content"
+        className="app-main"
+        data-section={state.navigation.section}
+        tabIndex={-1}
+      >
+        {children}
+      </main>
+    </div>
   )
 }

@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createInitialState } from '../state/appState'
 import { STORAGE_KEY } from '../state/persistence'
@@ -31,6 +31,52 @@ test('서비스 이름과 초기 레벨 대시보드를 보여준다', async () 
   const kpis = screen.getByRole('region', { name: '학습 현황' })
   expect(within(kpis).getByText('0%')).toBeInTheDocument()
   expect(within(kpis).queryByText(/100%/)).not.toBeInTheDocument()
+})
+
+test('키보드 사용자는 반복 메뉴를 건너뛰어 본문으로 이동할 수 있다', async () => {
+  render(<App storage={memoryStorage()} loadCatalog={loadCatalog} />)
+  await screen.findByRole('heading', { name: '기초 학습 대시보드' })
+
+  expect(screen.getByRole('link', { name: '본문으로 건너뛰기' })).toHaveAttribute(
+    'href',
+    '#main-content',
+  )
+  expect(screen.getByRole('main')).toHaveAttribute('id', 'main-content')
+})
+
+test('모바일 메뉴 전환 시 활성 항목을 가로 스크롤 중앙으로 가져온다', async () => {
+  const user = userEvent.setup()
+  const scrollIntoView = vi.fn()
+  const originalScrollIntoView = HTMLElement.prototype.scrollIntoView
+  Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+    configurable: true,
+    value: scrollIntoView,
+  })
+  vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: true })))
+
+  try {
+    render(<App storage={memoryStorage()} loadCatalog={loadCatalog} />)
+    await screen.findByRole('heading', { name: '기초 학습 대시보드' })
+    scrollIntoView.mockClear()
+
+    await user.click(screen.getByRole('button', { name: '학습' }))
+    await waitFor(() => expect(scrollIntoView).toHaveBeenCalled())
+    expect(
+      scrollIntoView.mock.instances.map((element) =>
+        (element as HTMLElement | undefined)?.textContent?.trim(),
+      ),
+    ).toContain('학습')
+  } finally {
+    if (originalScrollIntoView) {
+      Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+        configurable: true,
+        value: originalScrollIntoView,
+      })
+    } else {
+      Reflect.deleteProperty(HTMLElement.prototype, 'scrollIntoView')
+    }
+    vi.unstubAllGlobals()
+  }
 })
 
 test('실제 대표 단어 ID의 저장된 숙련도를 목표 완료율에 반영한다', async () => {
@@ -87,6 +133,7 @@ test('활성 주 메뉴와 컨텍스트 메뉴만 aria-current로 표시한다',
     'aria-current',
     'page',
   )
+  expect(primary.querySelectorAll('[aria-current="page"]')).toHaveLength(1)
   await user.click(within(primary).getByRole('button', { name: '문법' }))
 
   expect(within(primary).getByRole('button', { name: '문법' })).toHaveAttribute(
@@ -96,7 +143,9 @@ test('활성 주 메뉴와 컨텍스트 메뉴만 aria-current로 표시한다',
   expect(within(primary).getByRole('button', { name: '기초' })).not.toHaveAttribute(
     'aria-current',
   )
-  expect(screen.getByRole('navigation', { name: '문법 메뉴' })).toBeInTheDocument()
+  expect(primary.querySelectorAll('[aria-current="page"]')).toHaveLength(1)
+  const grammarMenu = screen.getByRole('navigation', { name: '문법 메뉴' })
+  expect(grammarMenu.querySelectorAll('[aria-current="page"]')).toHaveLength(1)
 })
 
 test('같은 저장소로 다시 렌더링하면 메뉴 선택을 복원한다', async () => {

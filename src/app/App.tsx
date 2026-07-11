@@ -78,7 +78,13 @@ function StateWarning({
   if (!warning) return null
 
   return (
-    <aside role="status" aria-live="polite">
+    <aside
+      className="state-banner state-banner--warning"
+      data-state="warning"
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
+    >
       <p>{warning}</p>
       <button type="button" onClick={onDismiss}>알림 닫기</button>
     </aside>
@@ -161,7 +167,7 @@ function AppContent({ catalogLoader, speech }: AppContentProps) {
     return (
       <>
         {warningBanner}
-        <main><LoadingState /></main>
+        <main className="app-main app-main--state"><LoadingState /></main>
       </>
     )
   }
@@ -170,7 +176,7 @@ function AppContent({ catalogLoader, speech }: AppContentProps) {
     return (
       <>
         {warningBanner}
-        <main>
+        <main className="app-main app-main--state">
           <ErrorState error={visibleCatalogState.error} onRetry={retryCatalog} />
         </main>
       </>

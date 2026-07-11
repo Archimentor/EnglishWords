@@ -23,9 +23,11 @@ export function ProgressBar({ label, value, max, valueText }: ProgressBarProps) 
     `${formatNumber(safeValue)} / ${formatNumber(safeMax)} (${formatPercent(percent)})`
 
   return (
-    <div>
-      <p>{label}</p>
+    <div className="progress-block">
+      <p className="progress-label">{label}</p>
       <div
+        className="progress-track"
+        data-state={safeValue >= safeMax && safeMax > 0 ? 'complete' : 'progress'}
         role="progressbar"
         aria-label={label}
         aria-valuemin={0}
@@ -33,9 +35,9 @@ export function ProgressBar({ label, value, max, valueText }: ProgressBarProps) 
         aria-valuenow={safeValue}
         aria-valuetext={visibleValue}
       >
-        <span style={{ width: `${percent}%` }} />
+        <span className="progress-fill" aria-hidden="true" style={{ width: `${percent}%` }} />
       </div>
-      <p>{visibleValue}</p>
+      <p className="progress-value">{visibleValue}</p>
     </div>
   )
 }

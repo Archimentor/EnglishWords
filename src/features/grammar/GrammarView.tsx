@@ -30,14 +30,23 @@ export function GrammarView({
     : -1
 
   return (
-    <section aria-labelledby="grammar-title">
-      <h2 id="grammar-title">문법 학습</h2>
-      <nav aria-label="문법 레벨">
+    <section
+      className="view view--grammar"
+      data-state={selectedNode ? 'detail' : 'index'}
+      aria-labelledby="grammar-title"
+    >
+      <header className="feature-header">
+        <p className="feature-kicker">42개 핵심 문법 지도</p>
+        <h2 id="grammar-title">문법 학습</h2>
+      </header>
+      <nav className="nav-row grammar-levels" aria-label="문법 레벨">
         {GRAMMAR_SECTIONS.map((section) => (
           <button
             key={section}
+            className="nav-chip nav-chip--secondary"
             type="button"
             aria-current={grammarSection === section ? 'page' : undefined}
+            data-state={grammarSection === section ? 'active' : 'inactive'}
             onClick={() => onSelectLevel(section)}
           >
             {section}
@@ -46,7 +55,7 @@ export function GrammarView({
       </nav>
 
       {grammarSection === '대시보드' ? (
-        <section aria-labelledby="grammar-summary-title">
+        <section className="panel grammar-summary" aria-labelledby="grammar-summary-title">
           <h3 id="grammar-summary-title">{`전체 ${nodes.length}개 노드`}</h3>
           <ul>
             {GRAMMAR_LEVELS.map((level) => (
@@ -57,15 +66,17 @@ export function GrammarView({
           </ul>
         </section>
       ) : (
-        <>
-          <nav aria-label={`${grammarSection} 문법 노드`}>
+        <div className="grammar-workspace">
+          <nav className="grammar-node-nav" aria-label={`${grammarSection} 문법 노드`}>
             {nodes
               .filter(({ level }) => level === grammarSection)
               .map((node) => (
                 <button
                   key={node.id}
+                  className="grammar-node-button"
                   type="button"
                   aria-current={selectedNode?.id === node.id ? 'page' : undefined}
+                  data-state={selectedNode?.id === node.id ? 'active' : 'inactive'}
                   onClick={() => onSelectNode(node)}
                 >
                   {`${node.id} ${node.title}`}
@@ -74,10 +85,10 @@ export function GrammarView({
           </nav>
 
           {selectedNode ? (
-            <article>
+            <article className="panel grammar-detail" aria-labelledby="grammar-detail-title">
               <p>{`난이도 태그: ${selectedNode.difficultyTag}`}</p>
               <p>{`선행 노드: ${selectedNode.prerequisite ?? '없음'}`}</p>
-              <h3>{`${selectedNode.id} ${selectedNode.title}`}</h3>
+              <h3 id="grammar-detail-title">{`${selectedNode.id} ${selectedNode.title}`}</h3>
               <p>{selectedNode.summary}</p>
 
               <h4>Can-do</h4>
@@ -107,31 +118,33 @@ export function GrammarView({
                 <li>{`오류 허용 ${percent(selectedNode.masteryRule.errorTolerance)}`}</li>
               </ul>
 
-              <button
-                type="button"
-                disabled={selectedIndex <= 0}
-                onClick={() => {
-                  const previous = nodes[selectedIndex - 1]
-                  if (previous) onSelectNode(previous)
-                }}
-              >
-                이전 문법
-              </button>
-              <button
-                type="button"
-                disabled={selectedIndex < 0 || selectedIndex >= nodes.length - 1}
-                onClick={() => {
-                  const next = nodes[selectedIndex + 1]
-                  if (next) onSelectNode(next)
-                }}
-              >
-                다음 문법
-              </button>
+              <div className="action-row grammar-pager">
+                <button
+                  type="button"
+                  disabled={selectedIndex <= 0}
+                  onClick={() => {
+                    const previous = nodes[selectedIndex - 1]
+                    if (previous) onSelectNode(previous)
+                  }}
+                >
+                  이전 문법
+                </button>
+                <button
+                  type="button"
+                  disabled={selectedIndex < 0 || selectedIndex >= nodes.length - 1}
+                  onClick={() => {
+                    const next = nodes[selectedIndex + 1]
+                    if (next) onSelectNode(next)
+                  }}
+                >
+                  다음 문법
+                </button>
+              </div>
             </article>
           ) : (
-            <p>문법 노드를 선택하세요.</p>
+            <p className="panel empty-state">문법 노드를 선택하세요.</p>
           )}
-        </>
+        </div>
       )}
     </section>
   )

@@ -62,6 +62,12 @@ test('여섯 유형의 전체 한국어 이름을 표시하고 선택 유형을 
     'aria-pressed',
     'true',
   )
+  expect(
+    within(screen.getByRole('group', { name: '퀴즈 유형' })).getAllByRole(
+      'button',
+      { pressed: true },
+    ),
+  ).toHaveLength(1)
 
   await user.click(screen.getByRole('button', { name: TYPE_LABELS.dictation }))
   expect(dispatch).toHaveBeenCalledWith({
@@ -69,6 +75,12 @@ test('여섯 유형의 전체 한국어 이름을 표시하고 선택 유형을 
     quizType: 'dictation',
   })
   expect(screen.getByRole('textbox', { name: '답안' })).toBeInTheDocument()
+  expect(
+    within(screen.getByRole('group', { name: '퀴즈 유형' })).getAllByRole(
+      'button',
+      { pressed: true },
+    ),
+  ).toHaveLength(1)
 })
 
 test('객관식은 즉시 피드백 후에도 다음문제 전까지 같은 문항을 유지한다', async () => {
@@ -91,6 +103,7 @@ test('객관식은 즉시 피드백 후에도 다음문제 전까지 같은 문�
   const prompt = screen.getByTestId('quiz-prompt').textContent
   const next = screen.getByRole('button', { name: '다음문제' })
 
+  expect(screen.getByTestId('quiz-prompt')).toHaveFocus()
   expect(next).toBeDisabled()
   await user.click(screen.getByRole('button', { name: wrong }))
 
@@ -102,6 +115,7 @@ test('객관식은 즉시 피드백 후에도 다음문제 전까지 같은 문�
 
   await user.click(next)
   expect(screen.getByTestId('quiz-prompt')).not.toHaveTextContent(prompt ?? '')
+  expect(screen.getByTestId('quiz-prompt')).toHaveFocus()
 })
 
 test('입력형은 정규화해 채점하고 제출 후 입력을 잠근다', async () => {
@@ -266,5 +280,8 @@ test('문장 의미 유형은 목표 표면형을 밑줄로 표시한다', () =>
   expect(prompt.getByText(/term/).tagName).toBe('U')
   expect(
     prompt.getByLabelText(`대상 단어: ${question?.sentence?.target}`),
+  ).toBeInTheDocument()
+  expect(
+    screen.getByRole('heading', { level: 3, name: /대상 단어:/ }),
   ).toBeInTheDocument()
 })

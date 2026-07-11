@@ -36,18 +36,18 @@ export function KpiStrip({ navigation, wordIds, mastery }: KpiStripProps) {
   }).length
 
   return (
-    <section aria-label="학습 현황">
-      <p>
-        <span>현재 화면</span>{' '}
-        <strong>{currentScreenLabel(navigation)}</strong>
+    <section className="kpi-strip" aria-label="학습 현황">
+      <p className="kpi-item">
+        <span className="kpi-label">현재 화면</span>{' '}
+        <strong className="kpi-value">{currentScreenLabel(navigation)}</strong>
       </p>
-      <p>
-        <span>단어 범위</span>{' '}
-        <strong>{`${wordIds.length} / 목표 ${target}`}</strong>
+      <p className="kpi-item">
+        <span className="kpi-label">단어 범위</span>{' '}
+        <strong className="kpi-value">{`${wordIds.length} / 목표 ${target}`}</strong>
       </p>
-      <p>
-        <span>목표 대비 완료율</span>{' '}
-        <strong>{percentage((masteredCount / target) * 100)}</strong>
+      <p className="kpi-item">
+        <span className="kpi-label">목표 대비 완료율</span>{' '}
+        <strong className="kpi-value">{percentage((masteredCount / target) * 100)}</strong>
       </p>
     </section>
   )

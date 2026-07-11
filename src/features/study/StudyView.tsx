@@ -314,11 +314,13 @@ function LevelStudyView({
 
   if (items.length === 0) {
     return (
-      <section>
+      <section className="view view--study state-panel" data-mode={mode} data-state="empty">
         <h2>{`${level} 플래시카드 학습`}</h2>
         <p>이 레벨에 학습할 항목이 없습니다.</p>
         {mode === 'mistakes' && onExitReview ? (
-          <button type="button" onClick={onExitReview}>전체 학습으로 돌아가기</button>
+          <button className="button button--secondary" type="button" onClick={onExitReview}>
+            전체 학습으로 돌아가기
+          </button>
         ) : null}
       </section>
     )
@@ -326,44 +328,74 @@ function LevelStudyView({
 
   if (!currentItem) {
     return (
-      <section>
+      <section className="view view--study state-panel" data-mode={mode} data-state="complete">
         <h2>학습 세션 완료</h2>
         <p>{`${session.queueIds.length}개 항목을 모두 확인했습니다.`}</p>
-        <button type="button" onClick={startNewSession}>새 세션 시작</button>
-        {mode === 'mistakes' && onExitReview ? (
-          <button type="button" onClick={onExitReview}>전체 학습으로 돌아가기</button>
-        ) : null}
+        <div className="action-row">
+          <button className="button button--primary" type="button" onClick={startNewSession}>
+            새 세션 시작
+          </button>
+          {mode === 'mistakes' && onExitReview ? (
+            <button className="button button--secondary" type="button" onClick={onExitReview}>
+              전체 학습으로 돌아가기
+            </button>
+          ) : null}
+        </div>
       </section>
     )
   }
 
   return (
-    <section aria-labelledby="study-title">
-      <h2 id="study-title">{`${level} 플래시카드 학습`}</h2>
-      {mode === 'mistakes' && onExitReview ? (
-        <button type="button" onClick={onExitReview}>전체 학습으로 돌아가기</button>
-      ) : null}
-      <ProgressBar
-        label="학습 진행"
-        value={session.currentIndex + 1}
-        max={session.queueIds.length}
-        valueText={`${session.currentIndex + 1} / ${session.queueIds.length}`}
-      />
-      <DifficultyPicker value={session.difficulty} onChange={handleDifficulty} />
-      <Flashcard
-        item={currentItem}
-        flipped={flipped}
-        onToggle={() => setFlipped((value) => !value)}
-        onSpeak={() => void handleSpeak()}
-      />
-      {speechError ? <p role="status">{speechError}</p> : null}
-      {flipped ? (
-        <fieldset>
-          <legend>회상 평가</legend>
-          <button type="button" onClick={() => handleRecall(true)}>기억했어요</button>
-          <button type="button" onClick={() => handleRecall(false)}>다시 볼게요</button>
-        </fieldset>
-      ) : null}
+    <section
+      className="view view--study"
+      data-mode={mode}
+      data-state={flipped ? 'answer' : 'question'}
+      aria-labelledby="study-title"
+    >
+      <header className="feature-header feature-header--actions">
+        <div>
+          <p className="feature-kicker">
+            {mode === 'mistakes' ? '오답 집중 복습' : '회상 중심 학습'}
+          </p>
+          <h2 id="study-title">{`${level} 플래시카드 학습`}</h2>
+        </div>
+        {mode === 'mistakes' && onExitReview ? (
+          <button className="button button--secondary" type="button" onClick={onExitReview}>
+            전체 학습으로 돌아가기
+          </button>
+        ) : null}
+      </header>
+      <div className="study-layout">
+        <div className="study-progress">
+          <ProgressBar
+            label="학습 진행"
+            value={session.currentIndex + 1}
+            max={session.queueIds.length}
+            valueText={`${session.currentIndex + 1} / ${session.queueIds.length}`}
+          />
+        </div>
+        <div className="study-stage">
+          <Flashcard
+            item={currentItem}
+            flipped={flipped}
+            onToggle={() => setFlipped((value) => !value)}
+            onSpeak={() => void handleSpeak()}
+          />
+          {speechError ? (
+            <p className="inline-status" data-tone="error" role="status">{speechError}</p>
+          ) : null}
+          {flipped ? (
+            <fieldset className="recall-actions">
+              <legend>회상 평가</legend>
+              <button type="button" onClick={() => handleRecall(true)}>기억했어요</button>
+              <button type="button" onClick={() => handleRecall(false)}>다시 볼게요</button>
+            </fieldset>
+          ) : null}
+        </div>
+        <div className="study-difficulty">
+          <DifficultyPicker value={session.difficulty} onChange={handleDifficulty} />
+        </div>
+      </div>
     </section>
   )
 }

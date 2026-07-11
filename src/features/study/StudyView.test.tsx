@@ -97,6 +97,11 @@ test('저장된 위치와 현재 카드를 복원하고 IPA 없음도 표시한�
     'aria-valuenow',
     '2',
   )
+  const progress = screen.getByRole('progressbar', { name: '학습 진행' })
+  const card = screen.getByRole('button', { name: /카드 뒤집기/ })
+  const difficulty = screen.getByRole('group', { name: '학습 난이도' })
+  expect(progress.compareDocumentPosition(card) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  expect(card.compareDocumentPosition(difficulty) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
 })
 
 test('카드를 뒤집으면 모든 뜻과 예문을 보여주고 다음 카드에서 닫힌다', async () => {
@@ -112,15 +117,21 @@ test('카드를 뒤집으면 모든 뜻과 예문을 보여주고 다음 카드�
     />,
   )
   const card = screen.getByRole('button', { name: /기초-word-1 카드 뒤집기/ })
+  const detailsId = card.getAttribute('aria-controls')
+  const closedDetails = detailsId ? document.getElementById(detailsId) : null
 
   expect(card).toHaveAttribute('aria-pressed', 'false')
-  expect(screen.queryByText('뜻 1')).not.toBeInTheDocument()
+  expect(closedDetails).not.toBeNull()
+  expect(closedDetails).toHaveAttribute('hidden')
+  expect(screen.getByText('뜻 1')).not.toBeVisible()
   await user.click(card)
 
   expect(card).toHaveAttribute('aria-pressed', 'true')
   expect(card).toHaveAttribute('aria-expanded', 'true')
   const details = screen.getByRole('region', { name: '기초-word-1 카드 내용' })
   expect(card).toHaveAttribute('aria-controls', details.id)
+  expect(details).toBe(closedDetails)
+  expect(details).not.toHaveAttribute('hidden')
   expect(card).not.toContainElement(details)
   expect(screen.getByText('뜻 1')).toBeInTheDocument()
   expect(screen.getByText('보조 뜻 1')).toBeInTheDocument()
@@ -199,6 +210,11 @@ test('난이도 변경은 현재 카드를 유지하고 뒤쪽만 재가중하�
     'aria-pressed',
     'true',
   )
+  expect(
+    screen.getByRole('group', { name: '학습 난이도' }).querySelectorAll(
+      '[aria-pressed="true"]',
+    ),
+  ).toHaveLength(1)
 })
 
 test('삭제·중복·다른 레벨 ID를 정리하고 다음 유효 카드 위치를 보존한다', async () => {

@@ -81,6 +81,13 @@ test('단어와 구동사를 같은 검색 결과에서 형태·뜻까지 검색
   expect(within(playRow).getByText(/verb.*noun/)).toBeInTheDocument()
   expect(within(playRow).getByText(/놀다.*연극/)).toBeInTheDocument()
   expect(screen.queryByText('other')).not.toBeInTheDocument()
+  expect(screen.getByRole('region', { name: '단어장 표' })).toHaveAttribute(
+    'tabindex',
+    '0',
+  )
+  expect(
+    screen.getByRole('table', { name: '기초 단어장 검색 결과' }),
+  ).toBeInTheDocument()
 })
 
 test('검색 결과가 없음을 알리고 레벨 변경 시 검색어를 초기화한다', async () => {
@@ -91,6 +98,7 @@ test('검색 결과가 없음을 알리고 레벨 변경 시 검색어를 초기
 
   await user.type(search, '없는말')
   expect(screen.getByRole('status')).toHaveTextContent('검색 결과가 없습니다.')
+  expect(document.querySelectorAll('[role="status"], [aria-live]')).toHaveLength(1)
 
   view.rerender(<Wordbook level="유치원" catalog={catalog} />)
   expect(screen.getByRole('searchbox', { name: '단어 검색' })).toHaveValue('')

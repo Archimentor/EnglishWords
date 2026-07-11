@@ -184,51 +184,72 @@ function QuizSession({
   }
 
   return (
-    <section aria-labelledby="quiz-view-title">
-      <h2 id="quiz-view-title">퀴즈</h2>
-      <fieldset>
-        <legend>퀴즈 유형</legend>
-        {QUIZ_TYPES.map((type) => (
-          <button
-            key={type}
-            type="button"
-            aria-pressed={activeType === type}
-            onClick={() => selectType(type)}
-          >
-            {QUIZ_TYPE_LABELS[type]}
-          </button>
-        ))}
-      </fieldset>
+    <section
+      className="view view--quiz"
+      data-state={generation.error ? 'error' : summary ? 'results' : 'question'}
+      data-quiz-type={activeType}
+      aria-labelledby="quiz-view-title"
+    >
+      <header className="feature-header">
+        <p className="feature-kicker">여섯 방식으로 확인하는 회상</p>
+        <h2 id="quiz-view-title">퀴즈</h2>
+      </header>
+      <div className="quiz-layout">
+        <fieldset className="control-group quiz-types">
+          <legend>퀴즈 유형</legend>
+          <div className="quiz-type-list">
+            {QUIZ_TYPES.map((type) => (
+              <button
+                key={type}
+                className="quiz-type-button"
+                type="button"
+                aria-pressed={activeType === type}
+                data-state={activeType === type ? 'active' : 'inactive'}
+                onClick={() => selectType(type)}
+              >
+                {QUIZ_TYPE_LABELS[type]}
+              </button>
+            ))}
+          </div>
+        </fieldset>
 
-      {generation.error ? (
-        <p role="alert">
-          {`퀴즈를 만들 수 없습니다. 생성 가능한 문항 ${generation.error.availableQuestionCount ?? 0}개 · 고유 보기 ${generation.error.availableOptionCount ?? 0}개`}
-        </p>
-      ) : summary ? (
-        <QuizResults
-          summary={summary}
-          itemsById={itemsById}
-          onRestart={() => reset(activeType)}
-          {...(onStudyMistakes ? { onStudyMistakes } : {})}
-        />
-      ) : currentQuestion ? (
-        <>
-          <p>{`현재 ${index + 1} / 전체 ${generation.questions.length}`}</p>
-          <QuizQuestion
-            question={currentQuestion}
-            draft={draft}
-            graded={graded}
-            onDraftChange={setDraft}
-            onChoose={choose}
-            onSubmit={submit}
-            onSpeak={() => void speak()}
-            speechError={speechError}
-          />
-          <button type="button" disabled={!graded} onClick={nextQuestion}>
-            {index === generation.questions.length - 1 ? '결과 보기' : '다음문제'}
-          </button>
-        </>
-      ) : null}
+        <div className="quiz-stage">
+          {generation.error ? (
+            <p className="state-panel state-panel--error" role="alert">
+              {`퀴즈를 만들 수 없습니다. 생성 가능한 문항 ${generation.error.availableQuestionCount ?? 0}개 · 고유 보기 ${generation.error.availableOptionCount ?? 0}개`}
+            </p>
+          ) : summary ? (
+            <QuizResults
+              summary={summary}
+              itemsById={itemsById}
+              onRestart={() => reset(activeType)}
+              {...(onStudyMistakes ? { onStudyMistakes } : {})}
+            />
+          ) : currentQuestion ? (
+            <>
+              <p className="session-count">{`현재 ${index + 1} / 전체 ${generation.questions.length}`}</p>
+              <QuizQuestion
+                question={currentQuestion}
+                draft={draft}
+                graded={graded}
+                onDraftChange={setDraft}
+                onChoose={choose}
+                onSubmit={submit}
+                onSpeak={() => void speak()}
+                speechError={speechError}
+              />
+              <button
+                className="button button--primary quiz-next"
+                type="button"
+                disabled={!graded}
+                onClick={nextQuestion}
+              >
+                {index === generation.questions.length - 1 ? '결과 보기' : '다음문제'}
+              </button>
+            </>
+          ) : null}
+        </div>
+      </div>
     </section>
   )
 }
