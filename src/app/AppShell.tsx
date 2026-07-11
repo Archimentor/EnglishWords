@@ -9,8 +9,6 @@ interface AppShellProps {
   state: AppState
   dispatch: (action: AppAction) => void
   wordIds: readonly string[]
-  warning: string | null
-  dismissWarning: () => void
   children: ReactNode
 }
 
@@ -18,8 +16,6 @@ export function AppShell({
   state,
   dispatch,
   wordIds,
-  warning,
-  dismissWarning,
   children,
 }: AppShellProps) {
   return (
@@ -35,17 +31,7 @@ export function AppShell({
           mastery={state.mastery}
         />
       </header>
-      <main>
-        {warning ? (
-          <div role="status">
-            <p>{warning}</p>
-            <button type="button" onClick={dismissWarning}>
-              알림 닫기
-            </button>
-          </div>
-        ) : null}
-        {children}
-      </main>
+      <main>{children}</main>
     </>
   )
 }
