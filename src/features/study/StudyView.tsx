@@ -11,16 +11,26 @@ import type { SpeechPort } from './speech'
 const MAX_SESSION_SIZE = 500
 const SPEECH_ERROR = '발음 재생을 지원하지 않는 브라우저입니다.'
 
-interface StudyViewProps {
+interface BaseStudyViewProps {
   items: readonly StudyItem[]
   state: AppState
   dispatch: (action: AppAction) => void
   speech: SpeechPort | null
   random?: () => number
-  mode?: 'standard' | 'mistakes'
-  candidateIds?: readonly string[]
-  onExitReview?: () => void
 }
+
+type StudyViewProps = BaseStudyViewProps & (
+  | {
+      mode?: 'standard'
+      candidateIds?: never
+      onExitReview?: never
+    }
+  | {
+      mode: 'mistakes'
+      candidateIds: readonly string[]
+      onExitReview: () => void
+    }
+)
 
 interface LocalSession {
   queueIds: string[]
@@ -150,10 +160,15 @@ function createLocalSession(
   }
 }
 
-interface LevelStudyViewProps extends Omit<StudyViewProps, 'items'> {
+interface LevelStudyViewProps {
   items: readonly StudyItem[]
   level: Level
+  state: AppState
+  dispatch: (action: AppAction) => void
+  speech: SpeechPort | null
+  random?: () => number
   mode: 'standard' | 'mistakes'
+  onExitReview?: () => void
 }
 
 function LevelStudyView({
@@ -228,7 +243,9 @@ function LevelStudyView({
     )
     const queueIds = [...prefix, ...tail]
 
-    dispatch({ type: 'SET_DIFFICULTY', difficulty })
+    if (mode === 'standard') {
+      dispatch({ type: 'SET_DIFFICULTY', difficulty })
+    }
     saveSession(queueIds, session.currentIndex)
     setSession((current) => ({
       ...current,
@@ -300,6 +317,9 @@ function LevelStudyView({
       <section>
         <h2>{`${level} 플래시카드 학습`}</h2>
         <p>이 레벨에 학습할 항목이 없습니다.</p>
+        {mode === 'mistakes' && onExitReview ? (
+          <button type="button" onClick={onExitReview}>전체 학습으로 돌아가기</button>
+        ) : null}
       </section>
     )
   }
@@ -320,6 +340,9 @@ function LevelStudyView({
   return (
     <section aria-labelledby="study-title">
       <h2 id="study-title">{`${level} 플래시카드 학습`}</h2>
+      {mode === 'mistakes' && onExitReview ? (
+        <button type="button" onClick={onExitReview}>전체 학습으로 돌아가기</button>
+      ) : null}
       <ProgressBar
         label="학습 진행"
         value={session.currentIndex + 1}
@@ -345,26 +368,21 @@ function LevelStudyView({
   )
 }
 
-export function StudyView({
-  items,
-  state,
-  dispatch,
-  speech,
-  random,
-  mode = 'standard',
-  candidateIds,
-  onExitReview,
-}: StudyViewProps) {
+export function StudyView(props: StudyViewProps) {
+  const { items, state, dispatch, speech, random } = props
+  const mode = props.mode ?? 'standard'
   const level = state.navigation.level
-  const candidateSet = mode === 'mistakes' && candidateIds
-    ? new Set(candidateIds)
+  const candidateSet = props.mode === 'mistakes'
+    ? new Set(props.candidateIds)
     : null
   const levelItems = uniqueItemsForLevel(items, level).filter(
     ({ id }) => !candidateSet || candidateSet.has(id),
   )
   const key = `${mode}:${level}:${levelItems.map(({ id }) => id).join('|')}`
   const sharedProps = { state, dispatch, speech, mode }
-  const reviewProps = onExitReview ? { onExitReview } : {}
+  const reviewProps = props.mode === 'mistakes'
+    ? { onExitReview: props.onExitReview }
+    : {}
 
   return random ? (
     <LevelStudyView

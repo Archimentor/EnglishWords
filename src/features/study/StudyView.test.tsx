@@ -355,6 +355,7 @@ test('오답 review 모드는 정규 세션 snapshot을 덮어쓰지 않고 회�
   const state = stateWithSession(items, 1)
   const originalSnapshot = structuredClone(state.studySessions.기초)
   const dispatch = vi.fn()
+  const onExitReview = vi.fn()
 
   render(
     <StudyView
@@ -364,15 +365,39 @@ test('오답 review 모드는 정규 세션 snapshot을 덮어쓰지 않고 회�
       speech={null}
       mode="mistakes"
       candidateIds={[items[0]!.id]}
+      onExitReview={onExitReview}
       random={zeroRandom}
     />,
   )
 
   expect(screen.getByText('1 / 1')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: '전체 학습으로 돌아가기' })).toBeInTheDocument()
+  expect(dispatch).not.toHaveBeenCalled()
+  await user.click(screen.getByRole('button', { name: '어려움' }))
   expect(dispatch).not.toHaveBeenCalled()
   await user.click(screen.getByRole('button', { name: /카드 뒤집기/ }))
   await user.click(screen.getByRole('button', { name: '기억했어요' }))
 
   expect(actionTypes(dispatch)).toEqual(['RECORD_STUDY'])
   expect(state.studySessions.기초).toEqual(originalSnapshot)
+})
+
+test('비어 있거나 stale인 오답 review에서도 전체 학습으로 나갈 수 있다', async () => {
+  const user = userEvent.setup()
+  const onExitReview = vi.fn()
+  render(
+    <StudyView
+      items={makeItems(2)}
+      state={createInitialState()}
+      dispatch={vi.fn()}
+      speech={null}
+      mode="mistakes"
+      candidateIds={['missing-id']}
+      onExitReview={onExitReview}
+    />,
+  )
+
+  expect(screen.getByText('이 레벨에 학습할 항목이 없습니다.')).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: '전체 학습으로 돌아가기' }))
+  expect(onExitReview).toHaveBeenCalledOnce()
 })
