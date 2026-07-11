@@ -123,6 +123,60 @@ describe('generateQuiz', () => {
     },
   )
 
+  it('excludes synonymous English answers from ko-en distractors', () => {
+    const synonym = {
+      ...SEED_ITEMS[0]!,
+      id: 'word-frolic',
+      term: 'frolic',
+      lemma: 'frolic',
+      forms: ['frolic', 'frolics', 'frolicked', 'frolicking'],
+      meanings: ['놀다'],
+      examples: ['Children frolic outside.'],
+    }
+    const sources = [...SEED_ITEMS, synonym]
+    const questions = generateQuiz(sources, 'ko-en', {
+      count: sources.length,
+      random: seededRandom(12),
+    })
+    const playQuestion = questions.find(({ sourceItemId }) => sourceItemId === 'word-play')
+    const frolicQuestion = questions.find(({ sourceItemId }) => sourceItemId === 'word-frolic')
+
+    if (playQuestion?.inputMode !== 'choice' || frolicQuestion?.inputMode !== 'choice') {
+      throw new Error('Expected ko-en choice questions')
+    }
+    expect(playQuestion.options).toHaveLength(4)
+    expect(frolicQuestion.options).toHaveLength(4)
+    expect(playQuestion.options.map(normalizeAnswer)).not.toContain('frolic')
+    expect(frolicQuestion.options.map(normalizeAnswer)).not.toContain('play')
+  })
+
+  it('throws when a ko-en question has fewer than three unambiguous distractors', () => {
+    const synonym = {
+      ...SEED_ITEMS[0]!,
+      id: 'word-frolic',
+      term: 'frolic',
+      lemma: 'frolic',
+      forms: ['frolic'],
+      meanings: ['놀다'],
+    }
+    const ambiguousPool = [SEED_ITEMS[0]!, synonym, SEED_ITEMS[2]!, SEED_ITEMS[3]!]
+
+    expect(() =>
+      generateQuiz(ambiguousPool, 'ko-en', {
+        count: ambiguousPool.length,
+        random: seededRandom(13),
+      }),
+    ).toThrowError(
+      expect.objectContaining({
+        code: 'QUIZ_POOL_TOO_SMALL',
+        quizType: 'ko-en',
+        requestedCount: ambiguousPool.length,
+        availableQuestionCount: ambiguousPool.length,
+        availableOptionCount: 3,
+      }),
+    )
+  })
+
   it.each(['dictation', 'sentence-transform'] as const)(
     'creates a text-entry question without options for %s',
     (type) => {

@@ -136,6 +136,24 @@ function uniqueSources(sources: readonly QuestionSource[]): QuestionSource[] {
   return [...sourcesById.values()]
 }
 
+function optionPoolForSource(
+  source: QuestionSource,
+  type: ChoiceQuizType,
+  sources: readonly QuestionSource[],
+  sharedPool: readonly string[],
+): string[] {
+  if (type !== 'ko-en') return [...sharedPool]
+
+  const promptKey = normalizeAnswer(source.item.meanings[0] ?? '')
+  return uniqueAnswers(
+    sources.filter(
+      (candidate) =>
+        candidate.item.id === source.item.id ||
+        normalizeAnswer(candidate.item.meanings[0] ?? '') !== promptKey,
+    ),
+  )
+}
+
 function sentenceText(sentence: SentenceTarget): string {
   return `${sentence.before}${sentence.target}${sentence.after}`
 }
@@ -251,11 +269,27 @@ export function generateQuiz(
     })
   }
 
-  return shuffled(sources, random)
-    .slice(0, count)
-    .map((source, index) =>
-      isChoiceType(type)
-        ? makeChoiceQuestion(source, type, index, answerPool, random)
-        : makeTextQuestion(source, type, index),
-    )
+  const selectedSources = shuffled(sources, random).slice(0, count)
+  if (!isChoiceType(type)) {
+    return selectedSources.map((source, index) => makeTextQuestion(source, type, index))
+  }
+
+  const optionPools = selectedSources.map((source) =>
+    optionPoolForSource(source, type, sources, answerPool),
+  )
+  const insufficientPool = optionPools.find((pool) => pool.length < 4)
+  if (insufficientPool) {
+    throw new QuizGenerationError({
+      quizType: type,
+      requestedCount: count,
+      availableQuestionCount: sources.length,
+      availableOptionCount: insufficientPool.length,
+    })
+  }
+
+  return selectedSources.map((source, index) => {
+    const optionPool = optionPools[index]
+    if (!optionPool) throw new Error('Question option pool is missing.')
+    return makeChoiceQuestion(source, type, index, optionPool, random)
+  })
 }
