@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import type { StoryContent, WordEntry, WordItem } from '../../domain/content/types'
 import { StoryWordDetail } from './StoryWordDetail'
 import { tokenizeStory } from './storyTokens'
@@ -26,7 +26,6 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
   } | null>(null)
   const [selectedStory, setSelectedStory] = useState(story)
   const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
-  const detailRef = useRef<HTMLElement | null>(null)
 
   if (selectedStory !== story) {
     setSelectedStory(story)
@@ -43,16 +42,6 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
   const targetRate = targetWordCount > 0 ? coveredCount / targetWordCount : 0
   const tokens = tokenizeStory(story.storyText, story.usedWords, levelWords)
   const activeSelectedWord = selectedWord?.story === story ? selectedWord : null
-
-  useEffect(() => {
-    const detail = detailRef.current
-    if (!activeSelectedWord || !detail) {
-      return
-    }
-
-    detail.focus()
-    detail.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' })
-  }, [activeSelectedWord])
 
   function closeDetail() {
     setSelectedWord(null)
@@ -74,50 +63,54 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
         <p>{`${story.level} · 스키마 ${story.schemaVersion}`}</p>
         <h2 id="story-title">{story.title}</h2>
       </header>
-      <p className="story-body">
-        {tokens.map((token, index) => {
-          if (token.type === 'text') {
-            return <span key={`text-${index}`}>{token.value}</span>
-          }
+      <div className="story-reading-layout">
+        <div className="story-reading-column">
+          <p className="story-reading-hint">밑줄 친 단어를 누르면 뜻과 예문이 바로 열립니다.</p>
+          <p className="story-body">
+            {tokens.map((token, index) => {
+              if (token.type === 'text') {
+                return <span key={`text-${index}`}>{token.value}</span>
+              }
 
-          if (!token.word || !token.entry) {
-            return null
-          }
+              if (!token.word || !token.entry) {
+                return null
+              }
 
-          const isSelected = activeSelectedWord?.tokenIndex === index
-          return (
-            <button
-              key={`word-${index}`}
-              ref={isSelected ? selectedTriggerRef : undefined}
-              type="button"
-              className="story-word-button"
-              aria-label={`story word: ${token.value}`}
-              aria-expanded={isSelected}
-              aria-controls={isSelected ? 'story-word-detail' : undefined}
-              onClick={(event) => {
-                selectedTriggerRef.current = event.currentTarget
-                setSelectedWord({
-                  story,
-                  tokenIndex: index,
-                  word: token.word!,
-                  entry: token.entry!,
-                })
-              }}
-            >
-              {token.value}
-            </button>
-          )
-        })}
-      </p>
+              const isSelected = activeSelectedWord?.tokenIndex === index
+              return (
+                <button
+                  key={`word-${index}`}
+                  ref={isSelected ? selectedTriggerRef : undefined}
+                  type="button"
+                  className="story-word-button"
+                  aria-label={`story word: ${token.value}`}
+                  aria-expanded={isSelected}
+                  aria-controls={isSelected ? 'story-word-detail' : undefined}
+                  onClick={(event) => {
+                    selectedTriggerRef.current = event.currentTarget
+                    setSelectedWord({
+                      story,
+                      tokenIndex: index,
+                      word: token.word!,
+                      entry: token.entry!,
+                    })
+                  }}
+                >
+                  {token.value}
+                </button>
+              )
+            })}
+          </p>
+        </div>
 
-      {activeSelectedWord ? (
-        <StoryWordDetail
-          word={activeSelectedWord.word}
-          entry={activeSelectedWord.entry}
-          onClose={closeDetail}
-          detailRef={detailRef}
-        />
-      ) : null}
+        {activeSelectedWord ? (
+          <StoryWordDetail
+            word={activeSelectedWord.word}
+            entry={activeSelectedWord.entry}
+            onClose={closeDetail}
+          />
+        ) : null}
+      </div>
 
       <div className="story-meta-grid">
         <section className="panel" aria-labelledby="story-coverage-title">

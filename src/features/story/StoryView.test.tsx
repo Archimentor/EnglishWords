@@ -93,6 +93,22 @@ test('clicking a story surface form shows its exact word entry', async () => {
   expect(screen.getByText('They play after school.')).toBeInTheDocument()
 })
 
+test('shows the selected word in the reading workspace rather than below the whole story', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['played'] }],
+  })
+
+  render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+  await user.click(screen.getByRole('button', { name: 'story word: played' }))
+
+  const detail = screen.getByRole('complementary', { name: 'play 단어 상세' })
+  expect(detail.closest('.story-reading-layout')).not.toBeNull()
+  expect(detail).toHaveClass('story-word-inspector')
+})
+
 test('Escape closes the detail and restores focus to the selected word', async () => {
   const user = userEvent.setup()
   const word = makeWord()
@@ -231,7 +247,7 @@ test('does not restore a stale selection when returning to an earlier story obje
   expect(screen.queryByRole('heading', { name: 'play 단어 상세' })).not.toBeInTheDocument()
 })
 
-test('moves focus and scrolls the selected word detail into view', async () => {
+test('keeps reading position on the clicked word while updating the visible detail panel', async () => {
   const user = userEvent.setup()
   const scrollIntoView = vi.fn()
   const descriptor = Object.getOwnPropertyDescriptor(
@@ -259,14 +275,9 @@ test('moves focus and scrolls the selected word detail into view', async () => {
 
     await user.click(screen.getByRole('button', { name: 'story word: played' }))
 
-    const detail = await screen.findByRole('complementary', {
-      name: 'play 단어 상세',
-    })
-    expect(detail).toHaveFocus()
-    expect(scrollIntoView).toHaveBeenCalledWith({
-      behavior: 'smooth',
-      block: 'nearest',
-    })
+    await screen.findByRole('complementary', { name: 'play 단어 상세' })
+    expect(screen.getByRole('button', { name: 'story word: played' })).toHaveFocus()
+    expect(scrollIntoView).not.toHaveBeenCalled()
   } finally {
     if (descriptor) {
       Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', descriptor)
