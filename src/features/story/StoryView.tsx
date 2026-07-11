@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { StoryContent, WordEntry, WordItem } from '../../domain/content/types'
 import { StoryWordDetail } from './StoryWordDetail'
 import { tokenizeStory } from './storyTokens'
@@ -19,11 +19,13 @@ function yesNo(value: boolean): string {
 
 export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps) {
   const [selectedWord, setSelectedWord] = useState<{
+    story: StoryContent
     tokenIndex: number
     word: WordItem
     entry: WordEntry
   } | null>(null)
   const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const detailRef = useRef<HTMLElement | null>(null)
   const levelLemmas = new Set(levelWords.map(({ lemma }) => lemma))
   const coveredLemmas = new Set(
     story.usedWords
@@ -33,6 +35,17 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
   const coveredCount = coveredLemmas.size
   const targetRate = targetWordCount > 0 ? coveredCount / targetWordCount : 0
   const tokens = tokenizeStory(story.storyText, story.usedWords, levelWords)
+  const activeSelectedWord = selectedWord?.story === story ? selectedWord : null
+
+  useEffect(() => {
+    const detail = detailRef.current
+    if (!activeSelectedWord || !detail) {
+      return
+    }
+
+    detail.focus()
+    detail.scrollIntoView?.({ behavior: 'smooth', block: 'nearest' })
+  }, [activeSelectedWord])
 
   function closeDetail() {
     setSelectedWord(null)
@@ -44,7 +57,7 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
       className="view view--story reading-sheet"
       aria-labelledby="story-title"
       onKeyDown={(event) => {
-        if (event.key === 'Escape' && selectedWord) {
+        if (event.key === 'Escape' && activeSelectedWord) {
           event.preventDefault()
           closeDetail()
         }
@@ -64,7 +77,7 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
             return null
           }
 
-          const isSelected = selectedWord?.tokenIndex === index
+          const isSelected = activeSelectedWord?.tokenIndex === index
           return (
             <button
               key={`word-${index}`}
@@ -72,11 +85,17 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
               type="button"
               className="story-word-button"
               aria-label={`story word: ${token.value}`}
+              aria-expanded={isSelected}
               aria-pressed={isSelected}
-              aria-controls="story-word-detail"
+              aria-controls={isSelected ? 'story-word-detail' : undefined}
               onClick={(event) => {
                 selectedTriggerRef.current = event.currentTarget
-                setSelectedWord({ tokenIndex: index, word: token.word!, entry: token.entry! })
+                setSelectedWord({
+                  story,
+                  tokenIndex: index,
+                  word: token.word!,
+                  entry: token.entry!,
+                })
               }}
             >
               {token.value}
@@ -85,11 +104,12 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
         })}
       </p>
 
-      {selectedWord ? (
+      {activeSelectedWord ? (
         <StoryWordDetail
-          word={selectedWord.word}
-          entry={selectedWord.entry}
+          word={activeSelectedWord.word}
+          entry={activeSelectedWord.entry}
           onClose={closeDetail}
+          detailRef={detailRef}
         />
       ) : null}
 

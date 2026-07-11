@@ -142,6 +142,123 @@ test('Escape restores focus to the exact repeated story word that was selected',
   expect(firstTrigger).toHaveFocus()
 })
 
+test('resets the selected detail when the displayed story changes', async () => {
+  const user = userEvent.setup()
+  const play = makeWord()
+  const playStory = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [
+      {
+        lemma: 'play',
+        partOfSpeech: 'verb',
+        forms: ['played'],
+      },
+    ],
+  })
+  const book = makeWord({
+    id: 'word-book',
+    word: 'book',
+    lemma: 'book',
+    level: '유치원',
+    entryOverrides: { forms: ['book'] },
+  })
+  const bookStory = makeStory('유치원', {
+    storyText: 'I carry a book.',
+    usedWords: [
+      {
+        lemma: 'book',
+        partOfSpeech: 'verb',
+        forms: ['book'],
+      },
+    ],
+  })
+
+  const { rerender } = render(
+    <StoryView story={playStory} levelWords={[play]} targetWordCount={500} />,
+  )
+  await user.click(screen.getByRole('button', { name: 'story word: played' }))
+  expect(screen.getByRole('heading', { name: 'play 단어 상세' })).toBeInTheDocument()
+
+  rerender(
+    <StoryView story={bookStory} levelWords={[book]} targetWordCount={500} />,
+  )
+
+  expect(screen.queryByRole('heading', { name: 'play 단어 상세' })).not.toBeInTheDocument()
+})
+
+test('moves focus and scrolls the selected word detail into view', async () => {
+  const user = userEvent.setup()
+  const scrollIntoView = vi.fn()
+  const descriptor = Object.getOwnPropertyDescriptor(
+    HTMLElement.prototype,
+    'scrollIntoView',
+  )
+  Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
+    configurable: true,
+    value: scrollIntoView,
+  })
+
+  try {
+    const word = makeWord()
+    const story = makeStory('기초', {
+      storyText: 'The children played together.',
+      usedWords: [
+        {
+          lemma: 'play',
+          partOfSpeech: 'verb',
+          forms: ['played'],
+        },
+      ],
+    })
+    render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+
+    await user.click(screen.getByRole('button', { name: 'story word: played' }))
+
+    const detail = await screen.findByRole('complementary', {
+      name: 'play 단어 상세',
+    })
+    expect(detail).toHaveFocus()
+    expect(scrollIntoView).toHaveBeenCalledWith({
+      behavior: 'smooth',
+      block: 'nearest',
+    })
+  } finally {
+    if (descriptor) {
+      Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', descriptor)
+    } else {
+      Reflect.deleteProperty(HTMLElement.prototype, 'scrollIntoView')
+    }
+  }
+})
+
+test('only exposes detail controls while a story word is expanded', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [
+      {
+        lemma: 'play',
+        partOfSpeech: 'verb',
+        forms: ['played'],
+      },
+    ],
+  })
+
+  render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+  const trigger = screen.getByRole('button', { name: 'story word: played' })
+  expect(trigger).toHaveAttribute('aria-expanded', 'false')
+  expect(trigger).not.toHaveAttribute('aria-controls')
+
+  await user.click(trigger)
+  expect(trigger).toHaveAttribute('aria-expanded', 'true')
+  expect(trigger).toHaveAttribute('aria-controls', 'story-word-detail')
+
+  await user.keyboard('{Escape}')
+  expect(trigger).toHaveAttribute('aria-expanded', 'false')
+  expect(trigger).not.toHaveAttribute('aria-controls')
+})
+
 test('the close button closes the detail and restores focus to the selected word', async () => {
   const user = userEvent.setup()
   const word = makeWord()
