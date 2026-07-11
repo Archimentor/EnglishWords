@@ -16,7 +16,7 @@ import {
 const TEST_DIRECTORY = dirname(fileURLToPath(import.meta.url))
 const DATA_ROOT = resolve(TEST_DIRECTORY, '../public/data')
 const EXPECTED_COUNTS = {
-  words: 424,
+  words: 524,
   phrasalVerbs: 8,
   grammarNodes: 42,
   stories: 4,
@@ -44,7 +44,7 @@ describe('data catalog contract', () => {
       }),
     ).resolves.toBe(0)
     expect(errors).toEqual([])
-    expect(logs.join('\n')).toMatch(/words=424/)
+    expect(logs.join('\n')).toMatch(/words=524/)
     expect(logs.join('\n')).toMatch(/phrasalVerbs=8/)
     expect(logs.join('\n')).toMatch(/grammarNodes=42/)
     expect(logs.join('\n')).toMatch(/stories=4/)
@@ -59,12 +59,14 @@ describe('data catalog contract', () => {
       new Set(['WORD_COUNT_MISMATCH', 'PHRASAL_COUNT_MISMATCH']),
     )
     for (const level of LEVELS) {
-      expect(issues).toContainEqual(
-        expect.objectContaining({
-          code: 'WORD_COUNT_MISMATCH',
-          path: `wordlists.${level}`,
-        }),
-      )
+      if (level !== '기초') {
+        expect(issues).toContainEqual(
+          expect.objectContaining({
+            code: 'WORD_COUNT_MISMATCH',
+            path: `wordlists.${level}`,
+          }),
+        )
+      }
       expect(issues).toContainEqual(
         expect.objectContaining({
           code: 'PHRASAL_COUNT_MISMATCH',

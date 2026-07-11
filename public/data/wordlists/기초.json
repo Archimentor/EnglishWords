@@ -10768,5 +10768,2695 @@
         ]
       }
     ]
+  },
+  {
+    "id": "word-ticket",
+    "word": "ticket",
+    "lemma": "ticket",
+    "level": "기초",
+    "familyId": "ticket-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "ticket",
+          "tickets"
+        ],
+        "meanings": [
+          "표"
+        ],
+        "ipa": "/ˈtɪkət/",
+        "examples": [
+          "The ticket is here.",
+          "I like this ticket."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-time",
+    "word": "time",
+    "lemma": "time",
+    "level": "기초",
+    "familyId": "time-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "time",
+          "times"
+        ],
+        "meanings": [
+          "시간"
+        ],
+        "ipa": "/ˈtaɪm/",
+        "examples": [
+          "The time is here.",
+          "I like this time."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-tomato",
+    "word": "tomato",
+    "lemma": "tomato",
+    "level": "기초",
+    "familyId": "tomato-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "tomato",
+          "tomatos"
+        ],
+        "meanings": [
+          "토마토"
+        ],
+        "ipa": "/təˈmɑˌtoʊ/",
+        "examples": [
+          "The tomato is here.",
+          "I like this tomato."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-tooth",
+    "word": "tooth",
+    "lemma": "tooth",
+    "level": "기초",
+    "familyId": "tooth-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "tooth",
+          "teeth"
+        ],
+        "meanings": [
+          "이"
+        ],
+        "ipa": "/ˈtuθ/",
+        "examples": [
+          "The tooth is here.",
+          "I like this tooth."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-town",
+    "word": "town",
+    "lemma": "town",
+    "level": "기초",
+    "familyId": "town-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "town",
+          "towns"
+        ],
+        "meanings": [
+          "마을"
+        ],
+        "ipa": "/ˈtaʊn/",
+        "examples": [
+          "The town is here.",
+          "I like this town."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-train",
+    "word": "train",
+    "lemma": "train",
+    "level": "기초",
+    "familyId": "train-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "train",
+          "trains"
+        ],
+        "meanings": [
+          "기차"
+        ],
+        "ipa": "/ˈtɹeɪn/",
+        "examples": [
+          "The train is here.",
+          "I like this train."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-tree",
+    "word": "tree",
+    "lemma": "tree",
+    "level": "기초",
+    "familyId": "tree-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "tree",
+          "trees"
+        ],
+        "meanings": [
+          "나무"
+        ],
+        "ipa": "/ˈtɹi/",
+        "examples": [
+          "The tree is here.",
+          "I like this tree."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-trip",
+    "word": "trip",
+    "lemma": "trip",
+    "level": "기초",
+    "familyId": "trip-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "trip",
+          "trips"
+        ],
+        "meanings": [
+          "여행"
+        ],
+        "ipa": "/ˈtɹɪp/",
+        "examples": [
+          "The trip is here.",
+          "I like this trip."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-truck",
+    "word": "truck",
+    "lemma": "truck",
+    "level": "기초",
+    "familyId": "truck-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "truck",
+          "trucks"
+        ],
+        "meanings": [
+          "트럭"
+        ],
+        "ipa": "/ˈtɹək/",
+        "examples": [
+          "The truck is here.",
+          "I like this truck."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-uncle",
+    "word": "uncle",
+    "lemma": "uncle",
+    "level": "기초",
+    "familyId": "uncle-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "uncle",
+          "uncles"
+        ],
+        "meanings": [
+          "삼촌"
+        ],
+        "ipa": "/ˈəŋkəɫ/",
+        "examples": [
+          "The uncle is here.",
+          "I like this uncle."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-uniform",
+    "word": "uniform",
+    "lemma": "uniform",
+    "level": "기초",
+    "familyId": "uniform-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "uniform",
+          "uniforms"
+        ],
+        "meanings": [
+          "제복"
+        ],
+        "ipa": "/ˈjunəˌfɔɹm/",
+        "examples": [
+          "The uniform is here.",
+          "I like this uniform."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-vacation",
+    "word": "vacation",
+    "lemma": "vacation",
+    "level": "기초",
+    "familyId": "vacation-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "vacation",
+          "vacations"
+        ],
+        "meanings": [
+          "방학"
+        ],
+        "ipa": "/veɪˈkeɪʃən/",
+        "examples": [
+          "The vacation is here.",
+          "I like this vacation."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-vegetable",
+    "word": "vegetable",
+    "lemma": "vegetable",
+    "level": "기초",
+    "familyId": "vegetable-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "vegetable",
+          "vegetables"
+        ],
+        "meanings": [
+          "채소"
+        ],
+        "ipa": "/ˈvɛdʒtəbəɫ/",
+        "examples": [
+          "The vegetable is here.",
+          "I like this vegetable."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-village",
+    "word": "village",
+    "lemma": "village",
+    "level": "기초",
+    "familyId": "village-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "village",
+          "villages"
+        ],
+        "meanings": [
+          "마을"
+        ],
+        "ipa": "/ˈvɪɫədʒ/",
+        "examples": [
+          "The village is here.",
+          "I like this village."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-visitor",
+    "word": "visitor",
+    "lemma": "visitor",
+    "level": "기초",
+    "familyId": "visitor-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "visitor",
+          "visitors"
+        ],
+        "meanings": [
+          "방문객"
+        ],
+        "ipa": "/ˈvɪzɪtɝ/",
+        "examples": [
+          "The visitor is here.",
+          "I like this visitor."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-wall",
+    "word": "wall",
+    "lemma": "wall",
+    "level": "기초",
+    "familyId": "wall-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "wall",
+          "walls"
+        ],
+        "meanings": [
+          "벽"
+        ],
+        "ipa": "/ˈwɔɫ/",
+        "examples": [
+          "The wall is here.",
+          "I like this wall."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-water",
+    "word": "water",
+    "lemma": "water",
+    "level": "기초",
+    "familyId": "water-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "water"
+        ],
+        "meanings": [
+          "물"
+        ],
+        "ipa": "/ˈwɔtɝ/",
+        "examples": [
+          "The water is here.",
+          "I like this water."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-way",
+    "word": "way",
+    "lemma": "way",
+    "level": "기초",
+    "familyId": "way-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "way",
+          "ways"
+        ],
+        "meanings": [
+          "길"
+        ],
+        "ipa": "/ˈweɪ/",
+        "examples": [
+          "The way is here.",
+          "I like this way."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-weather",
+    "word": "weather",
+    "lemma": "weather",
+    "level": "기초",
+    "familyId": "weather-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "weather",
+          "weathers"
+        ],
+        "meanings": [
+          "날씨"
+        ],
+        "ipa": "/ˈwɛðɝ/",
+        "examples": [
+          "The weather is here.",
+          "I like this weather."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-week",
+    "word": "week",
+    "lemma": "week",
+    "level": "기초",
+    "familyId": "week-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "week",
+          "weeks"
+        ],
+        "meanings": [
+          "주"
+        ],
+        "ipa": "/ˈwik/",
+        "examples": [
+          "The week is here.",
+          "I like this week."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-window",
+    "word": "window",
+    "lemma": "window",
+    "level": "기초",
+    "familyId": "window-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "window",
+          "windows"
+        ],
+        "meanings": [
+          "창문"
+        ],
+        "ipa": "/ˈwɪndoʊ/",
+        "examples": [
+          "The window is here.",
+          "I like this window."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-winter",
+    "word": "winter",
+    "lemma": "winter",
+    "level": "기초",
+    "familyId": "winter-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "winter",
+          "winters"
+        ],
+        "meanings": [
+          "겨울"
+        ],
+        "ipa": "/ˈwɪntɝ/",
+        "examples": [
+          "The winter is here.",
+          "I like this winter."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-woman",
+    "word": "woman",
+    "lemma": "woman",
+    "level": "기초",
+    "familyId": "woman-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "woman",
+          "women"
+        ],
+        "meanings": [
+          "여성"
+        ],
+        "ipa": "/ˈwʊmən/",
+        "examples": [
+          "The woman is here.",
+          "I like this woman."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-world",
+    "word": "world",
+    "lemma": "world",
+    "level": "기초",
+    "familyId": "world-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "world",
+          "worlds"
+        ],
+        "meanings": [
+          "세계"
+        ],
+        "ipa": "/ˈwɝɫd/",
+        "examples": [
+          "The world is here.",
+          "I like this world."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-writer",
+    "word": "writer",
+    "lemma": "writer",
+    "level": "기초",
+    "familyId": "writer-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "writer",
+          "writers"
+        ],
+        "meanings": [
+          "작가"
+        ],
+        "ipa": "/ˈɹaɪtɝ/",
+        "examples": [
+          "The writer is here.",
+          "I like this writer."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-year",
+    "word": "year",
+    "lemma": "year",
+    "level": "기초",
+    "familyId": "year-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "year",
+          "years"
+        ],
+        "meanings": [
+          "해"
+        ],
+        "ipa": "/ˈjɪɹ/",
+        "examples": [
+          "The year is here.",
+          "I like this year."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-zoo",
+    "word": "zoo",
+    "lemma": "zoo",
+    "level": "기초",
+    "familyId": "zoo-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "zoo",
+          "zoos"
+        ],
+        "meanings": [
+          "동물원"
+        ],
+        "ipa": "/ˈzu/",
+        "examples": [
+          "The zoo is here.",
+          "I like this zoo."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-address",
+    "word": "address",
+    "lemma": "address",
+    "level": "기초",
+    "familyId": "address-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "address",
+          "addresses"
+        ],
+        "meanings": [
+          "주소"
+        ],
+        "ipa": "/ˈæˌdɹɛs/",
+        "examples": [
+          "The address is here.",
+          "I like this address."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-age",
+    "word": "age",
+    "lemma": "age",
+    "level": "기초",
+    "familyId": "age-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "age",
+          "ages"
+        ],
+        "meanings": [
+          "나이"
+        ],
+        "ipa": "/ˈeɪdʒ/",
+        "examples": [
+          "The age is here.",
+          "I like this age."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-area",
+    "word": "area",
+    "lemma": "area",
+    "level": "기초",
+    "familyId": "area-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "area",
+          "areas"
+        ],
+        "meanings": [
+          "지역"
+        ],
+        "ipa": "/ˈɛɹiə/",
+        "examples": [
+          "The area is here.",
+          "I like this area."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-army",
+    "word": "army",
+    "lemma": "army",
+    "level": "기초",
+    "familyId": "army-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "army",
+          "armies"
+        ],
+        "meanings": [
+          "군대"
+        ],
+        "ipa": "/ˈɑɹmi/",
+        "examples": [
+          "The army is here.",
+          "I like this army."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-autumn",
+    "word": "autumn",
+    "lemma": "autumn",
+    "level": "기초",
+    "familyId": "autumn-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "autumn",
+          "autumns"
+        ],
+        "meanings": [
+          "가을"
+        ],
+        "ipa": "/ˈɔtəm/",
+        "examples": [
+          "The autumn is here.",
+          "I like this autumn."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-basement",
+    "word": "basement",
+    "lemma": "basement",
+    "level": "기초",
+    "familyId": "basement-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "basement",
+          "basements"
+        ],
+        "meanings": [
+          "지하실"
+        ],
+        "ipa": "/ˈbeɪsmənt/",
+        "examples": [
+          "The basement is here.",
+          "I like this basement."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bedroom",
+    "word": "bedroom",
+    "lemma": "bedroom",
+    "level": "기초",
+    "familyId": "bedroom-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "bedroom",
+          "bedrooms"
+        ],
+        "meanings": [
+          "침실"
+        ],
+        "ipa": "/ˈbɛˌdɹum/",
+        "examples": [
+          "The bedroom is here.",
+          "I like this bedroom."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bench",
+    "word": "bench",
+    "lemma": "bench",
+    "level": "기초",
+    "familyId": "bench-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "bench",
+          "benches"
+        ],
+        "meanings": [
+          "긴 의자"
+        ],
+        "ipa": "/ˈbɛntʃ/",
+        "examples": [
+          "The bench is here.",
+          "I like this bench."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-block",
+    "word": "block",
+    "lemma": "block",
+    "level": "기초",
+    "familyId": "block-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "block",
+          "blocks"
+        ],
+        "meanings": [
+          "블록"
+        ],
+        "ipa": "/ˈbɫɑk/",
+        "examples": [
+          "The block is here.",
+          "I like this block."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-board",
+    "word": "board",
+    "lemma": "board",
+    "level": "기초",
+    "familyId": "board-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "board",
+          "boards"
+        ],
+        "meanings": [
+          "판"
+        ],
+        "ipa": "/ˈbɔɹd/",
+        "examples": [
+          "The board is here.",
+          "I like this board."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bookstore",
+    "word": "bookstore",
+    "lemma": "bookstore",
+    "level": "기초",
+    "familyId": "bookstore-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "bookstore",
+          "bookstores"
+        ],
+        "meanings": [
+          "서점"
+        ],
+        "ipa": "/ˈbʊkˌstɔɹ/",
+        "examples": [
+          "The bookstore is here.",
+          "I like this bookstore."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bowl",
+    "word": "bowl",
+    "lemma": "bowl",
+    "level": "기초",
+    "familyId": "bowl-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "bowl",
+          "bowls"
+        ],
+        "meanings": [
+          "그릇"
+        ],
+        "ipa": "/ˈboʊɫ/",
+        "examples": [
+          "The bowl is here.",
+          "I like this bowl."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-breakfast",
+    "word": "breakfast",
+    "lemma": "breakfast",
+    "level": "기초",
+    "familyId": "breakfast-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "breakfast",
+          "breakfasts"
+        ],
+        "meanings": [
+          "아침 식사"
+        ],
+        "ipa": "/ˈbɹɛkfəst/",
+        "examples": [
+          "The breakfast is here.",
+          "I like this breakfast."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-brush",
+    "word": "brush",
+    "lemma": "brush",
+    "level": "기초",
+    "familyId": "brush-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "brush",
+          "brushes"
+        ],
+        "meanings": [
+          "솔"
+        ],
+        "ipa": "/ˈbɹəʃ/",
+        "examples": [
+          "The brush is here.",
+          "I like this brush."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-button",
+    "word": "button",
+    "lemma": "button",
+    "level": "기초",
+    "familyId": "button-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "button",
+          "buttons"
+        ],
+        "meanings": [
+          "단추"
+        ],
+        "ipa": "/ˈbətən/",
+        "examples": [
+          "The button is here.",
+          "I like this button."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-camp",
+    "word": "camp",
+    "lemma": "camp",
+    "level": "기초",
+    "familyId": "camp-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "camp",
+          "camps"
+        ],
+        "meanings": [
+          "캠프"
+        ],
+        "ipa": "/ˈkæmp/",
+        "examples": [
+          "The camp is here.",
+          "I like this camp."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-candy",
+    "word": "candy",
+    "lemma": "candy",
+    "level": "기초",
+    "familyId": "candy-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "candy",
+          "candies"
+        ],
+        "meanings": [
+          "사탕"
+        ],
+        "ipa": "/ˈkændi/",
+        "examples": [
+          "The candy is here.",
+          "I like this candy."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-carpet",
+    "word": "carpet",
+    "lemma": "carpet",
+    "level": "기초",
+    "familyId": "carpet-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "carpet",
+          "carpets"
+        ],
+        "meanings": [
+          "카펫"
+        ],
+        "ipa": "/ˈkɑɹpət/",
+        "examples": [
+          "The carpet is here.",
+          "I like this carpet."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-cartoon",
+    "word": "cartoon",
+    "lemma": "cartoon",
+    "level": "기초",
+    "familyId": "cartoon-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "cartoon",
+          "cartoons"
+        ],
+        "meanings": [
+          "만화"
+        ],
+        "ipa": "/kɑɹˈtun/",
+        "examples": [
+          "The cartoon is here.",
+          "I like this cartoon."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-ceiling",
+    "word": "ceiling",
+    "lemma": "ceiling",
+    "level": "기초",
+    "familyId": "ceiling-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "ceiling",
+          "ceilings"
+        ],
+        "meanings": [
+          "천장"
+        ],
+        "ipa": "/ˈsiɫɪŋ/",
+        "examples": [
+          "The ceiling is here.",
+          "I like this ceiling."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-chain",
+    "word": "chain",
+    "lemma": "chain",
+    "level": "기초",
+    "familyId": "chain-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "chain",
+          "chains"
+        ],
+        "meanings": [
+          "사슬"
+        ],
+        "ipa": "/ˈtʃeɪn/",
+        "examples": [
+          "The chain is here.",
+          "I like this chain."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-chance",
+    "word": "chance",
+    "lemma": "chance",
+    "level": "기초",
+    "familyId": "chance-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "chance",
+          "chances"
+        ],
+        "meanings": [
+          "기회"
+        ],
+        "ipa": "/ˈtʃæns/",
+        "examples": [
+          "The chance is here.",
+          "I like this chance."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-cheese",
+    "word": "cheese",
+    "lemma": "cheese",
+    "level": "기초",
+    "familyId": "cheese-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "noun",
+        "forms": [
+          "cheese"
+        ],
+        "meanings": [
+          "치즈"
+        ],
+        "ipa": "/ˈtʃiz/",
+        "examples": [
+          "The cheese is here.",
+          "I like this cheese."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-act",
+    "word": "act",
+    "lemma": "act",
+    "level": "기초",
+    "familyId": "act-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "act",
+          "s3": "acts",
+          "past": "acted",
+          "participle": "acting",
+          "pastParticiple": "acted"
+        },
+        "meanings": [
+          "행동하다"
+        ],
+        "ipa": "/ˈækt/",
+        "examples": [
+          "I act in the school play.",
+          "We act with care."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bake",
+    "word": "bake",
+    "lemma": "bake",
+    "level": "기초",
+    "familyId": "bake-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "bake",
+          "s3": "bakes",
+          "past": "baked",
+          "participle": "baking",
+          "pastParticiple": "baked"
+        },
+        "meanings": [
+          "굽다"
+        ],
+        "ipa": "/ˈbeɪk/",
+        "examples": [
+          "I bake a cake.",
+          "We bake bread together."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-balance",
+    "word": "balance",
+    "lemma": "balance",
+    "level": "기초",
+    "familyId": "balance-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "balance",
+          "s3": "balances",
+          "past": "balanced",
+          "participle": "balancing",
+          "pastParticiple": "balanced"
+        },
+        "meanings": [
+          "균형을 잡다"
+        ],
+        "ipa": "/ˈbæɫəns/",
+        "examples": [
+          "I balance on one foot.",
+          "We balance the boxes."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bark",
+    "word": "bark",
+    "lemma": "bark",
+    "level": "기초",
+    "familyId": "bark-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "bark",
+          "s3": "barks",
+          "past": "barked",
+          "participle": "barking",
+          "pastParticiple": "barked"
+        },
+        "meanings": [
+          "짖다"
+        ],
+        "ipa": "/ˈbɑɹk/",
+        "examples": [
+          "Dogs bark at night.",
+          "The dog can bark loudly."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-beat",
+    "word": "beat",
+    "lemma": "beat",
+    "level": "기초",
+    "familyId": "beat-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "beat",
+          "s3": "beats",
+          "past": "beat",
+          "participle": "beating",
+          "pastParticiple": "beaten"
+        },
+        "meanings": [
+          "이기다"
+        ],
+        "ipa": "/ˈbit/",
+        "examples": [
+          "I beat the drum.",
+          "We beat the other team."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-become",
+    "word": "become",
+    "lemma": "become",
+    "level": "기초",
+    "familyId": "become-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "become",
+          "s3": "becomes",
+          "past": "became",
+          "participle": "becoming",
+          "pastParticiple": "become"
+        },
+        "meanings": [
+          "되다"
+        ],
+        "ipa": "/bɪˈkəm/",
+        "examples": [
+          "I become stronger with practice.",
+          "We become good friends."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-belong",
+    "word": "belong",
+    "lemma": "belong",
+    "level": "기초",
+    "familyId": "belong-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "belong",
+          "s3": "belongs",
+          "past": "belonged",
+          "participle": "belonging",
+          "pastParticiple": "belonged"
+        },
+        "meanings": [
+          "속하다"
+        ],
+        "ipa": "/bɪˈɫɔŋ/",
+        "examples": [
+          "The keys belong on the table.",
+          "This book belongs to me."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-bite",
+    "word": "bite",
+    "lemma": "bite",
+    "level": "기초",
+    "familyId": "bite-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "bite",
+          "s3": "bites",
+          "past": "bit",
+          "participle": "biting",
+          "pastParticiple": "bitten"
+        },
+        "meanings": [
+          "깨물다"
+        ],
+        "ipa": "/ˈbaɪt/",
+        "examples": [
+          "I bite the apple.",
+          "The rabbit can bite a carrot."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-care",
+    "word": "care",
+    "lemma": "care",
+    "level": "기초",
+    "familyId": "care-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "care",
+          "s3": "cares",
+          "past": "cared",
+          "participle": "caring",
+          "pastParticiple": "cared"
+        },
+        "meanings": [
+          "돌보다"
+        ],
+        "ipa": "/ˈkɛɹ/",
+        "examples": [
+          "I care for my baby brother.",
+          "We care about our planet."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-celebrate",
+    "word": "celebrate",
+    "lemma": "celebrate",
+    "level": "기초",
+    "familyId": "celebrate-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "celebrate",
+          "s3": "celebrates",
+          "past": "celebrated",
+          "participle": "celebrating",
+          "pastParticiple": "celebrated"
+        },
+        "meanings": [
+          "축하하다"
+        ],
+        "ipa": "/ˈsɛɫəˌbɹeɪt/",
+        "examples": [
+          "I celebrate my birthday.",
+          "We celebrate the holiday."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-deliver",
+    "word": "deliver",
+    "lemma": "deliver",
+    "level": "기초",
+    "familyId": "deliver-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "deliver",
+          "s3": "delivers",
+          "past": "delivered",
+          "participle": "delivering",
+          "pastParticiple": "delivered"
+        },
+        "meanings": [
+          "배달하다"
+        ],
+        "ipa": "/dɪˈɫɪvɝ/",
+        "examples": [
+          "I deliver the letter.",
+          "We deliver food to the house."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-depend",
+    "word": "depend",
+    "lemma": "depend",
+    "level": "기초",
+    "familyId": "depend-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "depend",
+          "s3": "depends",
+          "past": "depended",
+          "participle": "depending",
+          "pastParticiple": "depended"
+        },
+        "meanings": [
+          "의존하다"
+        ],
+        "ipa": "/dɪˈpɛnd/",
+        "examples": [
+          "I depend on my family.",
+          "Plants depend on water."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-disappear",
+    "word": "disappear",
+    "lemma": "disappear",
+    "level": "기초",
+    "familyId": "disappear-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "disappear",
+          "s3": "disappears",
+          "past": "disappeared",
+          "participle": "disappearing",
+          "pastParticiple": "disappeared"
+        },
+        "meanings": [
+          "사라지다"
+        ],
+        "ipa": "/ˌdɪsəˈpiɹ/",
+        "examples": [
+          "The moon can disappear behind clouds.",
+          "The rain disappears quickly."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-discover",
+    "word": "discover",
+    "lemma": "discover",
+    "level": "기초",
+    "familyId": "discover-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "discover",
+          "s3": "discovers",
+          "past": "discovered",
+          "participle": "discovering",
+          "pastParticiple": "discovered"
+        },
+        "meanings": [
+          "발견하다"
+        ],
+        "ipa": "/dɪˈskəvɝ/",
+        "examples": [
+          "I discover a new path.",
+          "We discover a small island."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-discuss",
+    "word": "discuss",
+    "lemma": "discuss",
+    "level": "기초",
+    "familyId": "discuss-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "discuss",
+          "s3": "discusses",
+          "past": "discussed",
+          "participle": "discussing",
+          "pastParticiple": "discussed"
+        },
+        "meanings": [
+          "논의하다"
+        ],
+        "ipa": "/dɪˈskəs/",
+        "examples": [
+          "I discuss the plan with Mom.",
+          "We discuss the new rule."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-end",
+    "word": "end",
+    "lemma": "end",
+    "level": "기초",
+    "familyId": "end-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "end",
+          "s3": "ends",
+          "past": "ended",
+          "participle": "ending",
+          "pastParticiple": "ended"
+        },
+        "meanings": [
+          "끝나다"
+        ],
+        "ipa": "/ˈɛnd/",
+        "examples": [
+          "The game will end soon.",
+          "We end the lesson with a song."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-exercise",
+    "word": "exercise",
+    "lemma": "exercise",
+    "level": "기초",
+    "familyId": "exercise-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "exercise",
+          "s3": "exercises",
+          "past": "exercised",
+          "participle": "exercising",
+          "pastParticiple": "exercised"
+        },
+        "meanings": [
+          "운동하다"
+        ],
+        "ipa": "/ˈɛksɝˌsaɪz/",
+        "examples": [
+          "I exercise in the morning.",
+          "We exercise at the park."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-expect",
+    "word": "expect",
+    "lemma": "expect",
+    "level": "기초",
+    "familyId": "expect-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "expect",
+          "s3": "expects",
+          "past": "expected",
+          "participle": "expecting",
+          "pastParticiple": "expected"
+        },
+        "meanings": [
+          "기대하다"
+        ],
+        "ipa": "/ɪkˈspɛkt/",
+        "examples": [
+          "I expect a sunny day.",
+          "We expect the bus at nine."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-fail",
+    "word": "fail",
+    "lemma": "fail",
+    "level": "기초",
+    "familyId": "fail-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "fail",
+          "s3": "fails",
+          "past": "failed",
+          "participle": "failing",
+          "pastParticiple": "failed"
+        },
+        "meanings": [
+          "실패하다"
+        ],
+        "ipa": "/ˈfeɪɫ/",
+        "examples": [
+          "I fail once and try again.",
+          "We do not fail when we help."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-fold",
+    "word": "fold",
+    "lemma": "fold",
+    "level": "기초",
+    "familyId": "fold-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "fold",
+          "s3": "folds",
+          "past": "folded",
+          "participle": "folding",
+          "pastParticiple": "folded"
+        },
+        "meanings": [
+          "접다"
+        ],
+        "ipa": "/ˈfoʊɫd/",
+        "examples": [
+          "I fold the paper.",
+          "We fold the blanket neatly."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-gather",
+    "word": "gather",
+    "lemma": "gather",
+    "level": "기초",
+    "familyId": "gather-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "gather",
+          "s3": "gathers",
+          "past": "gathered",
+          "participle": "gathering",
+          "pastParticiple": "gathered"
+        },
+        "meanings": [
+          "모이다"
+        ],
+        "ipa": "/ˈɡæðɝ/",
+        "examples": [
+          "I gather the toys.",
+          "We gather at the table."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-greet",
+    "word": "greet",
+    "lemma": "greet",
+    "level": "기초",
+    "familyId": "greet-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "greet",
+          "s3": "greets",
+          "past": "greeted",
+          "participle": "greeting",
+          "pastParticiple": "greeted"
+        },
+        "meanings": [
+          "인사하다"
+        ],
+        "ipa": "/ˈɡɹit/",
+        "examples": [
+          "I greet my teacher.",
+          "We greet each visitor."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-guard",
+    "word": "guard",
+    "lemma": "guard",
+    "level": "기초",
+    "familyId": "guard-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "guard",
+          "s3": "guards",
+          "past": "guarded",
+          "participle": "guarding",
+          "pastParticiple": "guarded"
+        },
+        "meanings": [
+          "지키다"
+        ],
+        "ipa": "/ˈɡɑɹd/",
+        "examples": [
+          "I guard the door.",
+          "We guard the small garden."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-hang",
+    "word": "hang",
+    "lemma": "hang",
+    "level": "기초",
+    "familyId": "hang-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "hang",
+          "s3": "hangs",
+          "past": "hung",
+          "participle": "hanging",
+          "pastParticiple": "hung"
+        },
+        "meanings": [
+          "걸다"
+        ],
+        "ipa": "/ˈhæŋ/",
+        "examples": [
+          "I hang my coat by the door.",
+          "We hang a picture on the wall."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-hate",
+    "word": "hate",
+    "lemma": "hate",
+    "level": "기초",
+    "familyId": "hate-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "verb",
+        "forms": {
+          "base": "hate",
+          "s3": "hates",
+          "past": "hated",
+          "participle": "hating",
+          "pastParticiple": "hated"
+        },
+        "meanings": [
+          "싫어하다"
+        ],
+        "ipa": "/ˈheɪt/",
+        "examples": [
+          "I hate cold rain.",
+          "We hate to lose the game."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-active",
+    "word": "active",
+    "lemma": "active",
+    "level": "기초",
+    "familyId": "active-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "active",
+          "more active",
+          "most active"
+        ],
+        "meanings": [
+          "활동적인"
+        ],
+        "ipa": "/ˈæktɪv/",
+        "examples": [
+          "The ball is active.",
+          "It looks active."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-amazing",
+    "word": "amazing",
+    "lemma": "amazing",
+    "level": "기초",
+    "familyId": "amazing-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "amazing",
+          "more amazing",
+          "most amazing"
+        ],
+        "meanings": [
+          "놀라운"
+        ],
+        "ipa": "/əˈmeɪzɪŋ/",
+        "examples": [
+          "The ball is amazing.",
+          "It looks amazing."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-ancient",
+    "word": "ancient",
+    "lemma": "ancient",
+    "level": "기초",
+    "familyId": "ancient-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "ancient",
+          "more ancient",
+          "most ancient"
+        ],
+        "meanings": [
+          "아주 오래된"
+        ],
+        "ipa": "/ˈeɪnʃənt/",
+        "examples": [
+          "The ball is ancient.",
+          "It looks ancient."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-asleep",
+    "word": "asleep",
+    "lemma": "asleep",
+    "level": "기초",
+    "familyId": "asleep-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "asleep"
+        ],
+        "meanings": [
+          "잠든"
+        ],
+        "ipa": "/əˈsɫip/",
+        "examples": [
+          "The ball is asleep.",
+          "It looks asleep."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-awful",
+    "word": "awful",
+    "lemma": "awful",
+    "level": "기초",
+    "familyId": "awful-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "awful",
+          "more awful",
+          "most awful"
+        ],
+        "meanings": [
+          "끔찍한"
+        ],
+        "ipa": "/ˈɑfəɫ/",
+        "examples": [
+          "The ball is awful.",
+          "It looks awful."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-basic",
+    "word": "basic",
+    "lemma": "basic",
+    "level": "기초",
+    "familyId": "basic-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "basic",
+          "more basic",
+          "most basic"
+        ],
+        "meanings": [
+          "기본적인"
+        ],
+        "ipa": "/ˈbeɪsɪk/",
+        "examples": [
+          "The ball is basic.",
+          "It looks basic."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-blind",
+    "word": "blind",
+    "lemma": "blind",
+    "level": "기초",
+    "familyId": "blind-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "blind",
+          "more blind",
+          "most blind"
+        ],
+        "meanings": [
+          "눈이 먼"
+        ],
+        "ipa": "/ˈbɫaɪnd/",
+        "examples": [
+          "The ball is blind.",
+          "It looks blind."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-central",
+    "word": "central",
+    "lemma": "central",
+    "level": "기초",
+    "familyId": "central-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "central",
+          "more central",
+          "most central"
+        ],
+        "meanings": [
+          "중심의"
+        ],
+        "ipa": "/ˈsɛntɹəɫ/",
+        "examples": [
+          "The ball is central.",
+          "It looks central."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-common",
+    "word": "common",
+    "lemma": "common",
+    "level": "기초",
+    "familyId": "common-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "common",
+          "more common",
+          "most common"
+        ],
+        "meanings": [
+          "흔한"
+        ],
+        "ipa": "/ˈkɑmən/",
+        "examples": [
+          "The ball is common.",
+          "It looks common."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-complete",
+    "word": "complete",
+    "lemma": "complete",
+    "level": "기초",
+    "familyId": "complete-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "complete"
+        ],
+        "meanings": [
+          "완전한"
+        ],
+        "ipa": "/kəmˈpɫit/",
+        "examples": [
+          "The ball is complete.",
+          "It looks complete."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-confused",
+    "word": "confused",
+    "lemma": "confused",
+    "level": "기초",
+    "familyId": "confused-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "confused",
+          "more confused",
+          "most confused"
+        ],
+        "meanings": [
+          "혼란스러운"
+        ],
+        "ipa": "/kənˈfjuzd/",
+        "examples": [
+          "The ball is confused.",
+          "It looks confused."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-crazy",
+    "word": "crazy",
+    "lemma": "crazy",
+    "level": "기초",
+    "familyId": "crazy-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "crazy",
+          "crazier",
+          "craziest"
+        ],
+        "meanings": [
+          "미친 듯한"
+        ],
+        "ipa": "/ˈkɹeɪzi/",
+        "examples": [
+          "The ball is crazy.",
+          "It looks crazy."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-cruel",
+    "word": "cruel",
+    "lemma": "cruel",
+    "level": "기초",
+    "familyId": "cruel-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "cruel",
+          "crueler",
+          "cruelest"
+        ],
+        "meanings": [
+          "잔인한"
+        ],
+        "ipa": "/ˈkɹuəɫ/",
+        "examples": [
+          "The ball is cruel.",
+          "It looks cruel."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-daily",
+    "word": "daily",
+    "lemma": "daily",
+    "level": "기초",
+    "familyId": "daily-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "daily"
+        ],
+        "meanings": [
+          "매일의"
+        ],
+        "ipa": "/ˈdeɪɫi/",
+        "examples": [
+          "The ball is daily.",
+          "It looks daily."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-deaf",
+    "word": "deaf",
+    "lemma": "deaf",
+    "level": "기초",
+    "familyId": "deaf-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "deaf",
+          "more deaf",
+          "most deaf"
+        ],
+        "meanings": [
+          "귀가 먼"
+        ],
+        "ipa": "/ˈdɛf/",
+        "examples": [
+          "The ball is deaf.",
+          "It looks deaf."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-dear",
+    "word": "dear",
+    "lemma": "dear",
+    "level": "기초",
+    "familyId": "dear-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "dear",
+          "dearer",
+          "dearest"
+        ],
+        "meanings": [
+          "소중한"
+        ],
+        "ipa": "/ˈdɪɹ/",
+        "examples": [
+          "The ball is dear.",
+          "It looks dear."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-direct",
+    "word": "direct",
+    "lemma": "direct",
+    "level": "기초",
+    "familyId": "direct-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "direct",
+          "more direct",
+          "most direct"
+        ],
+        "meanings": [
+          "직접적인"
+        ],
+        "ipa": "/daɪˈɹɛkt/",
+        "examples": [
+          "The ball is direct.",
+          "It looks direct."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-final",
+    "word": "final",
+    "lemma": "final",
+    "level": "기초",
+    "familyId": "final-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "final"
+        ],
+        "meanings": [
+          "마지막의"
+        ],
+        "ipa": "/ˈfaɪnəɫ/",
+        "examples": [
+          "The ball is final.",
+          "It looks final."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-fine",
+    "word": "fine",
+    "lemma": "fine",
+    "level": "기초",
+    "familyId": "fine-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "fine",
+          "finer",
+          "finest"
+        ],
+        "meanings": [
+          "좋은"
+        ],
+        "ipa": "/ˈfaɪn/",
+        "examples": [
+          "The ball is fine.",
+          "It looks fine."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-gentle",
+    "word": "gentle",
+    "lemma": "gentle",
+    "level": "기초",
+    "familyId": "gentle-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "gentle",
+          "gentler",
+          "gentlest"
+        ],
+        "meanings": [
+          "온화한"
+        ],
+        "ipa": "/ˈdʒɛnəɫ/",
+        "examples": [
+          "The ball is gentle.",
+          "It looks gentle."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-global",
+    "word": "global",
+    "lemma": "global",
+    "level": "기초",
+    "familyId": "global-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "global",
+          "more global",
+          "most global"
+        ],
+        "meanings": [
+          "세계적인"
+        ],
+        "ipa": "/ˈɡɫoʊbəɫ/",
+        "examples": [
+          "The ball is global.",
+          "It looks global."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-gray",
+    "word": "gray",
+    "lemma": "gray",
+    "level": "기초",
+    "familyId": "gray-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "gray",
+          "grayer",
+          "grayest"
+        ],
+        "meanings": [
+          "회색의"
+        ],
+        "ipa": "/ˈɡɹeɪ/",
+        "examples": [
+          "The ball is gray.",
+          "It looks gray."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-harmful",
+    "word": "harmful",
+    "lemma": "harmful",
+    "level": "기초",
+    "familyId": "harmful-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "harmful",
+          "more harmful",
+          "most harmful"
+        ],
+        "meanings": [
+          "해로운"
+        ],
+        "ipa": "/ˈhɑɹmfəɫ/",
+        "examples": [
+          "The ball is harmful.",
+          "It looks harmful."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-human",
+    "word": "human",
+    "lemma": "human",
+    "level": "기초",
+    "familyId": "human-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "human",
+          "more human",
+          "most human"
+        ],
+        "meanings": [
+          "인간의"
+        ],
+        "ipa": "/ˈhjumən/",
+        "examples": [
+          "The ball is human.",
+          "It looks human."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "word-loose",
+    "word": "loose",
+    "lemma": "loose",
+    "level": "기초",
+    "familyId": "loose-family",
+    "isFamilyHead": true,
+    "difficulty": "veryEasy",
+    "entries": [
+      {
+        "partOfSpeech": "adjective",
+        "forms": [
+          "loose",
+          "looser",
+          "loosest"
+        ],
+        "meanings": [
+          "헐거운"
+        ],
+        "ipa": "/ˈɫus/",
+        "examples": [
+          "The ball is loose.",
+          "It looks loose."
+        ]
+      }
+    ]
   }
 ]
