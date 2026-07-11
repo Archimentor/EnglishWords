@@ -93,7 +93,6 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
               className="story-word-button"
               aria-label={`story word: ${token.value}`}
               aria-expanded={isSelected}
-              aria-pressed={isSelected}
               aria-controls={isSelected ? 'story-word-detail' : undefined}
               onClick={(event) => {
                 selectedTriggerRef.current = event.currentTarget

@@ -294,10 +294,12 @@ test('only exposes detail controls while a story word is expanded', async () => 
   const trigger = screen.getByRole('button', { name: 'story word: played' })
   expect(trigger).toHaveAttribute('aria-expanded', 'false')
   expect(trigger).not.toHaveAttribute('aria-controls')
+  expect(trigger).not.toHaveAttribute('aria-pressed')
 
   await user.click(trigger)
   expect(trigger).toHaveAttribute('aria-expanded', 'true')
   expect(trigger).toHaveAttribute('aria-controls', 'story-word-detail')
+  expect(trigger).not.toHaveAttribute('aria-pressed')
 
   await user.keyboard('{Escape}')
   expect(trigger).toHaveAttribute('aria-expanded', 'false')
