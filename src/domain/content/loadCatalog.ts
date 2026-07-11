@@ -3,20 +3,20 @@ import { validateCatalog, validateStoryCoverage } from './validation'
 import type { ContentCatalog, RuntimeCatalog, ValidationIssue } from './types'
 
 export const CONTENT_PATHS = [
-  '/data/wordlists/기초.json',
-  '/data/wordlists/유치원.json',
-  '/data/wordlists/초등학교.json',
-  '/data/wordlists/중학교.json',
-  '/data/phrasal-verbs/top-1000.json',
-  '/data/phrasal-verbs/by-level/기초.json',
-  '/data/phrasal-verbs/by-level/유치원.json',
-  '/data/phrasal-verbs/by-level/초등학교.json',
-  '/data/phrasal-verbs/by-level/중학교.json',
-  '/data/stories/기초.json',
-  '/data/stories/유치원.json',
-  '/data/stories/초등학교.json',
-  '/data/stories/중학교.json',
-  '/data/grammar/nodes.json',
+  'data/wordlists/기초.json',
+  'data/wordlists/유치원.json',
+  'data/wordlists/초등학교.json',
+  'data/wordlists/중학교.json',
+  'data/phrasal-verbs/top-1000.json',
+  'data/phrasal-verbs/by-level/기초.json',
+  'data/phrasal-verbs/by-level/유치원.json',
+  'data/phrasal-verbs/by-level/초등학교.json',
+  'data/phrasal-verbs/by-level/중학교.json',
+  'data/stories/기초.json',
+  'data/stories/유치원.json',
+  'data/stories/초등학교.json',
+  'data/stories/중학교.json',
+  'data/grammar/nodes.json',
 ] as const
 
 export type ContentLoadErrorCode =
@@ -26,6 +26,7 @@ export type ContentLoadErrorCode =
 
 interface ContentLoadErrorDetails {
   path?: string
+  status?: number
   issues?: ValidationIssue[]
   cause?: unknown
 }
@@ -33,6 +34,7 @@ interface ContentLoadErrorDetails {
 export class ContentLoadError extends Error {
   readonly code: ContentLoadErrorCode
   readonly path?: string
+  readonly status?: number
   readonly issues?: ValidationIssue[]
 
   constructor(
@@ -45,6 +47,9 @@ export class ContentLoadError extends Error {
     this.code = code
     if (details.path !== undefined) {
       this.path = details.path
+    }
+    if (details.status !== undefined) {
+      this.status = details.status
     }
     if (details.issues !== undefined) {
       this.issues = details.issues
@@ -69,7 +74,7 @@ async function loadJson(path: string, fetcher: typeof fetch): Promise<unknown> {
     throw new ContentLoadError(
       'CONTENT_LOAD_FAILED',
       `Failed to load ${path}: HTTP ${status}.`,
-      { path },
+      { path, status: response.status },
     )
   }
 
@@ -87,27 +92,27 @@ async function loadJson(path: string, fetcher: typeof fetch): Promise<unknown> {
 function assembleCatalog(resources: ReadonlyMap<string, unknown>): ContentCatalog {
   return {
     wordlists: {
-      기초: resources.get('/data/wordlists/기초.json'),
-      유치원: resources.get('/data/wordlists/유치원.json'),
-      초등학교: resources.get('/data/wordlists/초등학교.json'),
-      중학교: resources.get('/data/wordlists/중학교.json'),
+      기초: resources.get('data/wordlists/기초.json'),
+      유치원: resources.get('data/wordlists/유치원.json'),
+      초등학교: resources.get('data/wordlists/초등학교.json'),
+      중학교: resources.get('data/wordlists/중학교.json'),
     },
     phrasalVerbs: {
-      top: resources.get('/data/phrasal-verbs/top-1000.json'),
+      top: resources.get('data/phrasal-verbs/top-1000.json'),
       byLevel: {
-        기초: resources.get('/data/phrasal-verbs/by-level/기초.json'),
-        유치원: resources.get('/data/phrasal-verbs/by-level/유치원.json'),
-        초등학교: resources.get('/data/phrasal-verbs/by-level/초등학교.json'),
-        중학교: resources.get('/data/phrasal-verbs/by-level/중학교.json'),
+        기초: resources.get('data/phrasal-verbs/by-level/기초.json'),
+        유치원: resources.get('data/phrasal-verbs/by-level/유치원.json'),
+        초등학교: resources.get('data/phrasal-verbs/by-level/초등학교.json'),
+        중학교: resources.get('data/phrasal-verbs/by-level/중학교.json'),
       },
     },
     stories: {
-      기초: resources.get('/data/stories/기초.json'),
-      유치원: resources.get('/data/stories/유치원.json'),
-      초등학교: resources.get('/data/stories/초등학교.json'),
-      중학교: resources.get('/data/stories/중학교.json'),
+      기초: resources.get('data/stories/기초.json'),
+      유치원: resources.get('data/stories/유치원.json'),
+      초등학교: resources.get('data/stories/초등학교.json'),
+      중학교: resources.get('data/stories/중학교.json'),
     },
-    grammarNodes: resources.get('/data/grammar/nodes.json'),
+    grammarNodes: resources.get('data/grammar/nodes.json'),
   } as ContentCatalog
 }
 
@@ -124,9 +129,25 @@ function invalidCatalogError(issues: ValidationIssue[]): ContentLoadError {
   )
 }
 
-export async function loadCatalog(fetcher: typeof fetch = fetch): Promise<RuntimeCatalog> {
+function resolveContentPath(path: string, baseUrl: string): string {
+  const normalizedBaseUrl = baseUrl.length === 0
+    ? '/'
+    : baseUrl.endsWith('/')
+      ? baseUrl
+      : `${baseUrl}/`
+
+  return `${normalizedBaseUrl}${path}`
+}
+
+export async function loadCatalog(
+  fetcher: typeof fetch = fetch,
+  baseUrl: string = import.meta.env.BASE_URL,
+): Promise<RuntimeCatalog> {
   const entries = await Promise.all(
-    CONTENT_PATHS.map(async (path) => [path, await loadJson(path, fetcher)] as const),
+    CONTENT_PATHS.map(async (path) => [
+      path,
+      await loadJson(resolveContentPath(path, baseUrl), fetcher),
+    ] as const),
   )
   const catalog = assembleCatalog(new Map(entries))
   const issues = [

@@ -3,21 +3,22 @@ import type { ContentCatalog } from './types'
 import { CONTENT_PATHS, ContentLoadError, loadCatalog } from './loadCatalog'
 
 const EXPECTED_CONTENT_PATHS = [
-  '/data/wordlists/기초.json',
-  '/data/wordlists/유치원.json',
-  '/data/wordlists/초등학교.json',
-  '/data/wordlists/중학교.json',
-  '/data/phrasal-verbs/top-1000.json',
-  '/data/phrasal-verbs/by-level/기초.json',
-  '/data/phrasal-verbs/by-level/유치원.json',
-  '/data/phrasal-verbs/by-level/초등학교.json',
-  '/data/phrasal-verbs/by-level/중학교.json',
-  '/data/stories/기초.json',
-  '/data/stories/유치원.json',
-  '/data/stories/초등학교.json',
-  '/data/stories/중학교.json',
-  '/data/grammar/nodes.json',
+  'data/wordlists/기초.json',
+  'data/wordlists/유치원.json',
+  'data/wordlists/초등학교.json',
+  'data/wordlists/중학교.json',
+  'data/phrasal-verbs/top-1000.json',
+  'data/phrasal-verbs/by-level/기초.json',
+  'data/phrasal-verbs/by-level/유치원.json',
+  'data/phrasal-verbs/by-level/초등학교.json',
+  'data/phrasal-verbs/by-level/중학교.json',
+  'data/stories/기초.json',
+  'data/stories/유치원.json',
+  'data/stories/초등학교.json',
+  'data/stories/중학교.json',
+  'data/grammar/nodes.json',
 ] as const
+const EXPECTED_ROOT_REQUEST_PATHS = EXPECTED_CONTENT_PATHS.map((path) => `/${path}`)
 
 type ResponseFactory = () => Response | Promise<Response>
 type ResponseGate = {
@@ -113,18 +114,45 @@ describe('loadCatalog', () => {
     const runtime = await loadCatalog(fetcher)
 
     expect(CONTENT_PATHS).toEqual(EXPECTED_CONTENT_PATHS)
-    expect(requests).toEqual(EXPECTED_CONTENT_PATHS)
+    expect(requests).toEqual(EXPECTED_ROOT_REQUEST_PATHS)
     expect(new Set(requests).size).toBe(14)
     expect(runtime.itemsByLevel.기초.map(({ term }) => term)).toEqual(['play', 'wake up'])
     expect(runtime.itemsById['word-play']?.difficulty).toBe('normal')
   })
+
+  it.each(['/EnglishWords/', '/EnglishWords'])(
+    'resolves and assembles all resources under deployment base %s',
+    async (baseUrl) => {
+      const catalog = makeCatalog()
+      const payloads = payloadsFor(catalog)
+      const requests: string[] = []
+      const fetcher: typeof fetch = async (input) => {
+        const path = requestPath(input)
+        requests.push(path)
+        const rootPath = path.replace(/^\/EnglishWords/, '')
+
+        if (!payloads.has(rootPath)) {
+          return new Response(null, { status: 404, statusText: 'Not Found' })
+        }
+        return jsonResponse(payloads.get(rootPath))
+      }
+
+      const runtime = await loadCatalog(fetcher, baseUrl)
+
+      expect(requests).toEqual(
+        EXPECTED_CONTENT_PATHS.map((path) => `/EnglishWords/${path}`),
+      )
+      expect(runtime.itemsByLevel.기초.map(({ term }) => term)).toEqual(['play'])
+      expect(runtime.itemsById['word-play']).toBe(runtime.itemsByLevel.기초[0])
+    },
+  )
 
   it('starts every independent request before any response resolves', async () => {
     const catalog = makeCatalog()
     const payloads = payloadsFor(catalog)
     const requests: string[] = []
     const gates = new Map<string, ResponseGate>(
-      EXPECTED_CONTENT_PATHS.map((path) => {
+      EXPECTED_ROOT_REQUEST_PATHS.map((path) => {
         let resolve!: (response: Response) => void
         const promise = new Promise<Response>((responseResolve) => {
           resolve = responseResolve
@@ -145,12 +173,12 @@ describe('loadCatalog', () => {
     await Promise.resolve()
     const requestsBeforeResolution = [...requests]
 
-    EXPECTED_CONTENT_PATHS.forEach((path) => {
+    EXPECTED_ROOT_REQUEST_PATHS.forEach((path) => {
       gates.get(path)?.resolve(jsonResponse(payloads.get(path)))
     })
     await pendingLoad
 
-    expect(requestsBeforeResolution).toEqual(EXPECTED_CONTENT_PATHS)
+    expect(requestsBeforeResolution).toEqual(EXPECTED_ROOT_REQUEST_PATHS)
   })
 
   it('wraps a non-ok wordlist response with its path and status', async () => {
@@ -169,6 +197,7 @@ describe('loadCatalog', () => {
 
     expect(error.code).toBe('CONTENT_LOAD_FAILED')
     expect(error.path).toBe(failedPath)
+    expect(error.status).toBe(500)
     expect(error.message).toContain(failedPath)
     expect(error.message).toContain('500')
   })
