@@ -8,7 +8,7 @@ import {
 
 describe('content sources', () => {
   test('pins a https URL, license, attribution, and sha256 for every source', () => {
-    expect(CONTENT_SOURCES).toHaveLength(4)
+    expect(CONTENT_SOURCES).toHaveLength(5)
 
     for (const source of CONTENT_SOURCES) {
       expect(source.url).toMatch(/^https:\/\//)
@@ -18,6 +18,17 @@ describe('content sources', () => {
     }
   })
 
+  test('pins an MIT-licensed IPA dictionary for pronunciation coverage', () => {
+    expect(CONTENT_SOURCES).toContainEqual(expect.objectContaining({
+      id: 'ipa-dict',
+      url: 'https://raw.githubusercontent.com/open-dict-data/ipa-dict/43c3570eb3553bdd19fccd2bd0091534889af023/data/en_US.txt',
+      sha256: '2af6f154a5c363275f052d1f85acedef38ed185ca9745aa4314be77f6b70de67',
+      license: 'MIT',
+      attribution: 'open-dict-data/ipa-dict (MIT; third-party credit)',
+      cacheFile: 'ipa-dict-en_US.txt',
+    }))
+  })
+
   test('uses an ignored local directory for downloaded source snapshots', () => {
     expect(CONTENT_CACHE_DIR).toBe('.content-cache')
     expect(CONTENT_SOURCES.map((source) => source.cacheFile)).toEqual([
@@ -25,6 +36,7 @@ describe('content sources', () => {
       'kowiktionary-20260701-pages-articles.xml.bz2',
       'word-freq-top5000.csv',
       'opus-tatoeba-v2023-04-12-en.txt.gz',
+      'ipa-dict-en_US.txt',
     ])
   })
 

@@ -3,6 +3,7 @@ export type ContentSourceId =
   | 'korean-wiktionary'
   | 'frequency'
   | 'tatoeba-english'
+  | 'ipa-dict'
 
 export interface ContentSource {
   id: ContentSourceId

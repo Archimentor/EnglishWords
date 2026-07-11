@@ -35,6 +35,14 @@ export const CONTENT_SOURCES: readonly ContentSource[] = [
     attribution: 'OPUS Tatoeba v2023-04-12 (Tiedemann 2012; source: Tatoeba Project)',
     cacheFile: 'opus-tatoeba-v2023-04-12-en.txt.gz',
   },
+  {
+    id: 'ipa-dict',
+    url: 'https://raw.githubusercontent.com/open-dict-data/ipa-dict/43c3570eb3553bdd19fccd2bd0091534889af023/data/en_US.txt',
+    sha256: '2af6f154a5c363275f052d1f85acedef38ed185ca9745aa4314be77f6b70de67',
+    license: 'MIT',
+    attribution: 'open-dict-data/ipa-dict (MIT; third-party credit)',
+    cacheFile: 'ipa-dict-en_US.txt',
+  },
 ]
 
 export function parseSha256(value: string): string {

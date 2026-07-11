@@ -20,10 +20,12 @@
 ### 채택: 고정된 공개 원천 + 정적 파생 데이터 + 강한 계약 검사
 
 1. CEFR-J Vocabulary Profile을 레벨 우선순위의 기준으로 사용한다. CEFR-J는 인용 조건 아래 연구·상업 용도를 허용한다.
-2. 한국어판 Wiktionary의 영어 항목에서 한국어 gloss, 품사, 굴절, 발음 후보를 추출한다. 파생 데이터는 원천과 CC BY-SA 요구를 `THIRD_PARTY_NOTICES.md`에 명시한다.
+2. 날짜가 고정된 Wikimedia Korean Wiktionary XML 덤프의 영어 항목에서 한국어 gloss, 품사, 굴절, 발음 후보를 추출한다. 파생 데이터는 원천과 CC BY-SA 요구를 `THIRD_PARTY_NOTICES.md`에 명시한다.
 3. MIT 라이선스의 `english_words` 빈도 목록으로 같은 CEFR 군의 후보를 정렬한다.
-4. 고정한 원천 스냅샷의 SHA-256, 선택·제외 사유, 항목별 출처를 생성 리포트에 기록한다. 브라우저는 생성된 `public/data`만 읽으며 런타임 네트워크 사전에 의존하지 않는다.
-5. 원천에 없는 IPA·활용형은 검증 가능한 발음·형태 보강 단계로 채우고, 보강 실패 항목은 다음 후보로 교체한다. 임의 문자열을 IPA로 쓰지 않는다.
+4. MIT 라이선스의 `open-dict-data/ipa-dict` 커밋 고정 스냅샷으로 실제 IPA를 보강하고 제3자 귀속을 기록한다.
+5. OPUS Tatoeba 버전 고정 스냅샷에서 영문 예문을 얻는다.
+6. 고정한 원천 스냅샷의 SHA-256, 선택·제외 사유, 항목별 출처를 생성 리포트에 기록한다. 브라우저는 생성된 `public/data`만 읽으며 런타임 네트워크 사전에 의존하지 않는다.
+7. `ipa-dict`에 없는 `n't`, `ie`, `mm-hmm`, `and/or`, `self-esteem` 다섯 빈도 후보는 다음 검증 가능 후보로 교체한다. 임의 문자열을 IPA로 쓰지 않는다.
 
 이 접근은 정적 호스팅과 오프라인 학습을 유지하면서 5,000/1,000의 정확한 수량과 출처 추적을 함께 제공한다.
 
@@ -75,7 +77,9 @@
 고정 소스 스냅샷
   ├─ CEFR-J level 후보
   ├─ Korean Wiktionary 한국어 뜻·형태·발음
-  └─ MIT frequency rank
+  ├─ MIT frequency rank
+  ├─ MIT ipa-dict 실제 IPA
+  └─ OPUS Tatoeba 예문
         ↓
 정규화·중복 제거·품사/IPA/예문 보강
         ↓
@@ -99,7 +103,9 @@ release validator + story coverage + UI lookup tests
 ## 7. 출처와 사용 조건
 
 - CEFR-J Vocabulary Profile: Open Language Profiles 배포본. 적절한 인용을 조건으로 연구·상업 사용 가능.
-- Korean Wiktionary/Wiktextract: Kaikki 기계 판독 데이터. Wiktionary의 CC BY-SA 조건과 Wiktextract 인용을 notices에 기록.
+- Korean Wiktionary: 날짜 고정 Wikimedia 덤프. Wiktionary의 CC BY-SA 조건을 notices에 기록.
 - `filiph/english_words`: MIT 라이선스 빈도 목록.
+- `open-dict-data/ipa-dict`: MIT 라이선스 발음 사전이며 제3자 귀속을 기록한다.
+- OPUS Tatoeba v2023-04-12: Tatoeba 유래 예문이며 CC BY 2.0 FR과 OPUS 인용을 기록한다.
 
 원천의 출처·라이선스·수집 날짜·SHA-256을 빠뜨린 데이터 생성은 릴리스 품질 게이트에서 실패한다.

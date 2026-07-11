@@ -27,7 +27,7 @@ import { CONTENT_SOURCES, parseSha256 } from './sources'
 
 describe('content sources', () => {
   test('pins a https URL, license, attribution, and sha256 for every source', () => {
-    expect(CONTENT_SOURCES).toHaveLength(4)
+    expect(CONTENT_SOURCES).toHaveLength(5)
     for (const source of CONTENT_SOURCES) {
       expect(source.url).toMatch(/^https:\/\//)
       expect(source.license).not.toHaveLength(0)
@@ -48,7 +48,7 @@ Expected: FAIL with a module-not-found error for `./sources`.
 
 ```ts
 export interface ContentSource {
-  id: 'cefrj' | 'korean-wiktionary' | 'frequency' | 'tatoeba-english'
+  id: 'cefrj' | 'korean-wiktionary' | 'frequency' | 'tatoeba-english' | 'ipa-dict'
   url: string
   sha256: string
   license: string
@@ -63,6 +63,7 @@ export const CONTENT_SOURCES: readonly ContentSource[] = [
   { id: 'korean-wiktionary', url: 'https://dumps.wikimedia.org/kowiktionary/20260701/kowiktionary-20260701-pages-articles.xml.bz2', sha256: '190f1b94870c5a09f3006f2d61d10da4d4997e5c968f4491186215c2e33b460e', license: 'CC BY-SA 4.0', attribution: 'Korean Wiktionary contributors via Wikimedia Dumps', cacheFile: 'kowiktionary-20260701-pages-articles.xml.bz2' },
   { id: 'frequency', url: 'https://raw.githubusercontent.com/filiph/english_words/4191ae1341c5e3dc640731c20f118746a51e7143/data/word-freq-top5000.csv', sha256: '87a73f5bca66862983dd430ba5d37129706f761291b433d33fcac8de117f66fc', license: 'MIT', attribution: 'filiph/english_words', cacheFile: 'word-freq-top5000.csv' },
   { id: 'tatoeba-english', url: 'https://object.pouta.csc.fi/OPUS-Tatoeba/v2023-04-12/mono/en.txt.gz', sha256: 'a32c5500cd76b9479859764fb78537a4b9b53fab8fa3bdc0fc04dd70f28bf29b', license: 'CC BY 2.0 FR', attribution: 'OPUS Tatoeba v2023-04-12 (Tiedemann 2012; source: Tatoeba Project)', cacheFile: 'opus-tatoeba-v2023-04-12-en.txt.gz' },
+  { id: 'ipa-dict', url: 'https://raw.githubusercontent.com/open-dict-data/ipa-dict/43c3570eb3553bdd19fccd2bd0091534889af023/data/en_US.txt', sha256: '2af6f154a5c363275f052d1f85acedef38ed185ca9745aa4314be77f6b70de67', license: 'MIT', attribution: 'open-dict-data/ipa-dict (MIT; third-party credit)', cacheFile: 'ipa-dict-en_US.txt' },
 ] as const
 
 export function parseSha256(value: string): string {
@@ -147,7 +148,7 @@ Expected: PASS.
 
 Run: `npm run content:fetch`
 
-Expected: four verified files under ignored `.content-cache/`; all four source records contain final 64-character hashes.
+Expected: five verified files under ignored `.content-cache/`; all five source records contain final 64-character hashes.
 
 Run: `npm run content:report`
 
@@ -222,7 +223,7 @@ export function selectWords(candidates: readonly CandidateWord[], quotas = WORD_
 }
 ```
 
-Map CEFR A1 to 기초/유치원, A2/B1 to 초등학교, B1/B2 to 중학교 in rank order. Parse the pinned, dated Korean Wiktionary XML dump directly to extract Korean glosses and lexical forms; do not depend on a rolling Kaikki JSONL download. Preserve existing hand-authored entries when their normalized source identity matches. Generate two sentence examples only from verified source sentences containing the selected surface form; reject candidates without two distinct examples. Select phrasal verbs only when they have a Korean gloss, IPA or verified pronunciation, two distinct source examples, and a valid `verb + particle` decomposition.
+Map CEFR A1 to 기초/유치원, A2/B1 to 초등학교, B1/B2 to 중학교 in rank order. Parse the pinned, dated Korean Wiktionary XML dump directly to extract Korean glosses and lexical forms; do not depend on a rolling Kaikki JSONL download. Resolve IPA only from the pinned `ipa-dict` source. The five known frequency candidates without that source's IPA—`n't`, `ie`, `mm-hmm`, `and/or`, and `self-esteem`—must be deterministically replaced by the next ranked candidate that satisfies every quality contract; never synthesize undocumented IPA. Preserve existing hand-authored entries when their normalized source identity matches. Generate two sentence examples only from verified source sentences containing the selected surface form; reject candidates without two distinct examples. Select phrasal verbs only when they have a Korean gloss, IPA or verified pronunciation, two distinct source examples, and a valid `verb + particle` decomposition.
 
 - [ ] **Step 4: Run normalization and build tests**
 
