@@ -8,9 +8,9 @@ import {
 } from './buildBasicEditorial'
 
 describe('basic editorial word batch', () => {
-  test('contains the first 100 directly reviewed foundational words', () => {
-    expect(BASIC_EDITORIAL_WORDS).toHaveLength(100)
-    expect(new Set(BASIC_EDITORIAL_WORDS.map(({ lemma }) => lemma)).size).toBe(100)
+  test('contains the first 200 directly reviewed foundational words', () => {
+    expect(BASIC_EDITORIAL_WORDS).toHaveLength(200)
+    expect(new Set(BASIC_EDITORIAL_WORDS.map(({ lemma }) => lemma)).size).toBe(200)
     expect(BASIC_EDITORIAL_WORDS.every(({ meaning }) => /[가-힣]/.test(meaning))).toBe(true)
   })
 
@@ -26,7 +26,7 @@ describe('basic editorial word batch', () => {
 
     const words = buildBasicEditorialWords(ipa)
 
-    expect(words).toHaveLength(100)
+    expect(words).toHaveLength(200)
     expect(words[0]).toMatchObject({ level: '기초', lemma: 'apple' })
     expect(words.find(({ lemma }) => lemma === 'go')?.entries[0]).toMatchObject({
       partOfSpeech: 'verb',
@@ -44,7 +44,7 @@ describe('basic editorial word batch', () => {
     const story = buildBasicEditorialStory(words)
 
     expect(story.coverage.coverageRate).toBe(1)
-    expect(story.usedWords).toHaveLength(100)
+    expect(story.usedWords).toHaveLength(200)
     expect(story.usedWords.every(({ lemma, forms }) => {
       const word = words.find((candidate) => candidate.lemma === lemma)!
       const entry = word.entries[0]!
