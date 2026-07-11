@@ -17,7 +17,9 @@ function Prompt({ question }: { question: QuizQuestionModel }) {
     return (
       <>
         {question.sentence.before}
-        <u>{question.sentence.target}</u>
+        <u aria-label={`대상 단어: ${question.sentence.target}`}>
+          {question.sentence.target}
+        </u>
         {question.sentence.after}
       </>
     )

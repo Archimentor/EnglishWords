@@ -246,9 +246,14 @@ test('stale 후보와 TTS 실패를 비차단 오류로 표시한다', async () 
 })
 
 test('문장 의미 유형은 목표 표면형을 밑줄로 표시한다', () => {
+  const items = makeQuizItems()
+  const [question] = generateQuiz(items, 'sentence-meaning', {
+    count: 1,
+    random: zeroRandom,
+  })
   render(
     <QuizView
-      items={makeQuizItems()}
+      items={items}
       quizType="sentence-meaning"
       dispatch={vi.fn()}
       speech={null}
@@ -257,5 +262,9 @@ test('문장 의미 유형은 목표 표면형을 밑줄로 표시한다', () =>
     />,
   )
 
-  expect(within(screen.getByTestId('quiz-prompt')).getByText(/term/).tagName).toBe('U')
+  const prompt = within(screen.getByTestId('quiz-prompt'))
+  expect(prompt.getByText(/term/).tagName).toBe('U')
+  expect(
+    prompt.getByLabelText(`대상 단어: ${question?.sentence?.target}`),
+  ).toBeInTheDocument()
 })
