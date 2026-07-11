@@ -42,6 +42,7 @@ export class QuizGenerationError extends Error {
 export interface GenerateQuizOptions {
   count?: number
   random?: () => number
+  sourceIds?: ReadonlySet<string>
 }
 
 interface QuestionSource {
@@ -245,11 +246,14 @@ export function generateQuiz(
 ): QuizQuestion[] {
   const count = options.count ?? 10
   const random = options.random ?? Math.random
-  const sources = uniqueSources(
+  const allSources = uniqueSources(
     items
       .map((item) => makeSource(item, type))
       .filter((source): source is QuestionSource => source !== undefined),
   )
+  const sources = options.sourceIds
+    ? allSources.filter(({ item }) => options.sourceIds?.has(item.id))
+    : allSources
 
   if (count < 0 || !Number.isInteger(count) || sources.length < count) {
     throw new QuizGenerationError({
@@ -259,7 +263,7 @@ export function generateQuiz(
     })
   }
 
-  const answerPool = uniqueAnswers(sources)
+  const answerPool = uniqueAnswers(allSources)
   if (isChoiceType(type) && answerPool.length < 4) {
     throw new QuizGenerationError({
       quizType: type,
@@ -275,7 +279,7 @@ export function generateQuiz(
   }
 
   const optionPools = selectedSources.map((source) =>
-    optionPoolForSource(source, type, sources, answerPool),
+    optionPoolForSource(source, type, allSources, answerPool),
   )
   const insufficientPool = optionPools.find((pool) => pool.length < 4)
   if (insufficientPool) {

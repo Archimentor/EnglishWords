@@ -271,6 +271,34 @@ describe('generateQuiz', () => {
     expect(second).toEqual(first)
   })
 
+  it('limits question sources while keeping the full pool for distractors', () => {
+    const [question] = generateQuiz(SEED_ITEMS, 'en-ko', {
+      count: 1,
+      sourceIds: new Set(['word-play']),
+      random: seededRandom(12),
+    })
+
+    expect(question?.sourceItemId).toBe('word-play')
+    expect(question?.inputMode).toBe('choice')
+    if (question?.inputMode !== 'choice') throw new Error('Expected choice question')
+    expect(question.options).toHaveLength(4)
+    expect(new Set(question.options.map(normalizeAnswer)).size).toBe(4)
+  })
+
+  it('reports an empty question pool when every constrained source ID is stale', () => {
+    expect(() =>
+      generateQuiz(SEED_ITEMS, 'dictation', {
+        count: 1,
+        sourceIds: new Set(['missing-id']),
+      }),
+    ).toThrowError(
+      expect.objectContaining({
+        code: 'QUIZ_POOL_TOO_SMALL',
+        availableQuestionCount: 0,
+      }),
+    )
+  })
+
   it('treats repeated item IDs as one source candidate', () => {
     const repeatedSource = [...SEED_ITEMS, structuredClone(SEED_ITEMS[0]!)]
 
