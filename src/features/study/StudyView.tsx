@@ -54,11 +54,13 @@ function restoreSnapshot(
   validIds: ReadonlySet<string>,
 ): RestoredSession {
   const seen = new Set<string>()
-  const filtered = queueIds.filter((id) => {
-    if (!validIds.has(id) || seen.has(id)) return false
-    seen.add(id)
-    return true
-  })
+  const filtered = queueIds
+    .filter((id) => {
+      if (!validIds.has(id) || seen.has(id)) return false
+      seen.add(id)
+      return true
+    })
+    .slice(0, MAX_SESSION_SIZE)
 
   let restoredIndex = filtered.length
   if (currentIndex < queueIds.length) {
@@ -163,6 +165,7 @@ function LevelStudyView({
   const randomRef = useRef(random)
   const [flipped, setFlipped] = useState(false)
   const [speechError, setSpeechError] = useState<string | null>(null)
+  const speechRequest = useRef(0)
   const initialSaves = useRef(new Set<string>())
   const itemsById = useMemo(
     () => new Map(items.map((item) => [item.id, item])),
@@ -187,6 +190,13 @@ function LevelStudyView({
       },
     })
   }, [dispatch, level, session])
+
+  useEffect(
+    () => () => {
+      speechRequest.current += 1
+    },
+    [],
+  )
 
   function saveSession(queueIds: readonly string[], currentIndex: number): void {
     dispatch({
@@ -230,6 +240,8 @@ function LevelStudyView({
       correct,
     })
     saveSession(session.queueIds, nextIndex)
+    speechRequest.current += 1
+    setSpeechError(null)
     setSession((current) => ({
       ...current,
       currentIndex: nextIndex,
@@ -239,16 +251,19 @@ function LevelStudyView({
   }
 
   async function handleSpeak(): Promise<void> {
+    const request = speechRequest.current + 1
+    speechRequest.current = request
     setSpeechError(null)
     if (!speech || !currentItem) {
-      setSpeechError(SPEECH_ERROR)
+      if (speechRequest.current === request) setSpeechError(SPEECH_ERROR)
       return
     }
 
     try {
       await speech.speak(currentItem.term)
+      if (speechRequest.current === request) setSpeechError(null)
     } catch {
-      setSpeechError(SPEECH_ERROR)
+      if (speechRequest.current === request) setSpeechError(SPEECH_ERROR)
     }
   }
 
@@ -267,6 +282,8 @@ function LevelStudyView({
     }
     setSession(nextSession)
     setFlipped(false)
+    speechRequest.current += 1
+    setSpeechError(null)
     saveSession(queueIds, 0)
   }
 

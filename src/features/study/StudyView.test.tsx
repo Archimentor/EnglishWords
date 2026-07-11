@@ -1,5 +1,5 @@
 import { StrictMode } from 'react'
-import { render, screen } from '@testing-library/react'
+import { act, render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import type { Level, StudyItem } from '../../domain/content/types'
 import { createInitialState, type AppState } from '../../state/appState'
@@ -116,6 +116,10 @@ test('카드를 뒤집으면 모든 뜻과 예문을 보여주고 다음 카드�
   await user.click(card)
 
   expect(card).toHaveAttribute('aria-pressed', 'true')
+  expect(card).toHaveAttribute('aria-expanded', 'true')
+  const details = screen.getByRole('region', { name: '기초-word-1 카드 내용' })
+  expect(card).toHaveAttribute('aria-controls', details.id)
+  expect(card).not.toContainElement(details)
   expect(screen.getByText('뜻 1')).toBeInTheDocument()
   expect(screen.getByText('보조 뜻 1')).toBeInTheDocument()
   expect(screen.getByText('Example 1.')).toBeInTheDocument()
@@ -219,6 +223,23 @@ test('삭제·중복·다른 레벨 ID를 정리하고 다음 유효 카드 위�
   )
 })
 
+test('저장된 초과 큐도 500개로 제한하고 범위 밖 위치를 완료로 보정한다', async () => {
+  const dispatch = vi.fn()
+  const items = makeItems(600)
+  const state = stateWithSession(items, 550)
+
+  render(
+    <StudyView items={items} state={state} dispatch={dispatch} speech={null} />,
+  )
+
+  expect(screen.getByRole('heading', { name: '학습 세션 완료' })).toBeInTheDocument()
+  await vi.waitFor(() => expect(dispatch).toHaveBeenCalledTimes(1))
+  const action = dispatch.mock.calls[0]?.[0] as AppAction
+  if (action.type !== 'SAVE_STUDY_SESSION') throw new Error('Expected session save')
+  expect(action.snapshot.queueIds).toHaveLength(500)
+  expect(action.snapshot.currentIndex).toBe(500)
+})
+
 test('완료 위치는 마지막 카드를 반복하지 않고 새 세션을 시작할 수 있다', async () => {
   const user = userEvent.setup()
   const items = makeItems(2)
@@ -269,6 +290,46 @@ test('TTS 실패를 알리되 카드 학습은 계속할 수 있다', async () =
   )
   await user.click(screen.getByRole('button', { name: /카드 뒤집기/ }))
   expect(screen.getByText('뜻 1')).toBeInTheDocument()
+})
+
+test('이전 카드의 늦은 TTS 실패가 최신 카드의 성공 상태를 덮어쓰지 않는다', async () => {
+  const user = userEvent.setup()
+  const items = makeItems(2)
+  let rejectFirst!: (reason?: unknown) => void
+  const firstRequest = new Promise<void>((_resolve, reject) => {
+    rejectFirst = reject
+  })
+  const speech: SpeechPort = {
+    speak: vi
+      .fn()
+      .mockImplementationOnce(() => firstRequest)
+      .mockResolvedValueOnce(undefined),
+  }
+  render(
+    <StudyView
+      items={items}
+      state={stateWithSession(items)}
+      dispatch={vi.fn()}
+      speech={speech}
+    />,
+  )
+
+  await user.click(screen.getByRole('button', { name: '기초-word-1 발음 듣기' }))
+  await user.click(screen.getByRole('button', { name: /카드 뒤집기/ }))
+  await user.click(screen.getByRole('button', { name: '기억했어요' }))
+  await user.click(screen.getByRole('button', { name: '기초-word-2 발음 듣기' }))
+  expect(screen.queryByText('발음 재생을 지원하지 않는 브라우저입니다.')).not.toBeInTheDocument()
+
+  await act(async () => {
+    rejectFirst(new Error('late failure'))
+    await Promise.resolve()
+  })
+
+  await waitFor(() =>
+    expect(
+      screen.queryByText('발음 재생을 지원하지 않는 브라우저입니다.'),
+    ).not.toBeInTheDocument(),
+  )
 })
 
 test('학습할 현재 레벨 항목이 없으면 큐를 저장하지 않고 안내한다', () => {
