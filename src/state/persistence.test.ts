@@ -210,6 +210,29 @@ describe('loadAppState and saveAppState', () => {
     }
   })
 
+  it('rejects impossible simultaneous streaks and priority outside the three-slot window', () => {
+    const impossibleStreaks = populatedState()
+    impossibleStreaks.mastery['word-play'] = {
+      attempts: 4,
+      correct: 3,
+      wrong: 1,
+      correctStreak: 2,
+      wrongStreak: 1,
+    }
+    const invalidPriority = populatedState()
+    invalidPriority.mistakes['word-book'] = {
+      wrongCount: 4,
+      wrongStreak: 4,
+      priorityRemaining: 4,
+    }
+
+    for (const state of [impossibleStreaks, invalidPriority]) {
+      expect(
+        loadAppState(memoryStorage({ [STORAGE_KEY]: JSON.stringify(state) })).status,
+      ).toBe('recovered')
+    }
+  })
+
   it('rejects an invalid current navigation enum and inconsistent wrong-item summary', () => {
     const invalidNavigation = populatedState()
     invalidNavigation.navigation.section = '설정' as AppState['navigation']['section']

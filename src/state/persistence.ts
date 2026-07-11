@@ -107,7 +107,8 @@ function isWordMastery(value: unknown): boolean {
   return (
     value.correct + value.wrong === value.attempts &&
     value.correctStreak <= value.correct &&
-    value.wrongStreak <= value.wrong
+    value.wrongStreak <= value.wrong &&
+    (value.correctStreak === 0 || value.wrongStreak === 0)
   )
 }
 
@@ -122,7 +123,7 @@ function isMistakeRecord(value: unknown): boolean {
     return false
   }
 
-  return value.wrongStreak <= value.wrongCount
+  return value.wrongStreak <= value.wrongCount && value.priorityRemaining <= 3
 }
 
 function isRecordOf(value: unknown, validator: (item: unknown) => boolean): boolean {
