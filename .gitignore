@@ -1,1 +1,14 @@
+node_modules/
+dist/
+coverage/
+.vite/
+*.tsbuildinfo
+*.log
+.env*
+!.env.example
+
 .worktrees/
+.gstack/
+
+.DS_Store
+Thumbs.db
