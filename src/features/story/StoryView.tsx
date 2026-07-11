@@ -19,6 +19,7 @@ function yesNo(value: boolean): string {
 
 export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps) {
   const [selectedWord, setSelectedWord] = useState<{
+    tokenIndex: number
     word: WordItem
     entry: WordEntry
   } | null>(null)
@@ -63,7 +64,7 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
             return null
           }
 
-          const isSelected = selectedWord?.word === token.word && selectedWord.entry === token.entry
+          const isSelected = selectedWord?.tokenIndex === index
           return (
             <button
               key={`word-${index}`}
@@ -75,7 +76,7 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
               aria-controls="story-word-detail"
               onClick={(event) => {
                 selectedTriggerRef.current = event.currentTarget
-                setSelectedWord({ word: token.word!, entry: token.entry! })
+                setSelectedWord({ tokenIndex: index, word: token.word!, entry: token.entry! })
               }}
             >
               {token.value}

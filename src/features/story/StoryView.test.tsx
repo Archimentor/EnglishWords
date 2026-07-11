@@ -117,6 +117,31 @@ test('Escape closes the detail and restores focus to the selected word', async (
   expect(trigger).toHaveFocus()
 })
 
+test('Escape restores focus to the exact repeated story word that was selected', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'They played, then played again.',
+    usedWords: [
+      {
+        lemma: 'play',
+        partOfSpeech: 'verb',
+        forms: ['played'],
+      },
+    ],
+  })
+
+  render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+  const [firstTrigger] = screen.getAllByRole('button', {
+    name: 'story word: played',
+  })
+
+  await user.click(firstTrigger!)
+  await user.keyboard('{Escape}')
+
+  expect(firstTrigger).toHaveFocus()
+})
+
 test('the close button closes the detail and restores focus to the selected word', async () => {
   const user = userEvent.setup()
   const word = makeWord()
