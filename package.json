@@ -11,6 +11,8 @@
     "test:watch": "vitest",
     "validate:data": "tsx scripts/validate-data.ts --mode=development",
     "validate:release": "tsx scripts/validate-data.ts --mode=release",
+    "content:fetch": "tsx scripts/content/fetchSources.ts",
+    "content:report": "tsx scripts/content/reportSources.ts",
     "check": "npm run validate:data && npm run lint && npm test && npm run build"
   },
   "dependencies": {
