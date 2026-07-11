@@ -18,7 +18,6 @@
 - Create: `scripts/content/sources.test.ts`
 - Create: `docs/content-sources.md`
 - Modify: `.gitignore`
-- Modify: `package.json`
 
 - [ ] **Step 1: Write the failing source-contract tests**
 
@@ -72,7 +71,7 @@ export function parseSha256(value: string): string {
 }
 ```
 
-Use the exact URLs and SHA-256 values above. Add `.content-cache/` to `.gitignore`, add `content:fetch` and `content:report` scripts, and document source licenses and citations in `docs/content-sources.md`.
+Use the exact URLs and SHA-256 values above. Add `.content-cache/` to `.gitignore` and document source licenses and citations in `docs/content-sources.md`.
 
 - [ ] **Step 4: Run the source-contract test**
 
@@ -83,7 +82,7 @@ Expected: PASS.
 - [ ] **Step 5: Commit the source contract**
 
 ```powershell
-git add .gitignore package.json scripts/content docs/content-sources.md
+git add .gitignore scripts/content docs/content-sources.md
 git commit -m "feat(content): pin vocabulary source metadata"
 ```
 
@@ -92,6 +91,7 @@ git commit -m "feat(content): pin vocabulary source metadata"
 **Files:**
 - Create: `scripts/content/fetchSources.ts`
 - Create: `scripts/content/fetchSources.test.ts`
+- Create: `scripts/content/reportSources.ts`
 - Modify: `scripts/content/sources.ts`
 - Modify: `package.json`
 
@@ -132,6 +132,11 @@ export async function fetchContentSources(fetcher = fetch): Promise<void> {
 }
 ```
 
+Add functional package scripts in this task: `content:fetch` must download and
+verify every pinned snapshot, while `content:report` must print each source's
+pinned metadata and whether its cache file is present and SHA-256 verified. Do
+not add placeholder commands.
+
 - [ ] **Step 4: Run the source-fetch tests**
 
 Run: `npm test -- scripts/content/fetchSources.test.ts`
@@ -143,6 +148,11 @@ Expected: PASS.
 Run: `npm run content:fetch`
 
 Expected: four verified files under ignored `.content-cache/`; all four source records contain final 64-character hashes.
+
+Run: `npm run content:report`
+
+Expected: every pinned source is listed with its URL, license, attribution,
+expected digest, cache presence, and verification status.
 
 - [ ] **Step 6: Commit the fetcher and final source metadata**
 
