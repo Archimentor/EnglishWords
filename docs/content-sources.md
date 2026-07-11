@@ -14,9 +14,10 @@ the recorded SHA-256 digest before parsing it.
 | `ipa-dict` | Verified English IPA pronunciations | open-dict-data/ipa-dict (MIT; third-party credit) | [MIT](https://github.com/open-dict-data/ipa-dict/blob/43c3570eb3553bdd19fccd2bd0091534889af023/LICENSE) | [commit-pinned en_US text](https://raw.githubusercontent.com/open-dict-data/ipa-dict/43c3570eb3553bdd19fccd2bd0091534889af023/data/en_US.txt) | `2af6f154a5c363275f052d1f85acedef38ed185ca9745aa4314be77f6b70de67` |
 
 The exact URL, cache filename, and SHA-256 digest live in
-[`scripts/content/sources.ts`](../../scripts/content/sources.ts). Attribution
-and license obligations remain attached to the generated catalog's provenance
-manifest and accompanying documentation.
+[`scripts/content/sources.ts`](../scripts/content/sources.ts). Attribution and
+license obligations remain attached to the generated catalog's provenance
+manifest, [third-party notices](../THIRD_PARTY_NOTICES.md), and accompanying
+documentation.
 
 The metadata contract accepts only GitHub raw URLs that embed a 40-character
 commit, dated Wikimedia dump URLs whose path and filename carry the same dump
