@@ -1,3 +1,5 @@
+import { readFile } from 'node:fs/promises'
+
 import type { Difficulty, Level, PhrasalVerbItem } from '../../src/domain/content/types'
 import { PHRASAL_QUOTA } from './normalize'
 
@@ -15,6 +17,24 @@ export interface CandidatePhrasalVerb {
   examples: string[]
 }
 
+/**
+ * A human-reviewed Korean gloss used only when the Korean Wiktionary source
+ * has no usable meaning. Every field is release-critical provenance.
+ */
+export interface EditorialGlossRecord {
+  term: string
+  meaning: string
+  sourceKind: string
+  reviewer: string
+  reviewDate: string
+  evidenceUrl: string
+}
+
+export interface KoreanMeaningResolution {
+  sourceKind: 'wiktionary' | 'editorial'
+  meanings: string[]
+}
+
 export interface CatalogCapacity {
   words: Record<Level, number>
   phrasals: Record<Level, number>
@@ -23,6 +43,116 @@ export interface CatalogCapacity {
 export interface CatalogQuotas {
   wordQuotas: Record<Level, number>
   phrasalQuotas: Record<Level, number>
+}
+
+function normalizedTerm(value: string): string {
+  return value.trim().replace(/\s+/g, ' ').toLowerCase()
+}
+
+function isValidReviewDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false
+  const parsed = new Date(`${value}T00:00:00.000Z`)
+  return !Number.isNaN(parsed.valueOf()) && parsed.toISOString().startsWith(value)
+}
+
+function hasEvidenceUrl(value: string): boolean {
+  try {
+    const url = new URL(value)
+    return url.protocol === 'https:' || url.protocol === 'http:'
+  } catch {
+    return false
+  }
+}
+
+/**
+ * Validates the editorial handoff before it is allowed to affect a catalog.
+ * A term may have exactly one reviewed gloss, avoiding silent meaning choices.
+ */
+export function buildEditorialGlossIndex(
+  records: readonly EditorialGlossRecord[],
+): ReadonlyMap<string, EditorialGlossRecord> {
+  const index = new Map<string, EditorialGlossRecord>()
+
+  for (const record of records) {
+    const term = normalizedTerm(record.term)
+    if (!term) throw new Error('Editorial gloss is missing term')
+    if (!/[가-힣]/.test(record.meaning)) {
+      throw new Error(`Editorial gloss for "${term}" is missing Korean meaning`)
+    }
+    if (record.sourceKind !== 'editorial') {
+      throw new Error(`Editorial gloss for "${term}" must declare sourceKind "editorial"`)
+    }
+    if (!record.reviewer.trim()) throw new Error(`Editorial gloss for "${term}" is missing reviewer`)
+    if (!isValidReviewDate(record.reviewDate)) {
+      throw new Error(`Editorial gloss for "${term}" has an invalid reviewDate`)
+    }
+    if (!hasEvidenceUrl(record.evidenceUrl)) {
+      throw new Error(`Editorial gloss for "${term}" is missing evidenceUrl`)
+    }
+    if (index.has(term)) throw new Error(`Duplicate editorial gloss term: ${term}`)
+    index.set(term, {
+      ...record,
+      term,
+      meaning: record.meaning.trim(),
+      reviewer: record.reviewer.trim(),
+      reviewDate: record.reviewDate,
+      evidenceUrl: record.evidenceUrl.trim(),
+    })
+  }
+
+  return index
+}
+
+function parseEditorialGlossRecord(value: unknown, index: number): EditorialGlossRecord {
+  if (typeof value !== 'object' || value === null || Array.isArray(value)) {
+    throw new Error(`Editorial gloss at index ${index} must be an object`)
+  }
+
+  const record = value as Record<string, unknown>
+  const fields = ['term', 'meaning', 'sourceKind', 'reviewer', 'reviewDate', 'evidenceUrl'] as const
+  for (const field of fields) {
+    if (typeof record[field] !== 'string') {
+      throw new Error(`Editorial gloss at index ${index} is missing ${field}`)
+    }
+  }
+
+  return record as unknown as EditorialGlossRecord
+}
+
+/** Reads a checked-in editorial input file; it is never silently optional. */
+export async function readEditorialGlossManifest(
+  manifestPath: string,
+): Promise<ReadonlyMap<string, EditorialGlossRecord>> {
+  let decoded: unknown
+  try {
+    decoded = JSON.parse(await readFile(manifestPath, 'utf8'))
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error)
+    throw new Error(`Failed to read editorial gloss manifest: ${detail}`, { cause: error })
+  }
+
+  if (!Array.isArray(decoded)) throw new Error('Editorial gloss manifest must be a JSON array')
+  return buildEditorialGlossIndex(decoded.map(parseEditorialGlossRecord))
+}
+
+/**
+ * Keeps source-derived Korean Wiktionary meanings authoritative. Editorial
+ * glosses are a traceable fallback, never an overwrite.
+ */
+export function resolveKoreanMeanings(
+  term: string,
+  wiktionaryMeanings: readonly string[],
+  editorialGlosses: ReadonlyMap<string, EditorialGlossRecord>,
+): KoreanMeaningResolution | undefined {
+  const verifiedMeanings = [...new Set(wiktionaryMeanings.map((meaning) => meaning.trim())
+    .filter((meaning) => /[가-힣]/.test(meaning)))]
+  if (verifiedMeanings.length > 0) {
+    return { sourceKind: 'wiktionary', meanings: verifiedMeanings }
+  }
+
+  const editorial = editorialGlosses.get(normalizedTerm(term))
+  if (!editorial) return undefined
+  return { sourceKind: 'editorial', meanings: [editorial.meaning] }
 }
 
 export function requireVerifiedCatalogCapacity(
