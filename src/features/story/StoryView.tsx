@@ -1,4 +1,7 @@
-import type { StoryContent, WordItem } from '../../domain/content/types'
+import { useRef, useState } from 'react'
+import type { StoryContent, WordEntry, WordItem } from '../../domain/content/types'
+import { StoryWordDetail } from './StoryWordDetail'
+import { tokenizeStory } from './storyTokens'
 
 interface StoryViewProps {
   story: StoryContent
@@ -15,6 +18,11 @@ function yesNo(value: boolean): string {
 }
 
 export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps) {
+  const [selectedWord, setSelectedWord] = useState<{
+    word: WordItem
+    entry: WordEntry
+  } | null>(null)
+  const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
   const levelLemmas = new Set(levelWords.map(({ lemma }) => lemma))
   const coveredLemmas = new Set(
     story.usedWords
@@ -23,14 +31,66 @@ export function StoryView({ story, levelWords, targetWordCount }: StoryViewProps
   )
   const coveredCount = coveredLemmas.size
   const targetRate = targetWordCount > 0 ? coveredCount / targetWordCount : 0
+  const tokens = tokenizeStory(story.storyText, story.usedWords, levelWords)
+
+  function closeDetail() {
+    setSelectedWord(null)
+    selectedTriggerRef.current?.focus()
+  }
 
   return (
-    <article className="view view--story reading-sheet" aria-labelledby="story-title">
+    <article
+      className="view view--story reading-sheet"
+      aria-labelledby="story-title"
+      onKeyDown={(event) => {
+        if (event.key === 'Escape' && selectedWord) {
+          event.preventDefault()
+          closeDetail()
+        }
+      }}
+    >
       <header className="feature-header">
         <p>{`${story.level} · 스키마 ${story.schemaVersion}`}</p>
         <h2 id="story-title">{story.title}</h2>
       </header>
-      <p className="story-body">{story.storyText}</p>
+      <p className="story-body">
+        {tokens.map((token, index) => {
+          if (token.type === 'text') {
+            return <span key={`text-${index}`}>{token.value}</span>
+          }
+
+          if (!token.word || !token.entry) {
+            return null
+          }
+
+          const isSelected = selectedWord?.word === token.word && selectedWord.entry === token.entry
+          return (
+            <button
+              key={`word-${index}`}
+              ref={isSelected ? selectedTriggerRef : undefined}
+              type="button"
+              className="story-word-button"
+              aria-label={`story word: ${token.value}`}
+              aria-pressed={isSelected}
+              aria-controls="story-word-detail"
+              onClick={(event) => {
+                selectedTriggerRef.current = event.currentTarget
+                setSelectedWord({ word: token.word!, entry: token.entry! })
+              }}
+            >
+              {token.value}
+            </button>
+          )
+        })}
+      </p>
+
+      {selectedWord ? (
+        <StoryWordDetail
+          word={selectedWord.word}
+          entry={selectedWord.entry}
+          onClose={closeDetail}
+        />
+      ) : null}
 
       <div className="story-meta-grid">
         <section className="panel" aria-labelledby="story-coverage-title">
