@@ -59,10 +59,10 @@ export interface ContentSource {
 export const CONTENT_CACHE_DIR = '.content-cache'
 
 export const CONTENT_SOURCES: readonly ContentSource[] = [
-  { id: 'cefrj', url: 'https://raw.githubusercontent.com/openlanguageprofiles/olp-en-cefrj/master/cefrj-vocabulary-profile-1.5.csv', sha256: 'b0dd3c635f1c9a4fdf1490c7e5b7c48e8bbe55b652ad0c9860a95f98e10ae498', license: 'CEFR-J terms of use', attribution: 'CEFR-J Vocabulary Profile 1.5', cacheFile: 'cefrj-vocabulary-profile-1.5.csv' },
-  { id: 'korean-wiktionary', url: 'https://kaikki.org/dictionary/downloads/ko/ko-extract.jsonl.gz', sha256: 'ba18b12642d534532feb85c42ec77e3f7686f1c2da795a59b030098342c39cb6', license: 'CC BY-SA 4.0', attribution: 'Korean Wiktionary via Wiktextract/Kaikki', cacheFile: 'ko-extract.jsonl.gz' },
-  { id: 'frequency', url: 'https://raw.githubusercontent.com/filiph/english_words/master/data/word-freq-top5000.csv', sha256: '87a73f5bca66862983dd430ba5d37129706f761291b433d33fcac8de117f66fc', license: 'MIT', attribution: 'filiph/english_words', cacheFile: 'word-freq-top5000.csv' },
-  { id: 'tatoeba-english', url: 'https://downloads.tatoeba.org/exports/per_language/eng/eng_sentences.tsv.bz2', sha256: '53428b2911d201a3fd12619cbd6f2235a6d46c63eca7701acc8043116039b230', license: 'CC BY 2.0 FR', attribution: 'Tatoeba Project', cacheFile: 'eng_sentences.tsv.bz2' },
+  { id: 'cefrj', url: 'https://raw.githubusercontent.com/openlanguageprofiles/olp-en-cefrj/d4e45b75b38f27b30dfc5c44d8c571aec7e7092f/cefrj-vocabulary-profile-1.5.csv', sha256: 'b0dd3c635f1c9a4fdf1490c7e5b7c48e8bbe55b652ad0c9860a95f98e10ae498', license: 'CEFR-J terms of use', attribution: 'CEFR-J Vocabulary Profile 1.5', cacheFile: 'cefrj-vocabulary-profile-1.5.csv' },
+  { id: 'korean-wiktionary', url: 'https://dumps.wikimedia.org/kowiktionary/20260701/kowiktionary-20260701-pages-articles.xml.bz2', sha256: '190f1b94870c5a09f3006f2d61d10da4d4997e5c968f4491186215c2e33b460e', license: 'CC BY-SA 4.0', attribution: 'Korean Wiktionary contributors via Wikimedia Dumps', cacheFile: 'kowiktionary-20260701-pages-articles.xml.bz2' },
+  { id: 'frequency', url: 'https://raw.githubusercontent.com/filiph/english_words/4191ae1341c5e3dc640731c20f118746a51e7143/data/word-freq-top5000.csv', sha256: '87a73f5bca66862983dd430ba5d37129706f761291b433d33fcac8de117f66fc', license: 'MIT', attribution: 'filiph/english_words', cacheFile: 'word-freq-top5000.csv' },
+  { id: 'tatoeba-english', url: 'https://object.pouta.csc.fi/OPUS-Tatoeba/v2023-04-12/mono/en.txt.gz', sha256: 'a32c5500cd76b9479859764fb78537a4b9b53fab8fa3bdc0fc04dd70f28bf29b', license: 'CC BY 2.0 FR', attribution: 'OPUS Tatoeba v2023-04-12 (Tiedemann 2012; source: Tatoeba Project)', cacheFile: 'opus-tatoeba-v2023-04-12-en.txt.gz' },
 ] as const
 
 export function parseSha256(value: string): string {
@@ -222,7 +222,7 @@ export function selectWords(candidates: readonly CandidateWord[], quotas = WORD_
 }
 ```
 
-Map CEFR A1 to 기초/유치원, A2/B1 to 초등학교, B1/B2 to 중학교 in rank order. Preserve existing hand-authored entries when their normalized source identity matches. Generate two sentence examples only from verified source sentences containing the selected surface form; reject candidates without two distinct examples. Select phrasal verbs only when they have a Korean gloss, IPA or verified pronunciation, two distinct source examples, and a valid `verb + particle` decomposition.
+Map CEFR A1 to 기초/유치원, A2/B1 to 초등학교, B1/B2 to 중학교 in rank order. Parse the pinned, dated Korean Wiktionary XML dump directly to extract Korean glosses and lexical forms; do not depend on a rolling Kaikki JSONL download. Preserve existing hand-authored entries when their normalized source identity matches. Generate two sentence examples only from verified source sentences containing the selected surface form; reject candidates without two distinct examples. Select phrasal verbs only when they have a Korean gloss, IPA or verified pronunciation, two distinct source examples, and a valid `verb + particle` decomposition.
 
 - [ ] **Step 4: Run normalization and build tests**
 
