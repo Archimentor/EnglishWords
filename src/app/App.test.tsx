@@ -1,5 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { createInitialState } from '../state/appState'
+import { STORAGE_KEY } from '../state/persistence'
 import { App } from './App'
 
 interface MemoryStorage extends Pick<Storage, 'getItem' | 'setItem'> {
@@ -22,6 +24,25 @@ test('서비스 이름과 초기 레벨 대시보드를 보여준다', () => {
   expect(screen.getByRole('heading', { name: '기초 학습 대시보드' })).toBeInTheDocument()
   expect(screen.getByText('8 / 목표 500')).toBeInTheDocument()
   expect(screen.queryByText('100%')).not.toBeInTheDocument()
+})
+
+test('실제 대표 단어 ID의 저장된 숙련도를 목표 완료율에 반영한다', () => {
+  const storage = memoryStorage()
+  const state = createInitialState()
+  state.mastery['word-play'] = {
+    attempts: 3,
+    correct: 3,
+    wrong: 0,
+    correctStreak: 3,
+    wrongStreak: 0,
+  }
+  storage.values.set(STORAGE_KEY, JSON.stringify(state))
+
+  render(<App storage={storage} />)
+
+  expect(
+    within(screen.getByRole('region', { name: '학습 현황' })).getByText('0.2%'),
+  ).toBeInTheDocument()
 })
 
 test('학습을 누르면 레벨 메뉴를 열고 컨텍스트 레벨 선택 즉시 학습으로 진입한다', async () => {

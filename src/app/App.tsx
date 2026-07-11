@@ -1,4 +1,4 @@
-import { LEVELS, type Level } from '../domain/content/types'
+import type { Level } from '../domain/content/types'
 import {
   AppStateProvider,
   type AppStateStorage,
@@ -6,12 +6,48 @@ import {
 import { useAppState } from '../state/useAppState'
 import { AppShell } from './AppShell'
 
-const DEVELOPMENT_WORD_IDS = Object.fromEntries(
-  LEVELS.map((level) => [
-    level,
-    Array.from({ length: 8 }, (_, index) => `${level}-word-${index + 1}`),
-  ]),
-) as Record<Level, string[]>
+const DEVELOPMENT_WORD_IDS: Readonly<Record<Level, readonly string[]>> = {
+  기초: [
+    'word-baby',
+    'word-ball',
+    'word-bird',
+    'word-cat',
+    'word-dog',
+    'word-eat',
+    'word-happy',
+    'word-play',
+  ],
+  유치원: [
+    'word-book',
+    'word-chair',
+    'word-draw',
+    'word-friend',
+    'word-green',
+    'word-jump',
+    'word-school',
+    'word-teacher',
+  ],
+  초등학교: [
+    'word-answer',
+    'word-because',
+    'word-careful',
+    'word-decide',
+    'word-different',
+    'word-explore',
+    'word-improve',
+    'word-question',
+  ],
+  중학교: [
+    'word-achieve',
+    'word-although',
+    'word-compare',
+    'word-evidence',
+    'word-influence',
+    'word-maintain',
+    'word-require',
+    'word-respond',
+  ],
+}
 
 function CurrentPanel() {
   const { state } = useAppState()
@@ -36,14 +72,18 @@ function CurrentPanel() {
   return <h2>{`${navigation.level} 퀴즈`}</h2>
 }
 
-function AppContent() {
+interface AppContentProps {
+  wordIdsByLevel: Readonly<Record<Level, readonly string[]>>
+}
+
+function AppContent({ wordIdsByLevel }: AppContentProps) {
   const { state, dispatch, warning, dismissWarning } = useAppState()
 
   return (
     <AppShell
       state={state}
       dispatch={dispatch}
-      wordIds={DEVELOPMENT_WORD_IDS[state.navigation.level]}
+      wordIds={wordIdsByLevel[state.navigation.level]}
       warning={warning}
       dismissWarning={dismissWarning}
     >
@@ -54,20 +94,21 @@ function AppContent() {
 
 export interface AppProps {
   storage?: AppStateStorage
+  wordIdsByLevel?: Readonly<Record<Level, readonly string[]>>
 }
 
-export function App({ storage }: AppProps = {}) {
+export function App({ storage, wordIdsByLevel = DEVELOPMENT_WORD_IDS }: AppProps = {}) {
   if (storage) {
     return (
       <AppStateProvider storage={storage}>
-        <AppContent />
+        <AppContent wordIdsByLevel={wordIdsByLevel} />
       </AppStateProvider>
     )
   }
 
   return (
     <AppStateProvider>
-      <AppContent />
+      <AppContent wordIdsByLevel={wordIdsByLevel} />
     </AppStateProvider>
   )
 }
