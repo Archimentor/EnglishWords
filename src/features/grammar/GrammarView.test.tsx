@@ -121,4 +121,16 @@ test('전체 문법 순서로 이전·다음 이동하고 stale 노드는 안전
     />,
   )
   expect(screen.getByText('문법 노드를 선택하세요.')).toBeInTheDocument()
+
+  view.rerender(
+    <GrammarView
+      nodes={nodes}
+      grammarSection="A2"
+      selectedNodeId="A1-G01"
+      onSelectLevel={vi.fn()}
+      onSelectNode={onSelectNode}
+    />,
+  )
+  expect(screen.getByText('문법 노드를 선택하세요.')).toBeInTheDocument()
+  expect(screen.queryByRole('heading', { name: /A1-G01/ })).not.toBeInTheDocument()
 })

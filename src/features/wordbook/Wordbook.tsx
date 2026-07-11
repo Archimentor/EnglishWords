@@ -16,9 +16,8 @@ function searchableText(item: StudyItem): string {
   )
 }
 
-export function Wordbook({ level, catalog }: WordbookProps) {
-  const [searchState, setSearchState] = useState({ level, value: '' })
-  const search = searchState.level === level ? searchState.value : ''
+function LevelWordbook({ level, catalog }: WordbookProps) {
+  const [search, setSearch] = useState('')
   const query = normalizeSearch(search)
   const results = catalog.itemsByLevel[level].filter(
     (item) => query.length === 0 || searchableText(item).includes(query),
@@ -33,7 +32,7 @@ export function Wordbook({ level, catalog }: WordbookProps) {
           id="wordbook-search"
           type="search"
           value={search}
-          onChange={(event) => setSearchState({ level, value: event.target.value })}
+          onChange={(event) => setSearch(event.target.value)}
         />
       </form>
       <p aria-live="polite">{`검색 결과 ${results.length}개`}</p>
@@ -68,4 +67,8 @@ export function Wordbook({ level, catalog }: WordbookProps) {
       )}
     </section>
   )
+}
+
+export function Wordbook({ level, catalog }: WordbookProps) {
+  return <LevelWordbook key={level} level={level} catalog={catalog} />
 }

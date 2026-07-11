@@ -20,8 +20,10 @@ export function GrammarView({
   onSelectLevel,
   onSelectNode,
 }: GrammarViewProps) {
-  const selectedNode = selectedNodeId
-    ? nodes.find(({ id }) => id === selectedNodeId)
+  const selectedNode = selectedNodeId && grammarSection !== '대시보드'
+    ? nodes.find(
+        ({ id, level }) => id === selectedNodeId && level === grammarSection,
+      )
     : undefined
   const selectedIndex = selectedNode
     ? nodes.findIndex(({ id }) => id === selectedNode.id)

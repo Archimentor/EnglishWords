@@ -95,4 +95,8 @@ test('검색 결과가 없음을 알리고 레벨 변경 시 검색어를 초기
   view.rerender(<Wordbook level="유치원" catalog={catalog} />)
   expect(screen.getByRole('searchbox', { name: '단어 검색' })).toHaveValue('')
   expect(screen.getByRole('row', { name: /other/ })).toBeInTheDocument()
+
+  view.rerender(<Wordbook level="기초" catalog={catalog} />)
+  expect(screen.getByRole('searchbox', { name: '단어 검색' })).toHaveValue('')
+  expect(screen.getByRole('row', { name: /^play / })).toBeInTheDocument()
 })
