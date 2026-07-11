@@ -38,7 +38,7 @@ describe('basic editorial word batch', () => {
     expect(words.every(({ entries }) => entries[0].examples.length >= 2)).toBe(true)
   })
 
-  test('creates a clickable reading story that covers every batch word', () => {
+  test('creates a five-chapter reading story without dictionary-template boilerplate', () => {
     const ipa = new Map(BASIC_EDITORIAL_WORDS.map(({ lemma }) => [lemma, '/test/']))
     const words = buildBasicEditorialWords(ipa)
 
@@ -46,6 +46,10 @@ describe('basic editorial word batch', () => {
 
     expect(story.coverage.coverageRate).toBe(1)
     expect(story.usedWords).toHaveLength(500)
+    expect(story.storyText.match(/^Chapter [1-5]:/gm)).toHaveLength(5)
+    expect(story.storyText).toContain('\n\n')
+    expect(story.storyText).not.toMatch(/(?:The|This) [^.]+ is here\./)
+    expect(story.storyText).not.toMatch(/I like this [^.]+\./)
     expect(story.usedWords.every(({ lemma, forms }) => {
       const word = words.find((candidate) => candidate.lemma === lemma)!
       const entry = word.entries[0]!

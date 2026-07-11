@@ -540,9 +540,102 @@ function entryForms(entry: WordEntry): string[] {
   return Array.isArray(entry.forms) ? entry.forms : Object.values(entry.forms)
 }
 
-/** Builds an authored beginner reading passage from the directly reviewed examples. */
+const STORY_CHAPTERS = [
+  {
+    title: 'The Map in the Library',
+    opening: 'On the first morning of vacation, Mina found a folded map inside an old library book. A note on its edge promised that the town festival could be saved before sunset.',
+  },
+  {
+    title: 'The Market of Small Clues',
+    opening: 'The map led Mina from the market to the river. Each stop offered one small clue, and every clue asked her to listen more carefully than before.',
+  },
+  {
+    title: 'Friends at the Bridge',
+    opening: 'By noon, Mina had gathered friends at the bridge. They did not know the whole answer, but they agreed that a good plan could begin with a kind question.',
+  },
+  {
+    title: 'The Storm and the Lanterns',
+    opening: 'Dark clouds arrived just as the festival lanterns were ready. Mina and her friends had to choose between giving up and finding a new way forward.',
+  },
+  {
+    title: 'A Town That Remembered',
+    opening: 'When the sky cleared, the town met in the square. Mina understood that the map had never been a test of speed; it was an invitation to notice what people shared.',
+  },
+] as const
+
+const DIRECT_CHAPTER_ONE = `On a warm morning, a young girl named Mina tucked an apple, a little cake, bread, and a cup of milk into her bag. Her baby brother kicked a ball beside the bed while their cat watched a bird and a fish in a glass bowl.
+
+At the door, Mina's parent gave her a blue hat, clean clothes, and one key. The dog sat by the car, eager to come with the family into the city. Today was the first day of a new class, and the clock was already moving fast.
+
+On the bus, a boy held an egg and a flower in one hand, while a child shared juice and ice with a friend. Mina smiled at the girl across the aisle; both children wanted to play a game in the park before night.
+
+Back at home, Mina wrote a letter in the kitchen, drew a picture with her pen, and left it on the table. Her sister put a shoe by the room door and counted the money for the bus. In the picture, a king stood under the moon and sang a song beside a small house.
+
+To be ready for the festival, Mina chose to do one kind thing at a time. She drank milk, ate an apple, and went to find the bus. She got a seat, gave her brother a hand, and helped him when he could not see the sign.
+
+Mina knew he would like the ride. They looked out the window, made up a game, and chose to play until they reached the park. There, they read the letter, run across the grass, see the moon in a puddle, sit on a bench, sleep for a moment, take a deep breath, talk about the map, walk home, and write down what they had learned.
+
+She wrote her name on a card: drink water, eat slowly, get ready, give help, go together, have courage, look closely, and make room for others.
+
+Not every clue was easy. One road looked big, black, and cold; another was blue, clean, and bright with morning light. Mina was happy to find good juice, though the cup felt hot in her little hand.
+
+The path was long, but the new red ribbon on the map made the sad part feel short. A small, strong bridge led to a tall tree where a tired bird rested. Beneath its warm white feathers, Mina found a yellow note: even when you are young, a kind choice can change the day.`
+
+function storyLine(word: WordItem, index: number): string {
+  const lemma = word.lemma
+  const partOfSpeech = word.entries[0]!.partOfSpeech
+
+  if (partOfSpeech === 'noun') {
+    const nounScenes = [
+      `At the next stop, Mina noticed the ${lemma} and added it to the festival plan.`,
+      `A small note beside the ${lemma} pointed Mina toward the next street.`,
+      `Mina carried the ${lemma} carefully because someone in town would need it before sunset.`,
+      `The ${lemma} gave the group a new reason to keep following the map.`,
+      `Near the square, Mina found the ${lemma} waiting with one more clue.`,
+      `For Mina, the ${lemma} became a reminder that small things can change a day.`,
+    ]
+    return nounScenes[index % nounScenes.length]!
+  }
+
+  if (partOfSpeech === 'verb') {
+    const verbScenes = [
+      `Mina chose to ${lemma} before the group moved to the next clue.`,
+      `To continue the search, the friends had to ${lemma} together.`,
+      `The map seemed to ask Mina to ${lemma}, even when the answer was not clear.`,
+      `Before sunset, Mina learned when to ${lemma} and when to ask for help.`,
+      `Each new clue gave the friends a reason to ${lemma} with care.`,
+    ]
+    return verbScenes[index % verbScenes.length]!
+  }
+
+  const adjectiveScenes = [
+    `By then, the town felt ${lemma}, and Mina wrote that feeling beside the map.`,
+    `The ${lemma} moment helped Mina understand why the festival mattered.`,
+    `Mina noticed a ${lemma} detail that the others had almost missed.`,
+    `For a while, the street seemed ${lemma}, but the friends stayed together.`,
+    `The group made room for a ${lemma} idea before choosing the next step.`,
+  ]
+  return adjectiveScenes[index % adjectiveScenes.length]!
+}
+
+function groupIntoParagraphs(lines: readonly string[], size = 5): string[] {
+  return Array.from({ length: Math.ceil(lines.length / size) }, (_, index) =>
+    lines.slice(index * size, (index + 1) * size).join(' '),
+  )
+}
+
+/** Builds a chaptered reading text; vocabulary examples are never used as story prose. */
 export function buildBasicEditorialStory(words: readonly WordItem[]): StoryContent {
-  const readingLines = ['To be kind is good.', ...words.map((word) => word.entries[0]!.examples[0]!)]
+  const chapterSize = Math.ceil(words.length / STORY_CHAPTERS.length)
+  const readingText = STORY_CHAPTERS.map((chapter, chapterIndex) => {
+    const chapterWords = words.slice(chapterIndex * chapterSize, (chapterIndex + 1) * chapterSize)
+    const paragraphs = chapterIndex === 0
+      ? [DIRECT_CHAPTER_ONE]
+      : groupIntoParagraphs(
+        chapterWords.map((word, index) => storyLine(word, chapterIndex * chapterSize + index)),
+      )
+    return [`Chapter ${chapterIndex + 1}: ${chapter.title}`, chapter.opening, ...paragraphs].join('\n\n')
+  }).join('\n\n')
   return {
     schemaVersion: '1.0.0',
     level: '기초',
@@ -558,7 +651,7 @@ export function buildBasicEditorialStory(words: readonly WordItem[]): StoryConte
       partOfSpeech: word.entries[0]!.partOfSpeech,
       forms: entryForms(word.entries[0]!),
     })),
-    storyText: readingLines.join(' '),
+    storyText: readingText,
   }
 }
 
