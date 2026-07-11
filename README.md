@@ -40,6 +40,14 @@ npm run dev
 npm run dev -- --host 0.0.0.0
 ```
 
+개발 서버는 코드 변경을 즉시 반영하기 위한 개발 모드입니다. 설치 없이 실행할 배포본은 다음처럼 만듭니다.
+
+```powershell
+npm run build
+```
+
+그 뒤 생성된 `dist/index.html`을 더블클릭하면 됩니다. 배포본은 상대 경로의 단일 IIFE 번들과 임베드된 콘텐츠 카탈로그를 사용하므로 `file://` 실행에서도 localhost나 별도 서버가 필요하지 않습니다.
+
 ## 명령어
 
 | 명령 | 용도 | 성공 기준 |
@@ -84,7 +92,7 @@ npm run build
 npm run build -- --base=/english-words/
 ```
 
-콘텐츠 요청도 `import.meta.env.BASE_URL`을 사용하므로 HTML, 번들, `data/` 디렉터리를 같은 base 아래에 유지해야 합니다. 앱은 클라이언트 라우터를 사용하지 않아 별도의 SPA fallback 규칙이 필요하지 않습니다. `index.html` 파일을 직접 열지 말고 HTTP 정적 서버로 제공해야 하며, 배포 전 로컬 번들은 `npx vite preview`로 확인할 수 있습니다.
+배포본은 상대 경로를 사용하므로 `dist/` 디렉터리 전체를 원하는 정적 경로에 그대로 둘 수 있습니다. 앱은 클라이언트 라우터를 사용하지 않아 별도의 SPA fallback 규칙이 필요하지 않습니다. `dist/index.html`은 더블클릭으로도 실행되며, 배포 전 로컬 번들은 `npx vite preview`로도 확인할 수 있습니다.
 
 ## 상태와 브라우저 동작
 

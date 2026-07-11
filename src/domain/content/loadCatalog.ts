@@ -129,6 +129,30 @@ function invalidCatalogError(issues: ValidationIssue[]): ContentLoadError {
   )
 }
 
+/**
+ * Validates and normalizes the catalog object embedded into an offline build.
+ * This deliberately shares the normal loading validation path so a file-opened
+ * build cannot bypass catalog integrity checks.
+ */
+export function loadEmbeddedCatalog(catalog: ContentCatalog): RuntimeCatalog {
+  const issues = [
+    ...validateCatalog(catalog, 'development'),
+    ...validateStoryCoverage(catalog),
+  ]
+
+  if (issues.length > 0) {
+    throw invalidCatalogError(issues)
+  }
+
+  return normalizeCatalog(catalog)
+}
+
+function embeddedCatalog(): ContentCatalog | undefined {
+  return (globalThis as typeof globalThis & {
+    __ENGLISH_WORDS_EMBEDDED_CATALOG__?: ContentCatalog
+  }).__ENGLISH_WORDS_EMBEDDED_CATALOG__
+}
+
 function resolveContentPath(path: string, baseUrl: string): string {
   const normalizedBaseUrl = baseUrl.length === 0
     ? '/'
@@ -143,6 +167,11 @@ export async function loadCatalog(
   fetcher: typeof fetch = fetch,
   baseUrl: string = import.meta.env.BASE_URL,
 ): Promise<RuntimeCatalog> {
+  const embedded = embeddedCatalog()
+  if (embedded) {
+    return loadEmbeddedCatalog(embedded)
+  }
+
   const entries = await Promise.all(
     CONTENT_PATHS.map(async (path) => [
       path,
@@ -150,14 +179,5 @@ export async function loadCatalog(
     ] as const),
   )
   const catalog = assembleCatalog(new Map(entries))
-  const issues = [
-    ...validateCatalog(catalog, 'development'),
-    ...validateStoryCoverage(catalog),
-  ]
-
-  if (issues.length > 0) {
-    throw invalidCatalogError(issues)
-  }
-
-  return normalizeCatalog(catalog)
+  return loadEmbeddedCatalog(catalog)
 }

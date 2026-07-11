@@ -1,6 +1,11 @@
 import { makeCatalog, makePhrasalVerb, makeWord } from '../../test/fixtures'
 import type { ContentCatalog } from './types'
-import { CONTENT_PATHS, ContentLoadError, loadCatalog } from './loadCatalog'
+import {
+  CONTENT_PATHS,
+  ContentLoadError,
+  loadCatalog,
+  loadEmbeddedCatalog,
+} from './loadCatalog'
 
 const EXPECTED_CONTENT_PATHS = [
   'data/wordlists/기초.json',
@@ -95,6 +100,15 @@ async function captureLoadError(promise: Promise<unknown>): Promise<ContentLoadE
 }
 
 describe('loadCatalog', () => {
+  it('normalizes an embedded catalog without fetching JSON resources', () => {
+    const catalog = makeCatalog()
+
+    const runtime = loadEmbeddedCatalog(catalog)
+
+    expect(runtime.itemsByLevel.기초.map(({ term }) => term)).toEqual(['play'])
+    expect(runtime.itemsById['word-play']).toBe(runtime.itemsByLevel.기초[0])
+  })
+
   it('requests all 14 resources once and returns normalized words and phrasals', async () => {
     const phrasal = makePhrasalVerb()
     const catalog = makeCatalog({
