@@ -17,6 +17,9 @@ interface StudyViewProps {
   dispatch: (action: AppAction) => void
   speech: SpeechPort | null
   random?: () => number
+  mode?: 'standard' | 'mistakes'
+  candidateIds?: readonly string[]
+  onExitReview?: () => void
 }
 
 interface LocalSession {
@@ -107,6 +110,7 @@ function createLocalSession(
   state: AppState,
   level: Level,
   random: () => number,
+  persistSession: boolean,
 ): LocalSession {
   if (items.length === 0) {
     return {
@@ -117,7 +121,7 @@ function createLocalSession(
     }
   }
 
-  const snapshot = state.studySessions[level]
+  const snapshot = persistSession ? state.studySessions[level] : undefined
   if (snapshot) {
     const restored = restoreSnapshot(
       snapshot.queueIds,
@@ -142,13 +146,14 @@ function createLocalSession(
     ),
     currentIndex: 0,
     difficulty: state.navigation.studyDifficulty,
-    needsInitialSave: true,
+    needsInitialSave: persistSession,
   }
 }
 
 interface LevelStudyViewProps extends Omit<StudyViewProps, 'items'> {
   items: readonly StudyItem[]
   level: Level
+  mode: 'standard' | 'mistakes'
 }
 
 function LevelStudyView({
@@ -158,9 +163,11 @@ function LevelStudyView({
   dispatch,
   speech,
   random = Math.random,
+  mode,
+  onExitReview,
 }: LevelStudyViewProps) {
   const [session, setSession] = useState(() =>
-    createLocalSession(items, state, level, random),
+    createLocalSession(items, state, level, random, mode === 'standard'),
   )
   const randomRef = useRef(random)
   const [flipped, setFlipped] = useState(false)
@@ -199,6 +206,7 @@ function LevelStudyView({
   )
 
   function saveSession(queueIds: readonly string[], currentIndex: number): void {
+    if (mode === 'mistakes') return
     dispatch({
       type: 'SAVE_STUDY_SESSION',
       level,
@@ -302,6 +310,9 @@ function LevelStudyView({
         <h2>학습 세션 완료</h2>
         <p>{`${session.queueIds.length}개 항목을 모두 확인했습니다.`}</p>
         <button type="button" onClick={startNewSession}>새 세션 시작</button>
+        {mode === 'mistakes' && onExitReview ? (
+          <button type="button" onClick={onExitReview}>전체 학습으로 돌아가기</button>
+        ) : null}
       </section>
     )
   }
@@ -340,16 +351,26 @@ export function StudyView({
   dispatch,
   speech,
   random,
+  mode = 'standard',
+  candidateIds,
+  onExitReview,
 }: StudyViewProps) {
   const level = state.navigation.level
-  const levelItems = uniqueItemsForLevel(items, level)
-  const key = `${level}:${levelItems.map(({ id }) => id).join('|')}`
-  const sharedProps = { state, dispatch, speech }
+  const candidateSet = mode === 'mistakes' && candidateIds
+    ? new Set(candidateIds)
+    : null
+  const levelItems = uniqueItemsForLevel(items, level).filter(
+    ({ id }) => !candidateSet || candidateSet.has(id),
+  )
+  const key = `${mode}:${level}:${levelItems.map(({ id }) => id).join('|')}`
+  const sharedProps = { state, dispatch, speech, mode }
+  const reviewProps = onExitReview ? { onExitReview } : {}
 
   return random ? (
     <LevelStudyView
       key={key}
       {...sharedProps}
+      {...reviewProps}
       items={levelItems}
       level={level}
       random={random}
@@ -358,6 +379,7 @@ export function StudyView({
     <LevelStudyView
       key={key}
       {...sharedProps}
+      {...reviewProps}
       items={levelItems}
       level={level}
     />

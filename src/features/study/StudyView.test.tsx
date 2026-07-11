@@ -48,6 +48,8 @@ function seededRandom(seed: number): () => number {
   }
 }
 
+const zeroRandom = () => 0
+
 function actionTypes(dispatch: ReturnType<typeof vi.fn>): string[] {
   return dispatch.mock.calls.map(([action]) => (action as AppAction).type)
 }
@@ -345,4 +347,32 @@ test('학습할 현재 레벨 항목이 없으면 큐를 저장하지 않고 안
 
   expect(screen.getByText('이 레벨에 학습할 항목이 없습니다.')).toBeInTheDocument()
   expect(dispatch).not.toHaveBeenCalled()
+})
+
+test('오답 review 모드는 정규 세션 snapshot을 덮어쓰지 않고 회상만 기록한다', async () => {
+  const user = userEvent.setup()
+  const items = makeItems(3)
+  const state = stateWithSession(items, 1)
+  const originalSnapshot = structuredClone(state.studySessions.기초)
+  const dispatch = vi.fn()
+
+  render(
+    <StudyView
+      items={items}
+      state={state}
+      dispatch={dispatch}
+      speech={null}
+      mode="mistakes"
+      candidateIds={[items[0]!.id]}
+      random={zeroRandom}
+    />,
+  )
+
+  expect(screen.getByText('1 / 1')).toBeInTheDocument()
+  expect(dispatch).not.toHaveBeenCalled()
+  await user.click(screen.getByRole('button', { name: /카드 뒤집기/ }))
+  await user.click(screen.getByRole('button', { name: '기억했어요' }))
+
+  expect(actionTypes(dispatch)).toEqual(['RECORD_STUDY'])
+  expect(state.studySessions.기초).toEqual(originalSnapshot)
 })
