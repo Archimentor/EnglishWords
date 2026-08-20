@@ -2,6 +2,8 @@
 
 기초부터 중학교까지 단어·구동사·문법을 학습하고, 퀴즈 오답을 다음 학습 순서에 반영하는 정적 React 웹 앱입니다. 현재 저장소에는 개발계획의 앱 흐름을 구현한 정적 앱, 목표 수량 카탈로그, 오프라인 단일 파일 배포본이 함께 들어 있습니다.
 
+운영 사이트: [`https://archimentor.github.io/EnglishWords/`](https://archimentor.github.io/EnglishWords/)
+
 > 현재 카탈로그는 단어 5,000개(기초 500·유치원 500·초등학교 1,500·중학교 2,500), 구동사 1,000개(레벨별 250), 문법 노드 42개, 승인 소설 4개입니다. 소설 네 편은 도입·갈등·전환·결말이 이어지는 본편과 접이식 전체 어휘 장면 연습을 분리하며, reviewer·reviewedAt·전체 payload digest가 고정된 승인 정본(`isManual: true`)입니다.
 
 ## 제공 기능
@@ -110,7 +112,7 @@ npm run test:browser
 npm run validate:release
 ```
 
-세 품질 명령이 모두 성공한 뒤 생성된 `dist/index.html` 한 파일을 정적 호스트의 사이트 루트에 배포합니다. 현재 로컬 세 명령은 모두 성공했고 공개 저장소 `Archimentor/EnglishWords`와 Actions 방식 Pages도 구성했습니다. 이번 변경의 원격 `main` 게시, Pages workflow 성공, production URL 카나리는 배포 게이트로 구분합니다.
+세 품질 명령이 모두 성공한 뒤 생성된 `dist/index.html` 한 파일을 정적 호스트의 사이트 루트에 배포합니다. 로컬 세 명령, 공개 저장소 `Archimentor/EnglishWords`의 원격 `main` 게시, [Pages workflow](https://github.com/Archimentor/EnglishWords/actions/runs/32332328282), production URL 브라우저 카나리가 모두 성공했습니다.
 
 ```powershell
 npm run build -- --base=/english-words/
@@ -118,7 +120,7 @@ npm run build -- --base=/english-words/
 
 앱은 클라이언트 라우터를 사용하지 않아 별도의 SPA fallback 규칙이 필요하지 않습니다. `dist/index.html`은 모든 런타임 자산을 포함해 더블클릭으로도 실행되며, 배포 전 로컬 번들은 `npx vite preview`로도 확인할 수 있습니다. 빌드 뒤 `npm run verify:offline`이 외부 스크립트·스타일 참조가 없는지와 실제 초기 렌더를 검사합니다.
 
-`.github/workflows/pages.yml`은 pull request와 `main` push에서 `npm run check`, Playwright 브라우저 테스트, `npm run validate:release`를 실행하고, `main`에서 모든 게이트가 통과한 경우에만 GitHub Pages artifact를 배포하도록 구성되어 있습니다. 워크플로 설정이 존재하는 것만으로 실제 배포가 완료된 것은 아니며, 원격 Actions 성공과 production URL smoke test를 별도로 확인해야 합니다.
+`.github/workflows/pages.yml`은 pull request와 `main` push에서 `npm run check`, Playwright 브라우저 테스트, `npm run validate:release`를 실행하고, `main`에서 모든 게이트가 통과한 경우에만 GitHub Pages artifact를 배포하도록 구성되어 있습니다. 이번 릴리스는 원격 Actions 검증·배포 성공과 production URL smoke test를 각각 확인했습니다.
 
 ## 상태와 브라우저 동작
 

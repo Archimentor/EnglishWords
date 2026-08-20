@@ -1,10 +1,10 @@
-# 영단어 5000 마스터 개발 현황과 릴리스 잔여 게이트
+# 영단어 5000 마스터 개발 현황과 릴리스 기록
 
 기준일: 2026-08-20
 
-이 문서는 저장소에 구현된 앱·콘텐츠 파이프라인·자동 검증과 실제 배포 확인을 구분합니다. **로컬 릴리스 게이트 완료는 production 배포 완료를 뜻하지 않습니다.**
+이 문서는 저장소에 구현된 앱·콘텐츠 파이프라인·자동 검증과 실제 배포 확인을 구분합니다. **로컬 릴리스 게이트와 production 배포 확인은 각각 통과해야 완료로 기록합니다.**
 
-현재 상태는 **최신 소스·승인 콘텐츠 재생성, 로컬 릴리스 게이트, 실제 브라우저 검증 완료 / production 게시 직전**입니다. 공개 저장소 `Archimentor/EnglishWords`를 이 단일 작업 경로의 `origin`으로 연결했고 GitHub Pages를 Actions 방식으로 활성화했습니다. 아직 이번 변경을 stage·commit·push하지 않았으므로 원격 Actions 성공과 production URL 동작은 아래 후속 게이트로 남아 있습니다.
+현재 상태는 **최신 소스·승인 콘텐츠 재생성, 로컬 릴리스 게이트, 원격 Actions 검증·Pages 배포, production 브라우저 카나리까지 완료**입니다. 공개 저장소 [`Archimentor/EnglishWords`](https://github.com/Archimentor/EnglishWords)의 `main`을 이 단일 작업 경로에서 게시했고, [검증·배포 workflow](https://github.com/Archimentor/EnglishWords/actions/runs/32332328282)가 성공했습니다. 운영 주소는 [`https://archimentor.github.io/EnglishWords/`](https://archimentor.github.io/EnglishWords/)이며 브라우저 플러그인으로 실제 동작을 확인했습니다.
 
 ## 작업 종료 체크포인트 (2026-08-20)
 
@@ -18,7 +18,8 @@
 - 루트 `index.html`과 `dist/index.html`은 최신 소스에서 다시 생성됐고 SHA-256이 같습니다. `npm run verify:offline`은 두 파일이 최신·자급식이며 DOM 렌더가 가능함을 확인했습니다.
 - `npm run test:browser`의 Chromium 시나리오 12개가 데스크톱·모바일에서 모두 통과했습니다. 루트 `index.html` 직접 `file://` 실행, HTTP 핵심 여정, 키보드 전용 흐름, 320px 긴 콘텐츠·복구·폼 레이아웃을 포함합니다.
 - 브라우저 플러그인으로 최신 `dist/index.html`을 로컬 HTTP에서 열어 서사형 본편의 4→8문단 확장, 기본 닫힘인 전체 어휘 장면, 본편·연습 단어 상세, 상세 닫기 뒤 트리거 포커스 복귀를 조작했습니다. 문서 `scrollWidth`와 `clientWidth`는 1,265px로 같고 콘솔 오류는 0건이었습니다. 플러그인의 보안 정책이 `file://` 탐색을 차단하므로 파일 직접 실행과 320px 모바일 증거는 위 Chromium 회귀 테스트로 확보했습니다.
-- `npm run validate:release`는 단어 5,000개·구동사 1,000개·문법 노드 42개·승인 소설 4개로 성공했습니다. 작업 파일은 아직 stage·commit·push하지 않았습니다.
+- `npm run validate:release`는 단어 5,000개·구동사 1,000개·문법 노드 42개·승인 소설 4개로 성공했습니다. 변경은 원격 `main`에 게시했고 Pages workflow의 검증·배포 job도 모두 성공했습니다.
+- production에서 제목, 본편 4→8문단 확장, 기본 닫힘인 어휘 장면, 본편·연습 단어 상세, 상세 닫기 뒤 포커스 복귀를 다시 조작했습니다. 본편 마지막 문단까지 표시됐고 브라우저 콘솔 오류는 0건이었습니다.
 
 ## 1. 구현된 핵심 수직 슬라이스
 
@@ -35,9 +36,9 @@
 
 현재 카탈로그는 단어 5,000개(기초 500·유치원 500·초등학교 1,500·중학교 2,500), 구동사 1,000개(레벨별 250), 문법 노드 42개, 승인 소설 4개(`isManual: true`)입니다. 수량·구조·참조·승인 provenance 검증은 이 데이터로 실행됩니다.
 
-자동 인수 명령은 `npm run check`와 `npm run test:browser`입니다. Vitest는 `.worktrees`와 `tests/browser`를 제외한 현재 checkout만 수집하고, Playwright는 데스크톱·모바일 HTTP 흐름과 루트 `index.html`의 직접 `file://` 실행을 검사합니다. 테스트 파일·테스트 개수는 변경될 수 있으므로 문서에 고정하지 않고 각 명령의 실패 0개를 기준으로 하며, 실제 production URL은 배포 후 별도 smoke test 대상으로 둡니다.
+자동 인수 명령은 `npm run check`와 `npm run test:browser`입니다. Vitest는 `.worktrees`와 `tests/browser`를 제외한 현재 checkout만 수집하고, Playwright는 데스크톱·모바일 HTTP 흐름과 루트 `index.html`의 직접 `file://` 실행을 검사합니다. 테스트 파일·테스트 개수는 변경될 수 있으므로 문서에 고정하지 않고 각 명령의 실패 0개를 기준으로 하며, 실제 production URL은 배포 후 별도 smoke test로 확인합니다.
 
-이번 체크포인트에서는 `npm run validate:release`, `npm run check`, `npm run test:browser`와 브라우저 플러그인 조작 검증까지 통과했습니다. 정적 오프라인 검증, 실제 브라우저 게이트, 원격 production 배포는 서로 구분합니다.
+이번 체크포인트에서는 `npm run validate:release`, `npm run check`, `npm run test:browser`, 원격 Actions와 production 브라우저 플러그인 조작 검증까지 통과했습니다. 정적 오프라인 검증, 실제 브라우저 게이트, 원격 production 배포는 서로 구분해 각각 성공을 확인했습니다.
 
 상태 버전 4의 전역 퀴즈 난이도별 시도·정답, 선택 난이도·실제 노출·오답 재노출 누계는 버전 5 형식을 거쳐 당시 `navigation.level` 버킷에 보존됩니다. 버전 5는 빈 추적 상태를 추가해 버전 6으로 이전하고, 버전 1~3과 초기 메뉴 형식도 같은 경로를 거칩니다. 버전 6→7에서는 신뢰 가능한 누적 문법 `productionAttempts`·`retryCount`·`errorCounts`를 보존하되, 구형 문자열 근거를 새 구조화 근거로 추정하지 않기 위해 기존 산출 승인·active 재진단 결과·연속 오류·완료 게이트를 초기화합니다. 이후 새 제출은 보존된 누적 산출 횟수 다음 번호로 시작합니다. 복구 백업은 정상 버전 7 값을 갱신할 때마다 만드는 사본이 아니라, 앱 시작 시 손상되었거나 이전 대상인 저장 원문을 바이트 그대로 보존하는 장치입니다.
 
@@ -84,11 +85,14 @@
 
 로그인, 서버 데이터베이스, 여러 기기 동기화, 관리자 CMS는 현재 범위의 비목표입니다.
 
-## 4. 후속 작업 순서
+## 4. 앞으로의 유지보수 기록
 
-1. 사용자가 승인한 범위대로 현재 `feat/wordmaster-vertical-slice` 한 브랜치에서 의도된 파일만 stage·commit하고, 중복 브랜치나 worktree 없이 원격 `main`으로 직접 게시합니다.
-2. `.github/workflows/pages.yml`의 전체 검증·배포 job이 성공했는지 확인합니다.
-3. `https://archimentor.github.io/EnglishWords/`를 브라우저 플러그인으로 열어 제목·서사형 본편·접힌 어휘 장면·단어 상세·콘솔 오류·문서 폭을 production 카나리 검사합니다.
+현재 릴리스를 막는 후속 게이트는 0건입니다. 다음 항목은 기능 미완료가 아니라 이후 콘텐츠 품질을 계속 높이기 위한 유지보수 목록입니다.
+
+1. 단어·구동사·문법 설명을 사용자 피드백과 표본 검사로 계속 편집 QA합니다.
+2. 소설 본편이나 어휘 장면을 바꾸면 전체 payload digest를 다시 만들고 사람 검수·승인을 다시 기록합니다.
+3. 의존성 또는 콘텐츠 원천을 갱신할 때 `content:build` → `validate:release` → `check` → `test:browser` → production 카나리 순서를 반복합니다.
+4. 배포 후 모바일·키보드·음성 API 미지원 환경을 정기적으로 표본 점검합니다.
 
 대량 콘텐츠의 수량 달성과 구조 검증은 모든 향후 교육적·편집적 QA가 끝났다는 뜻은 아닙니다. 다만 현재 네 소설은 단어 나열형 본문을 제거하고 서사형 본편과 별도 전체 어휘 장면으로 분리했으며, 사용자가 자동 소설 정본을 승인했습니다. 승인 digest는 본편·어휘 장면·사용 단어 전체를 묶으므로 어느 한 부분이 바뀌어도 재승인이 필요합니다.
 
@@ -114,7 +118,7 @@ npm run check
 npm run test:browser
 ```
 
-세 명령이 모두 exit code 0이어야 전체 콘텐츠 릴리스 준비가 완료됩니다. 최신 승인 입력 기반 `content:build`, `validate:release`, `check`, `test:browser`가 모두 exit code 0으로 완료됐습니다. 로컬 콘텐츠 릴리스 차단 항목은 0건이며, 남은 게이트는 원격 저장소 연결과 Pages production 카나리입니다.
+세 명령이 모두 exit code 0이어야 전체 콘텐츠 릴리스 준비가 완료됩니다. 최신 승인 입력 기반 `content:build`, `validate:release`, `check`, `test:browser`가 모두 exit code 0으로 완료됐습니다. 원격 Actions 검증·Pages 배포와 production 카나리도 성공했으며 현재 릴리스 차단 항목은 0건입니다.
 
 ## 6. 변경 원칙
 
