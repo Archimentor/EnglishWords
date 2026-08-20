@@ -112,6 +112,7 @@ async function exerciseGrammarSmoke(page: Page): Promise<void> {
 }
 
 test('HTTP preview renders the core learning journey without browser failures', async ({ page }) => {
+  test.setTimeout(60_000)
   const assertNoBrowserFailures = captureBrowserFailures(page)
 
   await page.goto('/')
@@ -135,14 +136,25 @@ test('HTTP preview renders the core learning journey without browser failures', 
   await closeStoryDetail.click()
   await expect(storyWord).toBeFocused()
 
-  await page.getByText(/^어휘 장면 연습 · 전체/u).click()
+  await page.getByText(/^일반 단어 확장 장면 · 전체/u).click()
   const practiceWord = page
-    .locator('.story-practice')
+    .locator('.story-practice:not(.story-phrasal-practice)')
     .getByRole('button', { name: /^story word:/u })
     .first()
   await practiceWord.click()
   await expect(page.locator('#story-word-detail')).toBeVisible()
   await page.getByRole('button', { name: '닫기', exact: true }).click()
+
+  await expect(page.getByText('통합 단어장 750 / 750', { exact: true })).toBeVisible()
+  await page.getByText('구동사 확장 장면 · 전체 250개', { exact: true }).click()
+  const phrasalVerb = page.getByRole('button', {
+    name: 'story phrasal verb: wake up',
+    exact: true,
+  })
+  await phrasalVerb.click()
+  await expect(page.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeVisible()
+  await page.getByRole('button', { name: '닫기', exact: true }).click()
+  await expect(phrasalVerb).toBeFocused()
 
   await exerciseGrammarSmoke(page)
 

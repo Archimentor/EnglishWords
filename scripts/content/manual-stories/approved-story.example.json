@@ -11,8 +11,10 @@
       "coverageRate": 0
     },
     "usedWords": [],
+    "usedPhrasalVerbs": [],
     "storyText": "Mina.",
-    "vocabularyPracticeText": "Mina."
+    "vocabularyPracticeText": "Mina.",
+    "phrasalVerbPracticeText": "Mina."
   },
   "approval": {
     "reviewer": "editor@example.com",
@@ -20,7 +22,7 @@
     "sourceDigest": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "value": "faa1b55db377a619117b4be0d44e70773e7417d7e7dc3c59bb9dfa7556ababec"
+      "value": "5381a653d2bc30e0af3207414edc9f1fec85aff0ef7a2da69fe40b4a371e0bd6"
     }
   }
 }

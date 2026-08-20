@@ -99,8 +99,14 @@ export interface StoryContent {
     partOfSpeech: string
     forms: string[]
   }>
+  usedPhrasalVerbs: Array<{
+    id: string
+    phrasalVerb: string
+    example: string
+  }>
   storyText: string
   vocabularyPracticeText: string
+  phrasalVerbPracticeText: string
 }
 
 export interface GrammarRule {

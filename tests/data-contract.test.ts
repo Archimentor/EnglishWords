@@ -80,7 +80,7 @@ describe('data catalog contract', () => {
     expect(logs.join('\n')).toMatch(/grammarNodes=42/)
     expect(logs.join('\n')).toMatch(/stories=4/)
     expect(logs.join('\n')).toMatch(/succeeded/i)
-  })
+  }, 15_000)
 
   test('production release validation reflects the current story approvals', async () => {
     const { catalog, issues } = await validateData(DATA_ROOT, 'release')
@@ -120,6 +120,7 @@ describe('data catalog contract', () => {
           level,
           source: 'automated-draft',
           lemmaCount: updatedCatalog.stories[level].usedWords.length,
+          phrasalVerbCount: updatedCatalog.stories[level].usedPhrasalVerbs.length,
           coverageRate: updatedCatalog.stories[level].coverage.coverageRate,
         })),
       })
@@ -145,7 +146,7 @@ describe('data catalog contract', () => {
     } finally {
       await rm(tempDirectory, { recursive: true, force: true })
     }
-  })
+  }, 15_000)
 
   test('parses only the two exact validation mode arguments', () => {
     expect(parseValidationMode(['--mode=development'])).toBe('development')

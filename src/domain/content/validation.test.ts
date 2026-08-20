@@ -1164,6 +1164,55 @@ describe('validateStoryCoverage', () => {
     })
   })
 
+  test('mustCoverAll 스토리는 해당 레벨 단어장의 구동사도 전부 포함해야 한다', () => {
+    const phrasalVerb = makePhrasalVerb()
+    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
+    expect(validateStoryCoverage(catalog)).toEqual([])
+
+    catalog.stories.기초.usedPhrasalVerbs = []
+    expect(validateStoryCoverage(catalog)).toContainEqual({
+      code: 'STORY_PHRASAL_COVERAGE_MISSING',
+      path: 'stories.기초.usedPhrasalVerbs',
+      message: `Story for 기초 is missing required phrasal verb "${phrasalVerb.id}".`,
+    })
+  })
+
+  test('구동사 선언은 같은 레벨 카탈로그 ID·표제형·예문과 실제 장면을 모두 일치시킨다', () => {
+    const phrasalVerb = makePhrasalVerb()
+    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
+    const use = catalog.stories.기초.usedPhrasalVerbs[0]!
+    use.phrasalVerb = 'invented phrase'
+    use.example = phrasalVerb.examples[1]!
+
+    expect(validateStoryCoverage(catalog)).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        code: 'STORY_PHRASAL_MISMATCH',
+        path: 'stories.기초.usedPhrasalVerbs[0].phrasalVerb',
+      }),
+      expect.objectContaining({
+        code: 'STORY_PHRASAL_EXAMPLE_MISSING',
+        path: 'stories.기초.usedPhrasalVerbs[0].example',
+      }),
+    ]))
+  })
+
+  test('검증된 구동사 예문의 부가 어휘만 허용하고 장면 프레임의 미등록 단어는 거부한다', () => {
+    const phrasalVerb = makePhrasalVerb()
+    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
+    catalog.stories.기초.phrasalVerbPracticeText += ' Quizzacious.'
+
+    const issues = validateStoryCoverage(catalog)
+    expect(issues).not.toContainEqual(expect.objectContaining({
+      code: 'STORY_UNKNOWN_TEXT_WORD',
+      message: expect.stringContaining('wake'),
+    }))
+    expect(issues).toContainEqual({
+      code: 'STORY_UNKNOWN_TEXT_WORD',
+      path: 'stories.기초.phrasalVerbPracticeText',
+      message: 'Story package for 기초 contains unregistered lexical token "quizzacious".',
+    })
+  })
+
   test('mustCoverAll 스토리의 coverageRate가 1이 아니면 거부한다', () => {
     const catalog = makeCatalog()
     catalog.stories.기초.coverage.coverageRate = 0.75

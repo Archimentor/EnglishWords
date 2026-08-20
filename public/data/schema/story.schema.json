@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://english-words.local/schema/story.schema.json",
   "title": "StoryContent",
-  "description": "한 학습 레벨의 서사형 본편과 전체 어휘 장면 연습 콘텐츠 계약",
+  "description": "한 학습 레벨의 서사형 본편과 일반 단어·구동사 전체 확장 장면 콘텐츠 계약",
   "type": "object",
   "required": [
     "schemaVersion",
@@ -11,8 +11,10 @@
     "isManual",
     "coverage",
     "usedWords",
+    "usedPhrasalVerbs",
     "storyText",
-    "vocabularyPracticeText"
+    "vocabularyPracticeText",
+    "phrasalVerbPracticeText"
   ],
   "properties": {
     "schemaVersion": {
@@ -75,11 +77,37 @@
         "additionalProperties": false
       }
     },
+    "usedPhrasalVerbs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "phrasalVerb", "example"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "phrasalVerb": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "example": {
+            "type": "string",
+            "pattern": "\\S"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
     "storyText": {
       "type": "string",
       "pattern": "\\S"
     },
     "vocabularyPracticeText": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "phrasalVerbPracticeText": {
       "type": "string",
       "pattern": "\\S"
     }

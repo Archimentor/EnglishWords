@@ -326,8 +326,10 @@ export function makeStory(
         forms: ['play'],
       },
     ],
+    usedPhrasalVerbs: [],
     storyText: 'The children play together.',
     vocabularyPracticeText: 'Mina.',
+    phrasalVerbPracticeText: 'Mina.',
     ...overrides,
   }
 }
@@ -374,6 +376,18 @@ export function makeCatalog(options: MakeCatalogOptions = {}): ContentCatalog {
       }),
     ) as Record<Level, WordItem[]>)
 
+  const phrasalVerbs =
+    options.phrasalVerbs ??
+    {
+      top: [],
+      byLevel: {
+        기초: [],
+        유치원: [],
+        초등학교: [],
+        중학교: [],
+      },
+    }
+
   const stories =
     options.stories ??
     (Object.fromEntries(
@@ -385,26 +399,32 @@ export function makeCatalog(options: MakeCatalogOptions = {}): ContentCatalog {
             partOfSpeech: word.entries[0]?.partOfSpeech ?? 'word',
             forms: [word.word],
           })),
+          usedPhrasalVerbs: phrasalVerbs.byLevel[level].map((item) => ({
+            id: item.id,
+            phrasalVerb: item.phrasalVerb,
+            example: item.examples[0]!,
+          })),
           storyText: wordlists[level]
             .map((word) => `${word.word}.`)
             .join(' '),
+          phrasalVerbPracticeText: phrasalVerbs.byLevel[level].length === 0
+            ? 'Mina.'
+            : Array.from(
+                { length: Math.ceil(phrasalVerbs.byLevel[level].length / 5) },
+                (_, index) => [
+                  'Mina.',
+                  ...phrasalVerbs.byLevel[level]
+                    .slice(index * 5, (index + 1) * 5)
+                    .map((item) => item.examples[0]!),
+                ].join(' '),
+              ).join('\n\n'),
         }),
       ]),
     ) as ContentCatalog['stories'])
 
   return {
     wordlists,
-    phrasalVerbs:
-      options.phrasalVerbs ??
-      {
-        top: [],
-        byLevel: {
-          기초: [],
-          유치원: [],
-          초등학교: [],
-          중학교: [],
-        },
-      },
+    phrasalVerbs,
     stories,
     grammarNodes: options.grammarNodes ?? makeGrammarNodes(),
   }

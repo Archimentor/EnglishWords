@@ -1,4 +1,9 @@
-import type { Level, StoryContent, WordItem } from '../../src/domain/content/types'
+import type {
+  Level,
+  PhrasalVerbItem,
+  StoryContent,
+  WordItem,
+} from '../../src/domain/content/types'
 
 const STORY_TITLES: Record<Level, string> = {
   기초: '빨간 공을 따라간 Mina',
@@ -114,7 +119,7 @@ type Plot = (typeof PLOT)[Level]
 
 interface NarrativeContext {
   plot: Plot
-  allowedTokens: ReadonlySet<string>
+  examplesByLemma: ReadonlyMap<string, string>
 }
 
 type NarrativeBuckets = Record<'noun' | 'verb' | 'adjective' | 'adverb' | 'function', NarrativeWord[]>
@@ -263,51 +268,17 @@ function nounKindGroups(words: readonly NarrativeWord[]): NarrativeWord[][] {
 
 function selectSceneExamples(
   words: readonly NarrativeWord[],
-  allowedTokens: ReadonlySet<string>,
+  examplesByLemma: ReadonlyMap<string, string>,
 ): { examples: string[]; remaining: NarrativeWord[] } {
-  const candidates = new Map<string, Set<string>>()
-  const sceneLemmas = new Set(words.map(({ lemma }) => lemma.toLowerCase()))
-
-  for (const word of words) {
-    for (const entry of word.word.entries) {
-      if (entry.partOfSpeech !== word.partOfSpeech) continue
-      for (const rawExample of entry.examples) {
-        const example = rawExample.trim()
-        const tokens = storyTokens(example)
-        if (
-          /[?!]/u.test(example)
-          || /\b(?:i|me|my|mine|we|us|our|ours|you|your|yours|he|him|his|she|her|hers|they|them|their|theirs)\b/iu.test(example)
-          || tokens.size < 3
-          || tokens.size > 18
-          || [...tokens].some((token) => !allowedTokens.has(token) && token !== 'mina')
-        ) continue
-        const covered = new Set([...sceneLemmas].filter((lemma) => tokens.has(lemma)))
-        if (covered.size > 0) candidates.set(example, covered)
-      }
-    }
-  }
-
-  const uncovered = new Set(sceneLemmas)
   const examples: string[] = []
-  while (examples.length < 4 && candidates.size > 0) {
-    const best = [...candidates.entries()]
-      .map(([example, covered]) => ({
-        example,
-        covered: [...covered].filter((lemma) => uncovered.has(lemma)),
-      }))
-      .filter(({ covered }) => covered.length > 0)
-      .sort((left, right) =>
-        right.covered.length - left.covered.length || left.example.length - right.example.length)[0]
-    if (!best) break
-    examples.push(best.example)
-    best.covered.forEach((lemma) => uncovered.delete(lemma))
-    candidates.delete(best.example)
+  const remaining: NarrativeWord[] = []
+  for (const word of words) {
+    const selected = examplesByLemma.get(word.lemma)
+    if (selected) examples.push(selected)
+    else remaining.push(word)
   }
 
-  return {
-    examples,
-    remaining: words.filter(({ lemma }) => uncovered.has(lemma.toLowerCase())),
-  }
+  return { examples, remaining }
 }
 
 function renderNounChunk(words: readonly NarrativeWord[], context: NarrativeContext): string {
@@ -562,7 +533,7 @@ function bridge(sceneIndex: number, theme: StoryTheme, plot: Plot): string {
     ],
     travel: [
       `The ${plot.path} went from the garden to the city, and Mina went on.`,
-      `At the station, the red line changed again.`,
+      `At the station, Mina found a red line.`,
     ],
     work: [
       `The market was busy, but Mina saw the ${plot.helper}.`,
@@ -598,14 +569,16 @@ function bridge(sceneIndex: number, theme: StoryTheme, plot: Plot): string {
 function renderScene(
   scene: NarrativeScene,
   sceneIndex: number,
+  sceneCount: number,
   context: NarrativeContext,
 ): string {
   const { plot } = context
-  const { examples, remaining } = selectSceneExamples(scene.words, context.allowedTokens)
+  const { examples, remaining } = selectSceneExamples(scene.words, context.examplesByLemma)
   const byBucket: NarrativeBuckets = {
     noun: [], verb: [], adjective: [], adverb: [], function: [],
   }
   remaining.forEach((word) => byBucket[bucketFor(word.partOfSpeech)].push(word))
+  const stage = phrasalStoryStage(sceneIndex, sceneCount, plot)
   const closes = [
     `Mina looked at the picture. The blue letter was there, and she made a new plan.`,
     `The picture ended, but a red line was on the ${plot.guide}. Mina went on.`,
@@ -613,8 +586,9 @@ function renderScene(
     `The ${plot.helper} was ready, and Mina took the ${plot.guide}.`,
   ]
   return [
+    stage.opening,
     bridge(sceneIndex, scene.theme, plot),
-    ...examples,
+    ...renderStoryVoices(examples),
     ...nounKindGroups(byBucket.noun)
       .flatMap((sameKind) => groups(sameKind, 6))
       .map((chunk) => renderNounChunk(chunk, context)),
@@ -623,22 +597,12 @@ function renderScene(
     ...byBucket.adverb.map((word) => renderAdverb(word, context)),
     ...byBucket.function.map((word) => functionSentence(word, plot)),
     closes[sceneIndex % closes.length],
+    stage.closing,
   ].filter(Boolean).join(' ')
 }
 
 function storyTokens(storyText: string): Set<string> {
   return new Set(storyText.toLowerCase().match(/[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*/gu) ?? [])
-}
-
-function allowedStoryTokens(words: readonly WordItem[]): Set<string> {
-  const tokens = new Set<string>(['mina', "mina's", 'mina’s'])
-  for (const word of words) {
-    for (const entry of word.entries) {
-      const forms = Array.isArray(entry.forms) ? entry.forms : Object.values(entry.forms)
-      forms.forEach((form) => tokens.add(form.toLowerCase()))
-    }
-  }
-  return tokens
 }
 
 function hasFullNarrativeAnchors(allowedWords: readonly WordItem[]): boolean {
@@ -652,50 +616,223 @@ function fallbackStoryText(words: readonly WordItem[]): string {
     .join('\n\n')
 }
 
+function selectStoryWordUses(words: readonly WordItem[]): {
+  usedWords: StoryContent['usedWords']
+  examplesByLemma: ReadonlyMap<string, string>
+} {
+  const reservedLemmas = new Set(words.map(({ lemma }) => lemma.toLowerCase()))
+  const claimedForms = new Set<string>()
+  const examplesByLemma = new Map<string, string>()
+  const usedWords = words.map((word) => {
+    const candidates = word.entries.flatMap((entry) => {
+      return entry.examples.flatMap((rawExample) => {
+        const example = rawExample.trim()
+        if (/\b(?:assholes?|bastards?|fuck(?:ed|ing)?|shit(?:ty)?|whores?|sluts?)\b/iu.test(example)) {
+          return []
+        }
+        const tokens = storyTokens(example)
+        const forms = Array.isArray(entry.forms) ? entry.forms : Object.values(entry.forms)
+        return [...new Set(forms)]
+          .filter((form) => tokens.has(form.toLowerCase()))
+          .map((form) => ({ example, form, partOfSpeech: entry.partOfSpeech }))
+      })
+    }).sort((left, right) => {
+      const lemmaDifference = Number(left.form.toLowerCase() !== word.lemma.toLowerCase())
+        - Number(right.form.toLowerCase() !== word.lemma.toLowerCase())
+      const minaDifference = Number(!/\bMina\b/u.test(left.example))
+        - Number(!/\bMina\b/u.test(right.example))
+      return lemmaDifference
+        || minaDifference
+        || left.example.length - right.example.length
+        || left.example.localeCompare(right.example)
+    })
+    const selected = candidates.find(({ form }) => {
+      const normalizedForm = form.toLowerCase()
+      return !claimedForms.has(normalizedForm)
+        && (
+          normalizedForm === word.lemma.toLowerCase()
+          || !reservedLemmas.has(normalizedForm)
+        )
+    })
+    if (!selected) {
+      claimedForms.add(word.lemma.toLowerCase())
+      return {
+        lemma: word.lemma,
+        partOfSpeech: word.entries[0]!.partOfSpeech,
+        forms: [word.lemma],
+      }
+    }
+    claimedForms.add(selected.form.toLowerCase())
+    examplesByLemma.set(word.lemma, selected.example)
+    return {
+      lemma: word.lemma,
+      partOfSpeech: selected.partOfSpeech,
+      forms: [selected.form],
+    }
+  })
+  return { usedWords, examplesByLemma }
+}
+
+function selectPhrasalStoryExample(item: PhrasalVerbItem): string {
+  const ranked = [...item.examples].sort((left, right) => {
+    const minaDifference = Number(!/\bMina\b/u.test(left)) - Number(!/\bMina\b/u.test(right))
+    if (minaDifference !== 0) return minaDifference
+    const wordDifference = (left.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0)
+      - (right.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0)
+    return wordDifference || left.length - right.length || left.localeCompare(right)
+  })
+  const selected = ranked[0]?.trim()
+  if (!selected) throw new Error(`Phrasal verb ${item.phrasalVerb} has no usable story example`)
+  return selected
+}
+
+function renderStoryVoices(examples: readonly string[]): string[] {
+  const speakers = [
+    (example: string) => `A child read from the page: “${example}”`,
+    (example: string) => `A woman wrote on the page: “${example}”`,
+    (example: string) => `A boy talked to Mina: “${example}”`,
+    (example: string) => `A girl called from the city: “${example}”`,
+    (example: string) => `The picture opened, and Mina heard: “${example}”`,
+  ]
+  return examples.map((example, index) => speakers[index % speakers.length]!(example))
+}
+
+function renderPhrasalVoices(
+  chunk: ReadonlyArray<StoryContent['usedPhrasalVerbs'][number]>,
+): string[] {
+  return renderStoryVoices(chunk.map(({ example }) => example))
+}
+
+function phrasalStoryStage(sceneIndex: number, sceneCount: number, plot: Plot): {
+  opening: string
+  closing: string
+} {
+  const stage = Math.min(4, Math.floor(sceneIndex * 5 / sceneCount))
+  const stages = [
+    {
+      opening: `The ${plot.guide} had a blue line. Mina began a new walk with the ${plot.helper}.`,
+      closing: `Mina put the page on the map and followed the red line.`,
+    },
+    {
+      opening: `The ${plot.path} became dark, and rain fell. Mina was afraid, but the ${plot.helper} was with her.`,
+      closing: `The new picture had a road for Mina. She held the ${plot.guide} and went on.`,
+    },
+    {
+      opening: `The map did not have the road. Mina listened to the ${plot.helper} and changed her plan.`,
+      closing: `Mina joined the lines and made a new plan. She went on with the ${plot.helper}.`,
+    },
+    {
+      opening: `At a dark old house, Mina found the family from the picture. The door was closed, and they asked for help.`,
+      closing: `The picture became clear, and Mina opened a new door. The family followed her.`,
+    },
+    {
+      opening: `The red line ended at the ${plot.setting}. Mina carried the pages with her.`,
+      closing: `The pages made a full picture. Mina found the way, and the family was happy.`,
+    },
+  ] as const
+  return stages[stage]!
+}
+
+function phrasalSceneOpening(sceneIndex: number, plot: Plot): string {
+  const openings = [
+    `In the morning, Mina found a new page in the ${plot.guide}. The ${plot.helper} looked at the page and began to walk.`,
+    `A red line crossed the page and went to the ${plot.setting}. Mina took the ${plot.guide} and followed it.`,
+    `At the ${plot.setting}, a closed door had a blue picture. Mina took the key and opened the door.`,
+    `The room was dark, but a page had a little light. Mina went in and took the page.`,
+    `Rain fell on the ${plot.path}, and the ${plot.guide} was wet. Mina covered it with her bag and continued the walk.`,
+    `At night, the ${plot.helper} began to cry at a dark old house. Mina ran to the house and found a page.`,
+    `The page had a road to the city. Mina called her family and asked for help.`,
+    `A family brought a picture from the garden. Mina put it on the ${plot.guide} and saw a new line.`,
+    `The line ended at a wall. Mina did not know the way, but the ${plot.helper} found a door.`,
+    `The door was closed, and the key did not open it. Mina read the ${plot.guide} and found a small line.`,
+  ] as const
+  return openings[sceneIndex % openings.length]!
+}
+
+function buildPhrasalVerbPractice(
+  level: Level,
+  phrasalVerbs: readonly PhrasalVerbItem[],
+  allowedWords: readonly WordItem[],
+): Pick<StoryContent, 'usedPhrasalVerbs' | 'phrasalVerbPracticeText'> {
+  const usedPhrasalVerbs = phrasalVerbs.map((item) => ({
+    id: item.id,
+    phrasalVerb: item.phrasalVerb,
+    example: selectPhrasalStoryExample(item),
+  }))
+  if (usedPhrasalVerbs.length === 0) {
+    return { usedPhrasalVerbs, phrasalVerbPracticeText: 'Mina.' }
+  }
+
+  if (!hasFullNarrativeAnchors(allowedWords)) {
+    return {
+      usedPhrasalVerbs,
+      phrasalVerbPracticeText: groups(usedPhrasalVerbs, 5)
+        .map((chunk) => chunk.map(({ example }) => example).join(' '))
+        .join('\n\n'),
+    }
+  }
+
+  const plot = PLOT[level]
+  const scenes = groups(usedPhrasalVerbs, 5)
+  return {
+    usedPhrasalVerbs,
+    phrasalVerbPracticeText: scenes
+      .map((chunk, index) => {
+        const stage = phrasalStoryStage(index, scenes.length, plot)
+        return [
+          stage.opening,
+          phrasalSceneOpening(index, plot),
+          ...renderPhrasalVoices(chunk),
+          stage.closing,
+        ].join(' ')
+      })
+      .join('\n\n'),
+  }
+}
+
 function buildReadingTexts(
   level: Level,
   words: readonly WordItem[],
   allowedWords: readonly WordItem[],
-): { storyText: string; vocabularyPracticeText: string } {
+): Pick<StoryContent, 'usedWords' | 'storyText' | 'vocabularyPracticeText'> {
   if (!hasFullNarrativeAnchors(allowedWords)) {
     return {
+      usedWords: words.map((word) => ({
+        lemma: word.lemma,
+        partOfSpeech: word.entries[0]!.partOfSpeech,
+        forms: [word.lemma],
+      })),
       storyText: 'Mina.',
       vocabularyPracticeText: fallbackStoryText(words),
     }
   }
 
   const plot = PLOT[level]
-  const context: NarrativeContext = { plot, allowedTokens: allowedStoryTokens(allowedWords) }
+  const { usedWords, examplesByLemma } = selectStoryWordUses(words)
+  const context: NarrativeContext = { plot, examplesByLemma }
   const storyText = [...plot.opening, ...plot.turns, ...plot.ending].join('\n\n')
-  const coveredTokens = storyTokens(storyText)
-  const scenes = themedScenes(words.filter(({ lemma }) => !coveredTokens.has(lemma.toLowerCase())))
-  const practiceParagraphs: string[] = []
-  scenes.forEach((scene, index) => {
-    const uncoveredScene: NarrativeScene = {
-      theme: scene.theme,
-      words: scene.words.filter(({ lemma }) => !coveredTokens.has(lemma.toLowerCase())),
-    }
-    if (uncoveredScene.words.length === 0) return
-    const paragraph = renderScene(uncoveredScene, index, context)
-    practiceParagraphs.push(paragraph)
-    storyTokens(paragraph).forEach((token) => coveredTokens.add(token))
-  })
+  const scenes = themedScenes(words)
+  const practiceParagraphs = scenes.map((scene, index) =>
+    renderScene(scene, index, scenes.length, context))
 
   const vocabularyPracticeText = practiceParagraphs.join('\n\n')
   const tokens = storyTokens(`${storyText}\n\n${vocabularyPracticeText}`)
-  const missing = words.filter(({ lemma }) => !tokens.has(lemma.toLowerCase()))
+  const missing = usedWords.filter(({ forms }) =>
+    forms.some((form) => !tokens.has(form.toLowerCase())))
   if (missing.length > 0) {
     throw new Error(`Reading package for ${level} omitted: ${missing.map(({ lemma }) => lemma).join(', ')}`)
   }
-  return { storyText, vocabularyPracticeText }
+  return { usedWords, storyText, vocabularyPracticeText }
 }
 
 export function buildStoryDraft(
   level: Level,
   words: readonly WordItem[],
   allowedWords: readonly WordItem[] = words,
+  phrasalVerbs: readonly PhrasalVerbItem[] = [],
 ): StoryContent {
   const texts = buildReadingTexts(level, words, allowedWords)
+  const phrasalPractice = buildPhrasalVerbPractice(level, phrasalVerbs, allowedWords)
   return {
     schemaVersion: '1.0.0',
     level,
@@ -706,11 +843,7 @@ export function buildStoryDraft(
       allowUpperLevelWords: false,
       coverageRate: 1,
     },
-    usedWords: words.map((word) => ({
-      lemma: word.lemma,
-      partOfSpeech: word.entries[0]!.partOfSpeech,
-      forms: [word.lemma],
-    })),
     ...texts,
+    ...phrasalPractice,
   }
 }

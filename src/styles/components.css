@@ -505,6 +505,34 @@
   font-size: clamp(1rem, 1.3vw, 1.16rem);
 }
 
+.story-phrasal-scene {
+  margin-block-end: var(--space-6);
+  padding-block-end: var(--space-5);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.story-phrasal-scene:last-child {
+  margin-block-end: 0;
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+
+.story-phrasal-scene__terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.story-phrasal-button {
+  border: 1px solid var(--color-teal);
+  border-radius: 999px;
+  padding: 0.18rem 0.55rem;
+  background: var(--color-teal-soft);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+}
+
 .story-word-button {
   display: inline;
   min-height: 0;

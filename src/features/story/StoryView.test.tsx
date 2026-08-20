@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { makeStory, makeWord } from '../../test/fixtures'
+import { makePhrasalVerb, makeStory, makeWord } from '../../test/fixtures'
 import * as storyTokenization from './storyTokens'
 import { StoryView } from './StoryView'
 
@@ -35,10 +35,10 @@ test('수동 소설과 대표/릴리스 커버리지를 분리해 표시한다',
   expect(within(article).getByRole('heading', { name: '함께 노는 친구들' })).toBeInTheDocument()
   expect(within(article).getByText('A safe <story> stays plain text.')).toBeInTheDocument()
   expect(within(article).getByText('수동 작성: 예')).toBeInTheDocument()
-  expect(within(article).getByText('모든 대표 단어 포함: 예')).toBeInTheDocument()
+  expect(within(article).getByText('통합 단어장 전체 포함: 예')).toBeInTheDocument()
   expect(within(article).getByText('상위 레벨 단어 허용: 아니요')).toBeInTheDocument()
   expect(within(article).getByText('현재 대표 데이터 커버리지 100%')).toBeInTheDocument()
-  expect(within(article).getByText('대표 단어 8 / 8')).toBeInTheDocument()
+  expect(within(article).getByText('일반 단어 8 / 8')).toBeInTheDocument()
   expect(within(article).getByText('릴리스 목표 대비 8 / 500 (1.6%)')).toBeInTheDocument()
   expect(within(article).getByText(/word-1.*verb.*word-1s/)).toBeInTheDocument()
 })
@@ -60,11 +60,47 @@ test('본편과 전체 커버리지 어휘 장면을 분리하고 연습 단어�
   const practiceWord = screen.getByRole('button', { name: 'story word: played' })
   expect(practiceWord).not.toBeVisible()
 
-  await user.click(screen.getByText('어휘 장면 연습 · 전체 1개 단어'))
+  await user.click(screen.getByText('일반 단어 확장 장면 · 전체 1개'))
   expect(practiceWord).toBeVisible()
   await user.click(practiceWord)
 
   expect(screen.getByRole('heading', { name: 'play 단어 상세' })).toBeInTheDocument()
+})
+
+test('구동사 확장 장면에서 단어장 구동사의 실제 예문과 상세를 제공한다', async () => {
+  const user = userEvent.setup()
+  const phrasalVerb = makePhrasalVerb()
+  const story = makeStory('기초', {
+    usedPhrasalVerbs: [{
+      id: phrasalVerb.id,
+      phrasalVerb: phrasalVerb.phrasalVerb,
+      example: phrasalVerb.examples[0]!,
+    }],
+    phrasalVerbPracticeText: `Mina opened the next page. ${phrasalVerb.examples[0]} Mina went on.`,
+  })
+
+  render(
+    <StoryView
+      story={story}
+      levelWords={[makeWord()]}
+      levelPhrasalVerbs={[phrasalVerb]}
+      targetWordCount={500}
+      targetPhrasalVerbCount={250}
+    />,
+  )
+
+  expect(screen.getByText('구동사 1 / 1')).toBeInTheDocument()
+  const trigger = screen.getByRole('button', { name: 'story phrasal verb: wake up' })
+  expect(trigger).not.toBeVisible()
+  await user.click(screen.getByText('구동사 확장 장면 · 전체 1개'))
+  expect(screen.getByRole('region', { name: '구동사 확장 장면 1' }))
+    .toHaveTextContent(phrasalVerb.examples[0]!)
+  await user.click(trigger)
+
+  expect(screen.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeInTheDocument()
+  expect(screen.getByText('잠에서 깨다')).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: '닫기' }))
+  expect(trigger).toHaveFocus()
 })
 
 test('false 메타데이터 상태도 텍스트로 명확히 표시한다', () => {
@@ -86,7 +122,7 @@ test('false 메타데이터 상태도 텍스트로 명확히 표시한다', () =
   )
 
   expect(screen.getByText('수동 작성: 아니요')).toBeInTheDocument()
-  expect(screen.getByText('모든 대표 단어 포함: 아니요')).toBeInTheDocument()
+  expect(screen.getByText('통합 단어장 전체 포함: 아니요')).toBeInTheDocument()
   expect(screen.getByText('상위 레벨 단어 허용: 예')).toBeInTheDocument()
   expect(screen.getByText('현재 대표 데이터 커버리지 50%')).toBeInTheDocument()
 })
@@ -165,7 +201,7 @@ test('상위 레벨 소설에 기록된 하위 레벨 단어도 누적 사전에
   await user.click(screen.getByRole('button', { name: 'story word: play' }))
 
   expect(screen.getByRole('heading', { name: 'play 단어 상세' })).toBeInTheDocument()
-  expect(screen.getByText('대표 단어 0 / 1')).toBeInTheDocument()
+  expect(screen.getByText('일반 단어 0 / 1')).toBeInTheDocument()
 })
 
 test('선택한 소설 표면형의 발음을 재생하고 상세를 닫을 때 취소한다', async () => {
@@ -235,12 +271,12 @@ test('reuses tokenization when opening and closing a word detail', async () => {
 
   try {
     render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
-    expect(tokenizeSpy).toHaveBeenCalledTimes(2)
+    expect(tokenizeSpy).toHaveBeenCalledTimes(3)
 
     await user.click(screen.getByRole('button', { name: 'story word: played' }))
     await user.click(screen.getByRole('button', { name: '닫기' }))
 
-    expect(tokenizeSpy).toHaveBeenCalledTimes(2)
+    expect(tokenizeSpy).toHaveBeenCalledTimes(3)
   } finally {
     tokenizeSpy.mockRestore()
   }

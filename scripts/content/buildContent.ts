@@ -121,6 +121,7 @@ interface AutomatedStoryProvenanceRecord {
   level: Level
   source: 'automated-draft'
   lemmaCount: number
+  phrasalVerbCount: number
   coverageRate: number
 }
 
@@ -128,12 +129,13 @@ interface ApprovedManualStoryProvenanceRecord {
   level: Level
   source: 'approved-manual-input'
   lemmaCount: number
+  phrasalVerbCount: number
   coverageRate: number
   approval: ManualStoryApproval
 }
 
 export interface StoryCatalogProvenance {
-  schemaVersion: '3.0.0'
+  schemaVersion: '4.0.0'
   generatedBy: 'scripts/content/buildContent.ts'
   outputDigest: OutputDigest
   status: StoryCatalogProvenanceStatus
@@ -810,6 +812,12 @@ function validateStoryProvenanceMetrics(
   if (record.lemmaCount !== story.usedWords.length) {
     issues.push(`${path}.lemmaCount must match the current story`)
   }
+  if (
+    record.phrasalVerbCount !== undefined
+    && record.phrasalVerbCount !== story.usedPhrasalVerbs.length
+  ) {
+    issues.push(`${path}.phrasalVerbCount must match the current story`)
+  }
   if (record.coverageRate !== story.coverage.coverageRate) {
     issues.push(`${path}.coverageRate must match the current story`)
   }
@@ -914,7 +922,7 @@ function validateCurrentStoryProvenance(
     if (record.source === 'automated-draft') {
       validateExactFields(
         record,
-        ['level', 'source', 'lemmaCount', 'coverageRate'],
+        ['level', 'source', 'lemmaCount', 'phrasalVerbCount', 'coverageRate'],
         path,
         issues,
       )
@@ -924,7 +932,7 @@ function validateCurrentStoryProvenance(
     } else if (record.source === 'approved-manual-input') {
       validateExactFields(
         record,
-        ['level', 'source', 'lemmaCount', 'coverageRate', 'approval'],
+        ['level', 'source', 'lemmaCount', 'phrasalVerbCount', 'coverageRate', 'approval'],
         path,
         issues,
       )
@@ -939,7 +947,7 @@ function validateCurrentStoryProvenance(
     } else {
       validateExactFields(
         record,
-        ['level', 'source', 'lemmaCount', 'coverageRate'],
+        ['level', 'source', 'lemmaCount', 'phrasalVerbCount', 'coverageRate'],
         path,
         issues,
       )
@@ -958,10 +966,10 @@ function validateStoryProvenance(
   if (value.schemaVersion === '2.0.0') {
     return validateLegacyStoryProvenance(value, stories)
   }
-  if (value.schemaVersion === '3.0.0') {
+  if (value.schemaVersion === '4.0.0') {
     return validateCurrentStoryProvenance(value, stories)
   }
-  return ['storyProvenance.schemaVersion must be 2.0.0 or 3.0.0']
+  return ['storyProvenance.schemaVersion must be 2.0.0 or 4.0.0']
 }
 
 function structuredProvenanceIssue(detail: string): ValidationIssue {
@@ -1006,7 +1014,7 @@ export function storyCatalogProvenance(
 ): StoryCatalogProvenance {
   assertApprovedManualStories(approvedManualStories)
   return {
-    schemaVersion: '3.0.0',
+    schemaVersion: '4.0.0',
     generatedBy: 'scripts/content/buildContent.ts',
     outputDigest: storyCatalogOutputDigest(stories),
     status: storyCatalogStatus(stories),
@@ -1016,6 +1024,7 @@ export function storyCatalogProvenance(
       const metrics = {
         level,
         lemmaCount: stories[level].usedWords.length,
+        phrasalVerbCount: stories[level].usedPhrasalVerbs.length,
         coverageRate: stories[level].coverage.coverageRate,
       }
       if (!approvalInput) return { ...metrics, source: 'automated-draft' as const }
@@ -1050,6 +1059,7 @@ export function createContentGeneration(input: ContentGenerationInput): ContentG
       level,
       input.wordlists[level],
       LEVELS.slice(0, levelIndex + 1).flatMap((allowedLevel) => input.wordlists[allowedLevel]),
+      input.phrasalByLevel[level],
     ),
   ])) as Record<Level, StoryContent>
 

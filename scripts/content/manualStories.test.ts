@@ -26,8 +26,10 @@ function storyFixture(level: Level = '기초'): StoryContent {
       coverageRate: 0,
     },
     usedWords: [],
+    usedPhrasalVerbs: [],
     storyText: 'Mina.',
     vocabularyPracticeText: 'Mina.',
+    phrasalVerbPracticeText: 'Mina.',
   }
 }
 
@@ -119,6 +121,7 @@ describe('approved manual story inputs', () => {
       expect.stringContaining('story.title'),
       expect.stringContaining('story.coverage'),
       expect.stringContaining('story.usedWords'),
+      expect.stringContaining('story.usedPhrasalVerbs'),
       expect.stringContaining('story.storyText'),
     ]))
   })

@@ -53,14 +53,15 @@
 ### 소설
 
 - 레벨당 하나의 완결된 `storyText` 본편을 유지한다. 본편은 도입·갈등·전환·해결이 이어지는 최소 7문단 서사이며, 커버리지용 문장 모음을 본편에 섞지 않는다.
-- `vocabularyPracticeText`는 본편의 흐름을 끊지 않는 별도 접이식 어휘 장면 연습이다.
-- `usedWords`는 해당 레벨 wordlist의 모든 lemma를 정확히 한 번 이상 추적하고, 각 기록은 `storyText`와 `vocabularyPracticeText`를 합친 읽기 패키지에 있는 표면형 및 품사와 일치해야 한다.
-- 현재 레벨보다 높은 lemma는 두 텍스트와 `usedWords` 어디에도 들어갈 수 없다. 상위 레벨 읽기 패키지는 하위 레벨 어휘를 사용할 수 있다.
-- 모든 추적 단어는 단어 상세로 연결 가능한 표면형을 최소 하나 갖는다.
+- `vocabularyPracticeText`와 `phrasalVerbPracticeText`는 본편의 흐름을 끊지 않는 별도 접이식 일반 단어·구동사 확장 장면이다.
+- `usedWords`는 해당 레벨 wordlist의 모든 lemma를 추적하고, 각 기록은 세 텍스트를 합친 읽기 패키지에 있는 등록 표면형 및 품사와 일치해야 한다.
+- `usedPhrasalVerbs`는 해당 레벨 구동사 250개의 ID·표현·카탈로그 예문을 정확히 추적하며, 예문은 구동사 확장 장면에 실제로 한 번 등장해야 한다.
+- 감사된 카탈로그 예문 바깥의 서사 프레임은 현재 레벨보다 높은 lemma를 사용할 수 없다. 상위 레벨 읽기 패키지는 하위 레벨 어휘를 사용할 수 있다.
+- 모든 추적 일반 단어와 구동사는 각각 상세로 연결 가능한 사용 형태를 최소 하나 갖는다.
 
 ## 4. 소설 단어 상세 상호작용
 
-`StoryView`는 `storyText`나 `vocabularyPracticeText`를 HTML로 주입하지 않는다. 두 영역을 `usedWords.forms`와 wordlist의 형태를 기준으로 longest-match 방식으로 토큰화한다. 본편은 문단 단위로 읽고, 어휘 장면 연습은 기본적으로 닫혀 있다.
+`StoryView`는 세 텍스트를 HTML로 주입하지 않는다. 일반 단어는 `usedWords.forms`와 wordlist 형태를 기준으로 longest-match 방식으로 토큰화한다. 구동사 확장 장면은 감사 예문별 구동사 버튼을 함께 표시한다. 본편은 문단 단위로 읽고, 두 확장 장면은 기본적으로 닫혀 있다.
 
 1. 일치하는 단어·형태는 `<button class="story-word">`로 렌더링하고, 문장부호와 일치하지 않는 텍스트는 원문 그대로 둔다.
 2. 버튼은 키보드로 포커스·Enter·Space 조작이 가능하며 `aria-pressed`, `aria-controls`, 읽기 쉬운 접근성 이름을 가진다.
@@ -96,7 +97,7 @@ release validator + story coverage + UI lookup tests
 ## 6. 테스트와 검증
 
 - 데이터 테스트: 정확한 수량, 고유 ID/lemma/family, 비어 있지 않은 학습 필드, 구동사 payload 일치, 출처 manifest 일치.
-- 소설 계약 테스트: 네 본편의 서사 구조와 목록형 회귀 방지, 두 텍스트를 합친 100% lemma·형태·품사·레벨 제한 및 추적 가능한 표면형을 검증.
+- 소설 계약 테스트: 네 본편의 서사 구조와 목록형 회귀 방지, 본편·일반 단어 확장 장면·구동사 확장 장면을 합친 100% lemma·구동사 ID·형태·품사·레벨 제한 및 추적 가능한 표면형을 검증.
 - 컴포넌트 테스트: 단어 버튼 렌더링, 클릭·키보드 선택, 상세 카드 내용, Escape 닫기·포커스 복귀, 일반 텍스트 보존.
 - 통합 테스트: 실제 catalog의 소설에서 선택한 단어가 wordlist의 동일 entry로 연결되는지 확인.
 - 최종 게이트: `npm run validate:release`, `npm run check`, 데스크톱·390px 브라우저에서 소설 클릭과 상세 카드 QA.

@@ -381,7 +381,7 @@ describe('createContentGeneration', () => {
       target.endsWith('story-drafts.json'))
     expect(storyProvenance).toBeDefined()
     expect(JSON.parse(storyProvenance!.bytes.toString('utf8'))).toMatchObject({
-      schemaVersion: '3.0.0',
+      schemaVersion: '4.0.0',
       status: 'automated-drafts',
       outputDigest: {
         algorithm: 'sha256',
@@ -392,6 +392,7 @@ describe('createContentGeneration', () => {
         level,
         source: 'automated-draft',
         lemmaCount: generation.catalog.stories[level].usedWords.length,
+        phrasalVerbCount: generation.catalog.stories[level].usedPhrasalVerbs.length,
         coverageRate: generation.catalog.stories[level].coverage.coverageRate,
       })),
     })
@@ -419,7 +420,7 @@ describe('createContentGeneration', () => {
       target.endsWith('story-drafts.json'))!
     const provenance = JSON.parse(provenanceArtifact.bytes.toString('utf8'))
     expect(provenance).toMatchObject({
-      schemaVersion: '3.0.0',
+      schemaVersion: '4.0.0',
       status: 'mixed-approved-manual-and-automated',
       stories: [{
         level: '기초',

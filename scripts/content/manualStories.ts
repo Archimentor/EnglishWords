@@ -56,12 +56,34 @@ function validateStoryPayload(
     'isManual',
     'coverage',
     'usedWords',
+    'usedPhrasalVerbs',
     'storyText',
     'vocabularyPracticeText',
+    'phrasalVerbPracticeText',
   ])) {
     issues.push(
-      `${path} must contain exactly schemaVersion, level, title, isManual, coverage, usedWords, storyText, vocabularyPracticeText`,
+      `${path} must contain exactly schemaVersion, level, title, isManual, coverage, usedWords, usedPhrasalVerbs, storyText, vocabularyPracticeText, phrasalVerbPracticeText`,
     )
+  }
+
+  if (!Array.isArray(value.usedPhrasalVerbs)) {
+    issues.push(`${path}.usedPhrasalVerbs must be an array`)
+  } else {
+    value.usedPhrasalVerbs.forEach((usedPhrasalVerb, index) => {
+      const usedPhrasalPath = `${path}.usedPhrasalVerbs[${index}]`
+      if (!isRecord(usedPhrasalVerb)) {
+        issues.push(`${usedPhrasalPath} must be an object`)
+        return
+      }
+      if (!hasExactFields(usedPhrasalVerb, ['id', 'phrasalVerb', 'example'])) {
+        issues.push(`${usedPhrasalPath} must contain exactly id, phrasalVerb, example`)
+      }
+      for (const field of ['id', 'phrasalVerb', 'example'] as const) {
+        if (!isNonBlankString(usedPhrasalVerb[field])) {
+          issues.push(`${usedPhrasalPath}.${field} must be a non-blank string`)
+        }
+      }
+    })
   }
   if (value.schemaVersion !== '1.0.0') {
     issues.push(`${path}.schemaVersion must be 1.0.0`)
@@ -136,6 +158,9 @@ function validateStoryPayload(
   }
   if (!isNonBlankString(value.vocabularyPracticeText)) {
     issues.push(`${path}.vocabularyPracticeText must be a non-blank string`)
+  }
+  if (!isNonBlankString(value.phrasalVerbPracticeText)) {
+    issues.push(`${path}.phrasalVerbPracticeText must be a non-blank string`)
   }
   return issues
 }

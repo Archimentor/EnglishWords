@@ -132,7 +132,7 @@
       },
       {
         "lemma": "want",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "want"
         ]
@@ -174,7 +174,7 @@
       },
       {
         "lemma": "well",
-        "partOfSpeech": "adverb",
+        "partOfSpeech": "adjective",
         "forms": [
           "well"
         ]
@@ -195,7 +195,7 @@
       },
       {
         "lemma": "very",
-        "partOfSpeech": "adverb",
+        "partOfSpeech": "adjective",
         "forms": [
           "very"
         ]
@@ -223,7 +223,7 @@
       },
       {
         "lemma": "work",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "work"
         ]
@@ -258,7 +258,7 @@
       },
       {
         "lemma": "need",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "need"
         ]
@@ -377,7 +377,7 @@
       },
       {
         "lemma": "right",
-        "partOfSpeech": "adverb",
+        "partOfSpeech": "verb",
         "forms": [
           "right"
         ]
@@ -426,7 +426,7 @@
       },
       {
         "lemma": "home",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "home"
         ]
@@ -442,7 +442,7 @@
         "lemma": "month",
         "partOfSpeech": "noun",
         "forms": [
-          "month"
+          "months"
         ]
       },
       {
@@ -463,7 +463,7 @@
         "lemma": "word",
         "partOfSpeech": "noun",
         "forms": [
-          "word"
+          "words"
         ]
       },
       {
@@ -552,7 +552,7 @@
       },
       {
         "lemma": "best",
-        "partOfSpeech": "adjective",
+        "partOfSpeech": "noun",
         "forms": [
           "best"
         ]
@@ -568,12 +568,12 @@
         "lemma": "kid",
         "partOfSpeech": "noun",
         "forms": [
-          "kid"
+          "kids"
         ]
       },
       {
         "lemma": "nothing",
-        "partOfSpeech": "pronoun",
+        "partOfSpeech": "noun",
         "forms": [
           "nothing"
         ]
@@ -657,7 +657,7 @@
       },
       {
         "lemma": "reason",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "reason"
         ]
@@ -713,7 +713,7 @@
       },
       {
         "lemma": "love",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "love"
         ]
@@ -727,14 +727,14 @@
       },
       {
         "lemma": "wait",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "wait"
         ]
       },
       {
         "lemma": "stay",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "stay"
         ]
@@ -827,7 +827,7 @@
         "lemma": "wear",
         "partOfSpeech": "verb",
         "forms": [
-          "wear"
+          "wearing"
         ]
       },
       {
@@ -923,7 +923,7 @@
       },
       {
         "lemma": "draw",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "draw"
         ]
@@ -1023,19 +1023,19 @@
         "lemma": "goal",
         "partOfSpeech": "noun",
         "forms": [
-          "goal"
+          "goals"
         ]
       },
       {
         "lemma": "order",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "order"
         ]
       },
       {
         "lemma": "focus",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "focus"
         ]
@@ -1051,19 +1051,19 @@
         "lemma": "push",
         "partOfSpeech": "verb",
         "forms": [
-          "push"
+          "pushed"
         ]
       },
       {
         "lemma": "note",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "note"
         ]
       },
       {
         "lemma": "fine",
-        "partOfSpeech": "adjective",
+        "partOfSpeech": "noun",
         "forms": [
           "fine"
         ]
@@ -1133,7 +1133,7 @@
       },
       {
         "lemma": "answer",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "answer"
         ]
@@ -1177,7 +1177,7 @@
         "lemma": "skill",
         "partOfSpeech": "noun",
         "forms": [
-          "skill"
+          "skills"
         ]
       },
       {
@@ -1287,7 +1287,7 @@
       },
       {
         "lemma": "shoulder",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "shoulder"
         ]
@@ -1324,7 +1324,7 @@
         "lemma": "item",
         "partOfSpeech": "noun",
         "forms": [
-          "item"
+          "items"
         ]
       },
       {
@@ -1336,7 +1336,7 @@
       },
       {
         "lemma": "step",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "step"
         ]
@@ -1350,14 +1350,14 @@
       },
       {
         "lemma": "vote",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "vote"
         ]
       },
       {
         "lemma": "travel",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "travel"
         ]
@@ -1450,7 +1450,7 @@
         "lemma": "hole",
         "partOfSpeech": "noun",
         "forms": [
-          "hole"
+          "holes"
         ]
       },
       {
@@ -1476,14 +1476,14 @@
       },
       {
         "lemma": "survey",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "survey"
         ]
       },
       {
         "lemma": "hide",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "hide"
         ]
@@ -1511,7 +1511,7 @@
       },
       {
         "lemma": "ride",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "ride"
         ]
@@ -1520,7 +1520,7 @@
         "lemma": "tool",
         "partOfSpeech": "noun",
         "forms": [
-          "tool"
+          "tools"
         ]
       },
       {
@@ -1532,7 +1532,7 @@
       },
       {
         "lemma": "jump",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "jump"
         ]
@@ -1560,23 +1560,23 @@
       },
       {
         "lemma": "review",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "review"
         ]
       },
       {
         "lemma": "move",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "move"
         ]
       },
       {
         "lemma": "grade",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
-          "grade"
+          "grading"
         ]
       },
       {
@@ -1651,7 +1651,7 @@
       },
       {
         "lemma": "welcome",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "welcome"
         ]
@@ -1728,7 +1728,7 @@
       },
       {
         "lemma": "half",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "adjective",
         "forms": [
           "half"
         ]
@@ -1770,7 +1770,7 @@
       },
       {
         "lemma": "file",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "file"
         ]
@@ -1947,7 +1947,7 @@
         "lemma": "sentence",
         "partOfSpeech": "noun",
         "forms": [
-          "sentence"
+          "sentences"
         ]
       },
       {
@@ -1980,7 +1980,7 @@
       },
       {
         "lemma": "wash",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "wash"
         ]
@@ -2017,7 +2017,7 @@
         "lemma": "cop",
         "partOfSpeech": "noun",
         "forms": [
-          "cop"
+          "cops"
         ]
       },
       {
@@ -2038,12 +2038,12 @@
         "lemma": "breathe",
         "partOfSpeech": "verb",
         "forms": [
-          "breathe"
+          "breathes"
         ]
       },
       {
         "lemma": "touch",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "touch"
         ]
@@ -2059,12 +2059,12 @@
         "lemma": "bean",
         "partOfSpeech": "noun",
         "forms": [
-          "bean"
+          "beans"
         ]
       },
       {
         "lemma": "ring",
-        "partOfSpeech": "verb",
+        "partOfSpeech": "noun",
         "forms": [
           "ring"
         ]
@@ -2080,7 +2080,7 @@
         "lemma": "pray",
         "partOfSpeech": "verb",
         "forms": [
-          "pray"
+          "prayed"
         ]
       },
       {
@@ -2150,14 +2150,14 @@
         "lemma": "tube",
         "partOfSpeech": "noun",
         "forms": [
-          "tube"
+          "tubes"
         ]
       },
       {
         "lemma": "drama",
         "partOfSpeech": "noun",
         "forms": [
-          "drama"
+          "dramas"
         ]
       },
       {
@@ -2176,7 +2176,7 @@
       },
       {
         "lemma": "match",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "match"
         ]
@@ -2472,7 +2472,7 @@
         "lemma": "towel",
         "partOfSpeech": "noun",
         "forms": [
-          "towel"
+          "towels"
         ]
       },
       {
@@ -2493,7 +2493,7 @@
         "lemma": "excuse",
         "partOfSpeech": "noun",
         "forms": [
-          "excuse"
+          "excuses"
         ]
       },
       {
@@ -2561,7 +2561,7 @@
       },
       {
         "lemma": "worry",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "worry"
         ]
@@ -2575,7 +2575,7 @@
       },
       {
         "lemma": "kiss",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "kiss"
         ]
@@ -2626,7 +2626,7 @@
         "lemma": "monkey",
         "partOfSpeech": "noun",
         "forms": [
-          "monkey"
+          "monkeys"
         ]
       },
       {
@@ -2654,7 +2654,7 @@
         "lemma": "grandparent",
         "partOfSpeech": "noun",
         "forms": [
-          "grandparent"
+          "grandparents"
         ]
       },
       {
@@ -2675,7 +2675,7 @@
         "lemma": "grape",
         "partOfSpeech": "noun",
         "forms": [
-          "grape"
+          "grapes"
         ]
       },
       {
@@ -2694,7 +2694,7 @@
       },
       {
         "lemma": "spy",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "spy"
         ]
@@ -2752,7 +2752,7 @@
         "lemma": "classmate",
         "partOfSpeech": "noun",
         "forms": [
-          "classmate"
+          "classmates"
         ]
       },
       {
@@ -2869,7 +2869,7 @@
       },
       {
         "lemma": "hello",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "interjection",
         "forms": [
           "hello"
         ]
@@ -3065,7 +3065,7 @@
       },
       {
         "lemma": "saw",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "saw"
         ]
@@ -3121,14 +3121,14 @@
       },
       {
         "lemma": "some",
-        "partOfSpeech": "determiner",
+        "partOfSpeech": "adjective",
         "forms": [
           "some"
         ]
       },
       {
         "lemma": "spell",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "spell"
         ]
@@ -3249,7 +3249,7 @@
         "lemma": "shy",
         "partOfSpeech": "verb",
         "forms": [
-          "shy"
+          "shying"
         ]
       },
       {
@@ -3303,14 +3303,14 @@
       },
       {
         "lemma": "state",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "state"
         ]
       },
       {
         "lemma": "most",
-        "partOfSpeech": "adverb",
+        "partOfSpeech": "adjective",
         "forms": [
           "most"
         ]
@@ -3326,7 +3326,7 @@
         "lemma": "seem",
         "partOfSpeech": "verb",
         "forms": [
-          "seem"
+          "seems"
         ]
       },
       {
@@ -3401,7 +3401,7 @@
       },
       {
         "lemma": "far",
-        "partOfSpeech": "adverb",
+        "partOfSpeech": "adjective",
         "forms": [
           "far"
         ]
@@ -3415,7 +3415,7 @@
       },
       {
         "lemma": "power",
-        "partOfSpeech": "noun",
+        "partOfSpeech": "verb",
         "forms": [
           "power"
         ]
@@ -3445,7 +3445,7 @@
         "lemma": "law",
         "partOfSpeech": "noun",
         "forms": [
-          "law"
+          "laws"
         ]
       },
       {
@@ -3513,15 +3513,1268 @@
       }
     ],
     "storyText": "After school, Mina found an old book on a desk. The book had a message about a lost story, and one page did not have words.\n\nWhen Mina opened the book, a small light came from the page. The message said the school would lose the story. Mina had to find the answer.\n\nMina called her team to the library. One child found a picture on a clock, and a girl found a number on the table. The picture and the number made a door on the empty page. Mina was afraid to open it, so the group held hands and opened it.\n\nMina showed the book to her team. They read the question and started to look for the answer.\n\nThe answer was wrong because the message changed again. Mina listened to the group and tried a new idea.\n\nAt night, the page opened. The answer was not a number. It was the history of the school and the group that cared for it.\n\nMina wrote the story in the book. The light came back, and the pages had words again.\n\nIn the morning, Mina brought the book to school. The children read it with the team, and the lost story had a new end.",
-    "vocabularyPracticeText": "A family at the school had seen the team. A man has to know when to walk away. Allow an hour to get to the station. At the school, Mina met the place and the kid. The leader and the fan had seen the team. The chicken and the team helped Mina read the book. The reason changed Mina's plan. Mina found the seat in the school. The book looked personal, but the road was sorry. Mina felt thin and held the book. Mina found nothing at the door. Someone helped Mina. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nMina asked the family at the door for help. At the school, Mina met the bear and the cousin. The girlfriend and the couch had seen the team. The boyfriend and the snake helped Mina read the book. At the school, Mina met the grandparent and the grandpa. The book looked thick, but the road was same. Mina asked everybody to help. Anybody could help Mina. The picture ended, but a red line was on the book. Mina went on.\n\nThe red line ended at a house, and Mina went in. The problem changed Mina's plan. Mina knew the case was important. The book had a picture of the matter. Mina found the home at the school. The head was on the book. Mina may find the book. Mina began to say, and the team helped her turn. The book looked foreign, but the road was fat. Mina felt closed and held the book. The road was very dark. The book was by the door. If Mina found the answer, the book would open. Mina read the book and found the road.\n\nIn a quiet room, the book made a new picture. Mina walked from the news to the course. Mina found the culture at the school. The order was on the book. The article was in the picture. Mina put the character in her bag. The team looked at the chair. The section changed Mina's plan. Mina began to set, and the team helped her stop. Mina began to stay. Mina ever looked at the book. Mina read about two stars in the book. Mina could not find anything. The team was ready, and Mina took the book.\n\nThe red line ended at a house, and Mina went in. Mina found the sun at the school. The survey was on the book. The review was in the picture. Mina put the classroom in her bag. The team looked at the dress. Mina took the dish with the book. Mina walked to the band. The file changed Mina's plan. The hall helped Mina at the school. Mina began to wear, and the team helped her focus. Mina began to note. Anyone could help Mina. Hi! Mina looked at the team and laughed. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nIn a quiet room, the book made a new picture. The black cat is eating a white rat. The sentence changed Mina's plan. Mina knew the grammar was important. The book had a picture of the paragraph. Mina found the poem at the school. The cloth was on the book. The hometown was in the picture. Mina walked from the bat to the foreigner. Mina found the state at the school. The waitress helped Mina at the school. Mina began to step, and the team helped her introduce. Mina began to solve. The picture ended, but a red line was on the book. Mina went on.\n\nThe red line ended at a house, and Mina went in. Mina walked to the system. Mina began to ring. Mina read the book and found the road.\n\nMina sat at a table, but the red line did not end there. Bring a bag of rice on the way back. Mina found the food at the school. The meat was on the book. The pizza was in the picture. Mina put the hamburger in her bag. Mina began to repeat, and the team helped her breathe. The book was fine. The team was ready, and Mina took the book.\n\nIn a class, Mina opened the book and read a new line. Mina found the word at the school. The shoulder was on the book. The leaf was in the picture. Mina put the post in her bag. The team looked at the classmate. Mina took the issue with the book. The law changed Mina's plan. Mina began to work. The book was due. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nMina saw a game in the room and joined it. Mina found the music at the school. The heart was on the book. The card was in the picture. Mina put the touch in her bag. The team looked at the concert. Mina took the pop with the book. Mina found the opera at the school. The kiss was on the book. The cinema was in the picture. Mina walked to the temple. Mina began to tell, and the team helped her start. Mina began to speak. The book was smart. The picture ended, but a red line was on the book. Mina went on.\n\nA picture on the wall was like the picture in the book. Mina walked from the picnic to the part. The spell changed Mina's plan. Mina read the book and found the road.\n\nAt a tree, Mina found a new line on the book. Mina walked from the thing to the design. The mind changed Mina's plan. Mina found the sport at the school. The bone was on the book. The fishing was in the picture. Mina put the smell in her bag. The team looked at the pet. Mina must follow the road. Mina began to show, and the team helped her love. The book looked best, but the road was better. Mina followed the plan well. The team was ready, and Mina took the book.\n\nThe team flew from the garden to the river. A black cat is eating a white mouse. Mina found the pig at the school. The lion was on the book. The frog was in the picture. Mina put the shake in her bag. Mina walked to the umbrella. The vase changed Mina's plan. Mina knew the research was important. Mina began to push, and the team helped her wash. Mina followed the plan down. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nAt the station, the red line changed again. Mina found the subject at the school. The bar was on the book. The row was in the picture. Mina put the ruler in her bag. The team looked at the taxi. Mina took the volleyball with the book. The coach helped Mina at the school. The ship changed Mina's plan. Mina walked to the dollar. Mina began to travel. The book was careful. Mina followed the plan carefully. The picture ended, but a red line was on the book. Mina went on.\n\nThe market was busy, but Mina saw the team. A piece of paper fell on the ground. Mina found the event at the school. The summer was on the book. The list was in the picture. Mina put the weekend in her bag. The officer helped Mina at the school. Mina began to think, and the team helped her use. Mina began to spend. The book looked everyday, but the road was awake. Mina followed the plan once. Mina asked me for help. Mina read about seven stars in the book. Mina read the book and found the road.\n\nAt the office, Mina found a new line in the book. Everything in this room is for sale. Mina found the date at the school. The surprise was on the book. The bean was in the picture. Mina put the beef in her bag. The team looked at the supermarket. Mina took the april with the book. Mina found the august in the school. The fever changed Mina's plan. Mina began to wait, and the team helped her ride. Mina usually looked at the book. Mina read about eleven stars in the book. Mina read about seventeen stars in the book. The team was ready, and Mina took the book.\n\nThe market was busy, but Mina saw the team. It rains a lot during June and July. It gets cold day by day in November. It was one late September afternoon. Mina found the december at the school. The february was on the book. The friday was in the picture. Mina put the january in her bag. The team looked at the monday. Mina took the october with the book. Mina found the saturday at the school. The smith was on the book. Mina read about seventy stars in the book. Mina read while the team watched. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nAt the office, Mina found a new line in the book. Mina found the sunday at the school. The sunshine was on the book. The thursday was in the picture. Mina put the tuesday in her bag. The team looked at the wednesday. Mina took the level with the book. The member helped Mina at the school. The picture ended, but a red line was on the book. Mina went on.\n\nAt the hospital, the team sat and looked at Mina. Choose large apples of uniform size. The form changed Mina's plan. Mina found the drum in the school. Mina read the book and found the road.\n\nMina checked the picture and made a new plan. Mina walked to the site. The technology changed Mina's plan. Mina knew the power was important. Mina found the machine at the school. The stand was on the book. The surf was in the picture. The team was ready, and Mina took the book.\n\nAt the center of the town, Mina found a letter. The yard changed Mina's plan. Mina began to cap. The book looked social, but the road was own. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nMina was tired, but the team still needed her help. Everyone has a wish of some kind. Mina began to imagine, and the team helped her judge. The book looked lovely, but the road was dear. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the life at the school. The point was on the book. The eye was in the picture. Mina put the side in her bag. The month changed Mina's plan. Mina can help. Mina began to want, and the team helped her need. The book looked real, but the road was sure. Mina followed the plan just. Mina asked them for help. Mina walked into the school. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Mina found the face at the school. The result was on the book. The guy helped Mina at the school. The moment changed Mina's plan. Mina walked to the role. Mina began to mean, and the team helped her keep. Mina began to watch. The book looked true, but the road was special. Now, Mina followed the road. Mina asked him for help. Mina walked through the school. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. Be poor and happy, not rich but sad. By then it will already be too late. Mina found the test at the school. The type was on the book. The period was in the picture. Mina put the future in her bag. The team looked at the top. Mina began to win, and the team helped her remember. Mina began to sell. The book looked green, but the road was nice. Mina read about three stars in the book. The letter was between the book and the map. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Mina found the goal at the school. The skill was on the book. The example was in the picture. Mina put the memory in her bag. The television changed Mina's plan. Mina began to thank, and the team helped her describe. Mina began to draw. The book looked successful, but the road was interested. Mina felt sweet and held the book. Mina followed the plan also. Mina found something in the book. Mina read about four stars in the book. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. A little exercise never hurt anyone. Mina found the spring at the school. The interview was on the book. The magazine was in the picture. The peace changed Mina's plan. Mina knew the evening was important. Mina began to share, and the team helped her save. The book looked strange, but the road was sick. Mina felt correct and held the book. Mina followed the plan only. Mina read about five stars in the book. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. A cold wind is blowing from the sea. A monkey is climbing up a tall tree. Mina found the owner at the school. The item was on the book. The vote was in the picture. Mina put the video in her bag. Mina began to hide, and the team helped her jump. Mina began to welcome. The book looked terrible, but the road was living. Mina felt pretty and held the book. Mina read about six stars in the book. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. A new topic came up in conversation. Mina found the brain at the school. The hole was on the book. The club was in the picture. Mina began to pray, and the team helped her shy. Mina began to try. The book looked pink, but the road was false. Mina felt super and held the book. Mina read about eight stars in the book. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Things are tight around the holiday. Mina found the tool at the school. The ear was on the book. The baseball was in the picture. Mina put the move in her bag. The grade changed Mina's plan. Mina began to seem, and the team helped her provide. Mina began to include. The book looked ugly, but the road was strict. Mina followed the plan really. Mina read about ten stars in the book. You can do it by yourself. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the smile at the school. The photo was on the book. The pair was in the picture. Mina put the birth in her bag. The team looked at the bottom. Mina took the neck with the book. Mina found the football in the school. Mina began to understand. The book looked handsome, but the road was blank. Mina felt gold and held the book. Mina followed the plan right. Mina read about nine stars in the book. Mina read until night. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Barring snow, father will come home. The little boy laughed a merry laugh. Mina found the fight at the school. The mom was on the book. The half was in the picture. Mina put the sight in her bag. The team looked at the code. Mina took the nose with the book. Mina walked to the farmer. The book looked rude, but the road was many. Mina always looked at the book. Mina read about twenty stars in the book. Mina read about thirty stars in the book. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. Mina found the basketball at the school. The dad was on the book. The telephone was in the picture. Mina put the pleasure in her bag. The team looked at the wheel. Mina took the cream with the book. Mina found the hill at the school. The grass was on the book. The book looked national, but the road was low. Mina read about fifteen stars in the book. Mina read about fifty stars in the book. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Mina found the sir at the school. The self was on the book. The bike was in the picture. Mina put the tea in her bag. The team looked at the cop. Mina took the album with the book. Mina found the luck at the school. The flag was on the book. The corn was in the picture. Mina put the mail in her bag. The team looked at the tube. Mina often looked at the book. Mina read about twelve stars in the book. Mina read about forty stars in the book. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the drama at the school. The chocolate was on the book. The match was in the picture. Mina put the shopping in her bag. The team looked at the salad. Mina took the shelf with the book. Mina found the soup at the school. The contest was on the book. The tennis was in the picture. Mina put the jet in her bag. The team looked at the shower. The road was almost dark. The book was hers. Mina read about eighteen stars in the book. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Mina found the ghost at the school. The soccer was on the book. The jeans was in the picture. Mina put the skirt in her bag. The team looked at the towel. Mina took the festival with the book. Mina found the excuse at the school. The turkey was on the book. The sum was in the picture. At the school, Mina met the rose and the doll. Later, Mina followed the road. Mina read about eighty stars in the book. Mina read about fourteen stars in the book. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. The king once lived in that palace. Bad talk can only come from garbage. There is little water in the bucket. Mina found the bath at the school. The worry was on the book. The toilet was in the picture. Mina put the bee in her bag. The team looked at the headache. Mina took the grape with the book. Mina found the sofa in the school. Mina read about nineteen stars in the book. Mina read about ninety stars in the book. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Mina found the spy at the school. The butterfly was on the book. The apron was in the picture. Mina put the dictionary in her bag. The team looked at the fairy. Mina took the glasses with the book. Mina found the hello at the school. The hobby was on the book. The hurry was in the picture. At the school, Mina met the grandma and the lily. Mina followed the plan maybe. Mina read about sixteen stars in the book. Mina read about sixty stars in the book. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the march at the school. The mobile was on the book. The mum was in the picture. Mina put the pants in her bag. The team looked at the pardon. Mina took the prince with the book. Mina found the princess in the school. Mina followed the plan soon. Mina followed the plan quickly. Mina read about thirteen stars in the book. Bye! Mina looked at the team and laughed. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Mina found the subway at the school. The tiger was on the book. The trousers was in the picture. The doing changed Mina's plan. Mina knew the fact was important. Mina followed the plan everywhere. Mina followed the plan even. Mina followed the plan most. Mina followed the plan far. Mina would not go without the book. Mina read about million stars in the book. Though the road was dark, Mina went on. The letter was among the books. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. The answer was within the book. The boy opened the door himself. Mina looked at the picture. The blue letter was there, and she made a new plan."
+    "vocabularyPracticeText": "The book had a blue line. Mina began a new walk with the team. A family at the school had seen the team. A child read from the page: “A man appeared from behind the door.” A woman wrote on the page: “A sad accident took place yesterday.” A boy talked to Mina: “Both Tom and Mary had the same idea.” A girl called from the city: “A lot of kids wear that kind of hat.” The picture opened, and Mina heard: “Man alone has the ability to reason.” A child read from the page: “Allow an hour to get to the station.” A woman wrote on the page: “Can I pay you with a personal check?” A boy talked to Mina: “Don't tell me you feel sorry for me.” A girl called from the city: “Faults are thick where love is thin.” The picture opened, and Mina heard: “Aren't you tired of being a nothing?” A child read from the page: “Are you by yourself or with someone?” A woman wrote on the page: “He was looked up to as their leader.” A boy talked to Mina: “Can I get a seat on the next flight?” A girl called from the city: “All it has is a hand-held paper fan.” Mina looked at the picture. The blue letter was there, and she made a new plan. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. Mina asked the family at the door for help. A child read from the page: “He buys chicken from a Jewish store.” A woman wrote on the page: “A hungry bear will eat even insects.” A boy talked to Mina: “He got into a fight with his cousin.” A girl called from the city: “Daniel revealed he had a girlfriend.” The picture opened, and Mina heard: “Cookie dug his claws into the couch.” A child read from the page: “Is the ice thick enough for skating?” A woman wrote on the page: “Anyone would've done the same thing.” A boy talked to Mina: “David asked Martha to get everybody.” A girl called from the city: “Aren't you seeing anybody right now?” The picture opened, and Mina heard: “Did you just call me your boyfriend?” A child read from the page: “A snake came out of Ziri's backpack.” A woman wrote on the page: “John rarely visits his grandparents.” A boy talked to Mina: “Let's visit my grandpa this weekend.” The picture ended, but a red line was on the book. Mina went on. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The red line ended at a house, and Mina went in. A child read from the page: “A constellation is a group of stars.” A woman wrote on the page: “Actually, we have sort of a problem.” A boy talked to Mina: “Can we apply this rule in this case?” A girl called from the city: “Are you able to answer his question?” The picture opened, and Mina heard: “She will return home to her family.” A child read from the page: “After all, we didn't say we'd do it.” A woman wrote on the page: “A clenched fist may indicate stress.” A boy talked to Mina: “A butterfly cannot turn into a lion.” A girl called from the city: “Can foreign students join this club?” The picture opened, and Mina heard: “Do you really think that Tom is fat?” A child read from the page: “I didn't know the bridge was closed.” A woman wrote on the page: “By the way, I am very, very hungry.” A boy talked to Mina: “A car with a dented fender drove by.” A girl called from the city: “And if you don't know anything, ask.” Mina read the book and found the road. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. In a quiet room, the book made a new picture. A child read from the page: “All the people laughed at the story.” A woman wrote on the page: “A foolish head makes for weary feet.” A boy talked to Mina: “Age is an issue of mind over matter.” A girl called from the city: “Alarming news came from the suburbs.” The picture opened, and Mina heard: “Algerians have no recycling culture.” A child read from the page: “Don't set foot in that neighborhood.” A woman wrote on the page: “Can you stop pestering your brother?” A boy talked to Mina: “A stay in hospital is not very nice.” A girl called from the city: “Can you tell me when Tom'll be back?” The picture opened, and Mina heard: “A bottle water and two cups, please.” A child read from the page: “Are you scared because I'm unshaven?” A woman wrote on the page: “I'm dying to start my German course.” A boy talked to Mina: “Can I order from the breakfast menu?” A girl called from the city: “Mark's article sounds more academic.” The team was ready, and Mina took the book. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The red line ended at a house, and Mina went in. A child read from the page: “Everyone has a character of his own.” A woman wrote on the page: “He belongs to the planning section.” A boy talked to Mina: “Go get a chair and sit here with us.” A girl called from the city: “Dark clouds are thirsty for the sun.” The picture opened, and Mina heard: “They will survey the desert island.” A child read from the page: “All of the boys were wearing gloves.” A woman wrote on the page: “Adjust the focus of the microscope.” A boy talked to Mina: “He left a note on the table for her.” A girl called from the city: “Are you so sure it is a coincidence?” The picture opened, and Mina heard: “After a deep sleep I feel very good.” A child read from the page: “Are you sure you didn't do anything?” A woman wrote on the page: “Does anyone you know play in a band?” A boy talked to Mina: “Can I help you review for your exam?” A girl called from the city: “Take off your caps in the classroom!” Mina looked at the picture. The blue letter was there, and she made a new plan. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. In a quiet room, the book made a new picture. A child read from the page: “Did you choose a dress for Saturday?” A woman wrote on the page: “I intend to file a formal complaint.” A boy talked to Mina: “Karl went to the entertainment hall.” A girl called from the city: “All you have to do is wash the dish.” The picture opened, and Mina heard: “A few sentences are too hard for me.” A child read from the page: “Be sure to follow them step by step.” A woman wrote on the page: “Allow me to introduce Mayuko to you.” A boy talked to Mina: “Can you solve the mind-body problem?” A girl called from the city: “All Tom ever talks about is his job.” The picture opened, and Mina heard: “Anyone could have done what you did.” A child read from the page: “He didn't say hi as he passed me by.” A woman wrote on the page: “Can you write a poem about a tomato?” A boy talked to Mina: “Is the cloth particularly absorbent?” A girl called from the city: “The black cat is eating a white rat.” The picture ended, but a red line was on the book. Mina went on. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The red line ended at a house, and Mina went in. A child read from the page: “Tom had a baseball bat in his hands.” A woman wrote on the page: “I was taught English by a foreigner.” A boy talked to Mina: “Each language has it's own grammar.” A girl called from the city: “He lives far away from his hometown.” The picture opened, and Mina heard: “The paragraph emphasises the message.” A child read from the page: “Elias gave Sandra his precious ring.” A woman wrote on the page: “Tom was really rude to the waitress.” A boy talked to Mina: “Can you state the facts to his face?” A girl called from the city: “He learnt the Berber writing system.” Mina read the book and found the road. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. Mina sat at a table, but the red line did not end there. A child read from the page: “Algerian food is frigging delicious.” A woman wrote on the page: “As for the child, he is eating meat.” A boy talked to Mina: “Bring a bag of rice on the way back.” A girl called from the city: “Do you also have a vegetarian pizza?” The picture opened, and Mina heard: “How many hamburger buns did you buy?” A child read from the page: “Could you repeat what you just said?” A woman wrote on the page: “He lies as naturally as he breathes.” A boy talked to Mina: “Fine, would you like anything else?” The team was ready, and Mina took the book. Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. In a class, Mina opened the book and read a new line. A child read from the page: “Ann often plays tennis after school.” A woman wrote on the page: “A book is always an acceptable gift.” A boy talked to Mina: “A picture is worth a thousand words.” A girl called from the city: “A bean can answer all the questions.” The picture opened, and Mina heard: “Could you cut it shoulder length?” A child read from the page: “A pet monkey would be a lot of work.” A woman wrote on the page: “His failure is due to his ignorance.” A boy talked to Mina: “Add the tomato paste and a bay leaf.” A girl called from the city: “Bill was too young to take the post.” The picture opened, and Mina heard: “I get along well with my classmates.” A child read from the page: “I don't want to make an issue of it.” A woman wrote on the page: “Everybody is bound to obey the laws.” Mina looked at the picture. The blue letter was there, and she made a new plan. Mina put the page on the map and followed the red line.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. Mina saw a game in the room and joined it. A child read from the page: “Do Tom and Mary still teach history?” A woman wrote on the page: “Are you good at sight reading music?” A boy talked to Mina: “Absence makes the heart grow fonder.” A girl called from the city: “Did you bring your ID card with you?” The picture opened, and Mina heard: “Cookie likes to touch noses with me.” A child read from the page: “Absolutely do not tell other people.” A woman wrote on the page: “Are you ready to start your journey?” A boy talked to Mina: “Are you really able to speak French?” A girl called from the city: “Do you think that this dog is smart?” The picture opened, and Mina heard: “A lot of people came to the concert.” A child read from the page: “I feel I'm growing out of pop music.” A woman wrote on the page: “How many tourists visit this temple?” A boy talked to Mina: “Route 12 stops near the opera house.” A girl called from the city: “Aren't you going to kiss me goodbye?” The picture ended, but a red line was on the book. Mina went on. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. A picture on the wall was like the picture in the book. A child read from the page: “Don't you fancy going to the cinema?” A woman wrote on the page: “He will have a picnic next Saturday.” A boy talked to Mina: “Can you spell your last name for me?” A girl called from the city: “At least we finished the first part.” Mina read the book and found the road. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. At a tree, Mina found a new line on the book. A child read from the page: “A Japanese wouldn't do such a thing.” A woman wrote on the page: “A strange idea sprang up in my mind.” A boy talked to Mina: “Golf is the sport that I don't like.” A girl called from the city: “He's studying French and web design.” The picture opened, and Mina heard: “Are you sure that it's a human bone?” A child read from the page: “And what do you have to show for it?” A woman wrote on the page: “Above all, you must help each other.” A boy talked to Mina: “All the boys were in love with Mary.” A girl called from the city: “Best of all, he learns things fast.” The picture opened, and Mina heard: “Algiers needs a better sewer system.” A child read from the page: “The fog cleared, and all was well.” A woman wrote on the page: “And excessive fishing made me crazy.” A boy talked to Mina: “Dogs have a delicate sense of smell.” A girl called from the city: “I buried my dog at the pet cemetery.” The team was ready, and Mina took the book. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The team flew from the garden to the river. A child read from the page: “A black cat is eating a white mouse.” A woman wrote on the page: “Lukas turned Rima into a guinea pig.” A boy talked to Mina: “Don't reach out your hand to a lion.” A girl called from the city: “I'm the one who made Tom eat a frog.” The picture opened, and Mina heard: “He gave an angry shake of his head.” A child read from the page: “Dan was pushed under a moving train.” A woman wrote on the page: “Give me a cut, wash and dry please.” A boy talked to Mina: “All you have to do is write it down.” A girl called from the city: “Are you sure that umbrella is yours?” The picture opened, and Mina heard: “David accidentally dropped the vase.” A child read from the page: “He lost himself in his new research.” Mina looked at the picture. The blue letter was there, and she made a new plan. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. At the station, Mina found a red line. A child read from the page: “David instantly changed the subject.” A woman wrote on the page: “Children aren't allowed in this bar.” A boy talked to Mina: “Do you really think I'm a bad coach?” A girl called from the city: “Forty-eight sailors are on the ship.” The picture opened, and Mina heard: “My train was late two days in a row.” A child read from the page: “Best travel is one that has no end.” A woman wrote on the page: “Be careful not to make any mistakes.” A boy talked to Mina: “Everyone but Tom listened carefully.” A girl called from the city: “Could you spare me a dollar, please?” The picture opened, and Mina heard: “Do you have a ruler I could borrow?” A child read from the page: “He raised his hand to stop the taxi.” A woman wrote on the page: “Daniel was playing water volleyball.” The picture ended, but a red line was on the book. Mina went on. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The market was busy, but Mina saw the team. A child read from the page: “A team of paramedics is standing by.” A woman wrote on the page: “I will leave tomorrow, in any event.” A boy talked to Mina: “A piece of paper fell on the ground.” A girl called from the city: “Are you making plans for the summer?” The picture opened, and Mina heard: “Being a police officer is hard work.” A child read from the page: “A fire would have broken out easily.” A woman wrote on the page: “Am I seeing what I think I'm seeing?” A boy talked to Mina: “America could use a left-wing party.” A girl called from the city: “This isn't intended for everyday use.” The picture opened, and Mina heard: “Do you think Tom and Mary are awake?” A child read from the page: “Couldn't you help us just this once?” A woman wrote on the page: “Can't you tell when I'm just joking?” A boy talked to Mina: “A short walk brought me to the lake.” A girl called from the city: “Here's a list of churches in Boston.” Mina read the book and found the road. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. At the office, Mina found a new line in the book. A child read from the page: “Can anyone read this message for me?” A woman wrote on the page: “Are you going anywhere this weekend?” A boy talked to Mina: “Do you know who Alice's new date is?” A girl called from the city: “Donald almost fell over in surprise.” The picture opened, and Mina heard: “Everything in this room is for sale.” A child read from the page: “Daniel needs to spend time outdoors.” A woman wrote on the page: “I'd rather walk than wait for a bus.” A boy talked to Mina: “Daniel gave Amanda a ride to school.” A girl called from the city: “Do you usually drink a lot of water?” The picture opened, and Mina heard: “Could you wake me tomorrow at seven?” A child read from the page: “He went to bed at eleven last night.” A woman wrote on the page: “It's beans on toast for tea tonight.” A boy talked to Mina: “Beef is more expensive than chicken.” A girl called from the city: “I caught a cold, and I have a fever.” The team was ready, and Mina took the book. The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The market was busy, but Mina saw the team. A child read from the page: “I looked for him in the supermarket.” A woman wrote on the page: “I will be in high school next April.” A boy talked to Mina: “8th August is International Cat Day.” A girl called from the city: “December used to be the tenth month.” The picture opened, and Mina heard: “We had a short vacation in February.” A child read from the page: “She will be seventeen in February.” A woman wrote on the page: “It is true that he is over seventy.” A boy talked to Mina: “He wants to go to the Friday prayer.” A girl called from the city: “It all started on a January morning.” The picture opened, and Mina heard: “He set out for London early in July.” A child read from the page: “Did anything happen in June of 1989?” A woman wrote on the page: “And that happened last Monday night?” A boy talked to Mina: “It is the 29th of November of 2012.” A girl called from the city: “Arraignment is set for October 20th.” Mina looked at the picture. The blue letter was there, and she made a new plan. The new picture had a road for Mina. She held the book and went on.\n\nThe map did not have the road. Mina listened to the team and changed her plan. At the office, Mina found a new line in the book. A child read from the page: “He doesn't go to school on Saturday.” A woman wrote on the page: “I got back from Europe in September.” A boy talked to Mina: “I asked Mr Smith to come and see me.” A girl called from the city: “Are you going to Madrid this Sunday?” The picture opened, and Mina heard: “He saturated himself with sunshine.” A child read from the page: “A Mr. Jones came while you were out.” A woman wrote on the page: “So the last practice is on Thursday?” A boy talked to Mina: “Tuesday we will go to the clubhouse.” A girl called from the city: “Do you have anything next Wednesday?” The picture opened, and Mina heard: “He is a member of the baseball club.” A child read from the page: “Don't forget to check the oil level.” The picture ended, but a red line was on the book. Mina went on. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. At the hospital, the team sat and looked at Mina. A child read from the page: “Could you fill out this form please?” A woman wrote on the page: “Choose large apples of uniform size.” A boy talked to Mina: “The drum is a percussion instrument.” Mina read the book and found the road. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. Mina checked the picture and made a new plan. A child read from the page: “Let me pull up the site on my phone.” A woman wrote on the page: “Of course, technology isn't perfect.” A boy talked to Mina: “Do you know how to run this machine?” A girl called from the city: “Excuse me, where is the taxi stand?” The picture opened, and Mina heard: “Rarely do I see fish in the surf.” A child read from the page: “It's just a question of will power.” The team was ready, and Mina took the book. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. At the center of the town, Mina found a letter. A child read from the page: “I hate that people smoke in my yard.” A woman wrote on the page: “To cap it all, it began to rain.” A boy talked to Mina: “I know that Tom is a social drinker.” A girl called from the city: “As a Muslim, I have my own opinions.” Mina looked at the picture. The blue letter was there, and she made a new plan. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. Mina was tired, but the team still needed her help. A child read from the page: “Everyone has a wish of some kind.” A woman wrote on the page: “Can you actually imagine doing that?” A boy talked to Mina: “Don't judge a man by his appearance.” A girl called from the city: “I had never seen her look so lovely.” The picture opened, and Mina heard: “Dear me, I think I'm becoming a god.” The picture ended, but a red line was on the book. Mina went on. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. Mina found a new line in the book and made a plan. A child read from the page: “A new woman walked into Sami's life.” A woman wrote on the page: “A number of passengers were injured.” A boy talked to Mina: “At some point, it's going to happen.” A girl called from the city: “A few months ago, Tom couldn't walk.” The picture opened, and Mina heard: “A photo on Tom's desk caught my eye.” A child read from the page: “A dog can run faster than a man can.” A woman wrote on the page: “What more could a person want?” A boy talked to Mina: “A friend in need is a friend indeed.” A girl called from the city: “A large red fish swims in the water.” The picture opened, and Mina heard: “Apparently, his real name was Salas.” A child read from the page: “Are you sure everything's all right?” A woman wrote on the page: “A man just asked me where Tom lives.” A boy talked to Mina: “And don't give me any guff about it.” A girl called from the city: “A minute is one sixtieth of an hour.” Mina read the book and found the road. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. A door in the picture opened, and Mina walked on the road. A child read from the page: “He crawled to the side on his belly.” A woman wrote on the page: “A cold wind was blowing on his face.” A boy talked to Mina: “And what will be the result of that?” A girl called from the city: “As far as I know, Tom is a nice guy.” The picture opened, and Mina heard: “Can I borrow your book for a moment?” A child read from the page: “And what do you mean by this phrase?” A woman wrote on the page: “Be patient and keep your ears stiff.” A boy talked to Mina: “Are you sure you want to watch this?” A girl called from the city: “And that's how I was late to school.” The picture opened, and Mina heard: “A true democracy allows free speech.” A child read from the page: “Alex's son attends a special school.” A woman wrote on the page: “Chances are Tom is in Boston by now.” A boy talked to Mina: “All three of them live in Australia.” A girl called from the city: “A balloon is ascending into the sky.” The team was ready, and Mina took the book. Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. The book made a new picture, and Mina looked at it. A child read from the page: “Daniel is more suited for this role.” A woman wrote on the page: “Adversity is the test of friendship.” A boy talked to Mina: “A computer is a type of modern tool.” A girl called from the city: “He will stay here for a long period.” The picture opened, and Mina heard: “Aren't you worried about the future?” A child read from the page: “Almost everyone expected Tom to win.” A woman wrote on the page: “Close your eyes and try to remember.” A boy talked to Mina: “Are you going to sell this painting?” A girl called from the city: “Both you and your brother are wrong.” The picture opened, and Mina heard: “Be poor and happy, not rich but sad.” A child read from the page: “An owl is perched on the green tree.” A woman wrote on the page: “And then the Romans came in 55 B. C.” A boy talked to Mina: “A blonde girl is coming to meet him.” A girl called from the city: “A rumor circulated through the city.” Mina looked at the picture. The blue letter was there, and she made a new plan. Mina joined the lines and made a new plan. She went on with the team.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The picture changed, and Mina walked with the team. A child read from the page: “Fari yelled at the top of his lungs.” A woman wrote on the page: “David has been living with no goals.” A boy talked to Mina: “Because they're watching television.” A girl called from the city: “Boys trail girls in language skills.” The picture opened, and Mina heard: “Do not delete this example sentence.” A child read from the page: “Call me when you see fit, thank you.” A woman wrote on the page: “Could you describe those procedures?” A boy talked to Mina: “The match ended in a goalless draw.” A girl called from the city: “A little warning would've been nice.” The picture opened, and Mina heard: “A successful presentation of a play.” A child read from the page: “Are you interested in baseball, Tom?” A woman wrote on the page: “Alopecia is also known as hair loss.” A boy talked to Mina: “All of us got three hundred dollars.” A girl called from the city: “A long path runs between our houses.” The picture ended, but a red line was on the book. Mina went on. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. Mina found a new line in the book and made a plan. A child read from the page: “But that seems a distant memory now.” A woman wrote on the page: “Do you prefer spring or fall season?” A boy talked to Mina: “I've come to make my peace with you.” A girl called from the city: “I have a job interview this morning.” The picture opened, and Mina heard: “Are you still free tomorrow evening?” A child read from the page: “Do you guys want to share an orange?” A woman wrote on the page: “He lost his life trying to save her.” A boy talked to Mina: “A little exercise never hurt anyone.” A girl called from the city: “Freshly-picked boiled corn is sweet.” The picture opened, and Mina heard: “A very strange thing happened today.” A child read from the page: “Although Tom is sick, he's swimming.” A woman wrote on the page: “All three of them only spoke French.” A boy talked to Mina: “All Tom wanted was something to eat.” A girl called from the city: “Four cops showed up at Ziri's house.” Mina read the book and found the road. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. A door in the picture opened, and Mina walked on the road. A child read from the page: “Are you finished with that magazine?” A woman wrote on the page: “He acts as though he were the owner.” A boy talked to Mina: “The items which you ordered arrived.” A girl called from the city: “At least sixty percent have to vote.” The picture opened, and Mina heard: “A cold wind is blowing from the sea.” A child read from the page: “The boots are made of hide.” A woman wrote on the page: “This bookstore stopped selling JUMP.” A boy talked to Mina: “Welcome back home, Tom.” A girl called from the city: “Give the correct answer immediately.” The picture opened, and Mina heard: “Daniel came home in a terrible mood.” A child read from the page: “Are your kids still living with you?” A woman wrote on the page: “As Tom said, this soup is too salty.” A boy talked to Mina: “Crustaceans have five pairs of legs.” A girl called from the city: “Almost everything has gotten better.” The team was ready, and Mina took the book. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The book made a new picture, and Mina looked at it. A child read from the page: “Donald sent the video to his sister.” A woman wrote on the page: “A new topic came up in conversation.” A boy talked to Mina: “Dopamine is a chemical in the brain.” A girl called from the city: “Are you still free in the afternoon?” The picture opened, and Mina heard: “How do they get the holes in cheese?” A child read from the page: “He got down on his knees and prayed.” A woman wrote on the page: “Everyone keeps shying away from John.” A boy talked to Mina: “All you have to do is try your best.” A girl called from the city: “Excited girls look pretty sometimes.” The picture opened, and Mina heard: “He picked some pink flowers for her.” A child read from the page: “I don't want to give you false hope.” A woman wrote on the page: “A true friend would never forget me.” A boy talked to Mina: “At most, Henry has only six dollars.” A girl called from the city: “A monkey is climbing up a tall tree.” Mina looked at the picture. The blue letter was there, and she made a new plan. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The picture changed, and Mina walked with the team. A child read from the page: “Are you going to join the glee club?” A woman wrote on the page: “Lukas went inside to get some tools.” A boy talked to Mina: “I have a discharge from my left ear.” A girl called from the city: “Do you like going to baseball games?” The picture opened, and Mina heard: “Could you move just a little closer?” A child read from the page: “At least, that's how it seems to me.” A woman wrote on the page: “Could you please provide a citation?” A boy talked to Mina: “Do student apartments include meals?” A girl called from the city: “Sami lived in a super haunted house.” The picture opened, and Mina heard: “These trousers are too tight for me.” A child read from the page: “Everybody hates me because I'm ugly.” A woman wrote on the page: “Are Tom and Mary really that stupid?” A boy talked to Mina: “Capitalism makes everyone a hustler.” A girl called from the city: “He is older than you by eight years.” The picture ended, but a red line was on the book. Mina went on. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. Mina found a new line in the book and made a plan. A child read from the page: “Tom sat at his desk grading papers.” A woman wrote on the page: “Don't say scary things with a smile.” A boy talked to Mina: “I can't recognize you on this photo.” A girl called from the city: “Even a straw shoe belongs to a pair.” The picture opened, and Mina heard: “He's been deaf and mute since birth.” A child read from the page: “Ask Tom if he can understand French.” A woman wrote on the page: “Discipline at the school was strict.” A boy talked to Mina: “David is so handsome, but so stupid.” A girl called from the city: “My memory is blank on the subject.” The picture opened, and Mina heard: “And don't come back here ever again!” A child read from the page: “Can I make a phone call for ten yen?” A woman wrote on the page: “Are you feeling good about yourself?” A boy talked to Mina: “I need to get to the bottom of this.” A girl called from the city: “Mary could feel the sun on her neck.” Mina read the book and found the road. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. A door in the picture opened, and Mina walked on the road. A child read from the page: “Donald played football with Jessica.” A woman wrote on the page: “Dan may have had a fight with Linda.” A boy talked to Mina: “The farmer plowed his field all day.” A girl called from the city: “I can't believe your mom let you go.” The picture opened, and Mina heard: “A fault confessed is half redressed.” A child read from the page: “I prefer silver rings to gold ones.” A woman wrote on the page: “Merry Christmas and a Happy New Year!” A boy talked to Mina: “I didn't think Tom would be so rude.” A girl called from the city: “I think something isn't right here.” The picture opened, and Mina heard: “He came back last night around nine.” A child read from the page: “Can you cover for me until I'm back?” A woman wrote on the page: “Did you fall for her at first sight?” A boy talked to Mina: “But with code -- complete numbskull.” A girl called from the city: “Don't wipe your nose on your sleeve.” The team was ready, and Mina took the book. The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The book made a new picture, and Mina looked at it. A child read from the page: “Another band of snow is approaching.” A woman wrote on the page: “Basketball isn't really Tom's thing.” A boy talked to Mina: “Dad goes fishing whenever he's free.” A girl called from the city: “I am well-informed about this topic.” The picture opened, and Mina heard: “Can I make a telephone call, please?” A child read from the page: “By the way, how many kids are going?” A woman wrote on the page: “Estonia has its own national anthem.” A boy talked to Mina: “Girls use makeup in their low teens.” A girl called from the city: “A friend is always available to you.” The picture opened, and Mina heard: “Around twenty people have been hurt.” A child read from the page: “Both Tom and I are thirty years old.” A woman wrote on the page: “He derived much pleasure from books.” A boy talked to Mina: “A girl was sitting behind the wheel.” A girl called from the city: “Are you going to eat this ice cream?” Mina looked at the picture. The blue letter was there, and she made a new plan. The picture became clear, and Mina opened a new door. The family followed her.\n\nThe red line ended at the school. Mina carried the pages with her. The picture changed, and Mina walked with the team. A child read from the page: “It is a proper mountain, not a hill.” A woman wrote on the page: “Every week, I have to cut the grass.” A boy talked to Mina: “Excuse me, sir, what time is it now?” A girl called from the city: “He's just a husk of his former self.” The picture opened, and Mina heard: “Giving Tom the bike was a good idea.” A child read from the page: “Be careful not to drive people away.” A woman wrote on the page: “Fifteen plus fifty-one is sixty-six.” A boy talked to Mina: “Fifty years and not one bit quieter.” A girl called from the city: “David put something in Amanda's tea.” The picture opened, and Mina heard: “Dan heard the cops yelling at Linda.” A child read from the page: “Her latest album is a tour de force.” A woman wrote on the page: “Alas, what ill luck has befallen me!” A boy talked to Mina: “The national flag of Vietnam is red.” A girl called from the city: “Ali's grandfather was a corn trader.” The picture ended, but a red line was on the book. Mina went on. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. Mina found a new line in the book and made a plan. A child read from the page: “I hope that I receive mail from him.” A woman wrote on the page: “The economy is going down the tubes.” A boy talked to Mina: “I like to watch Korean dramas on TV.” A girl called from the city: “Chocolate ice cream is my favourite.” The picture opened, and Mina heard: “Did you know your socks don't match?” A child read from the page: “Do you often drive your car to work?” A woman wrote on the page: “He has no less than twelve children.” A boy talked to Mina: “Donald played music for forty years.” A girl called from the city: “I go grocery shopping every morning.” The picture opened, and Mina heard: “Add the chives and season the salad.” A child read from the page: “Can you reach the box on that shelf?” A woman wrote on the page: “Could I have some more soup, please?” A boy talked to Mina: “Daddy, let's have a staring contest.” A girl called from the city: “Besides tennis, what else do you do?” Mina read the book and found the road. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. A door in the picture opened, and Mina walked on the road. A child read from the page: “The badly damaged jet is going down.” A woman wrote on the page: “He's just getting out of the shower.” A boy talked to Mina: “As a kid I was possessed by a ghost.” A girl called from the city: “But he plays soccer with his friend.” The picture opened, and Mina heard: “He bought a rose and gave it to her.” A child read from the page: “A terrible, almost illegible scrawl.” A woman wrote on the page: “I would like a sugar bowl like hers!” A boy talked to Mina: “4219 is an extremely unlucky number.” A girl called from the city: “Jeans can cause infertility for men.” The picture opened, and Mina heard: “A gust of wind blew Mary's skirt up.” A child read from the page: “Egyptian cotton towels are terrific.” A woman wrote on the page: “He took part in the summer festival.” A boy talked to Mina: “He is very bad at inventing excuses.” A girl called from the city: “Erdogan is the President of Turkey.” The team was ready, and Mina took the book. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The book made a new picture, and Mina looked at it. A child read from the page: “Lukas danced with the pleasure doll.” A woman wrote on the page: “A thousand dollars is a large sum.” A boy talked to Mina: “A hot bath made me feel much better.” A girl called from the city: “Don't worry about leaving me behind.” The picture opened, and Mina heard: “Bad talk can only come from garbage.” A child read from the page: “He's going to come later, isn't he?” A woman wrote on the page: “She left home when she was eighteen.” A boy talked to Mina: “They finished eighty miles' journey.” A girl called from the city: “Excuse me, is there a toilet nearby?” The picture opened, and Mina heard: “I've been as busy as a bee all week.” A child read from the page: “If you pay peanuts, you get monkeys.” A woman wrote on the page: “The king once lived in that palace.” A boy talked to Mina: “Do you have anything for a headache?” A girl called from the city: “The grapes ripened well that summer.” Mina looked at the picture. The blue letter was there, and she made a new plan. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The picture changed, and Mina walked with the team. A child read from the page: “He's sitting on the sofa by himself.” A woman wrote on the page: “Please fill the bucket up with sand.” A boy talked to Mina: “Do you really want me to spy on Tom?” A girl called from the city: “A butterfly is a mature caterpillar.” The picture opened, and Mina heard: “Mary rubbed her hands on her apron.” A child read from the page: “All the good ones are already taken.” A woman wrote on the page: “He became Muslim fourteen years ago.” A boy talked to Mina: “I was born in nineteen thirty-three.” A girl called from the city: “Do you know how to use a dictionary?” The picture opened, and Mina heard: “He wrote this fairy tale by himself.” A child read from the page: “All the guests were holding glasses.” A woman wrote on the page: “I spent the weekend with my grandma.” A boy talked to Mina: “Everybody I meet I say hello to him.” A girl called from the city: “Her handicraft is more than a hobby.” The picture ended, but a red line was on the book. Mina went on. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. Mina found a new line in the book and made a plan. A child read from the page: “Don't be in such a hurry to do that.” A woman wrote on the page: “Her name is associated with a lily.” A boy talked to Mina: “It will become much warmer in March.” A girl called from the city: “An SMS message arrived on my mobile.” The picture opened, and Mina heard: “He voluntarily helped his mum clean.” A child read from the page: “An amusement park, or maybe a movie?” A woman wrote on the page: “He is likely to live to be ninety.” A boy talked to Mina: “I'll be sixteen on my next birthday.” A girl called from the city: “I got so scared that I wet my pants.” The picture opened, and Mina heard: “I'll retire as soon as I turn sixty.” A child read from the page: “Pardon, I am late to the meeting.” A woman wrote on the page: “It must be some sort of a bad joke.” A boy talked to Mina: “Slay the prince and come back to us!” A girl called from the city: “I was probably thirteen at the time.” Mina read the book and found the road. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. A door in the picture opened, and Mina walked on the road. A child read from the page: “I've always wanted to be a princess.” A woman wrote on the page: “A few months later, I saw Tom again.” A boy talked to Mina: “I met Mihaela at the subway station.” A girl called from the city: “She fainted at the sight of a tiger.” The picture opened, and Mina heard: “I don't know which trousers to pick.” A child read from the page: “I would as soon walk as take a taxi.” A woman wrote on the page: “How do you say \"good bye\" in German?” A boy talked to Mina: “During class I often looked outside.” A girl called from the city: “Could that really happen so quickly?” The picture opened, and Mina heard: “English is spoken almost everywhere.” A child read from the page: “A world without you would be dismal.” A woman wrote on the page: “Badis even penned a novel in Arabic.” A boy talked to Mina: “Bitcoin is divisible by 100 million.” A girl called from the city: “Are you still be obliged to do that?” The team was ready, and Mina took the book. The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The book made a new picture, and Mina looked at it. A child read from the page: “Do you want to try doing that again?” A woman wrote on the page: “A fact is, essentially, irrefutable.” A boy talked to Mina: “A car in the parking lot is on fire.” A girl called from the city: “English is taught in most countries.” The picture opened, and Mina heard: “Even though he was tired, he worked.” A child read from the page: “I can never pick him out among them.” A woman wrote on the page: “As a businessman he is far above me.” A boy talked to Mina: “All this happens within miliseconds.” A girl called from the city: “A helicopter buzzed around overhead.” The picture opened, and Mina heard: “Could Tom have done that by himself?” Mina looked at the picture. The blue letter was there, and she made a new plan. The pages made a full picture. Mina found the way, and the family was happy.",
+    "usedPhrasalVerbs": [
+      {
+        "id": "phrasal-live-with",
+        "phrasalVerb": "live with",
+        "example": "That kind lesson lived with her for many years."
+      },
+      {
+        "id": "phrasal-hold-down",
+        "phrasalVerb": "hold down",
+        "example": "Mina has held down the same library job for years."
+      },
+      {
+        "id": "phrasal-hold-to",
+        "phrasalVerb": "hold to",
+        "example": "We still hold to the same classroom rule."
+      },
+      {
+        "id": "phrasal-bring-back",
+        "phrasalVerb": "bring back",
+        "example": "This song brings back happy school memories."
+      },
+      {
+        "id": "phrasal-head-off",
+        "phrasalVerb": "head off",
+        "example": "Mina headed off after saying goodbye."
+      },
+      {
+        "id": "phrasal-black-out",
+        "phrasalVerb": "black out",
+        "example": "The editor will black out the private phone number."
+      },
+      {
+        "id": "phrasal-sit-around",
+        "phrasalVerb": "sit around",
+        "example": "No one just sits around wasting time."
+      },
+      {
+        "id": "phrasal-sit-for",
+        "phrasalVerb": "sit for",
+        "example": "Mina sits for the Park family after school."
+      },
+      {
+        "id": "phrasal-sit-up",
+        "phrasalVerb": "sit up",
+        "example": "Leo sat up past midnight to finish his model."
+      },
+      {
+        "id": "phrasal-end-in",
+        "phrasalVerb": "end in",
+        "example": "The game ended in a draw."
+      },
+      {
+        "id": "phrasal-stand-aside",
+        "phrasalVerb": "stand aside",
+        "example": "He stood aside to let me pass."
+      },
+      {
+        "id": "phrasal-stand-back",
+        "phrasalVerb": "stand back",
+        "example": "Taking time to stand back and think is a priority."
+      },
+      {
+        "id": "phrasal-stand-by",
+        "phrasalVerb": "stand by",
+        "example": "He stood by even though the plants needed water."
+      },
+      {
+        "id": "phrasal-stand-up",
+        "phrasalVerb": "stand up",
+        "example": "Jina stood up and opened the window."
+      },
+      {
+        "id": "phrasal-meet-with",
+        "phrasalVerb": "meet with",
+        "example": "The principal met with the student council."
+      },
+      {
+        "id": "phrasal-set-forth",
+        "phrasalVerb": "set forth",
+        "example": "We set forth at sunrise for the hilltop."
+      },
+      {
+        "id": "phrasal-watch-for",
+        "phrasalVerb": "watch for",
+        "example": "Watch for Ryan. He’s here somewhere."
+      },
+      {
+        "id": "phrasal-face-off",
+        "phrasalVerb": "face off",
+        "example": "The teams face off at 3 o’clock."
+      },
+      {
+        "id": "phrasal-add-to",
+        "phrasalVerb": "add to",
+        "example": "All her many expenses were added to my bill."
+      },
+      {
+        "id": "phrasal-grow-in",
+        "phrasalVerb": "grow in",
+        "example": "The area has gradually grown in importance."
+      },
+      {
+        "id": "phrasal-open-out",
+        "phrasalVerb": "open out",
+        "example": "Mina opened the paper map out on the table."
+      },
+      {
+        "id": "phrasal-walk-around",
+        "phrasalVerb": "walk around",
+        "example": "You’re not walking around in that hat?"
+      },
+      {
+        "id": "phrasal-walk-away",
+        "phrasalVerb": "walk away",
+        "example": "She smiled, waved, and walked away."
+      },
+      {
+        "id": "phrasal-walk-over",
+        "phrasalVerb": "walk over",
+        "example": "Do you let people walk over you?"
+      },
+      {
+        "id": "phrasal-walk-through",
+        "phrasalVerb": "walk through",
+        "example": "Could you walk me through this math problem?"
+      },
+      {
+        "id": "phrasal-build-up",
+        "phrasalVerb": "build up",
+        "example": "Nutritious meals helped build the young runner up."
+      },
+      {
+        "id": "phrasal-stay-away",
+        "phrasalVerb": "stay away",
+        "example": "Stay away! Don’t come any closer!"
+      },
+      {
+        "id": "phrasal-stay-down",
+        "phrasalVerb": "stay down",
+        "example": "Only the plain rice would stay down that morning."
+      },
+      {
+        "id": "phrasal-stay-off",
+        "phrasalVerb": "stay off",
+        "example": "Daily walks helped those extra pounds stay off."
+      },
+      {
+        "id": "phrasal-plan-on",
+        "phrasalVerb": "plan on",
+        "example": "We hadn’t planned on so many people coming."
+      },
+      {
+        "id": "phrasal-cut-up",
+        "phrasalVerb": "cut up",
+        "example": "Mina cut up the fruit for our picnic."
+      },
+      {
+        "id": "phrasal-drive-away",
+        "phrasalVerb": "drive away",
+        "example": "Increasing prices will only drive customers away."
+      },
+      {
+        "id": "phrasal-drive-up",
+        "phrasalVerb": "drive up",
+        "example": "Extra packaging can drive shipping costs up."
+      },
+      {
+        "id": "phrasal-break-away",
+        "phrasalVerb": "break away",
+        "example": "One corner of the label broke away easily."
+      },
+      {
+        "id": "phrasal-break-out",
+        "phrasalVerb": "break out",
+        "example": "Sweat was beginning to break out on his forehead."
+      },
+      {
+        "id": "phrasal-pick-over",
+        "phrasalVerb": "pick over",
+        "example": "Mina carefully picked over the buttons for her craft."
+      },
+      {
+        "id": "phrasal-phone-back",
+        "phrasalVerb": "phone back",
+        "example": "I’ve got someone at the door. I’ll phone you back."
+      },
+      {
+        "id": "phrasal-cover-for",
+        "phrasalVerb": "cover for",
+        "example": "If Pauline asks where I am, will you cover for me?"
+      },
+      {
+        "id": "phrasal-step-back",
+        "phrasalVerb": "step back",
+        "example": "Step back and think this all through."
+      },
+      {
+        "id": "phrasal-draw-away",
+        "phrasalVerb": "draw away",
+        "example": "Ann suddenly drew away from me."
+      },
+      {
+        "id": "phrasal-draw-back",
+        "phrasalVerb": "draw back",
+        "example": "Mina drew back the curtains to let in sunlight."
+      },
+      {
+        "id": "phrasal-draw-into",
+        "phrasalVerb": "draw into",
+        "example": "The train drew into the station just before noon."
+      },
+      {
+        "id": "phrasal-close-on",
+        "phrasalVerb": "close on",
+        "example": "The blue boat slowly closed on the red one."
+      },
+      {
+        "id": "phrasal-bank-up",
+        "phrasalVerb": "bank up",
+        "example": "Soil was banked up against the wall."
+      },
+      {
+        "id": "phrasal-throw-back",
+        "phrasalVerb": "throw back",
+        "example": "Jina threw back the covers and sat up."
+      },
+      {
+        "id": "phrasal-top-up",
+        "phrasalVerb": "top up",
+        "example": "Can I top you up?"
+      },
+      {
+        "id": "phrasal-fill-up",
+        "phrasalVerb": "fill up",
+        "example": "Fill up on lots of vegetables and salads."
+      },
+      {
+        "id": "phrasal-drop-back",
+        "phrasalVerb": "drop back",
+        "example": "Alex dropped back to let me pass."
+      },
+      {
+        "id": "phrasal-drop-behind",
+        "phrasalVerb": "drop behind",
+        "example": "Mary dropped behind to walk with Sam."
+      },
+      {
+        "id": "phrasal-drop-out",
+        "phrasalVerb": "drop out",
+        "example": "Mina dropped out of the club before the term ended."
+      },
+      {
+        "id": "phrasal-push-back",
+        "phrasalVerb": "push back",
+        "example": "We pushed the meeting back to Friday afternoon."
+      },
+      {
+        "id": "phrasal-push-for",
+        "phrasalVerb": "push for",
+        "example": "He’s pushing us for a decision by tomorrow."
+      },
+      {
+        "id": "phrasal-push-forward",
+        "phrasalVerb": "push forward",
+        "example": "They were urged to push forward with their reforms."
+      },
+      {
+        "id": "phrasal-push-in",
+        "phrasalVerb": "push in",
+        "example": "Please do not push in while others are waiting."
+      },
+      {
+        "id": "phrasal-push-over",
+        "phrasalVerb": "push over",
+        "example": "He pushed over the lamp."
+      },
+      {
+        "id": "phrasal-sign-out",
+        "phrasalVerb": "sign out",
+        "example": "Mina signed the camera out at the front desk."
+      },
+      {
+        "id": "phrasal-check-on",
+        "phrasalVerb": "check on",
+        "example": "I sent Michael to check on the kids."
+      },
+      {
+        "id": "phrasal-laugh-at",
+        "phrasalVerb": "laugh at",
+        "example": "Mina laughed at the challenge and tried again."
+      },
+      {
+        "id": "phrasal-finish-off",
+        "phrasalVerb": "finish off",
+        "example": "Do you want to finish off these sandwiches?"
+      },
+      {
+        "id": "phrasal-shake-up",
+        "phrasalVerb": "shake up",
+        "example": "The director plans to shake up how the company is organized."
+      },
+      {
+        "id": "phrasal-fly-into",
+        "phrasalVerb": "fly into",
+        "example": "Mina will fly into Jeju before the holiday."
+      },
+      {
+        "id": "phrasal-fish-for",
+        "phrasalVerb": "fish for",
+        "example": "The children fished for minnows with small nets."
+      },
+      {
+        "id": "phrasal-wish-for",
+        "phrasalVerb": "wish for",
+        "example": "You couldn’t wish for a better friend."
+      },
+      {
+        "id": "phrasal-touch-down",
+        "phrasalVerb": "touch down",
+        "example": "Our plane touched down just before sunset."
+      },
+      {
+        "id": "phrasal-sleep-away",
+        "phrasalVerb": "sleep away",
+        "example": "Leo slept away most of the rainy afternoon."
+      },
+      {
+        "id": "phrasal-sleep-on",
+        "phrasalVerb": "sleep on",
+        "example": "Let me sleep on it and give you an answer tomorrow."
+      },
+      {
+        "id": "phrasal-fan-out",
+        "phrasalVerb": "fan out",
+        "example": "Our helpers fanned out along the path to place signs."
+      },
+      {
+        "id": "phrasal-drink-to",
+        "phrasalVerb": "drink to",
+        "example": "We gathered to drink to the new school year."
+      },
+      {
+        "id": "phrasal-drink-up",
+        "phrasalVerb": "drink up",
+        "example": "Drink up, everyone, it’s time to go."
+      },
+      {
+        "id": "phrasal-band-together",
+        "phrasalVerb": "band together",
+        "example": "Local families banded together to open a reading room."
+      },
+      {
+        "id": "phrasal-ride-up",
+        "phrasalVerb": "ride up",
+        "example": "This shirt tends to ride up when I stretch."
+      },
+      {
+        "id": "phrasal-warm-up",
+        "phrasalVerb": "warm up",
+        "example": "The soup warmed up slowly on the stove."
+      },
+      {
+        "id": "phrasal-blow-down",
+        "phrasalVerb": "blow down",
+        "example": "A gust may blow the chair down."
+      },
+      {
+        "id": "phrasal-blow-off",
+        "phrasalVerb": "blow off",
+        "example": "A breeze may blow the paper cover off the box."
+      },
+      {
+        "id": "phrasal-bone-up",
+        "phrasalVerb": "bone up",
+        "example": "He’s boning up for his final exams."
+      },
+      {
+        "id": "phrasal-rain-down",
+        "phrasalVerb": "rain down",
+        "example": "Colorful paper petals rained down after the school show."
+      },
+      {
+        "id": "phrasal-dry-off",
+        "phrasalVerb": "dry off",
+        "example": "Wash the salad and leave it to dry off."
+      },
+      {
+        "id": "phrasal-nose-around",
+        "phrasalVerb": "nose around",
+        "example": "A few kids were nosing around."
+      },
+      {
+        "id": "phrasal-kick-around",
+        "phrasalVerb": "kick around",
+        "example": "The friends kicked around town with no fixed plan."
+      },
+      {
+        "id": "phrasal-match-up",
+        "phrasalVerb": "match up",
+        "example": "The two lists match up in every detail."
+      },
+      {
+        "id": "phrasal-grass-over",
+        "phrasalVerb": "grass over",
+        "example": "The workers grassed over the bare patch beside the path."
+      },
+      {
+        "id": "phrasal-wash-off",
+        "phrasalVerb": "wash off",
+        "example": "Wash all the soil off before you cook the potatoes."
+      },
+      {
+        "id": "phrasal-breathe-out",
+        "phrasalVerb": "breathe out",
+        "example": "Now breathe out slowly."
+      },
+      {
+        "id": "phrasal-toy-with",
+        "phrasalVerb": "toy with",
+        "example": "Mina toyed with a pencil while waiting for her turn."
+      },
+      {
+        "id": "phrasal-dig-in",
+        "phrasalVerb": "dig in",
+        "example": "Mina dug the dry leaves in to enrich the soil."
+      },
+      {
+        "id": "phrasal-dig-over",
+        "phrasalVerb": "dig over",
+        "example": "We dig over the garden before planting new flowers."
+      },
+      {
+        "id": "phrasal-dig-up",
+        "phrasalVerb": "dig up",
+        "example": "We will have to dig that tree up."
+      },
+      {
+        "id": "phrasal-shape-up",
+        "phrasalVerb": "shape up",
+        "example": "The class project is shaping up nicely."
+      },
+      {
+        "id": "phrasal-strike-off",
+        "phrasalVerb": "strike off",
+        "example": "They struck off across the desert without supplies."
+      },
+      {
+        "id": "phrasal-fit-in",
+        "phrasalVerb": "fit in",
+        "example": "She fitted in with her new colleagues straight away."
+      },
+      {
+        "id": "phrasal-hit-back",
+        "phrasalVerb": "hit back",
+        "example": "The coach hit back at the unfair criticism."
+      },
+      {
+        "id": "phrasal-fall-in",
+        "phrasalVerb": "fall in",
+        "example": "The roof of the house has fallen in."
+      },
+      {
+        "id": "phrasal-fall-off",
+        "phrasalVerb": "fall off",
+        "example": "Sales fell off in the third quarter."
+      },
+      {
+        "id": "phrasal-roll-in",
+        "phrasalVerb": "roll in",
+        "example": "Dark clouds are rolling in."
+      },
+      {
+        "id": "phrasal-stamp-out",
+        "phrasalVerb": "stamp out",
+        "example": "He stamped out a fire."
+      },
+      {
+        "id": "phrasal-tidy-up",
+        "phrasalVerb": "tidy up",
+        "example": "Tom tidied up his bedroom."
+      },
+      {
+        "id": "phrasal-spread-out",
+        "phrasalVerb": "spread out",
+        "example": "We spread our papers out on the table."
+      },
+      {
+        "id": "phrasal-follow-up",
+        "phrasalVerb": "follow up",
+        "example": "The police are now following up some new leads."
+      },
+      {
+        "id": "phrasal-fall-back",
+        "phrasalVerb": "fall back",
+        "example": "The tired runner fell back behind the group."
+      },
+      {
+        "id": "phrasal-fall-on",
+        "phrasalVerb": "fall on",
+        "example": "The task of choosing a date fell on Mina."
+      },
+      {
+        "id": "phrasal-lie-down",
+        "phrasalVerb": "lie down",
+        "example": "Lie down and relax."
+      },
+      {
+        "id": "phrasal-count-on",
+        "phrasalVerb": "count on",
+        "example": "I knew I could count on you to be on time."
+      },
+      {
+        "id": "phrasal-even-out",
+        "phrasalVerb": "even out",
+        "example": "The workload should even out by next week."
+      },
+      {
+        "id": "phrasal-lose-out",
+        "phrasalVerb": "lose out",
+        "example": "She lost out because she sent the form too late."
+      },
+      {
+        "id": "phrasal-send-up",
+        "phrasalVerb": "send up",
+        "example": "The school play sent up old cooking shows."
+      },
+      {
+        "id": "phrasal-fall-down",
+        "phrasalVerb": "fall down",
+        "example": "His oversized trousers started to fall down."
+      },
+      {
+        "id": "phrasal-fall-over",
+        "phrasalVerb": "fall over",
+        "example": "The tall stack of blocks fell over on the rug."
+      },
+      {
+        "id": "phrasal-pass-by",
+        "phrasalVerb": "pass by",
+        "example": "We passed by the bakery on our walk."
+      },
+      {
+        "id": "phrasal-pass-off",
+        "phrasalVerb": "pass off",
+        "example": "The picnic passed off without any problems."
+      },
+      {
+        "id": "phrasal-pull-up",
+        "phrasalVerb": "pull up",
+        "example": "The bus pulled up beside the school gate."
+      },
+      {
+        "id": "phrasal-explain-away",
+        "phrasalVerb": "explain away",
+        "example": "You cannot explain the odd result away so easily."
+      },
+      {
+        "id": "phrasal-hit-on",
+        "phrasalVerb": "hit on",
+        "example": "Mina hit on a clever way to sort the cards."
+      },
+      {
+        "id": "phrasal-clear-away",
+        "phrasalVerb": "clear away",
+        "example": "You sit down – I’ll clear away."
+      },
+      {
+        "id": "phrasal-strike-out",
+        "phrasalVerb": "strike out",
+        "example": "Mina struck the extra sentence out with a pencil."
+      },
+      {
+        "id": "phrasal-tie-up",
+        "phrasalVerb": "tie up",
+        "example": "We tied up the last details before the class show."
+      },
+      {
+        "id": "phrasal-cash-in",
+        "phrasalVerb": "cash in",
+        "example": "Small cafes can cash in on the festival crowds."
+      },
+      {
+        "id": "phrasal-mix-up",
+        "phrasalVerb": "mix up",
+        "example": "I mixed up the two similar folders."
+      },
+      {
+        "id": "phrasal-knock-down",
+        "phrasalVerb": "knock down",
+        "example": "The shop knocked down the price of the lamp."
+      },
+      {
+        "id": "phrasal-lock-in",
+        "phrasalVerb": "lock in",
+        "example": "You can’t keep me locked in."
+      },
+      {
+        "id": "phrasal-round-up",
+        "phrasalVerb": "round up",
+        "example": "We rounded the puppies up for their checkup."
+      },
+      {
+        "id": "phrasal-sink-in",
+        "phrasalVerb": "sink in",
+        "example": "The good news took a moment to sink in."
+      },
+      {
+        "id": "phrasal-tune-in",
+        "phrasalVerb": "tune in",
+        "example": "Tune in at six for the science program."
+      },
+      {
+        "id": "phrasal-boil-down",
+        "phrasalVerb": "boil down",
+        "example": "Mina boiled her long notes down into one clear page."
+      },
+      {
+        "id": "phrasal-screw-up",
+        "phrasalVerb": "screw up",
+        "example": "I really screwed up this time, didn’t I?"
+      },
+      {
+        "id": "phrasal-pull-over",
+        "phrasalVerb": "pull over",
+        "example": "We pulled over to check the map."
+      },
+      {
+        "id": "phrasal-hit-out",
+        "phrasalVerb": "hit out",
+        "example": "Parents hit out at the sudden timetable change."
+      },
+      {
+        "id": "phrasal-clear-off",
+        "phrasalVerb": "clear off",
+        "example": "Clear off, both of you!"
+      },
+      {
+        "id": "phrasal-sound-off",
+        "phrasalVerb": "sound off",
+        "example": "He sounded off about the new seating plan."
+      },
+      {
+        "id": "phrasal-fit-out",
+        "phrasalVerb": "fit out",
+        "example": "They are fitting out new offices."
+      },
+      {
+        "id": "phrasal-fix-up",
+        "phrasalVerb": "fix up",
+        "example": "We fixed up the old desk with fresh paint."
+      },
+      {
+        "id": "phrasal-knock-about",
+        "phrasalVerb": "knock about",
+        "example": "We knocked about a few ideas for the poster."
+      },
+      {
+        "id": "phrasal-knock-back",
+        "phrasalVerb": "knock back",
+        "example": "The committee knocked back our first garden proposal."
+      },
+      {
+        "id": "phrasal-knock-off",
+        "phrasalVerb": "knock off",
+        "example": "We knock off at four on Fridays."
+      },
+      {
+        "id": "phrasal-shout-down",
+        "phrasalVerb": "shout down",
+        "example": "Several excited voices shouted the guide down."
+      },
+      {
+        "id": "phrasal-lock-out",
+        "phrasalVerb": "lock out",
+        "example": "The caretaker locked visitors out after six o'clock."
+      },
+      {
+        "id": "phrasal-string-along",
+        "phrasalVerb": "string along",
+        "example": "I decided to string along with the group's suggestion."
+      },
+      {
+        "id": "phrasal-bite-back",
+        "phrasalVerb": "bite back",
+        "example": "It was his instinct to bite back."
+      },
+      {
+        "id": "phrasal-tune-out",
+        "phrasalVerb": "tune out",
+        "example": "It is easy to tune out during a long speech."
+      },
+      {
+        "id": "phrasal-boil-over",
+        "phrasalVerb": "boil over",
+        "example": "The soup boiled over onto the clean stove."
+      },
+      {
+        "id": "phrasal-boil-up",
+        "phrasalVerb": "boil up",
+        "example": "Dad boiled up a pot of vegetable soup."
+      },
+      {
+        "id": "phrasal-sew-up",
+        "phrasalVerb": "sew up",
+        "example": "Grandma sewed up the small hole in my bag."
+      },
+      {
+        "id": "phrasal-part-with",
+        "phrasalVerb": "part with",
+        "example": "I could not part with my favorite storybook."
+      },
+      {
+        "id": "phrasal-force-down",
+        "phrasalVerb": "force down",
+        "example": "Extra supply can force apple prices down."
+      },
+      {
+        "id": "phrasal-send-for",
+        "phrasalVerb": "send for",
+        "example": "I think we should send for a doctor."
+      },
+      {
+        "id": "phrasal-send-off",
+        "phrasalVerb": "send off",
+        "example": "We sent Mina off to summer camp with a warm goodbye."
+      },
+      {
+        "id": "phrasal-send-out",
+        "phrasalVerb": "send out",
+        "example": "The school sent two guides out to welcome families."
+      },
+      {
+        "id": "phrasal-fall-about",
+        "phrasalVerb": "fall about",
+        "example": "We all fell about laughing at the silly puppet."
+      },
+      {
+        "id": "phrasal-fall-into",
+        "phrasalVerb": "fall into",
+        "example": "These books fall into three broad groups."
+      },
+      {
+        "id": "phrasal-fall-out",
+        "phrasalVerb": "fall out",
+        "example": "Mina and Leo fell out over the team name."
+      },
+      {
+        "id": "phrasal-fall-to",
+        "phrasalVerb": "fall to",
+        "example": "The final decision will fall to the committee."
+      },
+      {
+        "id": "phrasal-report-back",
+        "phrasalVerb": "report back",
+        "example": "Please report back to the office after lunch."
+      },
+      {
+        "id": "phrasal-pull-away",
+        "phrasalVerb": "pull away",
+        "example": "The bus pulled away from the stop at noon."
+      },
+      {
+        "id": "phrasal-pull-back",
+        "phrasalVerb": "pull back",
+        "example": "Mina pulled back from a plan that seemed too costly."
+      },
+      {
+        "id": "phrasal-pull-in",
+        "phrasalVerb": "pull in",
+        "example": "Our taxi pulled in near the front gate."
+      },
+      {
+        "id": "phrasal-pull-into",
+        "phrasalVerb": "pull into",
+        "example": "Our bus pulled into a quiet roadside stop."
+      },
+      {
+        "id": "phrasal-return-to",
+        "phrasalVerb": "return to",
+        "example": "The garden returned to normal after the rain."
+      },
+      {
+        "id": "phrasal-land-in",
+        "phrasalVerb": "land in",
+        "example": "The travelers landed in Busan by ferry."
+      },
+      {
+        "id": "phrasal-lie-around",
+        "phrasalVerb": "lie around",
+        "example": "Please put away the books lying around your room."
+      },
+      {
+        "id": "phrasal-lie-back",
+        "phrasalVerb": "lie back",
+        "example": "Lie back and relax for thirty minutes."
+      },
+      {
+        "id": "phrasal-act-up",
+        "phrasalVerb": "act up",
+        "example": "My old tablet acted up during the lesson."
+      },
+      {
+        "id": "phrasal-fear-for",
+        "phrasalVerb": "fear for",
+        "example": "I fear greatly for their safety."
+      },
+      {
+        "id": "phrasal-strike-at",
+        "phrasalVerb": "strike at",
+        "example": "Mina struck at the ball with her tennis racket."
+      },
+      {
+        "id": "phrasal-strike-up",
+        "phrasalVerb": "strike up",
+        "example": "The announcer called out, ‘Strike up the band!’"
+      },
+      {
+        "id": "phrasal-roll-up",
+        "phrasalVerb": "roll up",
+        "example": "Mina rolled up her sleeves before washing the brushes."
+      },
+      {
+        "id": "phrasal-fit-into",
+        "phrasalVerb": "fit into",
+        "example": "We fit the extra chair into the narrow space."
+      },
+      {
+        "id": "phrasal-cross-over",
+        "phrasalVerb": "cross over",
+        "example": "The band crossed over into a wider pop audience."
+      },
+      {
+        "id": "phrasal-wave-through",
+        "phrasalVerb": "wave through",
+        "example": "A helper waved the families through the entrance."
+      },
+      {
+        "id": "phrasal-remind-of",
+        "phrasalVerb": "remind of",
+        "example": "It’s a strange taste – it reminds me of melons."
+      },
+      {
+        "id": "phrasal-shut-away",
+        "phrasalVerb": "shut away",
+        "example": "Mina shut herself away in the study for a quiet hour."
+      },
+      {
+        "id": "phrasal-shut-out",
+        "phrasalVerb": "shut out",
+        "example": "He closed the door to shut out the noise."
+      },
+      {
+        "id": "phrasal-belong-to",
+        "phrasalVerb": "belong to",
+        "example": "This notebook might belong to her."
+      },
+      {
+        "id": "phrasal-empty-out",
+        "phrasalVerb": "empty out",
+        "example": "He emptied his clothes out of the drawers."
+      },
+      {
+        "id": "phrasal-mark-down",
+        "phrasalVerb": "mark down",
+        "example": "The shop marked all winter hats down today."
+      },
+      {
+        "id": "phrasal-branch-off",
+        "phrasalVerb": "branch off",
+        "example": "Lanes branch off the main road, leading to the coast."
+      },
+      {
+        "id": "phrasal-fix-on",
+        "phrasalVerb": "fix on",
+        "example": "She fixed her gaze on Jeff."
+      },
+      {
+        "id": "phrasal-pour-out",
+        "phrasalVerb": "pour out",
+        "example": "She began pouring out her fears about the future."
+      },
+      {
+        "id": "phrasal-tear-apart",
+        "phrasalVerb": "tear apart",
+        "example": "We can tear the model apart for recycling."
+      },
+      {
+        "id": "phrasal-tear-up",
+        "phrasalVerb": "tear up",
+        "example": "Mina tore up the scrap paper for the collage."
+      },
+      {
+        "id": "phrasal-tip-over",
+        "phrasalVerb": "tip over",
+        "example": "He tipped his drink over."
+      },
+      {
+        "id": "phrasal-divide-up",
+        "phrasalVerb": "divide up",
+        "example": "Let’s divide up into groups now."
+      },
+      {
+        "id": "phrasal-knock-around",
+        "phrasalVerb": "knock around",
+        "example": "The team knocked the poster ideas around after lunch."
+      },
+      {
+        "id": "phrasal-shout-out",
+        "phrasalVerb": "shout out",
+        "example": "Mina shouted out the answer when she remembered it."
+      },
+      {
+        "id": "phrasal-lock-away",
+        "phrasalVerb": "lock away",
+        "example": "Mina locked her passport away in a small safe."
+      },
+      {
+        "id": "phrasal-dust-off",
+        "phrasalVerb": "dust off",
+        "example": "Mina dusted off her coat after sitting on the bench."
+      },
+      {
+        "id": "phrasal-weigh-in",
+        "phrasalVerb": "weigh in",
+        "example": "Our teacher weighed in with a helpful suggestion."
+      },
+      {
+        "id": "phrasal-disagree-with",
+        "phrasalVerb": "disagree with",
+        "example": "Mina disagrees with copying someone else's homework."
+      },
+      {
+        "id": "phrasal-hang-about",
+        "phrasalVerb": "hang about",
+        "example": "We hung about near the library after class."
+      },
+      {
+        "id": "phrasal-toss-up",
+        "phrasalVerb": "toss up",
+        "example": "Let’s toss up to decide who drives."
+      },
+      {
+        "id": "phrasal-connect-up",
+        "phrasalVerb": "connect up",
+        "example": "The plumber came and connected up the dishwasher."
+      },
+      {
+        "id": "phrasal-lay-on",
+        "phrasalVerb": "lay on",
+        "example": "They lay on free snacks for every club meeting."
+      },
+      {
+        "id": "phrasal-settle-down",
+        "phrasalVerb": "settle down",
+        "example": "She took a seat and settled down to wait."
+      },
+      {
+        "id": "phrasal-mess-up",
+        "phrasalVerb": "mess up",
+        "example": "I messed up one answer on the worksheet."
+      },
+      {
+        "id": "phrasal-hang-out",
+        "phrasalVerb": "hang out",
+        "example": "We hung out in the park on Saturday."
+      },
+      {
+        "id": "phrasal-lay-up",
+        "phrasalVerb": "lay up",
+        "example": "I've been laid up with flu for the last week."
+      },
+      {
+        "id": "phrasal-mess-with",
+        "phrasalVerb": "mess with",
+        "example": "Boston messes with my head."
+      },
+      {
+        "id": "phrasal-stick-at",
+        "phrasalVerb": "stick at",
+        "example": "\"Stick at it!\""
+      },
+      {
+        "id": "phrasal-switch-on",
+        "phrasalVerb": "switch on",
+        "example": "Tom switched on the lights."
+      },
+      {
+        "id": "phrasal-rise-up",
+        "phrasalVerb": "rise up",
+        "example": "Everyone rose up to greet the guest."
+      },
+      {
+        "id": "phrasal-lay-down",
+        "phrasalVerb": "lay down",
+        "example": "The club laid down simple rules for every member."
+      },
+      {
+        "id": "phrasal-hang-on",
+        "phrasalVerb": "hang on",
+        "example": "Hang on a moment while I find the map."
+      },
+      {
+        "id": "phrasal-stick-to",
+        "phrasalVerb": "stick to",
+        "example": "Now he must stick to it."
+      },
+      {
+        "id": "phrasal-hang-together",
+        "phrasalVerb": "hang together",
+        "example": "The story hangs together from beginning to end."
+      },
+      {
+        "id": "phrasal-measure-up",
+        "phrasalVerb": "measure up",
+        "example": "The new glue measured up in our craft test."
+      },
+      {
+        "id": "phrasal-beat-down",
+        "phrasalVerb": "beat down",
+        "example": "The sun can beat down brightly at noon."
+      },
+      {
+        "id": "phrasal-stick-together",
+        "phrasalVerb": "stick together",
+        "example": "Our group stuck together during the long project."
+      },
+      {
+        "id": "phrasal-stick-with",
+        "phrasalVerb": "stick with",
+        "example": "We stuck with our first color choice."
+      },
+      {
+        "id": "phrasal-cave-in",
+        "phrasalVerb": "cave in",
+        "example": "Dad caved in and let us choose the music."
+      },
+      {
+        "id": "phrasal-pin-down",
+        "phrasalVerb": "pin down",
+        "example": "It is hard to pin that unusual color down."
+      },
+      {
+        "id": "phrasal-filter-out",
+        "phrasalVerb": "filter out",
+        "example": "The screen filtered the sand out of the water."
+      },
+      {
+        "id": "phrasal-crash-out",
+        "phrasalVerb": "crash out",
+        "example": "The twins crashed out soon after the evening story."
+      },
+      {
+        "id": "phrasal-nail-down",
+        "phrasalVerb": "nail down",
+        "example": "I’ll try to nail Jim down about the date."
+      },
+      {
+        "id": "phrasal-pin-up",
+        "phrasalVerb": "pin up",
+        "example": "Please pin this bright poster up on the wall."
+      },
+      {
+        "id": "phrasal-tick-off",
+        "phrasalVerb": "tick off",
+        "example": "Tick off each task after you finish it."
+      },
+      {
+        "id": "phrasal-tick-over",
+        "phrasalVerb": "tick over",
+        "example": "The small shop kept ticking over during the quiet month."
+      },
+      {
+        "id": "phrasal-reduce-to",
+        "phrasalVerb": "reduce to",
+        "example": "The blender reduced the oats to a fine powder."
+      },
+      {
+        "id": "phrasal-lay-aside",
+        "phrasalVerb": "lay aside",
+        "example": "Mina laid the book aside when dinner was ready."
+      },
+      {
+        "id": "phrasal-hang-around",
+        "phrasalVerb": "hang around",
+        "example": "Let’s not hang around or we’ll be late!"
+      },
+      {
+        "id": "phrasal-beat-out",
+        "phrasalVerb": "beat out",
+        "example": "Mina beat out twenty applicants for the school role."
+      },
+      {
+        "id": "phrasal-relate-to",
+        "phrasalVerb": "relate to",
+        "example": "This chapter relates to life in the ocean."
+      },
+      {
+        "id": "phrasal-attend-to",
+        "phrasalVerb": "attend to",
+        "example": "Are you being attended to?"
+      },
+      {
+        "id": "phrasal-press-ahead",
+        "phrasalVerb": "press ahead",
+        "example": "They pressed ahead regardless of objections."
+      },
+      {
+        "id": "phrasal-stick-up",
+        "phrasalVerb": "stick up",
+        "example": "Maggie stuck up her hand to answer the question."
+      },
+      {
+        "id": "phrasal-settle-into",
+        "phrasalVerb": "settle into",
+        "example": "We settled into our tent."
+      },
+      {
+        "id": "phrasal-lift-up",
+        "phrasalVerb": "lift up",
+        "example": "He lifted up the heavy bags."
+      },
+      {
+        "id": "phrasal-stretch-to",
+        "phrasalVerb": "stretch to",
+        "example": "The fabric can stretch to twice its width."
+      },
+      {
+        "id": "phrasal-wrap-round",
+        "phrasalVerb": "wrap round",
+        "example": "Each cake has a bright red ribbon wrapped round it."
+      },
+      {
+        "id": "phrasal-drag-into",
+        "phrasalVerb": "drag into",
+        "example": "Friends will be dragged into the argument."
+      },
+      {
+        "id": "phrasal-drag-on",
+        "phrasalVerb": "drag on",
+        "example": "This has dragged on for months."
+      },
+      {
+        "id": "phrasal-boot-out",
+        "phrasalVerb": "boot out",
+        "example": "A login error booted Mina out of the class website."
+      },
+      {
+        "id": "phrasal-switch-over",
+        "phrasalVerb": "switch over",
+        "example": "I just switch over right away."
+      },
+      {
+        "id": "phrasal-polish-off",
+        "phrasalVerb": "polish off",
+        "example": "\"I'm afraid we've already polished off the soup.\""
+      },
+      {
+        "id": "phrasal-wipe-out",
+        "phrasalVerb": "wipe out",
+        "example": "Please wipe the empty drawer out before using it."
+      },
+      {
+        "id": "phrasal-rub-off",
+        "phrasalVerb": "rub off",
+        "example": "Mina's love of reading soon rubbed off on Leo."
+      },
+      {
+        "id": "phrasal-pitch-in",
+        "phrasalVerb": "pitch in",
+        "example": "We all pitched in to clean the classroom."
+      },
+      {
+        "id": "phrasal-shrug-off",
+        "phrasalVerb": "shrug off",
+        "example": "She shrugged off the small spelling mistake."
+      },
+      {
+        "id": "phrasal-hook-up",
+        "phrasalVerb": "hook up",
+        "example": "He hooked the microphone up to a tape recorder."
+      },
+      {
+        "id": "phrasal-weed-out",
+        "phrasalVerb": "weed out",
+        "example": "We weeded out the duplicate cards from the set."
+      },
+      {
+        "id": "phrasal-curl-up",
+        "phrasalVerb": "curl up",
+        "example": "We curled up together for warmth."
+      },
+      {
+        "id": "phrasal-snap-up",
+        "phrasalVerb": "snap up",
+        "example": "I’d snap up his offer if I were you."
+      },
+      {
+        "id": "phrasal-spin-out",
+        "phrasalVerb": "spin out",
+        "example": "Do not spin the meeting out with repeated questions."
+      },
+      {
+        "id": "phrasal-rub-in",
+        "phrasalVerb": "rub in",
+        "example": "Mina rubbed the butter in until the flour looked crumbly."
+      },
+      {
+        "id": "phrasal-rub-out",
+        "phrasalVerb": "rub out",
+        "example": "I rubbed my spelling mistake out and tried again."
+      },
+      {
+        "id": "phrasal-crack-up",
+        "phrasalVerb": "crack up",
+        "example": "Everyone will crack up at the silly drawing."
+      },
+      {
+        "id": "phrasal-stack-up",
+        "phrasalVerb": "stack up",
+        "example": "The books had been stacked up in neat piles."
+      },
+      {
+        "id": "phrasal-peg-out",
+        "phrasalVerb": "peg out",
+        "example": "Dad pegged the clean shirts out on the line."
+      },
+      {
+        "id": "phrasal-profit-from",
+        "phrasalVerb": "profit from",
+        "example": "Local farmers profit from the weekend market."
+      },
+      {
+        "id": "phrasal-chip-away",
+        "phrasalVerb": "chip away",
+        "example": "Use a hammer to chip away the edge."
+      },
+      {
+        "id": "phrasal-swing-at",
+        "phrasalVerb": "swing at",
+        "example": "Leo swung his racket at the foam ball."
+      },
+      {
+        "id": "phrasal-sweep-away",
+        "phrasalVerb": "sweep away",
+        "example": "An exciting story can sweep Mina away for an hour."
+      },
+      {
+        "id": "phrasal-sweep-up",
+        "phrasalVerb": "sweep up",
+        "example": "I’m going to sweep up."
+      }
+    ],
+    "phrasalVerbPracticeText": "The book had a blue line. Mina began a new walk with the team. In the morning, Mina found a new page in the book. The team looked at the page and began to walk. A child read from the page: “That kind lesson lived with her for many years.” A woman wrote on the page: “Mina has held down the same library job for years.” A boy talked to Mina: “We still hold to the same classroom rule.” A girl called from the city: “This song brings back happy school memories.” The picture opened, and Mina heard: “Mina headed off after saying goodbye.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. A red line crossed the page and went to the school. Mina took the book and followed it. A child read from the page: “The editor will black out the private phone number.” A woman wrote on the page: “No one just sits around wasting time.” A boy talked to Mina: “Mina sits for the Park family after school.” A girl called from the city: “Leo sat up past midnight to finish his model.” The picture opened, and Mina heard: “The game ended in a draw.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. At the school, a closed door had a blue picture. Mina took the key and opened the door. A child read from the page: “He stood aside to let me pass.” A woman wrote on the page: “Taking time to stand back and think is a priority.” A boy talked to Mina: “He stood by even though the plants needed water.” A girl called from the city: “Jina stood up and opened the window.” The picture opened, and Mina heard: “The principal met with the student council.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The room was dark, but a page had a little light. Mina went in and took the page. A child read from the page: “We set forth at sunrise for the hilltop.” A woman wrote on the page: “Watch for Ryan. He’s here somewhere.” A boy talked to Mina: “The teams face off at 3 o’clock.” A girl called from the city: “All her many expenses were added to my bill.” The picture opened, and Mina heard: “The area has gradually grown in importance.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. Rain fell on the road, and the book was wet. Mina covered it with her bag and continued the walk. A child read from the page: “Mina opened the paper map out on the table.” A woman wrote on the page: “You’re not walking around in that hat?” A boy talked to Mina: “She smiled, waved, and walked away.” A girl called from the city: “Do you let people walk over you?” The picture opened, and Mina heard: “Could you walk me through this math problem?” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. At night, the team began to cry at a dark old house. Mina ran to the house and found a page. A child read from the page: “Nutritious meals helped build the young runner up.” A woman wrote on the page: “Stay away! Don’t come any closer!” A boy talked to Mina: “Only the plain rice would stay down that morning.” A girl called from the city: “Daily walks helped those extra pounds stay off.” The picture opened, and Mina heard: “We hadn’t planned on so many people coming.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The page had a road to the city. Mina called her family and asked for help. A child read from the page: “Mina cut up the fruit for our picnic.” A woman wrote on the page: “Increasing prices will only drive customers away.” A boy talked to Mina: “Extra packaging can drive shipping costs up.” A girl called from the city: “One corner of the label broke away easily.” The picture opened, and Mina heard: “Sweat was beginning to break out on his forehead.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. A family brought a picture from the garden. Mina put it on the book and saw a new line. A child read from the page: “Mina carefully picked over the buttons for her craft.” A woman wrote on the page: “I’ve got someone at the door. I’ll phone you back.” A boy talked to Mina: “If Pauline asks where I am, will you cover for me?” A girl called from the city: “Step back and think this all through.” The picture opened, and Mina heard: “Ann suddenly drew away from me.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The line ended at a wall. Mina did not know the way, but the team found a door. A child read from the page: “Mina drew back the curtains to let in sunlight.” A woman wrote on the page: “The train drew into the station just before noon.” A boy talked to Mina: “The blue boat slowly closed on the red one.” A girl called from the city: “Soil was banked up against the wall.” The picture opened, and Mina heard: “Jina threw back the covers and sat up.” Mina put the page on the map and followed the red line.\n\nThe book had a blue line. Mina began a new walk with the team. The door was closed, and the key did not open it. Mina read the book and found a small line. A child read from the page: “Can I top you up?” A woman wrote on the page: “Fill up on lots of vegetables and salads.” A boy talked to Mina: “Alex dropped back to let me pass.” A girl called from the city: “Mary dropped behind to walk with Sam.” The picture opened, and Mina heard: “Mina dropped out of the club before the term ended.” Mina put the page on the map and followed the red line.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. In the morning, Mina found a new page in the book. The team looked at the page and began to walk. A child read from the page: “We pushed the meeting back to Friday afternoon.” A woman wrote on the page: “He’s pushing us for a decision by tomorrow.” A boy talked to Mina: “They were urged to push forward with their reforms.” A girl called from the city: “Please do not push in while others are waiting.” The picture opened, and Mina heard: “He pushed over the lamp.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. A red line crossed the page and went to the school. Mina took the book and followed it. A child read from the page: “Mina signed the camera out at the front desk.” A woman wrote on the page: “I sent Michael to check on the kids.” A boy talked to Mina: “Mina laughed at the challenge and tried again.” A girl called from the city: “Do you want to finish off these sandwiches?” The picture opened, and Mina heard: “The director plans to shake up how the company is organized.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. At the school, a closed door had a blue picture. Mina took the key and opened the door. A child read from the page: “Mina will fly into Jeju before the holiday.” A woman wrote on the page: “The children fished for minnows with small nets.” A boy talked to Mina: “You couldn’t wish for a better friend.” A girl called from the city: “Our plane touched down just before sunset.” The picture opened, and Mina heard: “Leo slept away most of the rainy afternoon.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The room was dark, but a page had a little light. Mina went in and took the page. A child read from the page: “Let me sleep on it and give you an answer tomorrow.” A woman wrote on the page: “Our helpers fanned out along the path to place signs.” A boy talked to Mina: “We gathered to drink to the new school year.” A girl called from the city: “Drink up, everyone, it’s time to go.” The picture opened, and Mina heard: “Local families banded together to open a reading room.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. Rain fell on the road, and the book was wet. Mina covered it with her bag and continued the walk. A child read from the page: “This shirt tends to ride up when I stretch.” A woman wrote on the page: “The soup warmed up slowly on the stove.” A boy talked to Mina: “A gust may blow the chair down.” A girl called from the city: “A breeze may blow the paper cover off the box.” The picture opened, and Mina heard: “He’s boning up for his final exams.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. At night, the team began to cry at a dark old house. Mina ran to the house and found a page. A child read from the page: “Colorful paper petals rained down after the school show.” A woman wrote on the page: “Wash the salad and leave it to dry off.” A boy talked to Mina: “A few kids were nosing around.” A girl called from the city: “The friends kicked around town with no fixed plan.” The picture opened, and Mina heard: “The two lists match up in every detail.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The page had a road to the city. Mina called her family and asked for help. A child read from the page: “The workers grassed over the bare patch beside the path.” A woman wrote on the page: “Wash all the soil off before you cook the potatoes.” A boy talked to Mina: “Now breathe out slowly.” A girl called from the city: “Mina toyed with a pencil while waiting for her turn.” The picture opened, and Mina heard: “Mina dug the dry leaves in to enrich the soil.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. A family brought a picture from the garden. Mina put it on the book and saw a new line. A child read from the page: “We dig over the garden before planting new flowers.” A woman wrote on the page: “We will have to dig that tree up.” A boy talked to Mina: “The class project is shaping up nicely.” A girl called from the city: “They struck off across the desert without supplies.” The picture opened, and Mina heard: “She fitted in with her new colleagues straight away.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The line ended at a wall. Mina did not know the way, but the team found a door. A child read from the page: “The coach hit back at the unfair criticism.” A woman wrote on the page: “The roof of the house has fallen in.” A boy talked to Mina: “Sales fell off in the third quarter.” A girl called from the city: “Dark clouds are rolling in.” The picture opened, and Mina heard: “He stamped out a fire.” The new picture had a road for Mina. She held the book and went on.\n\nThe road became dark, and rain fell. Mina was afraid, but the team was with her. The door was closed, and the key did not open it. Mina read the book and found a small line. A child read from the page: “Tom tidied up his bedroom.” A woman wrote on the page: “We spread our papers out on the table.” A boy talked to Mina: “The police are now following up some new leads.” A girl called from the city: “The tired runner fell back behind the group.” The picture opened, and Mina heard: “The task of choosing a date fell on Mina.” The new picture had a road for Mina. She held the book and went on.\n\nThe map did not have the road. Mina listened to the team and changed her plan. In the morning, Mina found a new page in the book. The team looked at the page and began to walk. A child read from the page: “Lie down and relax.” A woman wrote on the page: “I knew I could count on you to be on time.” A boy talked to Mina: “The workload should even out by next week.” A girl called from the city: “She lost out because she sent the form too late.” The picture opened, and Mina heard: “The school play sent up old cooking shows.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. A red line crossed the page and went to the school. Mina took the book and followed it. A child read from the page: “His oversized trousers started to fall down.” A woman wrote on the page: “The tall stack of blocks fell over on the rug.” A boy talked to Mina: “We passed by the bakery on our walk.” A girl called from the city: “The picnic passed off without any problems.” The picture opened, and Mina heard: “The bus pulled up beside the school gate.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. At the school, a closed door had a blue picture. Mina took the key and opened the door. A child read from the page: “You cannot explain the odd result away so easily.” A woman wrote on the page: “Mina hit on a clever way to sort the cards.” A boy talked to Mina: “You sit down – I’ll clear away.” A girl called from the city: “Mina struck the extra sentence out with a pencil.” The picture opened, and Mina heard: “We tied up the last details before the class show.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. The room was dark, but a page had a little light. Mina went in and took the page. A child read from the page: “Small cafes can cash in on the festival crowds.” A woman wrote on the page: “I mixed up the two similar folders.” A boy talked to Mina: “The shop knocked down the price of the lamp.” A girl called from the city: “You can’t keep me locked in.” The picture opened, and Mina heard: “We rounded the puppies up for their checkup.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. Rain fell on the road, and the book was wet. Mina covered it with her bag and continued the walk. A child read from the page: “The good news took a moment to sink in.” A woman wrote on the page: “Tune in at six for the science program.” A boy talked to Mina: “Mina boiled her long notes down into one clear page.” A girl called from the city: “I really screwed up this time, didn’t I?” The picture opened, and Mina heard: “We pulled over to check the map.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. At night, the team began to cry at a dark old house. Mina ran to the house and found a page. A child read from the page: “Parents hit out at the sudden timetable change.” A woman wrote on the page: “Clear off, both of you!” A boy talked to Mina: “He sounded off about the new seating plan.” A girl called from the city: “They are fitting out new offices.” The picture opened, and Mina heard: “We fixed up the old desk with fresh paint.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. The page had a road to the city. Mina called her family and asked for help. A child read from the page: “We knocked about a few ideas for the poster.” A woman wrote on the page: “The committee knocked back our first garden proposal.” A boy talked to Mina: “We knock off at four on Fridays.” A girl called from the city: “Several excited voices shouted the guide down.” The picture opened, and Mina heard: “The caretaker locked visitors out after six o'clock.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. A family brought a picture from the garden. Mina put it on the book and saw a new line. A child read from the page: “I decided to string along with the group's suggestion.” A woman wrote on the page: “It was his instinct to bite back.” A boy talked to Mina: “It is easy to tune out during a long speech.” A girl called from the city: “The soup boiled over onto the clean stove.” The picture opened, and Mina heard: “Dad boiled up a pot of vegetable soup.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. The line ended at a wall. Mina did not know the way, but the team found a door. A child read from the page: “Grandma sewed up the small hole in my bag.” A woman wrote on the page: “I could not part with my favorite storybook.” A boy talked to Mina: “Extra supply can force apple prices down.” A girl called from the city: “I think we should send for a doctor.” The picture opened, and Mina heard: “We sent Mina off to summer camp with a warm goodbye.” Mina joined the lines and made a new plan. She went on with the team.\n\nThe map did not have the road. Mina listened to the team and changed her plan. The door was closed, and the key did not open it. Mina read the book and found a small line. A child read from the page: “The school sent two guides out to welcome families.” A woman wrote on the page: “We all fell about laughing at the silly puppet.” A boy talked to Mina: “These books fall into three broad groups.” A girl called from the city: “Mina and Leo fell out over the team name.” The picture opened, and Mina heard: “The final decision will fall to the committee.” Mina joined the lines and made a new plan. She went on with the team.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. In the morning, Mina found a new page in the book. The team looked at the page and began to walk. A child read from the page: “Please report back to the office after lunch.” A woman wrote on the page: “The bus pulled away from the stop at noon.” A boy talked to Mina: “Mina pulled back from a plan that seemed too costly.” A girl called from the city: “Our taxi pulled in near the front gate.” The picture opened, and Mina heard: “Our bus pulled into a quiet roadside stop.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. A red line crossed the page and went to the school. Mina took the book and followed it. A child read from the page: “The garden returned to normal after the rain.” A woman wrote on the page: “The travelers landed in Busan by ferry.” A boy talked to Mina: “Please put away the books lying around your room.” A girl called from the city: “Lie back and relax for thirty minutes.” The picture opened, and Mina heard: “My old tablet acted up during the lesson.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. At the school, a closed door had a blue picture. Mina took the key and opened the door. A child read from the page: “I fear greatly for their safety.” A woman wrote on the page: “Mina struck at the ball with her tennis racket.” A boy talked to Mina: “The announcer called out, ‘Strike up the band!’” A girl called from the city: “Mina rolled up her sleeves before washing the brushes.” The picture opened, and Mina heard: “We fit the extra chair into the narrow space.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The room was dark, but a page had a little light. Mina went in and took the page. A child read from the page: “The band crossed over into a wider pop audience.” A woman wrote on the page: “A helper waved the families through the entrance.” A boy talked to Mina: “It’s a strange taste – it reminds me of melons.” A girl called from the city: “Mina shut herself away in the study for a quiet hour.” The picture opened, and Mina heard: “He closed the door to shut out the noise.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. Rain fell on the road, and the book was wet. Mina covered it with her bag and continued the walk. A child read from the page: “This notebook might belong to her.” A woman wrote on the page: “He emptied his clothes out of the drawers.” A boy talked to Mina: “The shop marked all winter hats down today.” A girl called from the city: “Lanes branch off the main road, leading to the coast.” The picture opened, and Mina heard: “She fixed her gaze on Jeff.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. At night, the team began to cry at a dark old house. Mina ran to the house and found a page. A child read from the page: “She began pouring out her fears about the future.” A woman wrote on the page: “We can tear the model apart for recycling.” A boy talked to Mina: “Mina tore up the scrap paper for the collage.” A girl called from the city: “He tipped his drink over.” The picture opened, and Mina heard: “Let’s divide up into groups now.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The page had a road to the city. Mina called her family and asked for help. A child read from the page: “The team knocked the poster ideas around after lunch.” A woman wrote on the page: “Mina shouted out the answer when she remembered it.” A boy talked to Mina: “Mina locked her passport away in a small safe.” A girl called from the city: “Mina dusted off her coat after sitting on the bench.” The picture opened, and Mina heard: “Our teacher weighed in with a helpful suggestion.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. A family brought a picture from the garden. Mina put it on the book and saw a new line. A child read from the page: “Mina disagrees with copying someone else's homework.” A woman wrote on the page: “We hung about near the library after class.” A boy talked to Mina: “Let’s toss up to decide who drives.” A girl called from the city: “The plumber came and connected up the dishwasher.” The picture opened, and Mina heard: “They lay on free snacks for every club meeting.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The line ended at a wall. Mina did not know the way, but the team found a door. A child read from the page: “She took a seat and settled down to wait.” A woman wrote on the page: “I messed up one answer on the worksheet.” A boy talked to Mina: “We hung out in the park on Saturday.” A girl called from the city: “I've been laid up with flu for the last week.” The picture opened, and Mina heard: “Boston messes with my head.” The picture became clear, and Mina opened a new door. The family followed her.\n\nAt a dark old house, Mina found the family from the picture. The door was closed, and they asked for help. The door was closed, and the key did not open it. Mina read the book and found a small line. A child read from the page: “\"Stick at it!\"” A woman wrote on the page: “Tom switched on the lights.” A boy talked to Mina: “Everyone rose up to greet the guest.” A girl called from the city: “The club laid down simple rules for every member.” The picture opened, and Mina heard: “Hang on a moment while I find the map.” The picture became clear, and Mina opened a new door. The family followed her.\n\nThe red line ended at the school. Mina carried the pages with her. In the morning, Mina found a new page in the book. The team looked at the page and began to walk. A child read from the page: “Now he must stick to it.” A woman wrote on the page: “The story hangs together from beginning to end.” A boy talked to Mina: “The new glue measured up in our craft test.” A girl called from the city: “The sun can beat down brightly at noon.” The picture opened, and Mina heard: “Our group stuck together during the long project.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. A red line crossed the page and went to the school. Mina took the book and followed it. A child read from the page: “We stuck with our first color choice.” A woman wrote on the page: “Dad caved in and let us choose the music.” A boy talked to Mina: “It is hard to pin that unusual color down.” A girl called from the city: “The screen filtered the sand out of the water.” The picture opened, and Mina heard: “The twins crashed out soon after the evening story.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. At the school, a closed door had a blue picture. Mina took the key and opened the door. A child read from the page: “I’ll try to nail Jim down about the date.” A woman wrote on the page: “Please pin this bright poster up on the wall.” A boy talked to Mina: “Tick off each task after you finish it.” A girl called from the city: “The small shop kept ticking over during the quiet month.” The picture opened, and Mina heard: “The blender reduced the oats to a fine powder.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The room was dark, but a page had a little light. Mina went in and took the page. A child read from the page: “Mina laid the book aside when dinner was ready.” A woman wrote on the page: “Let’s not hang around or we’ll be late!” A boy talked to Mina: “Mina beat out twenty applicants for the school role.” A girl called from the city: “This chapter relates to life in the ocean.” The picture opened, and Mina heard: “Are you being attended to?” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. Rain fell on the road, and the book was wet. Mina covered it with her bag and continued the walk. A child read from the page: “They pressed ahead regardless of objections.” A woman wrote on the page: “Maggie stuck up her hand to answer the question.” A boy talked to Mina: “We settled into our tent.” A girl called from the city: “He lifted up the heavy bags.” The picture opened, and Mina heard: “The fabric can stretch to twice its width.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. At night, the team began to cry at a dark old house. Mina ran to the house and found a page. A child read from the page: “Each cake has a bright red ribbon wrapped round it.” A woman wrote on the page: “Friends will be dragged into the argument.” A boy talked to Mina: “This has dragged on for months.” A girl called from the city: “A login error booted Mina out of the class website.” The picture opened, and Mina heard: “I just switch over right away.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The page had a road to the city. Mina called her family and asked for help. A child read from the page: “\"I'm afraid we've already polished off the soup.\"” A woman wrote on the page: “Please wipe the empty drawer out before using it.” A boy talked to Mina: “Mina's love of reading soon rubbed off on Leo.” A girl called from the city: “We all pitched in to clean the classroom.” The picture opened, and Mina heard: “She shrugged off the small spelling mistake.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. A family brought a picture from the garden. Mina put it on the book and saw a new line. A child read from the page: “He hooked the microphone up to a tape recorder.” A woman wrote on the page: “We weeded out the duplicate cards from the set.” A boy talked to Mina: “We curled up together for warmth.” A girl called from the city: “I’d snap up his offer if I were you.” The picture opened, and Mina heard: “Do not spin the meeting out with repeated questions.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The line ended at a wall. Mina did not know the way, but the team found a door. A child read from the page: “Mina rubbed the butter in until the flour looked crumbly.” A woman wrote on the page: “I rubbed my spelling mistake out and tried again.” A boy talked to Mina: “Everyone will crack up at the silly drawing.” A girl called from the city: “The books had been stacked up in neat piles.” The picture opened, and Mina heard: “Dad pegged the clean shirts out on the line.” The pages made a full picture. Mina found the way, and the family was happy.\n\nThe red line ended at the school. Mina carried the pages with her. The door was closed, and the key did not open it. Mina read the book and found a small line. A child read from the page: “Local farmers profit from the weekend market.” A woman wrote on the page: “Use a hammer to chip away the edge.” A boy talked to Mina: “Leo swung his racket at the foam ball.” A girl called from the city: “An exciting story can sweep Mina away for an hour.” The picture opened, and Mina heard: “I’m going to sweep up.” The pages made a full picture. Mina found the way, and the family was happy."
   },
   "approval": {
     "reviewer": "Archimentor",
-    "reviewedAt": "2026-08-20T03:34:02.062Z",
+    "reviewedAt": "2026-08-20T05:59:54.887Z",
     "sourceDigest": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "value": "45bd1abff2cb72748698ae4f952d14708431fa994c8f52417da6fdb4a0057898"
+      "value": "c315adbf7f7dacfff026ed65fb76a444b27dfe1cfdf3cc0ada5a5ea890fb9958"
     }
   }
 }

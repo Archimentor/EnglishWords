@@ -423,10 +423,12 @@ function AppContent({ catalogLoader, speech, now }: AppContentProps) {
       <StoryView
         story={story}
         levelWords={catalog.wordlists[level]}
+        levelPhrasalVerbs={catalog.phrasalVerbs.byLevel[level]}
         lookupWords={lookupLevels.flatMap(
           (lookupLevel) => catalog.wordlists[lookupLevel],
         )}
         targetWordCount={WORD_TARGETS[level]}
+        targetPhrasalVerbCount={PHRASAL_VERB_TARGET}
         speech={resolvedSpeech}
       />
     )

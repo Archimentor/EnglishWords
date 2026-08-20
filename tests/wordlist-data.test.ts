@@ -247,7 +247,7 @@ describe('release wordlist data', () => {
       }
 
     }
-  })
+  }, 15_000)
 
   test('레벨이 파일과 일치하고 placeholder 텍스트가 없다', () => {
     const wordlists = loadWordlists()

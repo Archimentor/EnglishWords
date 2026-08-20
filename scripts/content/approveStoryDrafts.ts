@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 
 import { LEVELS } from '../../src/domain/content/types'
-import type { Level, WordItem } from '../../src/domain/content/types'
+import type { Level, PhrasalVerbItem, WordItem } from '../../src/domain/content/types'
 import { buildStoryDraft } from './buildStoryDrafts'
 import { manualStorySourceDigest } from './catalogDigest'
 import {
@@ -53,6 +53,13 @@ async function readWordlist(level: Level): Promise<WordItem[]> {
   )) as WordItem[]
 }
 
+async function readPhrasalVerbs(level: Level): Promise<PhrasalVerbItem[]> {
+  return JSON.parse(await readFile(
+    join(DEFAULT_CONTENT_DATA_ROOT, 'phrasal-verbs', 'by-level', `${level}.json`),
+    'utf8',
+  )) as PhrasalVerbItem[]
+}
+
 export async function approveStoryDrafts(options: ApprovalOptions): Promise<void> {
   assertOptions(options)
   await mkdir(DEFAULT_MANUAL_STORY_ROOT, { recursive: true })
@@ -60,9 +67,10 @@ export async function approveStoryDrafts(options: ApprovalOptions): Promise<void
   const allowedWords: WordItem[] = []
   for (const level of LEVELS) {
     const words = await readWordlist(level)
+    const phrasalVerbs = await readPhrasalVerbs(level)
     allowedWords.push(...words)
     const story = {
-      ...buildStoryDraft(level, words, allowedWords),
+      ...buildStoryDraft(level, words, allowedWords, phrasalVerbs),
       isManual: true,
     }
     const input: ApprovedManualStoryInput = {
