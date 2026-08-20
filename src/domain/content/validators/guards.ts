@@ -39,6 +39,25 @@ export function invalidCatalog(path: string, message: string): ValidationIssue {
   return { code: 'INVALID_CATALOG', path, message }
 }
 
+export function rejectAdditionalProperties(
+  value: Record<string, unknown>,
+  allowedFields: readonly string[],
+  path: string,
+  schemaName: string,
+  issues: ValidationIssue[],
+): void {
+  for (const field of Object.keys(value)) {
+    if (!allowedFields.includes(field)) {
+      issues.push(
+        invalidCatalog(
+          `${path}.${field}`,
+          `${field} is not allowed by the ${schemaName} schema.`,
+        ),
+      )
+    }
+  }
+}
+
 export function duplicateId(
   path: string,
   id: string,

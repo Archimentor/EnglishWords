@@ -8,12 +8,16 @@ import { CONTENT_SOURCES } from './sources'
 import {
   fetchContentSources,
   inspectContentSourceCaches,
+  requireVerifiedContentSourceCaches,
+  SOURCE_FETCH_TIMEOUT_MS,
   verifySourceBuffer,
 } from './fetchSources'
 
+const TEST_SOURCE = CONTENT_SOURCES[0]!
+
 function sourceFor(cacheFile: string, body: Buffer): ContentSource {
   return {
-    ...CONTENT_SOURCES[0],
+    ...TEST_SOURCE,
     cacheFile,
     sha256: createHash('sha256').update(body).digest('hex'),
   }
@@ -30,8 +34,12 @@ async function withTemporaryCache(testBody: (cacheDir: string) => Promise<void>)
 }
 
 describe('source snapshot verification', () => {
+  test('uses a finite default source download deadline', () => {
+    expect(SOURCE_FETCH_TIMEOUT_MS).toBe(5 * 60_000)
+  })
+
   test('rejects a cached file whose digest differs from the pinned source', async () => {
-    await expect(verifySourceBuffer(CONTENT_SOURCES[0], Buffer.from('tampered')))
+    await expect(verifySourceBuffer(TEST_SOURCE, Buffer.from('tampered')))
       .rejects.toThrow('SHA-256 mismatch')
   })
 
@@ -79,6 +87,87 @@ describe('source snapshot verification', () => {
     expect(fetchCalls).toBe(0)
   })
 
+  test('aborts a stalled download and leaves no partial cache file', async () => {
+    const source = sourceFor('timeout.csv', Buffer.from('verified snapshot'))
+    vi.useFakeTimers()
+
+    try {
+      await withTemporaryCache(async (cacheDir) => {
+        let signal: AbortSignal | null | undefined
+        let markFetchStarted!: () => void
+        const fetchStarted = new Promise<void>((resolve) => {
+          markFetchStarted = resolve
+        })
+        const pending = fetchContentSources(
+          async (_url, init) => {
+            signal = init?.signal
+            markFetchStarted()
+            return new Promise<Response>(() => undefined)
+          },
+          [source],
+          cacheDir,
+          25,
+        )
+        const rejection = expect(pending).rejects.toThrow(
+          `Download timed out for ${source.id} after 25ms`,
+        )
+
+        await fetchStarted
+        await vi.advanceTimersByTimeAsync(25)
+        await rejection
+
+        expect(signal?.aborted).toBe(true)
+        await expect(readdir(cacheDir)).resolves.toEqual([])
+      })
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
+  test('times out a stalled response body and leaves no partial cache file', async () => {
+    const source = sourceFor('body-timeout.csv', Buffer.from('verified snapshot'))
+    vi.useFakeTimers()
+
+    try {
+      await withTemporaryCache(async (cacheDir) => {
+        let signal: AbortSignal | null | undefined
+        let markBodyStarted!: () => void
+        const bodyStarted = new Promise<void>((resolve) => {
+          markBodyStarted = resolve
+        })
+        const response = {
+          ok: true,
+          status: 200,
+          arrayBuffer: () => {
+            markBodyStarted()
+            return new Promise<ArrayBuffer>(() => undefined)
+          },
+        } as Response
+        const pending = fetchContentSources(
+          async (_url, init) => {
+            signal = init?.signal
+            return response
+          },
+          [source],
+          cacheDir,
+          25,
+        )
+        const rejection = expect(pending).rejects.toThrow(
+          `Download timed out for ${source.id} after 25ms`,
+        )
+
+        await bodyStarted
+        await vi.advanceTimersByTimeAsync(25)
+        await rejection
+
+        expect(signal?.aborted).toBe(true)
+        await expect(readdir(cacheDir)).resolves.toEqual([])
+      })
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
   test('reports whether each cached snapshot is present and hash verified', async () => {
     const body = Buffer.from('verified snapshot')
     const source = sourceFor('report.csv', body)
@@ -102,6 +191,28 @@ describe('source snapshot verification', () => {
           verified: false,
         }),
       ])
+    })
+  })
+
+  test('requires every requested cache to match its pinned digest before a build', async () => {
+    const body = Buffer.from('verified snapshot')
+    const source = sourceFor('preflight.csv', body)
+
+    await withTemporaryCache(async (cacheDir) => {
+      const cacheFile = join(cacheDir, source.cacheFile)
+      await writeFile(cacheFile, body)
+      await expect(requireVerifiedContentSourceCaches(
+        [source.id],
+        cacheDir,
+        [source],
+      )).resolves.toBeUndefined()
+
+      await writeFile(cacheFile, 'tampered snapshot')
+      await expect(requireVerifiedContentSourceCaches(
+        [source.id],
+        cacheDir,
+        [source],
+      )).rejects.toThrow('Content source cache preflight failed')
     })
   })
 })

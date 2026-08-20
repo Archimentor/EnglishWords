@@ -1,5 +1,6 @@
 import { LEVELS } from '../../src/domain/content/types'
 import type { Difficulty, Level, WordItem } from '../../src/domain/content/types'
+import { wordFamilyFor } from '../../src/domain/content/wordFamilies'
 
 export const WORD_QUOTAS = { 기초: 500, 유치원: 500, 초등학교: 1500, 중학교: 2500 } as const
 export const PHRASAL_QUOTA = 250
@@ -16,12 +17,13 @@ export interface CandidateWord {
 }
 
 function difficultyFor(level: Level): Difficulty {
-  return {
+  const difficulties: Record<Level, Difficulty> = {
     기초: 'veryEasy',
     유치원: 'easy',
     초등학교: 'normal',
     중학교: 'hard',
-  }[level]
+  }
+  return difficulties[level]
 }
 
 function idPart(value: string): string {
@@ -59,14 +61,15 @@ export function normalizeWord(candidate: CandidateWord, level = candidate.levelB
   }
 
   const lemma = candidate.lemma.toLowerCase()
+  const family = wordFamilyFor(lemma)
 
   return {
     id: `word-${idPart(lemma)}`,
     word: lemma,
     lemma,
     level,
-    familyId: `${idPart(lemma)}-family`,
-    isFamilyHead: true,
+    familyId: family.familyId,
+    isFamilyHead: family.isFamilyHead,
     difficulty: difficultyFor(level),
     entries: [{
       partOfSpeech: candidate.partOfSpeech,
@@ -83,6 +86,7 @@ export function selectWords(
   quotas: Record<Level, number> = WORD_QUOTAS,
 ): Record<Level, WordItem[]> {
   const selected = new Set<string>()
+  const selectedFamilies = new Set<string>()
   const ordered = [...candidates].sort((left, right) => left.rank - right.rank || left.lemma.localeCompare(right.lemma))
 
   return Object.fromEntries(LEVELS.map((level) => {
@@ -90,11 +94,19 @@ export function selectWords(
 
     for (const candidate of ordered) {
       const key = candidate.lemma.toLowerCase()
-      if (candidate.levelBucket !== level || selected.has(key)) continue
+      const family = wordFamilyFor(key)
+      if (
+        candidate.levelBucket !== level
+        || selected.has(key)
+        || !family.isFamilyHead
+        || selectedFamilies.has(family.familyId)
+      ) continue
 
       try {
-        words.push(normalizeWord(candidate, level))
+        const word = normalizeWord(candidate, level)
+        words.push(word)
         selected.add(key)
+        selectedFamilies.add(word.familyId)
       } catch {
         // A rejected record never consumes a quota; catalog construction reports its shortage.
       }

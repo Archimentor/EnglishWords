@@ -1,0 +1,294 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://english-words-master.local/schema/learner-state.schema.json",
+  "title": "English Words Master learner state v7",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "navigation",
+    "mastery",
+    "grammarMastery",
+    "mistakes",
+    "studySessions",
+    "difficultyStats",
+    "studyAnalytics",
+    "quizHistory",
+    "tracking"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 7 },
+    "navigation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["level", "section", "grammarSection", "grammarNodeId", "studyDifficulty", "quizType"],
+      "properties": {
+        "level": { "$ref": "#/$defs/level" },
+        "section": { "enum": ["대시보드", "소설", "단어장", "문법", "학습", "퀴즈"] },
+        "grammarSection": { "enum": ["대시보드", "A1", "A2", "B1", "B2", "C1"] },
+        "grammarNodeId": { "type": ["string", "null"] },
+        "studyDifficulty": { "$ref": "#/$defs/difficulty" },
+        "quizType": { "$ref": "#/$defs/quizType" }
+      }
+    },
+    "mastery": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/mastery" }
+    },
+    "grammarMastery": {
+      "type": "object",
+      "propertyNames": { "pattern": "^(A1|A2|B1|B2|C1)-G\\d{2}$" },
+      "additionalProperties": { "$ref": "#/$defs/grammarMastery" }
+    },
+    "mistakes": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/mistake" }
+    },
+    "studySessions": {
+      "type": "object",
+      "propertyNames": { "$ref": "#/$defs/level" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["queueIds", "currentIndex"],
+        "properties": {
+          "queueIds": { "type": "array", "maxItems": 500, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+          "currentIndex": { "type": "integer", "minimum": 0, "maximum": 500 }
+        }
+      }
+    },
+    "difficultyStats": { "$ref": "#/$defs/byLevelObject" },
+    "studyAnalytics": { "$ref": "#/$defs/byLevelObject" },
+    "quizHistory": { "type": "array", "maxItems": 7, "items": { "type": "object" } },
+    "tracking": { "$ref": "tracker.schema.json" }
+  },
+  "$defs": {
+    "level": { "enum": ["기초", "유치원", "초등학교", "중학교"] },
+    "difficulty": { "enum": ["veryEasy", "easy", "normal", "hard", "veryHard"] },
+    "quizType": { "enum": ["en-ko", "ko-en", "sentence-meaning", "sentence-blank", "dictation", "sentence-transform"] },
+    "nonNegativeInteger": { "type": "integer", "minimum": 0 },
+    "mastery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attempts", "correct", "wrong", "correctStreak", "wrongStreak"],
+      "properties": {
+        "attempts": { "$ref": "#/$defs/nonNegativeInteger" },
+        "correct": { "$ref": "#/$defs/nonNegativeInteger" },
+        "wrong": { "$ref": "#/$defs/nonNegativeInteger" },
+        "correctStreak": { "$ref": "#/$defs/nonNegativeInteger" },
+        "wrongStreak": { "$ref": "#/$defs/nonNegativeInteger" }
+      }
+    },
+    "grammarEvidenceReference": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["partId", "sentenceIndex"],
+      "properties": {
+        "partId": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "sentenceIndex": { "$ref": "#/$defs/nonNegativeInteger" }
+      }
+    },
+    "grammarProductionPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["partId", "text"],
+      "properties": {
+        "partId": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "text": { "type": "string", "minLength": 1, "pattern": "\\S" }
+      }
+    },
+    "grammarRequirementEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requirementId", "selections"],
+      "properties": {
+        "requirementId": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "selections": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/grammarEvidenceReference" }
+        }
+      }
+    },
+    "grammarProduction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "draft",
+        "parts",
+        "requirementEvidence",
+        "rubricEvidence",
+        "cycleStartAttempt",
+        "revisionRound",
+        "revisionNote",
+        "reviewStatus",
+        "reviewChecks"
+      ],
+      "properties": {
+        "draft": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "parts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/grammarProductionPart" }
+        },
+        "requirementEvidence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/grammarRequirementEvidence" }
+        },
+        "rubricEvidence": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "items": { "$ref": "#/$defs/grammarEvidenceReference" }
+        },
+        "cycleStartAttempt": { "type": "integer", "minimum": 1 },
+        "revisionRound": { "$ref": "#/$defs/nonNegativeInteger" },
+        "revisionNote": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "string", "minLength": 1, "pattern": "\\S" }
+          ]
+        },
+        "reviewStatus": { "enum": ["pending", "approved", "rejected"] },
+        "reviewChecks": {
+          "oneOf": [
+            { "type": "null" },
+            { "type": "array", "minItems": 1, "items": { "type": "boolean" } }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "reviewStatus": { "const": "pending" } } },
+          "then": { "properties": { "reviewChecks": { "const": null } } },
+          "else": { "properties": { "reviewChecks": { "type": "array" } } }
+        },
+        {
+          "if": { "properties": { "reviewStatus": { "const": "approved" } } },
+          "then": { "properties": { "reviewChecks": { "items": { "const": true } } } }
+        },
+        {
+          "if": { "properties": { "reviewStatus": { "const": "rejected" } } },
+          "then": {
+            "properties": {
+              "reviewChecks": { "contains": { "const": false }, "minContains": 1 }
+            }
+          }
+        }
+      ]
+    },
+    "grammarExercise": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "correct", "errorCode"],
+      "properties": {
+        "exerciseId": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "phase": { "enum": ["diagnostic", "practice", "rediagnostic"] },
+        "correct": { "type": "boolean" },
+        "errorCode": { "type": "string", "minLength": 1, "pattern": "\\S" }
+      }
+    },
+    "grammarReviewRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["nodeId", "errorCode", "completed"],
+      "properties": {
+        "nodeId": { "type": "string", "pattern": "^(A1|A2|B1|B2|C1)-G\\d{2}$" },
+        "errorCode": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "completed": { "type": "boolean" }
+      }
+    },
+    "grammarMastery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attempts",
+        "correct",
+        "diagnosticAttempts",
+        "practiceAttempts",
+        "rediagnosticAttempts",
+        "productionAttempts",
+        "productionPassed",
+        "retryCount",
+        "errorCounts",
+        "errorStreaks",
+        "exerciseResults",
+        "reviewRequirement",
+        "production",
+        "mustReview",
+        "completed"
+      ],
+      "properties": {
+        "attempts": { "$ref": "#/$defs/nonNegativeInteger" },
+        "correct": { "$ref": "#/$defs/nonNegativeInteger" },
+        "diagnosticAttempts": { "$ref": "#/$defs/nonNegativeInteger" },
+        "practiceAttempts": { "$ref": "#/$defs/nonNegativeInteger" },
+        "rediagnosticAttempts": { "$ref": "#/$defs/nonNegativeInteger" },
+        "productionAttempts": { "$ref": "#/$defs/nonNegativeInteger" },
+        "productionPassed": { "type": "boolean" },
+        "retryCount": { "$ref": "#/$defs/nonNegativeInteger" },
+        "errorCounts": {
+          "type": "object",
+          "propertyNames": { "minLength": 1, "pattern": "\\S" },
+          "additionalProperties": { "type": "integer", "minimum": 1 }
+        },
+        "errorStreaks": {
+          "type": "object",
+          "propertyNames": { "minLength": 1, "pattern": "\\S" },
+          "additionalProperties": { "$ref": "#/$defs/nonNegativeInteger" }
+        },
+        "exerciseResults": {
+          "type": "object",
+          "propertyNames": { "minLength": 1, "pattern": "\\S" },
+          "additionalProperties": { "$ref": "#/$defs/grammarExercise" }
+        },
+        "reviewRequirement": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/grammarReviewRequirement" }
+          ]
+        },
+        "production": {
+          "oneOf": [
+            { "type": "null" },
+            { "$ref": "#/$defs/grammarProduction" }
+          ]
+        },
+        "mustReview": { "type": "boolean" },
+        "completed": { "type": "boolean" }
+      }
+    },
+    "mistake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wrongCount", "wrongStreak", "priorityRemaining"],
+      "properties": {
+        "wrongCount": { "$ref": "#/$defs/nonNegativeInteger" },
+        "wrongStreak": { "$ref": "#/$defs/nonNegativeInteger" },
+        "priorityRemaining": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "reviewPending": { "const": true },
+        "reviewSpacingRemaining": { "$ref": "#/$defs/nonNegativeInteger" },
+        "penaltyWeight": { "type": "number", "minimum": 0, "maximum": 0.3 },
+        "nextBoost": { "type": "number", "minimum": 0, "maximum": 0.3 },
+        "cooldownAt": { "$ref": "#/$defs/nonNegativeInteger" },
+        "linkedLevel": { "$ref": "#/$defs/level" },
+        "priorityInsertedAt": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "byLevelObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["기초", "유치원", "초등학교", "중학교"],
+      "properties": {
+        "기초": { "type": "object" },
+        "유치원": { "type": "object" },
+        "초등학교": { "type": "object" },
+        "중학교": { "type": "object" }
+      }
+    }
+  }
+}

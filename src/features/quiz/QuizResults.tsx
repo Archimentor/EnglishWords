@@ -8,10 +8,24 @@ interface QuizResultsProps {
   itemsById: ReadonlyMap<string, StudyItem>
   onRestart: () => void
   onStudyMistakes?: (ids: readonly string[]) => void
+  durationMs?: number
+  averageAnswerTimeMs?: number
+  adjustment?: number
 }
 
 function percent(value: number): string {
   return `${Number((value * 100).toFixed(1))}%`
+}
+
+function duration(value: number): string {
+  const milliseconds = Number.isFinite(value) ? Math.max(0, value) : 0
+  if (milliseconds < 1_000) return `${Math.round(milliseconds)}ms`
+  return `${Number((milliseconds / 1_000).toFixed(1))}초`
+}
+
+function signedAdjustment(value: number): string {
+  const adjustment = Number.isFinite(value) ? value : 0
+  return `${adjustment > 0 ? '+' : ''}${adjustment.toFixed(2)}`
 }
 
 export function QuizResults({
@@ -19,6 +33,9 @@ export function QuizResults({
   itemsById,
   onRestart,
   onStudyMistakes,
+  durationMs,
+  averageAnswerTimeMs,
+  adjustment,
 }: QuizResultsProps) {
   const headingRef = useRef<HTMLHeadingElement>(null)
 
@@ -35,6 +52,22 @@ export function QuizResults({
         </p>
         <p>{`정답률 ${percent(summary.accuracy)}`}</p>
       </div>
+
+      {durationMs !== undefined
+      || averageAnswerTimeMs !== undefined
+      || adjustment !== undefined ? (
+        <div className="result-summary" aria-label="퀴즈 세션 계측">
+          {durationMs !== undefined ? (
+            <p>소요시간 <strong>{duration(durationMs)}</strong></p>
+          ) : null}
+          {averageAnswerTimeMs !== undefined ? (
+            <p>평균 반응 <strong>{duration(averageAnswerTimeMs)}</strong></p>
+          ) : null}
+          {adjustment !== undefined ? (
+            <p>적용 보정 <strong>{signedAdjustment(adjustment)}</strong></p>
+          ) : null}
+        </div>
+      ) : null}
 
       <div className="results-grid">
         <section className="panel" aria-labelledby="heatmap-title">

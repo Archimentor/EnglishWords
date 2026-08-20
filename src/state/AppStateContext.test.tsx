@@ -5,7 +5,7 @@ import { QUIZ_TYPES } from '../domain/quiz/types'
 import { createInitialState } from './appState'
 import { AppStateProvider } from './AppStateContext'
 import { appReducer } from './appReducer'
-import { STORAGE_KEY } from './persistence'
+import { BACKUP_STORAGE_KEY, STORAGE_KEY } from './persistence'
 import { useAppState } from './useAppState'
 
 function quizSummary(sourceItemId = 'word-play'): QuizSessionSummary {
@@ -154,24 +154,175 @@ describe('appReducer learning records', () => {
     })
   })
 
-  it('updates quiz difficulty statistics and keeps only the latest seven summaries', () => {
+  it('consumes priority only for the exposed item and advances pending-review spacing', () => {
+    const state = createInitialState()
+    state.mistakes = {
+      'word-play': {
+        wrongCount: 2,
+        wrongStreak: 2,
+        priorityRemaining: 3,
+        reviewPending: true,
+        reviewSpacingRemaining: 0,
+      },
+      'word-book': {
+        wrongCount: 3,
+        wrongStreak: 3,
+        priorityRemaining: 1,
+        reviewPending: true,
+        reviewSpacingRemaining: 1,
+      },
+      'word-read': { wrongCount: 2, wrongStreak: 2, priorityRemaining: 0 },
+    }
+
+    const advanced = appReducer(state, {
+      type: 'ADVANCE_STUDY_SLOT',
+      level: '초등학교',
+      itemId: 'word-play',
+      selectedDifficulty: 'easy',
+      itemDifficulty: 'hard',
+      priorityItemIds: ['word-play'],
+    })
+
+    expect(advanced.mistakes).toEqual({
+      'word-play': { wrongCount: 2, wrongStreak: 2, priorityRemaining: 2 },
+      'word-book': {
+        wrongCount: 3,
+        wrongStreak: 3,
+        priorityRemaining: 1,
+        reviewPending: true,
+        reviewSpacingRemaining: 0,
+      },
+      'word-read': { wrongCount: 2, wrongStreak: 2, priorityRemaining: 0 },
+    })
+    expect(advanced.studyAnalytics.초등학교.selectedDifficulty.easy).toBe(1)
+    expect(advanced.studyAnalytics.초등학교.exposedDifficulty.hard).toBe(1)
+    expect(advanced.studyAnalytics.초등학교.wrongReexposures).toEqual({ 'word-play': 1 })
+    expect(advanced.studyAnalytics.기초).toEqual(state.studyAnalytics.기초)
+    expect(state.mistakes['word-play']?.priorityRemaining).toBe(3)
+  })
+
+  it('counts down only priorities actually reserved inside their next-slot window', () => {
+    const state = createInitialState()
+    state.mistakes = {
+      'word-priority': { wrongCount: 2, wrongStreak: 2, priorityRemaining: 3 },
+      'word-outside': { wrongCount: 2, wrongStreak: 2, priorityRemaining: 3 },
+    }
+
+    const afterFirstSlot = appReducer(state, {
+      type: 'ADVANCE_STUDY_SLOT',
+      level: '기초',
+      itemId: 'word-normal-1',
+      selectedDifficulty: 'normal',
+      itemDifficulty: 'normal',
+      priorityItemIds: ['word-priority'],
+    })
+    const afterSecondSlot = appReducer(afterFirstSlot, {
+      type: 'ADVANCE_STUDY_SLOT',
+      level: '중학교',
+      itemId: 'word-normal-2',
+      selectedDifficulty: 'normal',
+      itemDifficulty: 'hard',
+      priorityItemIds: ['word-priority'],
+    })
+
+    expect(afterFirstSlot.mistakes['word-priority']?.priorityRemaining).toBe(2)
+    expect(afterSecondSlot.mistakes['word-priority']?.priorityRemaining).toBe(1)
+    expect(afterSecondSlot.mistakes['word-outside']?.priorityRemaining).toBe(3)
+    expect(afterSecondSlot.studyAnalytics.기초.selectedDifficulty.normal).toBe(1)
+    expect(afterSecondSlot.studyAnalytics.기초.exposedDifficulty.normal).toBe(1)
+    expect(afterSecondSlot.studyAnalytics.중학교.selectedDifficulty.normal).toBe(1)
+    expect(afterSecondSlot.studyAnalytics.중학교.exposedDifficulty.hard).toBe(1)
+    expect(afterSecondSlot.studyAnalytics.유치원).toEqual(state.studyAnalytics.유치원)
+  })
+
+  it('marks every wrong quiz item for one guaranteed later exposure', () => {
+    const initial = createInitialState()
+    initial.mistakes = {
+      'word-early': { wrongCount: 1, wrongStreak: 1, priorityRemaining: 0 },
+      'word-last': { wrongCount: 1, wrongStreak: 1, priorityRemaining: 0 },
+    }
+    const summary = quizSummary('word-last')
+    summary.total = 2
+    summary.typeStats['en-ko'] = {
+      correct: 0,
+      wrong: 2,
+      total: 2,
+      accuracy: 0,
+    }
+    summary.heatmap.unshift({
+      questionId: 'q-word-early',
+      sourceItemId: 'word-early',
+      type: 'en-ko',
+      isCorrect: false,
+    })
+    summary.wrongItemIds = ['word-early', 'word-last']
+
+    const recorded = appReducer(initial, { type: 'RECORD_QUIZ', summary })
+
+    expect(recorded.mistakes['word-early']).toMatchObject({
+      reviewPending: true,
+      reviewSpacingRemaining: 0,
+    })
+    expect(recorded.mistakes['word-last']).toMatchObject({
+      reviewPending: true,
+      reviewSpacingRemaining: 1,
+    })
+  })
+
+  it('schedules a wrong answer immediately so leaving an unfinished quiz cannot lose review', () => {
+    const wrong = appReducer(createInitialState(), {
+      type: 'RECORD_QUIZ_ATTEMPT',
+      level: '기초',
+      attempt: {
+        sourceItemId: 'word-last',
+        difficulty: 'hard',
+        isCorrect: false,
+      },
+    })
+
+    expect(wrong.mistakes['word-last']).toMatchObject({
+      reviewPending: true,
+      reviewSpacingRemaining: 1,
+    })
+
+    const afterSpacer = appReducer(wrong, {
+      type: 'RECORD_QUIZ_ATTEMPT',
+      level: '기초',
+      attempt: {
+        sourceItemId: 'word-spacer',
+        difficulty: 'normal',
+        isCorrect: true,
+      },
+    })
+    expect(afterSpacer.mistakes['word-last']).toMatchObject({
+      reviewPending: true,
+      reviewSpacingRemaining: 0,
+    })
+  })
+
+  it('isolates quiz difficulty statistics by level and keeps only the latest seven summaries', () => {
     const result = Array.from({ length: 8 }, (_, index) => index).reduce(
-      (state, index) =>
-        appReducer(state, {
+      (state, index) => {
+        const attempted = appReducer(state, {
+          type: 'RECORD_QUIZ_ATTEMPT',
+          level: index < 4 ? '기초' : '유치원',
+          attempt: {
+            sourceItemId: `word-${index}`,
+            difficulty: 'hard',
+            isCorrect: index % 2 === 0,
+          },
+        })
+        return appReducer(attempted, {
           type: 'RECORD_QUIZ',
           summary: quizSummary(`word-${index}`),
-          attempts: [
-            {
-              sourceItemId: `word-${index}`,
-              difficulty: 'hard',
-              isCorrect: index % 2 === 0,
-            },
-          ],
-        }),
+        })
+      },
       createInitialState(),
     )
 
-    expect(result.difficultyStats.hard).toEqual({ attempts: 8, correct: 4 })
+    expect(result.difficultyStats.기초.hard).toEqual({ attempts: 4, correct: 2 })
+    expect(result.difficultyStats.유치원.hard).toEqual({ attempts: 4, correct: 2 })
+    expect(result.difficultyStats.초등학교.hard).toEqual({ attempts: 0, correct: 0 })
     expect(result.quizHistory).toHaveLength(7)
     expect(result.quizHistory[0]?.wrongItemIds).toEqual(['word-1'])
     expect(result.quizHistory[6]?.wrongItemIds).toEqual(['word-7'])
@@ -182,8 +333,9 @@ interface MemoryStorage extends Pick<Storage, 'getItem' | 'setItem'> {
   values: Map<string, string>
 }
 
-function memoryStorage(): MemoryStorage {
+function memoryStorage(raw?: string): MemoryStorage {
   const values = new Map<string, string>()
+  if (raw !== undefined) values.set(STORAGE_KEY, raw)
   return {
     values,
     getItem: vi.fn((key: string) => values.get(key) ?? null),
@@ -197,6 +349,9 @@ function ContextHarness() {
   return (
     <>
       <p>{`${state.navigation.level} ${state.navigation.section}`}</p>
+      <span data-testid="preferences">
+        {`${state.navigation.studyDifficulty} ${state.navigation.quizType}`}
+      </span>
       {warning ? <p role="status">{warning}</p> : null}
       <button
         type="button"
@@ -218,7 +373,39 @@ function ContextHarness() {
 }
 
 describe('AppStateProvider persistence', () => {
-  it('does not save on mount and persists the exact next state after transitions', async () => {
+  it('uses a tab-scoped memory store when the browser localStorage getter is unavailable', async () => {
+    const user = userEvent.setup()
+    const descriptor = Object.getOwnPropertyDescriptor(window, 'localStorage')
+    Object.defineProperty(window, 'localStorage', {
+      configurable: true,
+      get() {
+        throw new DOMException('opaque origin', 'SecurityError')
+      },
+    })
+
+    try {
+      render(
+        <AppStateProvider>
+          <ContextHarness />
+        </AppStateProvider>,
+      )
+
+      expect(screen.getByText('기초 대시보드')).toBeInTheDocument()
+      expect(screen.getByRole('status')).toHaveTextContent(/현재 탭에서만/)
+
+      await user.click(screen.getByRole('button', { name: '학습 전환' }))
+      expect(screen.getByText('기초 학습')).toBeInTheDocument()
+      expect(screen.getByRole('status')).toHaveTextContent(/새로고침하면 초기화/)
+    } finally {
+      if (descriptor) {
+        Object.defineProperty(window, 'localStorage', descriptor)
+      } else {
+        Reflect.deleteProperty(window, 'localStorage')
+      }
+    }
+  })
+
+  it('persists load observability with the first transition and saves each exact next state', async () => {
     const user = userEvent.setup()
     const storage = memoryStorage()
     render(
@@ -228,7 +415,11 @@ describe('AppStateProvider persistence', () => {
     )
 
     expect(storage.setItem).not.toHaveBeenCalled()
+    expect(storage.values.has(STORAGE_KEY)).toBe(false)
     await user.click(screen.getByRole('button', { name: '학습 전환' }))
+    expect(
+      JSON.parse(storage.values.get(STORAGE_KEY) ?? '{}').tracking.stateLoadHistory,
+    ).toMatchObject([{ sequence: 1, outcome: 'empty', source: 'empty' }])
     expect(screen.getByText('기초 학습')).toBeInTheDocument()
     expect(JSON.parse(storage.values.get(STORAGE_KEY) ?? '{}').navigation.section).toBe(
       '학습',
@@ -243,12 +434,127 @@ describe('AppStateProvider persistence', () => {
     expect(storage.setItem).toHaveBeenCalledTimes(3)
   })
 
-  it('keeps the in-memory transition and exposes a warning when saving fails', async () => {
+  it('accumulates each provider load event on that provider\'s next transition', async () => {
+    const user = userEvent.setup()
+    const storage = memoryStorage()
+    const first = render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+    await user.click(screen.getByRole('button', { name: '학습 전환' }))
+    first.unmount()
+
+    render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+    await user.click(screen.getByRole('button', { name: '연속 변경' }))
+
+    expect(
+      JSON.parse(storage.values.get(STORAGE_KEY) ?? '{}').tracking.stateLoadHistory,
+    ).toMatchObject([
+      { sequence: 1, outcome: 'empty', source: 'empty' },
+      { sequence: 2, outcome: 'loaded', source: 'current' },
+    ])
+  })
+
+  it.each([
+    ['empty', null],
+    ['current', JSON.stringify(createInitialState())],
+  ])('does not clobber a newer tab after an interleaved %s load', (_source, raw) => {
+    const newer = createInitialState()
+    newer.navigation.studyDifficulty = 'veryHard'
+    const newerRaw = JSON.stringify(newer)
+    const values = new Map<string, string>()
+    if (raw !== null) values.set(STORAGE_KEY, raw)
+    let servedInitialRead = false
+    const storage = {
+      getItem: vi.fn((key: string) => {
+        if (key !== STORAGE_KEY) return values.get(key) ?? null
+        if (!servedInitialRead) {
+          servedInitialRead = true
+          values.set(STORAGE_KEY, newerRaw)
+          return raw
+        }
+        return values.get(key) ?? null
+      }),
+      setItem: vi.fn((key: string, value: string) => values.set(key, value)),
+    }
+
+    const view = render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+
+    expect(values.get(STORAGE_KEY)).toBe(newerRaw)
+    expect(storage.setItem).not.toHaveBeenCalled()
+    view.unmount()
+  })
+
+  it('backs up and immediately persists an unchanged legacy migration', () => {
+    const raw = JSON.stringify({ level: '유치원', section: '단어장' })
+    const storage = memoryStorage(raw)
+
+    render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+
+    expect(storage.values.get(BACKUP_STORAGE_KEY)).toBe(raw)
+    expect(JSON.parse(storage.values.get(STORAGE_KEY) ?? '{}')).toMatchObject({
+      schemaVersion: 7,
+      navigation: { level: '유치원', section: '단어장' },
+      tracking: {
+        stateLoadHistory: [{ outcome: 'migrated', source: 'legacy' }],
+      },
+    })
+    expect(vi.mocked(storage.setItem).mock.calls[0]).toEqual([
+      BACKUP_STORAGE_KEY,
+      raw,
+    ])
+  })
+
+  it.each([
+    ['migration', JSON.stringify({ level: '유치원' })],
+    ['recovery', '{bad json'],
+  ])('does not replace an interleaved newer value during %s persistence', (_status, raw) => {
+    const newer = createInitialState()
+    newer.navigation.quizType = 'dictation'
+    const newerRaw = JSON.stringify(newer)
+    const values = new Map([[STORAGE_KEY, raw]])
+    const storage = {
+      getItem: vi.fn((key: string) => values.get(key) ?? null),
+      setItem: vi.fn((key: string, value: string) => {
+        values.set(key, value)
+        if (key === BACKUP_STORAGE_KEY) values.set(STORAGE_KEY, newerRaw)
+      }),
+    }
+
+    const view = render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+
+    expect(values.get(BACKUP_STORAGE_KEY)).toBe(raw)
+    expect(values.get(STORAGE_KEY)).toBe(newerRaw)
+    expect(storage.setItem).not.toHaveBeenCalledWith(
+      STORAGE_KEY,
+      expect.any(String),
+    )
+    view.unmount()
+  })
+
+  it('switches to tab memory when storage becomes unavailable during a write', async () => {
     const user = userEvent.setup()
     const storage = {
       getItem: vi.fn(() => null),
       setItem: vi.fn(() => {
-        throw new DOMException('full', 'QuotaExceededError')
+        throw new DOMException('opaque origin', 'SecurityError')
       }),
     }
     render(
@@ -258,8 +564,97 @@ describe('AppStateProvider persistence', () => {
     )
 
     await user.click(screen.getByRole('button', { name: '학습 전환' }))
+    await user.click(screen.getByRole('button', { name: '연속 변경' }))
 
     expect(screen.getByText('기초 학습')).toBeInTheDocument()
-    expect(screen.getByRole('status')).toHaveTextContent(/저장/)
+    expect(screen.getByTestId('preferences')).toHaveTextContent('hard dictation')
+    expect(screen.getByRole('status')).toHaveTextContent(/현재 탭에서만/)
+    expect(screen.getByRole('status')).toHaveTextContent(/새로고침하면 초기화/)
+    expect(storage.setItem).toHaveBeenCalledTimes(1)
+  })
+
+  it('backs up a corrupt source before any transition can replace the primary value', async () => {
+    const user = userEvent.setup()
+    const raw = ' {bad json}\r\n'
+    const storage = memoryStorage(raw)
+
+    render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+
+    expect(storage.values.get(BACKUP_STORAGE_KEY)).toBe(raw)
+    expect(JSON.parse(storage.values.get(STORAGE_KEY) ?? '{}')).toMatchObject({
+      tracking: {
+        stateLoadHistory: [{ outcome: 'recovered', source: 'malformed' }],
+      },
+    })
+
+    await user.click(screen.getByRole('button', { name: '학습 전환' }))
+
+    expect(JSON.parse(storage.values.get(STORAGE_KEY) ?? '{}').navigation.section).toBe(
+      '학습',
+    )
+    expect(storage.values.get(BACKUP_STORAGE_KEY)).toBe(raw)
+    expect(vi.mocked(storage.setItem).mock.calls[0]).toEqual([
+      BACKUP_STORAGE_KEY,
+      raw,
+    ])
+  })
+
+  it('falls back to tab memory when a backed-up recovery cannot replace the primary value', async () => {
+    const user = userEvent.setup()
+    const raw = '{bad json'
+    const values = new Map([[STORAGE_KEY, raw]])
+    const storage = {
+      getItem: vi.fn((key: string) => values.get(key) ?? null),
+      setItem: vi.fn((key: string, value: string) => {
+        if (key === STORAGE_KEY) throw new DOMException('full', 'QuotaExceededError')
+        values.set(key, value)
+      }),
+    }
+
+    render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+
+    expect(values.get(BACKUP_STORAGE_KEY)).toBe(raw)
+    expect(values.get(STORAGE_KEY)).toBe(raw)
+    expect(screen.getByRole('status')).toHaveTextContent(/현재 탭에서만/)
+    await user.click(screen.getByRole('button', { name: '학습 전환' }))
+    expect(screen.getByText('기초 학습')).toBeInTheDocument()
+    expect(storage.setItem).toHaveBeenCalledWith(STORAGE_KEY, expect.any(String))
+    expect(storage.setItem).toHaveBeenCalledTimes(2)
+  })
+
+  it('does not overwrite the corrupt primary value when its backup cannot be saved', async () => {
+    const user = userEvent.setup()
+    const raw = '{bad json'
+    const values = new Map([[STORAGE_KEY, raw]])
+    const storage = {
+      getItem: vi.fn((key: string) => values.get(key) ?? null),
+      setItem: vi.fn((key: string, value: string) => {
+        if (key === BACKUP_STORAGE_KEY) throw new DOMException('full', 'QuotaExceededError')
+        values.set(key, value)
+      }),
+    }
+
+    render(
+      <AppStateProvider storage={storage}>
+        <ContextHarness />
+      </AppStateProvider>,
+    )
+    await user.click(screen.getByRole('button', { name: '학습 전환' }))
+
+    expect(screen.getByText('기초 학습')).toBeInTheDocument()
+    expect(screen.getByRole('status')).toHaveTextContent(/복구 원본/)
+    expect(values.get(STORAGE_KEY)).toBe(raw)
+    expect(storage.setItem).not.toHaveBeenCalledWith(
+      STORAGE_KEY,
+      expect.any(String),
+    )
   })
 })

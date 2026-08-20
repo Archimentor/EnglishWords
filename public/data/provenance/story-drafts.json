@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "3.0.0",
+  "generatedBy": "scripts/content/buildContent.ts",
+  "outputDigest": {
+    "algorithm": "sha256",
+    "canonicalization": "sorted-json-v1",
+    "value": "3340ffd950b4133706c22e55682112b845a4d62c160ab7152c09aa81da553135"
+  },
+  "status": "approved-manual-stories",
+  "releaseGate": "Only a validated approved manual input may set isManual=true; automated drafts remain unreleasable.",
+  "stories": [
+    {
+      "level": "기초",
+      "lemmaCount": 500,
+      "coverageRate": 1,
+      "source": "approved-manual-input",
+      "approval": {
+        "reviewer": "Archimentor",
+        "reviewedAt": "2026-08-20T03:34:02.062Z",
+        "sourceDigest": {
+          "algorithm": "sha256",
+          "canonicalization": "sorted-json-v1",
+          "value": "c94031cd68dfadbd1135699057bfc177215eb6f35d1564d2c1f158342dcb6715"
+        }
+      }
+    },
+    {
+      "level": "유치원",
+      "lemmaCount": 500,
+      "coverageRate": 1,
+      "source": "approved-manual-input",
+      "approval": {
+        "reviewer": "Archimentor",
+        "reviewedAt": "2026-08-20T03:34:02.062Z",
+        "sourceDigest": {
+          "algorithm": "sha256",
+          "canonicalization": "sorted-json-v1",
+          "value": "45bd1abff2cb72748698ae4f952d14708431fa994c8f52417da6fdb4a0057898"
+        }
+      }
+    },
+    {
+      "level": "초등학교",
+      "lemmaCount": 1500,
+      "coverageRate": 1,
+      "source": "approved-manual-input",
+      "approval": {
+        "reviewer": "Archimentor",
+        "reviewedAt": "2026-08-20T03:34:02.062Z",
+        "sourceDigest": {
+          "algorithm": "sha256",
+          "canonicalization": "sorted-json-v1",
+          "value": "93df8459ee7d4945069c9ff86f4bd6618370512bf2294a05ad046270e266cfc8"
+        }
+      }
+    },
+    {
+      "level": "중학교",
+      "lemmaCount": 2500,
+      "coverageRate": 1,
+      "source": "approved-manual-input",
+      "approval": {
+        "reviewer": "Archimentor",
+        "reviewedAt": "2026-08-20T03:34:02.062Z",
+        "sourceDigest": {
+          "algorithm": "sha256",
+          "canonicalization": "sorted-json-v1",
+          "value": "aeb3a1b3053d2a68268f9a1d0ca612c3bb80bc61a24f1284f5b47e050fcd9340"
+        }
+      }
+    }
+  ]
+}

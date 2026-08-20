@@ -7,6 +7,14 @@ export interface KoreanEntry {
   partOfSpeech: string
   meanings: string[]
   ipa: string
+  morphology?: KoreanMorphology
+}
+
+export interface KoreanMorphology {
+  lemma: string
+  past?: string[]
+  pastParticiple?: string[]
+  plurals?: string[]
 }
 
 export interface CandidatePhrasalVerb {
@@ -174,24 +182,26 @@ export function requireVerifiedCatalogCapacity(
 }
 
 function englishSection(source: string): string {
-  const match = source.match(/^== 영어 ==\s*$/m)
+  const match = source.match(/^==\s*영어\s*==\s*$/m)
   if (!match || match.index === undefined) return ''
   const rest = source.slice(match.index + match[0].length)
-  const nextLanguage = rest.search(/^== [^=]+ ==\s*$/m)
+  const nextLanguage = rest.search(/^==\s*[^=]+?\s*==\s*$/m)
   return nextLanguage === -1 ? rest : rest.slice(0, nextLanguage)
 }
 
 function stripWikitext(value: string): string {
   return value
     .replace(/\{\{[^{}]*\}\}/g, '')
+    .replace(/\[\[\s*:?(?:file|image|파일|그림):[^\]]*\]\]/gi, '')
     .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
     .replace(/\[\[([^\]]+)\]\]/g, '$1')
     .replace(/''+/g, '')
     .replace(/<[^>]+>/g, '')
-    .replace(/^[#*:;\s]+|[\s.;]+$/g, '')
+    .replace(/^[#*:;,\s]+|[\s.;]+$/g, '')
 }
 
-function partOfSpeech(header: string): string {
+function partOfSpeech(header: string): string | undefined {
+  if (/조동사/.test(header)) return 'verb'
   if (/동사/.test(header)) return 'verb'
   if (/형용사/.test(header)) return 'adjective'
   if (/부사/.test(header)) return 'adverb'
@@ -199,14 +209,75 @@ function partOfSpeech(header: string): string {
   if (/대명사/.test(header)) return 'pronoun'
   if (/관사|한정사/.test(header)) return 'determiner'
   if (/접속사/.test(header)) return 'conjunction'
-  return 'noun'
+  if (/감탄사/.test(header)) return 'interjection'
+  if (/수사/.test(header)) return 'numeral'
+  if (/명사/.test(header)) return 'noun'
+  return undefined
+}
+
+function defaultEnglishPartOfSpeech(source: string): string | undefined {
+  const category = source.match(
+    /\[\[분류:영어\s*(조동사|동사|형용사|부사|전치사|대명사|관사|한정사|접속사|감탄사|수사|명사)[^\]]*\]\]/,
+  )
+  return category ? partOfSpeech(category[1]!) : undefined
 }
 
 function findIpa(section: string): string {
   const template = section.match(/\{\{IPA\|(?:en\|)?([^}|]+)[^}]*\}\}/i)
-  if (template) return `/${template[1].trim().replace(/^\/+|\/+$/g, '')}/`
+  if (template) return `/${template[1]!.trim().replace(/^\/+|\/+$/g, '')}/`
   const prose = section.match(/IPA\(key\):\s*\/([^/]+)\//i)
   return prose ? `/${prose[1]}/` : ''
+}
+
+function morphologyValues(value: string): string[] {
+  return [...new Set(value
+    .replace(/<ref\b[^>]*>[\s\S]*?<\/ref>/gi, '')
+    .replace(/<[^>]+>/g, '')
+    .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
+    .replace(/\[\[([^\]]+)\]\]/g, '$1')
+    .split(/\s*[/,]\s*/)
+    .map((candidate) => candidate.replace(/\([^)]*\)/g, '').trim().toLowerCase())
+    .filter((candidate) => /^[a-z]+$/.test(candidate)))]
+}
+
+export function parseKoreanMorphologyTemplate(line: string): KoreanMorphology | undefined {
+  const match = line.match(/\{\{(동사변화|복수)\|([^{}]*)\}\}/)
+  if (!match) return undefined
+  const fields = match[2]!.split('|')
+  const lemma = morphologyValues(fields[0] ?? '')[0]
+  if (!lemma) return undefined
+
+  if (match[1] === '동사변화') {
+    const past = morphologyValues(fields[1] ?? '')
+    const pastParticiple = morphologyValues(fields[2] ?? '')
+    return {
+      lemma,
+      ...(past.length > 0 ? { past } : {}),
+      ...(pastParticiple.length > 0 ? { pastParticiple } : {}),
+    }
+  }
+  const plurals = morphologyValues(fields[1] ?? '')
+  return { lemma, ...(plurals.length > 0 ? { plurals } : {}) }
+}
+
+function mergeMorphology(
+  current: KoreanMorphology | undefined,
+  incoming: KoreanMorphology,
+): KoreanMorphology {
+  if (!current || current.lemma !== incoming.lemma) return incoming
+  const merge = (left: readonly string[] | undefined, right: readonly string[] | undefined) => {
+    const values = [...new Set([...(left ?? []), ...(right ?? [])])]
+    return values.length > 0 ? values : undefined
+  }
+  const past = merge(current.past, incoming.past)
+  const pastParticiple = merge(current.pastParticiple, incoming.pastParticiple)
+  const plurals = merge(current.plurals, incoming.plurals)
+  return {
+    lemma: current.lemma,
+    ...(past ? { past } : {}),
+    ...(pastParticiple ? { pastParticiple } : {}),
+    ...(plurals ? { plurals } : {}),
+  }
 }
 
 export function extractKoreanEntries(source: string): KoreanEntry[] {
@@ -214,13 +285,36 @@ export function extractKoreanEntries(source: string): KoreanEntry[] {
   if (!section) return []
 
   const ipa = findIpa(section)
+  // Korean Wiktionary commonly places morphology immediately before the POS
+  // heading (and sometimes above a transitive/intransitive subheading). Collect
+  // it at English-page scope first so a heading flush cannot silently discard
+  // the source paradigm. `formsFor` later verifies that the template lemma is
+  // the catalog page lemma before using it.
+  const morphologyByPartOfSpeech = new Map<string, KoreanMorphology>()
+  for (const line of section.split(/\r?\n/)) {
+    const parsed = parseKoreanMorphologyTemplate(line)
+    if (!parsed) continue
+    const partOfSpeech = /\{\{복수\|/.test(line) ? 'noun' : 'verb'
+    const current = morphologyByPartOfSpeech.get(partOfSpeech)
+    if (!current || current.lemma === parsed.lemma) {
+      morphologyByPartOfSpeech.set(partOfSpeech, mergeMorphology(current, parsed))
+    }
+  }
   const entries: KoreanEntry[] = []
-  let currentPart = 'noun'
+  let currentPart: string | undefined = defaultEnglishPartOfSpeech(source)
   let meanings: string[] = []
 
   const flush = () => {
     const distinct = [...new Set(meanings)]
-    if (distinct.length > 0) entries.push({ partOfSpeech: currentPart, meanings: distinct, ipa })
+    if (distinct.length > 0 && currentPart) {
+      const morphology = morphologyByPartOfSpeech.get(currentPart)
+      entries.push({
+        partOfSpeech: currentPart,
+        meanings: distinct,
+        ipa,
+        ...(morphology ? { morphology } : {}),
+      })
+    }
     meanings = []
   }
 
@@ -228,12 +322,20 @@ export function extractKoreanEntries(source: string): KoreanEntry[] {
     const header = line.match(/^={3,4}\s*([^=]+?)\s*={3,4}\s*$/)
     if (header) {
       flush()
-      currentPart = partOfSpeech(header[1])
+      currentPart = partOfSpeech(header[1]!)
       continue
     }
 
-    if (/^#(?![#:*])/.test(line) && /[가-힣]/.test(line)) {
-      const meaning = stripWikitext(line)
+    const numberedBullet = line.match(
+      /^\*\s*(?:(?:''')\d+(?:-[a-z])?(?:[.)])?'''|\d+(?:-[a-z])?[.)])\s*/i,
+    )
+    const definitionLine = /^#(?![#:*])/.test(line)
+      ? line
+      : numberedBullet
+        ? line.replace(numberedBullet[0], '# ')
+        : undefined
+    if (definitionLine && /[가-힣]/.test(definitionLine)) {
+      const meaning = stripWikitext(definitionLine)
       if (meaning) meanings.push(meaning)
     }
   }
@@ -243,7 +345,13 @@ export function extractKoreanEntries(source: string): KoreanEntry[] {
 }
 
 function difficultyFor(level: Level): Difficulty {
-  return { 기초: 'veryEasy', 유치원: 'easy', 초등학교: 'normal', 중학교: 'hard' }[level]
+  const difficulties: Record<Level, Difficulty> = {
+    기초: 'veryEasy',
+    유치원: 'easy',
+    초등학교: 'normal',
+    중학교: 'hard',
+  }
+  return difficulties[level]
 }
 
 function normalizePhraseId(phrase: string): string {
@@ -261,11 +369,15 @@ function normalizePhrasal(candidate: CandidatePhrasalVerb): PhrasalVerbItem | un
     || examples.length < 2
   ) return undefined
 
+  const [baseVerb, particle] = parts
+  if (!baseVerb || !particle) return undefined
+
   return {
     id: `phrasal-${normalizePhraseId(candidate.phrase)}`,
-    baseVerb: parts[0],
-    particle: parts[1],
+    baseVerb,
+    particle,
     phrasalVerb: parts.join(' '),
+    ipa: candidate.ipa.trim(),
     levelHint: candidate.levelHint,
     meaningKo: [...new Set(candidate.meanings.map((meaning) => meaning.trim()).filter(Boolean))],
     examples,

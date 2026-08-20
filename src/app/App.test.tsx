@@ -104,6 +104,8 @@ test('학습을 누르면 레벨 메뉴를 열고 컨텍스트 레벨 선택 즉
 
   await user.click(await screen.findByRole('button', { name: '학습' }))
   const levelMenu = screen.getByRole('navigation', { name: '학습 레벨 메뉴' })
+  expect(screen.getByRole('heading', { name: '학습 레벨 선택' })).toBeInTheDocument()
+  expect(screen.queryByRole('heading', { name: '기초 플래시카드 학습' })).not.toBeInTheDocument()
   await user.click(within(levelMenu).getByRole('button', { name: '초등학교' }))
 
   expect(screen.getByRole('heading', { name: '초등학교 플래시카드 학습' })).toBeInTheDocument()
@@ -111,6 +113,59 @@ test('학습을 누르면 레벨 메뉴를 열고 컨텍스트 레벨 선택 즉
     'aria-current',
     'page',
   )
+})
+
+test('퀴즈는 레벨과 여섯 유형을 차례로 선택한 뒤 문제 세션을 시작한다', async () => {
+  const user = userEvent.setup()
+  render(<App storage={memoryStorage()} loadCatalog={loadCatalog} />)
+
+  await user.click(await screen.findByRole('button', { name: '퀴즈' }))
+  const levelMenu = screen.getByRole('navigation', { name: '퀴즈 레벨 메뉴' })
+  expect(screen.getByRole('heading', { name: '퀴즈 레벨 선택' })).toBeInTheDocument()
+  expect(screen.queryByRole('group', { name: '퀴즈 유형' })).not.toBeInTheDocument()
+
+  await user.click(within(levelMenu).getByRole('button', { name: '유치원' }))
+  expect(screen.getByRole('heading', { name: '퀴즈 유형 선택' })).toBeInTheDocument()
+  const typeMenu = screen.getByRole('group', { name: '퀴즈 유형' })
+  expect(within(typeMenu).getAllByRole('button')).toHaveLength(6)
+  expect(screen.queryByText('현재 1 / 전체 10')).not.toBeInTheDocument()
+
+  await user.click(within(typeMenu).getByRole('button', { name: '4지선다 한글→영어' }))
+  expect(screen.getByRole('heading', { name: '퀴즈' })).toBeInTheDocument()
+  expect(screen.getByText('현재 1 / 전체 10')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: '4지선다 한글→영어' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+
+  await user.click(within(levelMenu).getByRole('button', { name: '초등학교' }))
+  expect(screen.getByRole('heading', { name: '퀴즈' })).toBeInTheDocument()
+  expect(screen.queryByRole('heading', { name: '퀴즈 유형 선택' })).not.toBeInTheDocument()
+  expect(screen.getByText('현재 1 / 전체 10')).toBeInTheDocument()
+  expect(screen.getByRole('button', { name: '4지선다 한글→영어' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+})
+
+test('활성 학습 세션의 레벨 전환은 즉시 진입하고 기존 레벨 진도를 보존한다', async () => {
+  const user = userEvent.setup()
+  render(<App storage={memoryStorage()} loadCatalog={loadCatalog} speech={null} />)
+
+  await user.click(await screen.findByRole('button', { name: '학습' }))
+  const levelMenu = screen.getByRole('navigation', { name: '학습 레벨 메뉴' })
+  await user.click(within(levelMenu).getByRole('button', { name: '기초' }))
+  await user.click(screen.getByRole('button', { name: /카드 뒤집기/ }))
+  await user.click(screen.getByRole('button', { name: '기억했어요' }))
+  expect(screen.getByText('2 / 10')).toBeInTheDocument()
+
+  await user.click(within(levelMenu).getByRole('button', { name: '초등학교' }))
+  expect(screen.getByRole('heading', { name: '초등학교 플래시카드 학습' })).toBeInTheDocument()
+  expect(screen.queryByRole('heading', { name: '학습 레벨 선택' })).not.toBeInTheDocument()
+
+  await user.click(within(levelMenu).getByRole('button', { name: '기초' }))
+  expect(screen.getByRole('heading', { name: '기초 플래시카드 학습' })).toBeInTheDocument()
+  expect(screen.getByText('2 / 10')).toBeInTheDocument()
 })
 
 test('단어장은 최상위 메뉴가 아니라 레벨 컨텍스트 메뉴다', async () => {

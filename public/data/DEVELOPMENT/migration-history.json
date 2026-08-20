@@ -1,0 +1,48 @@
+{
+  "schemaVersion": "1.0.0",
+  "currentLearnerStateVersion": 7,
+  "currentTrackingVersion": 2,
+  "migrations": [
+    {
+      "from": "legacy-navigation",
+      "to": 7,
+      "strategy": "preserve-navigation-and-initialize-version-7-learning-records"
+    },
+    {
+      "from": 1,
+      "to": 5,
+      "strategy": "preserve-navigation-mastery-mistakes-sessions-and-quiz-history; initialize-grammar-and-level-analytics"
+    },
+    {
+      "from": 2,
+      "to": 5,
+      "strategy": "preserve-compatible-state; reset-incompatible-grammar-history; initialize-level-analytics"
+    },
+    {
+      "from": 3,
+      "to": 5,
+      "strategy": "preserve-compatible-state; initialize-level-analytics"
+    },
+    {
+      "from": 4,
+      "to": 5,
+      "strategy": "move-global-difficulty-and-study-analytics-into-the-current-level"
+    },
+    {
+      "from": 5,
+      "to": 6,
+      "strategy": "preserve-learning-state-and-initialize-tracking-v2"
+    },
+    {
+      "from": "6-tracking-v1",
+      "to": "6-tracking-v2",
+      "strategy": "preserve-tracking; mark-legacy-queue-audits-and-add-complete-queue-spacing-fields"
+    },
+    {
+      "from": 6,
+      "to": 7,
+      "strategy": "preserve-navigation-word-progress-tracking-and-cumulative-grammar-productionAttempts-retryCount-errorCounts; invalidate-legacy-production-evidence-active-rediagnostic-results-review-streak-and-completion"
+    }
+  ],
+  "failurePolicy": "malformed-or-inconsistent-state-is-recovered-to-a-new-v7-state-and-recorded-in-stateLoadHistory"
+}

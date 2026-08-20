@@ -3,29 +3,32 @@ import type { ContentSourceCacheStatus } from './fetchSources'
 import { formatContentSourceReport, hasUnverifiedCaches } from './reportSources'
 import { CONTENT_SOURCES } from './sources'
 
+const FIRST_SOURCE = CONTENT_SOURCES[0]!
+const SECOND_SOURCE = CONTENT_SOURCES[1]!
+
 describe('content source report', () => {
   test('prints provenance and cache verification state for every source', () => {
     const statuses: ContentSourceCacheStatus[] = [
-      { source: CONTENT_SOURCES[0], cachePresent: true, verified: true },
-      { source: CONTENT_SOURCES[1], cachePresent: false, verified: false },
+      { source: FIRST_SOURCE, cachePresent: true, verified: true },
+      { source: SECOND_SOURCE, cachePresent: false, verified: false },
     ]
 
     expect(JSON.parse(formatContentSourceReport(statuses))).toEqual([
       {
         id: 'cefrj',
-        url: CONTENT_SOURCES[0].url,
-        license: CONTENT_SOURCES[0].license,
-        attribution: CONTENT_SOURCES[0].attribution,
-        expectedSha256: CONTENT_SOURCES[0].sha256,
+        url: FIRST_SOURCE.url,
+        license: FIRST_SOURCE.license,
+        attribution: FIRST_SOURCE.attribution,
+        expectedSha256: FIRST_SOURCE.sha256,
         cachePresent: true,
         verified: true,
       },
       {
         id: 'korean-wiktionary',
-        url: CONTENT_SOURCES[1].url,
-        license: CONTENT_SOURCES[1].license,
-        attribution: CONTENT_SOURCES[1].attribution,
-        expectedSha256: CONTENT_SOURCES[1].sha256,
+        url: SECOND_SOURCE.url,
+        license: SECOND_SOURCE.license,
+        attribution: SECOND_SOURCE.attribution,
+        expectedSha256: SECOND_SOURCE.sha256,
         cachePresent: false,
         verified: false,
       },

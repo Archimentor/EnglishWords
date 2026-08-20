@@ -1,5 +1,6 @@
 import { LEVELS } from '../types'
 import type { Level, ValidationIssue, ValidationMode } from '../types'
+import { wordFamilyFor } from '../wordFamilies'
 import {
   duplicateId,
   invalidCatalog,
@@ -8,6 +9,7 @@ import {
   isNonBlankString,
   isRecord,
   isStringArray,
+  rejectAdditionalProperties,
 } from './guards'
 
 const RELEASE_WORD_COUNTS: Record<Level, number> = {
@@ -16,6 +18,25 @@ const RELEASE_WORD_COUNTS: Record<Level, number> = {
   초등학교: 1500,
   중학교: 2500,
 }
+
+const WORD_ITEM_FIELDS = [
+  'id',
+  'word',
+  'lemma',
+  'level',
+  'familyId',
+  'isFamilyHead',
+  'difficulty',
+  'entries',
+] as const
+
+const WORD_ENTRY_FIELDS = [
+  'partOfSpeech',
+  'forms',
+  'meanings',
+  'ipa',
+  'examples',
+] as const
 
 interface ValidatedWordIdentity {
   id: string
@@ -26,23 +47,35 @@ interface ValidatedWordIdentity {
   familyPath: string
 }
 
+export function normalizeWordExampleKey(example: string): string {
+  return example.trim().normalize('NFKC').toLocaleLowerCase('en-US')
+}
+
 function isWordForms(value: unknown): boolean {
-  if (isStringArray(value)) {
-    return true
+  if (Array.isArray(value)) {
+    return value.length > 0 && value.every(isNonBlankString)
   }
 
-  return isRecord(value) && Object.values(value).every((form) => typeof form === 'string')
+  if (!isRecord(value)) return false
+  const entries = Object.entries(value)
+  return (
+    entries.length > 0 &&
+    entries.every(([name, form]) => isNonBlankString(name) && isNonBlankString(form))
+  )
 }
 
 function validateWordEntry(
   entry: unknown,
   path: string,
+  seenExampleKeys: Set<string>,
   issues: ValidationIssue[],
 ): void {
   if (!isRecord(entry)) {
     issues.push(invalidCatalog(path, 'Word entry must be an object.'))
     return
   }
+
+  rejectAdditionalProperties(entry, WORD_ENTRY_FIELDS, path, 'wordlist', issues)
 
   if (!isNonBlankString(entry.partOfSpeech)) {
     issues.push(invalidCatalog(`${path}.partOfSpeech`, 'partOfSpeech must be a non-blank string.'))
@@ -62,6 +95,10 @@ function validateWordEntry(
       path: `${path}.meanings`,
       message: 'A word entry must have at least one meaning.',
     })
+  } else if (!entry.meanings.every(isNonBlankString)) {
+    issues.push(
+      invalidCatalog(`${path}.meanings`, 'meanings must contain only non-blank strings.'),
+    )
   }
 
   if (typeof entry.ipa !== 'string') {
@@ -82,6 +119,23 @@ function validateWordEntry(
       path: `${path}.examples`,
       message: 'A word entry must have at least two examples.',
     })
+  } else if (!entry.examples.every(isNonBlankString)) {
+    issues.push(
+      invalidCatalog(`${path}.examples`, 'examples must contain only non-blank strings.'),
+    )
+  } else {
+    entry.examples.forEach((example, index) => {
+      const key = normalizeWordExampleKey(example)
+      if (seenExampleKeys.has(key)) {
+        issues.push({
+          code: 'DUPLICATE_WORD_EXAMPLE',
+          path: `${path}.examples[${index}]`,
+          message: 'Word example duplicates an earlier example after normalization.',
+        })
+      } else {
+        seenExampleKeys.add(key)
+      }
+    })
   }
 }
 
@@ -89,12 +143,15 @@ function validateWordItem(
   item: unknown,
   level: Level,
   path: string,
+  seenExampleKeys: Set<string>,
   issues: ValidationIssue[],
 ): ValidatedWordIdentity | undefined {
   if (!isRecord(item)) {
     issues.push(invalidCatalog(path, 'Word item must be an object.'))
     return undefined
   }
+
+  rejectAdditionalProperties(item, WORD_ITEM_FIELDS, path, 'wordlist', issues)
 
   const id = item.id
   const word = item.word
@@ -125,6 +182,26 @@ function validateWordItem(
   if (typeof isFamilyHead !== 'boolean') {
     issues.push(invalidCatalog(`${path}.isFamilyHead`, 'isFamilyHead must be a boolean.'))
   }
+  if (isNonBlankString(lemma)) {
+    const canonicalFamily = wordFamilyFor(lemma)
+    if (isNonBlankString(familyId) && familyId !== canonicalFamily.familyId) {
+      issues.push({
+        code: 'WORD_FAMILY_ID_MISMATCH',
+        path: `${path}.familyId`,
+        message: `Lemma "${lemma}" must belong to canonical family "${canonicalFamily.familyId}".`,
+      })
+    }
+    if (
+      typeof isFamilyHead === 'boolean'
+      && isFamilyHead !== canonicalFamily.isFamilyHead
+    ) {
+      issues.push({
+        code: 'WORD_FAMILY_HEAD_MISMATCH',
+        path: `${path}.isFamilyHead`,
+        message: `Lemma "${lemma}" must use "${canonicalFamily.headLemma}" as its canonical family head.`,
+      })
+    }
+  }
   if (!isDifficulty(difficulty)) {
     issues.push(invalidCatalog(`${path}.difficulty`, 'difficulty is not recognized.'))
   }
@@ -132,7 +209,12 @@ function validateWordItem(
   if (!Array.isArray(entries) || entries.length === 0) {
     issues.push(invalidCatalog(`${path}.entries`, 'entries must be a non-empty array.'))
   } else {
-    entries.forEach((entry, index) => validateWordEntry(entry, `${path}.entries[${index}]`, issues))
+    entries.forEach((entry, index) => validateWordEntry(
+      entry,
+      `${path}.entries[${index}]`,
+      seenExampleKeys,
+      issues,
+    ))
   }
 
   if (
@@ -160,7 +242,7 @@ function validateWordInvariants(
 ): Set<string> {
   const ids = new Set<string>()
   const lemmas = new Set<string>()
-  const families = new Map<string, { headCount: number; path: string }>()
+  const families = new Map<string, { headCount: number; itemCount: number; path: string }>()
 
   for (const word of words) {
     if (ids.has(word.id)) {
@@ -179,7 +261,12 @@ function validateWordInvariants(
       lemmas.add(word.lemma)
     }
 
-    const family = families.get(word.familyId) ?? { headCount: 0, path: word.familyPath }
+    const family = families.get(word.familyId) ?? {
+      headCount: 0,
+      itemCount: 0,
+      path: word.familyPath,
+    }
+    family.itemCount += 1
     if (word.isFamilyHead) {
       family.headCount += 1
     }
@@ -187,6 +274,13 @@ function validateWordInvariants(
   }
 
   for (const [familyId, family] of families) {
+    if (family.itemCount !== 1) {
+      issues.push({
+        code: 'DUPLICATE_WORD_FAMILY',
+        path: family.path,
+        message: `Family "${familyId}" must contain exactly one catalog item; found ${family.itemCount}.`,
+      })
+    }
     if (family.headCount !== 1) {
       issues.push({
         code: 'FAMILY_HEAD_COUNT',
@@ -205,6 +299,7 @@ export function validateWordlists(
   issues: ValidationIssue[],
 ): Set<string> {
   const words: ValidatedWordIdentity[] = []
+  const seenExampleKeys = new Set<string>()
 
   if (!isRecord(value)) {
     issues.push(invalidCatalog('wordlists', 'wordlists must be an object keyed by level.'))
@@ -229,7 +324,13 @@ export function validateWordlists(
     }
 
     levelWords.forEach((item, index) => {
-      const word = validateWordItem(item, level, `${levelPath}[${index}]`, issues)
+      const word = validateWordItem(
+        item,
+        level,
+        `${levelPath}[${index}]`,
+        seenExampleKeys,
+        issues,
+      )
       if (word) {
         words.push(word)
       }

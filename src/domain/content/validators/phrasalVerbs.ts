@@ -7,10 +7,24 @@ import {
   isLevel,
   isNonBlankString,
   isRecord,
+  rejectAdditionalProperties,
   validateNonBlankArray,
 } from './guards'
 
 const RELEASE_PHRASAL_COUNT = 250
+const PHRASAL_VERB_FIELDS = [
+  'id',
+  'baseVerb',
+  'particle',
+  'phrasalVerb',
+  'ipa',
+  'levelHint',
+  'meaningKo',
+  'examples',
+  'partOfSpeech',
+  'usageNotes',
+  'difficulty',
+] as const
 
 interface ValidatedPhrasalIdentity {
   id: string
@@ -47,10 +61,13 @@ function validatePhrasalVerbItem(
     return undefined
   }
 
+  rejectAdditionalProperties(item, PHRASAL_VERB_FIELDS, path, 'phrasal verb', issues)
+
   const id = item.id
   const baseVerb = item.baseVerb
   const particle = item.particle
   const phrasalVerb = item.phrasalVerb
+  const ipa = item.ipa
   const usageNotes = item.usageNotes
   const levelHint = item.levelHint
   const partOfSpeech = item.partOfSpeech
@@ -62,6 +79,7 @@ function validatePhrasalVerbItem(
   const hasBaseVerb = validateNonBlankField(baseVerb, 'baseVerb', path, issues)
   const hasParticle = validateNonBlankField(particle, 'particle', path, issues)
   const hasPhrasalVerb = validateNonBlankField(phrasalVerb, 'phrasalVerb', path, issues)
+  const hasIpa = validateNonBlankField(ipa, 'ipa', path, issues)
   const hasUsageNotes = validateNonBlankField(usageNotes, 'usageNotes', path, issues)
 
   const hasLevelHint = isLevel(levelHint)
@@ -98,6 +116,7 @@ function validatePhrasalVerbItem(
     hasBaseVerb &&
     hasParticle &&
     hasPhrasalVerb &&
+    hasIpa &&
     hasLevelHint &&
     hasMeaningKo &&
     hasExamples &&
@@ -109,6 +128,7 @@ function validatePhrasalVerbItem(
       baseVerb,
       particle,
       phrasalVerb,
+      ipa,
       levelHint,
       meaningKo,
       examples,

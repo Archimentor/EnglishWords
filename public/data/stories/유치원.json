@@ -1,7 +1,7 @@
 {
   "schemaVersion": "1.0.0",
   "level": "유치원",
-  "title": "학교의 하루",
+  "title": "빛을 잃은 이야기책",
   "isManual": true,
   "coverage": {
     "mustCoverAll": true,
@@ -10,45 +10,3506 @@
   },
   "usedWords": [
     {
-      "lemma": "book",
-      "partOfSpeech": "noun",
-      "forms": ["book", "books"]
-    },
-    {
-      "lemma": "chair",
-      "partOfSpeech": "noun",
-      "forms": ["chair", "chairs"]
-    },
-    {
-      "lemma": "draw",
+      "lemma": "say",
       "partOfSpeech": "verb",
-      "forms": ["draw", "draws", "drew", "drawing", "drawn"]
+      "forms": [
+        "say"
+      ]
     },
     {
-      "lemma": "friend",
-      "partOfSpeech": "noun",
-      "forms": ["friend", "friends"]
+      "lemma": "by",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "by"
+      ]
     },
     {
-      "lemma": "green",
-      "partOfSpeech": "adjective",
-      "forms": ["green", "greener", "greenest"]
-    },
-    {
-      "lemma": "jump",
+      "lemma": "can",
       "partOfSpeech": "verb",
-      "forms": ["jump", "jumps", "jumped", "jumping", "jumped"]
+      "forms": [
+        "can"
+      ]
+    },
+    {
+      "lemma": "if",
+      "partOfSpeech": "conjunction",
+      "forms": [
+        "if"
+      ]
+    },
+    {
+      "lemma": "would",
+      "partOfSpeech": "verb",
+      "forms": [
+        "would"
+      ]
+    },
+    {
+      "lemma": "about",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "about"
+      ]
+    },
+    {
+      "lemma": "one",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "one"
+      ]
+    },
+    {
+      "lemma": "think",
+      "partOfSpeech": "verb",
+      "forms": [
+        "think"
+      ]
+    },
+    {
+      "lemma": "when",
+      "partOfSpeech": "conjunction",
+      "forms": [
+        "when"
+      ]
+    },
+    {
+      "lemma": "them",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "them"
+      ]
+    },
+    {
+      "lemma": "me",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "me"
+      ]
+    },
+    {
+      "lemma": "into",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "into"
+      ]
+    },
+    {
+      "lemma": "just",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "just"
+      ]
+    },
+    {
+      "lemma": "him",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "him"
+      ]
+    },
+    {
+      "lemma": "now",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "now"
+      ]
+    },
+    {
+      "lemma": "then",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "then"
+      ]
+    },
+    {
+      "lemma": "two",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "two"
+      ]
+    },
+    {
+      "lemma": "want",
+      "partOfSpeech": "verb",
+      "forms": [
+        "want"
+      ]
+    },
+    {
+      "lemma": "also",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "also"
+      ]
+    },
+    {
+      "lemma": "because",
+      "partOfSpeech": "conjunction",
+      "forms": [
+        "because"
+      ]
+    },
+    {
+      "lemma": "use",
+      "partOfSpeech": "verb",
+      "forms": [
+        "use"
+      ]
+    },
+    {
+      "lemma": "man",
+      "partOfSpeech": "noun",
+      "forms": [
+        "man"
+      ]
+    },
+    {
+      "lemma": "thing",
+      "partOfSpeech": "noun",
+      "forms": [
+        "thing"
+      ]
+    },
+    {
+      "lemma": "well",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "well"
+      ]
+    },
+    {
+      "lemma": "only",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "only"
+      ]
+    },
+    {
+      "lemma": "tell",
+      "partOfSpeech": "verb",
+      "forms": [
+        "tell"
+      ]
+    },
+    {
+      "lemma": "very",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "very"
+      ]
+    },
+    {
+      "lemma": "back",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "back"
+      ]
+    },
+    {
+      "lemma": "through",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "through"
+      ]
+    },
+    {
+      "lemma": "life",
+      "partOfSpeech": "noun",
+      "forms": [
+        "life"
+      ]
+    },
+    {
+      "lemma": "work",
+      "partOfSpeech": "verb",
+      "forms": [
+        "work"
+      ]
+    },
+    {
+      "lemma": "down",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "down"
+      ]
+    },
+    {
+      "lemma": "may",
+      "partOfSpeech": "verb",
+      "forms": [
+        "may"
+      ]
+    },
+    {
+      "lemma": "after",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "after"
+      ]
     },
     {
       "lemma": "school",
       "partOfSpeech": "noun",
-      "forms": ["school", "schools"]
+      "forms": [
+        "school"
+      ]
     },
     {
-      "lemma": "teacher",
+      "lemma": "need",
+      "partOfSpeech": "verb",
+      "forms": [
+        "need"
+      ]
+    },
+    {
+      "lemma": "too",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "too"
+      ]
+    },
+    {
+      "lemma": "three",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "three"
+      ]
+    },
+    {
+      "lemma": "never",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "never"
+      ]
+    },
+    {
+      "lemma": "between",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "between"
+      ]
+    },
+    {
+      "lemma": "really",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "really"
+      ]
+    },
+    {
+      "lemma": "something",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "something"
+      ]
+    },
+    {
+      "lemma": "mean",
+      "partOfSpeech": "verb",
+      "forms": [
+        "mean"
+      ]
+    },
+    {
+      "lemma": "keep",
+      "partOfSpeech": "verb",
+      "forms": [
+        "keep"
+      ]
+    },
+    {
+      "lemma": "group",
       "partOfSpeech": "noun",
-      "forms": ["teacher", "teachers"]
+      "forms": [
+        "group"
+      ]
+    },
+    {
+      "lemma": "turn",
+      "partOfSpeech": "verb",
+      "forms": [
+        "turn"
+      ]
+    },
+    {
+      "lemma": "problem",
+      "partOfSpeech": "noun",
+      "forms": [
+        "problem"
+      ]
+    },
+    {
+      "lemma": "start",
+      "partOfSpeech": "verb",
+      "forms": [
+        "start"
+      ]
+    },
+    {
+      "lemma": "show",
+      "partOfSpeech": "verb",
+      "forms": [
+        "show"
+      ]
+    },
+    {
+      "lemma": "place",
+      "partOfSpeech": "noun",
+      "forms": [
+        "place"
+      ]
+    },
+    {
+      "lemma": "again",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "again"
+      ]
+    },
+    {
+      "lemma": "case",
+      "partOfSpeech": "noun",
+      "forms": [
+        "case"
+      ]
+    },
+    {
+      "lemma": "right",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "right"
+      ]
+    },
+    {
+      "lemma": "question",
+      "partOfSpeech": "noun",
+      "forms": [
+        "question"
+      ]
+    },
+    {
+      "lemma": "number",
+      "partOfSpeech": "noun",
+      "forms": [
+        "number"
+      ]
+    },
+    {
+      "lemma": "always",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "always"
+      ]
+    },
+    {
+      "lemma": "point",
+      "partOfSpeech": "noun",
+      "forms": [
+        "point"
+      ]
+    },
+    {
+      "lemma": "large",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "large"
+      ]
+    },
+    {
+      "lemma": "must",
+      "partOfSpeech": "verb",
+      "forms": [
+        "must"
+      ]
+    },
+    {
+      "lemma": "home",
+      "partOfSpeech": "noun",
+      "forms": [
+        "home"
+      ]
+    },
+    {
+      "lemma": "story",
+      "partOfSpeech": "noun",
+      "forms": [
+        "story"
+      ]
+    },
+    {
+      "lemma": "month",
+      "partOfSpeech": "noun",
+      "forms": [
+        "month"
+      ]
+    },
+    {
+      "lemma": "book",
+      "partOfSpeech": "noun",
+      "forms": [
+        "book"
+      ]
+    },
+    {
+      "lemma": "eye",
+      "partOfSpeech": "noun",
+      "forms": [
+        "eye"
+      ]
+    },
+    {
+      "lemma": "word",
+      "partOfSpeech": "noun",
+      "forms": [
+        "word"
+      ]
+    },
+    {
+      "lemma": "side",
+      "partOfSpeech": "noun",
+      "forms": [
+        "side"
+      ]
+    },
+    {
+      "lemma": "four",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "four"
+      ]
+    },
+    {
+      "lemma": "head",
+      "partOfSpeech": "noun",
+      "forms": [
+        "head"
+      ]
+    },
+    {
+      "lemma": "away",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "away"
+      ]
+    },
+    {
+      "lemma": "often",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "often"
+      ]
+    },
+    {
+      "lemma": "almost",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "almost"
+      ]
+    },
+    {
+      "lemma": "set",
+      "partOfSpeech": "verb",
+      "forms": [
+        "set"
+      ]
+    },
+    {
+      "lemma": "later",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "later"
+      ]
+    },
+    {
+      "lemma": "five",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "five"
+      ]
+    },
+    {
+      "lemma": "once",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "once"
+      ]
+    },
+    {
+      "lemma": "real",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "real"
+      ]
+    },
+    {
+      "lemma": "team",
+      "partOfSpeech": "noun",
+      "forms": [
+        "team"
+      ]
+    },
+    {
+      "lemma": "best",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "best"
+      ]
+    },
+    {
+      "lemma": "idea",
+      "partOfSpeech": "noun",
+      "forms": [
+        "idea"
+      ]
+    },
+    {
+      "lemma": "kid",
+      "partOfSpeech": "noun",
+      "forms": [
+        "kid"
+      ]
+    },
+    {
+      "lemma": "nothing",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "nothing"
+      ]
+    },
+    {
+      "lemma": "social",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "social"
+      ]
+    },
+    {
+      "lemma": "watch",
+      "partOfSpeech": "verb",
+      "forms": [
+        "watch"
+      ]
+    },
+    {
+      "lemma": "stop",
+      "partOfSpeech": "verb",
+      "forms": [
+        "stop"
+      ]
+    },
+    {
+      "lemma": "face",
+      "partOfSpeech": "noun",
+      "forms": [
+        "face"
+      ]
+    },
+    {
+      "lemma": "anything",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "anything"
+      ]
+    },
+    {
+      "lemma": "already",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "already"
+      ]
+    },
+    {
+      "lemma": "speak",
+      "partOfSpeech": "verb",
+      "forms": [
+        "speak"
+      ]
+    },
+    {
+      "lemma": "spend",
+      "partOfSpeech": "verb",
+      "forms": [
+        "spend"
+      ]
+    },
+    {
+      "lemma": "sure",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "sure"
+      ]
+    },
+    {
+      "lemma": "history",
+      "partOfSpeech": "noun",
+      "forms": [
+        "history"
+      ]
+    },
+    {
+      "lemma": "result",
+      "partOfSpeech": "noun",
+      "forms": [
+        "result"
+      ]
+    },
+    {
+      "lemma": "reason",
+      "partOfSpeech": "noun",
+      "forms": [
+        "reason"
+      ]
+    },
+    {
+      "lemma": "win",
+      "partOfSpeech": "verb",
+      "forms": [
+        "win"
+      ]
+    },
+    {
+      "lemma": "guy",
+      "partOfSpeech": "noun",
+      "forms": [
+        "guy"
+      ]
+    },
+    {
+      "lemma": "food",
+      "partOfSpeech": "noun",
+      "forms": [
+        "food"
+      ]
+    },
+    {
+      "lemma": "moment",
+      "partOfSpeech": "noun",
+      "forms": [
+        "moment"
+      ]
+    },
+    {
+      "lemma": "remember",
+      "partOfSpeech": "verb",
+      "forms": [
+        "remember"
+      ]
+    },
+    {
+      "lemma": "maybe",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "maybe"
+      ]
+    },
+    {
+      "lemma": "everything",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "everything"
+      ]
+    },
+    {
+      "lemma": "love",
+      "partOfSpeech": "verb",
+      "forms": [
+        "love"
+      ]
+    },
+    {
+      "lemma": "music",
+      "partOfSpeech": "noun",
+      "forms": [
+        "music"
+      ]
+    },
+    {
+      "lemma": "wait",
+      "partOfSpeech": "verb",
+      "forms": [
+        "wait"
+      ]
+    },
+    {
+      "lemma": "stay",
+      "partOfSpeech": "verb",
+      "forms": [
+        "stay"
+      ]
+    },
+    {
+      "lemma": "someone",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "someone"
+      ]
+    },
+    {
+      "lemma": "six",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "six"
+      ]
+    },
+    {
+      "lemma": "late",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "late"
+      ]
+    },
+    {
+      "lemma": "sell",
+      "partOfSpeech": "verb",
+      "forms": [
+        "sell"
+      ]
+    },
+    {
+      "lemma": "role",
+      "partOfSpeech": "noun",
+      "forms": [
+        "role"
+      ]
+    },
+    {
+      "lemma": "better",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "better"
+      ]
+    },
+    {
+      "lemma": "up",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "up"
+      ]
+    },
+    {
+      "lemma": "heart",
+      "partOfSpeech": "noun",
+      "forms": [
+        "heart"
+      ]
+    },
+    {
+      "lemma": "leader",
+      "partOfSpeech": "noun",
+      "forms": [
+        "leader"
+      ]
+    },
+    {
+      "lemma": "mind",
+      "partOfSpeech": "noun",
+      "forms": [
+        "mind"
+      ]
+    },
+    {
+      "lemma": "true",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "true"
+      ]
+    },
+    {
+      "lemma": "thank",
+      "partOfSpeech": "verb",
+      "forms": [
+        "thank"
+      ]
+    },
+    {
+      "lemma": "wear",
+      "partOfSpeech": "verb",
+      "forms": [
+        "wear"
+      ]
+    },
+    {
+      "lemma": "special",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "special"
+      ]
+    },
+    {
+      "lemma": "form",
+      "partOfSpeech": "noun",
+      "forms": [
+        "form"
+      ]
+    },
+    {
+      "lemma": "event",
+      "partOfSpeech": "noun",
+      "forms": [
+        "event"
+      ]
+    },
+    {
+      "lemma": "matter",
+      "partOfSpeech": "noun",
+      "forms": [
+        "matter"
+      ]
+    },
+    {
+      "lemma": "everyone",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "everyone"
+      ]
+    },
+    {
+      "lemma": "site",
+      "partOfSpeech": "noun",
+      "forms": [
+        "site"
+      ]
+    },
+    {
+      "lemma": "piece",
+      "partOfSpeech": "noun",
+      "forms": [
+        "piece"
+      ]
+    },
+    {
+      "lemma": "describe",
+      "partOfSpeech": "verb",
+      "forms": [
+        "describe"
+      ]
+    },
+    {
+      "lemma": "news",
+      "partOfSpeech": "noun",
+      "forms": [
+        "news"
+      ]
+    },
+    {
+      "lemma": "test",
+      "partOfSpeech": "noun",
+      "forms": [
+        "test"
+      ]
+    },
+    {
+      "lemma": "personal",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "personal"
+      ]
+    },
+    {
+      "lemma": "technology",
+      "partOfSpeech": "noun",
+      "forms": [
+        "technology"
+      ]
+    },
+    {
+      "lemma": "type",
+      "partOfSpeech": "noun",
+      "forms": [
+        "type"
+      ]
+    },
+    {
+      "lemma": "draw",
+      "partOfSpeech": "verb",
+      "forms": [
+        "draw"
+      ]
+    },
+    {
+      "lemma": "soon",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "soon"
+      ]
+    },
+    {
+      "lemma": "culture",
+      "partOfSpeech": "noun",
+      "forms": [
+        "culture"
+      ]
+    },
+    {
+      "lemma": "period",
+      "partOfSpeech": "noun",
+      "forms": [
+        "period"
+      ]
+    },
+    {
+      "lemma": "course",
+      "partOfSpeech": "noun",
+      "forms": [
+        "course"
+      ]
+    },
+    {
+      "lemma": "summer",
+      "partOfSpeech": "noun",
+      "forms": [
+        "summer"
+      ]
+    },
+    {
+      "lemma": "future",
+      "partOfSpeech": "noun",
+      "forms": [
+        "future"
+      ]
+    },
+    {
+      "lemma": "wrong",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "wrong"
+      ]
+    },
+    {
+      "lemma": "anyone",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "anyone"
+      ]
+    },
+    {
+      "lemma": "sport",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sport"
+      ]
+    },
+    {
+      "lemma": "subject",
+      "partOfSpeech": "noun",
+      "forms": [
+        "subject"
+      ]
+    },
+    {
+      "lemma": "officer",
+      "partOfSpeech": "noun",
+      "forms": [
+        "officer"
+      ]
+    },
+    {
+      "lemma": "top",
+      "partOfSpeech": "noun",
+      "forms": [
+        "top"
+      ]
+    },
+    {
+      "lemma": "quickly",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "quickly"
+      ]
+    },
+    {
+      "lemma": "goal",
+      "partOfSpeech": "noun",
+      "forms": [
+        "goal"
+      ]
+    },
+    {
+      "lemma": "order",
+      "partOfSpeech": "noun",
+      "forms": [
+        "order"
+      ]
+    },
+    {
+      "lemma": "focus",
+      "partOfSpeech": "verb",
+      "forms": [
+        "focus"
+      ]
+    },
+    {
+      "lemma": "foreign",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "foreign"
+      ]
+    },
+    {
+      "lemma": "push",
+      "partOfSpeech": "verb",
+      "forms": [
+        "push"
+      ]
+    },
+    {
+      "lemma": "note",
+      "partOfSpeech": "verb",
+      "forms": [
+        "note"
+      ]
+    },
+    {
+      "lemma": "fine",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "fine"
+      ]
+    },
+    {
+      "lemma": "share",
+      "partOfSpeech": "verb",
+      "forms": [
+        "share"
+      ]
+    },
+    {
+      "lemma": "poor",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "poor"
+      ]
+    },
+    {
+      "lemma": "usually",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "usually"
+      ]
+    },
+    {
+      "lemma": "article",
+      "partOfSpeech": "noun",
+      "forms": [
+        "article"
+      ]
+    },
+    {
+      "lemma": "save",
+      "partOfSpeech": "verb",
+      "forms": [
+        "save"
+      ]
+    },
+    {
+      "lemma": "seven",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "seven"
+      ]
+    },
+    {
+      "lemma": "eight",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "eight"
+      ]
+    },
+    {
+      "lemma": "size",
+      "partOfSpeech": "noun",
+      "forms": [
+        "size"
+      ]
+    },
+    {
+      "lemma": "list",
+      "partOfSpeech": "noun",
+      "forms": [
+        "list"
+      ]
+    },
+    {
+      "lemma": "answer",
+      "partOfSpeech": "noun",
+      "forms": [
+        "answer"
+      ]
+    },
+    {
+      "lemma": "character",
+      "partOfSpeech": "noun",
+      "forms": [
+        "character"
+      ]
+    },
+    {
+      "lemma": "television",
+      "partOfSpeech": "noun",
+      "forms": [
+        "television"
+      ]
+    },
+    {
+      "lemma": "everybody",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "everybody"
+      ]
+    },
+    {
+      "lemma": "message",
+      "partOfSpeech": "noun",
+      "forms": [
+        "message"
+      ]
+    },
+    {
+      "lemma": "section",
+      "partOfSpeech": "noun",
+      "forms": [
+        "section"
+      ]
+    },
+    {
+      "lemma": "skill",
+      "partOfSpeech": "noun",
+      "forms": [
+        "skill"
+      ]
+    },
+    {
+      "lemma": "design",
+      "partOfSpeech": "noun",
+      "forms": [
+        "design"
+      ]
+    },
+    {
+      "lemma": "ten",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "ten"
+      ]
+    },
+    {
+      "lemma": "example",
+      "partOfSpeech": "noun",
+      "forms": [
+        "example"
+      ]
+    },
+    {
+      "lemma": "green",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "green"
+      ]
+    },
+    {
+      "lemma": "memory",
+      "partOfSpeech": "noun",
+      "forms": [
+        "memory"
+      ]
+    },
+    {
+      "lemma": "card",
+      "partOfSpeech": "noun",
+      "forms": [
+        "card"
+      ]
+    },
+    {
+      "lemma": "seat",
+      "partOfSpeech": "noun",
+      "forms": [
+        "seat"
+      ]
+    },
+    {
+      "lemma": "nice",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "nice"
+      ]
+    },
+    {
+      "lemma": "spring",
+      "partOfSpeech": "noun",
+      "forms": [
+        "spring"
+      ]
+    },
+    {
+      "lemma": "imagine",
+      "partOfSpeech": "verb",
+      "forms": [
+        "imagine"
+      ]
+    },
+    {
+      "lemma": "yourself",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "yourself"
+      ]
+    },
+    {
+      "lemma": "peace",
+      "partOfSpeech": "noun",
+      "forms": [
+        "peace"
+      ]
+    },
+    {
+      "lemma": "interview",
+      "partOfSpeech": "noun",
+      "forms": [
+        "interview"
+      ]
+    },
+    {
+      "lemma": "chair",
+      "partOfSpeech": "noun",
+      "forms": [
+        "chair"
+      ]
+    },
+    {
+      "lemma": "evening",
+      "partOfSpeech": "noun",
+      "forms": [
+        "evening"
+      ]
+    },
+    {
+      "lemma": "shoulder",
+      "partOfSpeech": "noun",
+      "forms": [
+        "shoulder"
+      ]
+    },
+    {
+      "lemma": "bar",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bar"
+      ]
+    },
+    {
+      "lemma": "magazine",
+      "partOfSpeech": "noun",
+      "forms": [
+        "magazine"
+      ]
+    },
+    {
+      "lemma": "owner",
+      "partOfSpeech": "noun",
+      "forms": [
+        "owner"
+      ]
+    },
+    {
+      "lemma": "machine",
+      "partOfSpeech": "noun",
+      "forms": [
+        "machine"
+      ]
+    },
+    {
+      "lemma": "item",
+      "partOfSpeech": "noun",
+      "forms": [
+        "item"
+      ]
+    },
+    {
+      "lemma": "coach",
+      "partOfSpeech": "noun",
+      "forms": [
+        "coach"
+      ]
+    },
+    {
+      "lemma": "step",
+      "partOfSpeech": "verb",
+      "forms": [
+        "step"
+      ]
+    },
+    {
+      "lemma": "yard",
+      "partOfSpeech": "noun",
+      "forms": [
+        "yard"
+      ]
+    },
+    {
+      "lemma": "vote",
+      "partOfSpeech": "noun",
+      "forms": [
+        "vote"
+      ]
+    },
+    {
+      "lemma": "travel",
+      "partOfSpeech": "verb",
+      "forms": [
+        "travel"
+      ]
+    },
+    {
+      "lemma": "wind",
+      "partOfSpeech": "noun",
+      "forms": [
+        "wind"
+      ]
+    },
+    {
+      "lemma": "successful",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "successful"
+      ]
+    },
+    {
+      "lemma": "video",
+      "partOfSpeech": "noun",
+      "forms": [
+        "video"
+      ]
+    },
+    {
+      "lemma": "hurt",
+      "partOfSpeech": "verb",
+      "forms": [
+        "hurt"
+      ]
+    },
+    {
+      "lemma": "nine",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "nine"
+      ]
+    },
+    {
+      "lemma": "conversation",
+      "partOfSpeech": "noun",
+      "forms": [
+        "conversation"
+      ]
+    },
+    {
+      "lemma": "brain",
+      "partOfSpeech": "noun",
+      "forms": [
+        "brain"
+      ]
+    },
+    {
+      "lemma": "afternoon",
+      "partOfSpeech": "noun",
+      "forms": [
+        "afternoon"
+      ]
+    },
+    {
+      "lemma": "weekend",
+      "partOfSpeech": "noun",
+      "forms": [
+        "weekend"
+      ]
+    },
+    {
+      "lemma": "date",
+      "partOfSpeech": "noun",
+      "forms": [
+        "date"
+      ]
+    },
+    {
+      "lemma": "sorry",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "sorry"
+      ]
+    },
+    {
+      "lemma": "fan",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fan"
+      ]
+    },
+    {
+      "lemma": "hole",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hole"
+      ]
+    },
+    {
+      "lemma": "ship",
+      "partOfSpeech": "noun",
+      "forms": [
+        "ship"
+      ]
+    },
+    {
+      "lemma": "introduce",
+      "partOfSpeech": "verb",
+      "forms": [
+        "introduce"
+      ]
+    },
+    {
+      "lemma": "sun",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sun"
+      ]
+    },
+    {
+      "lemma": "survey",
+      "partOfSpeech": "noun",
+      "forms": [
+        "survey"
+      ]
+    },
+    {
+      "lemma": "hide",
+      "partOfSpeech": "verb",
+      "forms": [
+        "hide"
+      ]
+    },
+    {
+      "lemma": "club",
+      "partOfSpeech": "noun",
+      "forms": [
+        "club"
+      ]
+    },
+    {
+      "lemma": "band",
+      "partOfSpeech": "noun",
+      "forms": [
+        "band"
+      ]
+    },
+    {
+      "lemma": "interested",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "interested"
+      ]
+    },
+    {
+      "lemma": "ride",
+      "partOfSpeech": "verb",
+      "forms": [
+        "ride"
+      ]
+    },
+    {
+      "lemma": "tool",
+      "partOfSpeech": "noun",
+      "forms": [
+        "tool"
+      ]
+    },
+    {
+      "lemma": "ear",
+      "partOfSpeech": "noun",
+      "forms": [
+        "ear"
+      ]
+    },
+    {
+      "lemma": "jump",
+      "partOfSpeech": "verb",
+      "forms": [
+        "jump"
+      ]
+    },
+    {
+      "lemma": "until",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "until"
+      ]
+    },
+    {
+      "lemma": "baseball",
+      "partOfSpeech": "noun",
+      "forms": [
+        "baseball"
+      ]
+    },
+    {
+      "lemma": "anybody",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "anybody"
+      ]
+    },
+    {
+      "lemma": "review",
+      "partOfSpeech": "noun",
+      "forms": [
+        "review"
+      ]
+    },
+    {
+      "lemma": "move",
+      "partOfSpeech": "noun",
+      "forms": [
+        "move"
+      ]
+    },
+    {
+      "lemma": "grade",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grade"
+      ]
+    },
+    {
+      "lemma": "smile",
+      "partOfSpeech": "noun",
+      "forms": [
+        "smile"
+      ]
+    },
+    {
+      "lemma": "bone",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bone"
+      ]
+    },
+    {
+      "lemma": "photo",
+      "partOfSpeech": "noun",
+      "forms": [
+        "photo"
+      ]
+    },
+    {
+      "lemma": "classroom",
+      "partOfSpeech": "noun",
+      "forms": [
+        "classroom"
+      ]
+    },
+    {
+      "lemma": "pair",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pair"
+      ]
+    },
+    {
+      "lemma": "birth",
+      "partOfSpeech": "noun",
+      "forms": [
+        "birth"
+      ]
+    },
+    {
+      "lemma": "bottom",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bottom"
+      ]
+    },
+    {
+      "lemma": "neck",
+      "partOfSpeech": "noun",
+      "forms": [
+        "neck"
+      ]
+    },
+    {
+      "lemma": "football",
+      "partOfSpeech": "noun",
+      "forms": [
+        "football"
+      ]
+    },
+    {
+      "lemma": "chicken",
+      "partOfSpeech": "noun",
+      "forms": [
+        "chicken"
+      ]
+    },
+    {
+      "lemma": "welcome",
+      "partOfSpeech": "verb",
+      "forms": [
+        "welcome"
+      ]
+    },
+    {
+      "lemma": "leaf",
+      "partOfSpeech": "noun",
+      "forms": [
+        "leaf"
+      ]
+    },
+    {
+      "lemma": "fight",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fight"
+      ]
+    },
+    {
+      "lemma": "sweet",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "sweet"
+      ]
+    },
+    {
+      "lemma": "strange",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "strange"
+      ]
+    },
+    {
+      "lemma": "farmer",
+      "partOfSpeech": "noun",
+      "forms": [
+        "farmer"
+      ]
+    },
+    {
+      "lemma": "repeat",
+      "partOfSpeech": "verb",
+      "forms": [
+        "repeat"
+      ]
+    },
+    {
+      "lemma": "carefully",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "carefully"
+      ]
+    },
+    {
+      "lemma": "mom",
+      "partOfSpeech": "noun",
+      "forms": [
+        "mom"
+      ]
+    },
+    {
+      "lemma": "thin",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "thin"
+      ]
+    },
+    {
+      "lemma": "surprise",
+      "partOfSpeech": "noun",
+      "forms": [
+        "surprise"
+      ]
+    },
+    {
+      "lemma": "half",
+      "partOfSpeech": "noun",
+      "forms": [
+        "half"
+      ]
+    },
+    {
+      "lemma": "sight",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sight"
+      ]
+    },
+    {
+      "lemma": "code",
+      "partOfSpeech": "noun",
+      "forms": [
+        "code"
+      ]
+    },
+    {
+      "lemma": "thick",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "thick"
+      ]
+    },
+    {
+      "lemma": "nose",
+      "partOfSpeech": "noun",
+      "forms": [
+        "nose"
+      ]
+    },
+    {
+      "lemma": "dress",
+      "partOfSpeech": "noun",
+      "forms": [
+        "dress"
+      ]
+    },
+    {
+      "lemma": "file",
+      "partOfSpeech": "noun",
+      "forms": [
+        "file"
+      ]
+    },
+    {
+      "lemma": "sick",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "sick"
+      ]
+    },
+    {
+      "lemma": "judge",
+      "partOfSpeech": "verb",
+      "forms": [
+        "judge"
+      ]
+    },
+    {
+      "lemma": "snow",
+      "partOfSpeech": "noun",
+      "forms": [
+        "snow"
+      ]
+    },
+    {
+      "lemma": "meat",
+      "partOfSpeech": "noun",
+      "forms": [
+        "meat"
+      ]
+    },
+    {
+      "lemma": "correct",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "correct"
+      ]
+    },
+    {
+      "lemma": "basketball",
+      "partOfSpeech": "noun",
+      "forms": [
+        "basketball"
+      ]
+    },
+    {
+      "lemma": "dad",
+      "partOfSpeech": "noun",
+      "forms": [
+        "dad"
+      ]
+    },
+    {
+      "lemma": "solve",
+      "partOfSpeech": "verb",
+      "forms": [
+        "solve"
+      ]
+    },
+    {
+      "lemma": "hall",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hall"
+      ]
+    },
+    {
+      "lemma": "row",
+      "partOfSpeech": "noun",
+      "forms": [
+        "row"
+      ]
+    },
+    {
+      "lemma": "smart",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "smart"
+      ]
+    },
+    {
+      "lemma": "topic",
+      "partOfSpeech": "noun",
+      "forms": [
+        "topic"
+      ]
+    },
+    {
+      "lemma": "telephone",
+      "partOfSpeech": "noun",
+      "forms": [
+        "telephone"
+      ]
+    },
+    {
+      "lemma": "pleasure",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pleasure"
+      ]
+    },
+    {
+      "lemma": "stand",
+      "partOfSpeech": "noun",
+      "forms": [
+        "stand"
+      ]
+    },
+    {
+      "lemma": "dish",
+      "partOfSpeech": "noun",
+      "forms": [
+        "dish"
+      ]
+    },
+    {
+      "lemma": "everywhere",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "everywhere"
+      ]
+    },
+    {
+      "lemma": "terrible",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "terrible"
+      ]
+    },
+    {
+      "lemma": "careful",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "careful"
+      ]
+    },
+    {
+      "lemma": "wheel",
+      "partOfSpeech": "noun",
+      "forms": [
+        "wheel"
+      ]
+    },
+    {
+      "lemma": "cream",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cream"
+      ]
+    },
+    {
+      "lemma": "hill",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hill"
+      ]
+    },
+    {
+      "lemma": "grass",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grass"
+      ]
+    },
+    {
+      "lemma": "fishing",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fishing"
+      ]
+    },
+    {
+      "lemma": "sentence",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sentence"
+      ]
+    },
+    {
+      "lemma": "living",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "living"
+      ]
+    },
+    {
+      "lemma": "hi",
+      "partOfSpeech": "interjection",
+      "forms": [
+        "hi"
+      ]
+    },
+    {
+      "lemma": "twenty",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "twenty"
+      ]
+    },
+    {
+      "lemma": "sir",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sir"
+      ]
+    },
+    {
+      "lemma": "wash",
+      "partOfSpeech": "verb",
+      "forms": [
+        "wash"
+      ]
+    },
+    {
+      "lemma": "post",
+      "partOfSpeech": "noun",
+      "forms": [
+        "post"
+      ]
+    },
+    {
+      "lemma": "self",
+      "partOfSpeech": "noun",
+      "forms": [
+        "self"
+      ]
+    },
+    {
+      "lemma": "bike",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bike"
+      ]
+    },
+    {
+      "lemma": "tea",
+      "partOfSpeech": "noun",
+      "forms": [
+        "tea"
+      ]
+    },
+    {
+      "lemma": "cop",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cop"
+      ]
+    },
+    {
+      "lemma": "album",
+      "partOfSpeech": "noun",
+      "forms": [
+        "album"
+      ]
+    },
+    {
+      "lemma": "sale",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sale"
+      ]
+    },
+    {
+      "lemma": "breathe",
+      "partOfSpeech": "verb",
+      "forms": [
+        "breathe"
+      ]
+    },
+    {
+      "lemma": "touch",
+      "partOfSpeech": "noun",
+      "forms": [
+        "touch"
+      ]
+    },
+    {
+      "lemma": "fat",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "fat"
+      ]
+    },
+    {
+      "lemma": "bean",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bean"
+      ]
+    },
+    {
+      "lemma": "ring",
+      "partOfSpeech": "verb",
+      "forms": [
+        "ring"
+      ]
+    },
+    {
+      "lemma": "luck",
+      "partOfSpeech": "noun",
+      "forms": [
+        "luck"
+      ]
+    },
+    {
+      "lemma": "pray",
+      "partOfSpeech": "verb",
+      "forms": [
+        "pray"
+      ]
+    },
+    {
+      "lemma": "flag",
+      "partOfSpeech": "noun",
+      "forms": [
+        "flag"
+      ]
+    },
+    {
+      "lemma": "corn",
+      "partOfSpeech": "noun",
+      "forms": [
+        "corn"
+      ]
+    },
+    {
+      "lemma": "due",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "due"
+      ]
+    },
+    {
+      "lemma": "pretty",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "pretty"
+      ]
+    },
+    {
+      "lemma": "pink",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "pink"
+      ]
+    },
+    {
+      "lemma": "poem",
+      "partOfSpeech": "noun",
+      "forms": [
+        "poem"
+      ]
+    },
+    {
+      "lemma": "mail",
+      "partOfSpeech": "noun",
+      "forms": [
+        "mail"
+      ]
+    },
+    {
+      "lemma": "concert",
+      "partOfSpeech": "noun",
+      "forms": [
+        "concert"
+      ]
+    },
+    {
+      "lemma": "false",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "false"
+      ]
+    },
+    {
+      "lemma": "tube",
+      "partOfSpeech": "noun",
+      "forms": [
+        "tube"
+      ]
+    },
+    {
+      "lemma": "drama",
+      "partOfSpeech": "noun",
+      "forms": [
+        "drama"
+      ]
+    },
+    {
+      "lemma": "chocolate",
+      "partOfSpeech": "noun",
+      "forms": [
+        "chocolate"
+      ]
+    },
+    {
+      "lemma": "super",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "super"
+      ]
+    },
+    {
+      "lemma": "match",
+      "partOfSpeech": "noun",
+      "forms": [
+        "match"
+      ]
+    },
+    {
+      "lemma": "bear",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bear"
+      ]
+    },
+    {
+      "lemma": "shopping",
+      "partOfSpeech": "noun",
+      "forms": [
+        "shopping"
+      ]
+    },
+    {
+      "lemma": "cousin",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cousin"
+      ]
+    },
+    {
+      "lemma": "rice",
+      "partOfSpeech": "noun",
+      "forms": [
+        "rice"
+      ]
+    },
+    {
+      "lemma": "tight",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "tight"
+      ]
+    },
+    {
+      "lemma": "salad",
+      "partOfSpeech": "noun",
+      "forms": [
+        "salad"
+      ]
+    },
+    {
+      "lemma": "smell",
+      "partOfSpeech": "noun",
+      "forms": [
+        "smell"
+      ]
+    },
+    {
+      "lemma": "thirty",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "thirty"
+      ]
+    },
+    {
+      "lemma": "shelf",
+      "partOfSpeech": "noun",
+      "forms": [
+        "shelf"
+      ]
+    },
+    {
+      "lemma": "fifteen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "fifteen"
+      ]
+    },
+    {
+      "lemma": "soup",
+      "partOfSpeech": "noun",
+      "forms": [
+        "soup"
+      ]
+    },
+    {
+      "lemma": "fifty",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "fifty"
+      ]
+    },
+    {
+      "lemma": "contest",
+      "partOfSpeech": "noun",
+      "forms": [
+        "contest"
+      ]
+    },
+    {
+      "lemma": "tennis",
+      "partOfSpeech": "noun",
+      "forms": [
+        "tennis"
+      ]
+    },
+    {
+      "lemma": "girlfriend",
+      "partOfSpeech": "noun",
+      "forms": [
+        "girlfriend"
+      ]
+    },
+    {
+      "lemma": "jet",
+      "partOfSpeech": "noun",
+      "forms": [
+        "jet"
+      ]
+    },
+    {
+      "lemma": "shower",
+      "partOfSpeech": "noun",
+      "forms": [
+        "shower"
+      ]
+    },
+    {
+      "lemma": "twelve",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "twelve"
+      ]
+    },
+    {
+      "lemma": "ugly",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "ugly"
+      ]
+    },
+    {
+      "lemma": "ghost",
+      "partOfSpeech": "noun",
+      "forms": [
+        "ghost"
+      ]
+    },
+    {
+      "lemma": "pet",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pet"
+      ]
+    },
+    {
+      "lemma": "lovely",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "lovely"
+      ]
+    },
+    {
+      "lemma": "everyday",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "everyday"
+      ]
+    },
+    {
+      "lemma": "mouse",
+      "partOfSpeech": "noun",
+      "forms": [
+        "mouse"
+      ]
+    },
+    {
+      "lemma": "dear",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "dear"
+      ]
+    },
+    {
+      "lemma": "soccer",
+      "partOfSpeech": "noun",
+      "forms": [
+        "soccer"
+      ]
+    },
+    {
+      "lemma": "rose",
+      "partOfSpeech": "noun",
+      "forms": [
+        "rose"
+      ]
+    },
+    {
+      "lemma": "couch",
+      "partOfSpeech": "noun",
+      "forms": [
+        "couch"
+      ]
+    },
+    {
+      "lemma": "boyfriend",
+      "partOfSpeech": "noun",
+      "forms": [
+        "boyfriend"
+      ]
+    },
+    {
+      "lemma": "jeans",
+      "partOfSpeech": "noun",
+      "forms": [
+        "jeans"
+      ]
+    },
+    {
+      "lemma": "snake",
+      "partOfSpeech": "noun",
+      "forms": [
+        "snake"
+      ]
+    },
+    {
+      "lemma": "pig",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pig"
+      ]
+    },
+    {
+      "lemma": "pop",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pop"
+      ]
+    },
+    {
+      "lemma": "beef",
+      "partOfSpeech": "noun",
+      "forms": [
+        "beef"
+      ]
+    },
+    {
+      "lemma": "cloth",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cloth"
+      ]
+    },
+    {
+      "lemma": "strict",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "strict"
+      ]
+    },
+    {
+      "lemma": "rat",
+      "partOfSpeech": "noun",
+      "forms": [
+        "rat"
+      ]
+    },
+    {
+      "lemma": "wish",
+      "partOfSpeech": "noun",
+      "forms": [
+        "wish"
+      ]
+    },
+    {
+      "lemma": "temple",
+      "partOfSpeech": "noun",
+      "forms": [
+        "temple"
+      ]
+    },
+    {
+      "lemma": "skirt",
+      "partOfSpeech": "noun",
+      "forms": [
+        "skirt"
+      ]
+    },
+    {
+      "lemma": "closed",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "closed"
+      ]
+    },
+    {
+      "lemma": "towel",
+      "partOfSpeech": "noun",
+      "forms": [
+        "towel"
+      ]
+    },
+    {
+      "lemma": "bat",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bat"
+      ]
+    },
+    {
+      "lemma": "festival",
+      "partOfSpeech": "noun",
+      "forms": [
+        "festival"
+      ]
+    },
+    {
+      "lemma": "excuse",
+      "partOfSpeech": "noun",
+      "forms": [
+        "excuse"
+      ]
+    },
+    {
+      "lemma": "forty",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "forty"
+      ]
+    },
+    {
+      "lemma": "turkey",
+      "partOfSpeech": "noun",
+      "forms": [
+        "turkey"
+      ]
+    },
+    {
+      "lemma": "doll",
+      "partOfSpeech": "noun",
+      "forms": [
+        "doll"
+      ]
+    },
+    {
+      "lemma": "handsome",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "handsome"
+      ]
+    },
+    {
+      "lemma": "sum",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sum"
+      ]
+    },
+    {
+      "lemma": "hers",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "hers"
+      ]
+    },
+    {
+      "lemma": "opera",
+      "partOfSpeech": "noun",
+      "forms": [
+        "opera"
+      ]
+    },
+    {
+      "lemma": "bath",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bath"
+      ]
+    },
+    {
+      "lemma": "pizza",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pizza"
+      ]
+    },
+    {
+      "lemma": "worry",
+      "partOfSpeech": "noun",
+      "forms": [
+        "worry"
+      ]
+    },
+    {
+      "lemma": "garbage",
+      "partOfSpeech": "noun",
+      "forms": [
+        "garbage"
+      ]
+    },
+    {
+      "lemma": "kiss",
+      "partOfSpeech": "noun",
+      "forms": [
+        "kiss"
+      ]
+    },
+    {
+      "lemma": "toilet",
+      "partOfSpeech": "noun",
+      "forms": [
+        "toilet"
+      ]
+    },
+    {
+      "lemma": "drum",
+      "partOfSpeech": "noun",
+      "forms": [
+        "drum"
+      ]
+    },
+    {
+      "lemma": "bee",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bee"
+      ]
+    },
+    {
+      "lemma": "eleven",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "eleven"
+      ]
+    },
+    {
+      "lemma": "lion",
+      "partOfSpeech": "noun",
+      "forms": [
+        "lion"
+      ]
+    },
+    {
+      "lemma": "fever",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fever"
+      ]
+    },
+    {
+      "lemma": "monkey",
+      "partOfSpeech": "noun",
+      "forms": [
+        "monkey"
+      ]
+    },
+    {
+      "lemma": "blank",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "blank"
+      ]
+    },
+    {
+      "lemma": "awake",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "awake"
+      ]
+    },
+    {
+      "lemma": "palace",
+      "partOfSpeech": "noun",
+      "forms": [
+        "palace"
+      ]
+    },
+    {
+      "lemma": "grandparent",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grandparent"
+      ]
+    },
+    {
+      "lemma": "supermarket",
+      "partOfSpeech": "noun",
+      "forms": [
+        "supermarket"
+      ]
+    },
+    {
+      "lemma": "headache",
+      "partOfSpeech": "noun",
+      "forms": [
+        "headache"
+      ]
+    },
+    {
+      "lemma": "grape",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grape"
+      ]
+    },
+    {
+      "lemma": "sofa",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sofa"
+      ]
+    },
+    {
+      "lemma": "bucket",
+      "partOfSpeech": "noun",
+      "forms": [
+        "bucket"
+      ]
+    },
+    {
+      "lemma": "spy",
+      "partOfSpeech": "noun",
+      "forms": [
+        "spy"
+      ]
+    },
+    {
+      "lemma": "foreigner",
+      "partOfSpeech": "noun",
+      "forms": [
+        "foreigner"
+      ]
+    },
+    {
+      "lemma": "butterfly",
+      "partOfSpeech": "noun",
+      "forms": [
+        "butterfly"
+      ]
+    },
+    {
+      "lemma": "an",
+      "partOfSpeech": "determiner",
+      "forms": [
+        "an"
+      ]
+    },
+    {
+      "lemma": "april",
+      "partOfSpeech": "noun",
+      "forms": [
+        "april"
+      ]
+    },
+    {
+      "lemma": "apron",
+      "partOfSpeech": "noun",
+      "forms": [
+        "apron"
+      ]
+    },
+    {
+      "lemma": "august",
+      "partOfSpeech": "noun",
+      "forms": [
+        "august"
+      ]
+    },
+    {
+      "lemma": "cinema",
+      "partOfSpeech": "noun",
+      "forms": [
+        "cinema"
+      ]
+    },
+    {
+      "lemma": "classmate",
+      "partOfSpeech": "noun",
+      "forms": [
+        "classmate"
+      ]
+    },
+    {
+      "lemma": "december",
+      "partOfSpeech": "noun",
+      "forms": [
+        "december"
+      ]
+    },
+    {
+      "lemma": "dictionary",
+      "partOfSpeech": "noun",
+      "forms": [
+        "dictionary"
+      ]
+    },
+    {
+      "lemma": "dollar",
+      "partOfSpeech": "noun",
+      "forms": [
+        "dollar"
+      ]
+    },
+    {
+      "lemma": "eighteen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "eighteen"
+      ]
+    },
+    {
+      "lemma": "eighty",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "eighty"
+      ]
+    },
+    {
+      "lemma": "fairy",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fairy"
+      ]
+    },
+    {
+      "lemma": "february",
+      "partOfSpeech": "noun",
+      "forms": [
+        "february"
+      ]
+    },
+    {
+      "lemma": "fourteen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "fourteen"
+      ]
+    },
+    {
+      "lemma": "friday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "friday"
+      ]
+    },
+    {
+      "lemma": "frog",
+      "partOfSpeech": "noun",
+      "forms": [
+        "frog"
+      ]
+    },
+    {
+      "lemma": "glasses",
+      "partOfSpeech": "noun",
+      "forms": [
+        "glasses"
+      ]
+    },
+    {
+      "lemma": "gold",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "gold"
+      ]
+    },
+    {
+      "lemma": "grammar",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grammar"
+      ]
+    },
+    {
+      "lemma": "grandma",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grandma"
+      ]
+    },
+    {
+      "lemma": "grandpa",
+      "partOfSpeech": "noun",
+      "forms": [
+        "grandpa"
+      ]
+    },
+    {
+      "lemma": "hamburger",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hamburger"
+      ]
+    },
+    {
+      "lemma": "hello",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hello"
+      ]
+    },
+    {
+      "lemma": "hobby",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hobby"
+      ]
+    },
+    {
+      "lemma": "hometown",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hometown"
+      ]
+    },
+    {
+      "lemma": "hurry",
+      "partOfSpeech": "noun",
+      "forms": [
+        "hurry"
+      ]
+    },
+    {
+      "lemma": "january",
+      "partOfSpeech": "noun",
+      "forms": [
+        "january"
+      ]
+    },
+    {
+      "lemma": "july",
+      "partOfSpeech": "noun",
+      "forms": [
+        "july"
+      ]
+    },
+    {
+      "lemma": "june",
+      "partOfSpeech": "noun",
+      "forms": [
+        "june"
+      ]
+    },
+    {
+      "lemma": "lily",
+      "partOfSpeech": "noun",
+      "forms": [
+        "lily"
+      ]
+    },
+    {
+      "lemma": "march",
+      "partOfSpeech": "noun",
+      "forms": [
+        "march"
+      ]
+    },
+    {
+      "lemma": "merry",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "merry"
+      ]
+    },
+    {
+      "lemma": "mobile",
+      "partOfSpeech": "noun",
+      "forms": [
+        "mobile"
+      ]
+    },
+    {
+      "lemma": "monday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "monday"
+      ]
+    },
+    {
+      "lemma": "mum",
+      "partOfSpeech": "noun",
+      "forms": [
+        "mum"
+      ]
+    },
+    {
+      "lemma": "nineteen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "nineteen"
+      ]
+    },
+    {
+      "lemma": "ninety",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "ninety"
+      ]
+    },
+    {
+      "lemma": "november",
+      "partOfSpeech": "noun",
+      "forms": [
+        "november"
+      ]
+    },
+    {
+      "lemma": "october",
+      "partOfSpeech": "noun",
+      "forms": [
+        "october"
+      ]
+    },
+    {
+      "lemma": "own",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "own"
+      ]
+    },
+    {
+      "lemma": "pants",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pants"
+      ]
+    },
+    {
+      "lemma": "paragraph",
+      "partOfSpeech": "noun",
+      "forms": [
+        "paragraph"
+      ]
+    },
+    {
+      "lemma": "pardon",
+      "partOfSpeech": "noun",
+      "forms": [
+        "pardon"
+      ]
+    },
+    {
+      "lemma": "picnic",
+      "partOfSpeech": "noun",
+      "forms": [
+        "picnic"
+      ]
+    },
+    {
+      "lemma": "prince",
+      "partOfSpeech": "noun",
+      "forms": [
+        "prince"
+      ]
+    },
+    {
+      "lemma": "princess",
+      "partOfSpeech": "noun",
+      "forms": [
+        "princess"
+      ]
+    },
+    {
+      "lemma": "rude",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "rude"
+      ]
+    },
+    {
+      "lemma": "ruler",
+      "partOfSpeech": "noun",
+      "forms": [
+        "ruler"
+      ]
+    },
+    {
+      "lemma": "same",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "same"
+      ]
+    },
+    {
+      "lemma": "saturday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "saturday"
+      ]
+    },
+    {
+      "lemma": "saw",
+      "partOfSpeech": "noun",
+      "forms": [
+        "saw"
+      ]
+    },
+    {
+      "lemma": "september",
+      "partOfSpeech": "noun",
+      "forms": [
+        "september"
+      ]
+    },
+    {
+      "lemma": "seventeen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "seventeen"
+      ]
+    },
+    {
+      "lemma": "seventy",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "seventy"
+      ]
+    },
+    {
+      "lemma": "shake",
+      "partOfSpeech": "noun",
+      "forms": [
+        "shake"
+      ]
+    },
+    {
+      "lemma": "sixteen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "sixteen"
+      ]
+    },
+    {
+      "lemma": "sixty",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "sixty"
+      ]
+    },
+    {
+      "lemma": "smith",
+      "partOfSpeech": "noun",
+      "forms": [
+        "smith"
+      ]
+    },
+    {
+      "lemma": "some",
+      "partOfSpeech": "determiner",
+      "forms": [
+        "some"
+      ]
+    },
+    {
+      "lemma": "spell",
+      "partOfSpeech": "noun",
+      "forms": [
+        "spell"
+      ]
+    },
+    {
+      "lemma": "subway",
+      "partOfSpeech": "noun",
+      "forms": [
+        "subway"
+      ]
+    },
+    {
+      "lemma": "sunday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sunday"
+      ]
+    },
+    {
+      "lemma": "sunshine",
+      "partOfSpeech": "noun",
+      "forms": [
+        "sunshine"
+      ]
+    },
+    {
+      "lemma": "surf",
+      "partOfSpeech": "noun",
+      "forms": [
+        "surf"
+      ]
+    },
+    {
+      "lemma": "taxi",
+      "partOfSpeech": "noun",
+      "forms": [
+        "taxi"
+      ]
+    },
+    {
+      "lemma": "thirteen",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "thirteen"
+      ]
+    },
+    {
+      "lemma": "thursday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "thursday"
+      ]
+    },
+    {
+      "lemma": "tiger",
+      "partOfSpeech": "noun",
+      "forms": [
+        "tiger"
+      ]
+    },
+    {
+      "lemma": "trousers",
+      "partOfSpeech": "noun",
+      "forms": [
+        "trousers"
+      ]
+    },
+    {
+      "lemma": "tuesday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "tuesday"
+      ]
+    },
+    {
+      "lemma": "umbrella",
+      "partOfSpeech": "noun",
+      "forms": [
+        "umbrella"
+      ]
+    },
+    {
+      "lemma": "vase",
+      "partOfSpeech": "noun",
+      "forms": [
+        "vase"
+      ]
+    },
+    {
+      "lemma": "volleyball",
+      "partOfSpeech": "noun",
+      "forms": [
+        "volleyball"
+      ]
+    },
+    {
+      "lemma": "waitress",
+      "partOfSpeech": "noun",
+      "forms": [
+        "waitress"
+      ]
+    },
+    {
+      "lemma": "wednesday",
+      "partOfSpeech": "noun",
+      "forms": [
+        "wednesday"
+      ]
+    },
+    {
+      "lemma": "cap",
+      "partOfSpeech": "verb",
+      "forms": [
+        "cap"
+      ]
+    },
+    {
+      "lemma": "shy",
+      "partOfSpeech": "verb",
+      "forms": [
+        "shy"
+      ]
+    },
+    {
+      "lemma": "bye",
+      "partOfSpeech": "interjection",
+      "forms": [
+        "bye"
+      ]
+    },
+    {
+      "lemma": "doing",
+      "partOfSpeech": "noun",
+      "forms": [
+        "doing"
+      ]
+    },
+    {
+      "lemma": "many",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "many"
+      ]
+    },
+    {
+      "lemma": "so",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "so"
+      ]
+    },
+    {
+      "lemma": "even",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "even"
+      ]
+    },
+    {
+      "lemma": "still",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "still"
+      ]
+    },
+    {
+      "lemma": "try",
+      "partOfSpeech": "verb",
+      "forms": [
+        "try"
+      ]
+    },
+    {
+      "lemma": "state",
+      "partOfSpeech": "noun",
+      "forms": [
+        "state"
+      ]
+    },
+    {
+      "lemma": "most",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "most"
+      ]
+    },
+    {
+      "lemma": "while",
+      "partOfSpeech": "conjunction",
+      "forms": [
+        "while"
+      ]
+    },
+    {
+      "lemma": "seem",
+      "partOfSpeech": "verb",
+      "forms": [
+        "seem"
+      ]
+    },
+    {
+      "lemma": "part",
+      "partOfSpeech": "noun",
+      "forms": [
+        "part"
+      ]
+    },
+    {
+      "lemma": "system",
+      "partOfSpeech": "noun",
+      "forms": [
+        "system"
+      ]
+    },
+    {
+      "lemma": "during",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "during"
+      ]
+    },
+    {
+      "lemma": "without",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "without"
+      ]
+    },
+    {
+      "lemma": "million",
+      "partOfSpeech": "numeral",
+      "forms": [
+        "million"
+      ]
+    },
+    {
+      "lemma": "national",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "national"
+      ]
+    },
+    {
+      "lemma": "fact",
+      "partOfSpeech": "noun",
+      "forms": [
+        "fact"
+      ]
+    },
+    {
+      "lemma": "lot",
+      "partOfSpeech": "noun",
+      "forms": [
+        "lot"
+      ]
+    },
+    {
+      "lemma": "though",
+      "partOfSpeech": "conjunction",
+      "forms": [
+        "though"
+      ]
+    },
+    {
+      "lemma": "issue",
+      "partOfSpeech": "noun",
+      "forms": [
+        "issue"
+      ]
+    },
+    {
+      "lemma": "far",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "far"
+      ]
+    },
+    {
+      "lemma": "provide",
+      "partOfSpeech": "verb",
+      "forms": [
+        "provide"
+      ]
+    },
+    {
+      "lemma": "power",
+      "partOfSpeech": "noun",
+      "forms": [
+        "power"
+      ]
+    },
+    {
+      "lemma": "among",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "among"
+      ]
+    },
+    {
+      "lemma": "ever",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "ever"
+      ]
+    },
+    {
+      "lemma": "member",
+      "partOfSpeech": "noun",
+      "forms": [
+        "member"
+      ]
+    },
+    {
+      "lemma": "law",
+      "partOfSpeech": "noun",
+      "forms": [
+        "law"
+      ]
+    },
+    {
+      "lemma": "include",
+      "partOfSpeech": "verb",
+      "forms": [
+        "include"
+      ]
+    },
+    {
+      "lemma": "understand",
+      "partOfSpeech": "verb",
+      "forms": [
+        "understand"
+      ]
+    },
+    {
+      "lemma": "around",
+      "partOfSpeech": "adverb",
+      "forms": [
+        "around"
+      ]
+    },
+    {
+      "lemma": "level",
+      "partOfSpeech": "noun",
+      "forms": [
+        "level"
+      ]
+    },
+    {
+      "lemma": "allow",
+      "partOfSpeech": "verb",
+      "forms": [
+        "allow"
+      ]
+    },
+    {
+      "lemma": "within",
+      "partOfSpeech": "preposition",
+      "forms": [
+        "within"
+      ]
+    },
+    {
+      "lemma": "low",
+      "partOfSpeech": "adjective",
+      "forms": [
+        "low"
+      ]
+    },
+    {
+      "lemma": "research",
+      "partOfSpeech": "noun",
+      "forms": [
+        "research"
+      ]
+    },
+    {
+      "lemma": "himself",
+      "partOfSpeech": "pronoun",
+      "forms": [
+        "himself"
+      ]
     }
   ],
-  "storyText": "At school, a teacher puts a green book on a chair. I draw with my friend, and then we jump outside."
+  "storyText": "After school, Mina found an old book on a desk. The book had a message about a lost story, and one page did not have words.\n\nWhen Mina opened the book, a small light came from the page. The message said the school would lose the story. Mina had to find the answer.\n\nMina called her team to the library. One child found a picture on a clock, and a girl found a number on the table. The picture and the number made a door on the empty page. Mina was afraid to open it, so the group held hands and opened it.\n\nMina showed the book to her team. They read the question and started to look for the answer.\n\nThe answer was wrong because the message changed again. Mina listened to the group and tried a new idea.\n\nAt night, the page opened. The answer was not a number. It was the history of the school and the group that cared for it.\n\nMina wrote the story in the book. The light came back, and the pages had words again.\n\nIn the morning, Mina brought the book to school. The children read it with the team, and the lost story had a new end.",
+  "vocabularyPracticeText": "A family at the school had seen the team. A man has to know when to walk away. Allow an hour to get to the station. At the school, Mina met the place and the kid. The leader and the fan had seen the team. The chicken and the team helped Mina read the book. The reason changed Mina's plan. Mina found the seat in the school. The book looked personal, but the road was sorry. Mina felt thin and held the book. Mina found nothing at the door. Someone helped Mina. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nMina asked the family at the door for help. At the school, Mina met the bear and the cousin. The girlfriend and the couch had seen the team. The boyfriend and the snake helped Mina read the book. At the school, Mina met the grandparent and the grandpa. The book looked thick, but the road was same. Mina asked everybody to help. Anybody could help Mina. The picture ended, but a red line was on the book. Mina went on.\n\nThe red line ended at a house, and Mina went in. The problem changed Mina's plan. Mina knew the case was important. The book had a picture of the matter. Mina found the home at the school. The head was on the book. Mina may find the book. Mina began to say, and the team helped her turn. The book looked foreign, but the road was fat. Mina felt closed and held the book. The road was very dark. The book was by the door. If Mina found the answer, the book would open. Mina read the book and found the road.\n\nIn a quiet room, the book made a new picture. Mina walked from the news to the course. Mina found the culture at the school. The order was on the book. The article was in the picture. Mina put the character in her bag. The team looked at the chair. The section changed Mina's plan. Mina began to set, and the team helped her stop. Mina began to stay. Mina ever looked at the book. Mina read about two stars in the book. Mina could not find anything. The team was ready, and Mina took the book.\n\nThe red line ended at a house, and Mina went in. Mina found the sun at the school. The survey was on the book. The review was in the picture. Mina put the classroom in her bag. The team looked at the dress. Mina took the dish with the book. Mina walked to the band. The file changed Mina's plan. The hall helped Mina at the school. Mina began to wear, and the team helped her focus. Mina began to note. Anyone could help Mina. Hi! Mina looked at the team and laughed. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nIn a quiet room, the book made a new picture. The black cat is eating a white rat. The sentence changed Mina's plan. Mina knew the grammar was important. The book had a picture of the paragraph. Mina found the poem at the school. The cloth was on the book. The hometown was in the picture. Mina walked from the bat to the foreigner. Mina found the state at the school. The waitress helped Mina at the school. Mina began to step, and the team helped her introduce. Mina began to solve. The picture ended, but a red line was on the book. Mina went on.\n\nThe red line ended at a house, and Mina went in. Mina walked to the system. Mina began to ring. Mina read the book and found the road.\n\nMina sat at a table, but the red line did not end there. Bring a bag of rice on the way back. Mina found the food at the school. The meat was on the book. The pizza was in the picture. Mina put the hamburger in her bag. Mina began to repeat, and the team helped her breathe. The book was fine. The team was ready, and Mina took the book.\n\nIn a class, Mina opened the book and read a new line. Mina found the word at the school. The shoulder was on the book. The leaf was in the picture. Mina put the post in her bag. The team looked at the classmate. Mina took the issue with the book. The law changed Mina's plan. Mina began to work. The book was due. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nMina saw a game in the room and joined it. Mina found the music at the school. The heart was on the book. The card was in the picture. Mina put the touch in her bag. The team looked at the concert. Mina took the pop with the book. Mina found the opera at the school. The kiss was on the book. The cinema was in the picture. Mina walked to the temple. Mina began to tell, and the team helped her start. Mina began to speak. The book was smart. The picture ended, but a red line was on the book. Mina went on.\n\nA picture on the wall was like the picture in the book. Mina walked from the picnic to the part. The spell changed Mina's plan. Mina read the book and found the road.\n\nAt a tree, Mina found a new line on the book. Mina walked from the thing to the design. The mind changed Mina's plan. Mina found the sport at the school. The bone was on the book. The fishing was in the picture. Mina put the smell in her bag. The team looked at the pet. Mina must follow the road. Mina began to show, and the team helped her love. The book looked best, but the road was better. Mina followed the plan well. The team was ready, and Mina took the book.\n\nThe team flew from the garden to the river. A black cat is eating a white mouse. Mina found the pig at the school. The lion was on the book. The frog was in the picture. Mina put the shake in her bag. Mina walked to the umbrella. The vase changed Mina's plan. Mina knew the research was important. Mina began to push, and the team helped her wash. Mina followed the plan down. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nAt the station, the red line changed again. Mina found the subject at the school. The bar was on the book. The row was in the picture. Mina put the ruler in her bag. The team looked at the taxi. Mina took the volleyball with the book. The coach helped Mina at the school. The ship changed Mina's plan. Mina walked to the dollar. Mina began to travel. The book was careful. Mina followed the plan carefully. The picture ended, but a red line was on the book. Mina went on.\n\nThe market was busy, but Mina saw the team. A piece of paper fell on the ground. Mina found the event at the school. The summer was on the book. The list was in the picture. Mina put the weekend in her bag. The officer helped Mina at the school. Mina began to think, and the team helped her use. Mina began to spend. The book looked everyday, but the road was awake. Mina followed the plan once. Mina asked me for help. Mina read about seven stars in the book. Mina read the book and found the road.\n\nAt the office, Mina found a new line in the book. Everything in this room is for sale. Mina found the date at the school. The surprise was on the book. The bean was in the picture. Mina put the beef in her bag. The team looked at the supermarket. Mina took the april with the book. Mina found the august in the school. The fever changed Mina's plan. Mina began to wait, and the team helped her ride. Mina usually looked at the book. Mina read about eleven stars in the book. Mina read about seventeen stars in the book. The team was ready, and Mina took the book.\n\nThe market was busy, but Mina saw the team. It rains a lot during June and July. It gets cold day by day in November. It was one late September afternoon. Mina found the december at the school. The february was on the book. The friday was in the picture. Mina put the january in her bag. The team looked at the monday. Mina took the october with the book. Mina found the saturday at the school. The smith was on the book. Mina read about seventy stars in the book. Mina read while the team watched. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nAt the office, Mina found a new line in the book. Mina found the sunday at the school. The sunshine was on the book. The thursday was in the picture. Mina put the tuesday in her bag. The team looked at the wednesday. Mina took the level with the book. The member helped Mina at the school. The picture ended, but a red line was on the book. Mina went on.\n\nAt the hospital, the team sat and looked at Mina. Choose large apples of uniform size. The form changed Mina's plan. Mina found the drum in the school. Mina read the book and found the road.\n\nMina checked the picture and made a new plan. Mina walked to the site. The technology changed Mina's plan. Mina knew the power was important. Mina found the machine at the school. The stand was on the book. The surf was in the picture. The team was ready, and Mina took the book.\n\nAt the center of the town, Mina found a letter. The yard changed Mina's plan. Mina began to cap. The book looked social, but the road was own. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nMina was tired, but the team still needed her help. Everyone has a wish of some kind. Mina began to imagine, and the team helped her judge. The book looked lovely, but the road was dear. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the life at the school. The point was on the book. The eye was in the picture. Mina put the side in her bag. The month changed Mina's plan. Mina can help. Mina began to want, and the team helped her need. The book looked real, but the road was sure. Mina followed the plan just. Mina asked them for help. Mina walked into the school. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Mina found the face at the school. The result was on the book. The guy helped Mina at the school. The moment changed Mina's plan. Mina walked to the role. Mina began to mean, and the team helped her keep. Mina began to watch. The book looked true, but the road was special. Now, Mina followed the road. Mina asked him for help. Mina walked through the school. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. Be poor and happy, not rich but sad. By then it will already be too late. Mina found the test at the school. The type was on the book. The period was in the picture. Mina put the future in her bag. The team looked at the top. Mina began to win, and the team helped her remember. Mina began to sell. The book looked green, but the road was nice. Mina read about three stars in the book. The letter was between the book and the map. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Mina found the goal at the school. The skill was on the book. The example was in the picture. Mina put the memory in her bag. The television changed Mina's plan. Mina began to thank, and the team helped her describe. Mina began to draw. The book looked successful, but the road was interested. Mina felt sweet and held the book. Mina followed the plan also. Mina found something in the book. Mina read about four stars in the book. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. A little exercise never hurt anyone. Mina found the spring at the school. The interview was on the book. The magazine was in the picture. The peace changed Mina's plan. Mina knew the evening was important. Mina began to share, and the team helped her save. The book looked strange, but the road was sick. Mina felt correct and held the book. Mina followed the plan only. Mina read about five stars in the book. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. A cold wind is blowing from the sea. A monkey is climbing up a tall tree. Mina found the owner at the school. The item was on the book. The vote was in the picture. Mina put the video in her bag. Mina began to hide, and the team helped her jump. Mina began to welcome. The book looked terrible, but the road was living. Mina felt pretty and held the book. Mina read about six stars in the book. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. A new topic came up in conversation. Mina found the brain at the school. The hole was on the book. The club was in the picture. Mina began to pray, and the team helped her shy. Mina began to try. The book looked pink, but the road was false. Mina felt super and held the book. Mina read about eight stars in the book. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Things are tight around the holiday. Mina found the tool at the school. The ear was on the book. The baseball was in the picture. Mina put the move in her bag. The grade changed Mina's plan. Mina began to seem, and the team helped her provide. Mina began to include. The book looked ugly, but the road was strict. Mina followed the plan really. Mina read about ten stars in the book. You can do it by yourself. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the smile at the school. The photo was on the book. The pair was in the picture. Mina put the birth in her bag. The team looked at the bottom. Mina took the neck with the book. Mina found the football in the school. Mina began to understand. The book looked handsome, but the road was blank. Mina felt gold and held the book. Mina followed the plan right. Mina read about nine stars in the book. Mina read until night. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Barring snow, father will come home. The little boy laughed a merry laugh. Mina found the fight at the school. The mom was on the book. The half was in the picture. Mina put the sight in her bag. The team looked at the code. Mina took the nose with the book. Mina walked to the farmer. The book looked rude, but the road was many. Mina always looked at the book. Mina read about twenty stars in the book. Mina read about thirty stars in the book. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. Mina found the basketball at the school. The dad was on the book. The telephone was in the picture. Mina put the pleasure in her bag. The team looked at the wheel. Mina took the cream with the book. Mina found the hill at the school. The grass was on the book. The book looked national, but the road was low. Mina read about fifteen stars in the book. Mina read about fifty stars in the book. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Mina found the sir at the school. The self was on the book. The bike was in the picture. Mina put the tea in her bag. The team looked at the cop. Mina took the album with the book. Mina found the luck at the school. The flag was on the book. The corn was in the picture. Mina put the mail in her bag. The team looked at the tube. Mina often looked at the book. Mina read about twelve stars in the book. Mina read about forty stars in the book. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the drama at the school. The chocolate was on the book. The match was in the picture. Mina put the shopping in her bag. The team looked at the salad. Mina took the shelf with the book. Mina found the soup at the school. The contest was on the book. The tennis was in the picture. Mina put the jet in her bag. The team looked at the shower. The road was almost dark. The book was hers. Mina read about eighteen stars in the book. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Mina found the ghost at the school. The soccer was on the book. The jeans was in the picture. Mina put the skirt in her bag. The team looked at the towel. Mina took the festival with the book. Mina found the excuse at the school. The turkey was on the book. The sum was in the picture. At the school, Mina met the rose and the doll. Later, Mina followed the road. Mina read about eighty stars in the book. Mina read about fourteen stars in the book. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. The king once lived in that palace. Bad talk can only come from garbage. There is little water in the bucket. Mina found the bath at the school. The worry was on the book. The toilet was in the picture. Mina put the bee in her bag. The team looked at the headache. Mina took the grape with the book. Mina found the sofa in the school. Mina read about nineteen stars in the book. Mina read about ninety stars in the book. Mina looked at the picture. The blue letter was there, and she made a new plan.\n\nThe picture changed, and Mina walked with the team. Mina found the spy at the school. The butterfly was on the book. The apron was in the picture. Mina put the dictionary in her bag. The team looked at the fairy. Mina took the glasses with the book. Mina found the hello at the school. The hobby was on the book. The hurry was in the picture. At the school, Mina met the grandma and the lily. Mina followed the plan maybe. Mina read about sixteen stars in the book. Mina read about sixty stars in the book. The picture ended, but a red line was on the book. Mina went on.\n\nMina found a new line in the book and made a plan. Mina found the march at the school. The mobile was on the book. The mum was in the picture. Mina put the pants in her bag. The team looked at the pardon. Mina took the prince with the book. Mina found the princess in the school. Mina followed the plan soon. Mina followed the plan quickly. Mina read about thirteen stars in the book. Bye! Mina looked at the team and laughed. Mina read the book and found the road.\n\nA door in the picture opened, and Mina walked on the road. Mina found the subway at the school. The tiger was on the book. The trousers was in the picture. The doing changed Mina's plan. Mina knew the fact was important. Mina followed the plan everywhere. Mina followed the plan even. Mina followed the plan most. Mina followed the plan far. Mina would not go without the book. Mina read about million stars in the book. Though the road was dark, Mina went on. The letter was among the books. The team was ready, and Mina took the book.\n\nThe book made a new picture, and Mina looked at it. The answer was within the book. The boy opened the door himself. Mina looked at the picture. The blue letter was there, and she made a new plan."
 }

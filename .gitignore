@@ -1,9 +1,14 @@
 node_modules/
 dist/
 coverage/
+playwright-report/
+test-results/
+.playwright-mcp/
 .vite/
 *.tsbuildinfo
 *.log
+__pycache__/
+*.py[cod]
 .env*
 !.env.example
 

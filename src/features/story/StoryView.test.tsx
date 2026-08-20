@@ -1,6 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { makeStory, makeWord } from '../../test/fixtures'
+import * as storyTokenization from './storyTokens'
 import { StoryView } from './StoryView'
 
 test('수동 소설과 대표/릴리스 커버리지를 분리해 표시한다', () => {
@@ -40,6 +41,30 @@ test('수동 소설과 대표/릴리스 커버리지를 분리해 표시한다',
   expect(within(article).getByText('대표 단어 8 / 8')).toBeInTheDocument()
   expect(within(article).getByText('릴리스 목표 대비 8 / 500 (1.6%)')).toBeInTheDocument()
   expect(within(article).getByText(/word-1.*verb.*word-1s/)).toBeInTheDocument()
+})
+
+test('본편과 전체 커버리지 어휘 장면을 분리하고 연습 단어도 조회한다', async () => {
+  const user = userEvent.setup()
+  const word = makeWord({
+    entryOverrides: { forms: ['play', 'played'] },
+  })
+  const story = makeStory('기초', {
+    storyText: 'Mina walked to the park and found a bird.',
+    vocabularyPracticeText: 'The children played together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['played'] }],
+  })
+
+  render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+
+  expect(screen.getByText('Mina walked to the park and found a bird.')).toBeVisible()
+  const practiceWord = screen.getByRole('button', { name: 'story word: played' })
+  expect(practiceWord).not.toBeVisible()
+
+  await user.click(screen.getByText('어휘 장면 연습 · 전체 1개 단어'))
+  expect(practiceWord).toBeVisible()
+  await user.click(practiceWord)
+
+  expect(screen.getByRole('heading', { name: 'play 단어 상세' })).toBeInTheDocument()
 })
 
 test('false 메타데이터 상태도 텍스트로 명확히 표시한다', () => {
@@ -91,6 +116,134 @@ test('clicking a story surface form shows its exact word entry', async () => {
   expect(screen.getByText('형태: play, plays, played, playing')).toBeInTheDocument()
   expect(screen.getByText('I play outside.')).toBeInTheDocument()
   expect(screen.getByText('They play after school.')).toBeInTheDocument()
+})
+
+test('opening a story word moves focus into the detail and closing returns it', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['played'] }],
+  })
+
+  render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+  const trigger = screen.getByRole('button', { name: 'story word: played' })
+
+  await user.click(trigger)
+  const close = screen.getByRole('button', { name: '닫기' })
+  expect(close).toHaveFocus()
+
+  await user.click(close)
+  expect(trigger).toHaveFocus()
+})
+
+test('상위 레벨 소설에 기록된 하위 레벨 단어도 누적 사전에서 상세를 연다', async () => {
+  const user = userEvent.setup()
+  const lowerWord = makeWord()
+  const currentWord = makeWord({
+    id: 'word-achieve',
+    word: 'achieve',
+    lemma: 'achieve',
+    level: '중학교',
+    familyId: 'family-achieve',
+    entryOverrides: { forms: ['achieve'] },
+  })
+  const story = makeStory('중학교', {
+    storyText: 'Students play together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['play'] }],
+  })
+
+  render(
+    <StoryView
+      story={story}
+      levelWords={[currentWord]}
+      lookupWords={[lowerWord, currentWord]}
+      targetWordCount={2500}
+    />,
+  )
+
+  await user.click(screen.getByRole('button', { name: 'story word: play' }))
+
+  expect(screen.getByRole('heading', { name: 'play 단어 상세' })).toBeInTheDocument()
+  expect(screen.getByText('대표 단어 0 / 1')).toBeInTheDocument()
+})
+
+test('선택한 소설 표면형의 발음을 재생하고 상세를 닫을 때 취소한다', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['played'] }],
+  })
+  const speech = { speak: vi.fn().mockResolvedValue(undefined), cancel: vi.fn() }
+
+  render(
+    <StoryView
+      story={story}
+      levelWords={[word]}
+      targetWordCount={500}
+      speech={speech}
+    />,
+  )
+
+  await user.click(screen.getByRole('button', { name: 'story word: played' }))
+  await user.click(screen.getByRole('button', { name: 'played 발음 듣기' }))
+
+  expect(speech.speak).toHaveBeenCalledWith('played')
+  await user.click(screen.getByRole('button', { name: '닫기' }))
+  expect(speech.cancel).toHaveBeenCalled()
+})
+
+test('소설 발음 실패를 알리되 단어 상세는 계속 표시한다', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['played'] }],
+  })
+  const speech = {
+    speak: vi.fn().mockRejectedValue(new Error('speech failed')),
+    cancel: vi.fn(),
+  }
+
+  render(
+    <StoryView
+      story={story}
+      levelWords={[word]}
+      targetWordCount={500}
+      speech={speech}
+    />,
+  )
+
+  await user.click(screen.getByRole('button', { name: 'story word: played' }))
+  await user.click(screen.getByRole('button', { name: 'played 발음 듣기' }))
+
+  expect(screen.getByRole('status')).toHaveTextContent(
+    '발음 재생을 지원하지 않는 브라우저입니다.',
+  )
+  expect(screen.getByText('놀다')).toBeInTheDocument()
+})
+
+test('reuses tokenization when opening and closing a word detail', async () => {
+  const user = userEvent.setup()
+  const tokenizeSpy = vi.spyOn(storyTokenization, 'tokenizeStoryParagraphs')
+  const word = makeWord()
+  const story = makeStory('기초', {
+    storyText: 'The children played together.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['played'] }],
+  })
+
+  try {
+    render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+    expect(tokenizeSpy).toHaveBeenCalledTimes(2)
+
+    await user.click(screen.getByRole('button', { name: 'story word: played' }))
+    await user.click(screen.getByRole('button', { name: '닫기' }))
+
+    expect(tokenizeSpy).toHaveBeenCalledTimes(2)
+  } finally {
+    tokenizeSpy.mockRestore()
+  }
 })
 
 test('shows the selected word in the reading workspace rather than below the whole story', async () => {
@@ -247,7 +400,7 @@ test('does not restore a stale selection when returning to an earlier story obje
   expect(screen.queryByRole('heading', { name: 'play 단어 상세' })).not.toBeInTheDocument()
 })
 
-test('keeps reading position on the clicked word while updating the visible detail panel', async () => {
+test('keeps scroll position while moving focus into the visible detail panel', async () => {
   const user = userEvent.setup()
   const scrollIntoView = vi.fn()
   const descriptor = Object.getOwnPropertyDescriptor(
@@ -276,7 +429,7 @@ test('keeps reading position on the clicked word while updating the visible deta
     await user.click(screen.getByRole('button', { name: 'story word: played' }))
 
     await screen.findByRole('complementary', { name: 'play 단어 상세' })
-    expect(screen.getByRole('button', { name: 'story word: played' })).toHaveFocus()
+    expect(screen.getByRole('button', { name: '닫기' })).toHaveFocus()
     expect(scrollIntoView).not.toHaveBeenCalled()
   } finally {
     if (descriptor) {
@@ -338,4 +491,35 @@ test('the close button closes the detail and restores focus to the selected word
 
   expect(screen.queryByRole('heading', { name: 'play 단어 상세' })).not.toBeInTheDocument()
   expect(trigger).toHaveFocus()
+})
+
+test('큰 소설 본문을 문장 중간이 아닌 문단 단위로 점진 렌더링한다', async () => {
+  const user = userEvent.setup()
+  const word = makeWord()
+  const repeated = Array.from({ length: 180 }, (_, index) =>
+    `The children played together. Paragraph ${index + 1} ended.`).join('\n\n')
+  const story = makeStory('기초', {
+    storyText: repeated,
+    usedWords: Array.from({ length: 220 }, () => ({
+      lemma: 'play',
+      partOfSpeech: 'verb',
+      forms: ['played'],
+    })),
+  })
+
+  render(<StoryView story={story} levelWords={[word]} targetWordCount={500} />)
+
+  expect(screen.getAllByRole('button', { name: 'story word: played' }).length)
+    .toBe(4)
+  expect(screen.getByText(/Paragraph 4 ended\./)).toBeInTheDocument()
+  expect(screen.queryByText(/Paragraph 5 ended\./)).not.toBeInTheDocument()
+  const storyMore = screen.getByRole('button', { name: /다음 문단 보기/ })
+  await user.click(storyMore)
+  expect(screen.getAllByRole('button', { name: 'story word: played' }).length)
+    .toBe(8)
+  expect(screen.getByText(/Paragraph 8 ended\./)).toBeInTheDocument()
+
+  expect(screen.getAllByText(/play · verb · played/)).toHaveLength(100)
+  await user.click(screen.getByRole('button', { name: /사용 단어 더 보기/ }))
+  expect(screen.getAllByText(/play · verb · played/)).toHaveLength(200)
 })

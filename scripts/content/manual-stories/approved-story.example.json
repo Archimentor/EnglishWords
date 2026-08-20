@@ -1,0 +1,26 @@
+{
+  "schemaVersion": "1.0.0",
+  "story": {
+    "schemaVersion": "1.0.0",
+    "level": "기초",
+    "title": "승인 입력 형식 예시",
+    "isManual": true,
+    "coverage": {
+      "mustCoverAll": false,
+      "allowUpperLevelWords": false,
+      "coverageRate": 0
+    },
+    "usedWords": [],
+    "storyText": "Mina.",
+    "vocabularyPracticeText": "Mina."
+  },
+  "approval": {
+    "reviewer": "editor@example.com",
+    "reviewedAt": "2026-08-20T00:00:00.000Z",
+    "sourceDigest": {
+      "algorithm": "sha256",
+      "canonicalization": "sorted-json-v1",
+      "value": "faa1b55db377a619117b4be0d44e70773e7417d7e7dc3c59bb9dfa7556ababec"
+    }
+  }
+}

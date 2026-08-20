@@ -4,6 +4,10 @@ export type ContentSourceId =
   | 'frequency'
   | 'tatoeba-english'
   | 'ipa-dict'
+  | 'omw-english-wordnet'
+  | 'omw-korean-wiktionary'
+  | 'wordnet-3.0'
+  | 'phrasal-verbs'
 
 export interface ContentSource {
   id: ContentSourceId

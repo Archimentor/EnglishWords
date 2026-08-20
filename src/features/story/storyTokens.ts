@@ -3,6 +3,10 @@ import type {
   WordEntry,
   WordItem,
 } from '../../domain/content/types'
+import {
+  entryFormStrings,
+  isInternalStoryWordCharacter,
+} from '../../domain/content/storyForms'
 
 export interface StoryToken {
   type: 'text' | 'word'
@@ -18,12 +22,9 @@ interface RecordedForm {
   entry: WordEntry
 }
 
-function entryForms(entry: WordEntry): readonly string[] {
-  return Array.isArray(entry.forms) ? entry.forms : Object.values(entry.forms)
-}
-
-function isWordCharacter(value: string | undefined): boolean {
-  return value !== undefined && /[\p{L}\p{N}_]/u.test(value)
+interface FormTrieNode {
+  children: Map<string, FormTrieNode>
+  recordedForm?: RecordedForm
 }
 
 function hasWholeWordBoundaries(
@@ -32,8 +33,8 @@ function hasWholeWordBoundaries(
   length: number,
 ): boolean {
   return (
-    !isWordCharacter(storyText[start - 1]) &&
-    !isWordCharacter(storyText[start + length])
+    !isInternalStoryWordCharacter(storyText[start - 1]) &&
+    !isInternalStoryWordCharacter(storyText[start + length])
   )
 }
 
@@ -42,9 +43,10 @@ function resolveRecordedForms(
   levelWords: readonly WordItem[],
 ): RecordedForm[] {
   const recordedForms = new Map<string, RecordedForm>()
+  const wordsByLemma = new Map(levelWords.map((word) => [word.lemma, word]))
 
   for (const usedWord of usedWords) {
-    const word = levelWords.find((candidate) => candidate.lemma === usedWord.lemma)
+    const word = wordsByLemma.get(usedWord.lemma)
     if (!word) {
       throw new Error(
         `Story word "${usedWord.lemma}" (${usedWord.partOfSpeech}) does not resolve to a level word.`,
@@ -60,7 +62,7 @@ function resolveRecordedForms(
       )
     }
 
-    const knownForms = new Set(entryForms(entry).map((form) => form.toLowerCase()))
+    const knownForms = new Set(entryFormStrings(entry).map((form) => form.toLowerCase()))
     for (const form of usedWord.forms) {
       const normalized = form.toLowerCase()
       if (!knownForms.has(normalized)) {
@@ -86,6 +88,53 @@ function resolveRecordedForms(
   )
 }
 
+function buildFormTrie(forms: readonly RecordedForm[]): FormTrieNode {
+  const root: FormTrieNode = { children: new Map() }
+
+  for (const form of forms) {
+    let node = root
+    for (const character of form.normalized) {
+      const child = node.children.get(character) ?? { children: new Map() }
+      node.children.set(character, child)
+      node = child
+    }
+    node.recordedForm = form
+  }
+
+  return root
+}
+
+function longestMatchAt(
+  storyText: string,
+  normalizedStory: string,
+  cursor: number,
+  trie: FormTrieNode,
+): RecordedForm | undefined {
+  if (isInternalStoryWordCharacter(storyText[cursor - 1])) return undefined
+
+  let node = trie
+  let offset = cursor
+  let longestMatch: RecordedForm | undefined
+
+  while (offset < normalizedStory.length) {
+    const character = normalizedStory[offset]
+    if (character === undefined) break
+    const child = node.children.get(character)
+    if (!child) break
+
+    node = child
+    offset += 1
+    if (
+      node.recordedForm &&
+      hasWholeWordBoundaries(storyText, cursor, node.recordedForm.form.length)
+    ) {
+      longestMatch = node.recordedForm
+    }
+  }
+
+  return longestMatch
+}
+
 /**
  * Splits a story into verbatim text and clickable forms recorded by the story.
  * Matching is case-insensitive, whole-word only, and prefers the longest form.
@@ -96,18 +145,14 @@ export function tokenizeStory(
   levelWords: readonly WordItem[],
 ): StoryToken[] {
   const forms = resolveRecordedForms(usedWords, levelWords)
+  const formTrie = buildFormTrie(forms)
+  const normalizedStory = storyText.toLowerCase()
   const tokens: StoryToken[] = []
   let textStart = 0
   let cursor = 0
 
   while (cursor < storyText.length) {
-    const matchingForm = forms.find(
-      (candidate) =>
-        storyText
-          .slice(cursor, cursor + candidate.form.length)
-          .toLowerCase() === candidate.normalized &&
-        hasWholeWordBoundaries(storyText, cursor, candidate.form.length),
-    )
+    const matchingForm = longestMatchAt(storyText, normalizedStory, cursor, formTrie)
 
     if (!matchingForm) {
       cursor += 1
@@ -132,4 +177,38 @@ export function tokenizeStory(
   }
 
   return tokens.length > 0 ? tokens : [{ type: 'text', value: storyText }]
+}
+
+const STORY_PARAGRAPH_SEPARATOR = '\u0000'
+
+export function tokenizeStoryParagraphs(
+  storyText: string,
+  usedWords: StoryContent['usedWords'],
+  levelWords: readonly WordItem[],
+): StoryToken[][] {
+  const paragraphs = storyText
+    .trim()
+    .split(/\n\s*\n/u)
+    .filter((paragraph) => paragraph.trim())
+  if (paragraphs.length === 0) return []
+
+  const tokenized = tokenizeStory(
+    paragraphs.join(STORY_PARAGRAPH_SEPARATOR),
+    usedWords,
+    levelWords,
+  )
+  const result: StoryToken[][] = [[]]
+  for (const token of tokenized) {
+    if (token.type === 'word') {
+      result.at(-1)!.push(token)
+      continue
+    }
+
+    const parts = token.value.split(STORY_PARAGRAPH_SEPARATOR)
+    parts.forEach((part, index) => {
+      if (part) result.at(-1)!.push({ type: 'text', value: part })
+      if (index < parts.length - 1) result.push([])
+    })
+  }
+  return result
 }

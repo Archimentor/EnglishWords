@@ -28,6 +28,19 @@ function Prompt({ question }: { question: QuizQuestionModel }) {
   return <>{question.prompt}</>
 }
 
+function choiceMismatchReason(question: QuizQuestionModel): string {
+  if (question.type === 'en-ko') {
+    return '제시된 영어 표현의 뜻과 일치하지 않습니다.'
+  }
+  if (question.type === 'ko-en') {
+    return '제시된 한국어 뜻에 해당하는 영어 표현이 아닙니다.'
+  }
+  if (question.type === 'sentence-meaning') {
+    return '문장 속 밑줄 표현의 문맥상 뜻과 일치하지 않습니다.'
+  }
+  return '문장의 빈칸에 필요한 형태와 일치하지 않습니다.'
+}
+
 export function QuizQuestion({
   question,
   draft,
@@ -48,7 +61,7 @@ export function QuizQuestion({
   const feedback = graded
     ? graded.isCorrect
       ? `정답입니다. 정답: ${question.correctAnswer}. ${question.explanation}`
-      : `오답입니다. 정답: ${question.correctAnswer}. ${question.explanation}`
+      : `오답입니다. 제출한 답: "${graded.answer}". ${question.inputMode === 'choice' ? `${choiceMismatchReason(question)} ` : ''}정답: ${question.correctAnswer}. ${question.explanation}`
     : null
 
   return (

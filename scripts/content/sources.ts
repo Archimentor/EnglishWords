@@ -43,6 +43,38 @@ export const CONTENT_SOURCES: readonly ContentSource[] = [
     attribution: 'open-dict-data/ipa-dict (MIT; third-party credit)',
     cacheFile: 'ipa-dict-en_US.txt',
   },
+  {
+    id: 'omw-english-wordnet',
+    url: 'https://raw.githubusercontent.com/omwn/omw-data/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/eng/wn-data-eng.tab',
+    sha256: 'd1409d88addcdb890b1606dd280b558cca4258b1f33bd580d54ed949daad1ede',
+    license: 'Princeton WordNet 3.0 License',
+    attribution: 'Princeton WordNet 3.0 via Open Multilingual Wordnet',
+    cacheFile: 'wn-data-eng.tab',
+  },
+  {
+    id: 'omw-korean-wiktionary',
+    url: 'https://raw.githubusercontent.com/omwn/omw-data/406bf83b3c507a3d1f26e88252d5d66893fd36bf/wns/wikt/wn-wikt-kor.tab',
+    sha256: '50134a5fa559130cba7cb3fa1f14c3a67ed05cafd6fdf59e7603d4230a92571f',
+    license: 'CC BY-SA (snapshot header; version unspecified)',
+    attribution: 'Korean Wiktionary data via Open Multilingual Wordnet',
+    cacheFile: 'wn-wikt-kor.tab',
+  },
+  {
+    id: 'wordnet-3.0',
+    url: 'https://raw.githubusercontent.com/nltk/nltk_data/550b6625bcef1f2abff2ff770a5a0d272c9c6b2a/packages/corpora/wordnet.zip',
+    sha256: 'cbda5ea6eef7f36a97a43d4a75f85e07fccbb4f23657d27b4ccbc93e2646ab59',
+    license: 'Princeton WordNet 3.0 License',
+    attribution: 'Princeton WordNet 3.0 (derivational relation evidence)',
+    cacheFile: 'wordnet-3.0.zip',
+  },
+  {
+    id: 'phrasal-verbs',
+    url: 'https://raw.githubusercontent.com/WithEnglishWeCan/generated-english-phrasal-verbs/25de2d4421e02e6b58b65ca5f163f3bb3a58e772/phrasal.verbs.build.json',
+    sha256: '880f113bd1ee7983fba81d0ae5bc804a7242e2d1c51b5f34cee202f73bb5f8f6',
+    license: 'MIT (declared in the pinned README)',
+    attribution: 'WithEnglishWeCan/generated-english-phrasal-verbs',
+    cacheFile: 'generated-english-phrasal-verbs.json',
+  },
 ]
 
 export function parseSha256(value: string): string {

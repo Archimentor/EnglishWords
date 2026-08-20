@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://english-words-master.local/schema/tracker.schema.json",
+  "title": "English Words Master tracking state v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "trackingVersion",
+    "dailyActivity",
+    "itemSchedule",
+    "quizResponses",
+    "quizTypeStats",
+    "sessionHistory",
+    "queueHistory",
+    "stateLoadHistory"
+  ],
+  "properties": {
+    "trackingVersion": { "const": 2 },
+    "dailyActivity": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+      "additionalProperties": { "$ref": "#/$defs/activity" }
+    },
+    "itemSchedule": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/itemSchedule" }
+    },
+    "quizResponses": {
+      "type": "array",
+      "maxItems": 2000,
+      "items": { "$ref": "#/$defs/quizResponse" }
+    },
+    "quizTypeStats": { "type": "object" },
+    "sessionHistory": {
+      "type": "array",
+      "maxItems": 100,
+      "items": { "$ref": "#/$defs/session" }
+    },
+    "queueHistory": {
+      "type": "array",
+      "maxItems": 100,
+      "items": { "$ref": "#/$defs/queue" }
+    },
+    "stateLoadHistory": {
+      "type": "array",
+      "maxItems": 50,
+      "items": { "$ref": "#/$defs/stateLoad" }
+    }
+  },
+  "$defs": {
+    "level": { "enum": ["기초", "유치원", "초등학교", "중학교"] },
+    "grammarLevel": { "enum": ["A1", "A2", "B1", "B2", "C1"] },
+    "difficulty": { "enum": ["veryEasy", "easy", "normal", "hard", "veryHard"] },
+    "quizType": { "enum": ["en-ko", "ko-en", "sentence-meaning", "sentence-blank", "dictation", "sentence-transform"] },
+    "timestamp": { "type": "integer", "minimum": 0 },
+    "nonNegative": { "type": "number", "minimum": 0 },
+    "activity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sessions", "attempts", "correct", "durationMs"],
+      "properties": {
+        "sessions": { "type": "integer", "minimum": 0 },
+        "attempts": { "type": "integer", "minimum": 0 },
+        "correct": { "type": "integer", "minimum": 0 },
+        "durationMs": { "$ref": "#/$defs/nonNegative" }
+      }
+    },
+    "itemSchedule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "level", "ease", "lastSeenAt", "nextDueAt", "weight", "lastLevel"],
+      "properties": {
+        "kind": { "enum": ["word", "phrasalVerb"] },
+        "level": { "$ref": "#/$defs/level" },
+        "ease": { "type": "number", "minimum": 1.3, "maximum": 3 },
+        "lastSeenAt": { "$ref": "#/$defs/timestamp" },
+        "nextDueAt": { "$ref": "#/$defs/timestamp" },
+        "weight": { "$ref": "#/$defs/nonNegative" },
+        "lastLevel": { "$ref": "#/$defs/level" }
+      }
+    },
+    "quizResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sessionId", "questionId", "sourceItemId", "questionType", "quizType", "level", "isCorrect", "answerTimeMs", "difficultyUsed", "answeredAt", "isReexposure", "adjustment"],
+      "properties": {
+        "sessionId": { "type": "string", "minLength": 1 },
+        "questionId": { "type": "string", "minLength": 1 },
+        "sourceItemId": { "type": "string", "minLength": 1 },
+        "questionType": { "$ref": "#/$defs/quizType" },
+        "quizType": { "$ref": "#/$defs/quizType" },
+        "level": { "$ref": "#/$defs/level" },
+        "isCorrect": { "type": "boolean" },
+        "answerTimeMs": { "$ref": "#/$defs/nonNegative" },
+        "difficultyUsed": { "$ref": "#/$defs/difficulty" },
+        "answeredAt": { "$ref": "#/$defs/timestamp" },
+        "isReexposure": { "type": "boolean" },
+        "adjustment": { "type": "number", "minimum": -2, "maximum": 2 }
+      }
+    },
+    "session": {
+      "type": "object",
+      "required": ["id", "kind", "level", "startedAt", "endedAt", "durationMs", "status", "performance", "adjustments"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["study", "quiz", "grammar"] },
+        "level": { "oneOf": [{ "$ref": "#/$defs/level" }, { "$ref": "#/$defs/grammarLevel" }] },
+        "startedAt": { "$ref": "#/$defs/timestamp" },
+        "endedAt": { "$ref": "#/$defs/timestamp" },
+        "durationMs": { "$ref": "#/$defs/nonNegative" },
+        "status": { "enum": ["completed", "interrupted"] },
+        "performance": { "type": "object" },
+        "adjustments": { "type": "object" }
+      }
+    },
+    "weightComponents": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["difficultyBase", "lowAccuracyBoost", "mistakeBoost", "recentWrongBoost", "scheduleBoost", "masteryBoost", "grammarBoost", "total"],
+      "properties": {
+        "difficultyBase": { "type": "number" },
+        "lowAccuracyBoost": { "type": "number" },
+        "mistakeBoost": { "type": "number" },
+        "recentWrongBoost": { "type": "number" },
+        "scheduleBoost": { "type": "number" },
+        "masteryBoost": { "type": "number" },
+        "grammarBoost": { "type": "number" },
+        "total": { "type": "number", "minimum": 0.001, "maximum": 4 }
+      }
+    },
+    "queue": {
+      "type": "object",
+      "required": ["id", "sessionId", "scope", "level", "generatedAt", "startedAt", "updatedAt", "interruptedAt", "status", "selectedDifficulty", "difficultyMix", "queueSize", "currentIndex", "recoveryIndex", "recovered", "mistakeCount", "priorityCount", "overdueCount", "exposureComponents", "auditCompleteness", "candidateItemIds", "orderedItemIds", "itemExposureWeights", "spacing", "priorityEntries"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sessionId": { "type": "string", "minLength": 1 },
+        "scope": { "enum": ["standard", "mistakes"] },
+        "level": { "$ref": "#/$defs/level" },
+        "generatedAt": { "$ref": "#/$defs/timestamp" },
+        "startedAt": { "$ref": "#/$defs/timestamp" },
+        "updatedAt": { "$ref": "#/$defs/timestamp" },
+        "interruptedAt": { "type": ["integer", "null"], "minimum": 0 },
+        "status": { "enum": ["active", "interrupted", "completed"] },
+        "selectedDifficulty": { "$ref": "#/$defs/difficulty" },
+        "difficultyMix": { "type": "object" },
+        "queueSize": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "currentIndex": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "recoveryIndex": { "type": "integer", "minimum": 0, "maximum": 500 },
+        "recovered": { "type": "boolean" },
+        "mistakeCount": { "type": "integer", "minimum": 0 },
+        "priorityCount": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "overdueCount": { "type": "integer", "minimum": 0 },
+        "exposureComponents": { "$ref": "#/$defs/weightComponents" },
+        "auditCompleteness": { "enum": ["legacy", "summary", "complete"] },
+        "candidateItemIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "orderedItemIds": { "type": "array", "uniqueItems": true, "maxItems": 500, "items": { "type": "string" } },
+        "itemExposureWeights": { "type": "array", "items": { "type": "object" } },
+        "spacing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["minimumDistinctItems", "exceptionPolicy", "exceptionApplied", "blockedItemIds"],
+          "properties": {
+            "minimumDistinctItems": { "const": 1 },
+            "exceptionPolicy": { "enum": ["strict", "exam-density"] },
+            "exceptionApplied": { "type": "boolean" },
+            "blockedItemIds": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+          }
+        },
+        "priorityEntries": { "type": "array", "maxItems": 3, "items": { "type": "object" } }
+      }
+    },
+    "stateLoad": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "occurredAt", "outcome", "source", "sourceSchemaVersion", "sourceTrackingVersion"],
+      "properties": {
+        "sequence": { "type": "integer", "minimum": 1 },
+        "occurredAt": { "$ref": "#/$defs/timestamp" },
+        "outcome": { "enum": ["empty", "loaded", "migrated", "recovered"] },
+        "source": { "enum": ["empty", "current", "versioned", "legacy", "malformed", "storage-error"] },
+        "sourceSchemaVersion": { "type": ["integer", "null"], "minimum": 1 },
+        "sourceTrackingVersion": { "type": ["integer", "null"], "minimum": 1 }
+      }
+    }
+  }
+}

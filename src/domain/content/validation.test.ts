@@ -75,17 +75,148 @@ describe('validateCatalog', () => {
     expect(issues).toContainEqual(expect.objectContaining({ code: 'FAMILY_HEAD_COUNT' }))
   })
 
-  test('대표 단어가 둘인 word family를 거부한다', () => {
+  test('다른 lemma를 잘못된 family에 넣으면 canonical ID 불일치로 거부한다', () => {
     const issues = validateCatalog(
       makeCatalog({
         wordOverrides: {
-          유치원: { familyId: 'family-play' },
+          유치원: { familyId: 'play-family' },
         },
       }),
       'development',
     )
 
-    expect(issues).toContainEqual(expect.objectContaining({ code: 'FAMILY_HEAD_COUNT' }))
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'WORD_FAMILY_ID_MISMATCH',
+      path: 'wordlists.유치원[0].familyId',
+      message: expect.stringContaining('book-family'),
+    }))
+  })
+
+  test('source registry 밖의 lemma도 canonical singleton family ID를 강제한다', () => {
+    const issues = validateCatalog(
+      makeCatalog({
+        wordOverrides: {
+          기초: {
+            id: 'word-zorbax',
+            word: 'zorbax',
+            lemma: 'zorbax',
+            familyId: 'invented-family',
+            isFamilyHead: true,
+          },
+        },
+      }),
+      'development',
+    )
+
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'WORD_FAMILY_ID_MISMATCH',
+      path: 'wordlists.기초[0].familyId',
+      message: expect.stringContaining('zorbax-family'),
+    }))
+  })
+
+  test.each([
+    ['write', 'write-family'],
+    ['act', 'act-family'],
+    ['create', 'create-family'],
+  ] as const)('curated family %s는 head lemma 한 항목만 있으면 허용한다', (lemma, familyId) => {
+    const issues = validateCatalog(
+      makeCatalog({
+        wordOverrides: {
+          기초: {
+            id: `word-${lemma}`,
+            word: lemma,
+            lemma,
+            familyId,
+            isFamilyHead: true,
+          },
+        },
+      }),
+      'development',
+    )
+
+    expect(issues.filter(({ code }) => code.includes('FAMILY'))).toEqual([])
+  })
+
+  test.each([
+    ['write', 'writer', 'write-family'],
+    ['act', 'action', 'act-family'],
+    ['act', 'activity', 'act-family'],
+    ['act', 'actor', 'act-family'],
+    ['act', 'active', 'act-family'],
+    ['create', 'creation', 'create-family'],
+    ['create', 'creative', 'create-family'],
+    ['create', 'creativity', 'create-family'],
+  ] as const)('%s와 파생어 %s를 함께 두면 family 중복으로 거부한다', (
+    headLemma,
+    memberLemma,
+    familyId,
+  ) => {
+    const issues = validateCatalog(
+      makeCatalog({
+        wordOverrides: {
+          기초: {
+            id: `word-${headLemma}`,
+            word: headLemma,
+            lemma: headLemma,
+            familyId,
+            isFamilyHead: true,
+          },
+          유치원: {
+            id: `word-${memberLemma}`,
+            word: memberLemma,
+            lemma: memberLemma,
+            familyId,
+            isFamilyHead: false,
+          },
+        },
+      }),
+      'development',
+    )
+
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'DUPLICATE_WORD_FAMILY',
+      message: expect.stringContaining(familyId),
+    }))
+    expect(issues.filter(({ code }) => code.startsWith('WORD_FAMILY_')
+      || code === 'FAMILY_HEAD_COUNT')).toEqual([])
+  })
+
+  test.each([
+    ['writer', 'write-family'],
+    ['action', 'act-family'],
+    ['activity', 'act-family'],
+    ['actor', 'act-family'],
+    ['active', 'act-family'],
+    ['creation', 'create-family'],
+    ['creative', 'create-family'],
+    ['creativity', 'create-family'],
+  ] as const)('curated 파생어 %s를 가짜 singleton family로 분리하면 거부한다', (
+    lemma,
+    expectedFamilyId,
+  ) => {
+    const issues = validateCatalog(
+      makeCatalog({
+        wordOverrides: {
+          기초: {
+            id: `word-${lemma}`,
+            word: lemma,
+            lemma,
+            familyId: `${lemma}-family`,
+            isFamilyHead: true,
+          },
+        },
+      }),
+      'development',
+    )
+
+    expect(issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        code: 'WORD_FAMILY_ID_MISMATCH',
+        message: expect.stringContaining(expectedFamilyId),
+      }),
+      expect.objectContaining({ code: 'WORD_FAMILY_HEAD_MISMATCH' }),
+    ]))
   })
 
   test('뜻이 없는 품사 entry를 거부한다', () => {
@@ -142,6 +273,211 @@ describe('validateCatalog', () => {
     )
   })
 
+  test.each<[
+    string,
+    (catalog: ContentCatalog) => unknown,
+    string,
+  ]>([
+    [
+      '빈 forms 배열',
+      (catalog) => ({
+        ...catalog,
+        wordlists: {
+          ...catalog.wordlists,
+          기초: [{
+            ...catalog.wordlists.기초[0],
+            entries: [{ ...catalog.wordlists.기초[0]!.entries[0], forms: [] }],
+          }],
+        },
+      }),
+      'wordlists.기초[0].entries[0].forms',
+    ],
+    [
+      '공백 forms 값',
+      (catalog) => ({
+        ...catalog,
+        wordlists: {
+          ...catalog.wordlists,
+          기초: [{
+            ...catalog.wordlists.기초[0],
+            entries: [{ ...catalog.wordlists.기초[0]!.entries[0], forms: ['   '] }],
+          }],
+        },
+      }),
+      'wordlists.기초[0].entries[0].forms',
+    ],
+    [
+      '공백 meaning',
+      (catalog) => ({
+        ...catalog,
+        wordlists: {
+          ...catalog.wordlists,
+          기초: [{
+            ...catalog.wordlists.기초[0],
+            entries: [{ ...catalog.wordlists.기초[0]!.entries[0], meanings: ['   '] }],
+          }],
+        },
+      }),
+      'wordlists.기초[0].entries[0].meanings',
+    ],
+    [
+      '공백 example',
+      (catalog) => ({
+        ...catalog,
+        wordlists: {
+          ...catalog.wordlists,
+          기초: [{
+            ...catalog.wordlists.기초[0],
+            entries: [{ ...catalog.wordlists.기초[0]!.entries[0], examples: ['   ', 'Play now.'] }],
+          }],
+        },
+      }),
+      'wordlists.기초[0].entries[0].examples',
+    ],
+    [
+      'WordItem 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        wordlists: {
+          ...catalog.wordlists,
+          기초: [{ ...catalog.wordlists.기초[0], unexpected: true }],
+        },
+      }),
+      'wordlists.기초[0].unexpected',
+    ],
+    [
+      'WordEntry 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        wordlists: {
+          ...catalog.wordlists,
+          기초: [{
+            ...catalog.wordlists.기초[0],
+            entries: [{ ...catalog.wordlists.기초[0]!.entries[0], unexpected: true }],
+          }],
+        },
+      }),
+      'wordlists.기초[0].entries[0].unexpected',
+    ],
+  ])('wordlist schema와 달리 %s인 입력을 거부한다', (_name, mutate, path) => {
+    const issues = validateCatalog(mutate(makeCatalog()), 'development')
+
+    expect(issues).toContainEqual(
+      expect.objectContaining({ code: 'INVALID_CATALOG', path }),
+    )
+  })
+
+  test.each<[
+    string,
+    (catalog: ContentCatalog) => unknown,
+    string,
+  ]>([
+    [
+      'Story 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        stories: {
+          ...catalog.stories,
+          기초: { ...catalog.stories.기초, unexpected: true },
+        },
+      }),
+      'stories.기초.unexpected',
+    ],
+    [
+      'Story coverage 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        stories: {
+          ...catalog.stories,
+          기초: {
+            ...catalog.stories.기초,
+            coverage: { ...catalog.stories.기초.coverage, unexpected: true },
+          },
+        },
+      }),
+      'stories.기초.coverage.unexpected',
+    ],
+    [
+      'Story usedWords 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        stories: {
+          ...catalog.stories,
+          기초: {
+            ...catalog.stories.기초,
+            usedWords: [{ ...catalog.stories.기초.usedWords[0], unexpected: true }],
+          },
+        },
+      }),
+      'stories.기초.usedWords[0].unexpected',
+    ],
+    [
+      'top 구동사 추가 필드',
+      (catalog) => {
+        const phrasal = makePhrasalVerb()
+        return {
+          ...catalog,
+          phrasalVerbs: {
+            top: [{ ...phrasal, unexpected: true }],
+            byLevel: { ...catalog.phrasalVerbs.byLevel, 기초: [phrasal] },
+          },
+        }
+      },
+      'phrasalVerbs.top[0].unexpected',
+    ],
+    [
+      '레벨별 구동사 추가 필드',
+      (catalog) => {
+        const phrasal = makePhrasalVerb()
+        return {
+          ...catalog,
+          phrasalVerbs: {
+            top: [phrasal],
+            byLevel: {
+              ...catalog.phrasalVerbs.byLevel,
+              기초: [{ ...phrasal, unexpected: true }],
+            },
+          },
+        }
+      },
+      'phrasalVerbs.byLevel.기초[0].unexpected',
+    ],
+    [
+      '문법 노드 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        grammarNodes: [
+          { ...catalog.grammarNodes[0], unexpected: true },
+          ...catalog.grammarNodes.slice(1),
+        ],
+      }),
+      'grammarNodes[0].unexpected',
+    ],
+    [
+      '문법 masteryRule 추가 필드',
+      (catalog) => ({
+        ...catalog,
+        grammarNodes: [
+          {
+            ...catalog.grammarNodes[0],
+            masteryRule: {
+              ...catalog.grammarNodes[0]!.masteryRule,
+              unexpected: true,
+            },
+          },
+          ...catalog.grammarNodes.slice(1),
+        ],
+      }),
+      'grammarNodes[0].masteryRule.unexpected',
+    ],
+  ])('공개 schema와 달리 %s인 입력을 거부한다', (_name, mutate, path) => {
+    const issues = validateCatalog(mutate(makeCatalog()), 'development')
+
+    expect(issues).toContainEqual(
+      expect.objectContaining({ code: 'INVALID_CATALOG', path }),
+    )
+  })
+
   test.each([
     ['null', null, 'catalog'],
     ['배열', [], 'catalog'],
@@ -187,6 +523,7 @@ describe('validateCatalog', () => {
 
   test.each<[string, Partial<PhrasalVerbItem>, string]>([
     ['공백 baseVerb', { baseVerb: '   ' }, 'phrasalVerbs.top[0].baseVerb'],
+    ['공백 ipa', { ipa: '   ' }, 'phrasalVerbs.top[0].ipa'],
     ['빈 meaningKo', { meaningKo: [] }, 'phrasalVerbs.top[0].meaningKo'],
     ['예문 1개', { examples: ['Wake up!'] }, 'phrasalVerbs.top[0].examples'],
   ])('%s 구동사를 경로별로 거부한다', (_name, overrides, path) => {
@@ -435,7 +772,7 @@ describe('validateCatalog', () => {
 
   test('문법 노드의 예문이 두 개보다 적으면 거부한다', () => {
     const nodes = makeGrammarNodes()
-    nodes[0] = { ...nodes[0]!, examples: ['The child is happy.'] }
+    nodes[0] = { ...nodes[0]!, examples: [nodes[0]!.examples[0]!] }
 
     expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
       expect.objectContaining({
@@ -606,6 +943,161 @@ describe('validateCatalog', () => {
     )
   })
 
+  test('문법 masteryRule은 계획에 고정된 80%·산출 통과·20% 계약만 허용한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = {
+      ...nodes[0]!,
+      masteryRule: {
+        quizAccuracy: 0.6,
+        productionPass: false,
+        errorTolerance: 0.4,
+      },
+    }
+
+    const issues = validateCatalog(
+      makeCatalog({ grammarNodes: nodes }),
+      'development',
+    )
+
+    expect(issues).toEqual(expect.arrayContaining([
+      expect.objectContaining({ path: 'grammarNodes[0].masteryRule.quizAccuracy' }),
+      expect.objectContaining({ path: 'grammarNodes[0].masteryRule.productionPass' }),
+      expect.objectContaining({ path: 'grammarNodes[0].masteryRule.errorTolerance' }),
+    ]))
+  })
+
+  test('문법 산출 제약은 각 CEFR 레벨의 canonical profile과 정확히 일치해야 한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = {
+      ...nodes[0]!,
+      productionTask: {
+        ...nodes[0]!.productionTask,
+        constraints: {
+          ...nodes[0]!.productionTask.constraints,
+          minSentences: 5,
+        },
+      },
+    }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development'))
+      .toContainEqual(expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'grammarNodes[0].productionTask.constraints',
+        message: expect.stringContaining('canonical A1-production-v1'),
+      }))
+  })
+
+  test('문법 노드에 3단계 연습 중 하나가 빠지면 거부한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = {
+      ...nodes[0]!,
+      exercises: nodes[0]!.exercises.filter(({ phase }) => phase !== 'rediagnostic'),
+    }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
+      expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'grammarNodes[0].exercises',
+      }),
+    )
+  })
+
+  test('문법 노드의 모든 오류 코드는 문항 또는 산출 점검에 연결되어야 한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = {
+      ...nodes[0]!,
+      productionTask: {
+        ...nodes[0]!.productionTask,
+        rubric: nodes[0]!.productionTask.rubric.filter((line) => !line.includes('SV-01')),
+      },
+    }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development'))
+      .toContainEqual(expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'grammarNodes[0].errorCodes',
+        message: expect.stringContaining('SV-01 must be linked'),
+      }))
+  })
+
+  test('오류 코드 접두사를 뺀 예외 설명이 전체 문법 말뭉치에서 반복되면 거부한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = {
+      ...nodes[0]!,
+      rules: nodes[0]!.rules.map((rule) => ({
+        ...rule,
+        exceptions: ['WO-01: 같은 상투적 설명이다.'],
+      })),
+    }
+    nodes[1] = {
+      ...nodes[1]!,
+      rules: nodes[1]!.rules.map((rule) => ({
+        ...rule,
+        exceptions: ['SV-01: 같은  상투적 설명이다.'],
+      })),
+    }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development'))
+      .toContainEqual(expect.objectContaining({
+        code: 'DUPLICATE_GRAMMAR_GUIDANCE',
+      }))
+  })
+
+  test('문법 노드에 같은 단계의 연습이 중복되면 거부한다', () => {
+    const nodes = makeGrammarNodes()
+    const duplicate = {
+      ...nodes[0]!.exercises[0]!,
+      id: 'A1-G01-diagnostic-duplicate',
+    }
+    nodes[0] = {
+      ...nodes[0]!,
+      exercises: [...nodes[0]!.exercises, duplicate],
+    }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development'))
+      .toContainEqual(expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'grammarNodes[0].exercises',
+      }))
+  })
+
+  test('오류 노트 코드는 errorCodes를 정확히 한 번씩 설명해야 한다', () => {
+    const nodes = makeGrammarNodes()
+    nodes[0] = { ...nodes[0]!, errorNotes: nodes[0]!.errorNotes.slice(0, 1) }
+
+    expect(validateCatalog(makeCatalog({ grammarNodes: nodes }), 'development')).toContainEqual(
+      expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'grammarNodes[0].errorNotes',
+      }),
+    )
+  })
+
+  test('자동 생성 소설은 개발 중에는 허용하지만 릴리스에서는 수동 검수를 요구한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.isManual = false
+
+    expect(validateCatalog(catalog, 'development')).not.toContainEqual(
+      expect.objectContaining({ code: 'STORY_NOT_MANUAL' }),
+    )
+    expect(validateCatalog(catalog, 'release')).toContainEqual({
+      code: 'STORY_NOT_MANUAL',
+      path: 'stories.기초.isManual',
+      message: 'Story for 기초 must be manually reviewed before release.',
+    })
+  })
+
+  test('승인 소설이 따옴표 단어 나열이면 서사 정본으로 인정하지 않는다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.storyText = '“play”, “play”, “play”.'
+
+    expect(validateCatalog(catalog, 'development')).toContainEqual({
+      code: 'STORY_WORD_ENUMERATION',
+      path: 'stories.기초.storyText',
+      message: 'A reviewed story must use vocabulary in prose, not as a quoted word list.',
+    })
+  })
+
   test('정확한 릴리스 수량에서 수량 불일치를 보고하지 않는다', () => {
     const countIssues = validateCatalog(makeReleaseCatalog(), 'release').filter(({ code }) =>
       code.endsWith('_COUNT_MISMATCH'),
@@ -718,5 +1210,160 @@ describe('validateStoryCoverage', () => {
     )
 
     expect(levelIssues).toEqual([])
+  })
+
+  test('usedWords의 품사는 실제 단어 entry와 정확히 일치해야 한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.usedWords[0]!.partOfSpeech = 'noun'
+
+    expect(validateStoryCoverage(catalog)).toContainEqual({
+      code: 'STORY_POS_MISMATCH',
+      path: 'stories.기초.usedWords[0].partOfSpeech',
+      message: 'Story word "play" has no "noun" entry.',
+    })
+  })
+
+  test('기록 형태는 해당 entry에 정의되어야 하고 실제 본문에도 whole-word로 나와야 한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.usedWords[0]!.forms = ['invented', 'play']
+    catalog.stories.기초.storyText = 'The player smiles.'
+
+    expect(validateStoryCoverage(catalog)).toEqual(
+      expect.arrayContaining([
+        {
+          code: 'STORY_FORM_UNKNOWN',
+          path: 'stories.기초.usedWords[0].forms[0]',
+          message: 'Story form "invented" is not defined for play (verb).',
+        },
+        {
+          code: 'STORY_FORM_MISSING',
+          path: 'stories.기초.usedWords[0].forms[1]',
+          message: 'Story form "play" does not appear as a whole word in the 기초 story.',
+        },
+      ]),
+    )
+  })
+
+  test('본편과 분리된 어휘 장면도 형태 커버리지와 어휘 경계를 동일하게 검증한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.storyText = 'Mina.'
+    catalog.stories.기초.vocabularyPracticeText = 'Mina can play. Quizzacious.'
+
+    const issues = validateStoryCoverage(catalog)
+    expect(issues.some(({ code }) => code === 'STORY_FORM_MISSING')).toBe(false)
+    expect(issues).toContainEqual({
+      code: 'STORY_UNKNOWN_TEXT_WORD',
+      path: 'stories.기초.vocabularyPracticeText',
+      message: 'Story package for 기초 contains unregistered lexical token "can".',
+    })
+    expect(issues).toContainEqual({
+      code: 'STORY_UNKNOWN_TEXT_WORD',
+      path: 'stories.기초.vocabularyPracticeText',
+      message: 'Story package for 기초 contains unregistered lexical token "quizzacious".',
+    })
+  })
+
+  test('동일한 story form을 서로 다른 품사 entry로 중복 선언하면 거부한다', () => {
+    const catalog = makeCatalog()
+    const word = catalog.wordlists.기초[0]!
+    word.entries.push({
+      ...word.entries[0]!,
+      partOfSpeech: 'noun',
+      meanings: ['놀이'],
+    })
+    catalog.stories.기초.usedWords.push({
+      lemma: 'play',
+      partOfSpeech: 'noun',
+      forms: ['play'],
+    })
+
+    expect(validateStoryCoverage(catalog)).toContainEqual({
+      code: 'STORY_AMBIGUOUS_FORM',
+      path: 'stories.기초.usedWords[1].forms[0]',
+      message: 'Story form "play" resolves to both play (verb) and play (noun).',
+    })
+  })
+
+  test('usedWords에서 빠뜨린 상위 레벨 형태가 본문에 있으면 거부한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} answer`
+
+    expect(validateStoryCoverage(catalog)).toContainEqual({
+      code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
+      path: 'stories.기초.storyText',
+      message: 'Story for 기초 contains upper-level form "answer" from answer (초등학교).',
+    })
+  })
+
+  test('상위 레벨에 배정된 기능어도 하위 레벨 본문에서 거부한다', () => {
+    const catalog = makeCatalog({
+      wordOverrides: {
+        유치원: {
+          id: 'word-because',
+          word: 'because',
+          lemma: 'because',
+          familyId: 'family-because',
+          entryOverrides: {
+            partOfSpeech: 'conjunction',
+            forms: ['because'],
+          },
+        },
+      },
+    })
+    catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} Because.`
+
+    expect(validateStoryCoverage(catalog)).toContainEqual({
+      code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
+      path: 'stories.기초.storyText',
+      message: 'Story for 기초 contains upper-level form "because" from because (유치원).',
+    })
+  })
+
+  test('본문에만 삽입한 미등록 lexical token을 거부한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} Quizzacious.`
+
+    expect(validateStoryCoverage(catalog)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          code: 'STORY_UNKNOWN_TEXT_WORD',
+          path: 'stories.기초.storyText',
+        }),
+      ]),
+    )
+  })
+
+  test.each(['Without', 'Might', '2026'])(
+    '미등록 문법어와 숫자 %s도 레벨 검증을 우회하지 못한다',
+    (token) => {
+      const catalog = makeCatalog()
+      catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} ${token}.`
+
+      expect(validateStoryCoverage(catalog)).toContainEqual(
+        expect.objectContaining({
+          code: 'STORY_UNKNOWN_TEXT_WORD',
+          path: 'stories.기초.storyText',
+          message: expect.stringContaining(token.toLowerCase()),
+        }),
+      )
+    },
+  )
+
+  test('malformed word entry가 있어도 coverage 검증은 구조화된 이슈를 반환한다', () => {
+    const catalog = makeCatalog()
+    const malformedWord = catalog.wordlists.기초[0] as unknown as { entries: unknown[] }
+    malformedWord.entries = [null]
+
+    const issues = [
+      ...validateCatalog(catalog, 'development'),
+      ...validateStoryCoverage(catalog),
+    ]
+
+    expect(issues).toContainEqual(
+      expect.objectContaining({
+        code: 'INVALID_CATALOG',
+        path: 'wordlists.기초[0].entries[0]',
+      }),
+    )
   })
 })

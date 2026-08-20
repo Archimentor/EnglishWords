@@ -1,4 +1,13 @@
 import { readFileSync } from 'node:fs'
+import {
+  containsPhrasalUse,
+  isSafePhrasalContent,
+  isSuitablePhrasalExample,
+} from '../scripts/content/phrasalSource'
+import {
+  isPhrasalContentAgeAppropriate,
+  type PhrasalCatalogProvenance,
+} from '../scripts/content/buildPhrasalCatalog'
 import { DIFFICULTIES, LEVELS } from '../src/domain/content/types'
 import type {
   ContentCatalog,
@@ -10,6 +19,7 @@ import type {
   WordItem,
 } from '../src/domain/content/types'
 import { validateCatalog, validateStoryCoverage } from '../src/domain/content/validation'
+import { hasWholeWordForm } from '../src/domain/content/storyForms'
 
 const WORDLIST_FILES: Record<Level, string> = {
   기초: '../public/data/wordlists/기초.json',
@@ -33,6 +43,7 @@ const STORY_FILES: Record<Level, string> = {
 }
 
 const TOP_PHRASAL_FILE = '../public/data/phrasal-verbs/top-1000.json'
+const PHRASAL_PROVENANCE_FILE = '../public/data/provenance/phrasal-catalog.json'
 const GRAMMAR_FILE = '../public/data/grammar/nodes.json'
 const PHRASAL_SCHEMA_FILE = '../public/data/schema/phrasal.schema.json'
 const STORY_SCHEMA_FILE = '../public/data/schema/story.schema.json'
@@ -41,62 +52,21 @@ const CONTENT_FILES = [
   ...LEVELS.map((level) => WORDLIST_FILES[level]),
   GRAMMAR_FILE,
   TOP_PHRASAL_FILE,
+  PHRASAL_PROVENANCE_FILE,
   ...LEVELS.map((level) => PHRASAL_FILES[level]),
   ...LEVELS.map((level) => STORY_FILES[level]),
   PHRASAL_SCHEMA_FILE,
   STORY_SCHEMA_FILE,
 ] as const
 
-const EXPECTED_PHRASALS: Record<
-  Level,
-  ReadonlyArray<readonly [id: string, phrase: string]>
-> = {
-  기초: [
-    ['phrasal-wake-up', 'wake up'],
-    ['phrasal-sit-down', 'sit down'],
-  ],
-  유치원: [
-    ['phrasal-stand-up', 'stand up'],
-    ['phrasal-put-on', 'put on'],
-  ],
-  초등학교: [
-    ['phrasal-look-for', 'look for'],
-    ['phrasal-find-out', 'find out'],
-  ],
-  중학교: [
-    ['phrasal-carry-on', 'carry on'],
-    ['phrasal-deal-with', 'deal with'],
-  ],
-}
-
-const EXPECTED_STORIES: Record<Level, { title: string; storyText: string }> = {
-  기초: {
-    title: '함께 노는 친구들',
-    storyText:
-      'A happy baby sees a bird, a cat, and a dog. They eat, play with a ball, and rest together.',
-  },
-  유치원: {
-    title: '학교의 하루',
-    storyText:
-      'At school, a teacher puts a green book on a chair. I draw with my friend, and then we jump outside.',
-  },
-  초등학교: {
-    title: '신중한 학생',
-    storyText:
-      'A careful student reads each question because she wants the right answer. She will decide, explore different ideas, and improve her work.',
-  },
-  중학교: {
-    title: '근거와 목표',
-    storyText:
-      'To achieve a goal, compare each claim with evidence. Although opinions influence us, good work may require us to maintain focus and respond clearly.',
-  },
-}
+const PHRASAL_QUOTA = 250
 
 const PHRASAL_FIELDS = [
   'id',
   'baseVerb',
   'particle',
   'phrasalVerb',
+  'ipa',
   'levelHint',
   'meaningKo',
   'examples',
@@ -113,6 +83,7 @@ const STORY_FIELDS = [
   'coverage',
   'usedWords',
   'storyText',
+  'vocabularyPracticeText',
 ] as const
 
 const PLACEHOLDER_PATTERN = /TODO|TBD|준비\s*중|placeholder|lorem ipsum/i
@@ -187,16 +158,7 @@ function formStrings(forms: WordEntry['forms']): string[] {
   return Array.isArray(forms) ? forms : Object.values(forms)
 }
 
-function standalonePattern(text: string): RegExp {
-  const escapedWords = text
-    .split(' ')
-    .map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
-    .join('\\s+')
-
-  return new RegExp(`\\b${escapedWords}\\b`, 'i')
-}
-
-describe('구동사와 수동 스토리 콘텐츠', () => {
+describe('구동사와 승인 정본 스토리 콘텐츠', () => {
   test('필수 wordlist, 문법, 구동사, 스토리, 스키마 파일을 모두 읽고 파싱한다', () => {
     const failures = CONTENT_FILES.flatMap((path) => {
       try {
@@ -210,27 +172,23 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
     expect(failures).toEqual([])
   })
 
-  test('실제 전체 카탈로그와 수동 스토리 커버리지가 개발 검증을 통과한다', () => {
+  test('실제 전체 카탈로그와 스토리 커버리지가 개발 검증을 통과한다', () => {
     const catalog = loadCatalog()
 
     expect(validateCatalog(catalog, 'development')).toEqual([])
     expect(validateStoryCoverage(catalog)).toEqual([])
   })
 
-  test('top 8개와 레벨별 2개가 정확한 ID, 구동사, 동일 payload를 공유한다', () => {
+  test('top 1,000개와 레벨별 250개가 전역적으로 유일하고 동일 payload를 공유한다', () => {
     const { top, byLevel } = loadCatalog().phrasalVerbs
-    const expectedTop = LEVELS.flatMap((level) =>
-      EXPECTED_PHRASALS[level].map(([id, phrase]) => [id, phrase, level]),
-    )
 
-    expect(top).toHaveLength(8)
-    expect(top.map(({ id, phrasalVerb, levelHint }) => [id, phrasalVerb, levelHint]))
-      .toEqual(expectedTop)
+    expect(top).toHaveLength(PHRASAL_QUOTA * LEVELS.length)
+    expect(new Set(top.map(({ id }) => id)).size).toBe(top.length)
+    expect(new Set(top.map(({ phrasalVerb }) => phrasalVerb)).size).toBe(top.length)
 
     for (const level of LEVELS) {
-      expect(byLevel[level]).toHaveLength(2)
-      expect(byLevel[level].map(({ id, phrasalVerb }) => [id, phrasalVerb]))
-        .toEqual(EXPECTED_PHRASALS[level])
+      expect(byLevel[level]).toHaveLength(PHRASAL_QUOTA)
+      expect(byLevel[level].every(({ levelHint }) => levelHint === level)).toBe(true)
     }
 
     const byLevelUnion = LEVELS.flatMap((level) => byLevel[level])
@@ -241,7 +199,9 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
   })
 
   test('모든 구동사에 완전한 한국어 뜻, 고유 예문, 사용 설명과 독립 구동사 예문이 있다', () => {
-    const top = loadCatalog().phrasalVerbs.top
+    const { top, byLevel } = loadCatalog().phrasalVerbs
+    const provenance = readJson<PhrasalCatalogProvenance>(PHRASAL_PROVENANCE_FILE)
+    const provenanceByPhrase = new Map(provenance.phrases.map((phrase) => [phrase.phrase, phrase]))
     const allExamples = top.flatMap(({ examples }) => examples)
 
     expect(new Set(allExamples).size).toBe(allExamples.length)
@@ -250,26 +210,65 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
     for (const item of top) {
       expect(item.id).toBe(`phrasal-${item.phrasalVerb.replaceAll(' ', '-')}`)
       expect(item.phrasalVerb).toBe(`${item.baseVerb} ${item.particle}`)
+      expect(item.ipa).toMatch(/^\/[^/]+\/$/)
       expect(item.meaningKo.length).toBeGreaterThanOrEqual(1)
       expect(item.meaningKo.every((meaning) => meaning.trim().length > 0)).toBe(true)
       expect(item.examples.length).toBeGreaterThanOrEqual(2)
       expect(item.examples.every((example) => example.trim().length > 0)).toBe(true)
-      expect(item.examples.some((example) => standalonePattern(item.phrasalVerb).test(example)))
-        .toBe(true)
+      expect(item.examples.every(isSuitablePhrasalExample)).toBe(true)
+      if (item.levelHint === '기초' || item.levelHint === '유치원') {
+        const phraseProvenance = provenanceByPhrase.get(item.phrasalVerb)
+        expect(phraseProvenance, item.phrasalVerb).toBeDefined()
+        expect(isPhrasalContentAgeAppropriate({
+          phrase: item.phrasalVerb,
+          description: phraseProvenance!.englishDescription,
+          meaningKo: item.meaningKo[0]!,
+          examples: item.examples,
+        }, item.levelHint), item.phrasalVerb).toBe(true)
+      }
+      expect(item.meaningKo.every(isSafePhrasalContent)).toBe(true)
+      expect(
+        item.examples.every((example) => containsPhrasalUse(example, item.phrasalVerb)),
+        item.phrasalVerb,
+      ).toBe(true)
       expect(item.partOfSpeech).toBe('phrasalVerb')
       expect(item.usageNotes.trim().length).toBeGreaterThanOrEqual(10)
       expect(item.usageNotes).toMatch(/[가-힣]/)
     }
 
-    expect(new Set(top.map(({ difficulty }) => difficulty)).size).toBeGreaterThan(1)
+    expect(new Set(top.map(({ difficulty }) => difficulty))).toEqual(new Set(DIFFICULTIES))
+    for (const level of LEVELS) {
+      expect(new Set(byLevel[level].map(({ difficulty }) => difficulty)))
+        .toEqual(new Set(DIFFICULTIES))
+    }
+    const laterOnlySenses = new Set([
+      'pay into', 'cough up', 'settle up', 'marry off', 'walk out', 'put aside', 'pay out',
+    ])
+    expect(top.filter(({ phrasalVerb }) => laterOnlySenses.has(phrasalVerb))
+      .every(({ levelHint }) => levelHint === '초등학교' || levelHint === '중학교')).toBe(true)
+  }, 20_000)
+
+  test('감사된 다섯 구동사의 뜻과 대표 sense가 자연스러운 정본을 유지한다', () => {
+    const byPhrase = new Map(loadCatalog().phrasalVerbs.top.map((item) => [item.phrasalVerb, item]))
+
+    expect(byPhrase.get('hang out')).toMatchObject({
+      meaningKo: ['친구들과 어울려 시간을 보내다'],
+      examples: expect.arrayContaining([
+        'Children like to hang out with friends after school.',
+      ]),
+    })
+    expect(byPhrase.get('tune out')?.meaningKo).toEqual(['주의를 기울이지 않고 흘려듣다'])
+    expect(byPhrase.get('dig over')?.meaningKo)
+      .toEqual(['새 식물을 심을 준비를 하려고 땅을 파서 고르다'])
+    expect(byPhrase.get('lose out')?.meaningKo)
+      .toEqual(['다른 사람이 얻는 이익이나 기회를 얻지 못하다'])
+    expect(byPhrase.get('lay on')?.meaningKo).toEqual(['음식, 오락, 서비스 등을 특히 무료로 제공하다'])
   })
 
-  test.each(LEVELS)('%s 스토리는 해당 wordlist 전체를 정확한 품사와 형태로 사용한다', (level) => {
+  test.each(LEVELS)('%s 승인 정본 스토리는 해당 wordlist 전체를 정확한 품사와 형태로 사용한다', (level) => {
     const catalog = loadCatalog()
     const words = catalog.wordlists[level]
     const story = catalog.stories[level]
-    const expectedStory = level === '기초' ? {} : EXPECTED_STORIES[level]
-
     expect(story).toMatchObject({
       schemaVersion: '1.0.0',
       level,
@@ -279,7 +278,6 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
         allowUpperLevelWords: false,
         coverageRate: 1,
       },
-      ...expectedStory,
     })
     expect(story.title).toMatch(/[가-힣]/)
     expect(story.title.length).toBeLessThanOrEqual(20)
@@ -291,25 +289,32 @@ describe('구동사와 수동 스토리 콘텐츠', () => {
         const normalizedForms = formStrings(entry.forms)
 
         return entry.partOfSpeech === usedWord.partOfSpeech
-          && normalizedForms.length === usedWord.forms.length
-          && normalizedForms.every((form, index) => form === usedWord.forms[index])
+          && usedWord.forms.every((form) => normalizedForms.includes(form))
       })
 
       expect(word).toBeDefined()
       expect(hasMatchingEntry).toBe(true)
-      expect(standalonePattern(usedWord.lemma).test(story.storyText)).toBe(true)
+      expect(usedWord.forms.length).toBeGreaterThan(0)
+      const readingPackage = `${story.storyText}\n\n${story.vocabularyPracticeText}`
+      expect(usedWord.forms.every((form) => hasWholeWordForm(readingPackage, form))).toBe(true)
     })
+
+    const paragraphs = story.storyText.trim().split(/\n\s*\n/u)
+    const sentences = story.storyText.match(/[^.!?]+[.!?]+/gu) ?? []
+    const multiSentenceParagraphs = paragraphs.filter((paragraph) =>
+      (paragraph.match(/[.!?]+/gu) ?? []).length >= 2)
+    expect(story.storyText).not.toMatch(
+      /[“"]\s*[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*\s*[”"]\s*,\s*[“"]/u,
+    )
+    expect(paragraphs[0]).toMatch(/\bMina\b/u)
+    expect(paragraphs.at(-1)).toMatch(/\bMina\b/u)
+    expect(sentences.length).toBeGreaterThanOrEqual(12)
+    expect(multiSentenceParagraphs.length).toBeGreaterThanOrEqual(Math.ceil(paragraphs.length / 2))
+    expect(story.vocabularyPracticeText.trim().split(/\n\s*\n/u).length).toBeGreaterThan(0)
 
     expect(collectStrings(story).some((value) => PLACEHOLDER_PATTERN.test(value))).toBe(false)
   })
 
-  test('중학교 스토리는 influence를 동사 품사로 사용한다', () => {
-    const influence = loadCatalog().stories.중학교.usedWords.find(
-      ({ lemma }) => lemma === 'influence',
-    )
-
-    expect(influence?.partOfSpeech).toBe('verb')
-  })
 })
 
 describe('구동사 JSON 스키마', () => {
@@ -325,7 +330,7 @@ describe('구동사 JSON 스키마', () => {
     expect(Object.keys(itemSchema.properties ?? {})).toEqual(PHRASAL_FIELDS)
     expect(itemSchema.additionalProperties).toBe(false)
 
-    for (const field of ['id', 'baseVerb', 'particle', 'phrasalVerb', 'usageNotes'] as const) {
+    for (const field of ['id', 'baseVerb', 'particle', 'phrasalVerb', 'ipa', 'usageNotes'] as const) {
       expect(itemSchema.properties?.[field]?.pattern).toBe('\\S')
     }
     expect(itemSchema.properties?.levelHint?.enum).toEqual(LEVELS)

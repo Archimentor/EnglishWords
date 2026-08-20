@@ -18,6 +18,24 @@ export const GRAMMAR_DIFFICULTY_TAGS = [
 ] as const
 export type GrammarDifficultyTag = (typeof GRAMMAR_DIFFICULTY_TAGS)[number]
 
+export const GRAMMAR_EXERCISE_PHASES = [
+  'diagnostic',
+  'practice',
+  'rediagnostic',
+] as const
+export type GrammarExercisePhase = (typeof GRAMMAR_EXERCISE_PHASES)[number]
+
+export const GRAMMAR_EXERCISE_TYPES = [
+  'choice',
+  'translation',
+  'errorCorrection',
+] as const
+export type GrammarExerciseType = (typeof GRAMMAR_EXERCISE_TYPES)[number]
+
+export const GRAMMAR_EXAMPLE_DIFFICULTIES = ['guided', 'independent'] as const
+export type GrammarExampleDifficulty =
+  (typeof GRAMMAR_EXAMPLE_DIFFICULTIES)[number]
+
 export interface WordEntry {
   partOfSpeech: string
   forms: string[] | Record<string, string>
@@ -42,6 +60,7 @@ export interface PhrasalVerbItem {
   baseVerb: string
   particle: string
   phrasalVerb: string
+  ipa: string
   levelHint: Level
   meaningKo: string[]
   examples: string[]
@@ -62,6 +81,7 @@ export interface StudyItem {
   meanings: string[]
   ipa: string | null
   examples: string[]
+  entries: WordEntry[]
 }
 
 export interface StoryContent {
@@ -80,6 +100,77 @@ export interface StoryContent {
     forms: string[]
   }>
   storyText: string
+  vocabularyPracticeText: string
+}
+
+export interface GrammarRule {
+  heading: string
+  explanation: string
+  keyPoints: string[]
+  exceptions: string[]
+}
+
+export interface GrammarExample {
+  english: string
+  korean: string
+  difficulty: GrammarExampleDifficulty
+}
+
+export interface GrammarExercise {
+  id: string
+  phase: GrammarExercisePhase
+  type: GrammarExerciseType
+  prompt: string
+  choices: string[]
+  answer: string
+  explanation: string
+  errorCode: string
+}
+
+export interface GrammarProductionPartConstraint {
+  id: string
+  label: string
+  register: string | null
+  minSentences: number
+  maxSentences: number | null
+}
+
+export interface GrammarProductionEvidenceConstraint {
+  id: string
+  label: string
+  minSelections: number
+  requiredPartIds: string[]
+}
+
+export interface GrammarProductionConstraints {
+  profileId: string
+  minSentences: number
+  maxSentences: number | null
+  maxRevisionRounds: number | null
+  rubricEvidenceCount: number
+  parts: GrammarProductionPartConstraint[]
+  evidenceRequirements: GrammarProductionEvidenceConstraint[]
+}
+
+export interface GrammarProductionTask {
+  prompt: string
+  requirements: string[]
+  rubric: string[]
+  constraints: GrammarProductionConstraints
+}
+
+export interface GrammarErrorNote {
+  code: string
+  title: string
+  wrongExample: string
+  correction: string
+  reviewRule: string
+}
+
+export interface GrammarMasteryRule {
+  quizAccuracy: number
+  productionPass: boolean
+  errorTolerance: number
 }
 
 export interface GrammarNode {
@@ -90,14 +181,14 @@ export interface GrammarNode {
   difficultyTag: GrammarDifficultyTag
   canDo: string[]
   summary: string
+  rules: GrammarRule[]
   patterns: string[]
-  examples: string[]
+  examples: GrammarExample[]
+  exercises: GrammarExercise[]
+  productionTask: GrammarProductionTask
   errorCodes: string[]
-  masteryRule: {
-    quizAccuracy: number
-    productionPass: boolean
-    errorTolerance: number
-  }
+  errorNotes: GrammarErrorNote[]
+  masteryRule: GrammarMasteryRule
 }
 
 export interface ContentCatalog {

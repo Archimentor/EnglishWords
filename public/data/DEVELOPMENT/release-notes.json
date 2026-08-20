@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "1.0.0",
+  "release": "0.1.0",
+  "learnerStateVersion": 7,
+  "trackingVersion": 2,
+  "features": [
+    "single-file offline index build",
+    "5,000-word and 1,000-phrasal-verb catalog",
+    "42-node grammar learning with level-specific structured production evidence and retry history",
+    "weighted 500-item study queue with audited spacing",
+    "six quiz modes with mistake reprioritization",
+    "durable local learner-state migration and recovery",
+    "queue, session, response, schedule, and dashboard analytics"
+  ],
+  "releaseGates": {
+    "developmentValidation": "required",
+    "offlineVerification": "required",
+    "browserTests": "required",
+    "manualStoryApproval": {
+      "required": true,
+      "levels": ["기초", "유치원", "초등학교", "중학교"]
+    }
+  }
+}

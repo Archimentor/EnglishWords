@@ -19,6 +19,8 @@ export const CONTENT_PATHS = [
   'data/grammar/nodes.json',
 ] as const
 
+export const CONTENT_FETCH_TIMEOUT_MS = 10_000
+
 export type ContentLoadErrorCode =
   | 'CONTENT_LOAD_FAILED'
   | 'CONTENT_PARSE_FAILED'
@@ -57,10 +59,14 @@ export class ContentLoadError extends Error {
   }
 }
 
-async function loadJson(path: string, fetcher: typeof fetch): Promise<unknown> {
+async function fetchAndParseJson(
+  path: string,
+  fetcher: typeof fetch,
+  signal: AbortSignal,
+): Promise<unknown> {
   let response: Response
   try {
-    response = await fetcher(path)
+    response = await fetcher(path, { signal })
   } catch (cause) {
     throw new ContentLoadError(
       'CONTENT_LOAD_FAILED',
@@ -86,6 +92,43 @@ async function loadJson(path: string, fetcher: typeof fetch): Promise<unknown> {
       `Failed to parse JSON from ${path}.`,
       { path, cause },
     )
+  }
+}
+
+async function loadJson(
+  path: string,
+  fetcher: typeof fetch,
+  timeoutMs: number,
+  parentSignal?: AbortSignal,
+): Promise<unknown> {
+  const controller = new AbortController()
+  const abortFromParent = () => controller.abort()
+  if (parentSignal?.aborted) controller.abort()
+  else parentSignal?.addEventListener('abort', abortFromParent, { once: true })
+  let timeoutHandle: ReturnType<typeof setTimeout> | undefined
+  const timeout = new Promise<never>((_resolve, reject) => {
+    timeoutHandle = setTimeout(() => {
+      reject(
+        new ContentLoadError(
+          'CONTENT_LOAD_FAILED',
+          `Timed out loading ${path} after ${timeoutMs}ms.`,
+          { path },
+        ),
+      )
+      controller.abort()
+    }, timeoutMs)
+  })
+
+  try {
+    return await Promise.race([
+      fetchAndParseJson(path, fetcher, controller.signal),
+      timeout,
+    ])
+  } finally {
+    parentSignal?.removeEventListener('abort', abortFromParent)
+    if (timeoutHandle !== undefined) {
+      clearTimeout(timeoutHandle)
+    }
   }
 }
 
@@ -153,6 +196,12 @@ function embeddedCatalog(): ContentCatalog | undefined {
   }).__ENGLISH_WORDS_EMBEDDED_CATALOG__
 }
 
+function embeddedCatalogWasBuildValidated(): boolean {
+  return (globalThis as typeof globalThis & {
+    __ENGLISH_WORDS_EMBEDDED_CATALOG_BUILD_VALIDATED__?: boolean
+  }).__ENGLISH_WORDS_EMBEDDED_CATALOG_BUILD_VALIDATED__ === true
+}
+
 function resolveContentPath(path: string, baseUrl: string): string {
   const normalizedBaseUrl = baseUrl.length === 0
     ? '/'
@@ -166,18 +215,33 @@ function resolveContentPath(path: string, baseUrl: string): string {
 export async function loadCatalog(
   fetcher: typeof fetch = fetch,
   baseUrl: string = import.meta.env.BASE_URL,
+  timeoutMs = CONTENT_FETCH_TIMEOUT_MS,
 ): Promise<RuntimeCatalog> {
   const embedded = embeddedCatalog()
   if (embedded) {
-    return loadEmbeddedCatalog(embedded)
+    return embeddedCatalogWasBuildValidated()
+      ? normalizeCatalog(embedded)
+      : loadEmbeddedCatalog(embedded)
   }
 
-  const entries = await Promise.all(
-    CONTENT_PATHS.map(async (path) => [
-      path,
-      await loadJson(resolveContentPath(path, baseUrl), fetcher),
-    ] as const),
-  )
+  const groupController = new AbortController()
+  let entries: ReadonlyArray<readonly [string, unknown]>
+  try {
+    entries = await Promise.all(
+      CONTENT_PATHS.map(async (path) => [
+        path,
+        await loadJson(
+          resolveContentPath(path, baseUrl),
+          fetcher,
+          timeoutMs,
+          groupController.signal,
+        ),
+      ] as const),
+    )
+  } catch (error) {
+    groupController.abort()
+    throw error
+  }
   const catalog = assembleCatalog(new Map(entries))
   return loadEmbeddedCatalog(catalog)
 }

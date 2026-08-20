@@ -7,8 +7,20 @@ import type {
   GrammarNode,
   PhrasalVerbItem,
   StoryContent,
+  ValidationIssue,
   WordItem,
 } from '../src/domain/content/types'
+
+export interface CatalogProvenanceFiles {
+  wordCatalog: unknown
+  phrasalCatalog: unknown
+  storyDrafts: unknown
+}
+
+export interface CatalogProvenanceReadResult {
+  provenance: CatalogProvenanceFiles
+  issues: ValidationIssue[]
+}
 
 async function readJson<T>(filePath: string): Promise<T> {
   try {
@@ -58,6 +70,47 @@ export async function readCatalogFromDisk(dataRoot: string): Promise<ContentCata
   }
 }
 
+const PROVENANCE_FILES = [
+  ['wordCatalog', 'word-catalog.json'],
+  ['phrasalCatalog', 'phrasal-catalog.json'],
+  ['storyDrafts', 'story-drafts.json'],
+] as const
+
+export async function readCatalogProvenanceFromDisk(
+  dataRoot: string,
+): Promise<CatalogProvenanceReadResult> {
+  const entries: Array<{
+    key: (typeof PROVENANCE_FILES)[number][0]
+    value: unknown
+    issue?: ValidationIssue
+  }> = await Promise.all(PROVENANCE_FILES.map(async ([key, fileName]) => {
+    const filePath = join(dataRoot, 'provenance', fileName)
+    try {
+      return {
+        key,
+        value: await readJson<unknown>(filePath),
+      }
+    } catch (error) {
+      return {
+        key,
+        value: undefined,
+        issue: {
+          code: 'PROVENANCE_READ_ERROR',
+          path: `provenance.${key}`,
+          message: error instanceof Error ? error.message : String(error),
+        } satisfies ValidationIssue,
+      }
+    }
+  }))
+
+  return {
+    provenance: Object.fromEntries(
+      entries.map(({ key, value }) => [key, value]),
+    ) as unknown as CatalogProvenanceFiles,
+    issues: entries.flatMap(({ issue }) => issue === undefined ? [] : [issue]),
+  }
+}
+
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === 'object' && value !== null && !Array.isArray(value)
 }
@@ -81,7 +134,10 @@ export function catalogCounts(catalog: unknown): {
   const stories = isRecord(catalog.stories) ? catalog.stories : {}
 
   return {
-    words: Object.values(wordlists).reduce((total, words) => total + arrayLength(words), 0),
+    words: Object.values(wordlists).reduce<number>(
+      (total, words) => total + arrayLength(words),
+      0,
+    ),
     phrasalVerbs: arrayLength(phrasalVerbs.top),
     grammarNodes: arrayLength(catalog.grammarNodes),
     stories: Object.keys(stories).length,

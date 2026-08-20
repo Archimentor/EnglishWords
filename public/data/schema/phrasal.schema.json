@@ -16,6 +16,7 @@
         "baseVerb",
         "particle",
         "phrasalVerb",
+        "ipa",
         "levelHint",
         "meaningKo",
         "examples",
@@ -37,6 +38,10 @@
           "pattern": "\\S"
         },
         "phrasalVerb": {
+          "type": "string",
+          "pattern": "\\S"
+        },
+        "ipa": {
           "type": "string",
           "pattern": "\\S"
         },

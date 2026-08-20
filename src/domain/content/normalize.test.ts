@@ -56,6 +56,36 @@ describe('normalizeWord', () => {
         'Our class puts on a play.',
         'We watched a funny play.',
       ],
+      entries: [
+        {
+          partOfSpeech: 'verb',
+          forms: {
+            base: 'play',
+            s3: 'plays',
+            past: 'played',
+            participle: 'playing',
+            pastParticiple: 'played',
+          },
+          meanings: ['놀다', '경기하다', '연주하다'],
+          ipa: '   ',
+          examples: [
+            'The children play outside.',
+            'We play soccer after school.',
+            'I play the piano for Mom.',
+          ],
+        },
+        {
+          partOfSpeech: 'noun',
+          forms: ['play', 'plays'],
+          meanings: ['연극', '놀다'],
+          ipa: '/pleɪ/',
+          examples: [
+            'Our class puts on a play.',
+            'We watched a funny play.',
+            'The children play outside.',
+          ],
+        },
+      ],
     })
   })
 
@@ -104,6 +134,10 @@ describe('normalizeWord', () => {
       'Please answer the first question.',
       'I answer my teacher in a full sentence.',
     ])
+    expect(item.entries).toEqual(word.entries)
+    expect(item.entries).not.toBe(word.entries)
+    expect(item.entries[0]?.forms).not.toBe(word.entries[0]?.forms)
+    expect(item.entries[1]?.meanings).not.toBe(word.entries[1]?.meanings)
   })
 })
 
@@ -119,13 +153,37 @@ describe('normalizePhrasalVerb', () => {
       partsOfSpeech: ['phrasalVerb'],
       forms: ['wake up'],
       meanings: ['잠에서 깨다'],
-      ipa: null,
+      ipa: '/ˈweɪk ˈəp/',
       examples: ['I wake up early.', 'We wake up at seven.'],
+      entries: [{
+        partOfSpeech: 'phrasalVerb',
+        forms: ['wake up'],
+        meanings: ['잠에서 깨다'],
+        ipa: '/ˈweɪk ˈəp/',
+        examples: ['I wake up early.', 'We wake up at seven.'],
+      }],
     })
   })
 })
 
 describe('normalizeCatalog', () => {
+  it('normalizes each level lazily and caches the resulting references', () => {
+    const catalog = makeCatalog()
+    Object.defineProperty(catalog.wordlists, '중학교', {
+      enumerable: true,
+      get(): never {
+        throw new Error('unrequested level was normalized')
+      },
+    })
+
+    const runtime = normalizeCatalog(catalog)
+    const first = runtime.itemsByLevel.기초
+
+    expect(first).toBe(runtime.itemsByLevel.기초)
+    expect(first.map(({ term }) => term)).toEqual(['play'])
+    expect(Object.keys(runtime.itemsByLevel)).toEqual(LEVELS)
+  })
+
   it('indexes words before level phrasals once across all four levels', () => {
     const phrasal = makePhrasalVerb()
     const catalog = makeCatalog({

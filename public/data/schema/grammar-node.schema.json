@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://english-words.local/schema/grammar-node.schema.json",
   "title": "GrammarNode",
-  "description": "영어 문법 커리큘럼의 단일 학습 노드 계약",
+  "description": "번역 예문, 3단계 연습, 산출 과제와 오류 교정을 포함한 문법 노드 계약",
   "type": "object",
   "required": [
     "id",
@@ -12,9 +12,13 @@
     "difficultyTag",
     "canDo",
     "summary",
+    "rules",
     "patterns",
     "examples",
+    "exercises",
+    "productionTask",
     "errorCodes",
+    "errorNotes",
     "masteryRule"
   ],
   "properties": {
@@ -26,10 +30,7 @@
       "type": "string",
       "enum": ["A1", "A2", "B1", "B2", "C1"]
     },
-    "title": {
-      "type": "string",
-      "minLength": 1
-    },
+    "title": { "type": "string", "minLength": 1, "pattern": "\\S" },
     "prerequisite": {
       "type": ["string", "null"],
       "pattern": "^(A1|A2|B1|B2|C1)-G\\d{2}$"
@@ -41,59 +42,366 @@
     "canDo": {
       "type": "array",
       "minItems": 3,
-      "items": {
-        "type": "string",
-        "minLength": 1
-      }
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
     },
-    "summary": {
-      "type": "string",
-      "minLength": 1
+    "summary": { "type": "string", "minLength": 1, "pattern": "\\S" },
+    "rules": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/rule" }
     },
     "patterns": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "string",
-        "minLength": 1
-      }
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
     },
     "examples": {
       "type": "array",
       "minItems": 2,
-      "items": {
-        "type": "string",
-        "minLength": 1
-      }
+      "items": { "$ref": "#/$defs/example" }
     },
+    "exercises": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "contains": { "properties": { "phase": { "const": "diagnostic" } } },
+      "minContains": 1,
+      "maxContains": 1,
+      "items": { "$ref": "#/$defs/exercise" }
+    },
+    "productionTask": { "$ref": "#/$defs/productionTask" },
     "errorCodes": {
       "type": "array",
       "minItems": 1,
-      "items": {
-        "type": "string",
-        "minLength": 1
-      }
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
+    },
+    "errorNotes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/errorNote" }
+    },
+    "masteryRule": { "$ref": "#/$defs/masteryRule" }
+  },
+  "$defs": {
+    "nonBlankStrings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
+    },
+    "rule": {
+      "type": "object",
+      "required": ["heading", "explanation", "keyPoints", "exceptions"],
+      "properties": {
+        "heading": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "explanation": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "keyPoints": {
+          "allOf": [
+            { "$ref": "#/$defs/nonBlankStrings" },
+            { "minItems": 2 }
+          ]
+        },
+        "exceptions": { "$ref": "#/$defs/nonBlankStrings" }
+      },
+      "additionalProperties": false
+    },
+    "example": {
+      "type": "object",
+      "required": ["english", "korean", "difficulty"],
+      "properties": {
+        "english": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "korean": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "difficulty": {
+          "type": "string",
+          "enum": ["guided", "independent"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "exercise": {
+      "type": "object",
+      "required": [
+        "id",
+        "phase",
+        "type",
+        "prompt",
+        "choices",
+        "answer",
+        "explanation",
+        "errorCode"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "phase": {
+          "type": "string",
+          "enum": ["diagnostic", "practice", "rediagnostic"]
+        },
+        "type": {
+          "type": "string",
+          "enum": ["choice", "translation", "errorCorrection"]
+        },
+        "prompt": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "choices": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
+        },
+        "answer": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "explanation": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "errorCode": { "type": "string", "minLength": 1, "pattern": "\\S" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "choice" } } },
+          "then": { "properties": { "choices": { "minItems": 2 } } },
+          "else": { "properties": { "choices": { "maxItems": 0 } } }
+        },
+        {
+          "if": {
+            "required": ["phase"],
+            "properties": { "phase": { "const": "rediagnostic" } }
+          },
+          "then": {
+            "properties": {
+              "type": { "const": "errorCorrection" },
+              "choices": { "maxItems": 0 },
+              "errorCode": { "type": "string", "minLength": 1, "pattern": "\\S" }
+            }
+          }
+        }
+      ],
+      "additionalProperties": false
+    },
+    "productionTask": {
+      "type": "object",
+      "required": ["prompt", "requirements", "rubric", "constraints"],
+      "properties": {
+        "prompt": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "requirements": {
+          "allOf": [
+            { "$ref": "#/$defs/nonBlankStrings" },
+            { "minItems": 2 }
+          ]
+        },
+        "rubric": {
+          "allOf": [
+            { "$ref": "#/$defs/nonBlankStrings" },
+            { "minItems": 3, "maxItems": 3 }
+          ]
+        },
+        "constraints": { "$ref": "#/$defs/productionConstraints" }
+      },
+      "additionalProperties": false
+    },
+    "productionConstraints": {
+      "type": "object",
+      "required": [
+        "profileId",
+        "minSentences",
+        "maxSentences",
+        "maxRevisionRounds",
+        "rubricEvidenceCount",
+        "parts",
+        "evidenceRequirements"
+      ],
+      "properties": {
+        "profileId": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "minSentences": { "type": "integer", "minimum": 1 },
+        "maxSentences": { "type": ["integer", "null"], "minimum": 1 },
+        "maxRevisionRounds": { "type": ["integer", "null"], "minimum": 0 },
+        "rubricEvidenceCount": { "const": 3 },
+        "parts": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/productionPartConstraint" }
+        },
+        "evidenceRequirements": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "$ref": "#/$defs/productionEvidenceConstraint" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "productionPartConstraint": {
+      "type": "object",
+      "required": ["id", "label", "register", "minSentences", "maxSentences"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "label": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "register": { "type": ["string", "null"], "minLength": 1, "pattern": "\\S" },
+        "minSentences": { "type": "integer", "minimum": 1 },
+        "maxSentences": { "type": ["integer", "null"], "minimum": 1 }
+      },
+      "additionalProperties": false
+    },
+    "productionEvidenceConstraint": {
+      "type": "object",
+      "required": ["id", "label", "minSelections", "requiredPartIds"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "label": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "minSelections": { "type": "integer", "minimum": 1 },
+        "requiredPartIds": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "pattern": "\\S" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "errorNote": {
+      "type": "object",
+      "required": ["code", "title", "wrongExample", "correction", "reviewRule"],
+      "properties": {
+        "code": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "title": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "wrongExample": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "correction": { "type": "string", "minLength": 1, "pattern": "\\S" },
+        "reviewRule": { "type": "string", "minLength": 1, "pattern": "\\S" }
+      },
+      "additionalProperties": false
     },
     "masteryRule": {
       "type": "object",
       "required": ["quizAccuracy", "productionPass", "errorTolerance"],
       "properties": {
-        "quizAccuracy": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1
-        },
-        "productionPass": {
-          "type": "boolean"
-        },
-        "errorTolerance": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1
-        }
+        "quizAccuracy": { "type": "number", "const": 0.8 },
+        "productionPass": { "type": "boolean", "const": true },
+        "errorTolerance": { "type": "number", "const": 0.2 }
       },
       "additionalProperties": false
     }
   },
+  "allOf": [
+    {
+      "properties": {
+        "exercises": {
+          "contains": { "properties": { "phase": { "const": "practice" } } },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "properties": {
+        "exercises": {
+          "contains": { "properties": { "phase": { "const": "rediagnostic" } } },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      }
+    },
+    {
+      "if": { "properties": { "level": { "const": "A1" } } },
+      "then": {
+        "properties": {
+          "productionTask": {
+            "properties": {
+              "constraints": {
+                "properties": {
+                  "profileId": { "const": "A1-production-v1" },
+                  "minSentences": { "const": 4 },
+                  "maxSentences": { "const": 6 },
+                  "maxRevisionRounds": { "const": null },
+                  "parts": { "minItems": 1, "maxItems": 1 },
+                  "evidenceRequirements": { "minItems": 4, "maxItems": 4 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "level": { "const": "A2" } } },
+      "then": {
+        "properties": {
+          "productionTask": {
+            "properties": {
+              "constraints": {
+                "properties": {
+                  "profileId": { "const": "A2-production-v1" },
+                  "minSentences": { "const": 6 },
+                  "maxSentences": { "const": 8 },
+                  "maxRevisionRounds": { "const": null },
+                  "parts": { "minItems": 1, "maxItems": 1 },
+                  "evidenceRequirements": { "minItems": 6, "maxItems": 6 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "level": { "const": "B1" } } },
+      "then": {
+        "properties": {
+          "productionTask": {
+            "properties": {
+              "constraints": {
+                "properties": {
+                  "profileId": { "const": "B1-production-v1" },
+                  "minSentences": { "const": 8 },
+                  "maxSentences": { "const": 12 },
+                  "maxRevisionRounds": { "const": null },
+                  "parts": { "minItems": 1, "maxItems": 1 },
+                  "evidenceRequirements": { "minItems": 3, "maxItems": 3 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "level": { "const": "B2" } } },
+      "then": {
+        "properties": {
+          "productionTask": {
+            "properties": {
+              "constraints": {
+                "properties": {
+                  "profileId": { "const": "B2-production-v1" },
+                  "minSentences": { "const": 4 },
+                  "maxSentences": { "const": null },
+                  "maxRevisionRounds": { "const": null },
+                  "parts": { "minItems": 4, "maxItems": 4 },
+                  "evidenceRequirements": { "minItems": 1, "maxItems": 1 }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": { "properties": { "level": { "const": "C1" } } },
+      "then": {
+        "properties": {
+          "productionTask": {
+            "properties": {
+              "constraints": {
+                "properties": {
+                  "profileId": { "const": "C1-production-v1" },
+                  "minSentences": { "const": 2 },
+                  "maxSentences": { "const": null },
+                  "maxRevisionRounds": { "const": 2 },
+                  "parts": { "minItems": 2, "maxItems": 2 },
+                  "evidenceRequirements": { "minItems": 2, "maxItems": 2 }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
   "additionalProperties": false
 }

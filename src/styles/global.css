@@ -76,8 +76,15 @@ a {
 }
 
 button,
-input {
+input,
+select {
   min-height: var(--touch-target);
+}
+
+button,
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -116,7 +123,9 @@ button:disabled {
   opacity: 0.64;
 }
 
-input {
+input,
+select,
+textarea {
   width: 100%;
   border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-sm);
@@ -125,7 +134,9 @@ input {
   background: var(--color-surface);
 }
 
-input:disabled {
+input:disabled,
+select:disabled,
+textarea:disabled {
   color: var(--color-ink-muted);
   background: var(--color-surface-muted);
 }

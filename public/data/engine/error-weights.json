@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "singleWrongBoost": 0.15,
+  "consecutiveWrongBoost": 0.3,
+  "consecutiveWrongThreshold": 2,
+  "maximumMistakeBoost": 0.3,
+  "priorityWindow": 3,
+  "lowAccuracyThreshold": 0.6,
+  "lowAccuracyBoost": 0.1
+}

@@ -7,7 +7,15 @@ import type {
   ValidationMode,
 } from '../src/domain/content/types'
 import { validateCatalog, validateStoryCoverage } from '../src/domain/content/validation'
-import { catalogCounts, readCatalogFromDisk } from './catalog-files'
+import {
+  catalogCounts,
+  readCatalogFromDisk,
+  readCatalogProvenanceFromDisk,
+} from './catalog-files'
+import {
+  validateContentGenerationResidue,
+  validateContentProvenance,
+} from './content/buildContent'
 
 const USAGE = 'Usage: validate-data --mode=development|--mode=release'
 const MODULE_PATH = resolve(fileURLToPath(import.meta.url))
@@ -41,10 +49,32 @@ export async function validateData(
   counts: ReturnType<typeof catalogCounts>
   issues: ValidationIssue[]
 }> {
-  const catalog = await readCatalogFromDisk(dataRoot)
-  const issues = [
+  const [catalog, provenanceRead, contentBuildIssues] = await Promise.all([
+    readCatalogFromDisk(dataRoot),
+    readCatalogProvenanceFromDisk(dataRoot),
+    validateContentGenerationResidue(dataRoot),
+  ])
+  const catalogIssues = [
     ...validateCatalog(catalog, mode),
     ...validateStoryCoverage(catalog),
+  ]
+  const canValidateProvenance = !catalogIssues.some(({ code }) => code === 'INVALID_CATALOG')
+  const provenanceIssues = canValidateProvenance
+    ? validateContentProvenance({
+        wordlists: catalog.wordlists,
+        wordProvenance: provenanceRead.provenance.wordCatalog,
+        phrasalTop: catalog.phrasalVerbs.top,
+        phrasalByLevel: catalog.phrasalVerbs.byLevel,
+        phrasalProvenance: provenanceRead.provenance.phrasalCatalog,
+        stories: catalog.stories,
+        storyProvenance: provenanceRead.provenance.storyDrafts,
+      })
+    : []
+  const issues = [
+    ...contentBuildIssues,
+    ...catalogIssues,
+    ...provenanceRead.issues,
+    ...provenanceIssues,
   ]
 
   return {

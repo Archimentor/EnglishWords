@@ -1,6 +1,7 @@
 import { makeCatalog, makePhrasalVerb, makeWord } from '../../test/fixtures'
 import type { ContentCatalog } from './types'
 import {
+  CONTENT_FETCH_TIMEOUT_MS,
   CONTENT_PATHS,
   ContentLoadError,
   loadCatalog,
@@ -100,6 +101,10 @@ async function captureLoadError(promise: Promise<unknown>): Promise<ContentLoadE
 }
 
 describe('loadCatalog', () => {
+  it('uses a finite default deadline for external content', () => {
+    expect(CONTENT_FETCH_TIMEOUT_MS).toBe(10_000)
+  })
+
   it('normalizes an embedded catalog without fetching JSON resources', () => {
     const catalog = makeCatalog()
 
@@ -107,6 +112,33 @@ describe('loadCatalog', () => {
 
     expect(runtime.itemsByLevel.기초.map(({ term }) => term)).toEqual(['play'])
     expect(runtime.itemsById['word-play']).toBe(runtime.itemsByLevel.기초[0])
+  })
+
+  it('uses the build-validated embedded catalog without repeating exhaustive startup validation', async () => {
+    const catalog = makeCatalog()
+    Object.defineProperty(catalog.wordlists, '중학교', {
+      enumerable: true,
+      get(): never {
+        throw new Error('unrequested embedded level was inspected')
+      },
+    })
+    const globals = globalThis as typeof globalThis & {
+      __ENGLISH_WORDS_EMBEDDED_CATALOG__?: ContentCatalog
+      __ENGLISH_WORDS_EMBEDDED_CATALOG_BUILD_VALIDATED__?: boolean
+    }
+    globals.__ENGLISH_WORDS_EMBEDDED_CATALOG__ = catalog
+    globals.__ENGLISH_WORDS_EMBEDDED_CATALOG_BUILD_VALIDATED__ = true
+    const fetcher = vi.fn<typeof fetch>()
+
+    try {
+      const runtime = await loadCatalog(fetcher)
+
+      expect(runtime.itemsByLevel.기초.map(({ term }) => term)).toEqual(['play'])
+      expect(fetcher).not.toHaveBeenCalled()
+    } finally {
+      delete globals.__ENGLISH_WORDS_EMBEDDED_CATALOG__
+      delete globals.__ENGLISH_WORDS_EMBEDDED_CATALOG_BUILD_VALIDATED__
+    }
   })
 
   it('requests all 14 resources once and returns normalized words and phrasals', async () => {
@@ -237,6 +269,82 @@ describe('loadCatalog', () => {
     expect(error.code).toBe('CONTENT_PARSE_FAILED')
     expect(error.path).toBe(failedPath)
     expect(error.cause).toBe(parseCause)
+  })
+
+  it('aborts sibling requests immediately after one catalog resource fails', async () => {
+    const failedPath = '/data/wordlists/기초.json'
+    const siblingSignals: AbortSignal[] = []
+    const fetcher: typeof fetch = (input, init) => {
+      const path = requestPath(input)
+      if (path === failedPath) {
+        return Promise.resolve(new Response(null, { status: 500 }))
+      }
+      if (init?.signal) siblingSignals.push(init.signal)
+      return new Promise<Response>(() => undefined)
+    }
+
+    const error = await captureLoadError(loadCatalog(fetcher))
+
+    expect(error.path).toBe(failedPath)
+    expect(siblingSignals).toHaveLength(CONTENT_PATHS.length - 1)
+    expect(siblingSignals.every((signal) => signal.aborted)).toBe(true)
+  })
+
+  it('aborts and reports a request that does not settle before its deadline', async () => {
+    vi.useFakeTimers()
+    const signals: AbortSignal[] = []
+    const fetcher: typeof fetch = (_input, init) => {
+      if (init?.signal) {
+        signals.push(init.signal)
+      }
+      return new Promise<Response>(() => undefined)
+    }
+
+    try {
+      const pendingError = captureLoadError(loadCatalog(fetcher, '/', 25))
+      const rejection = expect(pendingError).resolves.toMatchObject({
+        code: 'CONTENT_LOAD_FAILED',
+        path: '/data/wordlists/기초.json',
+        message: 'Timed out loading /data/wordlists/기초.json after 25ms.',
+      })
+
+      await vi.advanceTimersByTimeAsync(25)
+      await rejection
+
+      expect(signals).toHaveLength(CONTENT_PATHS.length)
+      expect(signals.every((signal) => signal.aborted)).toBe(true)
+    } finally {
+      vi.useRealTimers()
+    }
+  })
+
+  it('applies the same deadline while parsing a response body', async () => {
+    vi.useFakeTimers()
+    const failedPath = '/data/grammar/nodes.json'
+    const response = {
+      ok: true,
+      status: 200,
+      statusText: 'OK',
+      json: () => new Promise<unknown>(() => undefined),
+    } as Response
+    const { fetcher } = makeFetcher(
+      makeCatalog(),
+      new Map([[failedPath, () => response]]),
+    )
+
+    try {
+      const pendingError = captureLoadError(loadCatalog(fetcher, '/', 25))
+      const rejection = expect(pendingError).resolves.toMatchObject({
+        code: 'CONTENT_LOAD_FAILED',
+        path: failedPath,
+        message: `Timed out loading ${failedPath} after 25ms.`,
+      })
+
+      await vi.advanceTimersByTimeAsync(25)
+      await rejection
+    } finally {
+      vi.useRealTimers()
+    }
   })
 
   it('rejects a structurally valid catalog with a duplicate lemma and exposes issues', async () => {

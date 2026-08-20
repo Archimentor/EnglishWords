@@ -8,7 +8,7 @@ import {
 
 describe('content sources', () => {
   test('pins a https URL, license, attribution, and sha256 for every source', () => {
-    expect(CONTENT_SOURCES).toHaveLength(5)
+    expect(CONTENT_SOURCES).toHaveLength(9)
 
     for (const source of CONTENT_SOURCES) {
       expect(source.url).toMatch(/^https:\/\//)
@@ -37,6 +37,10 @@ describe('content sources', () => {
       'word-freq-top5000.csv',
       'opus-tatoeba-v2023-04-12-en.txt.gz',
       'ipa-dict-en_US.txt',
+      'wn-data-eng.tab',
+      'wn-wikt-kor.tab',
+      'wordnet-3.0.zip',
+      'generated-english-phrasal-verbs.json',
     ])
   })
 

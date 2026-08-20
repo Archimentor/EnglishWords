@@ -5,11 +5,22 @@ import type {
   PhrasalVerbItem,
   RuntimeCatalog,
   StudyItem,
+  WordEntry,
   WordItem,
 } from './types'
 
 function unique(values: string[]): string[] {
   return [...new Set(values)]
+}
+
+function cloneEntry(entry: WordEntry): WordEntry {
+  return {
+    partOfSpeech: entry.partOfSpeech,
+    forms: Array.isArray(entry.forms) ? [...entry.forms] : { ...entry.forms },
+    meanings: [...entry.meanings],
+    ipa: entry.ipa,
+    examples: [...entry.examples],
+  }
 }
 
 export function normalizeWord(word: WordItem): StudyItem {
@@ -29,6 +40,7 @@ export function normalizeWord(word: WordItem): StudyItem {
     meanings: unique(word.entries.flatMap(({ meanings }) => meanings)),
     ipa: word.entries.find(({ ipa }) => ipa.trim().length > 0)?.ipa.trim() ?? null,
     examples: unique(word.entries.flatMap(({ examples }) => examples)),
+    entries: word.entries.map(cloneEntry),
   }
 }
 
@@ -43,24 +55,50 @@ export function normalizePhrasalVerb(phrasalVerb: PhrasalVerbItem): StudyItem {
     partsOfSpeech: ['phrasalVerb'],
     forms: [phrasalVerb.phrasalVerb],
     meanings: [...phrasalVerb.meaningKo],
-    ipa: null,
+    ipa: phrasalVerb.ipa.trim(),
     examples: [...phrasalVerb.examples],
+    entries: [{
+      partOfSpeech: phrasalVerb.partOfSpeech,
+      forms: [phrasalVerb.phrasalVerb],
+      meanings: [...phrasalVerb.meaningKo],
+      ipa: phrasalVerb.ipa.trim(),
+      examples: [...phrasalVerb.examples],
+    }],
   }
 }
 
 export function normalizeCatalog(catalog: ContentCatalog): RuntimeCatalog {
-  const itemsByLevel = Object.fromEntries(
-    LEVELS.map((level) => [
-      level,
-      [
-        ...catalog.wordlists[level].map(normalizeWord),
-        ...catalog.phrasalVerbs.byLevel[level].map(normalizePhrasalVerb),
-      ],
-    ]),
-  ) as Record<Level, StudyItem[]>
-  const itemsById = Object.fromEntries(
-    LEVELS.flatMap((level) => itemsByLevel[level]).map((item) => [item.id, item]),
-  )
+  const levelCache: Partial<Record<Level, StudyItem[]>> = {}
+  const itemsByLevel = {} as Record<Level, StudyItem[]>
 
-  return { ...catalog, itemsByLevel, itemsById }
+  for (const level of LEVELS) {
+    Object.defineProperty(itemsByLevel, level, {
+      enumerable: true,
+      get(): StudyItem[] {
+        const cached = levelCache[level]
+        if (cached) return cached
+
+        const normalized = [
+          ...catalog.wordlists[level].map(normalizeWord),
+          ...catalog.phrasalVerbs.byLevel[level].map(normalizePhrasalVerb),
+        ]
+        levelCache[level] = normalized
+        return normalized
+      },
+    })
+  }
+
+  let itemsByIdCache: Record<string, StudyItem> | undefined
+  const runtime = { ...catalog, itemsByLevel } as RuntimeCatalog
+  Object.defineProperty(runtime, 'itemsById', {
+    enumerable: true,
+    get(): Record<string, StudyItem> {
+      itemsByIdCache ??= Object.fromEntries(
+        LEVELS.flatMap((level) => itemsByLevel[level]).map((item) => [item.id, item]),
+      )
+      return itemsByIdCache
+    },
+  })
+
+  return runtime
 }

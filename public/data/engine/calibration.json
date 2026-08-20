@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "recentQuizWindow": 7,
+  "recentWrongPerSessionBoost": 0.03,
+  "maximumRecentWrongBoost": 0.45,
+  "grammarReviewBoost": 0.12,
+  "schedule": {
+    "easeReference": 2.5,
+    "easeFactor": 0.06,
+    "recentPenalty": 0.08,
+    "overdueBaseBoost": 0.12,
+    "overdueDailyBoost": 0.02,
+    "maximumOverdueBoost": 0.3,
+    "futurePenalty": 0.06,
+    "storedWeightFactor": 0.04
+  },
+  "mastery": {
+    "targetAccuracy": 0.8,
+    "accuracyFactor": 0.25,
+    "newItemBoost": 0.06,
+    "correctStreakDecay": 0.025,
+    "maximumCorrectStreak": 5,
+    "minimumAdjustment": -0.15,
+    "maximumAdjustment": 0.25
+  },
+  "exposureWeight": {
+    "minimum": 0.001,
+    "maximum": 4
+  }
+}

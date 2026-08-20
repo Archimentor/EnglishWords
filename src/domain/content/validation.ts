@@ -17,7 +17,7 @@ export function validateCatalog(catalog: unknown, mode: ValidationMode): Validat
 
   validatePhrasalVerbs(catalog.phrasalVerbs, contentIds, mode, issues)
   validateGrammarNodes(catalog.grammarNodes, contentIds, issues)
-  validateStories(catalog.stories, issues)
+  validateStories(catalog.stories, mode, issues)
 
   return issues
 }

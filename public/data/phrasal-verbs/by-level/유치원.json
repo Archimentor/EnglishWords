@@ -1,32 +1,4502 @@
 [
   {
+    "id": "phrasal-live-with",
+    "baseVerb": "live",
+    "particle": "with",
+    "phrasalVerb": "live with",
+    "ipa": "/ˈɫaɪv ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 기억이나 생각이 오래 마음에 남다"
+    ],
+    "examples": [
+      "The memory of our first concert will live with me.",
+      "That kind lesson lived with her for many years."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-hold-down",
+    "baseVerb": "hold",
+    "particle": "down",
+    "phrasalVerb": "hold down",
+    "ipa": "/ˈhoʊɫd ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "직장을 잃지 않고 계속 유지하다"
+    ],
+    "examples": [
+      "Mina has held down the same library job for years.",
+      "He works hard to hold down his weekend job."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-hold-to",
+    "baseVerb": "hold",
+    "particle": "to",
+    "phrasalVerb": "hold to",
+    "ipa": "/ˈhoʊɫd ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정한 믿음이나 기준을 계속 지키다"
+    ],
+    "examples": [
+      "She held to her belief that practice brings progress.",
+      "We still hold to the same classroom rule."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-bring-back",
+    "baseVerb": "bring",
+    "particle": "back",
+    "phrasalVerb": "bring back",
+    "ipa": "/ˈbɹɪŋ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "생각이나 감정, 기억을 다시 떠올리게 하다"
+    ],
+    "examples": [
+      "This song brings back happy school memories.",
+      "The old photo brought our first trip back to mind."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-head-off",
+    "baseVerb": "head",
+    "particle": "off",
+    "phrasalVerb": "head off",
+    "ipa": "/ˈhɛd ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 곳을 떠나거나 출발하다"
+    ],
+    "examples": [
+      "We should head off before the buses get busy.",
+      "Mina headed off after saying goodbye."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-black-out",
+    "baseVerb": "black",
+    "particle": "out",
+    "phrasalVerb": "black out",
+    "ipa": "/ˈbɫæk ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "검게 가려서 내용이 보이거나 읽히지 않게 하다"
+    ],
+    "examples": [
+      "Please black out your address before sharing the form.",
+      "The editor will black out the private phone number."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-sit-around",
+    "baseVerb": "sit",
+    "particle": "around",
+    "phrasalVerb": "sit around",
+    "ipa": "/ˈsɪt ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "아무것도 하지 않고 시간을 보내기 위해서"
+    ],
+    "examples": [
+      "Most of the time we just sit around bored.",
+      "No one just sits around wasting time."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-sit-for",
+    "baseVerb": "sit",
+    "particle": "for",
+    "phrasalVerb": "sit for",
+    "ipa": "/ˈsɪt ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "아이를 대신 돌봐 주다"
+    ],
+    "examples": [
+      "I will sit for our neighbors on Friday evening.",
+      "Mina sits for the Park family after school."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-sit-up",
+    "baseVerb": "sit",
+    "particle": "up",
+    "phrasalVerb": "sit up",
+    "ipa": "/ˈsɪt ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "평소보다 늦게까지 자지 않고 있다"
+    ],
+    "examples": [
+      "We sat up late talking about the school play.",
+      "Leo sat up past midnight to finish his model."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-end-in",
+    "baseVerb": "end",
+    "particle": "in",
+    "phrasalVerb": "end in",
+    "ipa": "/ˈɛnd ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "최종 결과물로 무언가를 갖기 위해서"
+    ],
+    "examples": [
+      "His attempt to persuade the boy ended in failure.",
+      "The game ended in a draw."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stand-aside",
+    "baseVerb": "stand",
+    "particle": "aside",
+    "phrasalVerb": "stand aside",
+    "ipa": "/ˈstænd əˈsaɪd/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가가 당신을 지나가게 하기 위해 한쪽으로 이동해야 합니다"
+    ],
+    "examples": [
+      "He stood aside to let me pass.",
+      "They quickly stood aside to let me pass."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stand-back",
+    "baseVerb": "stand",
+    "particle": "back",
+    "phrasalVerb": "stand back",
+    "ipa": "/ˈstænd ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "상황에 대한 감정으로부터 영향을 받지 않도록 하여, 상황에 대해 더 명확하게 생각할 수 있도록 한다"
+    ],
+    "examples": [
+      "I forced myself to stand back and assess the situation.",
+      "Taking time to stand back and think is a priority."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stand-by",
+    "baseVerb": "stand",
+    "particle": "by",
+    "phrasalVerb": "stand by",
+    "ipa": "/ˈstænd ˈbaɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "행동해야 할 때 아무 조치도 하지 않고 지켜보다"
+    ],
+    "examples": [
+      "Do not stand by while others do all the work.",
+      "He stood by even though the plants needed water."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
     "id": "phrasal-stand-up",
     "baseVerb": "stand",
     "particle": "up",
     "phrasalVerb": "stand up",
+    "ipa": "/ˈstænd ˈəp/",
     "levelHint": "유치원",
-    "meaningKo": ["일어서다", "서다"],
+    "meaningKo": [
+      "앉거나 누운 자세에서 몸을 일으켜 서다"
+    ],
     "examples": [
       "Please stand up when your name is called.",
-      "The children stand up to sing."
+      "Jina stood up and opened the window."
     ],
     "partOfSpeech": "phrasalVerb",
-    "usageNotes": "앉거나 누워 있던 사람이 몸을 일으켜 설 때 쓴다.",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-meet-with",
+    "baseVerb": "meet",
+    "particle": "with",
+    "phrasalVerb": "meet with",
+    "ipa": "/ˈmit ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가와 공식적인 회의를 하다"
+    ],
+    "examples": [
+      "The principal met with the student council.",
+      "Our team will meet with the park manager tomorrow."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-set-forth",
+    "baseVerb": "set",
+    "particle": "forth",
+    "phrasalVerb": "set forth",
+    "ipa": "/ˈsɛt ˈfɔɹθ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특히 길거나 힘든 여행을 시작하다"
+    ],
+    "examples": [
+      "We set forth at sunrise for the hilltop.",
+      "The hikers set forth on a short forest trail."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-watch-for",
+    "baseVerb": "watch",
+    "particle": "for",
+    "phrasalVerb": "watch for",
+    "ipa": "/ˈwɑtʃ ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "도착하거나 무슨 일이 생겼을 때 뭔가를 볼 수 있도록 주의를 기울이는 것이다"
+    ],
+    "examples": [
+      "Watch for Ryan. He’s here somewhere.",
+      "We watched for dolphins jumping on the horizon."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-face-off",
+    "baseVerb": "face",
+    "particle": "off",
+    "phrasalVerb": "face off",
+    "ipa": "/ˈfeɪs ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "사람 또는 단체가 맞붙으면 서로 경쟁하거나 싸우게 된다"
+    ],
+    "examples": [
+      "Soldiers and protesters faced off during riots.",
+      "The teams face off at 3 o’clock."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-add-to",
+    "baseVerb": "add",
+    "particle": "to",
+    "phrasalVerb": "add to",
+    "ipa": "/ˈæd ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다른 양이나 수를 더하여 양이나 수를 더 크게 하는 것"
+    ],
+    "examples": [
+      "All her many expenses were added to my bill.",
+      "The arrival of five more guests only added to the confusion."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-grow-in",
+    "baseVerb": "grow",
+    "particle": "in",
+    "phrasalVerb": "grow in",
+    "ipa": "/ˈɡɹoʊ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정 품질이 더 많이 생기기 시작하세요"
+    ],
+    "examples": [
+      "In recent years cycling has grown in popularity.",
+      "The area has gradually grown in importance."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-open-out",
+    "baseVerb": "open",
+    "particle": "out",
+    "phrasalVerb": "open out",
+    "ipa": "/ˈoʊpən ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "접힌 것을 펼쳐 전체 모양이 보이게 하다"
+    ],
+    "examples": [
+      "Mina opened the paper map out on the table.",
+      "The folded fan opened out into a wide circle."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-walk-around",
+    "baseVerb": "walk",
+    "particle": "around",
+    "phrasalVerb": "walk around",
+    "ipa": "/ˈwɑk ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특히 공공장소에서 특정한 방식으로 옷을 입거나 행동하기 위해, 특히 이것이 당신을 바보처럼 보이게 하거나 바보처럼 보이게 할 때"
+    ],
+    "examples": [
+      "I can’t walk around with my hair like this.",
+      "You’re not walking around in that hat?"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-walk-away",
+    "baseVerb": "walk",
+    "particle": "away",
+    "phrasalVerb": "walk away",
+    "ipa": "/ˈwɑk əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "장소나 상황, 사람을 떠나다"
+    ],
+    "examples": [
+      "She smiled, waved, and walked away.",
+      "Leo walked away from the noisy game."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-walk-over",
+    "baseVerb": "walk",
+    "particle": "over",
+    "phrasalVerb": "walk over",
+    "ipa": "/ˈwɑk ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가를 나쁘게 대하고, 그들의 감정에 대한 존중 없이 원하는 일을 하도록 만드는 것이다"
+    ],
+    "examples": [
+      "Do you let people walk over you?",
+      "I’m not about to let them walk all over me."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-walk-through",
+    "baseVerb": "walk",
+    "particle": "through",
+    "phrasalVerb": "walk through",
+    "ipa": "/ˈwɑk ˈθɹu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "천천히 연습하거나 누군가에게 차근차근 방법을 보여 주다"
+    ],
+    "examples": [
+      "The coach walked us through the new warm-up.",
+      "Could you walk me through this math problem?"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-build-up",
+    "baseVerb": "build",
+    "particle": "up",
+    "phrasalVerb": "build up",
+    "ipa": "/ˈbɪɫd ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특히 잘 먹게 해 몸을 더 크고 건강하며 튼튼하게 만들다"
+    ],
+    "examples": [
+      "Nutritious meals helped build the young runner up.",
+      "The trainer built her up with rest and healthy food."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stay-away",
+    "baseVerb": "stay",
+    "particle": "away",
+    "phrasalVerb": "stay away",
+    "ipa": "/ˈsteɪ əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가나 무언가에 접근하지 않도록"
+    ],
+    "examples": [
+      "So far, customers have stayed away.",
+      "Stay away! Don’t come any closer!"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stay-down",
+    "baseVerb": "stay",
+    "particle": "down",
+    "phrasalVerb": "stay down",
+    "ipa": "/ˈsteɪ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "먹은 음식이 탈 없이 위에 남아 있다"
+    ],
+    "examples": [
+      "The toast stayed down after my stomach felt better.",
+      "Only the plain rice would stay down that morning."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-stay-off",
+    "baseVerb": "stay",
+    "particle": "off",
+    "phrasalVerb": "stay off",
+    "ipa": "/ˈsteɪ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "줄어든 체중이 다시 늘지 않고 유지되다"
+    ],
+    "examples": [
+      "The weight she lost has stayed off for a year.",
+      "Daily walks helped those extra pounds stay off."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-plan-on",
+    "baseVerb": "plan",
+    "particle": "on",
+    "phrasalVerb": "plan on",
+    "ipa": "/ˈpɫæn ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 하려는 의도, 또는 무언가가 일어날 것을 기대하는 의도"
+    ],
+    "examples": [
+      "We are planning on going to Australia this year.",
+      "We hadn’t planned on so many people coming."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-cut-up",
+    "baseVerb": "cut",
+    "particle": "up",
+    "phrasalVerb": "cut up",
+    "ipa": "/ˈkət ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 여러 조각으로 자르다"
+    ],
+    "examples": [
+      "Please cut the paper up into four squares.",
+      "Mina cut up the fruit for our picnic."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-drive-away",
+    "baseVerb": "drive",
+    "particle": "away",
+    "phrasalVerb": "drive away",
+    "ipa": "/ˈdɹaɪv əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가 무언가를 원하지 않게 하거나 누군가와 함께하고 싶은 마음을 멈추게 하기 위해서입니다"
+    ],
+    "examples": [
+      "Increasing prices will only drive customers away.",
+      "Promise We will not be driven away by such people."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-drive-up",
+    "baseVerb": "drive",
+    "particle": "up",
+    "phrasalVerb": "drive up",
+    "ipa": "/ˈdɹaɪv ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "가격이나 수량을 더 높은 수준으로 올리다"
+    ],
+    "examples": [
+      "High demand drove ticket prices up this week.",
+      "Extra packaging can drive shipping costs up."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-break-away",
+    "baseVerb": "break",
+    "particle": "away",
+    "phrasalVerb": "break away",
+    "ipa": "/ˈbɹeɪk əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 것의 일부가 나머지에서 떨어져 나가다"
+    ],
+    "examples": [
+      "A small piece broke away from the clay model.",
+      "One corner of the label broke away easily."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-break-out",
+    "baseVerb": "break",
+    "particle": "out",
+    "phrasalVerb": "break out",
+    "ipa": "/ˈbɹeɪk ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "반점 같은 게 생기거나, 반점에 생기거나 하면 피부에 반점이 나타나기 시작합니다"
+    ],
+    "examples": [
+      "Sweat was beginning to break out on his forehead.",
+      "The skin on my arms was breaking out in a rash."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-pick-over",
+    "baseVerb": "pick",
+    "particle": "over",
+    "phrasalVerb": "pick over",
+    "ipa": "/ˈpɪk ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "여러 물건을 자세히 살펴 원하는 것을 고르다"
+    ],
+    "examples": [
+      "We picked over the apples and chose the firm ones.",
+      "Mina carefully picked over the buttons for her craft."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-phone-back",
+    "baseVerb": "phone",
+    "particle": "back",
+    "phrasalVerb": "phone back",
+    "ipa": "/ˈfoʊn ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다시 전화하거나, 당신이 자리를 비웠을 때, 혹은 너무 바쁠 때 전화를 걸었던 사람에게 전화를 걸어 전화하기 위해서"
+    ],
+    "examples": [
+      "I’ve got someone at the door. I’ll phone you back.",
+      "She’s not in at the moment. Can you phone back later?"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-cover-for",
+    "baseVerb": "cover",
+    "particle": "for",
+    "phrasalVerb": "cover for",
+    "ipa": "/ˈkəvɝ ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "그들이 없거나 아픈 동안 누군가의 일을 하기 위해서"
+    ],
+    "examples": [
+      "If Pauline asks where I am, will you cover for me?",
+      "I’m just covering for Mrs Tyler, so please bear with me."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-step-back",
+    "baseVerb": "step",
+    "particle": "back",
+    "phrasalVerb": "step back",
+    "ipa": "/ˈstɛp ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 고려하기 위해 잠시 멈추는 것"
+    ],
+    "examples": [
+      "Step back and think this all through.",
+      "This is the moment to step back and think for a while."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-draw-away",
+    "baseVerb": "draw",
+    "particle": "away",
+    "phrasalVerb": "draw away",
+    "ipa": "/ˈdɹɔ əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "사람이나 장소에서 멀어지기 위해서"
+    ],
+    "examples": [
+      "Ann suddenly drew away from me.",
+      "People started waving as the train drew away."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-draw-back",
+    "baseVerb": "draw",
+    "particle": "back",
+    "phrasalVerb": "draw back",
+    "ipa": "/ˈdɹɔ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "커튼 같은 것을 당겨 열린 상태로 만들다"
+    ],
+    "examples": [
+      "Mina drew back the curtains to let in sunlight.",
+      "He drew the curtain back and looked outside."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-draw-into",
+    "baseVerb": "draw",
+    "particle": "into",
+    "phrasalVerb": "draw into",
+    "ipa": "/ˈdɹɔ ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차량 등이 어떤 장소에 도착하다"
+    ],
+    "examples": [
+      "The train drew into the station just before noon.",
+      "Our bus drew into the terminal a few minutes early."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-close-on",
+    "baseVerb": "close",
+    "particle": "on",
+    "phrasalVerb": "close on",
+    "ipa": "/ˈkɫoʊs ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "사람이나 사물 사이의 거리나 차이를 좁히다"
+    ],
+    "examples": [
+      "Our runner closed on the leader during the final lap.",
+      "The blue boat slowly closed on the red one."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-bank-up",
+    "baseVerb": "bank",
+    "particle": "up",
+    "phrasalVerb": "bank up",
+    "ipa": "/ˈbæŋk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 더미로 만들기 위해서"
+    ],
+    "examples": [
+      "Before going to bed, she banked up the fire.",
+      "Soil was banked up against the wall."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-throw-back",
+    "baseVerb": "throw",
+    "particle": "back",
+    "phrasalVerb": "throw back",
+    "ipa": "/ˈθɹoʊ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "침대에서 일어나기 전에 이불을 재빨리 젖히다"
+    ],
+    "examples": [
+      "Jina threw back the covers and sat up.",
+      "Leo threw the blanket back before getting out of bed."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-top-up",
+    "baseVerb": "top",
+    "particle": "up",
+    "phrasalVerb": "top up",
+    "ipa": "/ˈtɑp ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "원하는 수준 또는 필요한 수준으로 높이기 위해 무언가에 더 추가하는 것"
+    ],
+    "examples": [
+      "Can I top you up?",
+      "Would you like me to top up your drink?"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-fill-up",
+    "baseVerb": "fill",
+    "particle": "up",
+    "phrasalVerb": "fill up",
+    "ipa": "/ˈfɪɫ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가를 채우거나 채워주면 더 이상 배고픔을 느끼지 않도록 음식을 충분히 먹는다"
+    ],
+    "examples": [
+      "Fill up on lots of vegetables and salads.",
+      "If you’re hungry, fill up on pasta or rice."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-drop-back",
+    "baseVerb": "drop",
+    "particle": "back",
+    "phrasalVerb": "drop back",
+    "ipa": "/ˈdɹɑp ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "뒤로 처지다"
+    ],
+    "examples": [
+      "Alex dropped back to let me pass.",
+      "He dropped back and finished in sixth place."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-drop-behind",
+    "baseVerb": "drop",
+    "particle": "behind",
+    "phrasalVerb": "drop behind",
+    "ipa": "/ˈdɹɑp bɪˈhaɪnd/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "뒤처지다"
+    ],
+    "examples": [
+      "Jensen has dropped behind into last place.",
+      "Mary dropped behind to walk with Sam."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-drop-out",
+    "baseVerb": "drop",
+    "particle": "out",
+    "phrasalVerb": "drop out",
+    "ipa": "/ˈdɹɑp ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "활동이나 학교 등을 마치기 전에 그만두다"
+    ],
+    "examples": [
+      "Mina dropped out of the club before the term ended.",
+      "The student dropped out of the art course in May."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryEasy"
+  },
+  {
+    "id": "phrasal-push-back",
+    "baseVerb": "push",
+    "particle": "back",
+    "phrasalVerb": "push back",
+    "ipa": "/ˈpʊʃ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "예정된 일을 더 늦은 시간으로 미루다"
+    ],
+    "examples": [
+      "We pushed the meeting back to Friday afternoon.",
+      "The school pushed back the concert by one week."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
     "difficulty": "easy"
   },
   {
-    "id": "phrasal-put-on",
-    "baseVerb": "put",
-    "particle": "on",
-    "phrasalVerb": "put on",
+    "id": "phrasal-push-for",
+    "baseVerb": "push",
+    "particle": "for",
+    "phrasalVerb": "push for",
+    "ipa": "/ˈpʊʃ ˈfɔɹ/",
     "levelHint": "유치원",
-    "meaningKo": ["입다", "신다", "착용하다"],
+    "meaningKo": [
+      "무언가를 얻거나 성취하기 위해 열심히 노력하기"
+    ],
     "examples": [
-      "Put on your coat before you go outside.",
-      "She will put on her new shoes."
+      "He’s pushing us for a decision by tomorrow.",
+      "We are pushing for a ban on nuclear testing."
     ],
     "partOfSpeech": "phrasalVerb",
-    "usageNotes": "옷, 신발, 모자처럼 몸에 착용하는 것을 입거나 신는 동작에 쓴다.",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
     "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-push-forward",
+    "baseVerb": "push",
+    "particle": "forward",
+    "phrasalVerb": "push forward",
+    "ipa": "/ˈpʊʃ ˈfɔɹwɝd/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 장소를 향해 더 나아가기 위해, 혹은 반대나 어려움에도 불구하고, 정해진 방식으로, 또는 반대나 어려움에도 불구하고"
+    ],
+    "examples": [
+      "John pushed forward into the dark entrance of the cave.",
+      "They were urged to push forward with their reforms."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-push-in",
+    "baseVerb": "push",
+    "particle": "in",
+    "phrasalVerb": "push in",
+    "ipa": "/ˈpʊʃ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "먼저 기다린 사람들 앞에 부당하게 끼어들다"
+    ],
+    "examples": [
+      "Please do not push in while others are waiting.",
+      "A boy tried to push in at the lunch line."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-push-over",
+    "baseVerb": "push",
+    "particle": "over",
+    "phrasalVerb": "push over",
+    "ipa": "/ˈpʊʃ ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가나 무언가를 세게 밀어서 자신이 있는 위치에서 떨어지게 하는 것이다"
+    ],
+    "examples": [
+      "He pushed over the lamp.",
+      "She pushed me over in the playground."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-sign-out",
+    "baseVerb": "sign",
+    "particle": "out",
+    "phrasalVerb": "sign out",
+    "ipa": "/ˈsaɪn ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "물건이나 차량을 빌렸다는 표시로 공식 명단에 이름을 쓰다"
+    ],
+    "examples": [
+      "Please sign out the tablet before taking it home.",
+      "Mina signed the camera out at the front desk."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-check-on",
+    "baseVerb": "check",
+    "particle": "on",
+    "phrasalVerb": "check on",
+    "ipa": "/ˈtʃɛk ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가나 무언가를 보고 그들이 안전하고 만족스럽다고 확신하기 위해"
+    ],
+    "examples": [
+      "I sent Michael to check on the kids.",
+      "The boss arrived to check on our progress."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-laugh-at",
+    "baseVerb": "laugh",
+    "particle": "at",
+    "phrasalVerb": "laugh at",
+    "ipa": "/ˈɫæf ˈæt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어려움이나 두려움을 대수롭지 않게 여기다"
+    ],
+    "examples": [
+      "Mina laughed at the challenge and tried again.",
+      "We learned to laugh at small setbacks instead of worrying."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-finish-off",
+    "baseVerb": "finish",
+    "particle": "off",
+    "phrasalVerb": "finish off",
+    "ipa": "/ˈfɪnɪʃ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "남은 것을 마저 끝내다"
+    ],
+    "examples": [
+      "Do you want to finish off these sandwiches?",
+      "I just need to finish off a few things first."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-shake-up",
+    "baseVerb": "shake",
+    "particle": "up",
+    "phrasalVerb": "shake up",
+    "ipa": "/ˈʃeɪk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "회사 조직 방식을 바꾸어 더 효율적이거나 성공적으로 만들다"
+    ],
+    "examples": [
+      "The director plans to shake up how the company is organized.",
+      "A new manager shook up the office to make it more efficient."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fly-into",
+    "baseVerb": "fly",
+    "particle": "into",
+    "phrasalVerb": "fly into",
+    "ipa": "/ˈfɫaɪ ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "비행기를 타고 어떤 곳으로 가다"
+    ],
+    "examples": [
+      "We flew into Seoul on an early morning flight.",
+      "Mina will fly into Jeju before the holiday."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fish-for",
+    "baseVerb": "fish",
+    "particle": "for",
+    "phrasalVerb": "fish for",
+    "ipa": "/ˈfɪʃ ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "그물이나 낚싯대 등으로 물고기를 잡으려 하다"
+    ],
+    "examples": [
+      "The children fished for minnows with small nets.",
+      "We fish for trout at the lake each summer."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-wish-for",
+    "baseVerb": "wish",
+    "particle": "for",
+    "phrasalVerb": "wish for",
+    "ipa": "/ˈwɪʃ ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 원하는 것"
+    ],
+    "examples": [
+      "He could not have wished for a more pleasant holiday.",
+      "You couldn’t wish for a better friend."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-touch-down",
+    "baseVerb": "touch",
+    "particle": "down",
+    "phrasalVerb": "touch down",
+    "ipa": "/ˈtətʃ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "항공기나 우주선이 착륙하다"
+    ],
+    "examples": [
+      "Our plane touched down just before sunset.",
+      "The small aircraft touched down on the island runway."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-sleep-away",
+    "baseVerb": "sleep",
+    "particle": "away",
+    "phrasalVerb": "sleep away",
+    "ipa": "/ˈsɫip əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "일정한 시간을 잠을 자며 보내다"
+    ],
+    "examples": [
+      "Leo slept away most of the rainy afternoon.",
+      "The tired puppy slept the morning away by the window."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-sleep-on",
+    "baseVerb": "sleep",
+    "particle": "on",
+    "phrasalVerb": "sleep on",
+    "ipa": "/ˈsɫip ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "휴식하고 생각할 시간을 더 가진 다음 날까지 결정을 내리기 위해 기다리는 것"
+    ],
+    "examples": [
+      "I will have to sleep on it and see where we are.",
+      "Let me sleep on it and give you an answer tomorrow."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fan-out",
+    "baseVerb": "fan",
+    "particle": "out",
+    "phrasalVerb": "fan out",
+    "ipa": "/ˈfæn ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "한 무리의 사람들이 앞으로 나아가며 일렬로 퍼지다"
+    ],
+    "examples": [
+      "The students fanned out across the field to collect litter.",
+      "Our helpers fanned out along the path to place signs."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-drink-to",
+    "baseVerb": "drink",
+    "particle": "to",
+    "phrasalVerb": "drink to",
+    "ipa": "/ˈdɹɪŋk ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가의 건강이나 행복, 성공을 빌며 잔을 들어 마시다"
+    ],
+    "examples": [
+      "Let us drink to her success with apple juice.",
+      "We gathered to drink to the new school year."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-drink-up",
+    "baseVerb": "drink",
+    "particle": "up",
+    "phrasalVerb": "drink up",
+    "ipa": "/ˈdɹɪŋk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "음료를 다 마시기 위해서"
+    ],
+    "examples": [
+      "Drink up, everyone, it’s time to go.",
+      "I gave the cat some milk and she drank it all up."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-band-together",
+    "baseVerb": "band",
+    "particle": "together",
+    "phrasalVerb": "band together",
+    "ipa": "/ˈbænd təˈɡɛðɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 이루기 위해 한데 뭉치다"
+    ],
+    "examples": [
+      "The students banded together to clean the school garden.",
+      "Local families banded together to open a reading room."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-ride-up",
+    "baseVerb": "ride",
+    "particle": "up",
+    "phrasalVerb": "ride up",
+    "ipa": "/ˈɹaɪd ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "옷이 몸 위쪽으로 점차 말려 올라가다"
+    ],
+    "examples": [
+      "Her coat can ride up when she reaches for the shelf.",
+      "This shirt tends to ride up when I stretch."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-warm-up",
+    "baseVerb": "warm",
+    "particle": "up",
+    "phrasalVerb": "warm up",
+    "ipa": "/ˈwɔɹm ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "따뜻해지다"
+    ],
+    "examples": [
+      "The soup warmed up slowly on the stove.",
+      "The room will warm up when the sun appears."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-blow-down",
+    "baseVerb": "blow",
+    "particle": "down",
+    "phrasalVerb": "blow down",
+    "ipa": "/ˈbɫoʊ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "바람 때문에 무언가가 넘어지다"
+    ],
+    "examples": [
+      "Strong wind can blow our cardboard sign down.",
+      "A gust may blow the chair down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-blow-off",
+    "baseVerb": "blow",
+    "particle": "off",
+    "phrasalVerb": "blow off",
+    "ipa": "/ˈbɫoʊ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "바람 때문에 무언가가 떨어져 나가다"
+    ],
+    "examples": [
+      "The wind can blow my hat off near the playground.",
+      "A breeze may blow the paper cover off the box."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-bone-up",
+    "baseVerb": "bone",
+    "particle": "up",
+    "phrasalVerb": "bone up",
+    "ipa": "/ˈboʊn ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "시험 준비나 회의 등을 위해 열심히 공부하거나 무언가를 배우기 위해서"
+    ],
+    "examples": [
+      "He’s boning up for his final exams.",
+      "She boned up on the company before the interview."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-rain-down",
+    "baseVerb": "rain",
+    "particle": "down",
+    "phrasalVerb": "rain down",
+    "ipa": "/ˈɹeɪn ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "비처럼 위에서 많이 쏟아지다"
+    ],
+    "examples": [
+      "Colorful paper petals rained down after the school show.",
+      "Golden leaves rained down from the trees in the wind."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-dry-off",
+    "baseVerb": "dry",
+    "particle": "off",
+    "phrasalVerb": "dry off",
+    "ipa": "/ˈdɹaɪ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무엇이 마르거나, 말리면 물이 다 마르거나 표면에서 닦아집니다"
+    ],
+    "examples": [
+      "He got out of the shower and dried himself off.",
+      "Wash the salad and leave it to dry off."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-nose-around",
+    "baseVerb": "nose",
+    "particle": "around",
+    "phrasalVerb": "nose around",
+    "ipa": "/ˈnoʊz ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가에 대한 정보를 찾으려고 노력하거나"
+    ],
+    "examples": [
+      "A few kids were nosing around.",
+      "I found two men nosing around the boat."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-kick-around",
+    "baseVerb": "kick",
+    "particle": "around",
+    "phrasalVerb": "kick around",
+    "ipa": "/ˈkɪk ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "뚜렷한 계획 없이 어떤 곳에서 시간을 보내다"
+    ],
+    "examples": [
+      "We kicked around the park until it was time for lunch.",
+      "The friends kicked around town with no fixed plan."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-match-up",
+    "baseVerb": "match",
+    "particle": "up",
+    "phrasalVerb": "match up",
+    "ipa": "/ˈmætʃ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "둘이 같거나 비슷한 특성을 지녀 서로 들어맞다"
+    ],
+    "examples": [
+      "The two lists match up in every detail.",
+      "Your answers match up with the answer key."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-grass-over",
+    "baseVerb": "grass",
+    "particle": "over",
+    "phrasalVerb": "grass over",
+    "ipa": "/ˈɡɹæs ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "땅의 한 구역을 잔디로 덮다"
+    ],
+    "examples": [
+      "The workers grassed over the bare patch beside the path.",
+      "We plan to grass over the empty corner of the yard."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-wash-off",
+    "baseVerb": "wash",
+    "particle": "off",
+    "phrasalVerb": "wash off",
+    "ipa": "/ˈwɑʃ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "물건을 씻거나, 더러워진 물건이 있으면 세탁하여 제거합니다"
+    ],
+    "examples": [
+      "Don’t worry about the dirty marks. They’ll wash off easily.",
+      "Wash all the soil off before you cook the potatoes."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-breathe-out",
+    "baseVerb": "breathe",
+    "particle": "out",
+    "phrasalVerb": "breathe out",
+    "ipa": "/ˈbɹið ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "코나 입을 통해 폐에서 공기를 내보내기 위해"
+    ],
+    "examples": [
+      "Now breathe out slowly.",
+      "We breathe in air and breathe out carbon dioxide."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-toy-with",
+    "baseVerb": "toy",
+    "particle": "with",
+    "phrasalVerb": "toy with",
+    "ipa": "/ˈtɔɪ ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "대개 긴장해서 손가락으로 물건을 계속 만지작거리다"
+    ],
+    "examples": [
+      "Mina toyed with a pencil while waiting for her turn.",
+      "He toyed with the button on his sleeve during the talk."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-dig-in",
+    "baseVerb": "dig",
+    "particle": "in",
+    "phrasalVerb": "dig in",
+    "ipa": "/ˈdɪɡ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "땅을 파서 어떤 것을 흙에 섞다"
+    ],
+    "examples": [
+      "We dug the compost in before planting the flowers.",
+      "Mina dug the dry leaves in to enrich the soil."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-dig-over",
+    "baseVerb": "dig",
+    "particle": "over",
+    "phrasalVerb": "dig over",
+    "ipa": "/ˈdɪɡ ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "새 식물을 심을 준비를 하려고 땅을 파서 고르다"
+    ],
+    "examples": [
+      "We dig over the garden before planting new flowers.",
+      "Dad dug over the soil to prepare it for seeds."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-dig-up",
+    "baseVerb": "dig",
+    "particle": "up",
+    "phrasalVerb": "dig up",
+    "ipa": "/ˈdɪɡ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "땅을 파서 땅 밑에서 무언가를 제거하기 위해서"
+    ],
+    "examples": [
+      "They’ve been digging up the road outside our house.",
+      "We will have to dig that tree up."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-shape-up",
+    "baseVerb": "shape",
+    "particle": "up",
+    "phrasalVerb": "shape up",
+    "ipa": "/ˈʃeɪp ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "형태를 갖추며 진행되어 가다"
+    ],
+    "examples": [
+      "The class project is shaping up nicely.",
+      "Our weekend plans shaped up better than expected."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-strike-off",
+    "baseVerb": "strike",
+    "particle": "off",
+    "phrasalVerb": "strike off",
+    "ipa": "/ˈstɹaɪk ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "에너지나 결단을 보여주는 방식으로 특정 방향으로 가는 것이다"
+    ],
+    "examples": [
+      "Startled by the noise, he had struck off through the woods.",
+      "They struck off across the desert without supplies."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fit-in",
+    "baseVerb": "fit",
+    "particle": "in",
+    "phrasalVerb": "fit in",
+    "ipa": "/ˈfɪt ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "당신이 그들과 비슷하기 때문에 집단에 의해 받아들여진다"
+    ],
+    "examples": [
+      "Here Lee's lonely, he doesn't fit in; there he's ostracized.",
+      "She fitted in with her new colleagues straight away."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-hit-back",
+    "baseVerb": "hit",
+    "particle": "back",
+    "phrasalVerb": "hit back",
+    "ipa": "/ˈhɪt ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "자신을 비판한 사람에게 맞서 비판하다"
+    ],
+    "examples": [
+      "The coach hit back at the unfair criticism.",
+      "She hit back at the rude review with a calm reply."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fall-in",
+    "baseVerb": "fall",
+    "particle": "in",
+    "phrasalVerb": "fall in",
+    "ipa": "/ˈfɑɫ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "지붕이나 벽이 떨어지면 땅으로 떨어진다"
+    ],
+    "examples": [
+      "The roof of the house has fallen in.",
+      "The roof is going to fall in one of these days."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fall-off",
+    "baseVerb": "fall",
+    "particle": "off",
+    "phrasalVerb": "fall off",
+    "ipa": "/ˈfɑɫ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 것의 양, 수준, 가치가 떨어지면 더 작아진다"
+    ],
+    "examples": [
+      "Theater attendance usually falls off in summer.",
+      "Sales fell off in the third quarter."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-roll-in",
+    "baseVerb": "roll",
+    "particle": "in",
+    "phrasalVerb": "roll in",
+    "ipa": "/ˈɹoʊɫ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "많은 수 또는 양으로 도달하기 위해"
+    ],
+    "examples": [
+      "Fog rolled in from the sea.",
+      "Dark clouds are rolling in."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-stamp-out",
+    "baseVerb": "stamp",
+    "particle": "out",
+    "phrasalVerb": "stamp out",
+    "ipa": "/ˈstæmp ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "발을 세게 내려서 타는 것을 멈추게 하는 것"
+    ],
+    "examples": [
+      "He stamped out a fire.",
+      "Tom stamped out the fire."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-tidy-up",
+    "baseVerb": "tidy",
+    "particle": "up",
+    "phrasalVerb": "tidy up",
+    "ipa": "/ˈtaɪdi ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "정리하다; 말끔히 다듬다"
+    ],
+    "examples": [
+      "Tom tidied up his bedroom.",
+      "We tidied up our classroom after school."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-spread-out",
+    "baseVerb": "spread",
+    "particle": "out",
+    "phrasalVerb": "spread out",
+    "ipa": "/ˈspɹɛd ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 펼치거나 표면이나 영역에 넓게 벌려 놓다"
+    ],
+    "examples": [
+      "Spread out the map so we can all see it.",
+      "We spread our papers out on the table."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-follow-up",
+    "baseVerb": "follow",
+    "particle": "up",
+    "phrasalVerb": "follow up",
+    "ipa": "/ˈfɑɫoʊ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가에 대해 더 많이 알아보려고 노력하거나, 그것에 대처하기 위해 더 많은 것을 하기 위해 노력합니다"
+    ],
+    "examples": [
+      "Meanwhile, I'll follow up all the leads I can think of here.",
+      "The police are now following up some new leads."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fall-back",
+    "baseVerb": "fall",
+    "particle": "back",
+    "phrasalVerb": "fall back",
+    "ipa": "/ˈfɑɫ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "뒤쪽으로 처지거나 물러나다"
+    ],
+    "examples": [
+      "The tired runner fell back behind the group.",
+      "Leo fell back a few steps to walk with me."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-fall-on",
+    "baseVerb": "fall",
+    "particle": "on",
+    "phrasalVerb": "fall on",
+    "ipa": "/ˈfɑɫ ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 일이 누구의 책임으로 돌아가다"
+    ],
+    "examples": [
+      "The task of choosing a date fell on Mina.",
+      "It fell on me to water the class plants."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "easy"
+  },
+  {
+    "id": "phrasal-lie-down",
+    "baseVerb": "lie",
+    "particle": "down",
+    "phrasalVerb": "lie down",
+    "ipa": "/ˈɫaɪ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "눕다"
+    ],
+    "examples": [
+      "I’m going to go and lie down for a while.",
+      "Lie down and relax."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-count-on",
+    "baseVerb": "count",
+    "particle": "on",
+    "phrasalVerb": "count on",
+    "ipa": "/ˈkaʊnt ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "원하는 것을 하거나 그들이 당신을 위해 할 것으로 기대하는 것을 누군가에 의지해야 합니다"
+    ],
+    "examples": [
+      "I knew I could count on you to be on time.",
+      "The whole team was counting on me, and I let them down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-even-out",
+    "baseVerb": "even",
+    "particle": "out",
+    "phrasalVerb": "even out",
+    "ipa": "/ˈivɪn ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "변화나 차이가 줄어들어 고르게 되다"
+    ],
+    "examples": [
+      "The workload should even out by next week.",
+      "These changes will even out the daily schedule."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-lose-out",
+    "baseVerb": "lose",
+    "particle": "out",
+    "phrasalVerb": "lose out",
+    "ipa": "/ˈɫuz ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다른 사람이 얻는 이익이나 기회를 얻지 못하다"
+    ],
+    "examples": [
+      "Hurry, or you may lose out on a place in the team.",
+      "She lost out because she sent the form too late."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-send-up",
+    "baseVerb": "send",
+    "particle": "up",
+    "phrasalVerb": "send up",
+    "ipa": "/ˈsɛnd ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "말투나 행동을 흉내 내어 우스꽝스럽게 만들다"
+    ],
+    "examples": [
+      "The school play sent up old cooking shows.",
+      "That cartoon gently sends up famous fairy tales."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fall-down",
+    "baseVerb": "fall",
+    "particle": "down",
+    "phrasalVerb": "fall down",
+    "ipa": "/ˈfɑɫ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "입고 있는 것이 다리 아래로 흘러내리다"
+    ],
+    "examples": [
+      "These loose socks keep falling down around my ankles.",
+      "His oversized trousers started to fall down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fall-over",
+    "baseVerb": "fall",
+    "particle": "over",
+    "phrasalVerb": "fall over",
+    "ipa": "/ˈfɑɫ ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "물건이 옆으로 넘어지다"
+    ],
+    "examples": [
+      "The tall stack of blocks fell over on the rug.",
+      "That empty chair may fall over if you bump the table."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-pass-by",
+    "baseVerb": "pass",
+    "particle": "by",
+    "phrasalVerb": "pass by",
+    "ipa": "/ˈpæs ˈbaɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "곁을 지나가다"
+    ],
+    "examples": [
+      "We passed by the bakery on our walk.",
+      "A bright bus passed by the school gate."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-pass-off",
+    "baseVerb": "pass",
+    "particle": "off",
+    "phrasalVerb": "pass off",
+    "ipa": "/ˈpæs ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "행사가 특정한 방식으로 진행되다"
+    ],
+    "examples": [
+      "The picnic passed off without any problems.",
+      "Our class show passed off better than we expected."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-pull-up",
+    "baseVerb": "pull",
+    "particle": "up",
+    "phrasalVerb": "pull up",
+    "ipa": "/ˈpʊɫ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차량이나 운전자가 멈춰 서다"
+    ],
+    "examples": [
+      "The bus pulled up beside the school gate.",
+      "A taxi pulled up just as the rain began."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-explain-away",
+    "baseVerb": "explain",
+    "particle": "away",
+    "phrasalVerb": "explain away",
+    "ipa": "/ɪksˈpɫeɪn əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "대수롭지 않은 일처럼 설명해 넘기다"
+    ],
+    "examples": [
+      "He tried to explain away the missing homework page.",
+      "You cannot explain the odd result away so easily."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-hit-on",
+    "baseVerb": "hit",
+    "particle": "on",
+    "phrasalVerb": "hit on",
+    "ipa": "/ˈhɪt ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "갑자기 아이디어를 떠올리다"
+    ],
+    "examples": [
+      "Mina hit on a clever way to sort the cards.",
+      "We finally hit on the perfect name for our team."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-clear-away",
+    "baseVerb": "clear",
+    "particle": "away",
+    "phrasalVerb": "clear away",
+    "ipa": "/ˈkɫɪɹ əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "장소를 깔끔하게 만들기 위해 사용 완료했거나 더 이상 원하지 않는 것을 제거합니다"
+    ],
+    "examples": [
+      "A young woman cleared away their empty cups.",
+      "You sit down – I’ll clear away."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-strike-out",
+    "baseVerb": "strike",
+    "particle": "out",
+    "phrasalVerb": "strike out",
+    "ipa": "/ˈstɹaɪk ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "문서의 단어 위에 선을 그어 지우다"
+    ],
+    "examples": [
+      "Please strike out the repeated word.",
+      "Mina struck the extra sentence out with a pencil."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-tie-up",
+    "baseVerb": "tie",
+    "particle": "up",
+    "phrasalVerb": "tie up",
+    "ipa": "/ˈtaɪ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "일을 끝내기 전에 남은 몇 가지를 처리하다"
+    ],
+    "examples": [
+      "We tied up the last details before the class show.",
+      "Let us tie the loose ends up and finish the poster."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-cash-in",
+    "baseVerb": "cash",
+    "particle": "in",
+    "phrasalVerb": "cash in",
+    "ipa": "/ˈkæʃ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "기회를 이용해 이익이나 이점을 얻다"
+    ],
+    "examples": [
+      "The shop cashed in on the sudden demand for notebooks.",
+      "Small cafes can cash in on the festival crowds."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-mix-up",
+    "baseVerb": "mix",
+    "particle": "up",
+    "phrasalVerb": "mix up",
+    "ipa": "/ˈmɪks ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "한 사람이나 사물을 다른 사람이나 사물로 착각하다"
+    ],
+    "examples": [
+      "I mixed up the two similar folders.",
+      "Do not mix Sam up with his twin brother."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-knock-down",
+    "baseVerb": "knock",
+    "particle": "down",
+    "phrasalVerb": "knock down",
+    "ipa": "/ˈnɑk ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "가격이나 양을 낮추다"
+    ],
+    "examples": [
+      "The shop knocked down the price of the lamp.",
+      "A coupon knocked the total cost down by five dollars."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-lock-in",
+    "baseVerb": "lock",
+    "particle": "in",
+    "phrasalVerb": "lock in",
+    "ipa": "/ˈɫɑk ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "방을 두고 문을 잠그고 아무도 나갈 수 없도록 하는 것이다"
+    ],
+    "examples": [
+      "She went to her hotel room and locked herself in.",
+      "You can’t keep me locked in."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-round-up",
+    "baseVerb": "round",
+    "particle": "up",
+    "phrasalVerb": "round up",
+    "ipa": "/ˈɹaʊnd ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정 목적을 위해 사람이나 동물을 한곳에 모으다"
+    ],
+    "examples": [
+      "The guide rounded up the campers before lunch.",
+      "We rounded the puppies up for their checkup."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-sink-in",
+    "baseVerb": "sink",
+    "particle": "in",
+    "phrasalVerb": "sink in",
+    "ipa": "/ˈsɪŋk ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "완전히 이해되다"
+    ],
+    "examples": [
+      "The good news took a moment to sink in.",
+      "After another example, the new rule finally sank in."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-tune-in",
+    "baseVerb": "tune",
+    "particle": "in",
+    "phrasalVerb": "tune in",
+    "ipa": "/ˈtun ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정 라디오나 텔레비전 방송을 듣거나 보다"
+    ],
+    "examples": [
+      "Tune in at six for the science program.",
+      "We tuned in to watch the school quiz on local television."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-boil-down",
+    "baseVerb": "boil",
+    "particle": "down",
+    "phrasalVerb": "boil down",
+    "ipa": "/ˈbɔɪɫ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "글 등을 핵심 사실만 남겨 짧게 줄이다"
+    ],
+    "examples": [
+      "Please boil the report down to three short points.",
+      "Mina boiled her long notes down into one clear page."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-screw-up",
+    "baseVerb": "screw",
+    "particle": "up",
+    "phrasalVerb": "screw up",
+    "ipa": "/ˈskɹu ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "심각한 실수를 하거나, 무언가를 망치거나, 특히 상황을 망치는 것"
+    ],
+    "examples": [
+      "He made a bad decision that screwed up his entire life.",
+      "I really screwed up this time, didn’t I?"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-pull-over",
+    "baseVerb": "pull",
+    "particle": "over",
+    "phrasalVerb": "pull over",
+    "ipa": "/ˈpʊɫ ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차량이나 운전자가 길가에 차를 세우다"
+    ],
+    "examples": [
+      "The bus pulled over beside the rest area.",
+      "We pulled over to check the map."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-hit-out",
+    "baseVerb": "hit",
+    "particle": "out",
+    "phrasalVerb": "hit out",
+    "ipa": "/ˈhɪt ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가나 무언가를 매우 강하게 비판하다"
+    ],
+    "examples": [
+      "The coach hit out at the confusing new schedule.",
+      "Parents hit out at the sudden timetable change."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-clear-off",
+    "baseVerb": "clear",
+    "particle": "off",
+    "phrasalVerb": "clear off",
+    "ipa": "/ˈkɫɪɹ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "빨리 자리를 떠나기 위해서"
+    ],
+    "examples": [
+      "Clear off, both of you!",
+      "They’ve all cleared off and left me to clean this mess up."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-sound-off",
+    "baseVerb": "sound",
+    "particle": "off",
+    "phrasalVerb": "sound off",
+    "ipa": "/ˈsaʊnd ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "의견을 큰 소리로, 흔히 무리하게 말하다"
+    ],
+    "examples": [
+      "He sounded off about the new seating plan.",
+      "Several students sounded off before hearing all the details."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fit-out",
+    "baseVerb": "fit",
+    "particle": "out",
+    "phrasalVerb": "fit out",
+    "ipa": "/ˈfɪt ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "방이나 건물에 장비를 넣어 특정 용도로 사용할 수 있도록 하는 것이다"
+    ],
+    "examples": [
+      "The kitchen has been fitted out with pine cupboards.",
+      "They are fitting out new offices."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fix-up",
+    "baseVerb": "fix",
+    "particle": "up",
+    "phrasalVerb": "fix up",
+    "ipa": "/ˈfɪks ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 청소하거나 고치거나 꾸미다"
+    ],
+    "examples": [
+      "We fixed up the old desk with fresh paint.",
+      "They are fixing the spare room up for guests."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-knock-about",
+    "baseVerb": "knock",
+    "particle": "about",
+    "phrasalVerb": "knock about",
+    "ipa": "/ˈnɑk əˈbaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "아이디어를 격식 없이 자유롭게 이야기하다"
+    ],
+    "examples": [
+      "We knocked about a few ideas for the poster.",
+      "The team knocked several names about before choosing one."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-knock-back",
+    "baseVerb": "knock",
+    "particle": "back",
+    "phrasalVerb": "knock back",
+    "ipa": "/ˈnɑk ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "사람이나 제안을 받아들이지 않고 거절하다"
+    ],
+    "examples": [
+      "The committee knocked back our first garden proposal.",
+      "The editor knocked the title back and asked for a new one."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-knock-off",
+    "baseVerb": "knock",
+    "particle": "off",
+    "phrasalVerb": "knock off",
+    "ipa": "/ˈnɑk ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "일을 마치다"
+    ],
+    "examples": [
+      "We knock off at four on Fridays.",
+      "The painters knocked off when the school bell rang."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-shout-down",
+    "baseVerb": "shout",
+    "particle": "down",
+    "phrasalVerb": "shout down",
+    "ipa": "/ˈʃaʊt ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "상대가 말할 때 소리쳐 그 말을 들리지 않게 하다"
+    ],
+    "examples": [
+      "The noisy class shouted down the student giving the answer.",
+      "Several excited voices shouted the guide down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-lock-out",
+    "baseVerb": "lock",
+    "particle": "out",
+    "phrasalVerb": "lock out",
+    "ipa": "/ˈɫɑk ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "문을 잠가 누군가가 방이나 건물에 들어오지 못하게 하다"
+    ],
+    "examples": [
+      "The automatic door locked us out after closing time.",
+      "The caretaker locked visitors out after six o'clock."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-string-along",
+    "baseVerb": "string",
+    "particle": "along",
+    "phrasalVerb": "string along",
+    "ipa": "/ˈstɹɪŋ əˈɫɔŋ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "생각이나 제안에 동의하여 따르다"
+    ],
+    "examples": [
+      "Leo decided to string along with our plan for a picnic.",
+      "I decided to string along with the group's suggestion."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-bite-back",
+    "baseVerb": "bite",
+    "particle": "back",
+    "phrasalVerb": "bite back",
+    "ipa": "/ˈbaɪt ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "당신에게 불쾌한 행동을 하거나 말한 사람에게 분노하는 반응을 보이는 것"
+    ],
+    "examples": [
+      "It was his instinct to bite back.",
+      "The Big Apple is going to bite back."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-tune-out",
+    "baseVerb": "tune",
+    "particle": "out",
+    "phrasalVerb": "tune out",
+    "ipa": "/ˈtun ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "주의를 기울이지 않고 흘려듣다"
+    ],
+    "examples": [
+      "It is easy to tune out during a long speech.",
+      "She tuned out the noise and focused on her book."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-boil-over",
+    "baseVerb": "boil",
+    "particle": "over",
+    "phrasalVerb": "boil over",
+    "ipa": "/ˈbɔɪɫ ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "액체가 끓어 용기 밖으로 넘치다"
+    ],
+    "examples": [
+      "The soup boiled over onto the clean stove.",
+      "Turn the heat down before the milk boils over."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-boil-up",
+    "baseVerb": "boil",
+    "particle": "up",
+    "phrasalVerb": "boil up",
+    "ipa": "/ˈbɔɪɫ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "액체나 액체 속의 것을 끓을 때까지 데우다"
+    ],
+    "examples": [
+      "Dad boiled up a pot of vegetable soup.",
+      "We boiled some water up for the noodles."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-sew-up",
+    "baseVerb": "sew",
+    "particle": "up",
+    "phrasalVerb": "sew up",
+    "ipa": "/ˈsoʊ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "천의 구멍 등을 바느질해 수선하다"
+    ],
+    "examples": [
+      "Grandma sewed up the small hole in my bag.",
+      "I can sew this loose seam up with blue thread."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-part-with",
+    "baseVerb": "part",
+    "particle": "with",
+    "phrasalVerb": "part with",
+    "ipa": "/ˈpɑɹt ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "간직하고 싶지만 마지못해 남에게 내주다"
+    ],
+    "examples": [
+      "I could not part with my favorite storybook.",
+      "Leo finally parted with the old toy he had saved."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-force-down",
+    "baseVerb": "force",
+    "particle": "down",
+    "phrasalVerb": "force down",
+    "ipa": "/ˈfɔɹs ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "수치나 가격 등을 억지로 낮추다"
+    ],
+    "examples": [
+      "Extra supply can force apple prices down.",
+      "The new process may force printing costs down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-send-for",
+    "baseVerb": "send",
+    "particle": "for",
+    "phrasalVerb": "send for",
+    "ipa": "/ˈsɛnd ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "당신에게 오거나 당신에게 배달될 무언가를 준비하기 위해"
+    ],
+    "examples": [
+      "I think we should send for a doctor.",
+      "In the end we had to send for an ambulance."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-send-off",
+    "baseVerb": "send",
+    "particle": "off",
+    "phrasalVerb": "send off",
+    "ipa": "/ˈsɛnd ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가가 어떤 곳으로 가도록 준비해 보내다"
+    ],
+    "examples": [
+      "We sent Mina off to summer camp with a warm goodbye.",
+      "The coach sent the players off to their next activity."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-send-out",
+    "baseVerb": "send",
+    "particle": "out",
+    "phrasalVerb": "send out",
+    "ipa": "/ˈsɛnd ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정한 목적을 위해 누군가를 어떤 곳으로 보내다"
+    ],
+    "examples": [
+      "The school sent two guides out to welcome families.",
+      "The manager sent a helper out to check the signs."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fall-about",
+    "baseVerb": "fall",
+    "particle": "about",
+    "phrasalVerb": "fall about",
+    "ipa": "/ˈfɑɫ əˈbaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "몹시 크게 웃거나 웃음을 참지 못하다"
+    ],
+    "examples": [
+      "We all fell about laughing at the silly puppet.",
+      "The children fell about when the clown dropped his hat."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fall-into",
+    "baseVerb": "fall",
+    "particle": "into",
+    "phrasalVerb": "fall into",
+    "ipa": "/ˈfɑɫ ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정 집단이나 범주에 속하거나 그 일부로 분류되다"
+    ],
+    "examples": [
+      "These books fall into three broad groups.",
+      "Her questions fall into the beginner category."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fall-out",
+    "baseVerb": "fall",
+    "particle": "out",
+    "phrasalVerb": "fall out",
+    "ipa": "/ˈfɑɫ ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "의견 충돌로 누군가와 사이가 틀어지다"
+    ],
+    "examples": [
+      "Mina and Leo fell out over the team name.",
+      "The two friends fell out but soon made up."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-fall-to",
+    "baseVerb": "fall",
+    "particle": "to",
+    "phrasalVerb": "fall to",
+    "ipa": "/ˈfɑɫ ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정한 일이나 의무가 누군가의 책임이 되다"
+    ],
+    "examples": [
+      "The final decision will fall to the committee.",
+      "The task of greeting guests fell to our class."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "normal"
+  },
+  {
+    "id": "phrasal-report-back",
+    "baseVerb": "report",
+    "particle": "back",
+    "phrasalVerb": "report back",
+    "ipa": "/ɹiˈpɔɹt ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "출석했거나 다시 일할 준비가 되었음을 알리러 돌아오다"
+    ],
+    "examples": [
+      "Please report back to the office after lunch.",
+      "The helpers reported back at nine to start work."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-pull-away",
+    "baseVerb": "pull",
+    "particle": "away",
+    "phrasalVerb": "pull away",
+    "ipa": "/ˈpʊɫ əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차량이나 운전자가 움직이기 시작하다"
+    ],
+    "examples": [
+      "The bus pulled away from the stop at noon.",
+      "Our train pulled away slowly after the doors closed."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-pull-back",
+    "baseVerb": "pull",
+    "particle": "back",
+    "phrasalVerb": "pull back",
+    "ipa": "/ˈpʊɫ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "나쁜 결과가 예상되는 일을 하지 않기로 물러서다"
+    ],
+    "examples": [
+      "The school pulled back from changing the lunch schedule.",
+      "Mina pulled back from a plan that seemed too costly."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-pull-in",
+    "baseVerb": "pull",
+    "particle": "in",
+    "phrasalVerb": "pull in",
+    "ipa": "/ˈpʊɫ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차량이 어떤 곳에 들어와 멈추다"
+    ],
+    "examples": [
+      "The bus pulled in beside the library at noon.",
+      "Our taxi pulled in near the front gate."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-pull-into",
+    "baseVerb": "pull",
+    "particle": "into",
+    "phrasalVerb": "pull into",
+    "ipa": "/ˈpʊɫ ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차량이 어떤 장소로 들어와 멈추다"
+    ],
+    "examples": [
+      "The train pulled into the station on time.",
+      "Our bus pulled into a quiet roadside stop."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-return-to",
+    "baseVerb": "return",
+    "particle": "to",
+    "phrasalVerb": "return to",
+    "ipa": "/ɹiˈtɝn ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "이전의 상태나 행동 방식으로 돌아가다"
+    ],
+    "examples": [
+      "After resting, the classroom returned to its usual calm.",
+      "The garden returned to normal after the rain."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-land-in",
+    "baseVerb": "land",
+    "particle": "in",
+    "phrasalVerb": "land in",
+    "ipa": "/ˈɫænd ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "비행기나 배를 타고 어떤 곳에 도착하다"
+    ],
+    "examples": [
+      "We landed in Jeju after a short flight.",
+      "The travelers landed in Busan by ferry."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-lie-around",
+    "baseVerb": "lie",
+    "particle": "around",
+    "phrasalVerb": "lie around",
+    "ipa": "/ˈɫaɪ ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "제자리에 두지 않고 아무 데나 놓여 있다"
+    ],
+    "examples": [
+      "Art supplies were lying around the classroom after lunch.",
+      "Please put away the books lying around your room."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-lie-back",
+    "baseVerb": "lie",
+    "particle": "back",
+    "phrasalVerb": "lie back",
+    "ipa": "/ˈɫaɪ ˈbæk/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "앉은 자세에서 평평하게 누운 자세로 이동하기 위해, 표면에 평평하게 누운 자세"
+    ],
+    "examples": [
+      "Lie back and relax for thirty minutes.",
+      "The doctor asked me to lie back on the couch."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-act-up",
+    "baseVerb": "act",
+    "particle": "up",
+    "phrasalVerb": "act up",
+    "ipa": "/ˈækt ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "몸의 일부가 아프거나 장비가 말썽을 일으키기 시작하다"
+    ],
+    "examples": [
+      "The classroom printer may act up on very humid days.",
+      "My old tablet acted up during the lesson."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-fear-for",
+    "baseVerb": "fear",
+    "particle": "for",
+    "phrasalVerb": "fear for",
+    "ipa": "/ˈfɪɹ ˈfɔɹ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가에게 나쁜 일이 일어날 수도 있고, 누군가에게 일어난 일이 있을 수도 있다고 생각하기 때문에 누군가나 무언가에 대해 걱정하게 되는 것이다"
+    ],
+    "examples": [
+      "Hundreds of innocent civilians fear for their lives.",
+      "I fear greatly for their safety."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-strike-at",
+    "baseVerb": "strike",
+    "particle": "at",
+    "phrasalVerb": "strike at",
+    "ipa": "/ˈstɹaɪk ˈæt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "손이나 발, 스포츠 도구로 공 등을 치거나 차려고 하다"
+    ],
+    "examples": [
+      "Mina struck at the ball with her tennis racket.",
+      "Leo struck at the practice ball but missed."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-strike-up",
+    "baseVerb": "strike",
+    "particle": "up",
+    "phrasalVerb": "strike up",
+    "ipa": "/ˈstɹaɪk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "음악 한 곡이 틀어지면 누군가 그것을 연주하기 시작합니다"
+    ],
+    "examples": [
+      "The announcer called out, ‘Strike up the band!’",
+      "The musicians struck up and people began to dance."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-roll-up",
+    "baseVerb": "roll",
+    "particle": "up",
+    "phrasalVerb": "roll up",
+    "ipa": "/ˈɹoʊɫ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "소매나 바짓단을 여러 번 접어 짧게 올리다"
+    ],
+    "examples": [
+      "Mina rolled up her sleeves before washing the brushes.",
+      "Leo rolled his trouser legs up to cross the shallow stream."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-fit-into",
+    "baseVerb": "fit",
+    "particle": "into",
+    "phrasalVerb": "fit into",
+    "ipa": "/ˈfɪt ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "사람이나 물건을 넣을 만큼 공간이 충분하다"
+    ],
+    "examples": [
+      "This small desk should fit into the reading corner.",
+      "We fit the extra chair into the narrow space."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-cross-over",
+    "baseVerb": "cross",
+    "particle": "over",
+    "phrasalVerb": "cross over",
+    "ipa": "/ˈkɹɔs ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "이전과 다른 집단이나 유형에 속하기 시작하다"
+    ],
+    "examples": [
+      "The artist crossed over from painting to digital design.",
+      "The band crossed over into a wider pop audience."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-wave-through",
+    "baseVerb": "wave",
+    "particle": "through",
+    "phrasalVerb": "wave through",
+    "ipa": "/ˈweɪv ˈθɹu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "손짓으로 사람이나 차량이 입구를 지나가도 된다고 알리다"
+    ],
+    "examples": [
+      "A helper waved the families through the entrance.",
+      "The crossing guide waved our bus through the gate."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-remind-of",
+    "baseVerb": "remind",
+    "particle": "of",
+    "phrasalVerb": "remind of",
+    "ipa": "/ɹiˈmaɪnd ˈəv/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "자신과 매우 비슷해서 누군가 누군가를 떠올리게 하거나 다른 것을 떠올리게 하는 것"
+    ],
+    "examples": [
+      "It’s a strange taste – it reminds me of melons.",
+      "She was tall and dark, and reminded me of my cousin Sarah."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-shut-away",
+    "baseVerb": "shut",
+    "particle": "away",
+    "phrasalVerb": "shut away",
+    "ipa": "/ˈʃət əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가를 다른 사람들과 떨어진 곳에 있게 하다"
+    ],
+    "examples": [
+      "Mina shut herself away in the study for a quiet hour.",
+      "The artist shut himself away to finish the mural."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-shut-out",
+    "baseVerb": "shut",
+    "particle": "out",
+    "phrasalVerb": "shut out",
+    "ipa": "/ˈʃət ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 닫아놓으면, 그것을 보고, 듣고, 생각하지 못하게 된다"
+    ],
+    "examples": [
+      "He closed the door to shut out the noise.",
+      "I tried to shut the incident out of my mind."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-belong-to",
+    "baseVerb": "belong",
+    "particle": "to",
+    "phrasalVerb": "belong to",
+    "ipa": "/bɪˈɫɔŋ ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가의 소유이다"
+    ],
+    "examples": [
+      "This notebook might belong to her.",
+      "These books belong to the school library."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-empty-out",
+    "baseVerb": "empty",
+    "particle": "out",
+    "phrasalVerb": "empty out",
+    "ipa": "/ˈɛmpti ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "내용물을 완전히 비우다"
+    ],
+    "examples": [
+      "He emptied his clothes out of the drawers.",
+      "He was told to empty out his desk and leave."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-mark-down",
+    "baseVerb": "mark",
+    "particle": "down",
+    "phrasalVerb": "mark down",
+    "ipa": "/ˈmɑɹk ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "물건의 가격을 낮추다"
+    ],
+    "examples": [
+      "The shop marked all winter hats down today.",
+      "They marked down the notebooks before the new term."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-branch-off",
+    "baseVerb": "branch",
+    "particle": "off",
+    "phrasalVerb": "branch off",
+    "ipa": "/ˈbɹæntʃ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "뭔가의 주요 부분을 남기기 위해서"
+    ],
+    "examples": [
+      "A small group of soldiers branched off into the jungle.",
+      "Lanes branch off the main road, leading to the coast."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-fix-on",
+    "baseVerb": "fix",
+    "particle": "on",
+    "phrasalVerb": "fix on",
+    "ipa": "/ˈfɪks ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "눈이나 시선을 누군가나 무언가에 고정시키면, 그 사람을 똑바로 바라보고 다른 것은 아무것도 안 한다"
+    ],
+    "examples": [
+      "I kept my eyes fixed on the horizon.",
+      "She fixed her gaze on Jeff."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-pour-out",
+    "baseVerb": "pour",
+    "particle": "out",
+    "phrasalVerb": "pour out",
+    "ipa": "/ˈpɔɹ ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가에게 당신이 느끼는 모든 것을 말해주는 것"
+    ],
+    "examples": [
+      "She began pouring out her fears about the future.",
+      "She wrote him a long letter, pouring her heart out."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-tear-apart",
+    "baseVerb": "tear",
+    "particle": "apart",
+    "phrasalVerb": "tear apart",
+    "ipa": "/ˈtɛɹ əˈpɑɹt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 조각조각 뜯어 완전히 망가뜨리다"
+    ],
+    "examples": [
+      "The puppy may tear the cardboard box apart during playtime.",
+      "We can tear the model apart for recycling."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-tear-up",
+    "baseVerb": "tear",
+    "particle": "up",
+    "phrasalVerb": "tear up",
+    "ipa": "/ˈtɛɹ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "종이나 천 등을 잡아당겨 여러 조각으로 찢다"
+    ],
+    "examples": [
+      "Mina tore up the scrap paper for the collage.",
+      "We tore the old fabric up into narrow strips."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-tip-over",
+    "baseVerb": "tip",
+    "particle": "over",
+    "phrasalVerb": "tip over",
+    "ipa": "/ˈtɪp ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가가 넘어지거나 누군가나 무언가가 넘어지면 옆으로 넘어집니다"
+    ],
+    "examples": [
+      "He just tipped over lightly on a carpeted floor.",
+      "He tipped his drink over."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-divide-up",
+    "baseVerb": "divide",
+    "particle": "up",
+    "phrasalVerb": "divide up",
+    "ipa": "/dɪˈvaɪd ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "여러 몫이나 집단으로 나누다"
+    ],
+    "examples": [
+      "Divide the children up into groups of four.",
+      "Let’s divide up into groups now."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-knock-around",
+    "baseVerb": "knock",
+    "particle": "around",
+    "phrasalVerb": "knock around",
+    "ipa": "/ˈnɑk ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "아이디어를 격식 없이 이리저리 이야기하다"
+    ],
+    "examples": [
+      "We knocked around a few ideas for the class picnic.",
+      "The team knocked the poster ideas around after lunch."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-shout-out",
+    "baseVerb": "shout",
+    "particle": "out",
+    "phrasalVerb": "shout out",
+    "ipa": "/ˈʃaʊt ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 갑자기 아주 큰 소리로 외치다"
+    ],
+    "examples": [
+      "Mina shouted out the answer when she remembered it.",
+      "Please shout the number out so everyone can hear."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-lock-away",
+    "baseVerb": "lock",
+    "particle": "away",
+    "phrasalVerb": "lock away",
+    "ipa": "/ˈɫɑk əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "물건을 잠금장치가 있는 곳이나 용기에 넣어 두다"
+    ],
+    "examples": [
+      "Please lock the art supplies away after class.",
+      "Mina locked her passport away in a small safe."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-dust-off",
+    "baseVerb": "dust",
+    "particle": "off",
+    "phrasalVerb": "dust off",
+    "ipa": "/ˈdəst ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "옷에 묻은 먼지나 흙을 털어 내다"
+    ],
+    "examples": [
+      "Leo dusted his jacket off before entering the room.",
+      "Mina dusted off her coat after sitting on the bench."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-weigh-in",
+    "baseVerb": "weigh",
+    "particle": "in",
+    "phrasalVerb": "weigh in",
+    "ipa": "/ˈweɪ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 일이나 논의에 관여하다"
+    ],
+    "examples": [
+      "Several students weighed in on the class discussion.",
+      "Our teacher weighed in with a helpful suggestion."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-disagree-with",
+    "baseVerb": "disagree",
+    "particle": "with",
+    "phrasalVerb": "disagree with",
+    "ipa": "/dɪsəˈɡɹi ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "정직하지 않거나 옳지 않다고 여겨 찬성하지 않다"
+    ],
+    "examples": [
+      "Mina disagrees with copying someone else's homework.",
+      "Our class disagreed with hiding the true results."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-hang-about",
+    "baseVerb": "hang",
+    "particle": "about",
+    "phrasalVerb": "hang about",
+    "ipa": "/ˈhæŋ əˈbaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특별한 일 없이 머물거나 지체하다"
+    ],
+    "examples": [
+      "We hung about near the library after class.",
+      "Do not hang about, or we will miss the bus."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-toss-up",
+    "baseVerb": "toss",
+    "particle": "up",
+    "phrasalVerb": "toss up",
+    "ipa": "/ˈtɔs ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "동전을 던져 결정하다"
+    ],
+    "examples": [
+      "Let’s toss up to decide who drives.",
+      "Neil tossed the penny up; she called ‘heads’ and won."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-connect-up",
+    "baseVerb": "connect",
+    "particle": "up",
+    "phrasalVerb": "connect up",
+    "ipa": "/kəˈnɛkt ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "여러 가지 또는 여러 장소를 함께하기 위해"
+    ],
+    "examples": [
+      "I’ve connected the modem up to the phone line.",
+      "The plumber came and connected up the dishwasher."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-lay-on",
+    "baseVerb": "lay",
+    "particle": "on",
+    "phrasalVerb": "lay on",
+    "ipa": "/ˈɫeɪ ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "음식, 오락, 서비스 등을 특히 무료로 제공하다"
+    ],
+    "examples": [
+      "The school laid on a bus for the class trip.",
+      "They lay on free snacks for every club meeting."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-settle-down",
+    "baseVerb": "settle",
+    "particle": "down",
+    "phrasalVerb": "settle down",
+    "ipa": "/ˈsɛtəɫ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특히 많은 시간이나 노력이 필요한 일을 하기 위해, 편안한 장소에서 자신을 만들기 위해서"
+    ],
+    "examples": [
+      "I settled down in front of the television for the evening.",
+      "She took a seat and settled down to wait."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-mess-up",
+    "baseVerb": "mess",
+    "particle": "up",
+    "phrasalVerb": "mess up",
+    "ipa": "/ˈmɛs ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "실수하거나 일을 잘못하다"
+    ],
+    "examples": [
+      "I messed up one answer on the worksheet.",
+      "Do not worry if you mess up the first try."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-hang-out",
+    "baseVerb": "hang",
+    "particle": "out",
+    "phrasalVerb": "hang out",
+    "ipa": "/ˈhæŋ ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "친구들과 어울려 시간을 보내다"
+    ],
+    "examples": [
+      "Children like to hang out with friends after school.",
+      "We hung out in the park on Saturday."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-lay-up",
+    "baseVerb": "lay",
+    "particle": "up",
+    "phrasalVerb": "lay up",
+    "ipa": "/ˈɫeɪ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "병이나 부상으로 누워 지내다"
+    ],
+    "examples": [
+      "I've been laid up with flu for the last week.",
+      "Jim has been laid up with flu for three days."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-mess-with",
+    "baseVerb": "mess",
+    "particle": "with",
+    "phrasalVerb": "mess with",
+    "ipa": "/ˈmɛs ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가를 심각하게 화나게 하거나 혼란을 주기 위해서"
+    ],
+    "examples": [
+      "Boston messes with my head.",
+      "Too much cocoa can mess with your head."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-stick-at",
+    "baseVerb": "stick",
+    "particle": "at",
+    "phrasalVerb": "stick at",
+    "ipa": "/ˈstɪk ˈæt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어려운 일이나 불쾌한 일을 계속 결심한 방식으로 계속 하는 것"
+    ],
+    "examples": [
+      "\"Stick at it!\"",
+      "Stick at it, and you'll pass the exam."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-switch-on",
+    "baseVerb": "switch",
+    "particle": "on",
+    "phrasalVerb": "switch on",
+    "ipa": "/ˈswɪtʃ ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "조명이나 기계 같은 것을 켜거나 켜면 작동을 시작하게 합니다"
+    ],
+    "examples": [
+      "Could you switch the light on, please?",
+      "Tom switched on the lights."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-rise-up",
+    "baseVerb": "rise",
+    "particle": "up",
+    "phrasalVerb": "rise up",
+    "ipa": "/ˈɹaɪz ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "일어서거나 위로 올라가다"
+    ],
+    "examples": [
+      "Everyone rose up to greet the guest.",
+      "Warm air rises up from the sunny ground."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-lay-down",
+    "baseVerb": "lay",
+    "particle": "down",
+    "phrasalVerb": "lay down",
+    "ipa": "/ˈɫeɪ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "지켜야 할 규칙이나 방식을 공식적으로 정하다"
+    ],
+    "examples": [
+      "The club laid down simple rules for every member.",
+      "The guide lays down clear steps for the activity."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-hang-on",
+    "baseVerb": "hang",
+    "particle": "on",
+    "phrasalVerb": "hang on",
+    "ipa": "/ˈhæŋ ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "잠깐 기다리거나 참다"
+    ],
+    "examples": [
+      "Hang on a moment while I find the map.",
+      "We hung on for five minutes until the doors opened."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "hard"
+  },
+  {
+    "id": "phrasal-stick-to",
+    "baseVerb": "stick",
+    "particle": "to",
+    "phrasalVerb": "stick to",
+    "ipa": "/ˈstɪk ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "특정 한 가지 일을 계속하거나 사용하며, 어떤 기간 동안 변경하거나 중단하지 않도록 한다"
+    ],
+    "examples": [
+      "And this time he must stick to it.",
+      "Now he must stick to it."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-hang-together",
+    "baseVerb": "hang",
+    "particle": "together",
+    "phrasalVerb": "hang together",
+    "ipa": "/ˈhæŋ təˈɡɛðɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "여러 부분이 잘 어우러져 짜임새가 있다"
+    ],
+    "examples": [
+      "The story hangs together from beginning to end.",
+      "The parts began to hang together after one more edit."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-measure-up",
+    "baseVerb": "measure",
+    "particle": "up",
+    "phrasalVerb": "measure up",
+    "ipa": "/ˈmɛʒɝ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "기대하거나 필요한 수준에 이르다"
+    ],
+    "examples": [
+      "The new glue measured up in our craft test.",
+      "I practiced hard because I wanted to measure up."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-beat-down",
+    "baseVerb": "beat",
+    "particle": "down",
+    "phrasalVerb": "beat down",
+    "ipa": "/ˈbit ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "햇볕이 강하게 내리쬐다"
+    ],
+    "examples": [
+      "The sun can beat down brightly at noon.",
+      "At midday, the sun will beat down on the field."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-stick-together",
+    "baseVerb": "stick",
+    "particle": "together",
+    "phrasalVerb": "stick together",
+    "ipa": "/ˈstɪk təˈɡɛðɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "서로 가까이 지내며 돕다"
+    ],
+    "examples": [
+      "Our group stuck together during the long project.",
+      "Friends should stick together when work gets tricky."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-stick-with",
+    "baseVerb": "stick",
+    "particle": "with",
+    "phrasalVerb": "stick with",
+    "ipa": "/ˈstɪk ˈwɪð/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "바꾸지 않고 계속 사용하거나 하다"
+    ],
+    "examples": [
+      "I will stick with the study plan for one month.",
+      "We stuck with our first color choice."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-cave-in",
+    "baseVerb": "cave",
+    "particle": "in",
+    "phrasalVerb": "cave in",
+    "ipa": "/ˈkeɪv ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "설득을 받아 갑자기 반대를 그만두다"
+    ],
+    "examples": [
+      "Dad caved in and let us choose the music.",
+      "The group finally caved in after hearing her reasons."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-pin-down",
+    "baseVerb": "pin",
+    "particle": "down",
+    "phrasalVerb": "pin down",
+    "ipa": "/ˈpɪn ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 정확히 파악하거나 설명하다"
+    ],
+    "examples": [
+      "We finally pinned down the cause of the wobble.",
+      "It is hard to pin that unusual color down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-filter-out",
+    "baseVerb": "filter",
+    "particle": "out",
+    "phrasalVerb": "filter out",
+    "ipa": "/ˈfɪɫtɝ ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "필터로 원하지 않는 것을 걸러 내다"
+    ],
+    "examples": [
+      "This cloth can filter out tiny bits from the juice.",
+      "The screen filtered the sand out of the water."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-crash-out",
+    "baseVerb": "crash",
+    "particle": "out",
+    "phrasalVerb": "crash out",
+    "ipa": "/ˈkɹæʃ ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "매우 피곤해 갑자기 잠들다"
+    ],
+    "examples": [
+      "I crashed out on the sofa after the long school day.",
+      "The twins crashed out soon after the evening story."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-nail-down",
+    "baseVerb": "nail",
+    "particle": "down",
+    "phrasalVerb": "nail down",
+    "ipa": "/ˈneɪɫ ˈdaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가가 어떤 것에 동의하게 하거나 그들이 무엇을 할 것인지 말하도록 하기 위해서"
+    ],
+    "examples": [
+      "I’ll try to nail Jim down about the date.",
+      "They’re on the verge of getting the agreement nailed down."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-pin-up",
+    "baseVerb": "pin",
+    "particle": "up",
+    "phrasalVerb": "pin up",
+    "ipa": "/ˈpɪn ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "그림이나 사진을 벽에 핀으로 붙이다"
+    ],
+    "examples": [
+      "We pinned up the class photo beside the calendar.",
+      "Please pin this bright poster up on the wall."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-tick-off",
+    "baseVerb": "tick",
+    "particle": "off",
+    "phrasalVerb": "tick off",
+    "ipa": "/ˈtɪk ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "처리한 목록 항목 옆에 체크 표시를 하다"
+    ],
+    "examples": [
+      "Tick off each task after you finish it.",
+      "I ticked the final item off my packing list."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-tick-over",
+    "baseVerb": "tick",
+    "particle": "over",
+    "phrasalVerb": "tick over",
+    "ipa": "/ˈtɪk ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "꾸준히 작동하지만 상태가 썩 좋지는 않다"
+    ],
+    "examples": [
+      "The small shop kept ticking over during the quiet month.",
+      "The old printer is ticking over, but it needs an update."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-reduce-to",
+    "baseVerb": "reduce",
+    "particle": "to",
+    "phrasalVerb": "reduce to",
+    "ipa": "/ɹəˈdus ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "부수거나 으깨서 다른 형태로 만들다"
+    ],
+    "examples": [
+      "We reduced the crackers to crumbs for the recipe.",
+      "The blender reduced the oats to a fine powder."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-lay-aside",
+    "baseVerb": "lay",
+    "particle": "aside",
+    "phrasalVerb": "lay aside",
+    "ipa": "/ˈɫeɪ əˈsaɪd/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다 썼거나 나중에 쓰려고 물건을 한쪽에 내려놓다"
+    ],
+    "examples": [
+      "Mina laid the book aside when dinner was ready.",
+      "He laid aside the puzzle until the next morning."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-hang-around",
+    "baseVerb": "hang",
+    "particle": "around",
+    "phrasalVerb": "hang around",
+    "ipa": "/ˈhæŋ ɝˈaʊn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "대기하거나 아무것도 하지 않는 곳에서 시간을 보내기 위해서"
+    ],
+    "examples": [
+      "I hung around outside, waiting for the others.",
+      "Let’s not hang around or we’ll be late!"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-beat-out",
+    "baseVerb": "beat",
+    "particle": "out",
+    "phrasalVerb": "beat out",
+    "ipa": "/ˈbit ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다른 사람도 원하는 것을 경쟁에서 이겨 차지하다"
+    ],
+    "examples": [
+      "Mina beat out twenty applicants for the school role.",
+      "Our poster managed to beat out five others for first place."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-relate-to",
+    "baseVerb": "relate",
+    "particle": "to",
+    "phrasalVerb": "relate to",
+    "ipa": "/ɹiˈɫeɪt ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 것에 관한 것이거나 그것과 관련되다"
+    ],
+    "examples": [
+      "This chapter relates to life in the ocean.",
+      "The new rule relates to borrowing library books."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-attend-to",
+    "baseVerb": "attend",
+    "particle": "to",
+    "phrasalVerb": "attend to",
+    "ipa": "/əˈtɛnd ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "상점, 레스토랑 등에서 손님을 모시기"
+    ],
+    "examples": [
+      "Are you being attended to?",
+      "Please take a seat and I’ll ask someone to attend to you."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-press-ahead",
+    "baseVerb": "press",
+    "particle": "ahead",
+    "phrasalVerb": "press ahead",
+    "ipa": "/ˈpɹɛs əˈhɛd/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어려움, 반대 또는 중단에도 불구하고, 어떤 일을 결심한 방식으로 계속 수행하는 것"
+    ],
+    "examples": [
+      "They pressed ahead regardless of objections.",
+      "We shall press ahead with our plans for reform."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-stick-up",
+    "baseVerb": "stick",
+    "particle": "up",
+    "phrasalVerb": "stick up",
+    "ipa": "/ˈstɪk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "위쪽으로 무언가를 올리기 위해서, 특히 팔이나 손을 올리려면"
+    ],
+    "examples": [
+      "Maggie stuck up her hand to answer the question.",
+      "You’ve got a bit of hair sticking up at the back."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-settle-into",
+    "baseVerb": "settle",
+    "particle": "into",
+    "phrasalVerb": "settle into",
+    "ipa": "/ˈsɛtəɫ ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "오래 머물기 때문에 편안한 곳에서 지내기 위해서"
+    ],
+    "examples": [
+      "How are you settling into your new home?",
+      "We settled into our tent."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-lift-up",
+    "baseVerb": "lift",
+    "particle": "up",
+    "phrasalVerb": "lift up",
+    "ipa": "/ˈɫɪft ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "들어 올리거나 높이다"
+    ],
+    "examples": [
+      "He lifted up the heavy bags.",
+      "We could hear the gospel groups lift up their voices."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-stretch-to",
+    "baseVerb": "stretch",
+    "particle": "to",
+    "phrasalVerb": "stretch to",
+    "ipa": "/ˈstɹɛtʃ ˈtu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "당겨져 더 길거나 넓어지다"
+    ],
+    "examples": [
+      "This soft band can stretch to twice its usual length.",
+      "The fabric can stretch to twice its width."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-wrap-round",
+    "baseVerb": "wrap",
+    "particle": "round",
+    "phrasalVerb": "wrap round",
+    "ipa": "/ˈɹæp ˈɹaʊnd/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다른 것에 무언가를 놓기 위해"
+    ],
+    "examples": [
+      "Each cake has a bright red ribbon wrapped round it.",
+      "We see couples with their arms wrapped round each other."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-drag-into",
+    "baseVerb": "drag",
+    "particle": "into",
+    "phrasalVerb": "drag into",
+    "ipa": "/ˈdɹæɡ ˈɪntu/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가 원하지 않을 때 상황에 휘말리게 하기 위해서"
+    ],
+    "examples": [
+      "Friends will be dragged into the argument.",
+      "My friend went mad about being dragged into our rows."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-drag-on",
+    "baseVerb": "drag",
+    "particle": "on",
+    "phrasalVerb": "drag on",
+    "ipa": "/ˈdɹæɡ ˈɑn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "당신이 원하거나 생각하는 것보다 더 오래 지속하는 것이 필요하다고 생각하는 것보다 더 오래 지속하는 것이 필요하다"
+    ],
+    "examples": [
+      "This has been dragging on for months now.",
+      "This has dragged on for months."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-boot-out",
+    "baseVerb": "boot",
+    "particle": "out",
+    "phrasalVerb": "boot out",
+    "ipa": "/ˈbut ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "누군가를 장소나 일, 참여하던 것에서 나가게 하다"
+    ],
+    "examples": [
+      "A login error booted Mina out of the class website.",
+      "The game booted us out when the session ended."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-switch-over",
+    "baseVerb": "switch",
+    "particle": "over",
+    "phrasalVerb": "switch over",
+    "ipa": "/ˈswɪtʃ ˈoʊvɝ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "스위치를 눌러 다른 텔레비전 또는 라디오 프로그램을 보거나 듣기 시작하세요"
+    ],
+    "examples": [
+      "Can’t we switch over to Channel 4?",
+      "I just switch over right away."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-polish-off",
+    "baseVerb": "polish",
+    "particle": "off",
+    "phrasalVerb": "polish off",
+    "ipa": "/ˈpɑɫɪʃ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다 먹을 때까지 먹거나 마시려고"
+    ],
+    "examples": [
+      "The cake had been polished off before I got home.",
+      "\"I'm afraid we've already polished off the soup.\""
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-wipe-out",
+    "baseVerb": "wipe",
+    "particle": "out",
+    "phrasalVerb": "wipe out",
+    "ipa": "/ˈwaɪp ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "천으로 물건의 안쪽을 닦다"
+    ],
+    "examples": [
+      "I wiped out the lunch box with a clean cloth.",
+      "Please wipe the empty drawer out before using it."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-rub-off",
+    "baseVerb": "rub",
+    "particle": "off",
+    "phrasalVerb": "rub off",
+    "ipa": "/ˈɹəb ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "한 사람의 특성이 다른 사람에게도 영향을 주다"
+    ],
+    "examples": [
+      "Her calm attitude rubbed off on the whole group.",
+      "Mina's love of reading soon rubbed off on Leo."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-pitch-in",
+    "baseVerb": "pitch",
+    "particle": "in",
+    "phrasalVerb": "pitch in",
+    "ipa": "/ˈpɪtʃ ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "다른 사람들과 함께 일을 거들다"
+    ],
+    "examples": [
+      "We all pitched in to clean the classroom.",
+      "Two neighbors pitched in with the garden work."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-shrug-off",
+    "baseVerb": "shrug",
+    "particle": "off",
+    "phrasalVerb": "shrug off",
+    "ipa": "/ˈʃɹəɡ ˈɔf/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 일이 걱정되거나 속상하지 않은 듯 넘기다"
+    ],
+    "examples": [
+      "She shrugged off the small spelling mistake.",
+      "Leo shrugged the delay off and kept smiling."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-hook-up",
+    "baseVerb": "hook",
+    "particle": "up",
+    "phrasalVerb": "hook up",
+    "ipa": "/ˈhʊk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "기기나 컴퓨터를 다른 기기나 시스템, 네트워크에 연결하다"
+    ],
+    "examples": [
+      "He hooked the microphone up to a tape recorder.",
+      "I can hook up to the library from my computer."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-weed-out",
+    "baseVerb": "weed",
+    "particle": "out",
+    "phrasalVerb": "weed out",
+    "ipa": "/ˈwid ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "집단이나 모음에서 적합하지 않은 것을 골라 내다"
+    ],
+    "examples": [
+      "We weeded out the duplicate cards from the set.",
+      "The editor can weed out unclear examples from the list."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-curl-up",
+    "baseVerb": "curl",
+    "particle": "up",
+    "phrasalVerb": "curl up",
+    "ipa": "/ˈkɝɫ ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "몸을 굽히고 팔다리를 가까이 모은 채 앉거나 눕다"
+    ],
+    "examples": [
+      "We curled up together for warmth.",
+      "We sat curled up on the sofa, watching the late film."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-snap-up",
+    "baseVerb": "snap",
+    "particle": "up",
+    "phrasalVerb": "snap up",
+    "ipa": "/ˈsnæp ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "기회를 즉시 활용하기 위해서"
+    ],
+    "examples": [
+      "By 10 o’clock most of the best bargains had been snapped up.",
+      "I’d snap up his offer if I were you."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-spin-out",
+    "baseVerb": "spin",
+    "particle": "out",
+    "phrasalVerb": "spin out",
+    "ipa": "/ˈspɪn ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "필요 이상으로 오래 끌다"
+    ],
+    "examples": [
+      "The host chose to spin out the quiz longer than necessary.",
+      "Do not spin the meeting out with repeated questions."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-rub-in",
+    "baseVerb": "rub",
+    "particle": "in",
+    "phrasalVerb": "rub in",
+    "ipa": "/ˈɹəb ˈɪn/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "손가락으로 버터 같은 재료를 밀가루 등에 섞다"
+    ],
+    "examples": [
+      "Rub in the butter with your fingertips.",
+      "Mina rubbed the butter in until the flour looked crumbly."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-rub-out",
+    "baseVerb": "rub",
+    "particle": "out",
+    "phrasalVerb": "rub out",
+    "ipa": "/ˈɹəb ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "연필로 쓴 글이나 그림을 지우개로 지우다"
+    ],
+    "examples": [
+      "Rub out the extra line before you color the picture.",
+      "I rubbed my spelling mistake out and tried again."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-crack-up",
+    "baseVerb": "crack",
+    "particle": "up",
+    "phrasalVerb": "crack up",
+    "ipa": "/ˈkɹæk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "무언가를 보고 갑자기 크게 웃다"
+    ],
+    "examples": [
+      "Everyone will crack up at the silly drawing.",
+      "We cracked up when the puppet bowed to the chair."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-stack-up",
+    "baseVerb": "stack",
+    "particle": "up",
+    "phrasalVerb": "stack up",
+    "ipa": "/ˈstæk ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "차곡차곡 쌓다"
+    ],
+    "examples": [
+      "She stacked the dishes up on the draining board.",
+      "The books had been stacked up in neat piles."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-peg-out",
+    "baseVerb": "peg",
+    "particle": "out",
+    "phrasalVerb": "peg out",
+    "ipa": "/ˈpɛɡ ˈaʊt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "젖은 옷을 빨랫줄에 집게로 고정해 말리다"
+    ],
+    "examples": [
+      "We pegged out the towels in the morning sun.",
+      "Dad pegged the clean shirts out on the line."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-profit-from",
+    "baseVerb": "profit",
+    "particle": "from",
+    "phrasalVerb": "profit from",
+    "ipa": "/ˈpɹɑfət ˈfɹəm/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "어떤 것에서 이익을 얻다"
+    ],
+    "examples": [
+      "Local farmers profit from the weekend market.",
+      "The small shop profited from its popular new design."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-chip-away",
+    "baseVerb": "chip",
+    "particle": "away",
+    "phrasalVerb": "chip away",
+    "ipa": "/ˈtʃɪp əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "단단한 물체에서 작은 조각을 도구에 쳐서 제거합니다"
+    ],
+    "examples": [
+      "She was chipping away at the ground with a trowel.",
+      "Use a hammer to chip away the edge."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-swing-at",
+    "baseVerb": "swing",
+    "particle": "at",
+    "phrasalVerb": "swing at",
+    "ipa": "/ˈswɪŋ ˈæt/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "손이나 방망이, 라켓 등을 휘둘러 누군가나 무언가를 치려고 하다"
+    ],
+    "examples": [
+      "Maya swung the bat at the soft practice ball.",
+      "Leo swung his racket at the foam ball."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-sweep-away",
+    "baseVerb": "sweep",
+    "particle": "away",
+    "phrasalVerb": "sweep away",
+    "ipa": "/ˈswip əˈweɪ/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "이야기나 상황, 감정 등에 완전히 빠져들다"
+    ],
+    "examples": [
+      "An exciting story can sweep Mina away for an hour.",
+      "We were swept away by the music at the school concert."
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
+  },
+  {
+    "id": "phrasal-sweep-up",
+    "baseVerb": "sweep",
+    "particle": "up",
+    "phrasalVerb": "sweep up",
+    "ipa": "/ˈswip ˈəp/",
+    "levelHint": "유치원",
+    "meaningKo": [
+      "브러시나 빗자루를 사용하여 바닥이나 지면의 먼지, 유리, 먼지 등을 청소하고 제거합니다"
+    ],
+    "examples": [
+      "I’m going to sweep up.",
+      "Would you sweep up the broken glass?"
+    ],
+    "partOfSpeech": "phrasalVerb",
+    "usageNotes": "전수 기계 보조 감사로 고정한 영어 의미·예문과 한국어 초안이며, 사람 편집 검수 전입니다.",
+    "difficulty": "veryHard"
   }
 ]

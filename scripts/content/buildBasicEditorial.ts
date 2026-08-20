@@ -1,9 +1,16 @@
-import { readFile, writeFile } from 'node:fs/promises'
-
-import type { StoryContent, WordEntry, WordItem } from '../../src/domain/content/types'
+import type { WordItem } from '../../src/domain/content/types'
+import { difficultyForPosition } from './difficultyBands'
 import { normalizeWord } from './normalize'
 
-type WordKind = 'noun' | 'verb' | 'adjective'
+type WordKind =
+  | 'noun'
+  | 'verb'
+  | 'adjective'
+  | 'adverb'
+  | 'conjunction'
+  | 'determiner'
+  | 'preposition'
+  | 'pronoun'
 
 interface BasicEditorialWord {
   lemma: string
@@ -16,7 +23,40 @@ interface BasicEditorialWord {
  * Directly edited beginner vocabulary. These words are intentionally kept in
  * source control instead of being an opaque translation-service export.
  */
-export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
+export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = ([
+  ['a', 'determiner', '하나의, 어떤', ['A small fox waits near the gate.', 'I see a bright red ball.']],
+  ['the', 'determiner', '그, 이미 말한', ['The moon shines above our house.', 'Please close the green window.']],
+  ['i', 'pronoun', '나, 나는', ['I read quietly after lunch.', 'I know a song about spring.']],
+  ['you', 'pronoun', '너, 당신', ['You can sit beside me.', 'I will show you the picture.']],
+  ['he', 'pronoun', '그, 그는', ['He carries a blue backpack.', 'My uncle says he can help.']],
+  ['she', 'pronoun', '그녀, 그녀는', ['She waters the garden each morning.', 'My sister says she feels ready.']],
+  ['it', 'pronoun', '그것, 그것은', ['It rests under the table.', 'I found it beside the lamp.']],
+  ['we', 'pronoun', '우리, 우리는', ['We share fruit after class.', 'Today we walk home together.']],
+  ['they', 'pronoun', '그들, 그것들', ['They play near the river.', 'At noon they open the boxes.']],
+  ['us', 'pronoun', '우리를, 우리에게', ['The guide waits for us outside.', 'Please tell us your name.']],
+  ['and', 'conjunction', '그리고', ['The cat and dog sleep nearby.', 'I wash the cup and plate.']],
+  ['but', 'conjunction', '하지만', ['The bag is old but clean.', 'I called, but nobody answered.']],
+  ['or', 'conjunction', '또는', ['Choose the apple or the banana.', 'We can walk or take the bus.']],
+  ['to', 'preposition', '~로, ~에게', ['We walk to the library.', 'Give the note to your teacher.']],
+  ['in', 'preposition', '~안에', ['The keys are in my pocket.', 'Flowers grow in this garden.']],
+  ['on', 'preposition', '~위에, ~에', ['The book is on her desk.', 'We meet on a sunny day.']],
+  ['at', 'preposition', '~에서, ~시에', ['Dad waits at the station.', 'The lesson starts at nine.']],
+  ['for', 'preposition', '~을 위해, ~동안', ['This small gift is for you.', 'We waited for the morning bus.']],
+  ['with', 'preposition', '~와 함께', ['I draw with a blue pencil.', 'She walks with our dog.']],
+  ['from', 'preposition', '~에서부터', ['A letter came from my aunt.', 'We carried water from the kitchen.']],
+  ['of', 'preposition', '~의', ['A cup of milk is ready.', 'The top of the hill is green.']],
+  ['as', 'preposition', '~로서, ~처럼', ['She works as our team captain.', 'Use the box as a little table.']],
+  ['my', 'determiner', '나의', ['My shoes are by the door.', 'I write my name carefully.']],
+  ['your', 'determiner', '너의, 당신의', ['Your coat is on this chair.', 'Please bring your yellow notebook.']],
+  ['his', 'determiner', '그의', ['His bicycle has a bell.', 'Leo puts his hat away.']],
+  ['her', 'determiner', '그녀의', ['Her picture shows a bird.', 'Mina opens her lunch box.']],
+  ['our', 'determiner', '우리의', ['Our classroom has two windows.', 'We clean our table together.']],
+  ['their', 'determiner', '그들의', ['Their house is near the park.', 'The children carry their bags.']],
+  ['this', 'determiner', '이것, 이', ['This apple tastes sweet.', 'Please read this short story.']],
+  ['that', 'determiner', '저것, 그', ['That bird has a long tail.', 'I remember that happy day.']],
+  ['not', 'adverb', '~아니다, ~하지 않다', ['The water is not cold.', 'We do not leave the door open.']],
+  ['there', 'adverb', '거기에, 그곳에', ['Your red cup is over there.', 'There is a bench by the tree.']],
+  ['will', 'verb', '~할 것이다', ['We will finish before dinner.', 'She will call after school.']],
   ['apple', 'noun', '사과'], ['baby', 'noun', '아기'], ['bag', 'noun', '가방'],
   ['ball', 'noun', '공'], ['bed', 'noun', '침대'], ['bird', 'noun', '새'],
   ['fish', 'noun', '물고기'], ['boy', 'noun', '소년'], ['bread', 'noun', '빵'],
@@ -33,14 +73,14 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['night', 'noun', '밤'], ['parent', 'noun', '부모'], ['park', 'noun', '공원'],
   ['pen', 'noun', '펜'], ['picture', 'noun', '그림'], ['room', 'noun', '방'],
   ['king', 'noun', '왕'], ['shoe', 'noun', '신발'], ['sister', 'noun', '자매'],
-  ['song', 'noun', '노래'], ['table', 'noun', '탁자'],
+  ['pillow', 'noun', '베개'], ['table', 'noun', '탁자'],
   ['be', 'verb', '이다', ['To be kind is good.', 'Be happy today.']],
   ['come', 'verb', '오다', ['Come here, please.', 'They come home after school.']],
   ['do', 'verb', '하다', ['I do my homework.', 'We do it together.']],
   ['drink', 'verb', '마시다', ['I drink water.', 'We drink milk.']],
   ['eat', 'verb', '먹다', ['I eat an apple.', 'We eat bread.']],
   ['find', 'verb', '찾다', ['I find my key.', 'We find the book.']],
-  ['get', 'verb', '얻다', ['I get a gift.', 'We get on the bus.']],
+  ['get', 'verb', '얻다', ['I get a gift from my aunt.', 'We get new books at school.']],
   ['give', 'verb', '주다', ['I give Mom a flower.', 'We give help to friends.']],
   ['go', 'verb', '가다', ['I go home.', 'We go to school.']],
   ['have', 'verb', '가지다', ['I have a book.', 'We have a game.']],
@@ -55,7 +95,7 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['see', 'verb', '보다', ['I see a bird.', 'We see the moon.']],
   ['sit', 'verb', '앉다', ['I sit on a chair.', 'We sit together.']],
   ['sleep', 'verb', '자다', ['I sleep at night.', 'Babies sleep.']],
-  ['take', 'verb', '가지고 가다', ['I take a bus.', 'We take a picture.']],
+  ['take', 'verb', '가지고 가다', ['I take my lunch to school.', 'We take warm clothes on the trip.']],
   ['talk', 'verb', '말하다', ['I talk to my teacher.', 'We talk together.']],
   ['walk', 'verb', '걷다', ['I walk to school.', 'We walk in the park.']],
   ['write', 'verb', '쓰다', ['I write a letter.', 'We write our names.']],
@@ -131,8 +171,8 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['church', 'noun', '교회'], ['circle', 'noun', '원'], ['coat', 'noun', '외투'],
   ['coffee', 'noun', '커피'], ['college', 'noun', '대학'], ['corner', 'noun', '모퉁이'],
   ['daughter', 'noun', '딸'], ['dinner', 'noun', '저녁 식사'], ['dream', 'noun', '꿈'],
-  ['driver', 'noun', '운전사'], ['earth', 'noun', '지구'], ['engine', 'noun', '엔진'],
-  ['engineer', 'noun', '기술자'], ['entrance', 'noun', '입구'], ['factory', 'noun', '공장'],
+  ['rainbow', 'noun', '무지개'], ['earth', 'noun', '지구'], ['engine', 'noun', '엔진'],
+  ['turtle', 'noun', '거북이'], ['cookie', 'noun', '쿠키'], ['factory', 'noun', '공장'],
   ['field', 'noun', '들판'], ['floor', 'noun', '바닥'], ['forest', 'noun', '숲'],
   ['gift', 'noun', '선물'], ['glass', 'noun', '유리잔'], ['ground', 'noun', '땅'],
   ['guest', 'noun', '손님'], ['holiday', 'noun', '휴일'], ['homework', 'noun', '숙제'],
@@ -187,7 +227,8 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['sea', 'noun', '바다'], ['season', 'noun', '계절'], ['seed', 'noun', '씨앗'],
   ['sheep', 'noun', '양'], ['shirt', 'noun', '셔츠'], ['shop', 'noun', '가게'],
   ['sky', 'noun', '하늘'], ['soap', 'noun', '비누'], ['sock', 'noun', '양말'],
-  ['soldier', 'noun', '군인'], ['spoon', 'noun', '숟가락'], ['star', 'noun', '별'],
+  ['fold', 'verb', '접다', ['I fold the paper.', 'We fold the blanket neatly.']],
+  ['spoon', 'noun', '숟가락'], ['star', 'noun', '별'],
   ['station', 'noun', '역'], ['store', 'noun', '상점'], ['street', 'noun', '거리'],
   ['student', 'noun', '학생'], ['sugar', 'noun', '설탕'],
   ['add', 'verb', '더하다', ['I add sugar to my tea.', 'We add the numbers.']],
@@ -217,7 +258,8 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['pull', 'verb', '당기다', ['I pull the door open.', 'We pull the boat to shore.']],
   ['bad', 'adjective', '나쁜'], ['boring', 'adjective', '지루한'], ['huge', 'adjective', '매우 큰'],
   ['comfortable', 'adjective', '편안한'], ['crowded', 'adjective', '붐비는'], ['cute', 'adjective', '귀여운'],
-  ['dead', 'adjective', '죽은'], ['delicious', 'adjective', '맛있는'], ['excellent', 'adjective', '훌륭한'],
+  ['gather', 'verb', '모이다', ['I gather the toys.', 'We gather at the table.']],
+  ['delicious', 'adjective', '맛있는'], ['excellent', 'adjective', '훌륭한'],
   ['expensive', 'adjective', '비싼'], ['favorite', 'adjective', '가장 좋아하는'], ['flat', 'adjective', '평평한'],
   ['glad', 'adjective', '기쁜'], ['golden', 'adjective', '금빛의'], ['great', 'adjective', '훌륭한'],
   ['hard', 'adjective', '단단한'], ['high', 'adjective', '높은'], ['honest', 'adjective', '정직한'],
@@ -232,20 +274,21 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['wall', 'noun', '벽'], ['water', 'noun', '물'], ['way', 'noun', '길'],
   ['weather', 'noun', '날씨'], ['week', 'noun', '주'], ['window', 'noun', '창문'],
   ['winter', 'noun', '겨울'], ['woman', 'noun', '여성'], ['world', 'noun', '세계'],
-  ['writer', 'noun', '작가'], ['year', 'noun', '해'], ['zoo', 'noun', '동물원'],
+  ['toy', 'noun', '장난감'], ['year', 'noun', '해'], ['zoo', 'noun', '동물원'],
   ['address', 'noun', '주소'], ['age', 'noun', '나이'], ['area', 'noun', '지역'],
-  ['army', 'noun', '군대'], ['autumn', 'noun', '가을'], ['basement', 'noun', '지하실'],
+  ['greet', 'verb', '인사하다', ['I greet my teacher.', 'We greet each visitor.']],
+  ['autumn', 'noun', '가을'], ['basement', 'noun', '지하실'],
   ['bedroom', 'noun', '침실'], ['bench', 'noun', '긴 의자'], ['block', 'noun', '블록'],
   ['board', 'noun', '판'], ['bookstore', 'noun', '서점'], ['bowl', 'noun', '그릇'],
   ['breakfast', 'noun', '아침 식사'], ['brush', 'noun', '솔'], ['button', 'noun', '단추'],
   ['camp', 'noun', '캠프'], ['candy', 'noun', '사탕'], ['carpet', 'noun', '카펫'],
   ['cartoon', 'noun', '만화'], ['ceiling', 'noun', '천장'], ['chain', 'noun', '사슬'],
   ['chance', 'noun', '기회'], ['cheese', 'noun', '치즈'],
-  ['act', 'verb', '행동하다', ['I act in the school play.', 'We act with care.']],
+  ['act', 'verb', '행동하다', ['I act calmly when a problem happens.', 'We act with care near the wet floor.']],
   ['bake', 'verb', '굽다', ['I bake a cake.', 'We bake bread together.']],
   ['balance', 'verb', '균형을 잡다', ['I balance on one foot.', 'We balance the boxes.']],
   ['bark', 'verb', '짖다', ['Dogs bark at night.', 'The dog can bark loudly.']],
-  ['beat', 'verb', '이기다', ['I beat the drum.', 'We beat the other team.']],
+  ['beat', 'verb', '이기다', ['I beat my brother at chess.', 'We beat the other team in the game.']],
   ['become', 'verb', '되다', ['I become stronger with practice.', 'We become good friends.']],
   ['belong', 'verb', '속하다', ['The keys belong on the table.', 'This book belongs to me.']],
   ['bite', 'verb', '깨물다', ['I bite the apple.', 'The rabbit can bite a carrot.']],
@@ -260,9 +303,9 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['exercise', 'verb', '운동하다', ['I exercise in the morning.', 'We exercise at the park.']],
   ['expect', 'verb', '기대하다', ['I expect a sunny day.', 'We expect the bus at nine.']],
   ['fail', 'verb', '실패하다', ['I fail once and try again.', 'We do not fail when we help.']],
-  ['fold', 'verb', '접다', ['I fold the paper.', 'We fold the blanket neatly.']],
-  ['gather', 'verb', '모이다', ['I gather the toys.', 'We gather at the table.']],
-  ['greet', 'verb', '인사하다', ['I greet my teacher.', 'We greet each visitor.']],
+  ['soldier', 'noun', '군인'],
+  ['dead', 'adjective', '죽은'],
+  ['army', 'noun', '군대'],
   ['guard', 'verb', '지키다', ['I guard the door.', 'We guard the small garden.']],
   ['hang', 'verb', '걸다', ['I hang my coat by the door.', 'We hang a picture on the wall.']],
   ['hate', 'verb', '싫어하다', ['I hate cold rain.', 'We hate to lose the game.']],
@@ -275,7 +318,14 @@ export const BASIC_EDITORIAL_WORDS: readonly BasicEditorialWord[] = [
   ['fine', 'adjective', '좋은'], ['gentle', 'adjective', '온화한'], ['global', 'adjective', '세계적인'],
   ['gray', 'adjective', '회색의'], ['harmful', 'adjective', '해로운'], ['human', 'adjective', '인간의'],
   ['loose', 'adjective', '헐거운'],
-].map(([lemma, kind, meaning, examples]) => ({ lemma, kind, meaning, examples })) as readonly BasicEditorialWord[]
+] satisfies readonly (readonly [string, WordKind, string, [string, string]?])[])
+  .slice(0, 500)
+  .map(([lemma, kind, meaning, examples]) => ({
+    lemma,
+    kind,
+    meaning,
+    ...(examples ? { examples } : {}),
+  }))
 
 const IRREGULAR_NOUN_FORMS: Readonly<Record<string, string[]>> = {
   child: ['child', 'children'],
@@ -299,11 +349,16 @@ const IRREGULAR_NOUN_FORMS: Readonly<Record<string, string[]>> = {
   cheese: ['cheese'],
   water: ['water'],
   tooth: ['tooth', 'teeth'],
+  potato: ['potato', 'potatoes'],
+  tomato: ['tomato', 'tomatoes'],
   woman: ['woman', 'women'],
 }
 
 const VERB_FORMS: Readonly<Record<string, Record<string, string>>> = {
-  be: { base: 'be', s3: 'is', past: 'was', participle: 'being', pastParticiple: 'been' },
+  be: {
+    base: 'be', firstPerson: 'am', s3: 'is', presentPlural: 'are',
+    past: 'was', pastPlural: 'were', participle: 'being', pastParticiple: 'been',
+  },
   come: { base: 'come', s3: 'comes', past: 'came', participle: 'coming', pastParticiple: 'come' },
   do: { base: 'do', s3: 'does', past: 'did', participle: 'doing', pastParticiple: 'done' },
   drink: { base: 'drink', s3: 'drinks', past: 'drank', participle: 'drinking', pastParticiple: 'drunk' },
@@ -449,6 +504,9 @@ function adjectiveForms(lemma: string): string[] {
     hot: ['hot', 'hotter', 'hottest'],
     sad: ['sad', 'sadder', 'saddest'],
     wet: ['wet', 'wetter', 'wettest'],
+    red: ['red', 'redder', 'reddest'],
+    flat: ['flat', 'flatter', 'flattest'],
+    glad: ['glad', 'gladder', 'gladdest'],
     beautiful: ['beautiful', 'more beautiful', 'most beautiful'],
     afraid: ['afraid'],
     alive: ['alive'],
@@ -496,34 +554,426 @@ function adjectiveForms(lemma: string): string[] {
     human: ['human', 'more human', 'most human'],
   }
   if (irregular[lemma]) return irregular[lemma]
-  if (lemma.endsWith('y')) return [lemma, `${lemma.slice(0, -1)}ier`, `${lemma.slice(0, -1)}iest`]
-  if (lemma.endsWith('e')) return [lemma, `${lemma}r`, `${lemma}st`]
-  return [lemma, `${lemma}er`, `${lemma}est`]
+  // Comparative acceptability and spelling are lexical. Keep unreviewed
+  // adjectives at the source lemma instead of synthesizing learner-visible
+  // forms such as `reder`, `flater`, or `uniquer`.
+  return [lemma]
+}
+
+const ADJECTIVE_EXAMPLES: Readonly<Record<string, [string, string]>> = {
+  active: ['The child is active every day.', 'She stays active after school.'],
+  afraid: ['The child is afraid of the dark.', 'The dog looks afraid of the storm.'],
+  alive: ['The fish is still alive.', 'This small plant is alive.'],
+  amazing: ['The mountain view is amazing.', 'She showed us an amazing trick.'],
+  ancient: ['We visited an ancient temple.', 'The ancient city has old walls.'],
+  angry: ['The boy is angry about the mistake.', 'She felt angry for a while.'],
+  asleep: ['The baby is asleep now.', 'The dog fell asleep by the door.'],
+  awful: ['The milk has an awful smell.', 'We had awful weather yesterday.'],
+  bad: ['The weather is bad today.', 'That was a bad idea.'],
+  basic: ['This is a basic rule.', 'We learned a basic skill today.'],
+  beautiful: ['The garden is beautiful in spring.', 'She drew a beautiful picture.'],
+  big: ['The elephant is very big.', 'We need a big box.'],
+  black: ['My shoes are black.', 'A black cat sat by the door.'],
+  blind: ['The old dog is blind.', 'The blind student reads with her fingers.'],
+  blue: ['The sky is blue today.', 'He carries a blue bag.'],
+  bored: ['The children are bored indoors.', 'I felt bored during the long wait.'],
+  boring: ['The movie was boring.', 'It was a boring class.'],
+  brave: ['The brave girl helped her friend.', 'The firefighter was very brave.'],
+  bright: ['The sun is bright today.', 'This bright room has large windows.'],
+  brown: ['The bear has brown fur.', 'She bought a brown bag.'],
+  busy: ['The teacher is busy now.', 'My father is busy at work.'],
+  calm: ['The child stayed calm.', 'She spoke in a calm voice.'],
+  central: ['Meet us in the central hall.', 'The central door is open.'],
+  cheap: ['This pen is cheap.', 'We found a cheap ticket.'],
+  clean: ['The classroom is clean.', 'Please wear a clean shirt.'],
+  clear: ['The sky is clear tonight.', 'The lake water is clear.'],
+  clever: ['The clever student found the answer.', 'A clever fox opened the gate.'],
+  cloudy: ['The sky is cloudy today.', 'It was a cloudy morning.'],
+  cold: ['The water is cold.', 'She drank cold milk.'],
+  comfortable: ['This chair is comfortable.', 'I slept in a comfortable bed.'],
+  common: ['Lee is a common family name.', 'This is a common problem.'],
+  complete: ['The list is now complete.', 'We bought a complete set.'],
+  confused: ['The student looks confused.', 'A confused visitor asked for help.'],
+  cool: ['The evening air is cool.', 'We rested in a cool room.'],
+  crazy: ['That is a crazy idea.', 'The crowd went crazy with joy.'],
+  crowded: ['The bus is crowded.', 'We left the crowded room.'],
+  cruel: ['The story has a cruel ruler.', 'That was a cruel thing to say.'],
+  cute: ['The kitten is cute.', 'She drew a cute rabbit.'],
+  daily: ['A daily walk keeps me healthy.', 'This is my daily routine.'],
+  dangerous: ['That road is dangerous at night.', 'A dangerous animal lives there.'],
+  dark: ['The room is dark.', 'We walked under a dark sky.'],
+  dead: ['The garden plant is dead.', 'A dead leaf fell from the tree.'],
+  deaf: ['The old dog is deaf.', 'The deaf student uses sign language.'],
+  dear: ['She is a dear friend.', 'This old photo is dear to me.'],
+  deep: ['The river is deep here.', 'They swam in a deep pool.'],
+  delicious: ['The soup is delicious.', 'We shared a delicious cake.'],
+  difficult: ['This question is difficult.', 'We played a difficult game.'],
+  direct: ['This is the direct route home.', 'Please give me a direct answer.'],
+  dirty: ['My shoes are dirty.', 'Wash your dirty hands.'],
+  dry: ['The towel is dry now.', 'The ground stays dry here.'],
+  early: ['The early bus arrived on time.', 'We made an early start.'],
+  easy: ['This question is easy.', 'She read an easy book.'],
+  empty: ['The cup is empty.', 'He carried an empty box.'],
+  excellent: ['Your work is excellent.', 'She had an excellent idea.'],
+  excited: ['The children are excited about the trip.', 'The excited child smiled.'],
+  expensive: ['That coat is expensive.', 'They looked at an expensive car.'],
+  fair: ['The new rule is fair.', 'Our teacher is strict but fair.'],
+  famous: ['The singer is famous.', 'We visited a famous building.'],
+  fast: ['The train is fast.', 'A fast runner won the race.'],
+  favorite: ['Blue is my favorite color.', 'This is her favorite song.'],
+  final: ['Our final game is tomorrow.', 'She made the final decision.'],
+  fine: ['I feel fine today.', 'The weather is fine this morning.'],
+  flat: ['The road is flat here.', 'Put the paper on a flat surface.'],
+  free: ['The bird is free again.', 'They live in a free country.'],
+  fresh: ['The bread is fresh.', 'Open the window for fresh air.'],
+  friendly: ['Our new neighbor is friendly.', 'A friendly dog came to us.'],
+  full: ['The bottle is full of water.', 'The bus is full this morning.'],
+  funny: ['That story is funny.', 'He told us a funny joke.'],
+  gentle: ['The horse is gentle.', 'She spoke in a gentle voice.'],
+  glad: ['I am glad to see you.', 'She felt glad about the news.'],
+  global: ['The internet is a global network.', 'This map shows global weather.'],
+  golden: ['She wears a golden ring.', 'Golden light filled the room.'],
+  good: ['This is a good book.', 'We had a good day.'],
+  gray: ['The sky is gray today.', 'He wears a gray coat.'],
+  great: ['That is a great idea.', 'We had a great day together.'],
+  happy: ['I am happy today.', 'The happy child smiles.'],
+  hard: ['The rock is hard.', 'This floor has a hard surface.'],
+  harmful: ['That chemical is harmful.', 'Too much noise can be harmful.'],
+  healthy: ['The child looks healthy.', 'We made a healthy meal.'],
+  heavy: ['This bag is heavy.', 'They moved a heavy box.'],
+  helpful: ['The guide was helpful.', 'She gave me a helpful tip.'],
+  high: ['The shelf is too high.', 'We climbed a high hill.'],
+  honest: ['The child was honest with us.', 'An honest person tells the truth.'],
+  hot: ['The soup is hot.', 'The tea is still hot.'],
+  huge: ['That building is huge.', 'A huge whale passed the boat.'],
+  human: ['The human body needs water.', 'We heard a human voice outside.'],
+  hungry: ['The child is hungry.', 'Our hungry dog waited for food.'],
+  important: ['This rule is important.', 'We have an important meeting.'],
+  interesting: ['This book is interesting.', 'We had an interesting lesson.'],
+  kind: ['Our teacher is kind.', 'A kind friend helped me.'],
+  lazy: ['The lazy cat slept all day.', 'He felt lazy on Sunday.'],
+  light: ['This bag is light.', 'She wears a light coat.'],
+  little: ['A little mouse ran away.', 'She lives in a little house.'],
+  lonely: ['The child felt lonely.', 'The old man felt lonely.'],
+  long: ['The road is long.', 'She has long hair.'],
+  loose: ['This tooth is loose.', 'He wears a loose shirt.'],
+  loud: ['The music is loud.', 'We heard a loud noise.'],
+  new: ['My backpack is new.', 'She opened a new book.'],
+  noisy: ['The class is noisy today.', 'We crossed a noisy street.'],
+  nervous: ['The student feels nervous.', 'The nervous driver drove slowly.'],
+  normal: ['It was a normal school day.', 'That is a normal reaction.'],
+  old: ['The house is old.', 'He found an old map.'],
+  perfect: ['The circle is perfect.', 'She gave a perfect answer.'],
+  polite: ['The child is polite.', 'A polite student held the door.'],
+  quiet: ['The library is quiet.', 'We walked down a quiet street.'],
+  ready: ['The team is ready to play.', 'Dinner is ready now.'],
+  red: ['The apple is red.', 'She wears a red hat.'],
+  rich: ['The family is rich.', 'A rich farmer owned the land.'],
+  round: ['The table is round.', 'We ate from a round plate.'],
+  sad: ['The child feels sad today.', 'It was a sad story.'],
+  short: ['This pencil is short.', 'We took a short walk.'],
+  slow: ['The turtle is slow.', 'We took a slow train.'],
+  small: ['The box is small.', 'A small bird sat nearby.'],
+  soft: ['The pillow is soft.', 'She uses a soft blanket.'],
+  strong: ['The bridge is strong.', 'A strong child carried the bag.'],
+  sunny: ['It is a sunny day.', 'We played in sunny weather.'],
+  tall: ['The boy is tall.', 'A tall tree stands by the house.'],
+  thirsty: ['The child is thirsty.', 'Our thirsty dog drank water.'],
+  tired: ['I am tired today.', 'We feel tired after the game.'],
+  warm: ['The blanket is warm.', 'It is a warm spring day.'],
+  wet: ['My socks are wet.', 'The road is wet after the rain.'],
+  white: ['The snow is white.', 'She wears a white shirt.'],
+  yellow: ['The flower is yellow.', 'He drew a yellow star.'],
+  young: ['The puppy is young.', 'A young child held my hand.'],
+}
+
+/**
+ * Every selected beginner noun has two reviewed, sense-aligned examples.
+ * Keeping this exhaustive registry beside the editorial word list prevents a
+ * generic template from producing grammatical but unhelpful sentences for
+ * mass, abstract, place, and time nouns.
+ */
+export const BASIC_NOUN_EXAMPLES: Readonly<Record<string, [string, string]>> = {
+  apple: ['This apple is sweet and crisp.', 'Mina puts an apple in her lunch box.'],
+  baby: ['The baby sleeps in a small bed.', 'A happy baby waves at us.'],
+  bag: ['My bag holds two books.', 'She puts the red bag by the door.'],
+  ball: ['A yellow ball rolls across the floor.', 'We throw the ball in the park.'],
+  bed: ['The bed has a warm blanket.', 'I make my bed every morning.'],
+  bird: ['A bird sings outside my window.', 'The blue bird lands in the tree.'],
+  fish: ['A fish swims around the pond.', 'We see a silver fish in the water.'],
+  boy: ['The boy reads a book quietly.', 'A boy kicks the ball across the field.'],
+  bread: ['The bread smells warm and fresh.', 'We share bread with our soup.'],
+  bus: ['The bus stops near our school.', 'We ride the bus home together.'],
+  cake: ['The cake has red fruit on top.', 'We share a cake on her birthday.'],
+  car: ['The car waits beside the house.', 'Our car has four clean seats.'],
+  cat: ['The cat sleeps under the table.', 'A black cat watches the bird.'],
+  hat: ['This hat keeps my head warm.', 'He puts his hat on the shelf.'],
+  child: ['The child builds a tall tower.', 'A child reads beside the window.'],
+  city: ['The city has many busy streets.', 'A river runs through the city.'],
+  class: ['Our class begins at nine.', 'The class learns a new song.'],
+  clock: ['The clock shows three.', 'A small clock hangs on the wall.'],
+  clothes: ['My clothes are clean and dry.', 'We fold the clothes after lunch.'],
+  cup: ['The cup is full of warm milk.', 'She sets her cup on the table.'],
+  day: ['The day begins with bright sunshine.', 'We play outside all day.'],
+  dog: ['The dog waits by the gate.', 'Our dog carries a yellow ball.'],
+  door: ['Please close the door quietly.', 'A blue door opens into the garden.'],
+  egg: ['The egg cooks in the hot pan.', 'I eat an egg for breakfast.'],
+  family: ['My family eats dinner together.', 'Her family lives near the park.'],
+  flower: ['The flower opens in the morning.', 'She puts a yellow flower in water.'],
+  ice: ['The ice melts in the warm sun.', 'We put ice in the juice.'],
+  game: ['This game has simple rules.', 'We play a game after class.'],
+  girl: ['The girl draws a bright picture.', 'A girl waits for the school bus.'],
+  hand: ['Raise your hand to ask a question.', 'He holds the pencil in his hand.'],
+  house: ['Their house has a green roof.', 'A small house stands by the lake.'],
+  key: ['This key opens the front door.', 'I keep the key in my pocket.'],
+  kitchen: ['The kitchen smells like fresh bread.', 'We wash the cups in the kitchen.'],
+  letter: ['I write a letter to my aunt.', 'The letter arrived this morning.'],
+  milk: ['The milk is cold and fresh.', 'I pour milk into the glass.'],
+  money: ['She saves money in a small box.', 'We use money to buy the tickets.'],
+  moon: ['The moon shines above the trees.', 'We can see the moon tonight.'],
+  morning: ['The morning air feels cool.', 'I walk to school every morning.'],
+  name: ['Please write your name on the page.', 'Her name begins with the letter M.'],
+  night: ['The stars are bright at night.', 'The town becomes quiet at night.'],
+  parent: ['A parent waits outside the classroom.', 'The teacher speaks with each parent.'],
+  park: ['The park has a pond and tall trees.', 'We ride our bicycles in the park.'],
+  pen: ['My blue pen is on the desk.', 'I use a pen to write the answer.'],
+  picture: ['The picture shows a small island.', 'She hangs the picture on the wall.'],
+  room: ['The room has two large windows.', 'We keep our room clean.'],
+  king: ['The king wears a golden crown.', 'A wise king listens to his people.'],
+  shoe: ['This shoe belongs on my left foot.', 'He ties the lace on his shoe.'],
+  sister: ['My sister plays the piano.', 'Her sister walks to school with us.'],
+  pillow: ['My pillow is soft and clean.', 'The blue pillow is on the bed.'],
+  table: ['The books are on the table.', 'Our family sits around the table.'],
+  juice: ['The orange juice tastes sweet.', 'I pour juice into a clean cup.'],
+  air: ['Fresh air comes through the window.', 'Clean air helps us breathe well.'],
+  animal: ['Each animal needs food and water.', 'We saw a small animal in the forest.'],
+  arm: ['She carries the basket on her arm.', 'Raise one arm above your head.'],
+  aunt: ['My aunt sends me a birthday card.', 'We visit our aunt on Sunday.'],
+  banana: ['The banana is yellow and soft.', 'I cut a banana for my breakfast.'],
+  bathroom: ['The bathroom has a clean sink.', 'I wash my hands in the bathroom.'],
+  beach: ['The beach has warm sand and shells.', 'We walk along the beach at sunset.'],
+  bicycle: ['My bicycle has a silver bell.', 'She rides her bicycle to the park.'],
+  blanket: ['The blanket keeps the baby warm.', 'I fold the blanket on the bed.'],
+  boat: ['The boat moves slowly across the lake.', 'We tie the boat beside the dock.'],
+  body: ['Exercise keeps the body strong.', 'The human body needs clean water.'],
+  brother: ['My brother builds model planes.', 'Her brother shares his new game.'],
+  camera: ['This camera takes clear pictures.', 'She carries a camera on the trip.'],
+  candle: ['The candle gives a soft light.', 'An adult lights the candle carefully.'],
+  computer: ['The computer is on the desk.', 'We use a computer to study science.'],
+  country: ['Our country has many mountains.', 'The map shows every country in blue.'],
+  cow: ['The cow eats grass in the field.', 'A brown cow stands near the barn.'],
+  daddy: ['Daddy reads a story before bed.', 'My daddy makes breakfast on Sunday.'],
+  desk: ['My notebook is inside the desk.', 'The student cleans her desk after class.'],
+  doctor: ['The doctor checks my sore knee.', 'A doctor works at the hospital.'],
+  farm: ['The farm grows corn and potatoes.', 'We saw sheep on the farm.'],
+  father: ['My father cooks dinner tonight.', 'Her father drives the school bus.'],
+  fire: ['The fire keeps the room warm.', 'An adult watches the small fire.'],
+  foot: ['My left foot is inside the shoe.', 'He steps forward with one foot.'],
+  fruit: ['Fresh fruit makes a healthy snack.', 'We put fruit in the blue bowl.'],
+  garden: ['The garden grows flowers and vegetables.', 'We water the garden every morning.'],
+  grandfather: ['My grandfather tells funny stories.', 'The grandfather walks with his dog.'],
+  grandmother: ['My grandmother bakes warm bread.', 'The grandmother reads by the window.'],
+  guitar: ['The guitar has six strings.', 'She plays the guitar after school.'],
+  hair: ['Her hair is long and black.', 'I brush my hair every morning.'],
+  hospital: ['The hospital is near the station.', 'A nurse welcomes us at the hospital.'],
+  island: ['The island has a quiet beach.', 'A small boat travels around the island.'],
+  jacket: ['My jacket has two deep pockets.', 'He wears a warm jacket in winter.'],
+  lake: ['The lake is calm this morning.', 'Ducks swim across the lake.'],
+  leg: ['The table has a broken leg.', 'She stretches each leg before running.'],
+  library: ['The library has many storybooks.', 'We read quietly in the library.'],
+  lunch: ['My lunch includes fruit and bread.', 'We eat lunch together at noon.'],
+  map: ['The map shows the road to the village.', 'He marks our school on the map.'],
+  market: ['The market sells fresh vegetables.', 'We buy fruit at the market.'],
+  meal: ['The family shares a warm meal.', 'Soup and bread make a simple meal.'],
+  mountain: ['Snow covers the top of the mountain.', 'We can see the mountain from town.'],
+  mouth: ['Open your mouth and say ah.', 'The baby puts a spoon near her mouth.'],
+  museum: ['The museum displays an old boat.', 'Our class visits the science museum.'],
+  newspaper: ['The newspaper has a weather report.', 'Grandfather reads the newspaper at breakfast.'],
+  ocean: ['The ocean looks blue from the beach.', 'Many kinds of fish live in the ocean.'],
+  office: ['The teacher works in the school office.', 'Her office has a large desk.'],
+  orange: ['This orange is easy to peel.', 'I put an orange in my bag.'],
+  phone: ['The phone rings during dinner.', 'She uses the phone to call her aunt.'],
+  rain: ['The rain taps on the window.', 'Plants grow well after the rain.'],
+  river: ['The river flows past the village.', 'A bridge crosses the wide river.'],
+  airport: ['The airport has many busy gates.', 'We arrive at the airport before noon.'],
+  apartment: ['Their apartment has a small balcony.', 'We live in an apartment near school.'],
+  artist: ['The artist paints a bright city scene.', 'An artist draws flowers in the park.'],
+  bakery: ['The bakery sells warm bread.', 'We buy a cake at the bakery.'],
+  balloon: ['The red balloon floats above the table.', 'A child holds the balloon by a string.'],
+  bank: ['The bank keeps money in a safe place.', 'My mother visits the bank after work.'],
+  basket: ['The basket is full of red apples.', 'She carries lunch in a small basket.'],
+  bell: ['The school bell rings at nine.', 'A silver bell hangs on the bicycle.'],
+  birthday: ['Her birthday is in early spring.', 'We sing a song on his birthday.'],
+  bottle: ['The bottle holds fresh water.', 'Please put the empty bottle in the box.'],
+  box: ['The box holds toys and games.', 'He closes the box with both hands.'],
+  bridge: ['The bridge crosses a narrow river.', 'We walk over the bridge to town.'],
+  tower: ['The stone tower stands above the town.', 'We climb the tower by the old stairs.'],
+  butter: ['The butter melts on the warm bread.', 'I spread butter on my toast.'],
+  calendar: ['The calendar shows every month.', 'She marks the trip on the calendar.'],
+  captain: ['The captain guides the boat safely.', 'Every sailor listens to the captain.'],
+  castle: ['The castle has a tall stone wall.', 'A queen lives in the old castle.'],
+  center: ['Put the small circle in the center.', 'We meet at the center of the park.'],
+  church: ['The church has a tall bell tower.', 'A small church stands near the village.'],
+  circle: ['Draw a circle around the correct answer.', 'The children sit in a circle.'],
+  coat: ['My coat keeps me warm in winter.', 'She hangs her coat by the door.'],
+  coffee: ['The coffee smells warm and rich.', 'My father drinks coffee at breakfast.'],
+  college: ['The college has a large library.', 'Her sister studies science at college.'],
+  corner: ['The lamp stands in the corner.', 'Turn left at the next corner.'],
+  daughter: ['Their daughter starts school today.', 'My daughter enjoys drawing animals.'],
+  dinner: ['Dinner is ready at six.', 'We eat dinner around the kitchen table.'],
+  dream: ['I had a funny dream last night.', 'Her dream is to become a pilot.'],
+  rainbow: ['A rainbow appears after the rain.', 'We see a bright rainbow above the hill.'],
+  earth: ['Earth moves around the sun.', 'Earth has wide oceans and land.'],
+  engine: ['The engine makes the car move.', 'A mechanic checks the bus engine.'],
+  turtle: ['The turtle walks beside the pond.', 'A small turtle rests on the rock.'],
+  cookie: ['I put one cookie on the plate.', 'The cookie smells sweet and warm.'],
+  factory: ['The factory makes bicycles.', 'Many people work at the factory.'],
+  field: ['Cows eat grass in the field.', 'The children run across the field.'],
+  floor: ['The ball rolls across the floor.', 'Please keep the kitchen floor clean.'],
+  forest: ['Tall trees fill the forest.', 'A narrow path crosses the forest.'],
+  gift: ['This book is a gift from my aunt.', 'She wraps the gift in blue paper.'],
+  glass: ['The glass holds cold water.', 'Please put the clean glass on the table.'],
+  ground: ['The rain makes the ground wet.', 'We plant each seed in the ground.'],
+  guest: ['Our guest sleeps in the small room.', 'We offer each guest a warm meal.'],
+  holiday: ['The school closes for the holiday.', 'We visit our family during the holiday.'],
+  homework: ['I finish my homework before dinner.', 'The teacher checks our homework.'],
+  hotel: ['The hotel has a quiet garden.', 'We stay at a hotel near the beach.'],
+  hour: ['The trip takes one hour by train.', 'I read for an hour after lunch.'],
+  job: ['Her job is to drive the bus.', 'The baker enjoys his job.'],
+  knee: ['I bend my knee before I jump.', 'The child has a small mark on one knee.'],
+  knife: ['An adult uses the knife to cut bread.', 'The clean knife rests beside the plate.'],
+  language: ['English is a language we study.', 'Every language has its own sounds.'],
+  lesson: ['The lesson begins with a short story.', 'We learn five new words in the lesson.'],
+  line: ['Draw a straight line under the word.', 'The students wait in a quiet line.'],
+  minute: ['Please wait one minute by the door.', 'The song ends in a minute.'],
+  mirror: ['The mirror hangs above the sink.', 'I can see my face in the mirror.'],
+  mother: ['My mother reads with me every night.', 'Her mother works at the library.'],
+  movie: ['The movie tells a funny story.', 'We watch a short movie after dinner.'],
+  neighbor: ['Our neighbor has a friendly dog.', 'I wave to my neighbor each morning.'],
+  notebook: ['My notebook has a blue cover.', 'I write each new word in the notebook.'],
+  nurse: ['The nurse helps the doctor.', 'A kind nurse checks my arm.'],
+  page: ['Turn the page after you finish reading.', 'The picture fills the whole page.'],
+  paper: ['Fold the paper into a small boat.', 'I draw a circle on the paper.'],
+  party: ['The party begins after school.', 'We bring fruit and juice to the party.'],
+  passenger: ['Each passenger needs a ticket.', 'The passenger sits near the bus door.'],
+  pencil: ['The pencil has a sharp point.', 'I draw a tree with my pencil.'],
+  piano: ['The piano stands beside the window.', 'She practices the piano every day.'],
+  pilot: ['The pilot guides the plane safely.', 'A pilot checks the weather before flying.'],
+  plane: ['The plane flies above the clouds.', 'We see a plane near the airport.'],
+  plant: ['The plant needs water and light.', 'A green plant grows by the window.'],
+  plate: ['The plate holds bread and fruit.', 'Please put the clean plate on the table.'],
+  pocket: ['The key is inside my pocket.', 'This jacket has a deep pocket.'],
+  pool: ['The pool is open after school.', 'We swim across the small pool.'],
+  potato: ['The potato grows under the ground.', 'We add a potato to the soup.'],
+  present: ['This present is for my sister.', 'He opens the birthday present carefully.'],
+  price: ['The price is written on the ticket.', 'I check the price before I buy the book.'],
+  prize: ['The winner receives a small prize.', 'Her drawing won first prize.'],
+  queen: ['The queen wears a golden crown.', 'A kind queen helps her people.'],
+  rabbit: ['The rabbit eats a fresh carrot.', 'A white rabbit runs across the field.'],
+  radio: ['The radio plays music in the kitchen.', 'We hear the weather report on the radio.'],
+  restaurant: ['The restaurant serves warm soup.', 'Our family eats at the restaurant.'],
+  road: ['The road leads to the mountain.', 'A bus travels along the narrow road.'],
+  roof: ['Rain falls on the roof.', 'The house has a red roof.'],
+  rule: ['This rule keeps the game fair.', 'Every student follows the classroom rule.'],
+  salt: ['A little salt adds flavor to the soup.', 'Please pass the salt at dinner.'],
+  sandwich: ['The sandwich has cheese and tomato.', 'I pack a sandwich for lunch.'],
+  science: ['Science helps us learn about nature.', 'We study plants in science class.'],
+  sea: ['The sea looks calm today.', 'A small boat sails across the sea.'],
+  season: ['Spring is my favorite season.', 'Each season brings different weather.'],
+  seed: ['The seed grows into a green plant.', 'We put each seed in the ground.'],
+  sheep: ['The sheep eats grass near the farm.', 'A white sheep stands by the fence.'],
+  shirt: ['This shirt has blue buttons.', 'He folds the clean shirt neatly.'],
+  shop: ['The shop sells books and paper.', 'We walk to the shop after lunch.'],
+  sky: ['The sky is clear and blue.', 'A bright star appears in the sky.'],
+  soap: ['The soap makes my hands clean.', 'A bar of soap sits by the sink.'],
+  sock: ['I found one sock under the bed.', 'This sock has a small hole.'],
+  spoon: ['The spoon is beside the bowl.', 'She eats soup with a spoon.'],
+  star: ['A bright star shines above us.', 'We draw a star on the card.'],
+  station: ['The train waits at the station.', 'We meet beside the bus station.'],
+  store: ['The store sells clothes and shoes.', 'My father works at the store.'],
+  street: ['Our school is across the street.', 'Tall trees grow along the street.'],
+  student: ['Each student has a notebook.', 'The student asks a good question.'],
+  sugar: ['A little sugar makes the cake sweet.', 'We keep sugar in a glass jar.'],
+  ticket: ['My ticket shows the seat number.', 'You need a ticket to ride the train.'],
+  time: ['We have time for one more game.', 'Please tell me the time.'],
+  tomato: ['The tomato is red and round.', 'We cut a tomato for the sandwich.'],
+  tooth: ['I brush each tooth after breakfast.', 'The child has a loose tooth.'],
+  town: ['The town has a library and a park.', 'A river runs beside the town.'],
+  train: ['The train arrives at the station.', 'We travel to the city by train.'],
+  tree: ['The tree gives us cool shade.', 'A bird builds a nest in the tree.'],
+  trip: ['Our class takes a trip to the museum.', 'I pack my bag for the trip.'],
+  truck: ['The truck carries boxes to the store.', 'A red truck stops near the factory.'],
+  uncle: ['My uncle teaches me to play guitar.', 'We visit our uncle during vacation.'],
+  uniform: ['The student wears a blue uniform.', 'Her uniform is clean and neat.'],
+  vacation: ['We visit the beach during vacation.', 'Our summer vacation begins next week.'],
+  vegetable: ['A carrot is a healthy vegetable.', 'We grow each vegetable in the garden.'],
+  village: ['The village has a small market.', 'A narrow road leads to the village.'],
+  visitor: ['The visitor signs a book at the entrance.', 'We show each visitor around the school.'],
+  wall: ['A clock hangs on the wall.', 'She paints the wall light blue.'],
+  water: ['Clean water fills the bottle.', 'Every plant needs water to grow.'],
+  way: ['This way leads to the library.', 'We know the way back home.'],
+  weather: ['The weather is warm and sunny today.', 'We check the weather before our trip.'],
+  week: ['The school week begins on Monday.', 'We practice the song every week.'],
+  window: ['Please open the window for fresh air.', 'Rain runs down the window.'],
+  winter: ['Snow often falls in winter.', 'We wear warm coats during winter.'],
+  woman: ['The woman carries a basket of fruit.', 'A woman waits beside the bus.'],
+  world: ['The map shows the whole world.', 'People speak many languages around the world.'],
+  toy: ['The toy train moves around the track.', 'A child puts the toy in the box.'],
+  year: ['The school year begins in spring.', 'A year has twelve months.'],
+  zoo: ['The zoo has animals from many countries.', 'Our class visits the zoo in autumn.'],
+  address: ['Write the address on the front of the letter.', 'Her address includes the street name.'],
+  age: ['The form asks for your name and age.', 'Children of every age enjoy the park.'],
+  area: ['This area has many trees and flowers.', 'The map shows a large mountain area.'],
+  autumn: ['Leaves turn red and yellow in autumn.', 'The air becomes cool in autumn.'],
+  basement: ['The basement is below the kitchen.', 'We keep old boxes in the basement.'],
+  bedroom: ['My bedroom has a small desk.', 'She cleans her bedroom every Saturday.'],
+  bench: ['We sit on a bench near the pond.', 'The wooden bench is under a tree.'],
+  block: ['This block fits on top of the tower.', 'Put the blue block beside the red one.'],
+  board: ['The teacher writes a word on the board.', 'A long board rests across the boxes.'],
+  bookstore: ['The bookstore sells books and notebooks.', 'We visit the bookstore after school.'],
+  bowl: ['The bowl is full of warm soup.', 'She puts fruit in the blue bowl.'],
+  breakfast: ['Breakfast gives us energy for the day.', 'I eat fruit and bread for breakfast.'],
+  brush: ['This brush has a long handle.', 'I use the brush to clean my shoes.'],
+  button: ['The button keeps my coat closed.', 'She sews a blue button on the shirt.'],
+  camp: ['Our camp is beside the lake.', 'We sleep in tents at camp.'],
+  candy: ['The candy tastes sweet and fruity.', 'He shares one candy with his sister.'],
+  carpet: ['The carpet feels soft under my feet.', 'A round carpet covers the floor.'],
+  cartoon: ['The cartoon tells a funny story.', 'We watch a short cartoon after lunch.'],
+  ceiling: ['A lamp hangs from the ceiling.', 'The ceiling is high above our heads.'],
+  chain: ['The chain connects the gate to the post.', 'A metal chain hangs beside the door.'],
+  chance: ['This game gives everyone a fair chance.', 'I have a chance to ask one question.'],
+  cheese: ['The cheese melts on the warm bread.', 'We add cheese to the sandwich.'],
 }
 
 function examplesFor(word: BasicEditorialWord): [string, string] {
   if (word.examples) return word.examples
   if (word.kind === 'noun') {
-    if (word.lemma === 'clothes') return ['My clothes are clean.', 'These clothes are new.']
-    if (word.lemma === 'bread') return ['Bread is warm.', 'We eat bread together.']
-    if (word.lemma === 'milk') return ['Milk is in the cup.', 'I drink milk every day.']
-    if (word.lemma === 'money') return ['Money is in my bag.', 'I save my money.']
-    return [`The ${word.lemma} is here.`, `I like this ${word.lemma}.`]
+    const examples = BASIC_NOUN_EXAMPLES[word.lemma]
+    if (!examples) throw new Error(`Missing contextual noun examples for ${word.lemma}`)
+    return examples
   }
-  return [`The ball is ${word.lemma}.`, `It looks ${word.lemma}.`]
+  const examples = ADJECTIVE_EXAMPLES[word.lemma]
+  if (!examples) throw new Error(`Missing contextual adjective examples for ${word.lemma}`)
+  return examples
 }
 
 function formsFor(word: BasicEditorialWord): string[] | Record<string, string> {
-  if (word.kind === 'verb') return VERB_FORMS[word.lemma]!
+  if (word.kind === 'verb') {
+    if (word.lemma === 'will') return ['will']
+    return VERB_FORMS[word.lemma]!
+  }
   if (word.kind === 'adjective') return adjectiveForms(word.lemma)
-  return IRREGULAR_NOUN_FORMS[word.lemma] ?? [word.lemma, plural(word.lemma)]
+  if (word.kind === 'noun') {
+    return IRREGULAR_NOUN_FORMS[word.lemma] ?? [word.lemma, plural(word.lemma)]
+  }
+  return [word.lemma]
 }
 
 export function buildBasicEditorialWords(ipaByLemma: ReadonlyMap<string, string>): WordItem[] {
   return BASIC_EDITORIAL_WORDS.map((word, rank) => {
     const ipa = ipaByLemma.get(word.lemma) ?? EDITORIAL_IPA[word.lemma]
     if (!ipa) throw new Error(`Missing pinned IPA for ${word.lemma}`)
-    return normalizeWord({
+    const item = normalizeWord({
       lemma: word.lemma,
       levelBucket: '기초',
       rank,
@@ -533,126 +983,11 @@ export function buildBasicEditorialWords(ipaByLemma: ReadonlyMap<string, string>
       forms: formsFor(word),
       examples: examplesFor(word),
     })
+    return {
+      ...item,
+      difficulty: difficultyForPosition(rank, BASIC_EDITORIAL_WORDS.length),
+    }
   })
-}
-
-function entryForms(entry: WordEntry): string[] {
-  return Array.isArray(entry.forms) ? entry.forms : Object.values(entry.forms)
-}
-
-const STORY_CHAPTERS = [
-  {
-    title: 'The Map in the Library',
-    opening: 'On the first morning of vacation, Mina found a folded map inside an old library book. A note on its edge promised that the town festival could be saved before sunset.',
-  },
-  {
-    title: 'The Market of Small Clues',
-    opening: 'The map led Mina from the market to the river. Each stop offered one small clue, and every clue asked her to listen more carefully than before.',
-  },
-  {
-    title: 'Friends at the Bridge',
-    opening: 'By noon, Mina had gathered friends at the bridge. They did not know the whole answer, but they agreed that a good plan could begin with a kind question.',
-  },
-  {
-    title: 'The Storm and the Lanterns',
-    opening: 'Dark clouds arrived just as the festival lanterns were ready. Mina and her friends had to choose between giving up and finding a new way forward.',
-  },
-  {
-    title: 'A Town That Remembered',
-    opening: 'When the sky cleared, the town met in the square. Mina understood that the map had never been a test of speed; it was an invitation to notice what people shared.',
-  },
-] as const
-
-const DIRECT_CHAPTER_ONE = `On a warm morning, a young girl named Mina tucked an apple, a little cake, bread, and a cup of milk into her bag. Her baby brother kicked a ball beside the bed while their cat watched a bird and a fish in a glass bowl.
-
-At the door, Mina's parent gave her a blue hat, clean clothes, and one key. The dog sat by the car, eager to come with the family into the city. Today was the first day of a new class, and the clock was already moving fast.
-
-On the bus, a boy held an egg and a flower in one hand, while a child shared juice and ice with a friend. Mina smiled at the girl across the aisle; both children wanted to play a game in the park before night.
-
-Back at home, Mina wrote a letter in the kitchen, drew a picture with her pen, and left it on the table. Her sister put a shoe by the room door and counted the money for the bus. In the picture, a king stood under the moon and sang a song beside a small house.
-
-To be ready for the festival, Mina chose to do one kind thing at a time. She drank milk, ate an apple, and went to find the bus. She got a seat, gave her brother a hand, and helped him when he could not see the sign.
-
-Mina knew he would like the ride. They looked out the window, made up a game, and chose to play until they reached the park. There, they read the letter, run across the grass, see the moon in a puddle, sit on a bench, sleep for a moment, take a deep breath, talk about the map, walk home, and write down what they had learned.
-
-She wrote her name on a card: drink water, eat slowly, get ready, give help, go together, have courage, look closely, and make room for others.
-
-Not every clue was easy. One road looked big, black, and cold; another was blue, clean, and bright with morning light. Mina was happy to find good juice, though the cup felt hot in her little hand.
-
-The path was long, but the new red ribbon on the map made the sad part feel short. A small, strong bridge led to a tall tree where a tired bird rested. Beneath its warm white feathers, Mina found a yellow note: even when you are young, a kind choice can change the day.`
-
-function storyLine(word: WordItem, index: number): string {
-  const lemma = word.lemma
-  const partOfSpeech = word.entries[0]!.partOfSpeech
-
-  if (partOfSpeech === 'noun') {
-    const nounScenes = [
-      `At the next stop, Mina noticed the ${lemma} and added it to the festival plan.`,
-      `A small note beside the ${lemma} pointed Mina toward the next street.`,
-      `Mina carried the ${lemma} carefully because someone in town would need it before sunset.`,
-      `The ${lemma} gave the group a new reason to keep following the map.`,
-      `Near the square, Mina found the ${lemma} waiting with one more clue.`,
-      `For Mina, the ${lemma} became a reminder that small things can change a day.`,
-    ]
-    return nounScenes[index % nounScenes.length]!
-  }
-
-  if (partOfSpeech === 'verb') {
-    const verbScenes = [
-      `Mina chose to ${lemma} before the group moved to the next clue.`,
-      `To continue the search, the friends had to ${lemma} together.`,
-      `The map seemed to ask Mina to ${lemma}, even when the answer was not clear.`,
-      `Before sunset, Mina learned when to ${lemma} and when to ask for help.`,
-      `Each new clue gave the friends a reason to ${lemma} with care.`,
-    ]
-    return verbScenes[index % verbScenes.length]!
-  }
-
-  const adjectiveScenes = [
-    `By then, the town felt ${lemma}, and Mina wrote that feeling beside the map.`,
-    `The ${lemma} moment helped Mina understand why the festival mattered.`,
-    `Mina noticed a ${lemma} detail that the others had almost missed.`,
-    `For a while, the street seemed ${lemma}, but the friends stayed together.`,
-    `The group made room for a ${lemma} idea before choosing the next step.`,
-  ]
-  return adjectiveScenes[index % adjectiveScenes.length]!
-}
-
-function groupIntoParagraphs(lines: readonly string[], size = 5): string[] {
-  return Array.from({ length: Math.ceil(lines.length / size) }, (_, index) =>
-    lines.slice(index * size, (index + 1) * size).join(' '),
-  )
-}
-
-/** Builds a chaptered reading text; vocabulary examples are never used as story prose. */
-export function buildBasicEditorialStory(words: readonly WordItem[]): StoryContent {
-  const chapterSize = Math.ceil(words.length / STORY_CHAPTERS.length)
-  const readingText = STORY_CHAPTERS.map((chapter, chapterIndex) => {
-    const chapterWords = words.slice(chapterIndex * chapterSize, (chapterIndex + 1) * chapterSize)
-    const paragraphs = chapterIndex === 0
-      ? [DIRECT_CHAPTER_ONE]
-      : groupIntoParagraphs(
-        chapterWords.map((word, index) => storyLine(word, chapterIndex * chapterSize + index)),
-      )
-    return [`Chapter ${chapterIndex + 1}: ${chapter.title}`, chapter.opening, ...paragraphs].join('\n\n')
-  }).join('\n\n')
-  return {
-    schemaVersion: '1.0.0',
-    level: '기초',
-    title: '작은 것들로 시작한 하루',
-    isManual: true,
-    coverage: {
-      mustCoverAll: true,
-      allowUpperLevelWords: false,
-      coverageRate: 1,
-    },
-    usedWords: words.map((word) => ({
-      lemma: word.lemma,
-      partOfSpeech: word.entries[0]!.partOfSpeech,
-      forms: entryForms(word.entries[0]!),
-    })),
-    storyText: readingText,
-  }
 }
 
 export function parseIpaDictionary(source: string): Map<string, string> {
@@ -662,24 +997,4 @@ export function parseIpaDictionary(source: string): Map<string, string> {
     return lemma && ipa ? [[lemma.toLowerCase(), ipa] as const] : []
   })
   return new Map(entries)
-}
-
-export async function readIpaDictionary(path: string): Promise<Map<string, string>> {
-  return parseIpaDictionary(await readFile(path, 'utf8'))
-}
-
-async function main(): Promise<void> {
-  const ipa = await readIpaDictionary('.content-cache/ipa-dict-en_US.txt')
-  await writeFile(
-    'public/data/wordlists/기초.json',
-    `${JSON.stringify(buildBasicEditorialWords(ipa), null, 2)}\n`,
-  )
-  await writeFile(
-    'public/data/stories/기초.json',
-    `${JSON.stringify(buildBasicEditorialStory(buildBasicEditorialWords(ipa)), null, 2)}\n`,
-  )
-}
-
-if (process.argv[1]?.endsWith('buildBasicEditorial.ts')) {
-  await main()
 }
