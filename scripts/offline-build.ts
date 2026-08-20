@@ -1149,9 +1149,13 @@ export async function calculateOfflineSourceHash(
   for (const file of files) {
     hash.update(relative(rootDirectory, file).replaceAll('\\', '/'))
     hash.update('\0')
-    hash.update(await readFile(file))
+    hash.update(normalizeOfflineSourceText(await readFile(file, 'utf8')), 'utf8')
     hash.update('\0')
   }
 
   return hash.digest('hex')
+}
+
+export function normalizeOfflineSourceText(value: string): string {
+  return value.replace(/\r\n?/gu, '\n')
 }

@@ -14,7 +14,7 @@
 - 사용자가 네 자동 소설의 개선 정본을 승인했고 `Archimentor`를 reviewer로 기록했습니다. 각 정본은 도입·갈등·전환·결말이 이어지는 8문단 본편과 별도 전체 어휘 장면을 포함하며, 승인 시각 `2026-08-20T03:34:02.062Z`와 전체 payload SHA-256 digest를 고정합니다. 본편·어휘 장면·사용 단어 중 하나라도 바뀌면 검증이 실패합니다.
 - `npm run content:build`는 승인 입력을 포함해 중단 없이 완료되어 검증된 콘텐츠 산출물 17개를 원자적으로 승격했습니다. 단어 5,000개·구동사 1,000개·문법 노드 42개·승인 소설 4개가 development와 release 검증을 통과했고 build lock·staging·rollback·swap residue는 남지 않았습니다.
 - 하이픈 결합어의 일부 문자열을 독립 표제어 예문으로 오인하던 원천 수집 결함을 수정했습니다. `eight`의 `forty-eight` 예문은 독립형 원천 예문으로 교체됐고 provenance 줄 번호도 함께 재생성됐습니다.
-- `npm run check`는 ESLint, 57개 테스트 파일의 779개 테스트, TypeScript·Vite 빌드, self-contained 오프라인 검증까지 모두 통과했습니다. `npm audit`은 취약점 0개이고, 단어군 996개/구성원 2,285개/근거 1,299개, Python 번역 테스트 14개와 고정 원본 9종의 SHA-256 검증도 통과했습니다.
+- `npm run check`는 ESLint, 57개 테스트 파일의 780개 테스트, TypeScript·Vite 빌드, self-contained 오프라인 검증까지 모두 통과했습니다. `npm audit`은 취약점 0개이고, 단어군 996개/구성원 2,285개/근거 1,299개, Python 번역 테스트 14개와 고정 원본 9종의 SHA-256 검증도 통과했습니다.
 - 루트 `index.html`과 `dist/index.html`은 최신 소스에서 다시 생성됐고 SHA-256이 같습니다. `npm run verify:offline`은 두 파일이 최신·자급식이며 DOM 렌더가 가능함을 확인했습니다.
 - `npm run test:browser`의 Chromium 시나리오 12개가 데스크톱·모바일에서 모두 통과했습니다. 루트 `index.html` 직접 `file://` 실행, HTTP 핵심 여정, 키보드 전용 흐름, 320px 긴 콘텐츠·복구·폼 레이아웃을 포함합니다.
 - 브라우저 플러그인으로 최신 `dist/index.html`을 로컬 HTTP에서 열어 서사형 본편의 4→8문단 확장, 기본 닫힘인 전체 어휘 장면, 본편·연습 단어 상세, 상세 닫기 뒤 트리거 포커스 복귀를 조작했습니다. 문서 `scrollWidth`와 `clientWidth`는 1,265px로 같고 콘솔 오류는 0건이었습니다. 플러그인의 보안 정책이 `file://` 탐색을 차단하므로 파일 직접 실행과 320px 모바일 증거는 위 Chromium 회귀 테스트로 확보했습니다.

@@ -10,6 +10,7 @@ import {
   isAllowedOfflineResourceReference,
   OFFLINE_CONTENT_SECURITY_POLICY,
   OfflineIndexesCommittedWithResidueError,
+  normalizeOfflineSourceText,
   offlineIndexTransactionPaths,
   pruneOfflineDistribution,
   promoteOfflineIndexes,
@@ -97,6 +98,13 @@ describe('createOfflineHtml', () => {
       '<license & notice>',
     )
     parsed.window.close()
+  })
+})
+
+describe('offline source hashing', () => {
+  it('normalizes platform line endings before hashing text inputs', () => {
+    expect(normalizeOfflineSourceText('first\r\nsecond\rthird\nfourth'))
+      .toBe('first\nsecond\nthird\nfourth')
   })
 })
 
