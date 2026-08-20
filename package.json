@@ -15,6 +15,7 @@
     "validate:data": "tsx scripts/validate-data.ts --mode=development",
     "validate:release": "tsx scripts/validate-data.ts --mode=release",
     "content:fetch": "tsx scripts/content/fetchSources.ts",
+    "content:fetch:phrasals": "tsx scripts/content/fetchPhrasalSources.ts",
     "content:report": "tsx scripts/content/reportSources.ts",
     "content:validate:families": "python scripts/content/validate_word_family_registry.py",
     "content:prepare:phrasals": "tsx scripts/content/preparePhrasalTranslation.ts",

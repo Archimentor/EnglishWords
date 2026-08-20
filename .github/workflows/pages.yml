@@ -22,6 +22,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Fetch and verify pinned phrasal sources
+        run: npm run content:fetch:phrasals
       - run: npx playwright install --with-deps chromium
       - run: npm run check
       - run: npm run test:browser

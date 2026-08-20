@@ -38,7 +38,7 @@ export const PHRASAL_CONTENT_SOURCE_IDS = [
   'tatoeba-english',
 ] as const satisfies readonly ContentSourceId[]
 
-const PHRASAL_CONTENT_SOURCES: readonly ContentSource[] = PHRASAL_CONTENT_SOURCE_IDS
+export const PHRASAL_CONTENT_SOURCES: readonly ContentSource[] = PHRASAL_CONTENT_SOURCE_IDS
   .map((sourceId) => {
     const source = CONTENT_SOURCES.find(({ id }) => id === sourceId)
     if (!source) throw new Error(`Unknown phrasal content source: ${sourceId}`)

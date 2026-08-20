@@ -70,6 +70,7 @@ npm run build
 | `npm run validate:data` | 현재 카탈로그의 구조·참조 검증 | exit code 0 |
 | `npm run validate:release` | 목표 수량과 소설 수동 검수 완료를 포함한 릴리스 검증 | 승인 콘텐츠 기준 exit code 0 |
 | `npm run content:build` | 단어·구동사·소설·provenance 전체 세대 재생성 | 승인 입력이 있는 소설은 보존하고 누락 레벨만 자동 초안으로 만든 뒤, 전체 검증을 통과한 디렉터리 세대를 함께 교체 |
+| `npm run content:fetch:phrasals` | 구동사 재현 테스트에 필요한 고정 원천 5개만 다운로드 | 각 원천의 고정 URL과 SHA-256이 모두 일치 |
 | `npm run content:approve:stories -- --reviewer=<name> --reviewed-at=<UTC ISO> --confirm-user-approved` | 사용자가 명시적으로 승인한 네 자동 초안을 단일 정본 경로에 기록 | 확인 플래그·검수자·정규 UTC 시각이 모두 있을 때만 digest-valid 승인 파일 생성 |
 | `npm run content:propose:phrasals` | 후속 전수 감사용 schema-v4 구동사 후보 생성 | `.content-cache/phrasal-gloss-candidates.json`만 작성하고 정본은 변경하지 않음 |
 | `npm run build` | 타입 검사 후 프로덕션 번들 생성 | `dist/` 생성, exit code 0 |
