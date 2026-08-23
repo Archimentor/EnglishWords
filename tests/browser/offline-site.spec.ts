@@ -43,7 +43,7 @@ test('HTTP preview renders the unified story and core learning journey', async (
   await expect(page.locator('.view--story')).toBeVisible()
   await expect(page.getByText(/일반 단어 확장 장면/u)).toHaveCount(0)
   await expect(page.getByText(/구동사 확장 장면/u)).toHaveCount(0)
-  await expect(page.getByText('통합 단어장 750 / 750', { exact: true })).toBeVisible()
+  await expect(page.getByText('실제 통합 본문 750 / 750', { exact: true })).toBeVisible()
 
   const storyWord = page.getByRole('button', { name: /^story word:/u }).first()
   await expect(storyWord).toBeVisible()
