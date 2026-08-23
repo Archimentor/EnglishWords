@@ -11,7 +11,6 @@ import { StoryWordDetail } from './StoryWordDetail'
 import { tokenizeStoryParagraphs } from './storyTokens'
 
 const STORY_PARAGRAPH_PAGE_SIZE = 4
-const PRACTICE_PARAGRAPH_PAGE_SIZE = 2
 const USED_WORD_PAGE_SIZE = 100
 const EMPTY_PHRASAL_VERBS: readonly PhrasalVerbItem[] = []
 
@@ -55,12 +54,6 @@ export function StoryView({
   } | null>(null)
   const [selectedStory, setSelectedStory] = useState(story)
   const [visibleParagraphCount, setVisibleParagraphCount] = useState(STORY_PARAGRAPH_PAGE_SIZE)
-  const [visiblePracticeParagraphCount, setVisiblePracticeParagraphCount] = useState(
-    PRACTICE_PARAGRAPH_PAGE_SIZE,
-  )
-  const [visiblePhrasalParagraphCount, setVisiblePhrasalParagraphCount] = useState(
-    PRACTICE_PARAGRAPH_PAGE_SIZE,
-  )
   const [visibleWordCount, setVisibleWordCount] = useState(USED_WORD_PAGE_SIZE)
   const [visiblePhrasalVerbCount, setVisiblePhrasalVerbCount] = useState(USED_WORD_PAGE_SIZE)
   const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
@@ -70,8 +63,6 @@ export function StoryView({
     setSelectedWord(null)
     setSelectedPhrasalVerb(null)
     setVisibleParagraphCount(STORY_PARAGRAPH_PAGE_SIZE)
-    setVisiblePracticeParagraphCount(PRACTICE_PARAGRAPH_PAGE_SIZE)
-    setVisiblePhrasalParagraphCount(PRACTICE_PARAGRAPH_PAGE_SIZE)
     setVisibleWordCount(USED_WORD_PAGE_SIZE)
     setVisiblePhrasalVerbCount(USED_WORD_PAGE_SIZE)
   }
@@ -79,10 +70,7 @@ export function StoryView({
   const {
     coveredCount,
     coveredPhrasalVerbCount,
-    paragraphs,
-    practiceParagraphs,
-    phrasalPracticeParagraphs,
-    phrasalUsesByParagraph,
+    readingParagraphs,
     phrasalVerbsById,
   } = useMemo(() => {
     const levelLemmas = new Set(levelWords.map(({ lemma }) => lemma))
@@ -105,8 +93,9 @@ export function StoryView({
         ...token,
         tokenIndex: tokenIndex++,
       })))
+
     const storyParagraphs = tokenizeParagraphs(story.storyText)
-    const vocabularyPracticeParagraphs = tokenizeParagraphs(story.vocabularyPracticeText)
+    const vocabularyParagraphs = tokenizeParagraphs(story.vocabularyPracticeText)
     const phrasalRawParagraphs = story.phrasalVerbPracticeText
       .trim()
       .split(/\n\s*\n/u)
@@ -116,14 +105,19 @@ export function StoryView({
     return {
       coveredCount: coveredLemmas.size,
       coveredPhrasalVerbCount: coveredPhrasalIds.size,
-      paragraphs: storyParagraphs,
-      practiceParagraphs: vocabularyPracticeParagraphs,
-      phrasalPracticeParagraphs: phrasalParagraphs,
-      phrasalUsesByParagraph: phrasalRawParagraphs.map((paragraph) =>
-        story.usedPhrasalVerbs.filter(({ example }) => paragraph.includes(example))),
+      readingParagraphs: [
+        ...storyParagraphs.map((tokens) => ({ tokens, phrasalUses: [] as StoryContent['usedPhrasalVerbs'] })),
+        ...vocabularyParagraphs.map((tokens) => ({ tokens, phrasalUses: [] as StoryContent['usedPhrasalVerbs'] })),
+        ...phrasalParagraphs.map((tokens, paragraphIndex) => ({
+          tokens,
+          phrasalUses: story.usedPhrasalVerbs.filter(({ example }) =>
+            phrasalRawParagraphs[paragraphIndex]?.includes(example)),
+        })),
+      ],
       phrasalVerbsById: phrasalById,
     }
   }, [levelPhrasalVerbs, levelWords, lookupWords, story])
+
   const targetRate = targetWordCount > 0 ? coveredCount / targetWordCount : 0
   const phrasalTargetRate = targetPhrasalVerbCount > 0
     ? coveredPhrasalVerbCount / targetPhrasalVerbCount
@@ -135,21 +129,8 @@ export function StoryView({
   const activeSelectedPhrasalVerb = selectedPhrasalVerb?.story === story
     ? selectedPhrasalVerb
     : null
-  const storyParagraphLimit = Math.min(visibleParagraphCount, paragraphs.length)
-  const visibleParagraphs = paragraphs.slice(0, storyParagraphLimit)
-  const practiceParagraphLimit = Math.min(
-    visiblePracticeParagraphCount,
-    practiceParagraphs.length,
-  )
-  const visiblePracticeParagraphs = practiceParagraphs.slice(0, practiceParagraphLimit)
-  const phrasalPracticeParagraphLimit = Math.min(
-    visiblePhrasalParagraphCount,
-    phrasalPracticeParagraphs.length,
-  )
-  const visiblePhrasalPracticeParagraphs = phrasalPracticeParagraphs.slice(
-    0,
-    phrasalPracticeParagraphLimit,
-  )
+  const paragraphLimit = Math.min(visibleParagraphCount, readingParagraphs.length)
+  const visibleReadingParagraphs = readingParagraphs.slice(0, paragraphLimit)
   const visibleWords = story.usedWords.slice(0, visibleWordCount)
   const visiblePhrasalVerbs = story.usedPhrasalVerbs.slice(0, visiblePhrasalVerbCount)
 
@@ -159,7 +140,7 @@ export function StoryView({
     selectedTriggerRef.current?.focus()
   }
 
-  function renderTokens(tokens: (typeof paragraphs)[number]) {
+  function renderTokens(tokens: (typeof readingParagraphs)[number]['tokens']) {
     return tokens.map((token) => {
       if (token.type === 'text') {
         return <span key={`text-${token.tokenIndex}`}>{token.value}</span>
@@ -214,22 +195,51 @@ export function StoryView({
       </header>
       <div className="story-reading-layout">
         <div className="story-reading-column">
-          <p className="story-reading-hint">밑줄 친 단어를 누르면 뜻과 예문이 바로 열립니다.</p>
+          <p className="story-reading-hint">
+            밑줄 친 단어와 구동사를 누르면 뜻과 예문이 바로 열립니다.
+          </p>
           <div className="story-body">
-            {visibleParagraphs.map((tokens, paragraphIndex) => (
-              <p className="story-paragraph" key={`paragraph-${paragraphIndex}`}>
-                {renderTokens(tokens)}
-              </p>
+            {visibleReadingParagraphs.map(({ tokens, phrasalUses }, paragraphIndex) => (
+              <section className="story-phrasal-scene" key={`paragraph-${paragraphIndex}`}>
+                <p className="story-paragraph">{renderTokens(tokens)}</p>
+                {phrasalUses.length > 0 ? (
+                  <div className="story-phrasal-scene__terms">
+                    {phrasalUses.map((use) => {
+                      const item = phrasalVerbsById.get(use.id)
+                      if (!item) return null
+                      const isSelected = activeSelectedPhrasalVerb?.item.id === item.id
+                      return (
+                        <button
+                          key={item.id}
+                          ref={isSelected ? selectedTriggerRef : undefined}
+                          type="button"
+                          className="story-word-button story-phrasal-button"
+                          aria-label={`story phrasal verb: ${item.phrasalVerb}`}
+                          aria-expanded={isSelected}
+                          aria-controls={isSelected ? 'story-word-detail' : undefined}
+                          onClick={(event) => {
+                            selectedTriggerRef.current = event.currentTarget
+                            setSelectedWord(null)
+                            setSelectedPhrasalVerb({ story, item })
+                          }}
+                        >
+                          {item.phrasalVerb}
+                        </button>
+                      )
+                    })}
+                  </div>
+                ) : null}
+              </section>
             ))}
           </div>
-          {storyParagraphLimit < paragraphs.length ? (
+          {paragraphLimit < readingParagraphs.length ? (
             <button
               className="button button--secondary story-load-more"
               type="button"
               onClick={() => setVisibleParagraphCount((count) =>
                 count + STORY_PARAGRAPH_PAGE_SIZE)}
             >
-              {`다음 문단 보기 (${paragraphs.length - storyParagraphLimit}개 남음)`}
+              {`다음 이야기 보기 (${readingParagraphs.length - paragraphLimit}개 문단 남음)`}
             </button>
           ) : null}
         </div>
@@ -252,83 +262,6 @@ export function StoryView({
           />
         ) : null}
       </div>
-
-      <details className="panel story-practice">
-        <summary>{`일반 단어 확장 장면 · 전체 ${story.usedWords.length}개`}</summary>
-        <p className="story-practice__intro">
-          본편 뒤에서 Mina가 잃어버린 페이지를 따라가며, 단어장 일반 단어 전체를 실제 예문 속에서 익힙니다.
-        </p>
-        <div className="story-body story-body--practice">
-          {visiblePracticeParagraphs.map((tokens, paragraphIndex) => (
-            <p className="story-paragraph" key={`practice-paragraph-${paragraphIndex}`}>
-              {renderTokens(tokens)}
-            </p>
-          ))}
-        </div>
-        {practiceParagraphLimit < practiceParagraphs.length ? (
-          <button
-            className="button button--secondary story-load-more"
-            type="button"
-            onClick={() => setVisiblePracticeParagraphCount((count) =>
-              count + PRACTICE_PARAGRAPH_PAGE_SIZE)}
-          >
-            {`다음 연습 장면 보기 (${practiceParagraphs.length - practiceParagraphLimit}개 남음)`}
-          </button>
-        ) : null}
-      </details>
-
-      <details className="panel story-practice story-phrasal-practice">
-        <summary>{`구동사 확장 장면 · 전체 ${story.usedPhrasalVerbs.length}개`}</summary>
-        <p className="story-practice__intro">
-          같은 사건이 이어지는 페이지 장면에서 단어장 구동사 전체를 실제 예문과 함께 익힙니다.
-        </p>
-        <div className="story-body story-body--practice">
-          {visiblePhrasalPracticeParagraphs.map((tokens, paragraphIndex) => (
-            <section
-              className="story-phrasal-scene"
-              aria-label={`구동사 확장 장면 ${paragraphIndex + 1}`}
-              key={`phrasal-practice-paragraph-${paragraphIndex}`}
-            >
-              <p className="story-paragraph">{renderTokens(tokens)}</p>
-              <div className="story-phrasal-scene__terms">
-                {phrasalUsesByParagraph[paragraphIndex]?.map((use) => {
-                  const item = phrasalVerbsById.get(use.id)
-                  if (!item) return null
-                  const isSelected = activeSelectedPhrasalVerb?.item.id === item.id
-                  return (
-                    <button
-                      key={item.id}
-                      ref={isSelected ? selectedTriggerRef : undefined}
-                      type="button"
-                      className="story-word-button story-phrasal-button"
-                      aria-label={`story phrasal verb: ${item.phrasalVerb}`}
-                      aria-expanded={isSelected}
-                      aria-controls={isSelected ? 'story-word-detail' : undefined}
-                      onClick={(event) => {
-                        selectedTriggerRef.current = event.currentTarget
-                        setSelectedWord(null)
-                        setSelectedPhrasalVerb({ story, item })
-                      }}
-                    >
-                      {item.phrasalVerb}
-                    </button>
-                  )
-                })}
-              </div>
-            </section>
-          ))}
-        </div>
-        {phrasalPracticeParagraphLimit < phrasalPracticeParagraphs.length ? (
-          <button
-            className="button button--secondary story-load-more"
-            type="button"
-            onClick={() => setVisiblePhrasalParagraphCount((count) =>
-              count + PRACTICE_PARAGRAPH_PAGE_SIZE)}
-          >
-            {`다음 구동사 장면 보기 (${phrasalPracticeParagraphs.length - phrasalPracticeParagraphLimit}개 남음)`}
-          </button>
-        ) : null}
-      </details>
 
       <div className="story-meta-grid">
         <section className="panel" aria-labelledby="story-coverage-title">
