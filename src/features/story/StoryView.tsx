@@ -25,44 +25,100 @@ interface StoryViewProps {
   speech?: SpeechPort | null
 }
 
+const GENERATED_STAGE_OPENINGS = [
+  /^The [^.]+ had a blue line\. Mina began a new walk with the [^.]+\.\s*/u,
+  /^The [^.]+ became dark, and rain fell\. Mina was afraid, but the [^.]+ was with her\.\s*/u,
+  /^The map did not have the road\. Mina listened to the [^.]+ and changed her plan\.\s*/u,
+  /^At a dark old house, Mina found the family from the picture\. The door was closed, and they asked for help\.\s*/u,
+  /^The red line ended at the [^.]+\. Mina carried the pages with her\.\s*/u,
+] as const
+
+const GENERATED_STAGE_CLOSINGS = [
+  /\s*Mina put the page on the map and followed the red line\.$/u,
+  /\s*The new picture had a road for Mina\. She held the [^.]+ and went on\.$/u,
+  /\s*Mina joined the lines and made a new plan\. She went on with the [^.]+\.$/u,
+  /\s*The picture became clear, and Mina opened a new door\. The family followed her\.$/u,
+  /\s*The pages made a full picture\. Mina found the way, and the family was happy\.$/u,
+] as const
+
+const GENERATED_VOICE_PREFIX = /(?:A child read from the page|A woman wrote on the page|A boy talked to Mina|A girl called from the city|The picture opened, and Mina heard):/gu
+
+const NARRATIVE_LEADS = [
+  'Mina read:',
+  'A note beside it said:',
+  'Another line read:',
+  'Someone nearby said:',
+  'The next message said:',
+  'A voice from the page added:',
+  'Farther down, Mina found:',
+  'Another clue read:',
+  'The page continued:',
+  'A small note said:',
+  'The next line said:',
+  'One final message read:',
+] as const
+
+function smoothVocabularyParagraph(paragraph: string, paragraphIndex: number): string {
+  let smoothed = paragraph.trim()
+  for (const pattern of GENERATED_STAGE_OPENINGS) smoothed = smoothed.replace(pattern, '')
+  for (const pattern of GENERATED_STAGE_CLOSINGS) smoothed = smoothed.replace(pattern, '')
+
+  let voiceIndex = 0
+  smoothed = smoothed.replace(GENERATED_VOICE_PREFIX, () => {
+    const lead = NARRATIVE_LEADS[(paragraphIndex * 3 + voiceIndex) % NARRATIVE_LEADS.length]!
+    voiceIndex += 1
+    return lead
+  })
+  return smoothed.replace(/\s+/gu, ' ').trim()
+}
+
+function smoothVocabularyPracticeText(text: string): string {
+  return text
+    .trim()
+    .split(/\n\s*\n/u)
+    .filter((paragraph) => paragraph.trim())
+    .map(smoothVocabularyParagraph)
+    .join('\n\n')
+}
+
 const PHRASAL_SCENE_FRAMES: Record<Level, {
   openings: readonly string[]
   closings: readonly string[]
 }> = {
   기초: {
     openings: [
-      'Mina and the bird followed the next part of the road.',
-      'Near the next turn, Mina found people who had seen the same blue mark.',
-      'The bird stopped, and Mina listened for another clue.',
-      'A little farther on, the road brought Mina to a new place.',
+      'Mina and the bird went on to the next place.',
+      'At the next turn, Mina found people who had seen the blue mark.',
+      'The bird stopped, and Mina listened for the next clue.',
+      'A little farther on, Mina and the bird came to a new place.',
     ],
     closings: [
-      'Mina remembered the messages and kept walking with the bird.',
-      'The clues pointed ahead, so Mina and the bird went on.',
-      'Mina marked the place on the map and continued down the road.',
-      'The bird flew ahead, and Mina followed with a clearer idea of the way.',
+      'Mina kept the messages in mind and went on with the bird.',
+      'The clues showed the way, so Mina and the bird went on.',
+      'Mina marked the place on the map and kept walking.',
+      'The bird went ahead, and Mina followed it down the road.',
     ],
   },
   유치원: {
     openings: [
-      'The glowing book opened another page while Mina and her team watched.',
-      'A new light moved across the page and revealed several voices from the lost story.',
-      'Mina turned the page carefully, and another part of the school story appeared.',
-      'The team gathered around the book when a hidden scene began to shine.',
+      'The glowing book opened another page while Mina and her friends watched.',
+      'A new light moved across the page and showed another part of the lost story.',
+      'Mina turned the page, and a new part of the school story appeared.',
+      'Mina and her friends came closer when a hidden page began to shine.',
     ],
     closings: [
-      'Mina wrote down what they had learned before the light moved to the next page.',
-      'The team connected the new messages to the mystery and continued reading.',
-      'Another piece of the lost story was back in place, but the book still had more to show.',
-      'The page grew quiet again, and Mina knew the next clue was close.',
+      'Mina wrote down what they learned before the light moved to the next page.',
+      'The friends put the new messages together and kept reading.',
+      'Another piece of the lost story was back in place, but the book had more to show.',
+      'The page grew quiet again, and Mina knew the next clue was near.',
     ],
   },
   초등학교: {
     openings: [
       'The next clue led Mina and her team to another part of the city.',
-      'As they followed the four letters, the team uncovered a set of messages connected to the garden.',
+      'As they followed the four letters, the team found messages connected to the garden.',
       'The trail turned again, and several records gave Mina a new view of the mystery.',
-      'Before they could move on, Mina compared several accounts left along the route.',
+      'Before they moved on, Mina compared several accounts left along the route.',
     ],
     closings: [
       'Mina compared the messages, added the useful details to her notebook, and followed the next clue.',
@@ -181,7 +237,8 @@ export function StoryView({
       })))
 
     const storyParagraphs = tokenizeParagraphs(story.storyText)
-    const vocabularyParagraphs = tokenizeParagraphs(story.vocabularyPracticeText)
+    const vocabularyNarrativeText = smoothVocabularyPracticeText(story.vocabularyPracticeText)
+    const vocabularyParagraphs = tokenizeParagraphs(vocabularyNarrativeText)
     const phrasalRawParagraphs = story.phrasalVerbPracticeText
       .trim()
       .split(/\n\s*\n/u)
