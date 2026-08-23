@@ -1,0 +1,318 @@
+{
+  "기초": {
+    "words": {
+      "covered": 500,
+      "total": 500,
+      "missing": []
+    },
+    "phrasalVerbs": {
+      "covered": 250,
+      "total": 250,
+      "missing": []
+    },
+    "paragraphs": {
+      "curated": 21,
+      "reader": 123
+    },
+    "sentences": {
+      "total": 799,
+      "unique": 610,
+      "repeated": 189,
+      "repeatedRate": 0.2365,
+      "averageWords": 9.78,
+      "maxWords": 16,
+      "repeatedSamples": [
+        {
+          "sentence": "Before Mina leaves the place, the blue bird notices a small note nearby.",
+          "count": 14
+        },
+        {
+          "sentence": "The last line matches the map, so Mina and the bird keep walking.",
+          "count": 14
+        },
+        {
+          "sentence": "A little farther on, Mina finds a folded paper beside the red path.",
+          "count": 13
+        },
+        {
+          "sentence": "Mina finds another clue just before the path turns.",
+          "count": 13
+        },
+        {
+          "sentence": "Mina puts the paper safely in her bag and follows the next mark.",
+          "count": 13
+        },
+        {
+          "sentence": "Near the next tree, Mina sees a short message waiting under a stone.",
+          "count": 13
+        },
+        {
+          "sentence": "One detail helps Mina understand where they should go next.",
+          "count": 13
+        },
+        {
+          "sentence": "The bird chirps at a small card near the road, and Mina stops to read it.",
+          "count": 13
+        },
+        {
+          "sentence": "The clue makes the next part of the map easier to follow.",
+          "count": 13
+        },
+        {
+          "sentence": "When Mina finishes, she smiles at the bird and they move on together.",
+          "count": 13
+        },
+        {
+          "sentence": "A small paper appears near the next mark on the map.",
+          "count": 12
+        },
+        {
+          "sentence": "After reading them, Mina checks the red line and starts walking again.",
+          "count": 12
+        }
+      ]
+    },
+    "quality": {
+      "mechanicalLabels": 0,
+      "lowLevelUnsafeHits": [],
+      "fallbackLikeSentences": 324
+    }
+  },
+  "유치원": {
+    "words": {
+      "covered": 500,
+      "total": 500,
+      "missing": []
+    },
+    "phrasalVerbs": {
+      "covered": 250,
+      "total": 250,
+      "missing": []
+    },
+    "paragraphs": {
+      "curated": 26,
+      "reader": 133
+    },
+    "sentences": {
+      "total": 877,
+      "unique": 682,
+      "repeated": 195,
+      "repeatedRate": 0.2223,
+      "averageWords": 10.05,
+      "maxWords": 16,
+      "repeatedSamples": [
+        {
+          "sentence": "A new picture grows across the paper while Mina and her friends watch.",
+          "count": 14
+        },
+        {
+          "sentence": "A warm gold light runs across the next page and reveals another small memory.",
+          "count": 14
+        },
+        {
+          "sentence": "Before the page turns again, the storybook shows Mina, Joon, and Sara a few short lines.",
+          "count": 14
+        },
+        {
+          "sentence": "Mina smiles when the final line makes the next picture glow.",
+          "count": 14
+        },
+        {
+          "sentence": "Mina, Joon, and Sara read it together before the page turns.",
+          "count": 14
+        },
+        {
+          "sentence": "The friends talk about what they learned before the light moves on.",
+          "count": 14
+        },
+        {
+          "sentence": "The old book opens to a page the friends have not seen before.",
+          "count": 14
+        },
+        {
+          "sentence": "The picture becomes bright when the friends understand the message.",
+          "count": 14
+        },
+        {
+          "sentence": "When they finish reading, a little star appears near the next page.",
+          "count": 14
+        },
+        {
+          "sentence": "The book pauses on another memory from the school.",
+          "count": 13
+        },
+        {
+          "sentence": "The friends remember the scene as the golden light moves forward.",
+          "count": 13
+        },
+        {
+          "sentence": "A small paper door opens inside the storybook and shows another scene.",
+          "count": 12
+        }
+      ]
+    },
+    "quality": {
+      "mechanicalLabels": 0,
+      "lowLevelUnsafeHits": [],
+      "fallbackLikeSentences": 358
+    }
+  },
+  "초등학교": {
+    "words": {
+      "covered": 1500,
+      "total": 1500,
+      "missing": []
+    },
+    "phrasalVerbs": {
+      "covered": 250,
+      "total": 250,
+      "missing": []
+    },
+    "paragraphs": {
+      "curated": 32,
+      "reader": 234
+    },
+    "sentences": {
+      "total": 1914,
+      "unique": 1526,
+      "repeated": 388,
+      "repeatedRate": 0.2027,
+      "averageWords": 10.15,
+      "maxWords": 25,
+      "repeatedSamples": [
+        {
+          "sentence": "A nearby folder contains several short memories from people who once used the garden.",
+          "count": 26
+        },
+        {
+          "sentence": "Mina compares the details with the map before the three friends continue.",
+          "count": 26
+        },
+        {
+          "sentence": "The new details make the next part of the mystery easier to understand.",
+          "count": 26
+        },
+        {
+          "sentence": "They record the useful details and return to the main clue.",
+          "count": 26
+        },
+        {
+          "sentence": "A repeated detail links the notes to the larger mystery.",
+          "count": 25
+        },
+        {
+          "sentence": "Another envelope contains messages that were saved by people who cared for the garden.",
+          "count": 25
+        },
+        {
+          "sentence": "Before leaving the area, Mina finds another bundle connected to the garden’s history, and Joon and Sara help her examine it.",
+          "count": 25
+        },
+        {
+          "sentence": "Mina pauses to review another set of notes before they move to the next place.",
+          "count": 25
+        },
+        {
+          "sentence": "Near the next location, Joon notices a packet that everyone else had missed.",
+          "count": 25
+        },
+        {
+          "sentence": "Sara checks the dates while Mina marks the details that may matter later.",
+          "count": 25
+        },
+        {
+          "sentence": "The friends find a small box of records near the path and read the contents in order.",
+          "count": 25
+        },
+        {
+          "sentence": "The friends study it together, then continue with a clearer idea of what happened.",
+          "count": 25
+        }
+      ]
+    },
+    "quality": {
+      "mechanicalLabels": 0,
+      "lowLevelUnsafeHits": [],
+      "fallbackLikeSentences": 502
+    }
+  },
+  "중학교": {
+    "words": {
+      "covered": 2500,
+      "total": 2500,
+      "missing": []
+    },
+    "phrasalVerbs": {
+      "covered": 250,
+      "total": 250,
+      "missing": []
+    },
+    "paragraphs": {
+      "curated": 36,
+      "reader": 316
+    },
+    "sentences": {
+      "total": 3127,
+      "unique": 2584,
+      "repeated": 543,
+      "repeatedRate": 0.1736,
+      "averageWords": 9.73,
+      "maxWords": 29,
+      "repeatedSamples": [
+        {
+          "sentence": "Before moving to the next source, Mina reviews another set of Riverside records beside her timeline.",
+          "count": 36
+        },
+        {
+          "sentence": "She marks what can be verified and returns to the main investigation.",
+          "count": 36
+        },
+        {
+          "sentence": "A second file box gives Mina several accounts that were never explained in the shortened public summary.",
+          "count": 35
+        },
+        {
+          "sentence": "Another group of records fills a gap between two dates on Mina’s timeline.",
+          "count": 35
+        },
+        {
+          "sentence": "During the supervised review, Mina opens a folder that earlier summaries had reduced to a few lines.",
+          "count": 35
+        },
+        {
+          "sentence": "Mina compares another set of documents with the sources she has already collected.",
+          "count": 35
+        },
+        {
+          "sentence": "Mina keeps the different accounts visible so the final report will not erase disagreement.",
+          "count": 35
+        },
+        {
+          "sentence": "Mina records the source of each claim before connecting it to the larger timeline.",
+          "count": 35
+        },
+        {
+          "sentence": "She keeps the conflicting details side by side instead of forcing them into one version.",
+          "count": 35
+        },
+        {
+          "sentence": "She notes the points that can be checked against independent evidence.",
+          "count": 35
+        },
+        {
+          "sentence": "She separates fact, memory, and opinion before deciding what the material can prove.",
+          "count": 35
+        },
+        {
+          "sentence": "The archive index leads Mina to another packet of letters, reports, and interview notes.",
+          "count": 35
+        }
+      ]
+    },
+    "quality": {
+      "mechanicalLabels": 0,
+      "lowLevelUnsafeHits": [],
+      "fallbackLikeSentences": 871
+    }
+  }
+}
