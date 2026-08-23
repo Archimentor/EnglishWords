@@ -12,11 +12,21 @@ export interface ReaderStoryCoverage {
   missingPhrasalVerbs: string[]
 }
 
+interface TextLookup {
+  text: string
+  tokens: ReadonlySet<string>
+}
+
+interface WordExampleCandidate {
+  text: string
+  wordIds: Set<string>
+}
+
 const SCENE_SENTENCE_LIMIT: Readonly<Record<Level, number>> = {
-  기초: 4,
-  유치원: 5,
-  초등학교: 6,
-  중학교: 7,
+  기초: 8,
+  유치원: 8,
+  초등학교: 10,
+  중학교: 12,
 }
 
 const LOW_LEVEL_UNSAFE: Readonly<Record<Level, RegExp | null>> = {
@@ -28,29 +38,36 @@ const LOW_LEVEL_UNSAFE: Readonly<Record<Level, RegExp | null>> = {
 
 const STORY_FRAMES: Readonly<Record<Level, readonly [string, string][]>> = {
   기초: [
-    ['The map opens one more small path. Mina follows it with the blue bird.', 'Mina checks the map, and they keep going together.'],
-    ['A new note waits beside the path. Mina reads it while the bird watches.', 'The note helps Mina choose the next turn.'],
-    ['Near the next mark, Mina finds a little page that someone left for them.', 'Mina puts the page in her bag and follows the red line again.'],
-    ['The bird chirps at another clue. Mina stops and looks closely.', 'When the clue is clear, Mina and the bird move on.'],
+    ['Mina and the blue bird follow another mark on the map', 'Mina checks the clue and keeps moving with the bird'],
+    ['Mina finds a new note beside the path and reads it carefully', 'The note helps Mina choose the next turn'],
+    ['Mina finds a little page that someone left near the next mark', 'Mina puts the page in her bag and follows the red line again'],
+    ['The bird chirps when Mina stops at another clue', 'Mina understands the clue and the two friends move on'],
   ],
   유치원: [
-    ['The storybook turns another page by itself. Mina, Joon, and Sara lean closer.', 'The picture glows softly, and the friends turn the page together.'],
-    ['A small golden light runs across the paper. Another little story appears.', 'Mina smiles when the light moves to the next page.'],
-    ['The book shows the friends another memory from long ago.', 'The three friends talk about what they saw before the page changes again.'],
-    ['A new picture grows across the white page. The friends read every line.', 'When they finish, one more star shines near the edge of the book.'],
+    ['The storybook turns a new page while Mina, Joon, and Sara lean closer', 'The picture glows softly as the friends prepare for the next page'],
+    ['A small golden light runs across the paper and another little story appears', 'Mina smiles when the light points toward the next page'],
+    ['The book shows the friends another memory from long ago', 'The three friends talk about the memory before the book changes again'],
+    ['A new picture grows across the white page while the friends read every line', 'One more star shines when the friends finish the page'],
   ],
   초등학교: [
-    ['Inside the history room, Mina finds another bundle connected to the four letters. Joon and Sara help her open it carefully.', 'They record what they learned, return the papers to the bundle, and follow the next clue.'],
-    ['The next folder contains short memories from people who once used the garden. Mina reads them while Sara checks the dates.', 'Joon marks the useful details on their map, and the three friends continue the search.'],
-    ['Behind an old photograph, Mina discovers several notes that explain another part of the garden’s history.', 'The notes make the earlier clue clearer, so Mina adds them to the evidence they are carrying.'],
-    ['A small box near the path holds more records from past visitors. The friends sit under the tree and read them in order.', 'When the last page is finished, Mina sees how this piece of the history connects to their next stop.'],
+    ['Mina finds another bundle connected to the four letters, and Joon and Sara help her open it carefully', 'The friends record what they learned and return to the next clue'],
+    ['Mina opens a folder of memories from people who once used the garden while Sara checks the dates', 'Joon marks the useful details on their map before the search continues'],
+    ['Mina discovers notes behind an old photograph that explain another part of the garden’s history', 'The new evidence makes the earlier clue clearer for the three friends'],
+    ['The friends sit under the tree with a small box of records from past visitors', 'Mina connects the final page in the box to their next stop'],
   ],
   중학교: [
-    ['The Riverside collection contains another set of records that had never been summarized in the public report. Mina reads them beside her timeline.', 'She marks the source of each statement, separates observation from opinion, and returns to the main investigation.'],
-    ['A second file box gives Mina more voices from the district. She reads the material in chronological order instead of assuming that every account agrees.', 'After comparing the pages, Mina notes the points that can be checked against independent evidence.'],
-    ['The archive index leads Mina to another packet of letters, reports, and interview notes. Each document adds a small part of the missing context.', 'Mina records where every claim came from before she connects the packet to the larger Riverside timeline.'],
-    ['During the supervised review, Mina opens another folder that previous summaries had reduced to a single line. The original pages are much more detailed.', 'She keeps the conflicting accounts side by side so the final report will show uncertainty instead of hiding it.'],
+    ['Mina reads another set of Riverside records beside the timeline instead of relying on the shortened public summary', 'She separates observation from opinion before returning to the main investigation'],
+    ['Mina opens another file box and reads its accounts in chronological order rather than assuming that every witness agrees', 'She notes which points can be checked against independent evidence'],
+    ['The archive index leads Mina to another packet of letters, reports, and interview notes that add missing context', 'Mina records the source of every claim before connecting the packet to the larger timeline'],
+    ['During the supervised review, Mina opens a folder that earlier summaries had reduced to a single line', 'She keeps the conflicting accounts side by side so the final report will preserve uncertainty'],
   ],
+}
+
+const SCENE_LABEL: Readonly<Record<Level, string>> = {
+  기초: 'Trail step',
+  유치원: 'Story page',
+  초등학교: 'Garden record',
+  중학교: 'Archive file',
 }
 
 function wordForms(word: WordItem): string[] {
@@ -58,12 +75,33 @@ function wordForms(word: WordItem): string[] {
     .filter((form) => form.trim().length > 0)
 }
 
-function wordAppears(text: string, word: WordItem): boolean {
-  return wordForms(word).some((form) => hasWholeWordForm(text, form))
+function storyTokens(text: string): Set<string> {
+  return new Set(
+    text.toLowerCase().match(/[\p{L}\p{N}]+(?:['’~-][\p{L}\p{N}]+)*/gu) ?? [],
+  )
 }
 
-function phrasalVerbAppears(text: string, item: PhrasalVerbItem): boolean {
-  return hasWholeWordForm(text, item.phrasalVerb)
+function makeLookup(text: string): TextLookup {
+  return { text, tokens: storyTokens(text) }
+}
+
+function isSimpleForm(form: string): boolean {
+  return /^[\p{L}\p{N}]+(?:['’~-][\p{L}\p{N}]+)*$/u.test(form)
+}
+
+function lookupContainsForm(lookup: TextLookup, form: string): boolean {
+  const normalized = form.toLowerCase()
+  return isSimpleForm(normalized)
+    ? lookup.tokens.has(normalized)
+    : hasWholeWordForm(lookup.text, form)
+}
+
+function wordAppears(lookup: TextLookup, word: WordItem): boolean {
+  return wordForms(word).some((form) => lookupContainsForm(lookup, form))
+}
+
+function phrasalVerbAppears(lookup: TextLookup, item: PhrasalVerbItem): boolean {
+  return lookupContainsForm(lookup, item.phrasalVerb)
 }
 
 export function readerStoryCoverage(
@@ -71,9 +109,10 @@ export function readerStoryCoverage(
   words: readonly WordItem[],
   phrasalVerbs: readonly PhrasalVerbItem[],
 ): ReaderStoryCoverage {
-  const missingWords = words.filter((word) => !wordAppears(text, word))
+  const lookup = makeLookup(text)
+  const missingWords = words.filter((word) => !wordAppears(lookup, word))
   const missingPhrasalVerbs = phrasalVerbs.filter((item) =>
-    !phrasalVerbAppears(text, item))
+    !phrasalVerbAppears(lookup, item))
 
   return {
     wordCoveredCount: words.length - missingWords.length,
@@ -101,16 +140,6 @@ function exampleScore(example: string, level: Level): number {
     중학교: 28,
   } as const)[level])
   return wordCount + sentencePenalty * 3
-}
-
-function bestWordExample(word: WordItem, level: Level): string | null {
-  const forms = wordForms(word)
-  const candidates = word.entries
-    .flatMap((entry) => entry.examples)
-    .filter((example) => forms.some((form) => hasWholeWordForm(example, form)))
-    .filter((example) => isSafeExample(level, example))
-    .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))
-  return candidates[0] ?? null
 }
 
 function bestPhrasalExample(item: PhrasalVerbItem, level: Level): string | null {
@@ -176,25 +205,96 @@ function uniqueSentences(values: readonly string[]): string[] {
   return result
 }
 
+function phrasalCoverageSentences(
+  baseText: string,
+  level: Level,
+  phrasalVerbs: readonly PhrasalVerbItem[],
+): string[] {
+  const missingIds = new Set(
+    readerStoryCoverage(baseText, [], phrasalVerbs).missingPhrasalVerbIds,
+  )
+  return uniqueSentences(
+    phrasalVerbs
+      .filter(({ id }) => missingIds.has(id))
+      .map((item) => bestPhrasalExample(item, level) ?? fallbackPhrasalSentence(item, level)),
+  )
+}
+
+function greedyWordCoverageSentences(
+  seedText: string,
+  level: Level,
+  words: readonly WordItem[],
+): string[] {
+  const missingIds = new Set(readerStoryCoverage(seedText, words, []).missingWordIds)
+  if (missingIds.size === 0) return []
+
+  const missingWords = words.filter(({ id }) => missingIds.has(id))
+  const simpleFormOwners = new Map<string, Set<string>>()
+  for (const word of missingWords) {
+    for (const form of wordForms(word)) {
+      const normalized = form.toLowerCase()
+      if (!isSimpleForm(normalized)) continue
+      const owners = simpleFormOwners.get(normalized) ?? new Set<string>()
+      owners.add(word.id)
+      simpleFormOwners.set(normalized, owners)
+    }
+  }
+
+  const candidatesByText = new Map<string, WordExampleCandidate>()
+  for (const word of missingWords) {
+    const forms = wordForms(word)
+    for (const example of word.entries.flatMap((entry) => entry.examples)) {
+      if (!isSafeExample(level, example)) continue
+      if (!forms.some((form) => hasWholeWordForm(example, form))) continue
+      const candidate = candidatesByText.get(example) ?? {
+        text: example,
+        wordIds: new Set<string>(),
+      }
+      candidate.wordIds.add(word.id)
+      candidatesByText.set(example, candidate)
+    }
+  }
+
+  for (const candidate of candidatesByText.values()) {
+    for (const token of storyTokens(candidate.text)) {
+      for (const ownerId of simpleFormOwners.get(token) ?? []) {
+        candidate.wordIds.add(ownerId)
+      }
+    }
+  }
+
+  const candidates = [...candidatesByText.values()].sort((left, right) =>
+    right.wordIds.size - left.wordIds.size
+    || exampleScore(left.text, level) - exampleScore(right.text, level))
+  const uncovered = new Set(missingIds)
+  const selected: string[] = []
+
+  for (const candidate of candidates) {
+    const newlyCovered = [...candidate.wordIds].filter((id) => uncovered.has(id))
+    if (newlyCovered.length === 0) continue
+    selected.push(candidate.text)
+    newlyCovered.forEach((id) => uncovered.delete(id))
+    if (uncovered.size === 0) break
+  }
+
+  if (uncovered.size > 0) {
+    selected.push(...missingWords
+      .filter(({ id }) => uncovered.has(id))
+      .map((word) => fallbackWordSentence(word, level)))
+  }
+  return uniqueSentences(selected)
+}
+
 function coverageSentences(
   baseText: string,
   level: Level,
   words: readonly WordItem[],
   phrasalVerbs: readonly PhrasalVerbItem[],
 ): string[] {
-  const initial = readerStoryCoverage(baseText, words, phrasalVerbs)
-  const missingWordIds = new Set(initial.missingWordIds)
-  const missingPhrasalIds = new Set(initial.missingPhrasalVerbIds)
-
-  const wordSentences = words
-    .filter(({ id }) => missingWordIds.has(id))
-    .map((word) => bestWordExample(word, level) ?? fallbackWordSentence(word, level))
-
-  const phrasalSentences = phrasalVerbs
-    .filter(({ id }) => missingPhrasalIds.has(id))
-    .map((item) => bestPhrasalExample(item, level) ?? fallbackPhrasalSentence(item, level))
-
-  return uniqueSentences([...wordSentences, ...phrasalSentences])
+  const phrasalSentences = phrasalCoverageSentences(baseText, level, phrasalVerbs)
+  const wordSeed = [baseText, ...phrasalSentences].join(' ')
+  const wordSentences = greedyWordCoverageSentences(wordSeed, level, words)
+  return uniqueSentences([...phrasalSentences, ...wordSentences])
 }
 
 function buildCoverageScenes(
@@ -204,12 +304,16 @@ function buildCoverageScenes(
   if (sentences.length === 0) return []
   const frames = STORY_FRAMES[level]
   const limit = SCENE_SENTENCE_LIMIT[level]
+  const label = SCENE_LABEL[level]
   const scenes: string[] = []
 
   for (let index = 0; index < sentences.length; index += limit) {
+    const sceneNumber = scenes.length + 1
     const frame = frames[scenes.length % frames.length]!
     const body = sentences.slice(index, index + limit).join(' ')
-    scenes.push(`${frame[0]} ${body} ${frame[1]}`)
+    scenes.push(
+      `${label} ${sceneNumber}: ${frame[0]}. ${body} ${frame[1]} after ${label.toLowerCase()} ${sceneNumber}.`,
+    )
   }
   return scenes
 }
