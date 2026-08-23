@@ -4,7 +4,7 @@ import { makePhrasalVerb, makeStory, makeWord } from '../../test/fixtures'
 import * as storyTokenization from './storyTokens'
 import { StoryView } from './StoryView'
 
-test('수동 소설과 대표/릴리스 커버리지를 표시한다', () => {
+test('실제 표시 본문의 일반단어와 구동사 커버리지를 표시한다', () => {
   const levelWords = Array.from({ length: 8 }, (_, index) => {
     const lemma = `word-${index + 1}`
     return makeWord({
@@ -30,15 +30,16 @@ test('수동 소설과 대표/릴리스 커버리지를 표시한다', () => {
 
   expect(within(article).getByRole('heading', { name: '함께 노는 친구들' })).toBeInTheDocument()
   expect(within(article).getByText('A safe <story> stays plain text.')).toBeInTheDocument()
-  expect(within(article).getByText('수동 작성: 예')).toBeInTheDocument()
-  expect(within(article).getByText('통합 단어장 전체 포함: 예')).toBeInTheDocument()
-  expect(within(article).getByText('상위 레벨 단어 허용: 아니요')).toBeInTheDocument()
-  expect(within(article).getByText('현재 대표 데이터 커버리지 100%')).toBeInTheDocument()
+  expect(within(article).getByText('수동 검수 원본: 예')).toBeInTheDocument()
+  expect(within(article).getByText('전체 커버리지 요구: 예')).toBeInTheDocument()
   expect(within(article).getByText('일반 단어 8 / 8')).toBeInTheDocument()
-  expect(within(article).getByText('릴리스 목표 대비 8 / 500 (1.6%)')).toBeInTheDocument()
+  expect(within(article).getByText('구동사 0 / 0')).toBeInTheDocument()
+  expect(within(article).getByText('미사용 일반 단어 0개')).toBeInTheDocument()
+  expect(within(article).getByText('미사용 구동사 0개')).toBeInTheDocument()
+  expect(within(article).getByText('릴리스 목표 대비 일반 단어 8 / 500 (1.6%)')).toBeInTheDocument()
 })
 
-test('배포 소설은 기존 확장 예문을 끼우지 않고 재작성 본문만 보여준다', async () => {
+test('배포 소설은 기존 확장 예문 대신 재작성 본문과 실제 커버리지 장면을 보여준다', async () => {
   const user = userEvent.setup()
   const story = makeStory('기초', {
     title: '빨간 공을 따라간 Mina',
@@ -59,7 +60,7 @@ test('배포 소설은 기존 확장 예문을 끼우지 않고 재작성 본문
   expect(screen.getByText(/Mina opens the letter/u)).toBeVisible()
 })
 
-test('구동사는 본문을 끊지 않고 별도 학습 목록에서 상세를 연다', async () => {
+test('구동사는 실제 본문 안에서도 사용되고 별도 학습 목록에서 상세를 연다', async () => {
   const user = userEvent.setup()
   const phrasalVerb = makePhrasalVerb()
   const example = phrasalVerb.examples[0]!
@@ -85,7 +86,7 @@ test('구동사는 본문을 끊지 않고 별도 학습 목록에서 상세를 
   )
 
   expect(screen.getByText('구동사 1 / 1')).toBeInTheDocument()
-  expect(screen.queryByText((text) => text.includes(example))).not.toBeInTheDocument()
+  expect(screen.getByText((text) => text.includes(example))).toBeInTheDocument()
 
   const trigger = screen.getByRole('button', { name: 'story phrasal verb: wake up' })
   await user.click(trigger)
@@ -104,10 +105,9 @@ test('false 메타데이터 상태도 텍스트로 명확히 표시한다', () =
 
   render(<StoryView story={story} levelWords={[makeWord()]} targetWordCount={500} />)
 
-  expect(screen.getByText('수동 작성: 아니요')).toBeInTheDocument()
-  expect(screen.getByText('통합 단어장 전체 포함: 아니요')).toBeInTheDocument()
-  expect(screen.getByText('상위 레벨 단어 허용: 예')).toBeInTheDocument()
-  expect(screen.getByText('현재 대표 데이터 커버리지 50%')).toBeInTheDocument()
+  expect(screen.getByText('수동 검수 원본: 아니요')).toBeInTheDocument()
+  expect(screen.getByText('전체 커버리지 요구: 아니요')).toBeInTheDocument()
+  expect(screen.getByText('미사용 일반 단어 0개')).toBeInTheDocument()
 })
 
 test('clicking a story surface form shows its exact word entry', async () => {
@@ -178,7 +178,8 @@ test('상위 레벨 소설에 기록된 하위 레벨 단어도 누적 사전에
 
   await user.click(screen.getByRole('button', { name: 'story word: play' }))
   expect(screen.getByRole('heading', { name: 'play 단어 상세' })).toBeInTheDocument()
-  expect(screen.getByText('일반 단어 0 / 1')).toBeInTheDocument()
+  expect(screen.getByText('일반 단어 1 / 1')).toBeInTheDocument()
+  expect(screen.getByText('미사용 일반 단어 0개')).toBeInTheDocument()
 })
 
 test('선택한 소설 표면형의 발음을 재생하고 상세를 닫을 때 취소한다', async () => {
