@@ -79,8 +79,9 @@ export function StoryView({
       story.level,
       levelWords,
       levelPhrasalVerbs,
+      lookupWords,
     ),
-    [curatedText, levelPhrasalVerbs, levelWords, story.level],
+    [curatedText, levelPhrasalVerbs, levelWords, lookupWords, story.level],
   )
 
   const {
