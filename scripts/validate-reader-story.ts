@@ -1,4 +1,4 @@
-import { readFile } from 'node:fs/promises'
+import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 import {
   buildReaderStoryText,
@@ -20,13 +20,21 @@ const WORD_TARGETS: Readonly<Record<Level, number>> = {
   중학교: 2_500,
 }
 const PHRASAL_TARGET = 250
+const REPORT_PATH = resolve('public/data/DEVELOPMENT/reader-story-coverage.json')
+
+interface LevelReport {
+  words: { covered: number; total: number; missing: string[] }
+  phrasalVerbs: { covered: number; total: number; missing: string[] }
+  paragraphs: { curated: number; reader: number }
+  sentences: { total: number; unique: number; repeated: number }
+}
 
 async function readJson<T>(path: string): Promise<T> {
   return JSON.parse(await readFile(resolve(path), 'utf8')) as T
 }
 
-function sentenceCount(text: string): number {
-  return text.match(/[^.!?]+[.!?]+/gu)?.length ?? 0
+function sentences(text: string): string[] {
+  return text.match(/[^.!?]+[.!?]+/gu)?.map((sentence) => sentence.trim()) ?? []
 }
 
 function paragraphCount(text: string): number {
@@ -34,6 +42,7 @@ function paragraphCount(text: string): number {
 }
 
 let failed = false
+const report = {} as Record<Level, LevelReport>
 
 for (const level of LEVELS) {
   const [words, phrasalVerbs, story] = await Promise.all([
@@ -54,13 +63,38 @@ for (const level of LEVELS) {
   const baseText = curatedStoryText(story)
   const readerText = buildReaderStoryText(baseText, level, words, phrasalVerbs)
   const coverage = readerStoryCoverage(readerText, words, phrasalVerbs)
+  const readerSentences = sentences(readerText)
+  const uniqueSentenceCount = new Set(readerSentences).size
+
+  report[level] = {
+    words: {
+      covered: coverage.wordCoveredCount,
+      total: coverage.wordTotalCount,
+      missing: coverage.missingWordLemmas,
+    },
+    phrasalVerbs: {
+      covered: coverage.phrasalVerbCoveredCount,
+      total: coverage.phrasalVerbTotalCount,
+      missing: coverage.missingPhrasalVerbs,
+    },
+    paragraphs: {
+      curated: paragraphCount(baseText),
+      reader: paragraphCount(readerText),
+    },
+    sentences: {
+      total: readerSentences.length,
+      unique: uniqueSentenceCount,
+      repeated: readerSentences.length - uniqueSentenceCount,
+    },
+  }
 
   console.log([
     `[reader-story] ${level}`,
     `words=${coverage.wordCoveredCount}/${coverage.wordTotalCount}`,
     `phrasals=${coverage.phrasalVerbCoveredCount}/${coverage.phrasalVerbTotalCount}`,
     `paragraphs=${paragraphCount(readerText)}`,
-    `sentences=${sentenceCount(readerText)}`,
+    `sentences=${readerSentences.length}`,
+    `repeated=${readerSentences.length - uniqueSentenceCount}`,
   ].join(' '))
 
   if (coverage.missingWordIds.length > 0) {
@@ -83,6 +117,9 @@ for (const level of LEVELS) {
     failed = true
   }
 }
+
+await mkdir(resolve('public/data/DEVELOPMENT'), { recursive: true })
+await writeFile(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`, 'utf8')
 
 if (failed) {
   process.exitCode = 1
