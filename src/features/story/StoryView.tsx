@@ -246,7 +246,7 @@ export function StoryView({
             <li>{`구동사 ${coveredPhrasalVerbCount} / ${levelPhrasalVerbs.length}`}</li>
             <li>{`미사용 일반 단어 ${missingWordCount}개`}</li>
             <li>{`미사용 구동사 ${missingPhrasalVerbCount}개`}</li>
-            <li>{`릴리스 목표 대비 일반 단어 ${coveredCount} / ${targetWordCount} (${percent(targetRate)})`}</li>
+            <li>{`릴리스 목표 대비 ${coveredCount} / ${targetWordCount} (${percent(targetRate)})`}</li>
             <li>{`릴리스 목표 대비 구동사 ${coveredPhrasalVerbCount} / ${targetPhrasalVerbCount} (${percent(phrasalTargetRate)})`}</li>
             <li>{`실제 통합 본문 ${combinedCoveredCount} / ${combinedCatalogCount}`}</li>
             <li>{`통합 릴리스 목표 ${combinedCoveredCount} / ${combinedTargetCount}`}</li>
