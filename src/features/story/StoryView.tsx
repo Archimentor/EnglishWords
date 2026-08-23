@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState } from 'react'
 import type {
+  Level,
   PhrasalVerbItem,
   StoryContent,
   WordEntry,
@@ -22,6 +23,91 @@ interface StoryViewProps {
   targetWordCount: number
   targetPhrasalVerbCount?: number
   speech?: SpeechPort | null
+}
+
+const PHRASAL_SCENE_FRAMES: Record<Level, {
+  openings: readonly string[]
+  closings: readonly string[]
+}> = {
+  기초: {
+    openings: [
+      'Mina and the bird followed the next part of the road.',
+      'Near the next turn, Mina found people who had seen the same blue mark.',
+      'The bird stopped, and Mina listened for another clue.',
+      'A little farther on, the road brought Mina to a new place.',
+    ],
+    closings: [
+      'Mina remembered the messages and kept walking with the bird.',
+      'The clues pointed ahead, so Mina and the bird went on.',
+      'Mina marked the place on the map and continued down the road.',
+      'The bird flew ahead, and Mina followed with a clearer idea of the way.',
+    ],
+  },
+  유치원: {
+    openings: [
+      'The glowing book opened another page while Mina and her team watched.',
+      'A new light moved across the page and revealed several voices from the lost story.',
+      'Mina turned the page carefully, and another part of the school story appeared.',
+      'The team gathered around the book when a hidden scene began to shine.',
+    ],
+    closings: [
+      'Mina wrote down what they had learned before the light moved to the next page.',
+      'The team connected the new messages to the mystery and continued reading.',
+      'Another piece of the lost story was back in place, but the book still had more to show.',
+      'The page grew quiet again, and Mina knew the next clue was close.',
+    ],
+  },
+  초등학교: {
+    openings: [
+      'The next clue led Mina and her team to another part of the city.',
+      'As they followed the four letters, the team uncovered a set of messages connected to the garden.',
+      'The trail turned again, and several records gave Mina a new view of the mystery.',
+      'Before they could move on, Mina compared several accounts left along the route.',
+    ],
+    closings: [
+      'Mina compared the messages, added the useful details to her notebook, and followed the next clue.',
+      'Together the details narrowed the search, so the team continued toward the garden.',
+      'The team now understood a little more about what the city had forgotten.',
+      'Mina kept the evidence with the letters and led the team to the next stop.',
+    ],
+  },
+  중학교: {
+    openings: [
+      'The next file contained statements from several sources connected to the investigation.',
+      'Mina compared another group of records before deciding what could be treated as evidence.',
+      'A new set of witness accounts complicated the public version of the case.',
+      'Before updating the report, Mina reviewed several independent statements from the district.',
+    ],
+    closings: [
+      'Mina recorded the statements separately, marked the points that could be verified, and continued the investigation.',
+      'The accounts did not all agree, but together they exposed another gap in the public record.',
+      'Mina added the supported details to her notes and kept the original sources unchanged.',
+      'The evidence now pointed to the next part of the record, so Mina continued tracing the case.',
+    ],
+  },
+}
+
+const PHRASAL_SCENE_LEADS = [
+  'The first account said:',
+  'Another message read:',
+  'A second source added:',
+  'One more note said:',
+  'The last account in the group read:',
+] as const
+
+function buildPhrasalNarrativeParagraph(
+  level: Level,
+  paragraphIndex: number,
+  uses: StoryContent['usedPhrasalVerbs'],
+  fallback: string,
+): string {
+  if (uses.length === 0) return fallback
+  const frame = PHRASAL_SCENE_FRAMES[level]
+  const opening = frame.openings[paragraphIndex % frame.openings.length]!
+  const closing = frame.closings[paragraphIndex % frame.closings.length]!
+  const evidence = uses.map((use, index) =>
+    `${PHRASAL_SCENE_LEADS[index % PHRASAL_SCENE_LEADS.length]} ${use.example}`)
+  return [opening, ...evidence, closing].join(' ')
 }
 
 function percent(value: number): string {
@@ -100,20 +186,61 @@ export function StoryView({
       .trim()
       .split(/\n\s*\n/u)
       .filter((paragraph) => paragraph.trim())
-    const phrasalParagraphs = tokenizeParagraphs(story.phrasalVerbPracticeText)
+    const phrasalUsesByParagraph = phrasalRawParagraphs.map((paragraph) =>
+      story.usedPhrasalVerbs.filter(({ example }) => paragraph.includes(example)))
+    const phrasalNarrativeText = phrasalRawParagraphs
+      .map((paragraph, paragraphIndex) => buildPhrasalNarrativeParagraph(
+        story.level,
+        paragraphIndex,
+        phrasalUsesByParagraph[paragraphIndex] ?? [],
+        paragraph,
+      ))
+      .join('\n\n')
+    const phrasalParagraphs = tokenizeParagraphs(phrasalNarrativeText)
+
+    type TokenParagraph = (typeof storyParagraphs)[number]
+    type ReadingParagraph = {
+      tokens: TokenParagraph
+      phrasalUses: StoryContent['usedPhrasalVerbs']
+    }
+
+    const supplementalParagraphs: ReadingParagraph[] = []
+    const supplementalCount = Math.max(vocabularyParagraphs.length, phrasalParagraphs.length)
+    for (let index = 0; index < supplementalCount; index += 1) {
+      const vocabulary = vocabularyParagraphs[index]
+      if (vocabulary) supplementalParagraphs.push({ tokens: vocabulary, phrasalUses: [] })
+      const phrasal = phrasalParagraphs[index]
+      if (phrasal) {
+        supplementalParagraphs.push({
+          tokens: phrasal,
+          phrasalUses: phrasalUsesByParagraph[index] ?? [],
+        })
+      }
+    }
+
+    const mergedParagraphs: ReadingParagraph[] = []
+    if (storyParagraphs.length === 0) {
+      mergedParagraphs.push(...supplementalParagraphs)
+    } else {
+      let supplementalIndex = 0
+      storyParagraphs.forEach((tokens, storyIndex) => {
+        mergedParagraphs.push({ tokens, phrasalUses: [] })
+        const targetSupplementalCount = Math.round(
+          ((storyIndex + 1) * supplementalParagraphs.length) / storyParagraphs.length,
+        )
+        while (supplementalIndex < targetSupplementalCount) {
+          const supplemental = supplementalParagraphs[supplementalIndex]
+          if (supplemental) mergedParagraphs.push(supplemental)
+          supplementalIndex += 1
+        }
+      })
+      mergedParagraphs.push(...supplementalParagraphs.slice(supplementalIndex))
+    }
 
     return {
       coveredCount: coveredLemmas.size,
       coveredPhrasalVerbCount: coveredPhrasalIds.size,
-      readingParagraphs: [
-        ...storyParagraphs.map((tokens) => ({ tokens, phrasalUses: [] as StoryContent['usedPhrasalVerbs'] })),
-        ...vocabularyParagraphs.map((tokens) => ({ tokens, phrasalUses: [] as StoryContent['usedPhrasalVerbs'] })),
-        ...phrasalParagraphs.map((tokens, paragraphIndex) => ({
-          tokens,
-          phrasalUses: story.usedPhrasalVerbs.filter(({ example }) =>
-            phrasalRawParagraphs[paragraphIndex]?.includes(example)),
-        })),
-      ],
+      readingParagraphs: mergedParagraphs,
       phrasalVerbsById: phrasalById,
     }
   }, [levelPhrasalVerbs, levelWords, lookupWords, story])
@@ -146,9 +273,7 @@ export function StoryView({
         return <span key={`text-${token.tokenIndex}`}>{token.value}</span>
       }
 
-      if (!token.word || !token.entry) {
-        return null
-      }
+      if (!token.word || !token.entry) return null
 
       const isSelected = activeSelectedWord?.tokenIndex === token.tokenIndex
       return (
