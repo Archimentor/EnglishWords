@@ -29,9 +29,6 @@ jobs:
         run: npm run check 2>&1 | tee /tmp/project-check.log
       - name: Run browser checks
         run: npm run test:browser 2>&1 | tee /tmp/browser-check.log
-      - name: Build temporary story audit snapshot
-        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: node scripts/story-audit-dump.mjs
       - name: Persist failure diagnostics
         if: failure() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
@@ -51,7 +48,7 @@ jobs:
           git add .github/ci-last-failure.log
           git commit -m "ci: record latest verification failure" || true
           git push || true
-      - name: Commit refreshed offline entry and audit snapshot
+      - name: Commit refreshed offline entry
         if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
@@ -59,9 +56,9 @@ jobs:
           if [ -f .github/ci-last-failure.log ]; then
             git rm .github/ci-last-failure.log
           fi
-          git add index.html .github/story-audit-summary.json .github/story-audit-dump.tsv
+          git add index.html
           if ! git diff --cached --quiet; then
-            git commit -m "chore: refresh offline index and story audit snapshot"
+            git commit -m "chore: refresh offline index"
             git push
           fi
       - run: npm run validate:release
