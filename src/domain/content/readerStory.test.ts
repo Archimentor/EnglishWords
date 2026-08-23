@@ -63,6 +63,7 @@ test('실제 표시 본문에 누락 단어와 구동사를 보충하고 완결 
   expect(text).toContain('look after')
   expect(text).toMatch(/^Mina has a red ball\./u)
   expect(text).toMatch(/Mina smiles at home\.$/u)
+  expect(text).not.toMatch(/\b(?:Trail step|Story page|Garden record|Archive file)\s+\d+\s*:/iu)
   expect(coverage.missingWordIds).toEqual([])
   expect(coverage.missingPhrasalVerbIds).toEqual([])
 })
@@ -80,4 +81,21 @@ test('저학년에서 위험한 예문은 그대로 삽입하지 않고 안전�
   expect(text).toContain('signal')
   expect(text).not.toMatch(/\barmy\b|\bwar\b/iu)
   expect(coverage.missingWordIds).toEqual([])
+})
+
+test('보충 장면은 한 가지 고정 문구만 반복하지 않고 단어별로 표현을 분산한다', () => {
+  const words = [
+    word('signal-a', 'signal', 'noun', ['The army followed the signal during the war.']),
+    word('marker-a', 'marker', 'noun', ['The army carried the marker during the war.']),
+    word('token-a', 'token', 'noun', ['The army found the token during the war.']),
+    word('symbol-a', 'symbol', 'noun', ['The army copied the symbol during the war.']),
+  ]
+  const base = 'Mina starts with a map.\n\nShe follows the path.\n\nMina arrives home.'
+
+  const text = buildReaderStoryText(base, '기초', words, [])
+  const fallbackSentences = text.match(/[^.!?]+[.!?]+/gu)?.filter((sentence) =>
+    /[“”]/u.test(sentence)) ?? []
+
+  expect(new Set(fallbackSentences).size).toBeGreaterThanOrEqual(3)
+  expect(readerStoryCoverage(text, words, []).missingWordIds).toEqual([])
 })
