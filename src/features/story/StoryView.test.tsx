@@ -36,7 +36,7 @@ test('실제 표시 본문의 일반단어와 구동사 커버리지를 표시�
   expect(within(article).getByText('구동사 0 / 0')).toBeInTheDocument()
   expect(within(article).getByText('미사용 일반 단어 0개')).toBeInTheDocument()
   expect(within(article).getByText('미사용 구동사 0개')).toBeInTheDocument()
-  expect(within(article).getByText('릴리스 목표 대비 일반 단어 8 / 500 (1.6%)')).toBeInTheDocument()
+  expect(within(article).getByText('릴리스 목표 대비 8 / 500 (1.6%)')).toBeInTheDocument()
 })
 
 test('배포 소설은 기존 확장 예문 대신 재작성 본문과 실제 커버리지 장면을 보여준다', async () => {
