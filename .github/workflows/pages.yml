@@ -26,9 +26,13 @@ jobs:
         run: npm run content:fetch:phrasals
       - run: npx playwright install --with-deps chromium
       - name: Run project checks
-        run: npm run check 2>&1 | tee /tmp/project-check.log
+        run: |
+          set -o pipefail
+          npm run check 2>&1 | tee /tmp/project-check.log
       - name: Run browser checks
-        run: npm run test:browser 2>&1 | tee /tmp/browser-check.log
+        run: |
+          set -o pipefail
+          npm run test:browser 2>&1 | tee /tmp/browser-check.log
       - name: Persist failure diagnostics
         if: failure() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
