@@ -46,7 +46,7 @@ function phrasal(
   }
 }
 
-test('실제 표시 본문에 누락 단어와 구동사를 보충하고 완결 문단을 보존한다', () => {
+test('실제 표시 본문에 누락 단어와 구동사를 자연스러운 원천 예문으로 보충하고 완결 문단을 보존한다', () => {
   const words = [
     word('ball', 'ball', 'noun', ['The red ball is near the tree.']),
     word('lantern', 'lantern', 'noun', ['A lantern shines beside the gate.']),
@@ -59,8 +59,8 @@ test('실제 표시 본문에 누락 단어와 구동사를 보충하고 완결 
   const text = buildReaderStoryText(base, '기초', words, phrasals)
   const coverage = readerStoryCoverage(text, words, phrasals)
 
-  expect(text).toContain('lantern')
-  expect(text).toContain('look after')
+  expect(text).toContain('A lantern shines beside the gate.')
+  expect(text).toContain('We look after the little bird together.')
   expect(text).toMatch(/^Mina has a red ball\./u)
   expect(text).toMatch(/Mina smiles at home\.$/u)
   expect(text).not.toMatch(/\b(?:Trail step|Story page|Garden record|Archive file)\s+\d+\s*:/iu)
@@ -68,7 +68,7 @@ test('실제 표시 본문에 누락 단어와 구동사를 보충하고 완결 
   expect(coverage.missingPhrasalVerbIds).toEqual([])
 })
 
-test('저학년에서 위험한 예문은 그대로 삽입하지 않고 안전한 보충문장을 사용한다', () => {
+test('저학년에서 위험한 원천 예문은 그대로 삽입하지 않고 안전한 직접 문장을 사용한다', () => {
   const words = [
     word('garden', 'garden', 'noun', ['The garden is open today.']),
     word('signal', 'signal', 'noun', ['The army followed the signal during the war.']),
@@ -80,10 +80,11 @@ test('저학년에서 위험한 예문은 그대로 삽입하지 않고 안전�
 
   expect(text).toContain('signal')
   expect(text).not.toMatch(/\barmy\b|\bwar\b/iu)
+  expect(text).not.toMatch(/[“”]\s*signal\s*[“”]/iu)
   expect(coverage.missingWordIds).toEqual([])
 })
 
-test('보충 장면은 한 가지 고정 문구만 반복하지 않고 단어별로 표현을 분산한다', () => {
+test('위험한 원천 예문이 여러 개여도 메타 학습문장 대신 장면 안의 직접 문장으로 분산한다', () => {
   const words = [
     word('signal-a', 'signal', 'noun', ['The army followed the signal during the war.']),
     word('marker-a', 'marker', 'noun', ['The army carried the marker during the war.']),
@@ -93,9 +94,11 @@ test('보충 장면은 한 가지 고정 문구만 반복하지 않고 단어별
   const base = 'Mina starts with a map.\n\nShe follows the path.\n\nMina arrives home.'
 
   const text = buildReaderStoryText(base, '기초', words, [])
-  const fallbackSentences = text.match(/[^.!?]+[.!?]+/gu)?.filter((sentence) =>
-    /[“”]/u.test(sentence)) ?? []
+  const metaSentences = text.match(/[^.!?]+[.!?]+/gu)?.filter((sentence) =>
+    /[“”]/u.test(sentence)
+    && /\b(?:word|sentence|page|card|label|expression|record|note)\b/iu.test(sentence)) ?? []
 
-  expect(new Set(fallbackSentences).size).toBeGreaterThanOrEqual(3)
+  expect(metaSentences).toEqual([])
+  expect(text).not.toMatch(/\barmy\b|\bwar\b/iu)
   expect(readerStoryCoverage(text, words, []).missingWordIds).toEqual([])
 })
