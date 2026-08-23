@@ -30,8 +30,8 @@ const SCENE_SENTENCE_LIMIT: Readonly<Record<Level, number>> = {
 }
 
 const LOW_LEVEL_UNSAFE: Readonly<Record<Level, RegExp | null>> = {
-  기초: /\b(?:abortion|adultery|alcohol|army|arson|assange|brothel|court|crime|death|dildo|election|execution|executioner|fraud|gun|jail|murder|parliament|pistol|poison|porn|prison|prostitute|quran|rifle|riot|semen|sex|shotgun|slavery|sperm|suicide|terror|terrorism|war|weapon)\b/iu,
-  유치원: /\b(?:abortion|adultery|army|arson|assange|brothel|dildo|execution|executioner|fraud|gun|jail|murder|parliament|pistol|poison|porn|prison|prostitute|rifle|riot|semen|sex|shotgun|sperm|suicide|terror|terrorism|weapon)\b/iu,
+  기초: /\b(?:abortion|adultery|alcohol|army|arson|assange|bible|brothel|company|court|crime|death|dildo|election|execution|executioner|fraud|god|government|gun|jail|jewish|murder|muslim|parliament|pistol|poison|porn|prison|professional|prostitute|quran|religion|rifle|riot|semen|sex|shotgun|slavery|sperm|suicide|terror|terrorism|war|weapon)\b/iu,
+  유치원: /\b(?:abortion|adultery|army|arson|assange|bible|brothel|court|dildo|execution|executioner|fraud|god|government|gun|jail|jewish|murder|muslim|parliament|pistol|poison|porn|prison|professional|prostitute|quran|religion|rifle|riot|semen|sex|shotgun|sperm|suicide|terror|terrorism|weapon)\b/iu,
   초등학교: /\b(?:abortion|adultery|brothel|dildo|executioner|porn|prostitute|semen|sperm|suicide)\b/iu,
   중학교: null,
 }
@@ -69,6 +69,14 @@ const SCENE_LABEL: Readonly<Record<Level, string>> = {
   초등학교: 'Garden record',
   중학교: 'Archive file',
 }
+
+const READER_META_TOKENS = new Set([
+  'mina', 'joon', 'sara', 'mr', 'mrs', 'han', 'park', 'lee', 'choi',
+  "i'm", "you're", "he's", "she's", "it's", "we're", "they're",
+  "don't", "doesn't", "didn't", "can't", "couldn't", "won't", "wouldn't",
+  "isn't", "aren't", "wasn't", "weren't", "haven't", "hasn't", "hadn't",
+  "let's", "there's", "that's", "what's", "who's",
+])
 
 function wordForms(word: WordItem): string[] {
   return [...new Set(word.entries.flatMap((entry) => entryFormStrings(entry)))]
@@ -131,6 +139,35 @@ function isSafeExample(level: Level, example: string): boolean {
   return blocked === null || !blocked.test(example)
 }
 
+function allowedExampleTokens(words: readonly WordItem[]): Set<string> {
+  const allowed = new Set(READER_META_TOKENS)
+  for (const word of words) {
+    for (const form of wordForms(word)) {
+      for (const token of storyTokens(form)) allowed.add(token)
+    }
+  }
+  return allowed
+}
+
+function isLexicallyAllowedExample(
+  example: string,
+  allowedTokens: ReadonlySet<string>,
+): boolean {
+  for (const token of storyTokens(example)) {
+    if (/^\d+$/u.test(token) || allowedTokens.has(token)) continue
+    return false
+  }
+  return true
+}
+
+function isUsableExample(
+  level: Level,
+  example: string,
+  allowedTokens: ReadonlySet<string>,
+): boolean {
+  return isSafeExample(level, example) && isLexicallyAllowedExample(example, allowedTokens)
+}
+
 function exampleScore(example: string, level: Level): number {
   const wordCount = example.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0
   const sentencePenalty = Math.max(0, wordCount - ({
@@ -142,15 +179,19 @@ function exampleScore(example: string, level: Level): number {
   return wordCount + sentencePenalty * 3
 }
 
-function bestPhrasalExample(item: PhrasalVerbItem, level: Level): string | null {
+function bestPhrasalExample(
+  item: PhrasalVerbItem,
+  level: Level,
+  allowedTokens: ReadonlySet<string>,
+): string | null {
   const exact = item.examples
     .filter((example) => hasWholeWordForm(example, item.phrasalVerb))
-    .filter((example) => isSafeExample(level, example))
+    .filter((example) => isUsableExample(level, example, allowedTokens))
     .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))
   if (exact.length > 0) return exact[0]!
 
   const safe = item.examples
-    .filter((example) => isSafeExample(level, example))
+    .filter((example) => isUsableExample(level, example, allowedTokens))
     .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))
   return safe[0] ?? null
 }
@@ -209,6 +250,7 @@ function phrasalCoverageSentences(
   baseText: string,
   level: Level,
   phrasalVerbs: readonly PhrasalVerbItem[],
+  allowedTokens: ReadonlySet<string>,
 ): string[] {
   const missingIds = new Set(
     readerStoryCoverage(baseText, [], phrasalVerbs).missingPhrasalVerbIds,
@@ -216,7 +258,8 @@ function phrasalCoverageSentences(
   return uniqueSentences(
     phrasalVerbs
       .filter(({ id }) => missingIds.has(id))
-      .map((item) => bestPhrasalExample(item, level) ?? fallbackPhrasalSentence(item, level)),
+      .map((item) => bestPhrasalExample(item, level, allowedTokens)
+        ?? fallbackPhrasalSentence(item, level)),
   )
 }
 
@@ -224,6 +267,7 @@ function greedyWordCoverageSentences(
   seedText: string,
   level: Level,
   words: readonly WordItem[],
+  allowedTokens: ReadonlySet<string>,
 ): string[] {
   const missingIds = new Set(readerStoryCoverage(seedText, words, []).missingWordIds)
   if (missingIds.size === 0) return []
@@ -244,7 +288,7 @@ function greedyWordCoverageSentences(
   for (const word of missingWords) {
     const forms = wordForms(word)
     for (const example of word.entries.flatMap((entry) => entry.examples)) {
-      if (!isSafeExample(level, example)) continue
+      if (!isUsableExample(level, example, allowedTokens)) continue
       if (!forms.some((form) => hasWholeWordForm(example, form))) continue
       const candidate = candidatesByText.get(example) ?? {
         text: example,
@@ -290,10 +334,22 @@ function coverageSentences(
   level: Level,
   words: readonly WordItem[],
   phrasalVerbs: readonly PhrasalVerbItem[],
+  allowedWords: readonly WordItem[],
 ): string[] {
-  const phrasalSentences = phrasalCoverageSentences(baseText, level, phrasalVerbs)
+  const allowedTokens = allowedExampleTokens(allowedWords)
+  const phrasalSentences = phrasalCoverageSentences(
+    baseText,
+    level,
+    phrasalVerbs,
+    allowedTokens,
+  )
   const wordSeed = [baseText, ...phrasalSentences].join(' ')
-  const wordSentences = greedyWordCoverageSentences(wordSeed, level, words)
+  const wordSentences = greedyWordCoverageSentences(
+    wordSeed,
+    level,
+    words,
+    allowedTokens,
+  )
   return uniqueSentences([...phrasalSentences, ...wordSentences])
 }
 
@@ -374,10 +430,11 @@ export function buildReaderStoryText(
   level: Level,
   words: readonly WordItem[],
   phrasalVerbs: readonly PhrasalVerbItem[],
+  allowedWords: readonly WordItem[] = words,
 ): string {
   const scenes = buildCoverageScenes(
     level,
-    coverageSentences(baseText, level, words, phrasalVerbs),
+    coverageSentences(baseText, level, words, phrasalVerbs, allowedWords),
   )
   const woven = weaveScenes(baseText, scenes)
   return guaranteeExactCoverage(woven, level, words, phrasalVerbs)
