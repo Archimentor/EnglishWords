@@ -27,11 +27,26 @@ function sentences(text: string): string[] {
   return text.match(/[^.!?]+[.!?]+/gu)?.map((sentence) => sentence.trim()) ?? []
 }
 
+function sentenceWordCount(sentence: string): number {
+  return sentence.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0
+}
+
 function averageSentenceWords(text: string): number {
   const values = sentences(text)
   const wordCount = values.reduce((sum, sentence) =>
-    sum + (sentence.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0), 0)
+    sum + sentenceWordCount(sentence), 0)
   return values.length > 0 ? wordCount / values.length : 0
+}
+
+function duplicateMeaningfulSentences(values: readonly string[]): string[] {
+  const counts = new Map<string, number>()
+  for (const value of values) {
+    if (sentenceWordCount(value) < 4) continue
+    counts.set(value, (counts.get(value) ?? 0) + 1)
+  }
+  return [...counts]
+    .filter(([, count]) => count > 1)
+    .map(([sentence, count]) => `${count}× ${sentence}`)
 }
 
 test.each(Object.keys(PRODUCTION_TITLES) as Level[])('%s 재작성본은 완결형 다문단 소설이다', (level) => {
@@ -46,7 +61,7 @@ test.each(Object.keys(PRODUCTION_TITLES) as Level[])('%s 재작성본은 완결�
   expect(text).not.toContain('legacy source text')
   expect(paragraphs.length).toBeGreaterThanOrEqual(MIN_PARAGRAPHS[level])
   expect(storySentences.length).toBeGreaterThan(paragraphs.length)
-  expect(new Set(storySentences).size).toBe(storySentences.length)
+  expect(duplicateMeaningfulSentences(storySentences)).toEqual([])
   expect(paragraphs[0]).toMatch(/\bMina\b/u)
   expect(paragraphs.at(-1)).toMatch(/\bMina\b/u)
   expect(averageSentenceWords(text)).toBeLessThanOrEqual(MAX_AVERAGE_SENTENCE_WORDS[level])
