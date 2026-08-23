@@ -25,15 +25,39 @@ jobs:
       - name: Fetch and verify pinned phrasal sources
         run: npm run content:fetch:phrasals
       - run: npx playwright install --with-deps chromium
-      - run: npm run check
-      - run: npm run test:browser
-      - name: Commit refreshed offline entry
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+      - name: Run project checks
+        run: npm run check 2>&1 | tee /tmp/project-check.log
+      - name: Run browser checks
+        run: npm run test:browser 2>&1 | tee /tmp/browser-check.log
+      - name: Persist failure diagnostics
+        if: failure() && github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if ! git diff --quiet -- index.html; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add index.html
+          {
+            echo "# Last CI failure"
+            echo
+            echo "Commit: $GITHUB_SHA"
+            echo
+            echo '## Project checks'
+            tail -n 240 /tmp/project-check.log 2>/dev/null || true
+            echo
+            echo '## Browser checks'
+            tail -n 240 /tmp/browser-check.log 2>/dev/null || true
+          } > .github/ci-last-failure.log
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/ci-last-failure.log
+          git commit -m "ci: record latest verification failure" || true
+          git push || true
+      - name: Commit refreshed offline entry
+        if: success() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -f .github/ci-last-failure.log ]; then
+            git rm .github/ci-last-failure.log
+          fi
+          git add index.html
+          if ! git diff --cached --quiet; then
             git commit -m "chore: refresh offline index"
             git push
           fi
