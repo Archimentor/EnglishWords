@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "test:browser": "npm run build && playwright test",
     "validate:data": "tsx scripts/validate-data.ts --mode=development",
-    "validate:release": "tsx scripts/validate-data.ts --mode=release",
+    "validate:reader-story": "tsx scripts/validate-reader-story.ts",
+    "validate:release": "tsx scripts/validate-data.ts --mode=release && npm run validate:reader-story",
     "content:fetch": "tsx scripts/content/fetchSources.ts",
     "content:fetch:phrasals": "tsx scripts/content/fetchPhrasalSources.ts",
     "content:report": "tsx scripts/content/reportSources.ts",
@@ -22,7 +23,7 @@
     "content:propose:phrasals": "python scripts/content/translate_phrasal_glosses.py",
     "content:approve:stories": "tsx scripts/content/approveStoryDrafts.ts",
     "content:build": "tsx scripts/content/buildContent.ts",
-    "check": "npm run validate:data && npm run lint && npm test && npm run build && npm run verify:offline"
+    "check": "npm run validate:data && npm run validate:reader-story && npm run lint && npm test && npm run build && npm run verify:offline"
   },
   "dependencies": {
     "react": "19.2.7",
@@ -37,12 +38,9 @@
     "@types/node": "26.1.1",
     "@types/react": "19.2.17",
     "@types/react-dom": "19.2.3",
-    "@types/unbzip2-stream": "1.4.3",
-    "@types/wink-pos-tagger": "2.2.6",
-    "@vitejs/plugin-react": "6.0.5",
     "compromise": "14.16.0",
     "eslint": "10.0.0",
-    "eslint-plugin-react-hooks": "7.1.1",
+    "eslint-plugin-react-hooks": "6.9.1",
     "eslint-plugin-react-refresh": "0.5.3",
     "globals": "17.7.0",
     "jsdom": "29.1.1",
