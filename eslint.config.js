@@ -22,5 +22,11 @@ export default tseslint.config(
         ...globals.vitest,
       },
     },
+    rules: {
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        { argsIgnorePattern: '^_' },
+      ],
+    },
   },
 )
