@@ -43,13 +43,21 @@ function paragraphCount(text: string): number {
 
 let failed = false
 const report = {} as Record<Level, LevelReport>
+const wordlists = {} as Record<Level, WordItem[]>
 
 for (const level of LEVELS) {
-  const [words, phrasalVerbs, story] = await Promise.all([
-    readJson<WordItem[]>(`public/data/wordlists/${level}.json`),
+  wordlists[level] = await readJson<WordItem[]>(`public/data/wordlists/${level}.json`)
+}
+
+for (const level of LEVELS) {
+  const words = wordlists[level]
+  const [phrasalVerbs, story] = await Promise.all([
     readJson<PhrasalVerbItem[]>(`public/data/phrasal-verbs/by-level/${level}.json`),
     readJson<StoryContent>(`public/data/stories/${level}.json`),
   ])
+  const allowedWords = LEVELS
+    .slice(0, LEVELS.indexOf(level) + 1)
+    .flatMap((lookupLevel) => wordlists[lookupLevel])
 
   if (words.length !== WORD_TARGETS[level]) {
     console.error(`[reader-story] ${level}: word catalog ${words.length} != target ${WORD_TARGETS[level]}`)
@@ -61,7 +69,13 @@ for (const level of LEVELS) {
   }
 
   const baseText = curatedStoryText(story)
-  const readerText = buildReaderStoryText(baseText, level, words, phrasalVerbs)
+  const readerText = buildReaderStoryText(
+    baseText,
+    level,
+    words,
+    phrasalVerbs,
+    allowedWords,
+  )
   const coverage = readerStoryCoverage(readerText, words, phrasalVerbs)
   const readerSentences = sentences(readerText)
   const uniqueSentenceCount = new Set(readerSentences).size
