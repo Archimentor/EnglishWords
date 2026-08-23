@@ -87,6 +87,18 @@ const READER_META_TOKENS = new Set([
   "let's", "there's", "that's", "what's", "who's",
 ])
 
+const SCENE_CUE_STOPWORDS = new Set([
+  'about', 'after', 'again', 'along', 'another', 'before', 'being', 'because',
+  'could', 'every', 'first', 'from', 'have', 'into', 'little', 'mina', 'more',
+  'next', 'other', 'people', 'said', 'same', 'short', 'some', 'that', 'their',
+  'there', 'these', 'they', 'this', 'those', 'through', 'under', 'very', 'when',
+  'where', 'which', 'while', 'with', 'would',
+])
+
+const FALLBACK_SCENE_CUES = [
+  'detail', 'message', 'picture', 'clue', 'note', 'memory', 'line', 'mark',
+] as const
+
 function wordForms(word: WordItem): string[] {
   return [...new Set(word.entries.flatMap((entry) => entryFormStrings(entry)))]
     .filter((form) => form.trim().length > 0)
@@ -487,6 +499,17 @@ function assignSentencesToSlots(
   return slots
 }
 
+function sceneCue(sentences: readonly string[], sceneIndex: number): string {
+  const candidates = sentences
+    .flatMap((sentence) => [...storyTokens(sentence)])
+    .filter((token) => token.length >= 4 && !SCENE_CUE_STOPWORDS.has(token))
+  const uniqueCandidates = [...new Set(candidates)]
+  if (uniqueCandidates.length > 0) {
+    return uniqueCandidates[stableIndex(`scene-${sceneIndex}`, uniqueCandidates.length)]!
+  }
+  return FALLBACK_SCENE_CUES[sceneIndex % FALLBACK_SCENE_CUES.length]!
+}
+
 function buildSceneParagraph(
   level: Level,
   sentences: readonly string[],
@@ -494,7 +517,8 @@ function buildSceneParagraph(
 ): string {
   const frames = STORY_FRAMES[level]
   const frame = frames[sceneIndex % frames.length]!
-  return `${frame[0]}. ${sentences.join(' ')} ${frame[1]}.`
+  const cue = sceneCue(sentences, sceneIndex)
+  return `${frame[0]}. ${sentences.join(' ')} ${frame[1]}, with “${cue}” still in mind.`
 }
 
 function weaveCoverageSentences(
