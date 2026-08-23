@@ -79,14 +79,6 @@ const STORY_FRAMES: Readonly<Record<Level, readonly [string, string][]>> = {
   ],
 }
 
-const READER_META_TOKENS = new Set([
-  'mina', 'joon', 'sara', 'mr', 'mrs', 'han', 'park', 'lee', 'choi',
-  "i'm", "you're", "he's", "she's", "it's", "we're", "they're",
-  "don't", "doesn't", "didn't", "can't", "couldn't", "won't", "wouldn't",
-  "isn't", "aren't", "wasn't", "weren't", "haven't", "hasn't", "hadn't",
-  "let's", "there's", "that's", "what's", "who's",
-])
-
 const SCENE_CUE_STOPWORDS = new Set([
   'about', 'after', 'again', 'along', 'another', 'before', 'being', 'because',
   'could', 'every', 'first', 'from', 'have', 'into', 'little', 'mina', 'more',
@@ -98,6 +90,8 @@ const SCENE_CUE_STOPWORDS = new Set([
 const FALLBACK_SCENE_CUES = [
   'detail', 'message', 'picture', 'clue', 'note', 'memory', 'line', 'mark',
 ] as const
+
+const META_SOURCE_PATTERN = /\b(?:definition|expression|label|means?|phrase|sentence|spelling|term|word)\b/iu
 
 function wordForms(word: WordItem): string[] {
   return [...new Set(word.entries.flatMap((entry) => entryFormStrings(entry)))]
@@ -160,35 +154,6 @@ function isSafeExample(level: Level, example: string): boolean {
   return blocked === null || !blocked.test(example)
 }
 
-function allowedExampleTokens(words: readonly WordItem[]): Set<string> {
-  const allowed = new Set(READER_META_TOKENS)
-  for (const word of words) {
-    for (const form of wordForms(word)) {
-      for (const token of storyTokens(form)) allowed.add(token)
-    }
-  }
-  return allowed
-}
-
-function isLexicallyAllowedExample(
-  example: string,
-  allowedTokens: ReadonlySet<string>,
-): boolean {
-  for (const token of storyTokens(example)) {
-    if (/^\d+$/u.test(token) || allowedTokens.has(token)) continue
-    return false
-  }
-  return true
-}
-
-function isUsableExample(
-  level: Level,
-  example: string,
-  allowedTokens: ReadonlySet<string>,
-): boolean {
-  return isSafeExample(level, example) && isLexicallyAllowedExample(example, allowedTokens)
-}
-
 function exampleScore(example: string, level: Level): number {
   const wordCount = example.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0
   const sentencePenalty = Math.max(0, wordCount - ({
@@ -197,24 +162,18 @@ function exampleScore(example: string, level: Level): number {
     초등학교: 20,
     중학교: 28,
   } as const)[level])
-  return wordCount + sentencePenalty * 3
+  const metaPenalty = META_SOURCE_PATTERN.test(example) ? 20 : 0
+  return wordCount + sentencePenalty * 3 + metaPenalty
 }
 
 function bestPhrasalExample(
   item: PhrasalVerbItem,
   level: Level,
-  allowedTokens: ReadonlySet<string>,
 ): string | null {
-  const exact = item.examples
+  return item.examples
     .filter((example) => hasWholeWordForm(example, item.phrasalVerb))
-    .filter((example) => isUsableExample(level, example, allowedTokens))
-    .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))
-  if (exact.length > 0) return exact[0]!
-
-  const safe = item.examples
-    .filter((example) => isUsableExample(level, example, allowedTokens))
-    .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))
-  return safe[0] ?? null
+    .filter((example) => isSafeExample(level, example))
+    .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))[0] ?? null
 }
 
 function preferredWordForm(word: WordItem): string {
@@ -238,21 +197,20 @@ function chooseTemplate(key: string, templates: readonly string[]): string {
 function fallbackWordSentence(word: WordItem, level: Level): string {
   const form = preferredWordForm(word)
   const partOfSpeech = word.entries[0]?.partOfSpeech.toLowerCase() ?? ''
-  const quoted = `“${form}”`
 
   if (/adjective/u.test(partOfSpeech)) {
     const templates = level === '기초' || level === '유치원'
       ? [
-          `A picture on the page looks ${form}.`,
-          `Mina points to a part of the picture that looks ${form}.`,
-          `The next small drawing seems ${form} to Mina.`,
-          `One part of the clue is ${form}, and Mina notices it.`,
+          `The next part of the path looks ${form}.`,
+          `The little bird seems ${form} for a moment.`,
+          `The old place feels ${form} to Mina.`,
+          `The next scene becomes ${form} as Mina watches.`,
         ]
       : [
-          `One record describes the scene as ${form}.`,
-          `Mina notices that a witness described the place as ${form}.`,
-          `The next account uses ${form} to describe what people saw.`,
-          `A note in the file calls one detail ${form}.`,
+          `One part of the evidence seems ${form} when Mina checks it again.`,
+          `The next account appears ${form} beside the earlier record.`,
+          `A detail in the timeline looks ${form} after the comparison.`,
+          `The situation feels ${form} as Mina reviews the evidence.`,
         ]
     return chooseTemplate(word.id, templates)
   }
@@ -260,33 +218,16 @@ function fallbackWordSentence(word: WordItem, level: Level): string {
   if (/adverb/u.test(partOfSpeech)) {
     const templates = level === '기초' || level === '유치원'
       ? [
-          `The page shows the action happening ${form}.`,
-          `Mina reads a line that tells how something happened ${form}.`,
-          `The picture makes the action look as if it happened ${form}.`,
-          `A short note describes the movement as happening ${form}.`,
+          `Mina moves ${form} toward the next stop.`,
+          `The little bird flies ${form} beside Mina.`,
+          `Mina looks around ${form} before walking on.`,
+          `They continue ${form} along the path.`,
         ]
       : [
-          `One account says the action happened ${form}.`,
-          `Mina marks a line that describes how events unfolded ${form}.`,
-          `The next witness note describes the action as happening ${form}.`,
-          `A record explains that the change happened ${form}.`,
-        ]
-    return chooseTemplate(word.id, templates)
-  }
-
-  if (/verb/u.test(partOfSpeech) && !/adverb/u.test(partOfSpeech)) {
-    const templates = level === '기초' || level === '유치원'
-      ? [
-          `A short line on the page uses ${quoted} for the next action.`,
-          `Mina sees ${quoted} beside a small picture of the next action.`,
-          `The clue uses ${quoted}, and Mina reads the action aloud.`,
-          `On the next card, ${quoted} appears beside an action picture.`,
-        ]
-      : [
-          `One note uses ${quoted} to describe the next action.`,
-          `Mina marks ${quoted} in a line that describes what happened next.`,
-          `The next account uses ${quoted} when it describes the action.`,
-          `A record includes ${quoted} in its description of the event.`,
+          `Mina reads the next source ${form} before marking it.`,
+          `She compares the two records ${form}.`,
+          `The investigation moves ${form} toward the next question.`,
+          `Mina reviews the detail ${form} before adding it to the timeline.`,
         ]
     return chooseTemplate(word.id, templates)
   }
@@ -294,32 +235,33 @@ function fallbackWordSentence(word: WordItem, level: Level): string {
   if (/noun/u.test(partOfSpeech)) {
     const templates = level === '기초' || level === '유치원'
       ? [
-          `The next picture has the label ${quoted}, and Mina points to it.`,
-          `Mina finds ${quoted} written under a small picture.`,
-          `A card beside the picture is marked ${quoted}.`,
-          `The page shows ${quoted} next to the clue.`,
+          `Mina notices the ${form} near the path.`,
+          `The little bird leads Mina toward the ${form}.`,
+          `Mina finds the ${form} beside the next stop.`,
+          `The ${form} becomes part of Mina’s next clue.`,
         ]
       : [
-          `The next record mentions ${quoted}, so Mina marks the reference.`,
-          `Mina finds ${quoted} listed in a note connected to the case.`,
-          `A document refers to ${quoted}, and Mina adds it to her notes.`,
-          `The file includes a reference to ${quoted} that Mina records.`,
+          `Mina notices the ${form} while checking the next clue.`,
+          `The ${form} becomes relevant when Mina compares the evidence.`,
+          `Mina adds the ${form} to the details she is following.`,
+          `The investigation leads Mina back to the ${form}.`,
         ]
     return chooseTemplate(word.id, templates)
   }
 
+  const quoted = `“${form}”`
   const templates = level === '기초' || level === '유치원'
     ? [
-        `Mina finds ${quoted} in the next short line and reads it carefully.`,
-        `The next clue includes ${quoted}, and Mina reads the line again.`,
-        `A small card shows ${quoted} in the middle of a sentence.`,
-        `Mina notices ${quoted} on the page before she turns it.`,
+        `Mina hears ${quoted} as the friends decide what to do next.`,
+        `The friends use ${quoted} while they talk about the next step.`,
+        `Mina says ${quoted} before they continue together.`,
+        `Someone nearby says ${quoted}, and Mina keeps walking.`,
       ]
     : [
-        `Mina notices ${quoted} in the next line of the record.`,
-        `The file uses ${quoted} in a sentence Mina marks for review.`,
-        `A source contains ${quoted}, and Mina keeps the line with her notes.`,
-        `Mina records the line containing ${quoted} before moving on.`,
+        `Mina hears ${quoted} during the next conversation.`,
+        `The group uses ${quoted} while discussing the evidence.`,
+        `Mina records ${quoted} from the conversation before moving on.`,
+        `A witness says ${quoted} while explaining the next detail.`,
       ]
   return chooseTemplate(word.id, templates)
 }
@@ -328,16 +270,16 @@ function fallbackPhrasalSentence(item: PhrasalVerbItem, level: Level): string {
   const quoted = `“${item.phrasalVerb}”`
   const templates = level === '기초' || level === '유치원'
     ? [
-        `One short line uses ${quoted}, and Mina reads it with her friends.`,
-        `Mina finds ${quoted} on a small card beside the clue.`,
-        `The next page includes ${quoted}, so Mina reads the expression aloud.`,
-        `A little note shows ${quoted} near the next picture.`,
+        `Mina hears ${quoted} while the friends decide what to do next.`,
+        `The friends use ${quoted} as they talk beside the path.`,
+        `Mina repeats ${quoted} before they move on together.`,
+        `Someone nearby says ${quoted}, and the friends continue.`,
       ]
     : [
-        `One account uses the expression ${quoted}, and Mina marks the line.`,
-        `Mina finds ${quoted} in a record connected to the next part of the case.`,
-        `The next source includes ${quoted}, which Mina notes before comparing the records.`,
-        `A document uses ${quoted} in a line Mina keeps with the evidence.`,
+        `Mina hears ${quoted} during the next interview.`,
+        `The group uses ${quoted} while discussing the evidence.`,
+        `Mina records ${quoted} from the conversation before moving on.`,
+        `A witness says ${quoted} while explaining what happened next.`,
       ]
   return chooseTemplate(item.id, templates)
 }
@@ -358,7 +300,6 @@ function phrasalCoverageSentences(
   baseText: string,
   level: Level,
   phrasalVerbs: readonly PhrasalVerbItem[],
-  allowedTokens: ReadonlySet<string>,
 ): string[] {
   const missingIds = new Set(
     readerStoryCoverage(baseText, [], phrasalVerbs).missingPhrasalVerbIds,
@@ -366,7 +307,7 @@ function phrasalCoverageSentences(
   return uniqueSentences(
     phrasalVerbs
       .filter(({ id }) => missingIds.has(id))
-      .map((item) => bestPhrasalExample(item, level, allowedTokens)
+      .map((item) => bestPhrasalExample(item, level)
         ?? fallbackPhrasalSentence(item, level)),
   )
 }
@@ -375,7 +316,6 @@ function greedyWordCoverageSentences(
   seedText: string,
   level: Level,
   words: readonly WordItem[],
-  allowedTokens: ReadonlySet<string>,
 ): string[] {
   const missingIds = new Set(readerStoryCoverage(seedText, words, []).missingWordIds)
   if (missingIds.size === 0) return []
@@ -396,7 +336,7 @@ function greedyWordCoverageSentences(
   for (const word of missingWords) {
     const forms = wordForms(word)
     for (const example of word.entries.flatMap((entry) => entry.examples)) {
-      if (!isUsableExample(level, example, allowedTokens)) continue
+      if (!isSafeExample(level, example)) continue
       if (!forms.some((form) => hasWholeWordForm(example, form))) continue
       const candidate = candidatesByText.get(example) ?? {
         text: example,
@@ -442,22 +382,10 @@ function coverageSentences(
   level: Level,
   words: readonly WordItem[],
   phrasalVerbs: readonly PhrasalVerbItem[],
-  allowedWords: readonly WordItem[],
 ): string[] {
-  const allowedTokens = allowedExampleTokens(allowedWords)
-  const phrasalSentences = phrasalCoverageSentences(
-    baseText,
-    level,
-    phrasalVerbs,
-    allowedTokens,
-  )
+  const phrasalSentences = phrasalCoverageSentences(baseText, level, phrasalVerbs)
   const wordSeed = [baseText, ...phrasalSentences].join(' ')
-  const wordSentences = greedyWordCoverageSentences(
-    wordSeed,
-    level,
-    words,
-    allowedTokens,
-  )
+  const wordSentences = greedyWordCoverageSentences(wordSeed, level, words)
   return uniqueSentences([...phrasalSentences, ...wordSentences])
 }
 
@@ -576,10 +504,18 @@ function guaranteeExactCoverage(
   const rescueSentences = uniqueSentences([
     ...words
       .filter(({ id }) => missingWordIds.has(id))
-      .map((word) => fallbackWordSentence(word, level)),
+      .map((word) => {
+        const exactExample = word.entries
+          .flatMap((entry) => entry.examples)
+          .filter((example) => isSafeExample(level, example))
+          .filter((example) => wordForms(word).some((form) => hasWholeWordForm(example, form)))
+          .sort((left, right) => exampleScore(left, level) - exampleScore(right, level))[0]
+        return exactExample ?? fallbackWordSentence(word, level)
+      }),
     ...phrasalVerbs
       .filter(({ id }) => missingPhrasalIds.has(id))
-      .map((item) => fallbackPhrasalSentence(item, level)),
+      .map((item) => bestPhrasalExample(item, level)
+        ?? fallbackPhrasalSentence(item, level)),
   ])
 
   if (rescueSentences.length === 0) return text
@@ -598,15 +534,9 @@ export function buildReaderStoryText(
   level: Level,
   words: readonly WordItem[],
   phrasalVerbs: readonly PhrasalVerbItem[],
-  allowedWords: readonly WordItem[] = words,
+  _allowedWords: readonly WordItem[] = words,
 ): string {
-  const sentences = coverageSentences(
-    baseText,
-    level,
-    words,
-    phrasalVerbs,
-    allowedWords,
-  )
+  const sentences = coverageSentences(baseText, level, words, phrasalVerbs)
   const woven = weaveCoverageSentences(baseText, level, sentences)
   return guaranteeExactCoverage(woven, level, words, phrasalVerbs)
 }
