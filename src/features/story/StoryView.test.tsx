@@ -86,7 +86,7 @@ test('구동사는 실제 본문 안에서도 사용되고 별도 학습 목록�
   )
 
   expect(screen.getByText('구동사 1 / 1')).toBeInTheDocument()
-  expect(screen.getByText((text) => text.includes(example))).toBeInTheDocument()
+  expect(document.querySelector('.story-body')).toHaveTextContent(phrasalVerb.phrasalVerb)
 
   const trigger = screen.getByRole('button', { name: 'story phrasal verb: wake up' })
   await user.click(trigger)
