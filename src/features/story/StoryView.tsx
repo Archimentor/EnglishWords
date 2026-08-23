@@ -5,6 +5,10 @@ import type {
   WordEntry,
   WordItem,
 } from '../../domain/content/types'
+import {
+  buildReaderStoryText,
+  readerStoryCoverage,
+} from '../../domain/content/readerStory'
 import type { SpeechPort } from '../study/speech'
 import { curatedStoryText } from './curatedStories'
 import { StoryPhrasalVerbDetail } from './StoryPhrasalVerbDetail'
@@ -68,25 +72,29 @@ export function StoryView({
     setVisiblePhrasalVerbCount(USED_WORD_PAGE_SIZE)
   }
 
-  const displayStoryText = curatedStoryText(story)
+  const curatedText = curatedStoryText(story)
+  const displayStoryText = useMemo(
+    () => buildReaderStoryText(
+      curatedText,
+      story.level,
+      levelWords,
+      levelPhrasalVerbs,
+    ),
+    [curatedText, levelPhrasalVerbs, levelWords, story.level],
+  )
 
   const {
     coveredCount,
     coveredPhrasalVerbCount,
+    missingWordCount,
+    missingPhrasalVerbCount,
     readingParagraphs,
     phrasalVerbsById,
   } = useMemo(() => {
-    const levelLemmas = new Set(levelWords.map(({ lemma }) => lemma))
-    const coveredLemmas = new Set(
-      story.usedWords
-        .map(({ lemma }) => lemma)
-        .filter((lemma) => levelLemmas.has(lemma)),
-    )
-    const levelPhrasalIds = new Set(levelPhrasalVerbs.map(({ id }) => id))
-    const coveredPhrasalIds = new Set(
-      story.usedPhrasalVerbs
-        .map(({ id }) => id)
-        .filter((id) => levelPhrasalIds.has(id)),
+    const actualCoverage = readerStoryCoverage(
+      displayStoryText,
+      levelWords,
+      levelPhrasalVerbs,
     )
     const phrasalById = new Map(levelPhrasalVerbs.map((item) => [item.id, item]))
 
@@ -101,8 +109,10 @@ export function StoryView({
     })))
 
     return {
-      coveredCount: coveredLemmas.size,
-      coveredPhrasalVerbCount: coveredPhrasalIds.size,
+      coveredCount: actualCoverage.wordCoveredCount,
+      coveredPhrasalVerbCount: actualCoverage.phrasalVerbCoveredCount,
+      missingWordCount: actualCoverage.missingWordIds.length,
+      missingPhrasalVerbCount: actualCoverage.missingPhrasalVerbIds.length,
       readingParagraphs: paragraphs,
       phrasalVerbsById: phrasalById,
     }
@@ -185,7 +195,7 @@ export function StoryView({
       <div className="story-reading-layout">
         <div className="story-reading-column">
           <p className="story-reading-hint">
-            본문은 레벨에 맞춰 다시 쓴 완결형 소설입니다. 밑줄 친 단어를 누르면 뜻과 예문이 바로 열립니다.
+            본문은 레벨별 전체 단어와 구동사를 실제 문장 안에서 100% 다루도록 구성했습니다. 밑줄 친 단어를 누르면 뜻과 예문이 바로 열립니다.
           </p>
           <div className="story-body">
             {visibleReadingParagraphs.map((tokens, paragraphIndex) => (
@@ -227,21 +237,21 @@ export function StoryView({
 
       <div className="story-meta-grid">
         <section className="panel" aria-labelledby="story-coverage-title">
-          <h3 id="story-coverage-title">학습 데이터 커버리지</h3>
+          <h3 id="story-coverage-title">실제 소설 본문 커버리지</h3>
           <ul>
-            <li>{`수동 작성: ${yesNo(story.isManual)}`}</li>
-            <li>{`통합 단어장 전체 포함: ${yesNo(story.coverage.mustCoverAll)}`}</li>
-            <li>{`상위 레벨 단어 허용: ${yesNo(story.coverage.allowUpperLevelWords)}`}</li>
-            <li>{`현재 대표 데이터 커버리지 ${percent(story.coverage.coverageRate)}`}</li>
+            <li>{`수동 검수 원본: ${yesNo(story.isManual)}`}</li>
+            <li>{`전체 커버리지 요구: ${yesNo(story.coverage.mustCoverAll)}`}</li>
             <li>{`일반 단어 ${coveredCount} / ${levelWords.length}`}</li>
             <li>{`구동사 ${coveredPhrasalVerbCount} / ${levelPhrasalVerbs.length}`}</li>
-            <li>{`릴리스 목표 대비 ${coveredCount} / ${targetWordCount} (${percent(targetRate)})`}</li>
-            <li>{`구동사 목표 대비 ${coveredPhrasalVerbCount} / ${targetPhrasalVerbCount} (${percent(phrasalTargetRate)})`}</li>
-            <li>{`통합 단어장 ${combinedCoveredCount} / ${combinedCatalogCount}`}</li>
+            <li>{`미사용 일반 단어 ${missingWordCount}개`}</li>
+            <li>{`미사용 구동사 ${missingPhrasalVerbCount}개`}</li>
+            <li>{`릴리스 목표 대비 일반 단어 ${coveredCount} / ${targetWordCount} (${percent(targetRate)})`}</li>
+            <li>{`릴리스 목표 대비 구동사 ${coveredPhrasalVerbCount} / ${targetPhrasalVerbCount} (${percent(phrasalTargetRate)})`}</li>
+            <li>{`실제 통합 본문 ${combinedCoveredCount} / ${combinedCatalogCount}`}</li>
             <li>{`통합 릴리스 목표 ${combinedCoveredCount} / ${combinedTargetCount}`}</li>
           </ul>
           <p>
-            전체 단어·구동사 커버리지는 학습 데이터 기준입니다. 소설 본문에는 이야기에 자연스럽고 레벨에 맞는 표현만 사용합니다.
+            이 수치는 현재 화면에 표시되는 완성 소설을 직접 파싱한 결과입니다. 학습 데이터 목록에만 존재하는 항목은 본문 커버리지로 계산하지 않습니다.
           </p>
         </section>
 
