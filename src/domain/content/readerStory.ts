@@ -36,60 +36,35 @@ const LOW_LEVEL_UNSAFE: Readonly<Record<Level, RegExp | null>> = {
   중학교: null,
 }
 
-const STORY_FRAMES: Readonly<Record<Level, readonly [string, string][]>> = {
+const NARRATIVE_ANCHORS: Readonly<Record<Level, readonly string[]>> = {
   기초: [
-    ['Before Mina leaves the place, the blue bird notices a small note nearby', 'The last line matches the map, so Mina and the bird keep walking'],
-    ['A little farther on, Mina finds a folded paper beside the red path', 'Mina puts the paper safely in her bag and follows the next mark'],
-    ['The bird chirps at a small card near the road, and Mina stops to read it', 'One detail helps Mina understand where they should go next'],
-    ['Near the next tree, Mina sees a short message waiting under a stone', 'When Mina finishes, she smiles at the bird and they move on together'],
-    ['Mina finds another clue just before the path turns', 'The clue makes the next part of the map easier to follow'],
-    ['At the next stop, Mina and the bird discover a few short notes', 'After reading them, Mina checks the red line and starts walking again'],
-    ['A small paper appears near the next mark on the map', 'Mina keeps the useful clue and continues with the blue bird'],
-    ['The bird taps a page on the ground, and Mina picks it up', 'The page gives them one more hint before they leave'],
+    'the park', 'the big tree', 'the bakery', 'the river', 'the bridge',
+    'the yellow ribbon', 'the flowers', 'the old house', 'the door', 'the window',
   ],
   유치원: [
-    ['Before the page turns again, the storybook shows Mina, Joon, and Sara a few short lines', 'The friends talk about what they learned before the light moves on'],
-    ['A warm gold light runs across the next page and reveals another small memory', 'Mina smiles when the final line makes the next picture glow'],
-    ['The old book opens to a page the friends have not seen before', 'When they finish reading, a little star appears near the next page'],
-    ['A new picture grows across the paper while Mina and her friends watch', 'The picture becomes bright when the friends understand the message'],
-    ['The book pauses on another memory from the school', 'Mina, Joon, and Sara read it together before the page turns'],
-    ['A small paper door opens inside the storybook and shows another scene', 'The friends remember the scene as the golden light moves forward'],
-    ['One more page shines softly under Mina’s hands', 'The last line gives the friends a new idea about the missing ending'],
-    ['The storybook lets the friends hear another voice from long ago', 'They listen carefully, then follow the light to the next part of the story'],
+    'the library', 'the storybook', 'the clock', 'the art room', 'the old picture',
+    'the school garden', 'the red flower', 'the paper door', 'the classroom',
+    'the white page', 'the new ending', 'the class',
   ],
   초등학교: [
-    ['Before leaving the area, Mina finds another bundle connected to the garden’s history, and Joon and Sara help her examine it', 'They record the useful details and return to the main clue'],
-    ['A nearby folder contains several short memories from people who once used the garden', 'Mina compares the details with the map before the three friends continue'],
-    ['Behind an old photograph, Mina discovers a few notes that add another piece to the garden’s story', 'The new details make the next part of the mystery easier to understand'],
-    ['The friends find a small box of records near the path and read the contents in order', 'When they finish, Mina connects the records to the clue they are already following'],
-    ['Another envelope contains messages that were saved by people who cared for the garden', 'Sara checks the dates while Mina marks the details that may matter later'],
-    ['Near the next location, Joon notices a packet that everyone else had missed', 'The friends study it together, then continue with a clearer idea of what happened'],
-    ['Mina pauses to review another set of notes before they move to the next place', 'A repeated detail links the notes to the larger mystery'],
-    ['The search uncovers another group of short records from the garden’s past', 'Mina adds the useful evidence to her notebook and keeps going'],
+    'the city garden', 'the fountain', 'the glass house', 'the oldest tree',
+    'the public library', 'locker 214', 'the yellow house', 'the hill',
+    'the storm shelter', 'the damaged map', 'the public meeting', 'the history room',
   ],
   중학교: [
-    ['Before moving to the next source, Mina reviews another set of Riverside records beside her timeline', 'She marks what can be verified and returns to the main investigation'],
-    ['A second file box gives Mina several accounts that were never explained in the shortened public summary', 'She keeps the conflicting details side by side instead of forcing them into one version'],
-    ['The archive index leads Mina to another packet of letters, reports, and interview notes', 'Mina records the source of each claim before connecting it to the larger timeline'],
-    ['During the supervised review, Mina opens a folder that earlier summaries had reduced to a few lines', 'She separates fact, memory, and opinion before deciding what the material can prove'],
-    ['Another group of records fills a gap between two dates on Mina’s timeline', 'She notes the points that can be checked against independent evidence'],
-    ['Mina compares another set of documents with the sources she has already collected', 'The comparison does not answer every question, but it narrows the next one'],
-    ['A newly indexed packet contains voices that the official summary did not preserve in detail', 'Mina keeps the different accounts visible so the final report will not erase disagreement'],
-    ['Before drafting the next section, Mina reads another file from beginning to end', 'She adds only the claims that can be traced to a source'],
+    'Riverside', 'the public archive', 'the old map', 'the newspaper reports',
+    'the community center', 'Mr. Park', 'the property registers', 'the bank records',
+    'Ms. Lee', 'the email', 'the public library', 'Mr. Choi', 'the sealed box',
+    'the internal memo', 'the final report', 'the review group',
   ],
 }
 
-const SCENE_CUE_STOPWORDS = new Set([
-  'about', 'after', 'again', 'along', 'another', 'before', 'being', 'because',
-  'could', 'every', 'first', 'from', 'have', 'into', 'little', 'mina', 'more',
-  'next', 'other', 'people', 'said', 'same', 'short', 'some', 'that', 'their',
-  'there', 'these', 'they', 'this', 'those', 'through', 'under', 'very', 'when',
-  'where', 'which', 'while', 'with', 'would',
-])
-
-const FALLBACK_SCENE_CUES = [
-  'detail', 'message', 'picture', 'clue', 'note', 'memory', 'line', 'mark',
-] as const
+const GENERIC_ANCHORS: Readonly<Record<Level, readonly [string, string]>> = {
+  기초: ['the last stop', 'the next stop'],
+  유치원: ['the last page', 'the next part of the story'],
+  초등학교: ['the last clue', 'the next location'],
+  중학교: ['the current evidence', 'the next source'],
+}
 
 const META_SOURCE_PATTERN = /\b(?:definition|expression|label|means?|phrase|sentence|spelling|term|word)\b/iu
 
@@ -427,26 +402,118 @@ function assignSentencesToSlots(
   return slots
 }
 
-function sceneCue(sentences: readonly string[], sceneIndex: number): string {
-  const candidates = sentences
-    .flatMap((sentence) => [...storyTokens(sentence)])
-    .filter((token) => token.length >= 4 && !SCENE_CUE_STOPWORDS.has(token))
-  const uniqueCandidates = [...new Set(candidates)]
-  if (uniqueCandidates.length > 0) {
-    return uniqueCandidates[stableIndex(`scene-${sceneIndex}`, uniqueCandidates.length)]!
+function anchorNeedle(anchor: string): string {
+  return anchor.toLowerCase().replace(/^the\s+/u, '')
+}
+
+function contextAnchor(
+  text: string,
+  level: Level,
+  direction: 'previous' | 'next',
+): string {
+  const lower = text.toLowerCase()
+  const fallback = GENERIC_ANCHORS[level][direction === 'previous' ? 0 : 1]
+  let bestAnchor = fallback
+  let bestPosition = direction === 'previous' ? -1 : Number.POSITIVE_INFINITY
+
+  for (const anchor of NARRATIVE_ANCHORS[level]) {
+    const needle = anchorNeedle(anchor)
+    const position = direction === 'previous'
+      ? lower.lastIndexOf(needle)
+      : lower.indexOf(needle)
+    if (position < 0) continue
+
+    if (
+      (direction === 'previous' && position > bestPosition)
+      || (direction === 'next' && position < bestPosition)
+    ) {
+      bestAnchor = anchor
+      bestPosition = position
+    }
   }
-  return FALLBACK_SCENE_CUES[sceneIndex % FALLBACK_SCENE_CUES.length]!
+
+  return bestAnchor
+}
+
+function bridgeLead(
+  level: Level,
+  previousParagraph: string,
+  nextParagraph: string,
+  seed: string,
+): string {
+  const previous = contextAnchor(previousParagraph, level, 'previous')
+  const next = contextAnchor(nextParagraph, level, 'next')
+  const variant = stableIndex(seed, 8)
+
+  if (level === '기초') {
+    return [
+      `On the way from ${previous} to ${next}, Mina and the bird keep following the trail`,
+      `After leaving ${previous}, Mina and the bird notice something new before they reach ${next}`,
+      `The walk beyond ${previous} gives Mina another small surprise on the way to ${next}`,
+      `Before they reach ${next}, Mina and the bird pause once more beyond ${previous}`,
+      `Mina carries what she learned at ${previous} with her as she heads toward ${next}`,
+      `The trail from ${previous} bends toward ${next}, and Mina stays alert`,
+      `A little past ${previous}, Mina and the bird keep moving toward ${next}`,
+      `Between ${previous} and ${next}, the search takes another turn`,
+    ][variant]!
+  }
+
+  if (level === '유치원') {
+    return [
+      `As the story moves from ${previous} toward ${next}, Mina, Joon, and Sara follow the glow`,
+      `After ${previous}, the glowing book guides the friends toward ${next}`,
+      `Before the story reaches ${next}, another little moment opens beyond ${previous}`,
+      `The light from ${previous} carries the three friends toward ${next}`,
+      `With ${previous} still in their minds, the friends follow the story toward ${next}`,
+      `The book turns gently from ${previous} toward ${next}, and the friends keep watching`,
+      `Between ${previous} and ${next}, the story gives Mina and her friends another moment to share`,
+      `As ${previous} fades behind them, a new part of the story begins on the way to ${next}`,
+    ][variant]!
+  }
+
+  if (level === '초등학교') {
+    return [
+      `With the clue from ${previous} still in mind, Mina, Joon, and Sara continue toward ${next}`,
+      `Before the friends reach ${next}, another part of the garden story surfaces beyond ${previous}`,
+      `The search from ${previous} toward ${next} gives the friends another connection to consider`,
+      `After ${previous}, Mina keeps the larger mystery in view as the group moves toward ${next}`,
+      `Between ${previous} and ${next}, the friends uncover another piece of the same garden mystery`,
+      `What the friends learned at ${previous} follows them as they head toward ${next}`,
+      `The route beyond ${previous} keeps pointing toward ${next}, but the mystery adds another layer`,
+      `Before leaving ${previous} completely behind, the friends find something that matters on the way to ${next}`,
+    ][variant]!
+  }
+
+  return [
+    `Before moving from ${previous} to ${next}, Mina checks one more connection in the evidence`,
+    `The evidence from ${previous} raises another question before Mina turns to ${next}`,
+    `As Mina moves from ${previous} toward ${next}, another source complicates the timeline`,
+    `What Mina learned at ${previous} remains relevant as she prepares to examine ${next}`,
+    `Between ${previous} and ${next}, Mina tests another piece of the Riverside record`,
+    `Before ${next} can answer the next question, Mina compares it with what she found at ${previous}`,
+    `The move from ${previous} to ${next} exposes another connection that Mina needs to verify`,
+    `With the evidence from ${previous} still open, Mina follows the investigation toward ${next}`,
+  ][variant]!
 }
 
 function buildSceneParagraph(
   level: Level,
   sentences: readonly string[],
   sceneIndex: number,
+  previousParagraph: string,
+  nextParagraph: string,
 ): string {
-  const frames = STORY_FRAMES[level]
-  const frame = frames[sceneIndex % frames.length]!
-  const cue = sceneCue(sentences, sceneIndex)
-  return `${frame[0]}. ${sentences.join(' ')} ${frame[1]}, with “${cue}” still in mind.`
+  const cleanSentences = sentences.map((sentence) => sentence.trim()).filter(Boolean)
+  if (cleanSentences.length === 0) return ''
+  const first = cleanSentences[0]!
+  const rest = cleanSentences.slice(1)
+  const lead = bridgeLead(
+    level,
+    previousParagraph,
+    nextParagraph,
+    `${sceneIndex}:${first}`,
+  )
+  return [`${lead}: ${first}`, ...rest].join(' ')
 }
 
 function weaveCoverageSentences(
@@ -458,7 +525,7 @@ function weaveCoverageSentences(
 
   const paragraphs = baseText.trim().split(/\n\s*\n/u).filter(Boolean)
   if (paragraphs.length < 2) {
-    const scene = buildSceneParagraph(level, sentences, 0)
+    const scene = buildSceneParagraph(level, sentences, 0, baseText, '')
     return [baseText.trim(), scene].filter(Boolean).join('\n\n')
   }
 
@@ -478,6 +545,8 @@ function weaveCoverageSentences(
           level,
           slotSentences.slice(index, index + limit),
           sceneIndex,
+          paragraphs[paragraphIndex]!,
+          paragraphs[paragraphIndex + 1]!,
         ),
       )
       sceneIndex += 1
