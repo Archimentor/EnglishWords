@@ -102,3 +102,21 @@ test('위험한 원천 예문이 여러 개여도 메타 학습문장 대신 장
   expect(text).not.toMatch(/\barmy\b|\bwar\b/iu)
   expect(readerStoryCoverage(text, words, []).missingWordIds).toEqual([])
 })
+
+test('삽입 장면은 고정 프레임 대신 앞뒤 사건의 위치를 연결한다', () => {
+  const words = [
+    word('lantern', 'lantern', 'noun', ['A lantern shines beside the gate.']),
+  ]
+  const base = [
+    'Mina leaves the bakery and walks toward the river.',
+    'At the bridge, the little bird finds a blue feather.',
+    'Mina reaches the old house before sunset.',
+  ].join('\n\n')
+
+  const text = buildReaderStoryText(base, '기초', words, [])
+
+  expect(text).toContain('A lantern shines beside the gate.')
+  expect(text).toMatch(/(?:bakery|river).*(?:bridge|old house)/su)
+  expect(text).not.toMatch(/Before Mina leaves the place|A little farther on, Mina finds a folded paper/u)
+  expect(text).not.toMatch(/with “[A-Za-z]+” still in mind/u)
+})
