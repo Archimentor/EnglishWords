@@ -10,7 +10,7 @@ import type { SpeechPort } from '../study/speech'
 import { curatedStoryText } from './curatedStories'
 import { StoryPhrasalVerbDetail } from './StoryPhrasalVerbDetail'
 import { StoryWordDetail } from './StoryWordDetail'
-import { tokenizeStoryParagraphs } from './storyTokens'
+import { tokenizeStory, tokenizeStoryParagraphs } from './storyTokens'
 import './story.css'
 
 const STORY_PARAGRAPH_PAGE_SIZE = 4
@@ -35,14 +35,14 @@ export function StoryView({
 }: StoryViewProps) {
   const [selectedWord, setSelectedWord] = useState<{
     story: StoryContent
-    tokenIndex: number
+    selectionKey: string
     surface: string
     word: WordItem
     entry: WordEntry
   } | null>(null)
   const [selectedPhrasalVerb, setSelectedPhrasalVerb] = useState<{
     story: StoryContent
-    tokenIndex: number
+    selectionKey: string
     item: PhrasalVerbItem
   } | null>(null)
   const [selectedStory, setSelectedStory] = useState(story)
@@ -75,10 +75,17 @@ export function StoryView({
       story.usedWords,
       lookupWords,
       levelPhrasalVerbs,
-    ).map((tokens) => tokens.map((token) => ({
-      ...token,
-      tokenIndex: tokenIndex++,
-    })))
+    ).map((tokens) => tokens.map((token) => {
+      const indexedToken = {
+        ...token,
+        tokenIndex: tokenIndex++,
+      }
+      if (token.type !== 'phrasalVerb') return indexedToken
+      return {
+        ...indexedToken,
+        wordParts: tokenizeStory(token.value, story.usedWords, lookupWords),
+      }
+    }))
   }, [displayStoryText, levelPhrasalVerbs, lookupWords, story.usedWords])
 
   const activeSelectedWord = selectedWord?.story === story ? selectedWord : null
@@ -94,6 +101,40 @@ export function StoryView({
     selectedTriggerRef.current?.focus()
   }
 
+  function renderWordButton(
+    value: string,
+    word: WordItem,
+    entry: WordEntry,
+    selectionKey: string,
+    key: string,
+  ) {
+    const isSelected = activeSelectedWord?.selectionKey === selectionKey
+    return (
+      <button
+        key={key}
+        ref={isSelected ? selectedTriggerRef : undefined}
+        type="button"
+        className="story-word-button"
+        aria-label={`story word: ${value}`}
+        aria-expanded={isSelected}
+        aria-controls={isSelected ? 'story-word-detail' : undefined}
+        onClick={(event) => {
+          selectedTriggerRef.current = event.currentTarget
+          setSelectedPhrasalVerb(null)
+          setSelectedWord({
+            story,
+            selectionKey,
+            surface: value,
+            word,
+            entry,
+          })
+        }}
+      >
+        {value}
+      </button>
+    )
+  }
+
   function renderTokens(tokens: (typeof readingParagraphs)[number]) {
     return tokens.map((token) => {
       if (token.type === 'text') {
@@ -101,55 +142,60 @@ export function StoryView({
       }
 
       if (token.type === 'phrasalVerb') {
-        const isSelected = activeSelectedPhrasalVerb?.tokenIndex === token.tokenIndex
+        const phrasalSelectionKey = `phrasal-${token.tokenIndex}`
+        const isSelected = activeSelectedPhrasalVerb?.selectionKey === phrasalSelectionKey
         return (
-          <button
+          <span
+            className="story-inline-phrasal"
             key={`phrasal-${token.tokenIndex}`}
-            ref={isSelected ? selectedTriggerRef : undefined}
-            type="button"
-            className="story-inline-phrasal-button"
-            aria-label={`story phrasal verb: ${token.value}`}
-            aria-expanded={isSelected}
-            aria-controls={isSelected ? 'story-word-detail' : undefined}
-            onClick={(event) => {
-              selectedTriggerRef.current = event.currentTarget
-              setSelectedWord(null)
-              setSelectedPhrasalVerb({
-                story,
-                tokenIndex: token.tokenIndex,
-                item: token.phrasalVerb,
-              })
-            }}
+            data-phrasal-verb={token.phrasalVerb.phrasalVerb}
           >
-            {token.value}
-          </button>
+            <span className="story-inline-phrasal__words">
+              {token.wordParts.map((part, partIndex) => {
+                if (part.type !== 'word') {
+                  return (
+                    <span key={`phrasal-text-${token.tokenIndex}-${partIndex}`}>
+                      {part.value}
+                    </span>
+                  )
+                }
+                return renderWordButton(
+                  part.value,
+                  part.word,
+                  part.entry,
+                  `phrasal-word-${token.tokenIndex}-${partIndex}`,
+                  `phrasal-word-${token.tokenIndex}-${partIndex}`,
+                )
+              })}
+            </span>
+            <button
+              ref={isSelected ? selectedTriggerRef : undefined}
+              type="button"
+              className="story-inline-phrasal-meaning-button"
+              aria-label={`story phrasal verb: ${token.value}`}
+              aria-expanded={isSelected}
+              aria-controls={isSelected ? 'story-word-detail' : undefined}
+              title={`${token.value} 구동사 뜻 보기`}
+              onClick={(event) => {
+                selectedTriggerRef.current = event.currentTarget
+                setSelectedWord(null)
+                setSelectedPhrasalVerb({
+                  story,
+                  selectionKey: phrasalSelectionKey,
+                  item: token.phrasalVerb,
+                })
+              }}
+            />
+          </span>
         )
       }
 
-      const isSelected = activeSelectedWord?.tokenIndex === token.tokenIndex
-      return (
-        <button
-          key={`word-${token.tokenIndex}`}
-          ref={isSelected ? selectedTriggerRef : undefined}
-          type="button"
-          className="story-word-button"
-          aria-label={`story word: ${token.value}`}
-          aria-expanded={isSelected}
-          aria-controls={isSelected ? 'story-word-detail' : undefined}
-          onClick={(event) => {
-            selectedTriggerRef.current = event.currentTarget
-            setSelectedPhrasalVerb(null)
-            setSelectedWord({
-              story,
-              tokenIndex: token.tokenIndex,
-              surface: token.value,
-              word: token.word,
-              entry: token.entry,
-            })
-          }}
-        >
-          {token.value}
-        </button>
+      return renderWordButton(
+        token.value,
+        token.word,
+        token.entry,
+        `word-${token.tokenIndex}`,
+        `word-${token.tokenIndex}`,
       )
     })
   }
@@ -193,7 +239,7 @@ export function StoryView({
 
         {activeSelectedWord ? (
           <StoryWordDetail
-            key={`${story.level}-${activeSelectedWord.tokenIndex}`}
+            key={`${story.level}-${activeSelectedWord.selectionKey}`}
             word={activeSelectedWord.word}
             entry={activeSelectedWord.entry}
             speechText={activeSelectedWord.surface}
@@ -202,7 +248,7 @@ export function StoryView({
           />
         ) : activeSelectedPhrasalVerb ? (
           <StoryPhrasalVerbDetail
-            key={`${story.level}-${activeSelectedPhrasalVerb.tokenIndex}`}
+            key={`${story.level}-${activeSelectedPhrasalVerb.selectionKey}`}
             item={activeSelectedPhrasalVerb.item}
             speech={speech}
             onClose={closeDetail}
