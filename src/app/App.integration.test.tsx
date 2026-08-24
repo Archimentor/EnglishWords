@@ -390,7 +390,9 @@ test('대시보드에서 단어장·문법·소설·학습·퀴즈 화면을 실
   await user.click(screen.getByRole('button', { name: '소설' }))
   const story = screen.getByRole('article')
   expect(within(story).getByRole('heading', { name: '기초 대표 이야기' })).toBeInTheDocument()
-  expect(within(story).getByText('릴리스 목표 대비 8 / 500 (1.6%)')).toBeInTheDocument()
+  expect(within(story).queryByText('실제 소설 본문 커버리지')).not.toBeInTheDocument()
+  expect(within(story).queryByText('전체 학습 단어')).not.toBeInTheDocument()
+  expect(within(story).queryByText('전체 학습 구동사')).not.toBeInTheDocument()
 
   await user.click(screen.getByRole('button', { name: '학습' }))
   expect(screen.getByRole('heading', { name: '학습 레벨 선택' })).toBeInTheDocument()
