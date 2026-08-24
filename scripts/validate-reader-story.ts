@@ -29,6 +29,8 @@ const MAX_AVERAGE_SENTENCE_WORDS: Readonly<Record<Level, number>> = {
   중학교: 32,
 }
 const MECHANICAL_LABEL = /\b(?:Trail step|Story page|Garden record|Archive file)\s+\d+\s*:/giu
+const LEGACY_FIXED_FRAME = /\b(?:Before Mina leaves the place, the blue bird notices a small note nearby|A little farther on, Mina finds a folded paper beside the red path|Before the page turns again, the storybook shows Mina, Joon, and Sara a few short lines|Before leaving the area, Mina finds another bundle connected to the garden’s history|Before moving to the next source, Mina reviews another set of Riverside records beside her timeline)\b/gu
+const LEGACY_SCENE_CLOSER = /with “[A-Za-z][A-Za-z'’-]*” still in mind\./gu
 const LOW_LEVEL_BANNED: Readonly<Record<Level, readonly string[]>> = {
   기초: ['abortion', 'adultery', 'army', 'arson', 'brothel', 'election', 'executioner', 'fraud', 'gun', 'jail', 'murder', 'parliament', 'pistol', 'poison', 'porn', 'prison', 'prostitute', 'rifle', 'riot', 'sex', 'suicide', 'terrorism', 'war', 'weapon'],
   유치원: ['abortion', 'adultery', 'army', 'arson', 'brothel', 'executioner', 'fraud', 'gun', 'jail', 'murder', 'parliament', 'pistol', 'poison', 'porn', 'prison', 'prostitute', 'rifle', 'riot', 'sex', 'suicide', 'terrorism', 'weapon'],
@@ -56,6 +58,8 @@ interface LevelReport {
   }
   quality: {
     mechanicalLabels: number
+    legacyFixedFrames: number
+    legacySceneClosers: number
     lowLevelUnsafeHits: string[]
     fallbackLikeSentences: number
   }
@@ -146,6 +150,8 @@ for (const level of LEVELS) {
     : 0
   const maxWords = Math.max(0, ...wordCounts)
   const mechanicalLabels = readerText.match(MECHANICAL_LABEL)?.length ?? 0
+  const legacyFixedFrames = readerText.match(LEGACY_FIXED_FRAME)?.length ?? 0
+  const legacySceneClosers = readerText.match(LEGACY_SCENE_CLOSER)?.length ?? 0
   const unsafeHits = bannedHits(level, readerText)
   const fallbackLikeSentences = fallbackLikeSentenceCount(readerSentences)
 
@@ -175,6 +181,8 @@ for (const level of LEVELS) {
     },
     quality: {
       mechanicalLabels,
+      legacyFixedFrames,
+      legacySceneClosers,
       lowLevelUnsafeHits: unsafeHits,
       fallbackLikeSentences,
     },
@@ -189,6 +197,7 @@ for (const level of LEVELS) {
     `repeated=${repeated} (${(repeatedRate * 100).toFixed(1)}%)`,
     `avgWords=${averageWords.toFixed(1)}`,
     `fallbackLike=${fallbackLikeSentences}`,
+    `legacyFrames=${legacyFixedFrames + legacySceneClosers}`,
   ].join(' '))
 
   if (coverage.missingWordIds.length > 0) {
@@ -205,6 +214,12 @@ for (const level of LEVELS) {
   }
   if (mechanicalLabels > 0) {
     console.error(`[reader-story] ${level}: found ${mechanicalLabels} mechanical scene labels.`)
+    failed = true
+  }
+  if (legacyFixedFrames > 0 || legacySceneClosers > 0) {
+    console.error(
+      `[reader-story] ${level}: found ${legacyFixedFrames} legacy fixed openings and ${legacySceneClosers} legacy scene closers.`,
+    )
     failed = true
   }
   if (repeatedRate > MAX_REPEATED_SENTENCE_RATE) {
