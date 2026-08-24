@@ -10,7 +10,7 @@ import type { SpeechPort } from '../study/speech'
 import { curatedStoryText } from './curatedStories'
 import { StoryPhrasalVerbDetail } from './StoryPhrasalVerbDetail'
 import { StoryWordDetail } from './StoryWordDetail'
-import { tokenizeStory, tokenizeStoryParagraphs } from './storyTokens'
+import { tokenizeKnownWords, tokenizeStoryParagraphs } from './storyTokens'
 import './story.css'
 
 const STORY_PARAGRAPH_PAGE_SIZE = 4
@@ -21,6 +21,7 @@ interface StoryViewProps {
   levelWords: readonly WordItem[]
   levelPhrasalVerbs?: readonly PhrasalVerbItem[]
   lookupWords?: readonly WordItem[]
+  phrasalLookupWords?: readonly WordItem[]
   targetWordCount: number
   targetPhrasalVerbCount?: number
   speech?: SpeechPort | null
@@ -31,6 +32,7 @@ export function StoryView({
   levelWords,
   levelPhrasalVerbs = EMPTY_PHRASAL_VERBS,
   lookupWords = levelWords,
+  phrasalLookupWords = lookupWords,
   speech = null,
 }: StoryViewProps) {
   const [selectedWord, setSelectedWord] = useState<{
@@ -75,17 +77,10 @@ export function StoryView({
       story.usedWords,
       lookupWords,
       levelPhrasalVerbs,
-    ).map((tokens) => tokens.map((token) => {
-      const indexedToken = {
-        ...token,
-        tokenIndex: tokenIndex++,
-      }
-      if (token.type !== 'phrasalVerb') return indexedToken
-      return {
-        ...indexedToken,
-        wordParts: tokenizeStory(token.value, story.usedWords, lookupWords),
-      }
-    }))
+    ).map((tokens) => tokens.map((token) => ({
+      ...token,
+      tokenIndex: tokenIndex++,
+    })))
   }, [displayStoryText, levelPhrasalVerbs, lookupWords, story.usedWords])
 
   const activeSelectedWord = selectedWord?.story === story ? selectedWord : null
@@ -121,13 +116,7 @@ export function StoryView({
         onClick={(event) => {
           selectedTriggerRef.current = event.currentTarget
           setSelectedPhrasalVerb(null)
-          setSelectedWord({
-            story,
-            selectionKey,
-            surface: value,
-            word,
-            entry,
-          })
+          setSelectedWord({ story, selectionKey, surface: value, word, entry })
         }}
       >
         {value}
@@ -144,9 +133,7 @@ export function StoryView({
       if (token.type === 'phrasalVerb') {
         const phrasalSelectionKey = `phrasal-${token.tokenIndex}`
         const isSelected = activeSelectedPhrasalVerb?.selectionKey === phrasalSelectionKey
-        const wordParts = 'wordParts' in token
-          ? token.wordParts
-          : tokenizeStory(token.value, story.usedWords, lookupWords)
+        const wordParts = tokenizeKnownWords(token.value, phrasalLookupWords)
         return (
           <span
             className="story-inline-phrasal"
