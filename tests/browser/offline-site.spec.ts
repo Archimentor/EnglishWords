@@ -25,7 +25,18 @@ async function expectNoViewportOverflow(page: Page): Promise<void> {
   expect(overflowing).toEqual([])
 }
 
-test('HTTP preview renders the unified story and core learning journey', async ({ page }) => {
+async function revealFirstInlinePhrasal(page: Page) {
+  const phrasalVerb = page.getByRole('button', { name: /^story phrasal verb:/u }).first()
+  for (let index = 0; index < 20 && await phrasalVerb.count() === 0; index += 1) {
+    const loadMore = page.getByRole('button', { name: /다음 이야기 보기/u })
+    if (await loadMore.count() === 0) break
+    await loadMore.click()
+  }
+  await expect(phrasalVerb).toBeVisible()
+  return phrasalVerb
+}
+
+test('HTTP preview renders the novel-only story and core learning journey', async ({ page }) => {
   test.setTimeout(60_000)
   const assertNoBrowserFailures = captureBrowserFailures(page)
 
@@ -41,9 +52,10 @@ test('HTTP preview renders the unified story and core learning journey', async (
 
   await page.getByRole('button', { name: '소설', exact: true }).click()
   await expect(page.locator('.view--story')).toBeVisible()
-  await expect(page.getByText(/일반 단어 확장 장면/u)).toHaveCount(0)
-  await expect(page.getByText(/구동사 확장 장면/u)).toHaveCount(0)
-  await expect(page.getByText('실제 통합 본문 750 / 750', { exact: true })).toBeVisible()
+  await expect(page.getByText('실제 소설 본문 커버리지')).toHaveCount(0)
+  await expect(page.getByText('전체 학습 단어')).toHaveCount(0)
+  await expect(page.getByText('전체 학습 구동사')).toHaveCount(0)
+  await expect(page.getByText(/100% 다루도록/u)).toHaveCount(0)
 
   const storyWord = page.getByRole('button', { name: /^story word:/u }).first()
   await expect(storyWord).toBeVisible()
@@ -53,8 +65,8 @@ test('HTTP preview renders the unified story and core learning journey', async (
   await closeStoryDetail.click()
   await expect(storyWord).toBeFocused()
 
-  const phrasalVerb = page.getByRole('button', { name: /^story phrasal verb:/u }).first()
-  await expect(phrasalVerb).toBeVisible()
+  const phrasalVerb = await revealFirstInlinePhrasal(page)
+  await expect(phrasalVerb).toHaveClass(/story-inline-phrasal-button/u)
   await phrasalVerb.click()
   await expect(page.getByRole('heading', { name: /구동사 상세$/u })).toBeVisible()
   await page.getByRole('button', { name: '닫기', exact: true }).click()
@@ -75,7 +87,7 @@ test('HTTP preview renders the unified story and core learning journey', async (
   assertNoBrowserFailures()
 })
 
-test('tracked offline index renders the unified application without network storage', async ({ page }) => {
+test('tracked offline index renders the novel-only application without network storage', async ({ page }) => {
   const assertNoBrowserFailures = captureBrowserFailures(page)
   const offlineIndex = pathToFileURL(resolve('index.html')).href
 
@@ -92,8 +104,9 @@ test('tracked offline index renders the unified application without network stor
   await expect(page.getByRole('heading', { name: '기초 학습 대시보드' })).toBeVisible()
   await page.getByRole('button', { name: '소설', exact: true }).click()
   await expect(page.locator('.view--story')).toBeVisible()
-  await expect(page.getByText(/일반 단어 확장 장면/u)).toHaveCount(0)
-  await expect(page.getByText(/구동사 확장 장면/u)).toHaveCount(0)
+  await expect(page.getByText('실제 소설 본문 커버리지')).toHaveCount(0)
+  await expect(page.getByText('전체 학습 단어')).toHaveCount(0)
+  await expect(page.getByText('전체 학습 구동사')).toHaveCount(0)
   await expect(page.getByRole('button', { name: /다음 이야기 보기/u })).toBeVisible()
   await expectNoViewportOverflow(page)
   assertNoBrowserFailures()
