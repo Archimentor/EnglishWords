@@ -15,63 +15,25 @@
       "reader": 101
     },
     "sentences": {
-      "total": 695,
-      "unique": 620,
-      "repeated": 75,
-      "repeatedRate": 0.1079,
-      "averageWords": 9.1,
-      "maxWords": 18,
+      "total": 535,
+      "unique": 534,
+      "repeated": 1,
+      "repeatedRate": 0.0019,
+      "averageWords": 9.81,
+      "maxWords": 30,
       "repeatedSamples": [
         {
-          "sentence": "A little farther on, Mina finds a folded paper beside the red path.",
-          "count": 10
-        },
-        {
-          "sentence": "A small paper appears near the next mark on the map.",
-          "count": 10
-        },
-        {
-          "sentence": "At the next stop, Mina and the bird discover a few short notes.",
-          "count": 10
-        },
-        {
-          "sentence": "Before Mina leaves the place, the blue bird notices a small note nearby.",
-          "count": 10
-        },
-        {
-          "sentence": "Mina finds another clue just before the path turns.",
-          "count": 10
-        },
-        {
-          "sentence": "Near the next tree, Mina sees a short message waiting under a stone.",
-          "count": 10
-        },
-        {
-          "sentence": "The bird chirps at a small card near the road, and Mina stops to read it.",
-          "count": 10
-        },
-        {
-          "sentence": "The bird taps a page on the ground, and Mina picks it up.",
-          "count": 10
-        },
-        {
           "sentence": "Mina smiles.",
-          "count": 2
-        },
-        {
-          "sentence": "One detail helps Mina understand where they should go next, with “friends” still in mind.",
-          "count": 2
-        },
-        {
-          "sentence": "The clue makes the next part of the map easier to follow, with “what” still in mind.",
           "count": 2
         }
       ]
     },
     "quality": {
       "mechanicalLabels": 0,
+      "legacyFixedFrames": 0,
+      "legacySceneClosers": 0,
       "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 59
+      "fallbackLikeSentences": 29
     }
   },
   "유치원": {
@@ -90,55 +52,20 @@
       "reader": 107
     },
     "sentences": {
-      "total": 765,
-      "unique": 694,
-      "repeated": 71,
-      "repeatedRate": 0.0928,
-      "averageWords": 9.28,
-      "maxWords": 19,
-      "repeatedSamples": [
-        {
-          "sentence": "Before the page turns again, the storybook shows Mina, Joon, and Sara a few short lines.",
-          "count": 11
-        },
-        {
-          "sentence": "A new picture grows across the paper while Mina and her friends watch.",
-          "count": 10
-        },
-        {
-          "sentence": "A small paper door opens inside the storybook and shows another scene.",
-          "count": 10
-        },
-        {
-          "sentence": "The book pauses on another memory from the school.",
-          "count": 10
-        },
-        {
-          "sentence": "The old book opens to a page the friends have not seen before.",
-          "count": 10
-        },
-        {
-          "sentence": "A warm gold light runs across the next page and reveals another small memory.",
-          "count": 9
-        },
-        {
-          "sentence": "One more page shines softly under Mina’s hands.",
-          "count": 9
-        },
-        {
-          "sentence": "The storybook lets the friends hear another voice from long ago.",
-          "count": 9
-        },
-        {
-          "sentence": "When they finish reading, a little star appears near the next page, with “fall” still in mind.",
-          "count": 2
-        }
-      ]
+      "total": 603,
+      "unique": 603,
+      "repeated": 0,
+      "repeatedRate": 0,
+      "averageWords": 10.4,
+      "maxWords": 34,
+      "repeatedSamples": []
     },
     "quality": {
       "mechanicalLabels": 0,
+      "legacyFixedFrames": 0,
+      "legacySceneClosers": 0,
       "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 78
+      "fallbackLikeSentences": 48
     }
   },
   "초등학교": {
@@ -157,59 +84,25 @@
       "reader": 208
     },
     "sentences": {
-      "total": 1715,
-      "unique": 1547,
-      "repeated": 168,
-      "repeatedRate": 0.098,
-      "averageWords": 9.23,
-      "maxWords": 26,
+      "total": 1363,
+      "unique": 1361,
+      "repeated": 2,
+      "repeatedRate": 0.0015,
+      "averageWords": 9.71,
+      "maxWords": 33,
       "repeatedSamples": [
-        {
-          "sentence": "A nearby folder contains several short memories from people who once used the garden.",
-          "count": 22
-        },
-        {
-          "sentence": "Behind an old photograph, Mina discovers a few notes that add another piece to the garden’s story.",
-          "count": 22
-        },
-        {
-          "sentence": "Mina pauses to review another set of notes before they move to the next place.",
-          "count": 22
-        },
-        {
-          "sentence": "Near the next location, Joon notices a packet that everyone else had missed.",
-          "count": 22
-        },
-        {
-          "sentence": "The friends find a small box of records near the path and read the contents in order.",
-          "count": 22
-        },
-        {
-          "sentence": "The search uncovers another group of short records from the garden’s past.",
-          "count": 22
-        },
-        {
-          "sentence": "Another envelope contains messages that were saved by people who cared for the garden.",
-          "count": 21
-        },
-        {
-          "sentence": "Before leaving the area, Mina finds another bundle connected to the garden’s history, and Joon and Sara help her examine it.",
-          "count": 20
-        },
         {
           "sentence": "Mrs.",
           "count": 3
-        },
-        {
-          "sentence": "”\n\nBefore leaving the area, Mina finds another bundle connected to the garden’s history, and Joon and Sara help her examine it.",
-          "count": 2
         }
       ]
     },
     "quality": {
       "mechanicalLabels": 0,
+      "legacyFixedFrames": 0,
+      "legacySceneClosers": 0,
       "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 39
+      "fallbackLikeSentences": 17
     }
   },
   "중학교": {
@@ -228,51 +121,43 @@
       "reader": 281
     },
     "sentences": {
-      "total": 2881,
-      "unique": 2641,
-      "repeated": 240,
-      "repeatedRate": 0.0833,
-      "averageWords": 8.7,
-      "maxWords": 29,
+      "total": 2440,
+      "unique": 2419,
+      "repeated": 21,
+      "repeatedRate": 0.0086,
+      "averageWords": 8.59,
+      "maxWords": 39,
       "repeatedSamples": [
         {
-          "sentence": "A second file box gives Mina several accounts that were never explained in the shortened public summary.",
-          "count": 31
-        },
-        {
-          "sentence": "Another group of records fills a gap between two dates on Mina’s timeline.",
-          "count": 31
-        },
-        {
-          "sentence": "During the supervised review, Mina opens a folder that earlier summaries had reduced to a few lines.",
-          "count": 31
-        },
-        {
-          "sentence": "The archive index leads Mina to another packet of letters, reports, and interview notes.",
-          "count": 31
-        },
-        {
-          "sentence": "A newly indexed packet contains voices that the official summary did not preserve in detail.",
-          "count": 30
-        },
-        {
-          "sentence": "Mina compares another set of documents with the sources she has already collected.",
-          "count": 30
-        },
-        {
-          "sentence": "Before drafting the next section, Mina reads another file from beginning to end.",
-          "count": 29
-        },
-        {
-          "sentence": "Before moving to the next source, Mina reviews another set of Riverside records beside her timeline.",
-          "count": 29
-        },
-        {
-          "sentence": "Mr.",
+          "sentence": "The move from Mr.",
           "count": 4
         },
         {
-          "sentence": "”\n\nBefore moving to the next source, Mina reviews another set of Riverside records beside her timeline.",
+          "sentence": "With the evidence from the current evidence still open, Mina follows the investigation toward Mr.",
+          "count": 4
+        },
+        {
+          "sentence": "Before Mr.",
+          "count": 3
+        },
+        {
+          "sentence": "Mr.",
+          "count": 3
+        },
+        {
+          "sentence": "What Mina learned at the current evidence remains relevant as she prepares to examine Mr.",
+          "count": 3
+        },
+        {
+          "sentence": "Before moving from the current evidence to Mr.",
+          "count": 2
+        },
+        {
+          "sentence": "Before moving from the current evidence to Ms.",
+          "count": 2
+        },
+        {
+          "sentence": "Before the next source can answer the next question, Mina compares it with what she found at Mr.",
           "count": 2
         },
         {
@@ -280,15 +165,25 @@
           "count": 2
         },
         {
-          "sentence": "She adds only the claims that can be traced to a source, with “fresh” still in mind.",
+          "sentence": "The evidence from Mr.",
+          "count": 2
+        },
+        {
+          "sentence": "The evidence from the current evidence raises another question before Mina turns to Mr.",
+          "count": 2
+        },
+        {
+          "sentence": "The evidence from the public library raises another question before Mina turns to Mr.",
           "count": 2
         }
       ]
     },
     "quality": {
       "mechanicalLabels": 0,
+      "legacyFixedFrames": 0,
+      "legacySceneClosers": 0,
       "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 23
+      "fallbackLikeSentences": 22
     }
   }
 }
