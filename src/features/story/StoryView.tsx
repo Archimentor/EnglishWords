@@ -5,18 +5,15 @@ import type {
   WordEntry,
   WordItem,
 } from '../../domain/content/types'
-import {
-  buildReaderStoryText,
-  readerStoryCoverage,
-} from '../../domain/content/readerStory'
+import { buildReaderStoryText } from '../../domain/content/readerStory'
 import type { SpeechPort } from '../study/speech'
 import { curatedStoryText } from './curatedStories'
 import { StoryPhrasalVerbDetail } from './StoryPhrasalVerbDetail'
 import { StoryWordDetail } from './StoryWordDetail'
 import { tokenizeStoryParagraphs } from './storyTokens'
+import './story.css'
 
 const STORY_PARAGRAPH_PAGE_SIZE = 4
-const USED_WORD_PAGE_SIZE = 100
 const EMPTY_PHRASAL_VERBS: readonly PhrasalVerbItem[] = []
 
 interface StoryViewProps {
@@ -29,21 +26,11 @@ interface StoryViewProps {
   speech?: SpeechPort | null
 }
 
-function percent(value: number): string {
-  return `${Number((value * 100).toFixed(1))}%`
-}
-
-function yesNo(value: boolean): string {
-  return value ? '예' : '아니요'
-}
-
 export function StoryView({
   story,
   levelWords,
   levelPhrasalVerbs = EMPTY_PHRASAL_VERBS,
   lookupWords = levelWords,
-  targetWordCount,
-  targetPhrasalVerbCount = 0,
   speech = null,
 }: StoryViewProps) {
   const [selectedWord, setSelectedWord] = useState<{
@@ -55,12 +42,11 @@ export function StoryView({
   } | null>(null)
   const [selectedPhrasalVerb, setSelectedPhrasalVerb] = useState<{
     story: StoryContent
+    tokenIndex: number
     item: PhrasalVerbItem
   } | null>(null)
   const [selectedStory, setSelectedStory] = useState(story)
   const [visibleParagraphCount, setVisibleParagraphCount] = useState(STORY_PARAGRAPH_PAGE_SIZE)
-  const [visibleWordCount, setVisibleWordCount] = useState(USED_WORD_PAGE_SIZE)
-  const [visiblePhrasalVerbCount, setVisiblePhrasalVerbCount] = useState(USED_WORD_PAGE_SIZE)
   const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
 
   if (selectedStory !== story) {
@@ -68,8 +54,6 @@ export function StoryView({
     setSelectedWord(null)
     setSelectedPhrasalVerb(null)
     setVisibleParagraphCount(STORY_PARAGRAPH_PAGE_SIZE)
-    setVisibleWordCount(USED_WORD_PAGE_SIZE)
-    setVisiblePhrasalVerbCount(USED_WORD_PAGE_SIZE)
   }
 
   const curatedText = curatedStoryText(story)
@@ -84,56 +68,25 @@ export function StoryView({
     [curatedText, levelPhrasalVerbs, levelWords, lookupWords, story.level],
   )
 
-  const {
-    coveredCount,
-    coveredPhrasalVerbCount,
-    missingWordCount,
-    missingPhrasalVerbCount,
-    readingParagraphs,
-    phrasalVerbsById,
-  } = useMemo(() => {
-    const actualCoverage = readerStoryCoverage(
-      displayStoryText,
-      levelWords,
-      levelPhrasalVerbs,
-    )
-    const phrasalById = new Map(levelPhrasalVerbs.map((item) => [item.id, item]))
-
+  const readingParagraphs = useMemo(() => {
     let tokenIndex = 0
-    const paragraphs = tokenizeStoryParagraphs(
+    return tokenizeStoryParagraphs(
       displayStoryText,
       story.usedWords,
       lookupWords,
+      levelPhrasalVerbs,
     ).map((tokens) => tokens.map((token) => ({
       ...token,
       tokenIndex: tokenIndex++,
     })))
+  }, [displayStoryText, levelPhrasalVerbs, lookupWords, story.usedWords])
 
-    return {
-      coveredCount: actualCoverage.wordCoveredCount,
-      coveredPhrasalVerbCount: actualCoverage.phrasalVerbCoveredCount,
-      missingWordCount: actualCoverage.missingWordIds.length,
-      missingPhrasalVerbCount: actualCoverage.missingPhrasalVerbIds.length,
-      readingParagraphs: paragraphs,
-      phrasalVerbsById: phrasalById,
-    }
-  }, [displayStoryText, levelPhrasalVerbs, levelWords, lookupWords, story])
-
-  const targetRate = targetWordCount > 0 ? coveredCount / targetWordCount : 0
-  const phrasalTargetRate = targetPhrasalVerbCount > 0
-    ? coveredPhrasalVerbCount / targetPhrasalVerbCount
-    : 0
-  const combinedCoveredCount = coveredCount + coveredPhrasalVerbCount
-  const combinedCatalogCount = levelWords.length + levelPhrasalVerbs.length
-  const combinedTargetCount = targetWordCount + targetPhrasalVerbCount
   const activeSelectedWord = selectedWord?.story === story ? selectedWord : null
   const activeSelectedPhrasalVerb = selectedPhrasalVerb?.story === story
     ? selectedPhrasalVerb
     : null
   const paragraphLimit = Math.min(visibleParagraphCount, readingParagraphs.length)
   const visibleReadingParagraphs = readingParagraphs.slice(0, paragraphLimit)
-  const visibleWords = story.usedWords.slice(0, visibleWordCount)
-  const visiblePhrasalVerbs = story.usedPhrasalVerbs.slice(0, visiblePhrasalVerbCount)
 
   function closeDetail() {
     setSelectedWord(null)
@@ -147,7 +100,31 @@ export function StoryView({
         return <span key={`text-${token.tokenIndex}`}>{token.value}</span>
       }
 
-      if (!token.word || !token.entry) return null
+      if (token.type === 'phrasalVerb') {
+        const isSelected = activeSelectedPhrasalVerb?.tokenIndex === token.tokenIndex
+        return (
+          <button
+            key={`phrasal-${token.tokenIndex}`}
+            ref={isSelected ? selectedTriggerRef : undefined}
+            type="button"
+            className="story-inline-phrasal-button"
+            aria-label={`story phrasal verb: ${token.value}`}
+            aria-expanded={isSelected}
+            aria-controls={isSelected ? 'story-word-detail' : undefined}
+            onClick={(event) => {
+              selectedTriggerRef.current = event.currentTarget
+              setSelectedWord(null)
+              setSelectedPhrasalVerb({
+                story,
+                tokenIndex: token.tokenIndex,
+                item: token.phrasalVerb,
+              })
+            }}
+          >
+            {token.value}
+          </button>
+        )
+      }
 
       const isSelected = activeSelectedWord?.tokenIndex === token.tokenIndex
       return (
@@ -166,8 +143,8 @@ export function StoryView({
               story,
               tokenIndex: token.tokenIndex,
               surface: token.value,
-              word: token.word!,
-              entry: token.entry!,
+              word: token.word,
+              entry: token.entry,
             })
           }}
         >
@@ -189,15 +166,12 @@ export function StoryView({
       }}
     >
       <header className="feature-header">
-        <p>{`${story.level} · 스키마 ${story.schemaVersion}`}</p>
+        <p>{story.level}</p>
         <h2 id="story-title">{story.title}</h2>
       </header>
 
       <div className="story-reading-layout">
         <div className="story-reading-column">
-          <p className="story-reading-hint">
-            본문은 레벨별 전체 단어와 구동사를 실제 문장 안에서 100% 다루도록 구성했습니다. 밑줄 친 단어를 누르면 뜻과 예문이 바로 열립니다.
-          </p>
           <div className="story-body">
             {visibleReadingParagraphs.map((tokens, paragraphIndex) => (
               <section className="story-phrasal-scene" key={`paragraph-${paragraphIndex}`}>
@@ -228,93 +202,12 @@ export function StoryView({
           />
         ) : activeSelectedPhrasalVerb ? (
           <StoryPhrasalVerbDetail
-            key={`${story.level}-${activeSelectedPhrasalVerb.item.id}`}
+            key={`${story.level}-${activeSelectedPhrasalVerb.tokenIndex}`}
             item={activeSelectedPhrasalVerb.item}
             speech={speech}
             onClose={closeDetail}
           />
         ) : null}
-      </div>
-
-      <div className="story-meta-grid">
-        <section className="panel" aria-labelledby="story-coverage-title">
-          <h3 id="story-coverage-title">실제 소설 본문 커버리지</h3>
-          <ul>
-            <li>{`수동 검수 원본: ${yesNo(story.isManual)}`}</li>
-            <li>{`전체 커버리지 요구: ${yesNo(story.coverage.mustCoverAll)}`}</li>
-            <li>{`일반 단어 ${coveredCount} / ${levelWords.length}`}</li>
-            <li>{`구동사 ${coveredPhrasalVerbCount} / ${levelPhrasalVerbs.length}`}</li>
-            <li>{`미사용 일반 단어 ${missingWordCount}개`}</li>
-            <li>{`미사용 구동사 ${missingPhrasalVerbCount}개`}</li>
-            <li>{`릴리스 목표 대비 ${coveredCount} / ${targetWordCount} (${percent(targetRate)})`}</li>
-            <li>{`릴리스 목표 대비 구동사 ${coveredPhrasalVerbCount} / ${targetPhrasalVerbCount} (${percent(phrasalTargetRate)})`}</li>
-            <li>{`실제 통합 본문 ${combinedCoveredCount} / ${combinedCatalogCount}`}</li>
-            <li>{`통합 릴리스 목표 ${combinedCoveredCount} / ${combinedTargetCount}`}</li>
-          </ul>
-          <p>
-            이 수치는 현재 화면에 표시되는 완성 소설을 직접 파싱한 결과입니다. 학습 데이터 목록에만 존재하는 항목은 본문 커버리지로 계산하지 않습니다.
-          </p>
-        </section>
-
-        <section className="panel" aria-labelledby="story-words-title">
-          <h3 id="story-words-title">전체 학습 단어</h3>
-          <ul>
-            {visibleWords.map((word, index) => (
-              <li key={`${word.lemma}-${word.partOfSpeech}-${index}`}>
-                {`${word.lemma} · ${word.partOfSpeech} · ${word.forms.join(', ')}`}
-              </li>
-            ))}
-          </ul>
-          {visibleWords.length < story.usedWords.length ? (
-            <button
-              className="button button--secondary story-load-more"
-              type="button"
-              onClick={() => setVisibleWordCount((count) => count + USED_WORD_PAGE_SIZE)}
-            >
-              {`학습 단어 더 보기 (${story.usedWords.length - visibleWords.length}개 남음)`}
-            </button>
-          ) : null}
-        </section>
-
-        <section className="panel" aria-labelledby="story-phrasal-verbs-title">
-          <h3 id="story-phrasal-verbs-title">전체 학습 구동사</h3>
-          <ul>
-            {visiblePhrasalVerbs.map((use) => {
-              const item = phrasalVerbsById.get(use.id)
-              return (
-                <li key={use.id}>
-                  {item ? (
-                    <button
-                      type="button"
-                      className="story-word-button story-phrasal-button"
-                      aria-label={`story phrasal verb: ${item.phrasalVerb}`}
-                      aria-expanded={activeSelectedPhrasalVerb?.item.id === item.id}
-                      aria-controls={activeSelectedPhrasalVerb?.item.id === item.id
-                        ? 'story-word-detail'
-                        : undefined}
-                      onClick={(event) => {
-                        selectedTriggerRef.current = event.currentTarget
-                        setSelectedWord(null)
-                        setSelectedPhrasalVerb({ story, item })
-                      }}
-                    >
-                      {item.phrasalVerb}
-                    </button>
-                  ) : use.phrasalVerb}
-                </li>
-              )
-            })}
-          </ul>
-          {visiblePhrasalVerbs.length < story.usedPhrasalVerbs.length ? (
-            <button
-              className="button button--secondary story-load-more"
-              type="button"
-              onClick={() => setVisiblePhrasalVerbCount((count) => count + USED_WORD_PAGE_SIZE)}
-            >
-              {`학습 구동사 더 보기 (${story.usedPhrasalVerbs.length - visiblePhrasalVerbs.length}개 남음)`}
-            </button>
-          ) : null}
-        </section>
       </div>
     </article>
   )
