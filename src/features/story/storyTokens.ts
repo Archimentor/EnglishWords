@@ -99,7 +99,16 @@ function dictionaryMatchRank(match: RecordedMatch): number {
   return 2
 }
 
-function resolveDictionaryWordForms(words: readonly WordItem[]): RecordedMatch[] {
+function requestedDictionaryForms(text: string): Set<string> {
+  return new Set(
+    text.toLowerCase().match(/[\p{L}\p{N}]+(?:['’~-][\p{L}\p{N}]+)*/gu) ?? [],
+  )
+}
+
+function resolveDictionaryWordForms(
+  words: readonly WordItem[],
+  requestedForms: ReadonlySet<string>,
+): RecordedMatch[] {
   const byForm = new Map<string, RecordedMatch>()
 
   for (const word of words) {
@@ -108,6 +117,7 @@ function resolveDictionaryWordForms(words: readonly WordItem[]): RecordedMatch[]
         const trimmed = form.trim()
         if (!trimmed || /\s/u.test(trimmed)) continue
         const normalized = trimmed.toLowerCase()
+        if (!requestedForms.has(normalized)) continue
         const candidate: RecordedMatch = {
           kind: 'word',
           form: trimmed,
@@ -300,7 +310,10 @@ export function tokenizeKnownWords(
   text: string,
   words: readonly WordItem[],
 ): StoryToken[] {
-  return tokenizeMatches(text, resolveDictionaryWordForms(words))
+  return tokenizeMatches(
+    text,
+    resolveDictionaryWordForms(words, requestedDictionaryForms(text)),
+  )
 }
 
 const STORY_PARAGRAPH_SEPARATOR = '\u0000'
