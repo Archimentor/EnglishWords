@@ -1,4 +1,5 @@
 import type {
+  PhrasalVerbItem,
   StoryContent,
   WordEntry,
   WordItem,
@@ -8,23 +9,23 @@ import {
   isInternalStoryWordCharacter,
 } from '../../domain/content/storyForms'
 
-export interface StoryToken {
-  type: 'text' | 'word'
-  value: string
-  word?: WordItem
-  entry?: WordEntry
-}
+export type StoryToken =
+  | { type: 'text'; value: string }
+  | { type: 'word'; value: string; word: WordItem; entry: WordEntry }
+  | { type: 'phrasalVerb'; value: string; phrasalVerb: PhrasalVerbItem }
 
-interface RecordedForm {
+interface RecordedMatch {
+  kind: 'word' | 'phrasalVerb'
   form: string
   normalized: string
-  word: WordItem
-  entry: WordEntry
+  word?: WordItem
+  entry?: WordEntry
+  phrasalVerb?: PhrasalVerbItem
 }
 
 interface FormTrieNode {
   children: Map<string, FormTrieNode>
-  recordedForm?: RecordedForm
+  recordedMatch?: RecordedMatch
 }
 
 function hasWholeWordBoundaries(
@@ -38,11 +39,11 @@ function hasWholeWordBoundaries(
   )
 }
 
-function resolveRecordedForms(
+function resolveRecordedWordForms(
   usedWords: StoryContent['usedWords'],
   levelWords: readonly WordItem[],
-): RecordedForm[] {
-  const recordedForms = new Map<string, RecordedForm>()
+): RecordedMatch[] {
+  const recordedForms = new Map<string, RecordedMatch>()
   const wordsByLemma = new Map(levelWords.map((word) => [word.lemma, word]))
 
   for (const usedWord of usedWords) {
@@ -78,17 +79,67 @@ function resolveRecordedForms(
         )
       }
 
-      recordedForms.set(normalized, { form, normalized, word, entry })
+      recordedForms.set(normalized, {
+        kind: 'word',
+        form,
+        normalized,
+        word,
+        entry,
+      })
     }
   }
 
-  return [...recordedForms.values()].sort(
+  return [...recordedForms.values()]
+}
+
+function resolvePhrasalVerbForms(
+  phrasalVerbs: readonly PhrasalVerbItem[],
+): RecordedMatch[] {
+  const recorded = new Map<string, RecordedMatch>()
+
+  for (const item of phrasalVerbs) {
+    const form = item.phrasalVerb.trim()
+    if (!form) continue
+    const normalized = form.toLowerCase()
+    const existing = recorded.get(normalized)
+    if (existing && existing.phrasalVerb?.id !== item.id) {
+      throw new Error(`Phrasal verb "${form}" resolves to more than one catalog item.`)
+    }
+    recorded.set(normalized, {
+      kind: 'phrasalVerb',
+      form,
+      normalized,
+      phrasalVerb: item,
+    })
+  }
+
+  return [...recorded.values()]
+}
+
+function resolveRecordedMatches(
+  usedWords: StoryContent['usedWords'],
+  levelWords: readonly WordItem[],
+  phrasalVerbs: readonly PhrasalVerbItem[],
+): RecordedMatch[] {
+  const byForm = new Map<string, RecordedMatch>()
+
+  for (const match of resolveRecordedWordForms(usedWords, levelWords)) {
+    byForm.set(match.normalized, match)
+  }
+  for (const match of resolvePhrasalVerbForms(phrasalVerbs)) {
+    const existing = byForm.get(match.normalized)
+    if (!existing || existing.kind === 'word') byForm.set(match.normalized, match)
+  }
+
+  return [...byForm.values()].sort(
     (left, right) =>
-      right.form.length - left.form.length || left.normalized.localeCompare(right.normalized),
+      right.form.length - left.form.length
+      || Number(right.kind === 'phrasalVerb') - Number(left.kind === 'phrasalVerb')
+      || left.normalized.localeCompare(right.normalized),
   )
 }
 
-function buildFormTrie(forms: readonly RecordedForm[]): FormTrieNode {
+function buildFormTrie(forms: readonly RecordedMatch[]): FormTrieNode {
   const root: FormTrieNode = { children: new Map() }
 
   for (const form of forms) {
@@ -98,7 +149,7 @@ function buildFormTrie(forms: readonly RecordedForm[]): FormTrieNode {
       node.children.set(character, child)
       node = child
     }
-    node.recordedForm = form
+    node.recordedMatch = form
   }
 
   return root
@@ -109,12 +160,12 @@ function longestMatchAt(
   normalizedStory: string,
   cursor: number,
   trie: FormTrieNode,
-): RecordedForm | undefined {
+): RecordedMatch | undefined {
   if (isInternalStoryWordCharacter(storyText[cursor - 1])) return undefined
 
   let node = trie
   let offset = cursor
-  let longestMatch: RecordedForm | undefined
+  let longestMatch: RecordedMatch | undefined
 
   while (offset < normalizedStory.length) {
     const character = normalizedStory[offset]
@@ -125,10 +176,10 @@ function longestMatchAt(
     node = child
     offset += 1
     if (
-      node.recordedForm &&
-      hasWholeWordBoundaries(storyText, cursor, node.recordedForm.form.length)
+      node.recordedMatch
+      && hasWholeWordBoundaries(storyText, cursor, node.recordedMatch.form.length)
     ) {
-      longestMatch = node.recordedForm
+      longestMatch = node.recordedMatch
     }
   }
 
@@ -136,16 +187,19 @@ function longestMatchAt(
 }
 
 /**
- * Splits a story into verbatim text and clickable forms recorded by the story.
- * Matching is case-insensitive, whole-word only, and prefers the longest form.
+ * Splits a story into verbatim text and clickable learning forms.
+ * Matching is case-insensitive and whole-word only. The longest match wins,
+ * so a multi-word phrasal verb is kept intact instead of being split into
+ * separate clickable word tokens.
  */
 export function tokenizeStory(
   storyText: string,
   usedWords: StoryContent['usedWords'],
   levelWords: readonly WordItem[],
+  phrasalVerbs: readonly PhrasalVerbItem[] = [],
 ): StoryToken[] {
-  const forms = resolveRecordedForms(usedWords, levelWords)
-  const formTrie = buildFormTrie(forms)
+  const matches = resolveRecordedMatches(usedWords, levelWords, phrasalVerbs)
+  const formTrie = buildFormTrie(matches)
   const normalizedStory = storyText.toLowerCase()
   const tokens: StoryToken[] = []
   let textStart = 0
@@ -162,12 +216,23 @@ export function tokenizeStory(
     if (textStart < cursor) {
       tokens.push({ type: 'text', value: storyText.slice(textStart, cursor) })
     }
-    tokens.push({
-      type: 'word',
-      value: storyText.slice(cursor, cursor + matchingForm.form.length),
-      word: matchingForm.word,
-      entry: matchingForm.entry,
-    })
+
+    const value = storyText.slice(cursor, cursor + matchingForm.form.length)
+    if (matchingForm.kind === 'phrasalVerb' && matchingForm.phrasalVerb) {
+      tokens.push({
+        type: 'phrasalVerb',
+        value,
+        phrasalVerb: matchingForm.phrasalVerb,
+      })
+    } else if (matchingForm.word && matchingForm.entry) {
+      tokens.push({
+        type: 'word',
+        value,
+        word: matchingForm.word,
+        entry: matchingForm.entry,
+      })
+    }
+
     cursor += matchingForm.form.length
     textStart = cursor
   }
@@ -185,6 +250,7 @@ export function tokenizeStoryParagraphs(
   storyText: string,
   usedWords: StoryContent['usedWords'],
   levelWords: readonly WordItem[],
+  phrasalVerbs: readonly PhrasalVerbItem[] = [],
 ): StoryToken[][] {
   const paragraphs = storyText
     .trim()
@@ -196,10 +262,11 @@ export function tokenizeStoryParagraphs(
     paragraphs.join(STORY_PARAGRAPH_SEPARATOR),
     usedWords,
     levelWords,
+    phrasalVerbs,
   )
   const result: StoryToken[][] = [[]]
   for (const token of tokenized) {
-    if (token.type === 'word') {
+    if (token.type !== 'text') {
       result.at(-1)!.push(token)
       continue
     }
