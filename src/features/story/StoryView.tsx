@@ -144,6 +144,9 @@ export function StoryView({
       if (token.type === 'phrasalVerb') {
         const phrasalSelectionKey = `phrasal-${token.tokenIndex}`
         const isSelected = activeSelectedPhrasalVerb?.selectionKey === phrasalSelectionKey
+        const wordParts = 'wordParts' in token
+          ? token.wordParts
+          : tokenizeStory(token.value, story.usedWords, lookupWords)
         return (
           <span
             className="story-inline-phrasal"
@@ -151,7 +154,7 @@ export function StoryView({
             data-phrasal-verb={token.phrasalVerb.phrasalVerb}
           >
             <span className="story-inline-phrasal__words">
-              {token.wordParts.map((part, partIndex) => {
+              {wordParts.map((part, partIndex) => {
                 if (part.type !== 'word') {
                   return (
                     <span key={`phrasal-text-${token.tokenIndex}-${partIndex}`}>
