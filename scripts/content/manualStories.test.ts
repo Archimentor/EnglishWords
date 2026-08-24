@@ -25,6 +25,7 @@ function storyFixture(level: Level = '기초'): StoryContent {
       mustCoverAll: false,
       allowUpperLevelWords: false,
       coverageRate: 0,
+      phrasalVerbCoverageRate: 0,
     },
     usedWords: [],
     usedPhrasalVerbs: [],

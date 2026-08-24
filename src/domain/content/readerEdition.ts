@@ -1,6 +1,7 @@
 import type { Level, StoryContent, WordItem } from './types'
 
-export const READER_CHAPTER_COUNT = 6
+export const MIN_READER_CHAPTER_COUNT = 6
+export const MAX_READER_CHAPTER_COUNT = 20
 export const MIN_READER_CHAPTER_PARAGRAPHS = 5
 export const MIN_READER_CHAPTER_SENTENCES = 12
 
@@ -47,14 +48,17 @@ export function buildReaderEdition(
   _allowedWords: readonly WordItem[],
 ): ReaderEdition {
   const chapters = splitReaderChapters(story.storyText)
-  if (chapters.length !== READER_CHAPTER_COUNT) {
+  if (
+    chapters.length < MIN_READER_CHAPTER_COUNT
+    || chapters.length > MAX_READER_CHAPTER_COUNT
+  ) {
     throw new Error(
-      `${story.level} approved novel must contain exactly ${READER_CHAPTER_COUNT} substantial chapters.`,
+      `${story.level} approved novel must contain ${MIN_READER_CHAPTER_COUNT}-${MAX_READER_CHAPTER_COUNT} substantial chapters.`,
     )
   }
-  if (story.chapterTitles.length !== READER_CHAPTER_COUNT) {
+  if (story.chapterTitles.length !== chapters.length) {
     throw new Error(
-      `${story.level} approved novel must provide exactly ${READER_CHAPTER_COUNT} chapter titles.`,
+      `${story.level} approved novel must provide one title for every chapter.`,
     )
   }
 

@@ -42,7 +42,12 @@
     },
     "coverage": {
       "type": "object",
-      "required": ["mustCoverAll", "allowUpperLevelWords", "coverageRate"],
+      "required": [
+        "mustCoverAll",
+        "allowUpperLevelWords",
+        "coverageRate",
+        "phrasalVerbCoverageRate"
+      ],
       "properties": {
         "mustCoverAll": {
           "type": "boolean"
@@ -51,6 +56,11 @@
           "const": false
         },
         "coverageRate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "phrasalVerbCoverageRate": {
           "type": "number",
           "minimum": 0,
           "maximum": 1

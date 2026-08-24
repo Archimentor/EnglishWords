@@ -103,7 +103,7 @@ test('본문 일반 단어를 누르면 같은 읽기 화면에서 뜻을 확인
   expect(trigger).toHaveFocus()
 })
 
-test('구동사 구성 단어는 각각 클릭되고 작은 구 표식은 정확한 본문 뜻과 문장을 연다', async () => {
+test('구동사 전체 표면형의 붉은 밑줄을 누르면 정확한 본문 뜻과 문장을 연다', async () => {
   const user = userEvent.setup()
   const phrasalVerb = makePhrasalVerb()
   const wake = makeWord({
@@ -156,26 +156,20 @@ test('구동사 구성 단어는 각각 클릭되고 작은 구 표식은 정확
 
   const phrase = document.querySelector('[data-phrasal-verb="wake up"]')
   expect(phrase).not.toBeNull()
-  const wakeTrigger = within(phrase as HTMLElement)
-    .getByRole('button', { name: 'story word: wake' })
-  const upTrigger = within(phrase as HTMLElement)
-    .getByRole('button', { name: 'story word: up' })
-  const phrasalTrigger = within(phrase as HTMLElement)
-    .getByRole('button', { name: 'story phrasal verb: wake up' })
+  const phrasalTrigger = screen.getByRole('button', {
+    name: 'story phrasal verb: wake up',
+  })
 
-  expect(wakeTrigger).toHaveClass('story-word-button')
-  expect(upTrigger).toHaveClass('story-word-button')
-  expect(phrasalTrigger).toHaveClass('story-inline-phrasal__badge')
-  expect(phrasalTrigger).toHaveTextContent('구')
-
-  await user.click(wakeTrigger)
-  expect(screen.getByRole('heading', { name: 'wake 단어 상세' })).toBeInTheDocument()
-  await user.click(screen.getByRole('button', { name: '닫기' }))
+  expect(phrasalTrigger).toHaveClass('story-inline-phrasal')
+  expect(phrasalTrigger).toHaveTextContent('wake up')
+  expect(document.querySelector('.story-inline-phrasal__badge')).toBeNull()
 
   await user.click(phrasalTrigger)
   expect(screen.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeInTheDocument()
   expect(screen.getByText('잠에서 깨다')).toBeInTheDocument()
   expect(screen.getByText(context)).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: '닫기' }))
+  expect(phrasalTrigger).toHaveFocus()
 })
 
 test('승인 문장과 다른 곳의 같은 철자는 구동사 뜻을 잘못 열지 않는다', () => {

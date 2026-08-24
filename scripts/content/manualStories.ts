@@ -5,6 +5,10 @@ import { join } from 'node:path'
 import { LEVELS } from '../../src/domain/content/types'
 import type { Level, StoryContent } from '../../src/domain/content/types'
 import {
+  MAX_READER_CHAPTER_COUNT,
+  MIN_READER_CHAPTER_COUNT,
+} from '../../src/domain/content/readerEdition'
+import {
   OUTPUT_DIGEST_ALGORITHM,
   OUTPUT_DIGEST_CANONICALIZATION,
   manualStorySourceDigest,
@@ -109,10 +113,13 @@ function validateStoryPayload(
   }
   if (
     !Array.isArray(value.chapterTitles)
-    || value.chapterTitles.length !== 6
+    || value.chapterTitles.length < MIN_READER_CHAPTER_COUNT
+    || value.chapterTitles.length > MAX_READER_CHAPTER_COUNT
     || !value.chapterTitles.every(isNonBlankString)
   ) {
-    issues.push(`${path}.chapterTitles must contain exactly six non-blank strings`)
+    issues.push(
+      `${path}.chapterTitles must contain ${MIN_READER_CHAPTER_COUNT}-${MAX_READER_CHAPTER_COUNT} non-blank strings`,
+    )
   }
   if (value.isManual !== true) {
     issues.push(`${path}.isManual must already be true in the approved source`)
@@ -123,10 +130,15 @@ function validateStoryPayload(
   } else {
     if (!hasExactFields(
       value.coverage,
-      ['mustCoverAll', 'allowUpperLevelWords', 'coverageRate'],
+      [
+        'mustCoverAll',
+        'allowUpperLevelWords',
+        'coverageRate',
+        'phrasalVerbCoverageRate',
+      ],
     )) {
       issues.push(
-        `${path}.coverage must contain exactly mustCoverAll, allowUpperLevelWords, coverageRate`,
+        `${path}.coverage must contain exactly mustCoverAll, allowUpperLevelWords, coverageRate, phrasalVerbCoverageRate`,
       )
     }
     if (typeof value.coverage.mustCoverAll !== 'boolean') {
@@ -144,6 +156,16 @@ function validateStoryPayload(
       || value.coverage.coverageRate > 1
     ) {
       issues.push(`${path}.coverage.coverageRate must be a number between 0 and 1`)
+    }
+    if (
+      typeof value.coverage.phrasalVerbCoverageRate !== 'number'
+      || !Number.isFinite(value.coverage.phrasalVerbCoverageRate)
+      || value.coverage.phrasalVerbCoverageRate < 0
+      || value.coverage.phrasalVerbCoverageRate > 1
+    ) {
+      issues.push(
+        `${path}.coverage.phrasalVerbCoverageRate must be a number between 0 and 1`,
+      )
     }
   }
 

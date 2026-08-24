@@ -1,63 +1,33 @@
 .story-inline-phrasal {
   display: inline;
-  white-space: nowrap;
-}
-
-.story-inline-phrasal__words {
-  box-shadow: inset 0 -0.12em 0 rgb(173 63 29 / 30%);
-  text-decoration: underline;
-  text-decoration-color: var(--color-rust);
-  text-decoration-thickness: 0.1em;
-  text-underline-offset: 0.18em;
-}
-
-.story-phrasal-component-button {
-  display: inline;
   min-height: 0;
+  white-space: nowrap;
   border: 0;
   border-radius: var(--radius-sm);
-  padding: 0 0.1em;
+  padding: 0 0.08em;
   color: inherit;
   background: transparent;
   font: inherit;
   font-weight: 700;
+  line-height: inherit;
+  box-shadow: inset 0 -0.12em 0 rgb(173 63 29 / 30%);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rust);
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.2em;
   cursor: pointer;
+  vertical-align: baseline;
 }
 
-.story-phrasal-component-button:hover,
-.story-phrasal-component-button[aria-expanded="true"] {
+.story-inline-phrasal:hover,
+.story-inline-phrasal[aria-expanded="true"] {
   color: var(--color-rust-dark);
   background: var(--color-rust-soft);
 }
 
-.story-phrasal-component-button:focus-visible,
-.story-inline-phrasal__badge:focus-visible {
+.story-inline-phrasal:focus-visible {
   outline: 3px solid var(--color-rust);
   outline-offset: 3px;
-}
-
-.story-inline-phrasal__badge {
-  display: inline-grid;
-  place-items: center;
-  min-width: 1.35rem;
-  min-height: 1.35rem;
-  margin-inline-start: 0.14rem;
-  border: 1px solid var(--color-rust);
-  border-radius: 999px;
-  padding: 0.05rem;
-  color: var(--color-rust-dark);
-  background: var(--color-rust-soft);
-  font-family: var(--font-body);
-  font-size: 0.68em;
-  font-weight: 900;
-  line-height: 1;
-  vertical-align: 0.16em;
-}
-
-.story-inline-phrasal__badge:hover,
-.story-inline-phrasal__badge[aria-expanded="true"] {
-  color: white;
-  background: var(--color-rust-dark);
 }
 
 .story-reader-chapter {

@@ -9,7 +9,8 @@
     "coverage": {
       "mustCoverAll": false,
       "allowUpperLevelWords": false,
-      "coverageRate": 0
+      "coverageRate": 0,
+      "phrasalVerbCoverageRate": 0
     },
     "usedWords": [],
     "usedPhrasalVerbs": [],
@@ -21,7 +22,7 @@
     "sourceDigest": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "value": "93bf503e7347e09c7d64ddd5255f6cc056984ded04cae568ef82820c9e18f5a0"
+      "value": "6625b59d8b94960f068809b0233a3732e1623693d71fdb19ce76a2ffc3674da3"
     }
   }
 }

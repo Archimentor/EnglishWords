@@ -20,11 +20,12 @@ describe('reader-facing phrasal verb meanings', () => {
     expect(items).toHaveLength(1_000)
     expect(meanings).toHaveLength(1_000)
     expect(meanings.every((meaning) => /[가-힣]/u.test(meaning))).toBe(true)
-    expect(Math.max(...meanings.map((meaning) => meaning.length))).toBeLessThanOrEqual(60)
+    expect(Math.max(...meanings.map((meaning) => meaning.length))).toBeLessThanOrEqual(45)
     expect(meanings).not.toContain('')
     for (const meaning of meanings) {
+      expect(meaning).toMatch(/다$/u)
       expect(meaning).not.toMatch(/당신/u)
-      expect(meaning).not.toMatch(/(?:위해서(?:입니다|요)?|사용됩니다|하세요|합니다|됩니다|있습니다|없습니다)$/u)
+      expect(meaning).not.toMatch(/(?:거든요|죠|것$|위해서(?:입니다|요)?|사용됩니다|하세요|합니다|됩니다|있습니다|없습니다)$/u)
     }
   })
 
@@ -40,6 +41,6 @@ describe('reader-facing phrasal verb meanings', () => {
     expect(readerPhrasalVerbMeanings(byPhrase.get('wake up')!))
       .toEqual(['잠에서 깨다'])
     expect(items.filter(({ phrasalVerb }) => hasReaderGlossCorrection(phrasalVerb)).length)
-      .toBeGreaterThanOrEqual(65)
+      .toBeGreaterThanOrEqual(200)
   })
 })

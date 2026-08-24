@@ -127,6 +127,26 @@ test('does not match a recorded form inside a larger word', () => {
   ])
 })
 
+test('따옴표 안의 등록 단어도 클릭 가능한 토큰으로 만든다', () => {
+  const word = makeWord({
+    id: 'word-oh',
+    word: 'oh',
+    lemma: 'oh',
+    familyId: 'family-oh',
+    entryOverrides: { forms: ['oh'] },
+  })
+
+  expect(tokenizeStory(
+    "'Oh,' Mina said.",
+    [{ lemma: 'oh', partOfSpeech: 'verb', forms: ['oh'] }],
+    [word],
+  )).toEqual([
+    { type: 'text', value: "'" },
+    expect.objectContaining({ type: 'word', value: 'Oh', word }),
+    { type: 'text', value: ",' Mina said." },
+  ])
+})
+
 test.each([
   ["can't", 'can'],
   ["dog’s", 'dog'],

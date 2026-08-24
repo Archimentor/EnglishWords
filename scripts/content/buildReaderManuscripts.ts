@@ -11,6 +11,7 @@ import { entryFormStrings, hasWholeWordForm } from '../../src/domain/content/sto
 import {
   englishStoryVocabularyText,
   inspectStoryVocabulary,
+  inspectStoryVocabularyOccurrences,
 } from '../../src/domain/content/storyVocabulary'
 import { LEVELS } from '../../src/domain/content/types'
 import type {
@@ -27,7 +28,6 @@ interface ReaderManuscript {
   title: string
   chapterTitles: string[]
   chapters: string[][]
-  phrasalVerbs: string[]
 }
 
 interface GlossRow {
@@ -63,6 +63,12 @@ function sentenceAt(text: string, index: number): string | undefined {
     .trim()
 }
 
+function sentenceContextsForToken(text: string, token: string): string[] {
+  return (text.match(/[^.!?]+[.!?]+|[^.!?]+$/gu) ?? [])
+    .map((sentence) => sentence.trim())
+    .filter((sentence) => hasWholeWordForm(sentence, token))
+}
+
 function storyWordUses(
   storyText: string,
   words: readonly WordItem[],
@@ -85,6 +91,19 @@ function storyWordUses(
 
 async function main(): Promise<void> {
   const level = parseLevel()
+  const summaryOnly = process.argv.includes('--summary')
+  const missingOnly = process.argv.includes('--missing-only')
+  const violationsOnly = process.argv.includes('--violations-only')
+  const violationSentencesOnly = process.argv.includes('--violation-sentences')
+  const tokensOnly = process.argv.includes('--tokens-only')
+  const missingOffset = Number(argumentValue('--missing-offset') ?? 0)
+  const missingLimit = Number(argumentValue('--missing-limit') ?? Number.MAX_SAFE_INTEGER)
+  const violationOffset = Number(argumentValue('--violation-offset') ?? 0)
+  const violationLimit = Number(argumentValue('--violation-limit') ?? Number.MAX_SAFE_INTEGER)
+  const sentenceOffset = Number(argumentValue('--sentence-offset') ?? 0)
+  const sentenceLimit = Number(argumentValue('--sentence-limit') ?? Number.MAX_SAFE_INTEGER)
+  const contextToken = argumentValue('--context-token')
+  const phrasalDebug = argumentValue('--phrasal-debug')
   const levelIndex = LEVELS.indexOf(level)
   const [manuscript, glossRegistry, ...catalogLists] = await Promise.all([
     readJson<ReaderManuscript>(`scripts/content/reader-manuscripts/${level}.json`),
@@ -97,6 +116,7 @@ async function main(): Promise<void> {
   const wordlists = catalogLists.filter((_, index) => index % 2 === 0) as WordItem[][]
   const phrasalLists = catalogLists.filter((_, index) => index % 2 === 1) as PhrasalVerbItem[][]
   const targetWords = wordlists[levelIndex]!
+  const targetPhrasals = phrasalLists[levelIndex]!
   const allCatalogWords = wordlists.flat()
   const allCatalogPhrasals = phrasalLists.flat()
   const allowedWords = wordlists.slice(0, levelIndex + 1).flat()
@@ -104,20 +124,18 @@ async function main(): Promise<void> {
   const storyText = manuscript.chapters
     .map((paragraphs) => paragraphs.join('\n\n'))
     .join('\n\n\n')
-  const phrasalsByPhrase = new Map(allowedPhrasals.map((item) => [item.phrasalVerb, item]))
   const glossByPhrase = new Map(glossRegistry.glosses.map((row) => [row.phrase, row]))
   const bindingIssues: string[] = []
-  const usedPhrasalVerbs = manuscript.phrasalVerbs.flatMap((phrase) => {
-    const item = phrasalsByPhrase.get(phrase)
-    const gloss = glossByPhrase.get(phrase)
-    if (!item || !gloss) {
-      bindingIssues.push(`${phrase}: missing level item or gloss`)
+  const usedPhrasalVerbs = targetPhrasals.flatMap((item) => {
+    const gloss = glossByPhrase.get(item.phrasalVerb)
+    if (!gloss) {
+      bindingIssues.push(`${item.phrasalVerb}: missing audited gloss`)
       return []
     }
     const use = detectPhrasalUseSurface(storyText, item)
     const context = use ? sentenceAt(storyText, use.start) : undefined
     if (!use || !context) {
-      bindingIssues.push(`${phrase}: no grammatical story use found`)
+      bindingIssues.push(`${item.phrasalVerb}: no grammatical story use found`)
       return []
     }
     return [{
@@ -129,7 +147,7 @@ async function main(): Promise<void> {
       meaningKo: readerPhrasalVerbMeanings(item)[0] ?? gloss.meaningKo,
     }]
   })
-  const declaredPhrases = new Set(manuscript.phrasalVerbs)
+  const declaredPhrases = new Set(targetPhrasals.map(({ phrasalVerb }) => phrasalVerb))
   const unboundPhrasalSurfaces = allCatalogPhrasals.flatMap((item) => {
     const use = detectPhrasalUseSurface(storyText, item)
     const lexicalPartCount = use?.form.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0
@@ -143,6 +161,7 @@ async function main(): Promise<void> {
       phrase: item.phrasalVerb,
       form: use.form,
       level: itemLevel,
+      context: sentenceAt(storyText, use.start),
       issue: itemLevel && LEVELS.indexOf(itemLevel) > levelIndex
         ? 'upper-level phrasal surface'
         : 'unbound allowed phrasal surface',
@@ -152,7 +171,7 @@ async function main(): Promise<void> {
   const coverage = readerStoryCoverage(
     storyText,
     targetWords,
-    allowedPhrasals.filter(({ phrasalVerb }) => manuscript.phrasalVerbs.includes(phrasalVerb)),
+    targetPhrasals,
     usedPhrasalVerbs,
   )
   const story: StoryContent = {
@@ -162,9 +181,11 @@ async function main(): Promise<void> {
     chapterTitles: manuscript.chapterTitles,
     isManual: true,
     coverage: {
-      mustCoverAll: false,
+      mustCoverAll: true,
       allowUpperLevelWords: false,
       coverageRate: coverage.wordCoveredCount / coverage.wordTotalCount,
+      phrasalVerbCoverageRate:
+        coverage.phrasalVerbCoveredCount / coverage.phrasalVerbTotalCount,
     },
     usedWords,
     usedPhrasalVerbs,
@@ -176,11 +197,31 @@ async function main(): Promise<void> {
     allCatalogWords,
     usedPhrasalVerbs,
   )
+  const vocabularyViolationOccurrences = inspectStoryVocabularyOccurrences(
+    storyText,
+    allowedWords,
+    allCatalogWords,
+    usedPhrasalVerbs,
+  )
   const frontMatterVocabulary = inspectStoryVocabulary(
     englishStoryVocabularyText([manuscript.title, ...manuscript.chapterTitles].join('. ')),
     allowedWords,
     allCatalogWords,
   )
+  const selectedVocabularyViolations = vocabulary.violations
+    .filter(({ token }) => !contextToken || token === contextToken)
+    .slice(violationOffset, violationOffset + violationLimit)
+  const violationTokensBySentence = new Map<string, Set<string>>()
+  for (const { index, token } of vocabularyViolationOccurrences) {
+    const sentence = sentenceAt(storyText, index)
+    if (!sentence) continue
+    const tokens = violationTokensBySentence.get(sentence) ?? new Set<string>()
+    tokens.add(token)
+    violationTokensBySentence.set(sentence, tokens)
+  }
+  const violationSentences = [...violationTokensBySentence]
+    .map(([sentence, tokens]) => ({ sentence, tokens: [...tokens] }))
+    .sort((left, right) => storyText.indexOf(left.sentence) - storyText.indexOf(right.sentence))
   let editionIssue = ''
   let clickabilityIssue = ''
   let chapterAudit
@@ -205,6 +246,7 @@ async function main(): Promise<void> {
   }
   const issues = [
     ...bindingIssues,
+    ...coverage.missingWordLemmas.map((lemma) => `${lemma}: target word missing from prose`),
     ...coverage.missingPhrasalVerbs.map((phrase) => `${phrase}: binding does not cover prose`),
     ...vocabulary.violations.map(({ token, catalogLevel }) =>
       `${token}: disallowed${catalogLevel ? ` (${catalogLevel})` : ''}`),
@@ -215,13 +257,15 @@ async function main(): Promise<void> {
     ...(chapterAudit?.shortChapterIndexes.map((index) => `chapter ${index + 1}: too short`) ?? []),
   ]
 
-  console.log(JSON.stringify({
+  const report = {
     level,
     chapters: manuscript.chapters.length,
     paragraphCounts: manuscript.chapters.map((chapter) => chapter.length),
     usedWords: usedWords.length,
     targetWords: targetWords.length,
     usedPhrasalVerbs: usedPhrasalVerbs.length,
+    missingTargetWords: coverage.missingWordLemmas,
+    missingTargetPhrasalVerbs: coverage.missingPhrasalVerbs,
     ...(process.argv.includes('--audit-phrasals') ? {
       phrasalAudit: usedPhrasalVerbs.map(({
         phrasalVerb,
@@ -231,13 +275,108 @@ async function main(): Promise<void> {
       }) => ({ phrasalVerb, storyForm, meaningKo, context })),
     } : {}),
     vocabularyViolations: vocabulary.violations,
+    ...(summaryOnly ? {
+      vocabularyViolationExamples: vocabulary.violations.map(({ token }) => ({
+        token,
+        count: sentenceContextsForToken(storyText, token).length,
+        context: sentenceContextsForToken(storyText, token)[0] ?? '',
+      })),
+    } : {}),
+    ...(!summaryOnly || contextToken ? {
+      vocabularyViolationContexts: vocabulary.violations
+        .filter(({ token }) => !contextToken || token === contextToken)
+        .map(({ token }) => ({
+          token,
+          contexts: sentenceContextsForToken(storyText, token),
+        })),
+    } : {}),
     frontMatterVocabularyViolations: frontMatterVocabulary.violations,
     bindingIssues,
     candidateUnboundPhrasalSurfaces: unboundPhrasalSurfaces,
+    editionIssue,
+    clickabilityIssue,
     chapterAudit,
-  }, null, 2))
+  }
+  console.log(JSON.stringify(
+    phrasalDebug
+      ? (() => {
+          const use = usedPhrasalVerbs.find(({ phrasalVerb }) => phrasalVerb === phrasalDebug)
+          return {
+            level,
+            use,
+            isolatedContextVocabulary: use
+              ? inspectStoryVocabulary(use.context, allowedWords, allCatalogWords, [use])
+              : null,
+            wholeStoryWithOneUse: use
+              ? inspectStoryVocabulary(storyText, allowedWords, allCatalogWords, [use])
+                .violations.filter(({ token }) =>
+                  use.storyForm.toLowerCase().includes(token))
+              : null,
+          }
+        })()
+      : violationSentencesOnly
+      ? {
+          level,
+          violationSentenceCount: violationSentences.length,
+          violationSentences: violationSentences.slice(
+            sentenceOffset,
+            sentenceOffset + sentenceLimit,
+          ),
+        }
+      : missingOnly
+      ? tokensOnly
+        ? {
+            level,
+            usedWords: usedWords.length,
+            targetWords: targetWords.length,
+            usedPhrasalVerbs: usedPhrasalVerbs.length,
+            missingTargetWordCount: coverage.missingWordLemmas.length,
+            missingTargetWords: coverage.missingWordLemmas.slice(
+              missingOffset,
+              missingOffset + missingLimit,
+            ),
+            missingTargetPhrasalVerbs: coverage.missingPhrasalVerbs,
+          }
+        : {
+          level,
+          usedWords: usedWords.length,
+          targetWords: targetWords.length,
+          usedPhrasalVerbs: usedPhrasalVerbs.length,
+          undeclaredCoveredWordLemmas: targetWords
+            .filter(({ lemma }) => !usedWords.some((used) => used.lemma === lemma))
+            .map(({ lemma }) => lemma),
+          missingTargetWordCount: coverage.missingWordLemmas.length,
+          missingTargetWords: coverage.missingWordLemmas.slice(
+            missingOffset,
+            missingOffset + missingLimit,
+          ),
+          missingTargetPhrasalVerbs: coverage.missingPhrasalVerbs,
+        }
+      : violationsOnly
+        ? {
+            level,
+            vocabularyViolations: tokensOnly
+              ? selectedVocabularyViolations.map(({ token }) => token)
+              : selectedVocabularyViolations,
+            ...(!tokensOnly ? {
+              vocabularyViolationExamples: selectedVocabularyViolations.map(({ token }) => ({
+                token,
+                count: sentenceContextsForToken(storyText, token).length,
+                contexts: sentenceContextsForToken(storyText, token),
+              })),
+            } : {}),
+            frontMatterVocabularyViolations: frontMatterVocabulary.violations,
+            bindingIssues,
+            candidateUnboundPhrasalSurfaces: unboundPhrasalSurfaces,
+          }
+        : report,
+    null,
+    2,
+  ))
 
-  if (issues.length > 0) throw new Error(issues.join('\n'))
+  if (issues.length > 0) {
+    throw new Error(summaryOnly ? `${issues.length} audit issues` : issues.join('\n'))
+  }
   if (process.argv.includes('--write')) {
     const approved = {
       schemaVersion: '1.0.0',

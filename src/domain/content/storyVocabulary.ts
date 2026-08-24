@@ -32,6 +32,10 @@ export interface StoryVocabularyViolation {
   catalogLevel: Level | null
 }
 
+export interface StoryVocabularyViolationOccurrence extends StoryVocabularyViolation {
+  index: number
+}
+
 export interface StoryVocabularyReport {
   allowedTokenCount: number
   properNouns: string[]
@@ -42,6 +46,12 @@ export type StoryPhrasalVocabularyUse = Pick<
   StoryContent['usedPhrasalVerbs'][number],
   'storyForm' | 'context'
 >
+
+interface StoryVocabularyInspection {
+  allowedForms: ReadonlySet<string>
+  properNouns: ReadonlySet<string>
+  occurrences: StoryVocabularyViolationOccurrence[]
+}
 
 function lexicalBase(normalized: string): string {
   return normalized.replace(/['’]s$/u, '')
@@ -241,31 +251,66 @@ function phrasalComponentTokenIndexes(
   return exempt
 }
 
-export function inspectStoryVocabulary(
+function inspectStoryVocabularyDetails(
   text: string,
   allowedWords: readonly WordItem[],
   catalogWords: readonly WordItem[] = allowedWords,
   phrasalUses: readonly StoryPhrasalVocabularyUse[] = [],
-): StoryVocabularyReport {
+): StoryVocabularyInspection {
   const allowedForms = storyVocabularyForms(allowedWords)
   const properNouns = storyProperNounTokens(text)
   const catalogLevels = catalogTokenLevels(catalogWords)
   const phrasalComponentIndexes = phrasalComponentTokenIndexes(text, phrasalUses)
-  const violations = new Map<string, StoryVocabularyViolation>()
+  const occurrences: StoryVocabularyViolationOccurrence[] = []
 
   for (const { index, normalized } of storyVocabularyTokens(text)) {
     if (
       allowedForms.has(normalized)
       || properNouns.has(normalized)
       || phrasalComponentIndexes.has(index)
-      || violations.has(normalized)
     ) {
       continue
     }
-    violations.set(normalized, {
+    occurrences.push({
       token: normalized,
       catalogLevel: catalogLevels.get(normalized) ?? null,
+      index,
     })
+  }
+
+  return { allowedForms, properNouns, occurrences }
+}
+
+/** Returns every disallowed token at its exact prose position. */
+export function inspectStoryVocabularyOccurrences(
+  text: string,
+  allowedWords: readonly WordItem[],
+  catalogWords: readonly WordItem[] = allowedWords,
+  phrasalUses: readonly StoryPhrasalVocabularyUse[] = [],
+): StoryVocabularyViolationOccurrence[] {
+  return inspectStoryVocabularyDetails(
+    text,
+    allowedWords,
+    catalogWords,
+    phrasalUses,
+  ).occurrences
+}
+
+export function inspectStoryVocabulary(
+  text: string,
+  allowedWords: readonly WordItem[],
+  catalogWords: readonly WordItem[] = allowedWords,
+  phrasalUses: readonly StoryPhrasalVocabularyUse[] = [],
+): StoryVocabularyReport {
+  const { allowedForms, properNouns, occurrences } = inspectStoryVocabularyDetails(
+    text,
+    allowedWords,
+    catalogWords,
+    phrasalUses,
+  )
+  const violations = new Map<string, StoryVocabularyViolation>()
+  for (const { token, catalogLevel } of occurrences) {
+    if (!violations.has(token)) violations.set(token, { token, catalogLevel })
   }
 
   return {

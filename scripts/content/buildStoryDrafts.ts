@@ -49,6 +49,7 @@ export function buildStoryDraft(
       mustCoverAll: false,
       allowUpperLevelWords: false,
       coverageRate: 1 / words.length,
+      phrasalVerbCoverageRate: 0,
     },
     usedWords: [{
       lemma: firstWord.lemma,

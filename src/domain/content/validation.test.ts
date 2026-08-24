@@ -1161,7 +1161,7 @@ describe('validateCatalog', () => {
 })
 
 describe('validateStoryCoverage', () => {
-  test('6챕터 본문과 실제 사용 메타데이터가 맞는 기본 카탈로그를 허용한다', () => {
+  test('충분한 챕터 본문과 실제 사용 메타데이터가 맞는 기본 카탈로그를 허용한다', () => {
     expect(validateStoryCoverage(makeCatalog())).toEqual([])
   })
 
@@ -1174,6 +1174,7 @@ describe('validateStoryCoverage', () => {
       mustCoverAll: true,
       allowUpperLevelWords: false,
       coverageRate: 0,
+      phrasalVerbCoverageRate: 0,
     }
 
     expect(validateStoryCoverage(catalog)).toContainEqual({
@@ -1183,7 +1184,7 @@ describe('validateStoryCoverage', () => {
     })
   })
 
-  test('소설은 정확히 6챕터이고 각 챕터가 충분한 분량이어야 한다', () => {
+  test('소설은 허용된 챕터 범위 안에서 각 챕터가 충분한 분량이어야 한다', () => {
     const catalog = makeCatalog()
     catalog.stories.기초.storyText = Array.from(
       { length: 6 },

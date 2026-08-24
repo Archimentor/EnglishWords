@@ -21,6 +21,12 @@ import type {
 import { validateCatalog, validateStoryCoverage } from '../src/domain/content/validation'
 import { hasWholeWordForm } from '../src/domain/content/storyForms'
 import { readerStoryContextualPhrasalVerbs } from '../src/domain/content/readerStory'
+import {
+  MAX_READER_CHAPTER_COUNT,
+  MIN_READER_CHAPTER_COUNT,
+  MIN_READER_CHAPTER_PARAGRAPHS,
+  MIN_READER_CHAPTER_SENTENCES,
+} from '../src/domain/content/readerEdition'
 
 const WORDLIST_FILES: Record<Level, string> = {
   기초: '../public/data/wordlists/기초.json',
@@ -267,9 +273,10 @@ describe('구동사와 승인 정본 스토리 콘텐츠', () => {
     expect(byPhrase.get('lay on')?.meaningKo).toEqual(['음식, 오락, 서비스 등을 특히 무료로 제공하다'])
   })
 
-  test.each(LEVELS)('%s 승인 정본은 자연스러운 본문에 실제로 쓴 항목만 기록한다', (level) => {
+  test.each(LEVELS)('%s 승인 정본은 레벨 고유 단어와 구동사를 본문에서 100% 사용한다', (level) => {
     const catalog = loadCatalog()
     const words = catalog.wordlists[level]
+    const targetPhrasalVerbs = catalog.phrasalVerbs.byLevel[level]
     const levelIndex = LEVELS.indexOf(level)
     const cumulativePhrasalVerbs = LEVELS
       .slice(0, levelIndex + 1)
@@ -281,17 +288,23 @@ describe('구동사와 승인 정본 스토리 콘텐츠', () => {
       level,
       isManual: true,
       coverage: {
-        mustCoverAll: false,
+        mustCoverAll: true,
         allowUpperLevelWords: false,
+        coverageRate: 1,
+        phrasalVerbCoverageRate: 1,
       },
     })
-    expect(story.chapterTitles).toHaveLength(6)
-    expect(new Set(story.chapterTitles).size).toBe(6)
+    expect(story.chapterTitles.length).toBeGreaterThanOrEqual(MIN_READER_CHAPTER_COUNT)
+    expect(story.chapterTitles.length).toBeLessThanOrEqual(MAX_READER_CHAPTER_COUNT)
+    expect(new Set(story.chapterTitles).size).toBe(story.chapterTitles.length)
     expect(story).not.toHaveProperty('vocabularyPracticeText')
     expect(story).not.toHaveProperty('phrasalVerbPracticeText')
-    expect(story.usedWords.length).toBeGreaterThan(0)
-    expect(story.usedWords.length).toBeLessThan(words.length)
-    expect(story.coverage.coverageRate).toBeCloseTo(story.usedWords.length / words.length, 10)
+    expect(story.usedWords).toHaveLength(words.length)
+    expect(new Set(story.usedWords.map(({ lemma }) => lemma)))
+      .toEqual(new Set(words.map(({ lemma }) => lemma)))
+    expect(story.usedPhrasalVerbs).toHaveLength(targetPhrasalVerbs.length)
+    expect(new Set(story.usedPhrasalVerbs.map(({ id }) => id)))
+      .toEqual(new Set(targetPhrasalVerbs.map(({ id }) => id)))
 
     story.usedWords.forEach((usedWord) => {
       const word = words.find(({ lemma }) => lemma === usedWord.lemma)
@@ -324,10 +337,12 @@ describe('구동사와 승인 정본 스토리 콘텐츠', () => {
     })
 
     const chapters = story.storyText.trim().split(/\n\s*\n\s*\n/u)
-    expect(chapters).toHaveLength(6)
+    expect(chapters).toHaveLength(story.chapterTitles.length)
     for (const chapter of chapters) {
-      expect(chapter.split(/\n\s*\n/u)).toHaveLength(5)
-      expect(chapter.match(/[^.!?]+[.!?]+/gu)?.length ?? 0).toBeGreaterThanOrEqual(12)
+      expect(chapter.split(/\n\s*\n/u).length)
+        .toBeGreaterThanOrEqual(MIN_READER_CHAPTER_PARAGRAPHS)
+      expect(chapter.match(/[^.!?]+[.!?]+/gu)?.length ?? 0)
+        .toBeGreaterThanOrEqual(MIN_READER_CHAPTER_SENTENCES)
     }
     expect(collectStrings(story).some((value) => PLACEHOLDER_PATTERN.test(value))).toBe(false)
   })
@@ -389,11 +404,17 @@ describe('수동 스토리 JSON 스키마', () => {
       'mustCoverAll',
       'allowUpperLevelWords',
       'coverageRate',
+      'phrasalVerbCoverageRate',
     ])
     expect(coverageSchema?.additionalProperties).toBe(false)
     expect(coverageSchema?.properties?.mustCoverAll?.type).toBe('boolean')
     expect(coverageSchema?.properties?.allowUpperLevelWords?.const).toBe(false)
     expect(coverageSchema?.properties?.coverageRate).toMatchObject({
+      type: 'number',
+      minimum: 0,
+      maximum: 1,
+    })
+    expect(coverageSchema?.properties?.phrasalVerbCoverageRate).toMatchObject({
       type: 'number',
       minimum: 0,
       maximum: 1,

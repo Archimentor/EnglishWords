@@ -37,6 +37,9 @@ interface LevelAudit {
   targetWordsUsed: number
   targetWordsAvailable: number
   targetCoverageRate: number
+  targetPhrasalVerbsUsed: number
+  targetPhrasalVerbsAvailable: number
+  targetPhrasalVerbCoverageRate: number
   contextualPhrasalVerbs: number
   clickableWordTokens: number
   clickablePhrasalUses: number
@@ -126,6 +129,7 @@ async function main(): Promise<void> {
     const levelIndex = LEVELS.indexOf(level)
     const story = catalog.stories[level]
     const targetWords = catalog.wordlists[level]
+    const targetPhrasals = catalog.phrasalVerbs.byLevel[level]
     const allowedWords = LEVELS
       .slice(0, levelIndex + 1)
       .flatMap((candidate) => catalog.wordlists[candidate])
@@ -158,8 +162,7 @@ async function main(): Promise<void> {
     const coverage = readerStoryCoverage(
       story.storyText,
       targetWords,
-      allowedPhrasals.filter(({ id }) =>
-        story.usedPhrasalVerbs.some((use) => use.id === id)),
+      targetPhrasals,
       story.usedPhrasalVerbs,
     )
     const sentences = storySentences(story.storyText)
@@ -195,6 +198,9 @@ async function main(): Promise<void> {
     const targetCoverageRate = coverage.wordTotalCount === 0
       ? 0
       : coverage.wordCoveredCount / coverage.wordTotalCount
+    const targetPhrasalVerbCoverageRate = coverage.phrasalVerbTotalCount === 0
+      ? 0
+      : coverage.phrasalVerbCoveredCount / coverage.phrasalVerbTotalCount
     const levelFailures = [
       ...(chapterAudit.shortChapterIndexes.length > 0
         ? [`short chapters ${chapterAudit.shortChapterIndexes.map((index) => index + 1).join(', ')}`]
@@ -219,11 +225,22 @@ async function main(): Promise<void> {
       ...(Math.abs(story.coverage.coverageRate - targetCoverageRate) > 1e-12
         ? ['stored target coverage rate does not match displayed prose']
         : []),
+      ...(Math.abs(
+        story.coverage.phrasalVerbCoverageRate - targetPhrasalVerbCoverageRate,
+      ) > 1e-12
+        ? ['stored target phrasal coverage rate does not match displayed prose']
+        : []),
+      ...(targetCoverageRate !== 1
+        ? [`target word coverage is ${(targetCoverageRate * 100).toFixed(2)}%, not 100%`]
+        : []),
+      ...(targetPhrasalVerbCoverageRate !== 1
+        ? [`target phrasal coverage is ${(targetPhrasalVerbCoverageRate * 100).toFixed(2)}%, not 100%`]
+        : []),
       ...(story.coverage.allowUpperLevelWords !== false
         ? ['upper-level words are allowed by metadata']
         : []),
-      ...(story.coverage.mustCoverAll
-        ? ['mustCoverAll would force a catalog list into the novel']
+      ...(!story.coverage.mustCoverAll
+        ? ['mustCoverAll must be true for the complete reader edition']
         : []),
     ]
     failures.push(...levelFailures.map((failure) => `${level}: ${failure}`))
@@ -237,6 +254,9 @@ async function main(): Promise<void> {
       targetWordsUsed: coverage.wordCoveredCount,
       targetWordsAvailable: coverage.wordTotalCount,
       targetCoverageRate,
+      targetPhrasalVerbsUsed: coverage.phrasalVerbCoveredCount,
+      targetPhrasalVerbsAvailable: coverage.phrasalVerbTotalCount,
+      targetPhrasalVerbCoverageRate,
       contextualPhrasalVerbs: contextualPhrasals.length,
       clickableWordTokens: storyTokens.filter(({ type }) => type === 'word').length,
       clickablePhrasalUses: storyTokens.filter(({ type }) => type === 'phrasalVerb').length,
@@ -263,6 +283,8 @@ async function main(): Promise<void> {
       properNounsAllowedAtEveryLevel: true,
       actualProseTokensMustBeClickable: true,
       phrasalMeaningsBoundToExactContext: true,
+      everyTargetWordRequired: true,
+      everyTargetPhrasalVerbRequired: true,
     },
     levels: audits,
   }, null, 2)}\n`, 'utf8')
@@ -273,7 +295,8 @@ async function main(): Promise<void> {
       `${audit.level}: ${audit.chapters} chapters, `
       + `${audit.sentenceCounts.reduce((sum, count) => sum + count, 0)} sentences, `
       + `${audit.targetWordsUsed}/${audit.targetWordsAvailable} target words, `
-      + `${audit.contextualPhrasalVerbs} contextual phrasal verbs, `
+      + `${audit.targetPhrasalVerbsUsed}/${audit.targetPhrasalVerbsAvailable} target phrasal verbs, `
+      + `${audit.contextualPhrasalVerbs} contextual phrasal uses, `
       + `${audit.unclickableTokens.length} unclickable tokens`,
     )
   }

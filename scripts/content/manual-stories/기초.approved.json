@@ -5,18 +5,19 @@
     "level": "기초",
     "title": "The Blue Bags",
     "chapterTitles": [
-      "Lunch in the Park",
-      "The Bag on the Bus",
-      "The Name on the Camera",
-      "The Black Bag",
-      "Lunch at Last",
-      "Letters at Night"
+      "The Letter at Breakfast",
+      "The Farm Road",
+      "Rain at the Market",
+      "Night at Maple House",
+      "The Missing Blue Bag",
+      "The Family Fair"
     ],
     "isManual": true,
     "coverage": {
-      "mustCoverAll": false,
+      "mustCoverAll": true,
       "allowUpperLevelWords": false,
-      "coverageRate": 0.32
+      "coverageRate": 1,
+      "phrasalVerbCoverageRate": 1
     },
     "usedWords": [
       {
@@ -31,6 +32,20 @@
         "partOfSpeech": "determiner",
         "forms": [
           "the"
+        ]
+      },
+      {
+        "lemma": "i",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "i"
+        ]
+      },
+      {
+        "lemma": "you",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "you"
         ]
       },
       {
@@ -55,10 +70,24 @@
         ]
       },
       {
+        "lemma": "we",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "we"
+        ]
+      },
+      {
         "lemma": "they",
         "partOfSpeech": "pronoun",
         "forms": [
           "they"
+        ]
+      },
+      {
+        "lemma": "us",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "us"
         ]
       },
       {
@@ -146,6 +175,20 @@
         ]
       },
       {
+        "lemma": "my",
+        "partOfSpeech": "determiner",
+        "forms": [
+          "my"
+        ]
+      },
+      {
+        "lemma": "your",
+        "partOfSpeech": "determiner",
+        "forms": [
+          "your"
+        ]
+      },
+      {
         "lemma": "his",
         "partOfSpeech": "determiner",
         "forms": [
@@ -160,10 +203,24 @@
         ]
       },
       {
+        "lemma": "our",
+        "partOfSpeech": "determiner",
+        "forms": [
+          "our"
+        ]
+      },
+      {
         "lemma": "their",
         "partOfSpeech": "determiner",
         "forms": [
           "their"
+        ]
+      },
+      {
+        "lemma": "this",
+        "partOfSpeech": "determiner",
+        "forms": [
+          "this"
         ]
       },
       {
@@ -188,10 +245,24 @@
         ]
       },
       {
+        "lemma": "will",
+        "partOfSpeech": "verb",
+        "forms": [
+          "will"
+        ]
+      },
+      {
         "lemma": "apple",
         "partOfSpeech": "noun",
         "forms": [
           "apple"
+        ]
+      },
+      {
+        "lemma": "baby",
+        "partOfSpeech": "noun",
+        "forms": [
+          "baby"
         ]
       },
       {
@@ -213,6 +284,20 @@
         "partOfSpeech": "noun",
         "forms": [
           "bed"
+        ]
+      },
+      {
+        "lemma": "bird",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bird"
+        ]
+      },
+      {
+        "lemma": "fish",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fish"
         ]
       },
       {
@@ -251,6 +336,13 @@
         ]
       },
       {
+        "lemma": "cat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cat"
+        ]
+      },
+      {
         "lemma": "hat",
         "partOfSpeech": "noun",
         "forms": [
@@ -261,7 +353,7 @@
         "lemma": "child",
         "partOfSpeech": "noun",
         "forms": [
-          "children"
+          "child"
         ]
       },
       {
@@ -272,10 +364,31 @@
         ]
       },
       {
+        "lemma": "class",
+        "partOfSpeech": "noun",
+        "forms": [
+          "class"
+        ]
+      },
+      {
         "lemma": "clock",
         "partOfSpeech": "noun",
         "forms": [
           "clock"
+        ]
+      },
+      {
+        "lemma": "clothes",
+        "partOfSpeech": "noun",
+        "forms": [
+          "clothes"
+        ]
+      },
+      {
+        "lemma": "cup",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cup"
         ]
       },
       {
@@ -300,10 +413,38 @@
         ]
       },
       {
+        "lemma": "egg",
+        "partOfSpeech": "noun",
+        "forms": [
+          "eggs"
+        ]
+      },
+      {
         "lemma": "family",
         "partOfSpeech": "noun",
         "forms": [
           "family"
+        ]
+      },
+      {
+        "lemma": "flower",
+        "partOfSpeech": "noun",
+        "forms": [
+          "flower"
+        ]
+      },
+      {
+        "lemma": "ice",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ice"
+        ]
+      },
+      {
+        "lemma": "game",
+        "partOfSpeech": "noun",
+        "forms": [
+          "game"
         ]
       },
       {
@@ -317,7 +458,7 @@
         "lemma": "hand",
         "partOfSpeech": "noun",
         "forms": [
-          "hands"
+          "hand"
         ]
       },
       {
@@ -325,6 +466,13 @@
         "partOfSpeech": "noun",
         "forms": [
           "house"
+        ]
+      },
+      {
+        "lemma": "key",
+        "partOfSpeech": "noun",
+        "forms": [
+          "key"
         ]
       },
       {
@@ -346,6 +494,13 @@
         "partOfSpeech": "noun",
         "forms": [
           "milk"
+        ]
+      },
+      {
+        "lemma": "money",
+        "partOfSpeech": "noun",
+        "forms": [
+          "money"
         ]
       },
       {
@@ -377,6 +532,13 @@
         ]
       },
       {
+        "lemma": "parent",
+        "partOfSpeech": "noun",
+        "forms": [
+          "parent"
+        ]
+      },
+      {
         "lemma": "park",
         "partOfSpeech": "noun",
         "forms": [
@@ -405,6 +567,34 @@
         ]
       },
       {
+        "lemma": "king",
+        "partOfSpeech": "noun",
+        "forms": [
+          "king"
+        ]
+      },
+      {
+        "lemma": "shoe",
+        "partOfSpeech": "noun",
+        "forms": [
+          "shoe"
+        ]
+      },
+      {
+        "lemma": "sister",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sister"
+        ]
+      },
+      {
+        "lemma": "pillow",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pillow"
+        ]
+      },
+      {
         "lemma": "table",
         "partOfSpeech": "noun",
         "forms": [
@@ -415,14 +605,28 @@
         "lemma": "be",
         "partOfSpeech": "verb",
         "forms": [
-          "was"
+          "be"
         ]
       },
       {
         "lemma": "come",
         "partOfSpeech": "verb",
         "forms": [
-          "came"
+          "come"
+        ]
+      },
+      {
+        "lemma": "do",
+        "partOfSpeech": "verb",
+        "forms": [
+          "do"
+        ]
+      },
+      {
+        "lemma": "drink",
+        "partOfSpeech": "verb",
+        "forms": [
+          "drink"
         ]
       },
       {
@@ -436,7 +640,7 @@
         "lemma": "find",
         "partOfSpeech": "verb",
         "forms": [
-          "found"
+          "find"
         ]
       },
       {
@@ -450,21 +654,21 @@
         "lemma": "give",
         "partOfSpeech": "verb",
         "forms": [
-          "gave"
+          "give"
         ]
       },
       {
         "lemma": "go",
         "partOfSpeech": "verb",
         "forms": [
-          "went"
+          "go"
         ]
       },
       {
         "lemma": "have",
         "partOfSpeech": "verb",
         "forms": [
-          "had"
+          "have"
         ]
       },
       {
@@ -499,14 +703,14 @@
         "lemma": "make",
         "partOfSpeech": "verb",
         "forms": [
-          "made"
+          "make"
         ]
       },
       {
         "lemma": "play",
         "partOfSpeech": "verb",
         "forms": [
-          "played"
+          "play"
         ]
       },
       {
@@ -514,6 +718,13 @@
         "partOfSpeech": "verb",
         "forms": [
           "read"
+        ]
+      },
+      {
+        "lemma": "run",
+        "partOfSpeech": "verb",
+        "forms": [
+          "run"
         ]
       },
       {
@@ -527,14 +738,21 @@
         "lemma": "sit",
         "partOfSpeech": "verb",
         "forms": [
-          "sat"
+          "sit"
+        ]
+      },
+      {
+        "lemma": "sleep",
+        "partOfSpeech": "verb",
+        "forms": [
+          "sleep"
         ]
       },
       {
         "lemma": "take",
         "partOfSpeech": "verb",
         "forms": [
-          "took"
+          "take"
         ]
       },
       {
@@ -555,7 +773,7 @@
         "lemma": "write",
         "partOfSpeech": "verb",
         "forms": [
-          "wrote"
+          "write"
         ]
       },
       {
@@ -580,10 +798,24 @@
         ]
       },
       {
+        "lemma": "clean",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "clean"
+        ]
+      },
+      {
         "lemma": "cold",
         "partOfSpeech": "adjective",
         "forms": [
           "cold"
+        ]
+      },
+      {
+        "lemma": "fast",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "fast"
         ]
       },
       {
@@ -594,10 +826,24 @@
         ]
       },
       {
+        "lemma": "juice",
+        "partOfSpeech": "noun",
+        "forms": [
+          "juice"
+        ]
+      },
+      {
         "lemma": "happy",
         "partOfSpeech": "adjective",
         "forms": [
           "happy"
+        ]
+      },
+      {
+        "lemma": "hot",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "hot"
         ]
       },
       {
@@ -636,6 +882,13 @@
         ]
       },
       {
+        "lemma": "sad",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "sad"
+        ]
+      },
+      {
         "lemma": "short",
         "partOfSpeech": "adjective",
         "forms": [
@@ -647,6 +900,13 @@
         "partOfSpeech": "adjective",
         "forms": [
           "small"
+        ]
+      },
+      {
+        "lemma": "strong",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "strong"
         ]
       },
       {
@@ -671,6 +931,20 @@
         ]
       },
       {
+        "lemma": "white",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "white"
+        ]
+      },
+      {
+        "lemma": "yellow",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "yellow"
+        ]
+      },
+      {
         "lemma": "young",
         "partOfSpeech": "adjective",
         "forms": [
@@ -685,10 +959,115 @@
         ]
       },
       {
+        "lemma": "animal",
+        "partOfSpeech": "noun",
+        "forms": [
+          "animal"
+        ]
+      },
+      {
+        "lemma": "arm",
+        "partOfSpeech": "noun",
+        "forms": [
+          "arm"
+        ]
+      },
+      {
+        "lemma": "aunt",
+        "partOfSpeech": "noun",
+        "forms": [
+          "aunt"
+        ]
+      },
+      {
+        "lemma": "banana",
+        "partOfSpeech": "noun",
+        "forms": [
+          "banana"
+        ]
+      },
+      {
+        "lemma": "bathroom",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bathroom"
+        ]
+      },
+      {
+        "lemma": "beach",
+        "partOfSpeech": "noun",
+        "forms": [
+          "beach"
+        ]
+      },
+      {
+        "lemma": "bicycle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bicycle"
+        ]
+      },
+      {
+        "lemma": "blanket",
+        "partOfSpeech": "noun",
+        "forms": [
+          "blanket"
+        ]
+      },
+      {
+        "lemma": "boat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "boat"
+        ]
+      },
+      {
+        "lemma": "body",
+        "partOfSpeech": "noun",
+        "forms": [
+          "body"
+        ]
+      },
+      {
+        "lemma": "brother",
+        "partOfSpeech": "noun",
+        "forms": [
+          "brother"
+        ]
+      },
+      {
         "lemma": "camera",
         "partOfSpeech": "noun",
         "forms": [
           "camera"
+        ]
+      },
+      {
+        "lemma": "candle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "candle"
+        ]
+      },
+      {
+        "lemma": "computer",
+        "partOfSpeech": "noun",
+        "forms": [
+          "computer"
+        ]
+      },
+      {
+        "lemma": "country",
+        "partOfSpeech": "noun",
+        "forms": [
+          "country"
+        ]
+      },
+      {
+        "lemma": "cow",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cow"
         ]
       },
       {
@@ -706,10 +1085,38 @@
         ]
       },
       {
+        "lemma": "doctor",
+        "partOfSpeech": "noun",
+        "forms": [
+          "doctor"
+        ]
+      },
+      {
+        "lemma": "farm",
+        "partOfSpeech": "noun",
+        "forms": [
+          "farm"
+        ]
+      },
+      {
         "lemma": "father",
         "partOfSpeech": "noun",
         "forms": [
           "father"
+        ]
+      },
+      {
+        "lemma": "fire",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fire"
+        ]
+      },
+      {
+        "lemma": "foot",
+        "partOfSpeech": "noun",
+        "forms": [
+          "foot"
         ]
       },
       {
@@ -727,10 +1134,73 @@
         ]
       },
       {
+        "lemma": "grandfather",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grandfather"
+        ]
+      },
+      {
+        "lemma": "grandmother",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grandmother"
+        ]
+      },
+      {
         "lemma": "guitar",
         "partOfSpeech": "noun",
         "forms": [
           "guitar"
+        ]
+      },
+      {
+        "lemma": "hair",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hair"
+        ]
+      },
+      {
+        "lemma": "hospital",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hospital"
+        ]
+      },
+      {
+        "lemma": "island",
+        "partOfSpeech": "noun",
+        "forms": [
+          "island"
+        ]
+      },
+      {
+        "lemma": "jacket",
+        "partOfSpeech": "noun",
+        "forms": [
+          "jacket"
+        ]
+      },
+      {
+        "lemma": "lake",
+        "partOfSpeech": "noun",
+        "forms": [
+          "lake"
+        ]
+      },
+      {
+        "lemma": "leg",
+        "partOfSpeech": "noun",
+        "forms": [
+          "leg"
+        ]
+      },
+      {
+        "lemma": "library",
+        "partOfSpeech": "noun",
+        "forms": [
+          "library"
         ]
       },
       {
@@ -762,10 +1232,38 @@
         ]
       },
       {
+        "lemma": "mountain",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mountain"
+        ]
+      },
+      {
+        "lemma": "mouth",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mouth"
+        ]
+      },
+      {
+        "lemma": "museum",
+        "partOfSpeech": "noun",
+        "forms": [
+          "museum"
+        ]
+      },
+      {
         "lemma": "newspaper",
         "partOfSpeech": "noun",
         "forms": [
           "newspaper"
+        ]
+      },
+      {
+        "lemma": "ocean",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ocean"
         ]
       },
       {
@@ -776,10 +1274,38 @@
         ]
       },
       {
+        "lemma": "orange",
+        "partOfSpeech": "noun",
+        "forms": [
+          "orange"
+        ]
+      },
+      {
+        "lemma": "phone",
+        "partOfSpeech": "noun",
+        "forms": [
+          "phone"
+        ]
+      },
+      {
         "lemma": "rain",
         "partOfSpeech": "noun",
         "forms": [
           "rain"
+        ]
+      },
+      {
+        "lemma": "river",
+        "partOfSpeech": "noun",
+        "forms": [
+          "river"
+        ]
+      },
+      {
+        "lemma": "ask",
+        "partOfSpeech": "verb",
+        "forms": [
+          "ask"
         ]
       },
       {
@@ -790,17 +1316,38 @@
         ]
       },
       {
+        "lemma": "buy",
+        "partOfSpeech": "verb",
+        "forms": [
+          "bought"
+        ]
+      },
+      {
         "lemma": "call",
         "partOfSpeech": "verb",
         "forms": [
-          "called"
+          "call"
         ]
       },
       {
         "lemma": "carry",
         "partOfSpeech": "verb",
         "forms": [
-          "carried"
+          "carry"
+        ]
+      },
+      {
+        "lemma": "close",
+        "partOfSpeech": "verb",
+        "forms": [
+          "close"
+        ]
+      },
+      {
+        "lemma": "cook",
+        "partOfSpeech": "verb",
+        "forms": [
+          "cook"
         ]
       },
       {
@@ -818,6 +1365,34 @@
         ]
       },
       {
+        "lemma": "drive",
+        "partOfSpeech": "verb",
+        "forms": [
+          "drove"
+        ]
+      },
+      {
+        "lemma": "finish",
+        "partOfSpeech": "verb",
+        "forms": [
+          "finish"
+        ]
+      },
+      {
+        "lemma": "fly",
+        "partOfSpeech": "verb",
+        "forms": [
+          "flew"
+        ]
+      },
+      {
+        "lemma": "grow",
+        "partOfSpeech": "verb",
+        "forms": [
+          "grow"
+        ]
+      },
+      {
         "lemma": "hear",
         "partOfSpeech": "verb",
         "forms": [
@@ -832,10 +1407,24 @@
         ]
       },
       {
+        "lemma": "learn",
+        "partOfSpeech": "verb",
+        "forms": [
+          "learn"
+        ]
+      },
+      {
         "lemma": "listen",
         "partOfSpeech": "verb",
         "forms": [
           "listened"
+        ]
+      },
+      {
+        "lemma": "live",
+        "partOfSpeech": "verb",
+        "forms": [
+          "live"
         ]
       },
       {
@@ -846,10 +1435,17 @@
         ]
       },
       {
+        "lemma": "open",
+        "partOfSpeech": "verb",
+        "forms": [
+          "open"
+        ]
+      },
+      {
         "lemma": "pay",
         "partOfSpeech": "verb",
         "forms": [
-          "paid"
+          "pay"
         ]
       },
       {
@@ -860,6 +1456,41 @@
         ]
       },
       {
+        "lemma": "sing",
+        "partOfSpeech": "verb",
+        "forms": [
+          "sing"
+        ]
+      },
+      {
+        "lemma": "swim",
+        "partOfSpeech": "verb",
+        "forms": [
+          "swam"
+        ]
+      },
+      {
+        "lemma": "teach",
+        "partOfSpeech": "verb",
+        "forms": [
+          "taught"
+        ]
+      },
+      {
+        "lemma": "angry",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "angry"
+        ]
+      },
+      {
+        "lemma": "beautiful",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "beautiful"
+        ]
+      },
+      {
         "lemma": "bright",
         "partOfSpeech": "adjective",
         "forms": [
@@ -867,10 +1498,52 @@
         ]
       },
       {
+        "lemma": "brown",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "brown"
+        ]
+      },
+      {
+        "lemma": "cheap",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "cheap"
+        ]
+      },
+      {
+        "lemma": "cloudy",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "cloudy"
+        ]
+      },
+      {
+        "lemma": "dark",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "dark"
+        ]
+      },
+      {
+        "lemma": "dirty",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "dirty"
+        ]
+      },
+      {
         "lemma": "early",
         "partOfSpeech": "adjective",
         "forms": [
           "early"
+        ]
+      },
+      {
+        "lemma": "empty",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "empty"
         ]
       },
       {
@@ -888,10 +1561,31 @@
         ]
       },
       {
+        "lemma": "heavy",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "heavy"
+        ]
+      },
+      {
+        "lemma": "kind",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "kind"
+        ]
+      },
+      {
         "lemma": "light",
         "partOfSpeech": "adjective",
         "forms": [
           "light"
+        ]
+      },
+      {
+        "lemma": "loud",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "loud"
         ]
       },
       {
@@ -909,10 +1603,45 @@
         ]
       },
       {
+        "lemma": "rich",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "rich"
+        ]
+      },
+      {
         "lemma": "round",
         "partOfSpeech": "adjective",
         "forms": [
           "round"
+        ]
+      },
+      {
+        "lemma": "slow",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "slow"
+        ]
+      },
+      {
+        "lemma": "soft",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "soft"
+        ]
+      },
+      {
+        "lemma": "sunny",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "sunny"
+        ]
+      },
+      {
+        "lemma": "thirsty",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "thirsty"
         ]
       },
       {
@@ -923,6 +1652,27 @@
         ]
       },
       {
+        "lemma": "airport",
+        "partOfSpeech": "noun",
+        "forms": [
+          "airport"
+        ]
+      },
+      {
+        "lemma": "apartment",
+        "partOfSpeech": "noun",
+        "forms": [
+          "apartment"
+        ]
+      },
+      {
+        "lemma": "artist",
+        "partOfSpeech": "noun",
+        "forms": [
+          "artist"
+        ]
+      },
+      {
         "lemma": "bakery",
         "partOfSpeech": "noun",
         "forms": [
@@ -930,17 +1680,388 @@
         ]
       },
       {
+        "lemma": "balloon",
+        "partOfSpeech": "noun",
+        "forms": [
+          "balloon"
+        ]
+      },
+      {
+        "lemma": "bank",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bank"
+        ]
+      },
+      {
+        "lemma": "basket",
+        "partOfSpeech": "noun",
+        "forms": [
+          "basket"
+        ]
+      },
+      {
+        "lemma": "bell",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bell"
+        ]
+      },
+      {
+        "lemma": "birthday",
+        "partOfSpeech": "noun",
+        "forms": [
+          "birthday"
+        ]
+      },
+      {
+        "lemma": "bottle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bottle"
+        ]
+      },
+      {
+        "lemma": "box",
+        "partOfSpeech": "noun",
+        "forms": [
+          "box"
+        ]
+      },
+      {
+        "lemma": "bridge",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bridge"
+        ]
+      },
+      {
+        "lemma": "tower",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tower"
+        ]
+      },
+      {
+        "lemma": "butter",
+        "partOfSpeech": "noun",
+        "forms": [
+          "butter"
+        ]
+      },
+      {
+        "lemma": "calendar",
+        "partOfSpeech": "noun",
+        "forms": [
+          "calendar"
+        ]
+      },
+      {
+        "lemma": "captain",
+        "partOfSpeech": "noun",
+        "forms": [
+          "captain"
+        ]
+      },
+      {
+        "lemma": "castle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "castle"
+        ]
+      },
+      {
+        "lemma": "center",
+        "partOfSpeech": "noun",
+        "forms": [
+          "center"
+        ]
+      },
+      {
+        "lemma": "church",
+        "partOfSpeech": "noun",
+        "forms": [
+          "church"
+        ]
+      },
+      {
+        "lemma": "circle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "circle"
+        ]
+      },
+      {
+        "lemma": "coat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "coat"
+        ]
+      },
+      {
+        "lemma": "coffee",
+        "partOfSpeech": "noun",
+        "forms": [
+          "coffee"
+        ]
+      },
+      {
+        "lemma": "college",
+        "partOfSpeech": "noun",
+        "forms": [
+          "college"
+        ]
+      },
+      {
+        "lemma": "corner",
+        "partOfSpeech": "noun",
+        "forms": [
+          "corner"
+        ]
+      },
+      {
+        "lemma": "daughter",
+        "partOfSpeech": "noun",
+        "forms": [
+          "daughter"
+        ]
+      },
+      {
+        "lemma": "dinner",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dinner"
+        ]
+      },
+      {
+        "lemma": "dream",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dream"
+        ]
+      },
+      {
+        "lemma": "rainbow",
+        "partOfSpeech": "noun",
+        "forms": [
+          "rainbow"
+        ]
+      },
+      {
+        "lemma": "earth",
+        "partOfSpeech": "noun",
+        "forms": [
+          "earth"
+        ]
+      },
+      {
+        "lemma": "engine",
+        "partOfSpeech": "noun",
+        "forms": [
+          "engine"
+        ]
+      },
+      {
+        "lemma": "turtle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "turtle"
+        ]
+      },
+      {
+        "lemma": "cookie",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cookies"
+        ]
+      },
+      {
+        "lemma": "factory",
+        "partOfSpeech": "noun",
+        "forms": [
+          "factory"
+        ]
+      },
+      {
+        "lemma": "field",
+        "partOfSpeech": "noun",
+        "forms": [
+          "field"
+        ]
+      },
+      {
+        "lemma": "floor",
+        "partOfSpeech": "noun",
+        "forms": [
+          "floor"
+        ]
+      },
+      {
+        "lemma": "forest",
+        "partOfSpeech": "noun",
+        "forms": [
+          "forest"
+        ]
+      },
+      {
+        "lemma": "gift",
+        "partOfSpeech": "noun",
+        "forms": [
+          "gift"
+        ]
+      },
+      {
+        "lemma": "glass",
+        "partOfSpeech": "noun",
+        "forms": [
+          "glass"
+        ]
+      },
+      {
+        "lemma": "ground",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ground"
+        ]
+      },
+      {
+        "lemma": "guest",
+        "partOfSpeech": "noun",
+        "forms": [
+          "guest"
+        ]
+      },
+      {
+        "lemma": "holiday",
+        "partOfSpeech": "noun",
+        "forms": [
+          "holiday"
+        ]
+      },
+      {
+        "lemma": "homework",
+        "partOfSpeech": "noun",
+        "forms": [
+          "homework"
+        ]
+      },
+      {
+        "lemma": "hotel",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hotel"
+        ]
+      },
+      {
+        "lemma": "hour",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hour"
+        ]
+      },
+      {
+        "lemma": "job",
+        "partOfSpeech": "noun",
+        "forms": [
+          "job"
+        ]
+      },
+      {
+        "lemma": "knee",
+        "partOfSpeech": "noun",
+        "forms": [
+          "knee"
+        ]
+      },
+      {
+        "lemma": "knife",
+        "partOfSpeech": "noun",
+        "forms": [
+          "knife"
+        ]
+      },
+      {
+        "lemma": "language",
+        "partOfSpeech": "noun",
+        "forms": [
+          "language"
+        ]
+      },
+      {
+        "lemma": "lesson",
+        "partOfSpeech": "noun",
+        "forms": [
+          "lesson"
+        ]
+      },
+      {
+        "lemma": "line",
+        "partOfSpeech": "noun",
+        "forms": [
+          "line"
+        ]
+      },
+      {
+        "lemma": "arrive",
+        "partOfSpeech": "verb",
+        "forms": [
+          "arrived"
+        ]
+      },
+      {
         "lemma": "begin",
         "partOfSpeech": "verb",
         "forms": [
-          "begin"
+          "began"
+        ]
+      },
+      {
+        "lemma": "borrow",
+        "partOfSpeech": "verb",
+        "forms": [
+          "borrowed"
         ]
       },
       {
         "lemma": "catch",
         "partOfSpeech": "verb",
         "forms": [
-          "caught"
+          "catch"
+        ]
+      },
+      {
+        "lemma": "change",
+        "partOfSpeech": "verb",
+        "forms": [
+          "change"
+        ]
+      },
+      {
+        "lemma": "choose",
+        "partOfSpeech": "verb",
+        "forms": [
+          "chose"
+        ]
+      },
+      {
+        "lemma": "climb",
+        "partOfSpeech": "verb",
+        "forms": [
+          "climbed"
+        ]
+      },
+      {
+        "lemma": "collect",
+        "partOfSpeech": "verb",
+        "forms": [
+          "collected"
+        ]
+      },
+      {
+        "lemma": "count",
+        "partOfSpeech": "verb",
+        "forms": [
+          "counted"
         ]
       },
       {
@@ -951,6 +2072,20 @@
         ]
       },
       {
+        "lemma": "cross",
+        "partOfSpeech": "verb",
+        "forms": [
+          "crossed"
+        ]
+      },
+      {
+        "lemma": "cry",
+        "partOfSpeech": "verb",
+        "forms": [
+          "cry"
+        ]
+      },
+      {
         "lemma": "drop",
         "partOfSpeech": "verb",
         "forms": [
@@ -958,10 +2093,115 @@
         ]
       },
       {
+        "lemma": "enjoy",
+        "partOfSpeech": "verb",
+        "forms": [
+          "enjoyed"
+        ]
+      },
+      {
+        "lemma": "fall",
+        "partOfSpeech": "verb",
+        "forms": [
+          "fall"
+        ]
+      },
+      {
+        "lemma": "feed",
+        "partOfSpeech": "verb",
+        "forms": [
+          "fed"
+        ]
+      },
+      {
+        "lemma": "fill",
+        "partOfSpeech": "verb",
+        "forms": [
+          "filled"
+        ]
+      },
+      {
+        "lemma": "fix",
+        "partOfSpeech": "verb",
+        "forms": [
+          "fixed"
+        ]
+      },
+      {
+        "lemma": "follow",
+        "partOfSpeech": "verb",
+        "forms": [
+          "followed"
+        ]
+      },
+      {
+        "lemma": "forget",
+        "partOfSpeech": "verb",
+        "forms": [
+          "forget"
+        ]
+      },
+      {
+        "lemma": "happen",
+        "partOfSpeech": "verb",
+        "forms": [
+          "happened"
+        ]
+      },
+      {
+        "lemma": "join",
+        "partOfSpeech": "verb",
+        "forms": [
+          "joined"
+        ]
+      },
+      {
         "lemma": "leave",
         "partOfSpeech": "verb",
         "forms": [
-          "left"
+          "leave"
+        ]
+      },
+      {
+        "lemma": "lend",
+        "partOfSpeech": "verb",
+        "forms": [
+          "lend"
+        ]
+      },
+      {
+        "lemma": "lose",
+        "partOfSpeech": "verb",
+        "forms": [
+          "lose"
+        ]
+      },
+      {
+        "lemma": "afraid",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "afraid"
+        ]
+      },
+      {
+        "lemma": "alive",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "alive"
+        ]
+      },
+      {
+        "lemma": "bored",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "bored"
+        ]
+      },
+      {
+        "lemma": "brave",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "brave"
         ]
       },
       {
@@ -972,6 +2212,48 @@
         ]
       },
       {
+        "lemma": "calm",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "calm"
+        ]
+      },
+      {
+        "lemma": "clear",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "clear"
+        ]
+      },
+      {
+        "lemma": "clever",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "clever"
+        ]
+      },
+      {
+        "lemma": "cool",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "cool"
+        ]
+      },
+      {
+        "lemma": "dangerous",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "dangerous"
+        ]
+      },
+      {
+        "lemma": "deep",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "deep"
+        ]
+      },
+      {
         "lemma": "difficult",
         "partOfSpeech": "adjective",
         "forms": [
@@ -979,10 +2261,143 @@
         ]
       },
       {
+        "lemma": "dry",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "dry"
+        ]
+      },
+      {
+        "lemma": "easy",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "easy"
+        ]
+      },
+      {
+        "lemma": "excited",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "excited"
+        ]
+      },
+      {
+        "lemma": "fair",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "fair"
+        ]
+      },
+      {
+        "lemma": "famous",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "famous"
+        ]
+      },
+      {
+        "lemma": "free",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "free"
+        ]
+      },
+      {
+        "lemma": "fresh",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "fresh"
+        ]
+      },
+      {
+        "lemma": "friendly",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "friendly"
+        ]
+      },
+      {
+        "lemma": "healthy",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "healthy"
+        ]
+      },
+      {
+        "lemma": "helpful",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "helpful"
+        ]
+      },
+      {
+        "lemma": "hungry",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "hungry"
+        ]
+      },
+      {
+        "lemma": "important",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "important"
+        ]
+      },
+      {
+        "lemma": "interesting",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "interesting"
+        ]
+      },
+      {
+        "lemma": "minute",
+        "partOfSpeech": "noun",
+        "forms": [
+          "minute"
+        ]
+      },
+      {
+        "lemma": "mirror",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mirror"
+        ]
+      },
+      {
+        "lemma": "mother",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mother"
+        ]
+      },
+      {
+        "lemma": "movie",
+        "partOfSpeech": "noun",
+        "forms": [
+          "movie"
+        ]
+      },
+      {
+        "lemma": "neighbor",
+        "partOfSpeech": "noun",
+        "forms": [
+          "neighbor"
+        ]
+      },
+      {
         "lemma": "notebook",
         "partOfSpeech": "noun",
         "forms": [
           "notebook"
+        ]
+      },
+      {
+        "lemma": "nurse",
+        "partOfSpeech": "noun",
+        "forms": [
+          "nurse"
         ]
       },
       {
@@ -1000,6 +2415,62 @@
         ]
       },
       {
+        "lemma": "party",
+        "partOfSpeech": "noun",
+        "forms": [
+          "party"
+        ]
+      },
+      {
+        "lemma": "passenger",
+        "partOfSpeech": "noun",
+        "forms": [
+          "passenger"
+        ]
+      },
+      {
+        "lemma": "pencil",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pencils"
+        ]
+      },
+      {
+        "lemma": "piano",
+        "partOfSpeech": "noun",
+        "forms": [
+          "piano"
+        ]
+      },
+      {
+        "lemma": "pilot",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pilot"
+        ]
+      },
+      {
+        "lemma": "plane",
+        "partOfSpeech": "noun",
+        "forms": [
+          "plane"
+        ]
+      },
+      {
+        "lemma": "plant",
+        "partOfSpeech": "noun",
+        "forms": [
+          "plant"
+        ]
+      },
+      {
+        "lemma": "plate",
+        "partOfSpeech": "noun",
+        "forms": [
+          "plate"
+        ]
+      },
+      {
         "lemma": "pocket",
         "partOfSpeech": "noun",
         "forms": [
@@ -1007,10 +2478,59 @@
         ]
       },
       {
+        "lemma": "pool",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pool"
+        ]
+      },
+      {
         "lemma": "potato",
         "partOfSpeech": "noun",
         "forms": [
-          "potatoes"
+          "potato"
+        ]
+      },
+      {
+        "lemma": "present",
+        "partOfSpeech": "noun",
+        "forms": [
+          "present"
+        ]
+      },
+      {
+        "lemma": "price",
+        "partOfSpeech": "noun",
+        "forms": [
+          "price"
+        ]
+      },
+      {
+        "lemma": "prize",
+        "partOfSpeech": "noun",
+        "forms": [
+          "prize"
+        ]
+      },
+      {
+        "lemma": "queen",
+        "partOfSpeech": "noun",
+        "forms": [
+          "queen"
+        ]
+      },
+      {
+        "lemma": "rabbit",
+        "partOfSpeech": "noun",
+        "forms": [
+          "rabbit"
+        ]
+      },
+      {
+        "lemma": "radio",
+        "partOfSpeech": "noun",
+        "forms": [
+          "radio"
         ]
       },
       {
@@ -1028,10 +2548,80 @@
         ]
       },
       {
+        "lemma": "roof",
+        "partOfSpeech": "noun",
+        "forms": [
+          "roof"
+        ]
+      },
+      {
+        "lemma": "rule",
+        "partOfSpeech": "noun",
+        "forms": [
+          "rule"
+        ]
+      },
+      {
+        "lemma": "salt",
+        "partOfSpeech": "noun",
+        "forms": [
+          "salt"
+        ]
+      },
+      {
+        "lemma": "sandwich",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sandwich"
+        ]
+      },
+      {
+        "lemma": "science",
+        "partOfSpeech": "noun",
+        "forms": [
+          "science"
+        ]
+      },
+      {
+        "lemma": "sea",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sea"
+        ]
+      },
+      {
+        "lemma": "season",
+        "partOfSpeech": "noun",
+        "forms": [
+          "season"
+        ]
+      },
+      {
+        "lemma": "seed",
+        "partOfSpeech": "noun",
+        "forms": [
+          "seed"
+        ]
+      },
+      {
+        "lemma": "sheep",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sheep"
+        ]
+      },
+      {
         "lemma": "shirt",
         "partOfSpeech": "noun",
         "forms": [
           "shirt"
+        ]
+      },
+      {
+        "lemma": "shop",
+        "partOfSpeech": "noun",
+        "forms": [
+          "shop"
         ]
       },
       {
@@ -1042,10 +2632,164 @@
         ]
       },
       {
+        "lemma": "soap",
+        "partOfSpeech": "noun",
+        "forms": [
+          "soap"
+        ]
+      },
+      {
+        "lemma": "sock",
+        "partOfSpeech": "noun",
+        "forms": [
+          "socks"
+        ]
+      },
+      {
+        "lemma": "fold",
+        "partOfSpeech": "verb",
+        "forms": [
+          "folded"
+        ]
+      },
+      {
+        "lemma": "spoon",
+        "partOfSpeech": "noun",
+        "forms": [
+          "spoon"
+        ]
+      },
+      {
+        "lemma": "star",
+        "partOfSpeech": "noun",
+        "forms": [
+          "star"
+        ]
+      },
+      {
+        "lemma": "station",
+        "partOfSpeech": "noun",
+        "forms": [
+          "station"
+        ]
+      },
+      {
+        "lemma": "store",
+        "partOfSpeech": "noun",
+        "forms": [
+          "store"
+        ]
+      },
+      {
+        "lemma": "street",
+        "partOfSpeech": "noun",
+        "forms": [
+          "street"
+        ]
+      },
+      {
+        "lemma": "student",
+        "partOfSpeech": "noun",
+        "forms": [
+          "student"
+        ]
+      },
+      {
+        "lemma": "sugar",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sugar"
+        ]
+      },
+      {
+        "lemma": "add",
+        "partOfSpeech": "verb",
+        "forms": [
+          "added"
+        ]
+      },
+      {
+        "lemma": "agree",
+        "partOfSpeech": "verb",
+        "forms": [
+          "agreed"
+        ]
+      },
+      {
+        "lemma": "believe",
+        "partOfSpeech": "verb",
+        "forms": [
+          "believe"
+        ]
+      },
+      {
+        "lemma": "blow",
+        "partOfSpeech": "verb",
+        "forms": [
+          "blow"
+        ]
+      },
+      {
+        "lemma": "break",
+        "partOfSpeech": "verb",
+        "forms": [
+          "broke"
+        ]
+      },
+      {
+        "lemma": "build",
+        "partOfSpeech": "verb",
+        "forms": [
+          "built"
+        ]
+      },
+      {
+        "lemma": "burn",
+        "partOfSpeech": "verb",
+        "forms": [
+          "burned"
+        ]
+      },
+      {
         "lemma": "check",
         "partOfSpeech": "verb",
         "forms": [
-          "checked"
+          "check"
+        ]
+      },
+      {
+        "lemma": "continue",
+        "partOfSpeech": "verb",
+        "forms": [
+          "continue"
+        ]
+      },
+      {
+        "lemma": "copy",
+        "partOfSpeech": "verb",
+        "forms": [
+          "copied"
+        ]
+      },
+      {
+        "lemma": "dig",
+        "partOfSpeech": "verb",
+        "forms": [
+          "dug"
+        ]
+      },
+      {
+        "lemma": "enter",
+        "partOfSpeech": "verb",
+        "forms": [
+          "enter"
+        ]
+      },
+      {
+        "lemma": "explain",
+        "partOfSpeech": "verb",
+        "forms": [
+          "explained"
         ]
       },
       {
@@ -1056,10 +2800,59 @@
         ]
       },
       {
+        "lemma": "guess",
+        "partOfSpeech": "verb",
+        "forms": [
+          "guess"
+        ]
+      },
+      {
+        "lemma": "invite",
+        "partOfSpeech": "verb",
+        "forms": [
+          "invited"
+        ]
+      },
+      {
+        "lemma": "kick",
+        "partOfSpeech": "verb",
+        "forms": [
+          "kick"
+        ]
+      },
+      {
         "lemma": "laugh",
         "partOfSpeech": "verb",
         "forms": [
           "laugh"
+        ]
+      },
+      {
+        "lemma": "lift",
+        "partOfSpeech": "verb",
+        "forms": [
+          "lifted"
+        ]
+      },
+      {
+        "lemma": "miss",
+        "partOfSpeech": "verb",
+        "forms": [
+          "miss"
+        ]
+      },
+      {
+        "lemma": "paint",
+        "partOfSpeech": "verb",
+        "forms": [
+          "paint"
+        ]
+      },
+      {
+        "lemma": "pick",
+        "partOfSpeech": "verb",
+        "forms": [
+          "pick"
         ]
       },
       {
@@ -1070,10 +2863,234 @@
         ]
       },
       {
+        "lemma": "practice",
+        "partOfSpeech": "verb",
+        "forms": [
+          "practice"
+        ]
+      },
+      {
+        "lemma": "pull",
+        "partOfSpeech": "verb",
+        "forms": [
+          "pulled"
+        ]
+      },
+      {
+        "lemma": "bad",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "bad"
+        ]
+      },
+      {
+        "lemma": "boring",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "boring"
+        ]
+      },
+      {
+        "lemma": "huge",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "huge"
+        ]
+      },
+      {
+        "lemma": "comfortable",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "comfortable"
+        ]
+      },
+      {
+        "lemma": "crowded",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "crowded"
+        ]
+      },
+      {
+        "lemma": "cute",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "cute"
+        ]
+      },
+      {
+        "lemma": "gather",
+        "partOfSpeech": "verb",
+        "forms": [
+          "gathered"
+        ]
+      },
+      {
+        "lemma": "delicious",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "delicious"
+        ]
+      },
+      {
+        "lemma": "excellent",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "excellent"
+        ]
+      },
+      {
+        "lemma": "expensive",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "expensive"
+        ]
+      },
+      {
+        "lemma": "favorite",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "favorite"
+        ]
+      },
+      {
+        "lemma": "flat",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "flat"
+        ]
+      },
+      {
+        "lemma": "glad",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "glad"
+        ]
+      },
+      {
+        "lemma": "golden",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "golden"
+        ]
+      },
+      {
+        "lemma": "great",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "great"
+        ]
+      },
+      {
+        "lemma": "hard",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "hard"
+        ]
+      },
+      {
+        "lemma": "high",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "high"
+        ]
+      },
+      {
+        "lemma": "honest",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "honest"
+        ]
+      },
+      {
+        "lemma": "lazy",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "lazy"
+        ]
+      },
+      {
+        "lemma": "lonely",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "lonely"
+        ]
+      },
+      {
+        "lemma": "nervous",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "nervous"
+        ]
+      },
+      {
+        "lemma": "noisy",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "noisy"
+        ]
+      },
+      {
+        "lemma": "normal",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "normal"
+        ]
+      },
+      {
+        "lemma": "perfect",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "perfect"
+        ]
+      },
+      {
+        "lemma": "polite",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "polite"
+        ]
+      },
+      {
+        "lemma": "ticket",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ticket"
+        ]
+      },
+      {
         "lemma": "time",
         "partOfSpeech": "noun",
         "forms": [
           "time"
+        ]
+      },
+      {
+        "lemma": "tomato",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tomato"
+        ]
+      },
+      {
+        "lemma": "tooth",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tooth"
+        ]
+      },
+      {
+        "lemma": "town",
+        "partOfSpeech": "noun",
+        "forms": [
+          "town"
+        ]
+      },
+      {
+        "lemma": "train",
+        "partOfSpeech": "noun",
+        "forms": [
+          "train"
         ]
       },
       {
@@ -1084,10 +3101,94 @@
         ]
       },
       {
+        "lemma": "trip",
+        "partOfSpeech": "noun",
+        "forms": [
+          "trip"
+        ]
+      },
+      {
+        "lemma": "truck",
+        "partOfSpeech": "noun",
+        "forms": [
+          "truck"
+        ]
+      },
+      {
+        "lemma": "uncle",
+        "partOfSpeech": "noun",
+        "forms": [
+          "uncle"
+        ]
+      },
+      {
+        "lemma": "uniform",
+        "partOfSpeech": "noun",
+        "forms": [
+          "uniform"
+        ]
+      },
+      {
+        "lemma": "vacation",
+        "partOfSpeech": "noun",
+        "forms": [
+          "vacation"
+        ]
+      },
+      {
+        "lemma": "vegetable",
+        "partOfSpeech": "noun",
+        "forms": [
+          "vegetable"
+        ]
+      },
+      {
+        "lemma": "village",
+        "partOfSpeech": "noun",
+        "forms": [
+          "village"
+        ]
+      },
+      {
+        "lemma": "visitor",
+        "partOfSpeech": "noun",
+        "forms": [
+          "visitor"
+        ]
+      },
+      {
+        "lemma": "wall",
+        "partOfSpeech": "noun",
+        "forms": [
+          "wall"
+        ]
+      },
+      {
         "lemma": "water",
         "partOfSpeech": "noun",
         "forms": [
           "water"
+        ]
+      },
+      {
+        "lemma": "way",
+        "partOfSpeech": "noun",
+        "forms": [
+          "way"
+        ]
+      },
+      {
+        "lemma": "weather",
+        "partOfSpeech": "noun",
+        "forms": [
+          "weather"
+        ]
+      },
+      {
+        "lemma": "week",
+        "partOfSpeech": "noun",
+        "forms": [
+          "week"
         ]
       },
       {
@@ -1098,10 +3199,31 @@
         ]
       },
       {
+        "lemma": "winter",
+        "partOfSpeech": "noun",
+        "forms": [
+          "winter"
+        ]
+      },
+      {
         "lemma": "woman",
         "partOfSpeech": "noun",
         "forms": [
           "woman"
+        ]
+      },
+      {
+        "lemma": "world",
+        "partOfSpeech": "noun",
+        "forms": [
+          "world"
+        ]
+      },
+      {
+        "lemma": "toy",
+        "partOfSpeech": "noun",
+        "forms": [
+          "toy"
         ]
       },
       {
@@ -1112,10 +3234,164 @@
         ]
       },
       {
+        "lemma": "zoo",
+        "partOfSpeech": "noun",
+        "forms": [
+          "zoo"
+        ]
+      },
+      {
+        "lemma": "address",
+        "partOfSpeech": "noun",
+        "forms": [
+          "address"
+        ]
+      },
+      {
+        "lemma": "age",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ages"
+        ]
+      },
+      {
+        "lemma": "area",
+        "partOfSpeech": "noun",
+        "forms": [
+          "area"
+        ]
+      },
+      {
+        "lemma": "greet",
+        "partOfSpeech": "verb",
+        "forms": [
+          "greeted"
+        ]
+      },
+      {
+        "lemma": "autumn",
+        "partOfSpeech": "noun",
+        "forms": [
+          "autumn"
+        ]
+      },
+      {
+        "lemma": "basement",
+        "partOfSpeech": "noun",
+        "forms": [
+          "basement"
+        ]
+      },
+      {
+        "lemma": "bedroom",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bedroom"
+        ]
+      },
+      {
         "lemma": "bench",
         "partOfSpeech": "noun",
         "forms": [
           "bench"
+        ]
+      },
+      {
+        "lemma": "block",
+        "partOfSpeech": "noun",
+        "forms": [
+          "block"
+        ]
+      },
+      {
+        "lemma": "board",
+        "partOfSpeech": "noun",
+        "forms": [
+          "board"
+        ]
+      },
+      {
+        "lemma": "bookstore",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bookstore"
+        ]
+      },
+      {
+        "lemma": "bowl",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bowl"
+        ]
+      },
+      {
+        "lemma": "breakfast",
+        "partOfSpeech": "noun",
+        "forms": [
+          "breakfast"
+        ]
+      },
+      {
+        "lemma": "brush",
+        "partOfSpeech": "noun",
+        "forms": [
+          "brush"
+        ]
+      },
+      {
+        "lemma": "button",
+        "partOfSpeech": "noun",
+        "forms": [
+          "button"
+        ]
+      },
+      {
+        "lemma": "camp",
+        "partOfSpeech": "noun",
+        "forms": [
+          "camp"
+        ]
+      },
+      {
+        "lemma": "candy",
+        "partOfSpeech": "noun",
+        "forms": [
+          "candy"
+        ]
+      },
+      {
+        "lemma": "carpet",
+        "partOfSpeech": "noun",
+        "forms": [
+          "carpet"
+        ]
+      },
+      {
+        "lemma": "cartoon",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cartoon"
+        ]
+      },
+      {
+        "lemma": "ceiling",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ceiling"
+        ]
+      },
+      {
+        "lemma": "chain",
+        "partOfSpeech": "noun",
+        "forms": [
+          "chain"
+        ]
+      },
+      {
+        "lemma": "chance",
+        "partOfSpeech": "noun",
+        "forms": [
+          "chance"
         ]
       },
       {
@@ -1126,10 +3402,108 @@
         ]
       },
       {
+        "lemma": "act",
+        "partOfSpeech": "verb",
+        "forms": [
+          "act"
+        ]
+      },
+      {
+        "lemma": "bake",
+        "partOfSpeech": "verb",
+        "forms": [
+          "bake"
+        ]
+      },
+      {
+        "lemma": "balance",
+        "partOfSpeech": "verb",
+        "forms": [
+          "balanced"
+        ]
+      },
+      {
+        "lemma": "bark",
+        "partOfSpeech": "verb",
+        "forms": [
+          "bark"
+        ]
+      },
+      {
+        "lemma": "beat",
+        "partOfSpeech": "verb",
+        "forms": [
+          "beat"
+        ]
+      },
+      {
         "lemma": "become",
         "partOfSpeech": "verb",
         "forms": [
-          "became"
+          "become"
+        ]
+      },
+      {
+        "lemma": "belong",
+        "partOfSpeech": "verb",
+        "forms": [
+          "belonged"
+        ]
+      },
+      {
+        "lemma": "bite",
+        "partOfSpeech": "verb",
+        "forms": [
+          "bit"
+        ]
+      },
+      {
+        "lemma": "care",
+        "partOfSpeech": "verb",
+        "forms": [
+          "care"
+        ]
+      },
+      {
+        "lemma": "celebrate",
+        "partOfSpeech": "verb",
+        "forms": [
+          "celebrate"
+        ]
+      },
+      {
+        "lemma": "deliver",
+        "partOfSpeech": "verb",
+        "forms": [
+          "delivered"
+        ]
+      },
+      {
+        "lemma": "depend",
+        "partOfSpeech": "verb",
+        "forms": [
+          "depend"
+        ]
+      },
+      {
+        "lemma": "disappear",
+        "partOfSpeech": "verb",
+        "forms": [
+          "disappear"
+        ]
+      },
+      {
+        "lemma": "discover",
+        "partOfSpeech": "verb",
+        "forms": [
+          "discover"
+        ]
+      },
+      {
+        "lemma": "discuss",
+        "partOfSpeech": "verb",
+        "forms": [
+          "discuss"
         ]
       },
       {
@@ -1138,6 +3512,13 @@
         "forms": [
           "end"
         ]
+      },
+      {
+        "lemma": "exercise",
+        "partOfSpeech": "verb",
+        "forms": [
+          "exercise"
+        ]
       }
     ],
     "usedPhrasalVerbs": [
@@ -1145,276 +3526,2012 @@
         "id": "phrasal-wake-up",
         "phrasalVerb": "wake up",
         "storyForm": "woke up",
-        "context": "Mina woke up early in the morning.",
+        "context": "Mina woke up early in her small bedroom.",
         "senseId": "02353408397b1a0c2cabc282d63d650d3aa45aeb4a15f73fb279d20673e96ecf",
         "meaningKo": "잠에서 깨다"
       },
       {
-        "id": "phrasal-put-on",
-        "phrasalVerb": "put on",
-        "storyForm": "put on",
-        "context": "Mina put on a blue shirt and a red hat.",
-        "senseId": "988a8531f5431bfb72831b9baccd15948f0eb7f83b1b342ea98c985e92554544",
-        "meaningKo": "옷이나 장신구를 착용하다"
-      },
-      {
-        "id": "phrasal-check-off",
-        "phrasalVerb": "check off",
-        "storyForm": "checked bread off",
-        "context": "Mina checked bread off on the lunch page.",
-        "senseId": "6c6ba9985bea9cc900f90c08029ab89ea0f781867529080061658b63aaa87239",
-        "meaningKo": "목록의 항목에 완료 표시를 하다"
-      },
-      {
-        "id": "phrasal-put-together",
-        "phrasalVerb": "put together",
-        "storyForm": "put lunch together",
-        "context": "Daddy and Mina put lunch together.",
-        "senseId": "d6cac5e073c1d476a7fb553c14b0510eb9bc57e60b48953d62df0341a69c699f",
-        "meaningKo": "여러 부품을 결합해 무언가를 만들거나 조립하다"
-      },
-      {
-        "id": "phrasal-get-on",
-        "phrasalVerb": "get on",
-        "storyForm": "got on",
-        "context": "Mina got on with Joon, and they laughed as they made lunch.",
-        "senseId": "bfca56a0697371c6f15fc4644b830d057de3a76f22bc163546e57ec409e9b1e4",
-        "meaningKo": "사람들과 잘 지내다"
-      },
-      {
-        "id": "phrasal-set-out",
-        "phrasalVerb": "set out",
-        "storyForm": "set out",
-        "context": "They set out for the park with Daddy and a little dog.",
-        "senseId": "018f76989a2fa4adf339586ad4845297c80c54e84ae6677f98e79e336cbc139a",
-        "meaningKo": "여행이나 길을 떠나다"
-      },
-      {
-        "id": "phrasal-drop-off",
-        "phrasalVerb": "drop off",
-        "storyForm": "dropped Leo off",
-        "context": "A bus dropped Leo off at the park.",
-        "senseId": "be986db441529f2444bfbaaa4562c396a57a16f35cad99f04502f7165b1fc99b",
-        "meaningKo": "사람을 내려 주거나 물건을 갖다 놓다"
-      },
-      {
-        "id": "phrasal-look-for",
-        "phrasalVerb": "look for",
-        "storyForm": "look for",
-        "context": "The dog came to Mina, and she began to look for the blue lunch bag.",
-        "senseId": "e6077d60ec7cabefcde417c6bd05a0df7780bc9ce23a30f1db08e7f4d2aea0df",
-        "meaningKo": "누군가나 무언가를 찾다"
-      },
-      {
-        "id": "phrasal-get-back",
-        "phrasalVerb": "get back",
-        "storyForm": "get back",
-        "context": "Mina and Joon had to get back to the park office.",
-        "senseId": "e208bbf07f7f8694b4fba0e4bfc248112d860b48f089c999f8f9d0d987dc2d3c",
-        "meaningKo": "어떤 장소로 돌아오다"
-      },
-      {
-        "id": "phrasal-go-through",
-        "phrasalVerb": "go through",
-        "storyForm": "went through",
-        "context": "At the office, Mina went through the camera, notebook, and letter.",
-        "senseId": "ac3378dec0d50d629952e858e8893fba6d0bbfd912eef340beb6c544201a0acb",
-        "meaningKo": "무언가를 매우 꼼꼼히 살펴보다"
-      },
-      {
-        "id": "phrasal-make-out",
-        "phrasalVerb": "make out",
-        "storyForm": "made out",
-        "context": "Mina made out a name on the paper.",
-        "senseId": "f1151ac6998aa84c4dc483e12cb427267d6fe1cf79c363c5802aa9db9c2b2838",
-        "meaningKo": "어렵게 보거나 듣거나 이해하다"
-      },
-      {
-        "id": "phrasal-turn-to",
-        "phrasalVerb": "turn to",
-        "storyForm": "turn to",
-        "context": "Mina had to turn to the woman at the office for help.",
-        "senseId": "47c462819b4385c3f6da9210064444ccc2481e2e4e3424c4f92b2d697cc255b0",
-        "meaningKo": "상황을 대처하기 어려울 때 도움을 받기 위해 누군가에게 가는 것"
-      },
-      {
-        "id": "phrasal-come-upon",
-        "phrasalVerb": "come upon",
-        "storyForm": "came upon",
-        "context": "Mina and Joon came upon Leo at the market office.",
-        "senseId": "0b1163d8066faef8db27578c33690f1ca97674c12c8fa90048a9ab96d5dfe2b8",
-        "meaningKo": "누군가를 우연히 만나거나 무언가를 우연히 발견하다"
+        "id": "phrasal-talk-round",
+        "phrasalVerb": "talk round",
+        "storyForm": "talked her father round",
+        "context": "Mina talked her father round, and he agreed to help.",
+        "senseId": "af06b8a91340ece95ad0a500fd96744a1253bd47a33cf5de75a733d059db1f05",
+        "meaningKo": "설득해 동의하게 하다"
       },
       {
         "id": "phrasal-see-around",
         "phrasalVerb": "see around",
-        "storyForm": "seen Mina around",
-        "context": "Leo had seen Mina around the market with Daddy.",
+        "storyForm": "see Leo around",
+        "context": "She was glad to see Leo around the park as she left the house.",
         "senseId": "b3e766b8ce8096c2d9fcfab4b8d8390f590fb8d6961f5e15804b447a2e591576",
         "meaningKo": "자주 다니는 곳에서 누군가를 종종 마주치다"
-      },
-      {
-        "id": "phrasal-bring-up",
-        "phrasalVerb": "bring up",
-        "storyForm": "brought up",
-        "context": "Mina brought up the blue bags, and Leo listened.",
-        "senseId": "62aecc874e19f8d806e6743b79a0276038e2b15f99a36896789693a2df0bdaed",
-        "meaningKo": "어떤 주제를 꺼내 이야기하기 시작하다"
-      },
-      {
-        "id": "phrasal-work-out",
-        "phrasalVerb": "work out",
-        "storyForm": "worked out",
-        "context": "The children worked out a plan for the bags.",
-        "senseId": "8bab271a7b9aa0c4408488290d2bf004e3b3ff05f0428d8d0e0774cfcd2377c2",
-        "meaningKo": "사실을 따져 문제를 해결하다"
-      },
-      {
-        "id": "phrasal-talk-over",
-        "phrasalVerb": "talk over",
-        "storyForm": "talked the plan over",
-        "context": "They talked the plan over at a table.",
-        "senseId": "b3c4046e02b3d2e1d07444119ea961838b58d60c96fae7047f3d32073aa7b4a6",
-        "meaningKo": "문제나 계획을 논의하다"
-      },
-      {
-        "id": "phrasal-give-back",
-        "phrasalVerb": "give back",
-        "storyForm": "gave the lunch bag back",
-        "context": "Leo gave the lunch bag back to Mina.",
-        "senseId": "eb7c38d3d0a6b1e74c0381153d18bfa675551a6105b7eb6a961a21534a84dad6",
-        "meaningKo": "원래 주인이 가지고 있던 것을 돌려주다"
       },
       {
         "id": "phrasal-get-about",
         "phrasalVerb": "get about",
         "storyForm": "got about",
-        "context": "They got about the city in a bus.",
+        "context": "Leo and Mina got about the city on a bus.",
         "senseId": "5acd199c8fc3f9f7661d132d4766d624102dc6811aba1780c6020f8277f4eebd",
         "meaningKo": "여기저기 이동하다"
       },
       {
-        "id": "phrasal-call-back",
-        "phrasalVerb": "call back",
-        "storyForm": "called Mina back",
-        "context": "The bus office called Mina back in a short time.",
-        "senseId": "c0819e04ab3e18d14867eae9a1fff7b98c21555369e65ba58cdbe8e646f3d833",
-        "meaningKo": "다시 전화하거나, 이전에 전화한 사람에게 전화하다"
+        "id": "phrasal-close-down",
+        "phrasalVerb": "close down",
+        "storyForm": "close down",
+        "context": "\"Maple House will close down in a week,\" the letter read.",
+        "senseId": "2b0750a932d2d5e8d01935fda15c35b2967934d2fd3d77894a877422837fdd4f",
+        "meaningKo": "사업장이나 시설의 운영을 중단하다"
       },
       {
-        "id": "phrasal-come-forward",
-        "phrasalVerb": "come forward",
-        "storyForm": "came forward",
-        "context": "A young bus woman came forward with the black bag.",
-        "senseId": "6c7a95ec3e853da428af34673b2b0557322f476676082f5e3c063ae27f7897e9",
-        "meaningKo": "도움이나 정보를 자진해서 제공하다"
+        "id": "phrasal-turn-to",
+        "phrasalVerb": "turn to",
+        "storyForm": "turned to",
+        "context": "At Maple House, Mina turned to her family for help.",
+        "senseId": "47c462819b4385c3f6da9210064444ccc2481e2e4e3424c4f92b2d697cc255b0",
+        "meaningKo": "도움을 얻으려고 누군가에게 의지하다"
       },
       {
-        "id": "phrasal-look-around",
-        "phrasalVerb": "look around",
-        "storyForm": "looked around",
-        "context": "Mina looked around the bakery for Leo.",
-        "senseId": "d590addb01bbc6561e322dcac188c039684b3cca786d77d6599080a262f431f9",
-        "meaningKo": "방이나 건물, 장소를 둘러보며 무엇이 있는지 살피다"
+        "id": "phrasal-drop-off",
+        "phrasalVerb": "drop off",
+        "storyForm": "dropped Mina and Leo off",
+        "context": "Her father dropped Mina and Leo off in his old car.",
+        "senseId": "be986db441529f2444bfbaaa4562c396a57a16f35cad99f04502f7165b1fc99b",
+        "meaningKo": "사람을 내려 주거나 물건을 갖다 놓다"
       },
       {
-        "id": "phrasal-turn-up",
-        "phrasalVerb": "turn up",
-        "storyForm": "turned up",
-        "context": "Leo turned up with a red pen and paper.",
-        "senseId": "3d7208e40a08d84a6a4bc4a30b5d3834189d31d27d0a0067b93012a28a3957c6",
-        "meaningKo": "특히 예고 없이 어떤 곳에 나타나다"
+        "id": "phrasal-finish-up",
+        "phrasalVerb": "finish up",
+        "storyForm": "finish up",
+        "context": "\"The class will finish up in the street,\" the letter read.",
+        "senseId": "28805fa4d9cf55bd263e48d749e11d9b7df42303e4f68d6b4224adb295aa2b06",
+        "meaningKo": "여러 일을 거친 끝에 특정 장소나 상태에 이르다"
       },
       {
-        "id": "phrasal-carry-on",
-        "phrasalVerb": "carry on",
-        "storyForm": "carried on",
-        "context": "The families carried on with the family day at the park.",
-        "senseId": "09286ecf5580faa2eec6858578f7036b676c2f6b0d5b4ce58d0aae39be1e2b3d",
-        "meaningKo": "계속 뭔가를 하다"
+        "id": "phrasal-trip-up",
+        "phrasalVerb": "trip up",
+        "storyForm": "trip up",
+        "context": "Leo wrote on the board, \"A bad name on the city letter will trip up the plan.",
+        "senseId": "9552f36de26c041430e0bf439f281427c2af88a9f9d9d7afd1ad17f33b27d7d3",
+        "meaningKo": "실수하게 만들거나 일을 방해하다"
       },
       {
-        "id": "phrasal-catch-up",
-        "phrasalVerb": "catch up",
-        "storyForm": "caught up",
-        "context": "Mina and Sara had not met for a year, and they caught up at lunch.",
-        "senseId": "a714b05d0e645cabccc10a51e72f4a1309ab7a8eb098884be87ab1cfae13c545",
-        "meaningKo": "오랜만에 만나 서로의 근황을 이야기하다"
+        "id": "phrasal-camp-out",
+        "phrasalVerb": "camp out",
+        "storyForm": "camp out",
+        "context": "\" He asked the class to camp out in the garden and help with the bags at night.",
+        "senseId": "2f93ebd2e5663bc16c1c7befa9d41b6ea37fffe450b78222203256a3a4b0c3eb",
+        "meaningKo": "야외에서 텐트를 치고 지내다"
+      },
+      {
+        "id": "phrasal-slow-down",
+        "phrasalVerb": "slow down",
+        "storyForm": "slow down",
+        "context": "The bus had to slow down at the busy park road.",
+        "senseId": "111b9ef3692c9185a6d173a531ef4851479cde9a3f90b1bc231c01b217c4aa7d",
+        "meaningKo": "속도나 활동을 늦추다"
+      },
+      {
+        "id": "phrasal-spy-out",
+        "phrasalVerb": "spy out",
+        "storyForm": "spy out",
+        "context": "Mina went to spy out a good room for the class.",
+        "senseId": "da841ebfda6c2bf7df897050c5da462709f197f14df78ea97a24f52e409aad69",
+        "meaningKo": "둘러보며 찾아내다"
+      },
+      {
+        "id": "phrasal-think-over",
+        "phrasalVerb": "think over",
+        "storyForm": "think the letter over",
+        "context": "She and Leo sat at a round table to think the letter over.",
+        "senseId": "2bf7d9c8bda821f82a762f7470b36ce4acde370086cbdb74a552cfaf0918e068",
+        "meaningKo": "결정하기 전에 충분히 생각하다"
+      },
+      {
+        "id": "phrasal-see-about",
+        "phrasalVerb": "see about",
+        "storyForm": "see about",
+        "context": "Mina went to see about money for the house.",
+        "senseId": "d21b8796746e07f1fb07e2a1c8d4c3d6e65377b491861e44a570bdd8dce8bca9",
+        "meaningKo": "일을 처리하거나 준비하다"
+      },
+      {
+        "id": "phrasal-do-in",
+        "phrasalVerb": "do in",
+        "storyForm": "did not go in",
+        "context": "Mina read a lesson, but it did not go in as the bus was loud and crowded.",
+        "senseId": "d8fefe972bd08ccd8bafe72366f0f464b98381c714e0719854f64114387f640c",
+        "meaningKo": "누군가를 몹시 지치게 하다"
+      },
+      {
+        "id": "phrasal-go-into",
+        "phrasalVerb": "go into",
+        "storyForm": "go into",
+        "context": "Sara, her aunt, planned to go into science.",
+        "senseId": "06561ad900ef4e44268901ae2c962c023158017f2345bb36b3bd2ee102b01ba5",
+        "meaningKo": "특정 유형의 직업이나 비즈니스에서 일하기 시작하다"
+      },
+      {
+        "id": "phrasal-believe-in",
+        "phrasalVerb": "believe in",
+        "storyForm": "believed in",
+        "context": "Grandmother believed in God.",
+        "senseId": "05abae4cf82798fdf41c7d4767c3d205af064675de171a8e4e792db8638cfc39",
+        "meaningKo": "누군가나 무언가가 존재한다고 믿다"
+      },
+      {
+        "id": "phrasal-go-down",
+        "phrasalVerb": "go down",
+        "storyForm": "go down",
+        "context": "The ticket price for the family day had to go down.",
+        "senseId": "f3a21dff8397660bc866bd991e7331d71049e30e0986dcb5f2fd1c0926e38ad6",
+        "meaningKo": "양이나 수준이 줄어들다"
+      },
+      {
+        "id": "phrasal-come-on",
+        "phrasalVerb": "come on",
+        "storyForm": "came on",
+        "context": "In a ball game at the park, Joon came on for a tired boy.",
+        "senseId": "9a03593f968b580d7a425c802d90503d770421482792bb132bfe45e42a97c59c",
+        "meaningKo": "교체 선수로 경기장에 들어오다"
+      },
+      {
+        "id": "phrasal-run-down",
+        "phrasalVerb": "run down",
+        "storyForm": "run Joon down",
+        "context": "Gray began to run Joon down for a bad kick.",
+        "senseId": "005cbfc15298509bd24e3c05e49f56a4c80d985bd358c35d2247f41fe589d6e3",
+        "meaningKo": "누군가를 부당하게 깎아내리다"
+      },
+      {
+        "id": "phrasal-come-off",
+        "phrasalVerb": "come off",
+        "storyForm": "Come off",
+        "context": "\"Come off it, Gray,\" Mina cried.",
+        "senseId": "01a6d0ecff2d3c1e8a9005dc650ec7a5a8af360a9af1c8bebed2490057ca4de7",
+        "meaningKo": "말도 안 된다고 핀잔주다"
+      },
+      {
+        "id": "phrasal-wear-out",
+        "phrasalVerb": "wear out",
+        "storyForm": "wore Joon out",
+        "context": "The long game wore Joon out, but his strong arm helped the class.",
+        "senseId": "f9827f3f04900dcfac6c589f0e7cc58957f5fa0e4427c24b9b14025553100600",
+        "meaningKo": "누군가를 몹시 지치게 하다"
+      },
+      {
+        "id": "phrasal-go-over",
+        "phrasalVerb": "go over",
+        "storyForm": "went over",
+        "context": "Mina went over the game rule with Gray.",
+        "senseId": "fd05524b99e4ec2ec61160206c10b522533e0008d287d7be2ec95ebe363068fc",
+        "meaningKo": "무언가를 꼼꼼히 확인하다"
+      },
+      {
+        "id": "phrasal-get-on",
+        "phrasalVerb": "get on",
+        "storyForm": "got on",
+        "context": "Mina and Joon got on, and Gray became calm.",
+        "senseId": "bfca56a0697371c6f15fc4644b830d057de3a76f22bc163546e57ec409e9b1e4",
+        "meaningKo": "사람들과 잘 지내다"
+      },
+      {
+        "id": "phrasal-turn-over",
+        "phrasalVerb": "turn over",
+        "storyForm": "turned over",
+        "context": "At night, the baby turned over in her bed and put a hand on the pillow.",
+        "senseId": "3c60dda6e395b00313bdfbd4dc3838e02141fa66e515d5c16d11b10bdbfe9863",
+        "meaningKo": "누운 몸을 반대쪽으로 돌리다"
+      },
+      {
+        "id": "phrasal-call-in",
+        "phrasalVerb": "call in",
+        "storyForm": "call in",
+        "context": "Sara had to call in a doctor for the baby.",
+        "senseId": "ba3b2f36b381c17b38f76446425ba3dc4548cea8bf4fa663b0a7b2f5f2ebffbf",
+        "meaningKo": "전문가나 서비스 인력을 불러 문제를 처리하게 하다"
+      },
+      {
+        "id": "phrasal-catch-out",
+        "phrasalVerb": "catch out",
+        "storyForm": "caught Leo out",
+        "context": "A wet bathroom floor caught Leo out, but he did not fall.",
+        "senseId": "a21a4d03811569a56720c16ae0b1cfe6a8bddd58d4f17377d1d0f865f0abbd2e",
+        "meaningKo": "준비하지 못한 상황에서 곤란하게 하다"
+      },
+      {
+        "id": "phrasal-dig-out",
+        "phrasalVerb": "dig out",
+        "storyForm": "dug a garden key out",
+        "context": "He dug a garden key out with a spoon.",
+        "senseId": "7e1299128c4be4cdad1a48ca65531a9e8f9d042bcc6d92ffa949282f5239eed3",
+        "meaningKo": "파서 물건을 꺼내다"
+      },
+      {
+        "id": "phrasal-go-with",
+        "phrasalVerb": "go with",
+        "storyForm": "go with",
+        "context": "Mina chose a blue coat to go with her red hat.",
+        "senseId": "094d40288fe95c4feac3f019b252ddd903c15fe5cb4abb4ed12807eeafc42168",
+        "meaningKo": "색이나 모양 등이 서로 잘 어울리다"
+      },
+      {
+        "id": "phrasal-keep-from",
+        "phrasalVerb": "keep from",
+        "storyForm": "kept the children from",
+        "context": "A closed door kept the children from the kitchen.",
+        "senseId": "c76d32a91f72cf1064b645b2472ab2db57651115c06d8dc959b53d7752ee2c76",
+        "meaningKo": "누군가가 어떤 일을 하지 못하게 막다"
+      },
+      {
+        "id": "phrasal-key-in",
+        "phrasalVerb": "key in",
+        "storyForm": "keyed in",
+        "context": "Leo keyed in the family names on a computer.",
+        "senseId": "0ed1d442a6770b9ebd5f6bb081bc5f8a686220cc75660eb7a32ecfcd5cf9cee8",
+        "meaningKo": "키보드로 입력하다"
+      },
+      {
+        "id": "phrasal-look-out",
+        "phrasalVerb": "look out",
+        "storyForm": "Look out",
+        "context": "\"Look out,\" Mina cried as a big ball came from the park.",
+        "senseId": "033f46420fd972eda5dd34bb032302784c147175977c597f5716b5f3c804134a",
+        "meaningKo": "위험하지 않도록 조심하라고 경고하다"
+      },
+      {
+        "id": "phrasal-make-over",
+        "phrasalVerb": "make over",
+        "storyForm": "make over",
+        "context": "The class planned to make over the old room with clean white paint.",
+        "senseId": "4a4efc7484db06375ac381ec5a189e5a2a5153ca276eef42bc32eb02077150f7",
+        "meaningKo": "외모나 모습을 바꾸거나 개선하다"
+      },
+      {
+        "id": "phrasal-play-along",
+        "phrasalVerb": "play along",
+        "storyForm": "play along",
+        "context": "Joon chose to play along with Gray as Gray acted like a famous captain.",
+        "senseId": "cedca06cdff5f273bc14b32e216099fb88e30968be4ce0587ffa04ba72c72f93",
+        "meaningKo": "목적을 위해 동의하는 척하다"
+      },
+      {
+        "id": "phrasal-play-around",
+        "phrasalVerb": "play around",
+        "storyForm": "played around",
+        "context": "Mina played around with the camera picture.",
+        "senseId": "c4e0ef65f5d9f9faae5cc593134a5e45fb1d863186df19f7b3ee4f9d166152d7",
+        "meaningKo": "결정하기 전에 여러 가지 방법을 시험해 보다"
+      },
+      {
+        "id": "phrasal-put-over",
+        "phrasalVerb": "put over",
+        "storyForm": "put the letter over",
+        "context": "Gray planned to put the letter over on the class as a city letter, but Mina found his name on it.",
+        "senseId": "8607293be6e5c047be10a430bfc1af4571cdbdaa231034f45dd0cbe82df8107a",
+        "meaningKo": "사실이 아닌 것을 믿도록 속이다"
+      },
+      {
+        "id": "phrasal-run-for",
+        "phrasalVerb": "run for",
+        "storyForm": "run for",
+        "context": "Joon planned to run for class captain.",
+        "senseId": "421f7dd10114453b67ef7205aafe87b5f7ed1cba23ff4752938c219261ede899",
+        "meaningKo": "선거에서 어떤 직책에 출마하다"
+      },
+      {
+        "id": "phrasal-run-into",
+        "phrasalVerb": "run into",
+        "storyForm": "ran into",
+        "context": "The class ran into a difficult week with little money.",
+        "senseId": "9241ad99213b19e0eb11bf2729f0db4afae9e0f3b070e4509d0982043f52dded",
+        "meaningKo": "문제나 어려움에 부딪히다"
+      },
+      {
+        "id": "phrasal-see-out",
+        "phrasalVerb": "see out",
+        "storyForm": "saw the guests out",
+        "context": "At night, Mina saw the guests out at the center door.",
+        "senseId": "edc3a9f99432e71a40e864e3d013878a970cefae522fba02eac60c3638038af7",
+        "meaningKo": "떠나는 손님을 문까지 배웅하다"
+      },
+      {
+        "id": "phrasal-sleep-off",
+        "phrasalVerb": "sleep off",
+        "storyForm": "sleep off",
+        "context": "He went to sleep off the bad feeling from the heavy meal.",
+        "senseId": "5fa5c980334edd8bbc70c84aee1fd97b0e6ba4243495feeeca99cb4068913c64",
+        "meaningKo": "잠을 자서 불쾌한 기분이나 몸 상태를 없애다"
+      },
+      {
+        "id": "phrasal-stay-back",
+        "phrasalVerb": "stay back",
+        "storyForm": "stayed back",
+        "context": "The children stayed back from a small fire as Daddy cooked dinner.",
+        "senseId": "3a529d5ca101c612b394800ad9aaf2e2acb6f70f620309aa38ac34bba4a172d3",
+        "meaningKo": "앞으로 가지 않고 뒤에 머물다"
+      },
+      {
+        "id": "phrasal-store-up",
+        "phrasalVerb": "store up",
+        "storyForm": "stored up",
+        "context": "Grandmother stored up bread, milk, sugar, salt, and water for the new day.",
+        "senseId": "6e6a6d8925d01dc8fe35374d5553b48d14c2877b63c20cfc3e9770aa61bf9be2",
+        "meaningKo": "나중에 쓰려고 많이 모아 두다"
+      },
+      {
+        "id": "phrasal-take-to",
+        "phrasalVerb": "take to",
+        "storyForm": "took to",
+        "context": "Grandmother took to a fast morning walk, and Grandfather walked with her.",
+        "senseId": "94b0024a04c7f05fc74f1d0aa2e3e13f6440c6a7053b42a7010c9d136a437f00",
+        "meaningKo": "무언가를 습관으로 시작하다"
+      },
+      {
+        "id": "phrasal-write-back",
+        "phrasalVerb": "write back",
+        "storyForm": "wrote back",
+        "context": "Mina wrote back to her aunt at the country farm.",
+        "senseId": "fc5b2bae3f537fb332a016ff46c4979bb2c452a0fc6d9a9d1f7d07f544708dff",
+        "meaningKo": "자신에게 편지를 보낸 사람에게 답장을 보내다"
+      },
+      {
+        "id": "phrasal-set-to",
+        "phrasalVerb": "set to",
+        "storyForm": "set to",
+        "context": "The family set to and made the center clean.",
+        "senseId": "78bcc2364ade57faa0d1b758911df3e43d3289d80068180c876af0d7c6555c06",
+        "meaningKo": "힘차고 적극적으로 일을 시작하다"
       },
       {
         "id": "phrasal-order-in",
         "phrasalVerb": "order in",
         "storyForm": "ordered in",
-        "context": "The families ordered in a warm meal from the restaurant.",
+        "context": "At lunch, they ordered in bread, fruit, juice, and a hot meal.",
         "senseId": "5386ed62f3d0f597a7b42c5692e572972fa6702487add3cce971284812f2e669",
         "meaningKo": "식당에서 음식을 주문하고 배달을 요청하다"
       },
       {
-        "id": "phrasal-get-together",
-        "phrasalVerb": "get together",
-        "storyForm": "got together",
-        "context": "The families got together at the table.",
-        "senseId": "67ef4e27e159d7a7aa5f1b9fb7ad3b3b0688a66b88e3c274728ae30ea99bd42e",
-        "meaningKo": "사람들이 만나 함께 시간을 보내다"
+        "id": "phrasal-go-on",
+        "phrasalVerb": "go on",
+        "storyForm": "went on",
+        "context": "The job went on as the children ate.",
+        "senseId": "9caf6a91ed21843d79de01192102fa969aabfcba030022fc146fd65017542aa7",
+        "meaningKo": "계속 일어나거나 하던 일을 이어 가다"
       },
       {
-        "id": "phrasal-pay-off",
-        "phrasalVerb": "pay off",
-        "storyForm": "paid off",
-        "context": "Their long walk paid off as the bags were on the table.",
-        "senseId": "e0a4ca9f7983de214f56019d28d206f0dbfac6063323db8163a1b4e3257df393",
-        "meaningKo": "한 일이 좋은 결과나 이익을 가져오다"
+        "id": "phrasal-take-up",
+        "phrasalVerb": "take up",
+        "storyForm": "took up",
+        "context": "Joon took up guitar and began to practice.",
+        "senseId": "00af5766995a004c30c68efa1de2629eac7ccc7a7299f419b932ba76f8b101d4",
+        "meaningKo": "취미나 일로 무언가를 정기적으로 시작하다"
+      },
+      {
+        "id": "phrasal-come-to",
+        "phrasalVerb": "come to",
+        "storyForm": "came to",
+        "context": "A good name came to Mina: Maple House.",
+        "senseId": "a21af56a15fab8bb754bd90c8d9a88be23688dd2b606e92afecd6e9f91ead56c",
+        "meaningKo": "생각이나 기억이 떠오르다"
+      },
+      {
+        "id": "phrasal-put-in",
+        "phrasalVerb": "put in",
+        "storyForm": "put in",
+        "context": "Daddy put in a computer at the class door.",
+        "senseId": "7f3c9c6fbf07caadf50fb6ffd9151f783bc65e5c97c0f45a359d950f68a6e126",
+        "meaningKo": "장비 등을 설치해 사용할 수 있게 하다"
+      },
+      {
+        "id": "phrasal-put-on",
+        "phrasalVerb": "put on",
+        "storyForm": "put on",
+        "context": "Mina put on a clean white jacket.",
+        "senseId": "988a8531f5431bfb72831b9baccd15948f0eb7f83b1b342ea98c985e92554544",
+        "meaningKo": "옷이나 장신구를 착용하다"
+      },
+      {
+        "id": "phrasal-set-in",
+        "phrasalVerb": "set in",
+        "storyForm": "set in",
+        "context": "Dark rain set in, but the family set out for the farm.",
+        "senseId": "832acc1a212a7b755c9aef0d613469588f570e0458cf6cbdda2a32abb970b8fb",
+        "meaningKo": "좋지 않은 상태가 시작되어 오래 영향을 미치다"
+      },
+      {
+        "id": "phrasal-set-out",
+        "phrasalVerb": "set out",
+        "storyForm": "set out",
+        "context": "Dark rain set in, but the family set out for the farm.",
+        "senseId": "018f76989a2fa4adf339586ad4845297c80c54e84ae6677f98e79e336cbc139a",
+        "meaningKo": "여행이나 길을 떠나다"
+      },
+      {
+        "id": "phrasal-go-for",
+        "phrasalVerb": "go for",
+        "storyForm": "went for",
+        "context": "They went for the old blue truck, not the new red car.",
+        "senseId": "9cf23fa6b2269bb26bf1f060d6d155193642d5917e190554c423c287e427bab4",
+        "meaningKo": "특정한 것을 선택하다"
+      },
+      {
+        "id": "phrasal-go-in",
+        "phrasalVerb": "go in",
+        "storyForm": "go in",
+        "context": "Mina read a lesson, but it did not go in as the bus was loud and crowded.",
+        "senseId": "937cddadacafe5fe65967836e5e220abaed51ae7349a42eba32d65c826af52eb",
+        "meaningKo": "설명이나 정보가 머리에 들어와 이해되다"
+      },
+      {
+        "id": "phrasal-go-off",
+        "phrasalVerb": "go off",
+        "storyForm": "went off",
+        "context": "A fire bell went off at the city hospital.",
+        "senseId": "3dbf71e789a7c63794fe680db0f7d1cccf140f345f8399d13ff9eb0d19cc0d15",
+        "meaningKo": "신호나 경고음이 울리기 시작하다"
+      },
+      {
+        "id": "phrasal-go-out",
+        "phrasalVerb": "go out",
+        "storyForm": "went out",
+        "context": "Black coats went out that winter, but Sara liked her old coat.",
+        "senseId": "34e18b300ead2dd3894d205bb6fb0bb0f27a73e8add0f571c5e0ec483ac60fbc",
+        "meaningKo": "유행이 지나다"
+      },
+      {
+        "id": "phrasal-go-through",
+        "phrasalVerb": "go through",
+        "storyForm": "went through",
+        "context": "Mina went through a box of clothes for the family day.",
+        "senseId": "ac3378dec0d50d629952e858e8893fba6d0bbfd912eef340beb6c544201a0acb",
+        "meaningKo": "무언가를 매우 꼼꼼히 살펴보다"
+      },
+      {
+        "id": "phrasal-get-at",
+        "phrasalVerb": "get at",
+        "storyForm": "get at",
+        "context": "A high window was hard to get at.",
+        "senseId": "d8d64cbe61b233c3b7c69fd3d23b42525a3915a17a09ce72ea6c17ab30754147",
+        "meaningKo": "손이 닿기 어려운 곳에 접근하다"
+      },
+      {
+        "id": "phrasal-get-back",
+        "phrasalVerb": "get back",
+        "storyForm": "got back",
+        "context": "They got back to the bus with a heavy bag.",
+        "senseId": "e208bbf07f7f8694b4fba0e4bfc248112d860b48f089c999f8f9d0d987dc2d3c",
+        "meaningKo": "어떤 장소로 돌아오다"
+      },
+      {
+        "id": "phrasal-get-in",
+        "phrasalVerb": "get in",
+        "storyForm": "got in",
+        "context": "The family got in at the farm at night, and Daddy got off the job at that hour.",
+        "senseId": "02d5d90195daf5403d4b09befb4b91bd4eb0657e2639111facfae8cc3df92f09",
+        "meaningKo": "집이나 직장에 도착하다"
+      },
+      {
+        "id": "phrasal-get-off",
+        "phrasalVerb": "get off",
+        "storyForm": "got off",
+        "context": "The family got in at the farm at night, and Daddy got off the job at that hour.",
+        "senseId": "a8a3eafd206329396419e157945e1aaf265dcfad715571634c8b08948e16310d",
+        "meaningKo": "일을 마치고 직장에서 나오다"
+      },
+      {
+        "id": "phrasal-get-out",
+        "phrasalVerb": "get out",
+        "storyForm": "got the dog out",
+        "context": "A nurse got the dog out of the bathroom.",
+        "senseId": "aaea5a48f827bc218906d308b559c8a82a97b37926ecb972273e2f764cde9552",
+        "meaningKo": "다른 사람을 떠나게 하다"
+      },
+      {
+        "id": "phrasal-get-over",
+        "phrasalVerb": "get over",
+        "storyForm": "got over",
+        "context": "Mina got over a cold with sleep and warm bread.",
+        "senseId": "8d22a094f4d778a9764eaaf7df017210a29f43f660c20eba45f011a9655510a1",
+        "meaningKo": "나쁜 일을 겪은 뒤 회복하다"
+      },
+      {
+        "id": "phrasal-get-through",
+        "phrasalVerb": "get through",
+        "storyForm": "got through",
+        "context": "She got through a long letter from her father.",
+        "senseId": "a6a9797eb477f1405906c66cb91fa153110b336ae357f44b4cd52474e04b88b3",
+        "meaningKo": "일이나 과제를 끝내다"
+      },
+      {
+        "id": "phrasal-make-for",
+        "phrasalVerb": "make for",
+        "storyForm": "made for",
+        "context": "The children made for the garden, and a cow came to meet Mina and Leo.",
+        "senseId": "6696201350f275f58bc7f668a965f39f19a049b57e67d3f66978d4628aab98d2",
+        "meaningKo": "어떤 장소를 향해 가다"
+      },
+      {
+        "id": "phrasal-make-of",
+        "phrasalVerb": "make of",
+        "storyForm": "made little of",
+        "context": "Mina made little of the old farm map.",
+        "senseId": "9e563d419255eb6fc0ad3f5a0adbe3fb503c1a23883fe6ab2db69d0197709b29",
+        "meaningKo": "누군가나 무언가를 특정한 방식으로 이해하다"
+      },
+      {
+        "id": "phrasal-make-out",
+        "phrasalVerb": "make out",
+        "storyForm": "made out",
+        "context": "Leo made out a small island in the lake.",
+        "senseId": "f1151ac6998aa84c4dc483e12cb427267d6fe1cf79c363c5802aa9db9c2b2838",
+        "meaningKo": "어렵게 보거나 듣거나 이해하다"
+      },
+      {
+        "id": "phrasal-take-over",
+        "phrasalVerb": "take over",
+        "storyForm": "took over",
+        "context": "Grandfather took over the camera job and asked the children to be at the bridge.",
+        "senseId": "d62296d709ad1a04708502fa4364780584765ed6fb6d619f223fa70b2f393b96",
+        "meaningKo": "일이나 책임을 넘겨받아 맡다"
+      },
+      {
+        "id": "phrasal-come-about",
+        "phrasalVerb": "come about",
+        "storyForm": "came about",
+        "context": "A funny picture came about as Leo walked fast.",
+        "senseId": "359b3f363b66285ef6896462ddbc636827fb08958e5192e051692527be943442",
+        "meaningKo": "특히 우연히 어떤 일이 생기다"
+      },
+      {
+        "id": "phrasal-come-over",
+        "phrasalVerb": "come over",
+        "storyForm": "came over",
+        "context": "A happy calm came over Mina as she saw her family.",
+        "senseId": "83dd054daae41348533dc3b8e5dd0ccdb38a16ac830390d9fc28b6f942e34b46",
+        "meaningKo": "감정이나 기분이 갑자기 밀려오다"
+      },
+      {
+        "id": "phrasal-come-through",
+        "phrasalVerb": "come through",
+        "storyForm": "came through",
+        "context": "A phone call came through from Maple House.",
+        "senseId": "28e6eb390bfefd7724e8af0633ba8168e885612e02e7b695497f1de30600f37f",
+        "meaningKo": "신호나 메시지가 전달되어 오다"
+      },
+      {
+        "id": "phrasal-come-up",
+        "phrasalVerb": "come up",
+        "storyForm": "coming up",
+        "context": "The family day was coming up, and the farm had gifts to give.",
+        "senseId": "5fc159a7312b3e50cf0ca19c0e2921161d35cfa2c2dd7d75222d9f39741f17e1",
+        "meaningKo": "행사나 일이 곧 다가오다"
+      },
+      {
+        "id": "phrasal-look-after",
+        "phrasalVerb": "look after",
+        "storyForm": "looked after",
+        "context": "Grandmother looked after a cow, a sheep, and a young animal.",
+        "senseId": "a33591a3068ed7a5fb55105f0d6beab4a4bcba64ddb4066e2330c8c83024632c",
+        "meaningKo": "누군가나 무언가를 돌보다"
       },
       {
         "id": "phrasal-look-back",
         "phrasalVerb": "look back",
         "storyForm": "looked back",
-        "context": "At night, Mina looked back on the day at her desk.",
+        "context": "She looked back on a happy day in her garden at the beach.",
         "senseId": "fdeb0bf87bb1616eb3d3fbd98db2bc363eef104ed3a6fa76bb78b22a3cacbdfe",
-        "meaningKo": "과거 어떤 시간이나 사건을 생각해 보는 것"
+        "meaningKo": "과거의 일이나 때를 되돌아보다"
       },
       {
-        "id": "phrasal-bring-round",
-        "phrasalVerb": "bring round",
-        "storyForm": "brought Mina's notebook round",
-        "context": "In the morning, Leo brought Mina's notebook round to Maple House.",
-        "senseId": "a706a79e8583463fbc0d0bcc25c98d12c3fc277811ff909b727b8505bf8302a1",
-        "meaningKo": "사람이나 물건을 누군가의 집 등에 데려오거나 가져오다"
+        "id": "phrasal-look-on",
+        "phrasalVerb": "look on",
+        "storyForm": "looked on",
+        "context": "A boy and a girl looked on as Daddy fixed a bicycle.",
+        "senseId": "e02b84518af8560088110e13f240478435fd5429c27fa626302443ff305b312b",
+        "meaningKo": "활동에 참여하지 않고 지켜보다"
       },
       {
-        "id": "phrasal-clean-out",
-        "phrasalVerb": "clean out",
-        "storyForm": "cleaned the bag out",
-        "context": "Mina cleaned the bag out in the garden.",
-        "senseId": "5d23280756bef6a11bcbb0320b02748e433e820d05e86718e127a68bae80f1a8",
-        "meaningKo": "필요 없는 물건과 먼지를 치워 장소나 용기를 깨끗이 하다"
+        "id": "phrasal-look-up",
+        "phrasalVerb": "look up",
+        "storyForm": "looked up",
+        "context": "Mina looked up the boat time on the computer.",
+        "senseId": "09867069e37b462d8b7b993f77c9ad01c8f34bf36e77cb6ca1a8eca586512297",
+        "meaningKo": "책이나 목록, 컴퓨터에서 정보를 찾아보다"
+      },
+      {
+        "id": "phrasal-give-in",
+        "phrasalVerb": "give in",
+        "storyForm": "give in",
+        "context": "The rain was strong, but her father did not give in.",
+        "senseId": "bb45787795206c2ea63b720c1e2810b3e9af63c76d3d62c8eb79b24cdb6dc7a2",
+        "meaningKo": "맞서기를 그만두고 받아들이다"
+      },
+      {
+        "id": "phrasal-back-down",
+        "phrasalVerb": "back down",
+        "storyForm": "back down",
+        "context": "He did not back down from the trip.",
+        "senseId": "aa4bd2af6906fb0084aba245469a40d049e20729a2eb67f3646dcd5d0fdbfc90",
+        "meaningKo": "반대에 부딪혀 요구나 주장을 거두다"
+      },
+      {
+        "id": "phrasal-back-up",
+        "phrasalVerb": "back up",
+        "storyForm": "back up",
+        "context": "Cars began to back up on the mountain road.",
+        "senseId": "4f4f57ff37d0bf8a65b07b6e7355512f6a6b9bc355df7d35717b680112630934",
+        "meaningKo": "차량이 밀려 길게 정체되다"
+      },
+      {
+        "id": "phrasal-work-out",
+        "phrasalVerb": "work out",
+        "storyForm": "worked out",
+        "context": "Mina and Leo worked out a short way to the center.",
+        "senseId": "8bab271a7b9aa0c4408488290d2bf004e3b3ff05f0428d8d0e0774cfcd2377c2",
+        "meaningKo": "사실을 따져 문제를 해결하다"
+      },
+      {
+        "id": "phrasal-put-off",
+        "phrasalVerb": "put off",
+        "storyForm": "put off",
+        "context": "They did not put off the trip.",
+        "senseId": "38c553e844f0b5bba2db93c7c7f0e9bb2c1d178be4d408069b02f07298e02183",
+        "meaningKo": "예정된 일의 시간이나 날짜를 뒤로 미루다"
+      },
+      {
+        "id": "phrasal-keep-on",
+        "phrasalVerb": "keep on",
+        "storyForm": "kept on",
+        "context": "They kept on as rain covered the road.",
+        "senseId": "6cea2eb997ecd5bf39f87b1b6219bcc2d1b0207cf9421f66d24a9b591cbf6541",
+        "meaningKo": "무언가를 계속하다"
+      },
+      {
+        "id": "phrasal-keep-up",
+        "phrasalVerb": "keep up",
+        "storyForm": "kept up",
+        "context": "In the slow truck, they kept up.",
+        "senseId": "cde8f15bc84e616eb5eef7048e25f3219eec2a36a9c33a717dea08c256b3c894",
+        "meaningKo": "하던 일을 계속하다"
+      },
+      {
+        "id": "phrasal-turn-away",
+        "phrasalVerb": "turn away",
+        "storyForm": "turn a car away",
+        "context": "Gray had to turn a car away.",
+        "senseId": "90b378a8fb62b6ee38f24117d8dccd04b12ad0b3a69f51b0a4e33079daf46438",
+        "meaningKo": "누군가가 장소에 들어오지 못하게 돌려보내다"
+      },
+      {
+        "id": "phrasal-turn-on",
+        "phrasalVerb": "turn on",
+        "storyForm": "turned on",
+        "context": "Mina turned on her phone at the bakery.",
+        "senseId": "022bcbd2f080835d42ff62002637241e00002504a077e627a59a98e02233b4fa",
+        "meaningKo": "버튼이나 스위치로 기기를 켜다"
+      },
+      {
+        "id": "phrasal-turn-up",
+        "phrasalVerb": "turn up",
+        "storyForm": "turned up",
+        "context": "Leo turned up with a brown basket and a bottle of orange juice.",
+        "senseId": "3d7208e40a08d84a6a4bc4a30b5d3834189d31d27d0a0067b93012a28a3957c6",
+        "meaningKo": "특히 예고 없이 어떤 곳에 나타나다"
+      },
+      {
+        "id": "phrasal-hand-in",
+        "phrasalVerb": "hand in",
+        "storyForm": "hand in",
+        "context": "They went to the city office to hand in the center letter.",
+        "senseId": "792671a7daa09e56b0ec0599e7d9f51acb47dc73e2335db241adbe89479c45e5",
+        "meaningKo": "권위 있는 사람에게 무언가를 주다"
+      },
+      {
+        "id": "phrasal-show-up",
+        "phrasalVerb": "show up",
+        "storyForm": "showed up",
+        "context": "Wet blue paint showed up on the paper.",
+        "senseId": "13f6d3360e9844d78a94b2375a6527a0d698d9e74858b6762d9e9165b79dfa77",
+        "meaningKo": "무언가가 눈에 보이게 나타나다"
+      },
+      {
+        "id": "phrasal-run-away",
+        "phrasalVerb": "run away",
+        "storyForm": "ran away",
+        "context": "A small child did not like the market and ran away with Mina's bag.",
+        "senseId": "88517e58be60f2b72e49661fab46b9aaff8ebc378c76038ab0fc8e37077770dd",
+        "meaningKo": "머물던 곳에서 몰래 달아나다"
+      },
+      {
+        "id": "phrasal-run-through",
+        "phrasalVerb": "run through",
+        "storyForm": "ran through",
+        "context": "Mina ran through the plan in a calm way.",
+        "senseId": "4079245ebbf4ec006c09c8ecfd87aeea0eb1a6cdf64535f5f77bde16e69809de",
+        "meaningKo": "무언가를 빠르게 설명하거나 읽어 보다"
+      },
+      {
+        "id": "phrasal-run-to",
+        "phrasalVerb": "run to",
+        "storyForm": "ran to",
+        "context": "The meal price ran to their full bag of money.",
+        "senseId": "335ad9e4674dd4eca901114be2e8fe9408fb9a3f468e8faff3601549d46bd86f",
+        "meaningKo": "금액이나 수량이 특정 수준에 이르다"
+      },
+      {
+        "id": "phrasal-move-on",
+        "phrasalVerb": "move on",
+        "storyForm": "move on",
+        "context": "Mina and Leo finished that job and chose to move on to the bank job.",
+        "senseId": "7ed03822a8dfc7abad95b1c081cfd1a24bb6e7ae5a4a0c154a944e1eb90486d8",
+        "meaningKo": "하던 이야기나 일을 멈추고 다음 것으로 넘어가다"
+      },
+      {
+        "id": "phrasal-move-out",
+        "phrasalVerb": "move out",
+        "storyForm": "move out",
+        "context": "The market office planned to move out of the old apartment at the river.",
+        "senseId": "0e4834759b831712b57b44e01431a02b9ebd1c5525c8a5dca60f5c7b70078363",
+        "meaningKo": "살던 집이나 사업장을 완전히 떠나다"
+      },
+      {
+        "id": "phrasal-hold-in",
+        "phrasalVerb": "hold in",
+        "storyForm": "held in",
+        "context": "Mina held in a cry.",
+        "senseId": "da858440083ab4d329b85f2165a3b73852982a936a8b15c2a1cac31f61c422d7",
+        "meaningKo": "감정을 겉으로 드러내지 않고 참다"
+      },
+      {
+        "id": "phrasal-hold-up",
+        "phrasalVerb": "hold up",
+        "storyForm": "held up",
+        "context": "A strong arm held up a bright bell in the round tower, and a deep bridge crossed the river.",
+        "senseId": "e322003cfdb8e27049eab548c02fba3c67d3c8a9fcb6c3ee61152de08f15772f",
+        "meaningKo": "사람이나 물건이 쓰러지지 않도록 받치다"
+      },
+      {
+        "id": "phrasal-bring-up",
+        "phrasalVerb": "bring up",
+        "storyForm": "brought up",
+        "context": "Leo brought up the family day and the blue paint.",
+        "senseId": "62aecc874e19f8d806e6743b79a0276038e2b15f99a36896789693a2df0bdaed",
+        "meaningKo": "어떤 주제를 꺼내 이야기하기 시작하다"
+      },
+      {
+        "id": "phrasal-write-in",
+        "phrasalVerb": "write in",
+        "storyForm": "write in",
+        "context": "A woman asked Mina to write in her address.",
+        "senseId": "9cc240ba2247dbd7486c64bf30d6cc41eb19bdce30042d2e0c1ce94c4a301932",
+        "meaningKo": "빠진 단어나 숫자를 써넣다"
+      },
+      {
+        "id": "phrasal-book-in",
+        "phrasalVerb": "book in",
+        "storyForm": "booked the boat captain in",
+        "context": "She booked the boat captain in at a cheap hotel.",
+        "senseId": "40309027df3da0b2317d6f660a9b060b9659898cf058f150e5affc5d0a4cfbd8",
+        "meaningKo": "자신이나 다른 사람이 숙박하도록 예약하다"
+      },
+      {
+        "id": "phrasal-end-up",
+        "phrasalVerb": "end up",
+        "storyForm": "ended up",
+        "context": "Mina and Leo took a bad road and ended up at the museum.",
+        "senseId": "aeace14a1e989396dbbbf98030703ce08ab8c926a6410c0e03d8566e50031ba3",
+        "meaningKo": "어떤 일을 거쳐 결국 특정 장소나 상태에 이르다"
+      },
+      {
+        "id": "phrasal-stand-out",
+        "phrasalVerb": "stand out",
+        "storyForm": "stand out",
+        "context": "A golden balloon at the door made the museum stand out.",
+        "senseId": "9748640b75211257b03c76e52046bd343542b44a82beb9dd16cca142274db5ab",
+        "meaningKo": "달라서 쉽게 눈에 띄다"
+      },
+      {
+        "id": "phrasal-cut-down",
+        "phrasalVerb": "cut down",
+        "storyForm": "cut down",
+        "context": "The artist cut down the price of a beautiful painting.",
+        "senseId": "5948f5ec0a88411a6a5b790bddabfda39e7367a1ff1b5886c25b9f8bb54c4495",
+        "meaningKo": "무언가의 양을 줄이다"
+      },
+      {
+        "id": "phrasal-cut-in",
+        "phrasalVerb": "cut in",
+        "storyForm": "cut in",
+        "context": "Joon cut in as Mina began to pay.",
+        "senseId": "3a8bc32ef41ff209eba410dabe04163102547e7ab1f84a9d527987ac9248c8d4",
+        "meaningKo": "말하는 사람에게 끼어들다"
+      },
+      {
+        "id": "phrasal-cut-off",
+        "phrasalVerb": "cut off",
+        "storyForm": "cut Joon off",
+        "context": "The phone line cut Joon off, but Mina carried on.",
+        "senseId": "9d3cafd0a48396d0adc5be1aa0464d2e6890451cd257dca15f1ff41d520d1b29",
+        "meaningKo": "통화 중 전화 연결이 끊기게 하다"
+      },
+      {
+        "id": "phrasal-carry-on",
+        "phrasalVerb": "carry on",
+        "storyForm": "carried on",
+        "context": "The phone line cut Joon off, but Mina carried on.",
+        "senseId": "09286ecf5580faa2eec6858578f7036b676c2f6b0d5b4ce58d0aae39be1e2b3d",
+        "meaningKo": "하던 일을 멈추지 않고 계속하다"
+      },
+      {
+        "id": "phrasal-break-down",
+        "phrasalVerb": "break down",
+        "storyForm": "broke down",
+        "context": "Daddy's truck broke down on the mountain road.",
+        "senseId": "c046882857a0d0f1c836d693da93c6d7c3dcf7915d0e807b9656503c97ea911b",
+        "meaningKo": "기계나 차량이 고장 나 작동을 멈추다"
+      },
+      {
+        "id": "phrasal-break-through",
+        "phrasalVerb": "break through",
+        "storyForm": "broke through",
+        "context": "Light broke through the cloudy sky and made the river bright.",
+        "senseId": "e1ae03bfbed954a530414bee30c9af674fde691768f2ddf0b1afde0cf33e510e",
+        "meaningKo": "해가 구름 사이로 나타나다"
+      },
+      {
+        "id": "phrasal-pick-out",
+        "phrasalVerb": "pick out",
+        "storyForm": "picked out",
+        "context": "Mina picked out a clean box for the camera.",
+        "senseId": "0113b7a8c1ec022f922b11203ad5f3b6c4ffc14afc7ee9efd30409d4d92bf34d",
+        "meaningKo": "여럿 가운데 하나를 고르다"
+      },
+      {
+        "id": "phrasal-catch-up",
+        "phrasalVerb": "catch up",
+        "storyForm": "catch up",
+        "context": "Leo met her at the library to catch up.",
+        "senseId": "a714b05d0e645cabccc10a51e72f4a1309ab7a8eb098884be87ab1cfae13c545",
+        "meaningKo": "오랜만에 만나 서로의 근황을 이야기하다"
+      },
+      {
+        "id": "phrasal-rule-out",
+        "phrasalVerb": "rule out",
+        "storyForm": "ruled out",
+        "context": "They ruled out the airport, the island, and the beach.",
+        "senseId": "541663b838704cf97c408be2f807200994ec0a0f178a850f4ec6414ea6e7620e",
+        "meaningKo": "어떤 가능성을 더는 고려하지 않다"
+      },
+      {
+        "id": "phrasal-close-in",
+        "phrasalVerb": "close in",
+        "storyForm": "close in",
+        "context": "Night began to close in at the old castle.",
+        "senseId": "22d8f500702b411eeebf3dff264a48c3eda11134eaa78abe92d60e4b09484a60",
+        "meaningKo": "밤이나 어둠이 다가와 점점 어두워지다"
+      },
+      {
+        "id": "phrasal-go-against",
+        "phrasalVerb": "go against",
+        "storyForm": "went against",
+        "context": "A bank rule went against their plan, and the bank did not lend Mina and Leo money.",
+        "senseId": "af85f703ba4add520d98483f91f5dd13031610ca42b9155dc7ae2b260ff85274",
+        "meaningKo": "결정이나 판결이 누군가에게 불리하게 나다"
+      },
+      {
+        "id": "phrasal-go-around",
+        "phrasalVerb": "go around",
+        "storyForm": "went around",
+        "context": "Mina and Leo went around the museum with a quiet guest.",
+        "senseId": "1e3250ce99d85f27bc485ad2a5f175ba57a6afd644c592944fa56943357b900a",
+        "meaningKo": "사람이나 장소를 방문하다"
+      },
+      {
+        "id": "phrasal-go-together",
+        "phrasalVerb": "go together",
+        "storyForm": "go together",
+        "context": "Butter and warm bread go together, but the children had to go without lunch.",
+        "senseId": "9348a7a28a175155ba7ce47a3a083623f95b341802338dac798b9f0516443392",
+        "meaningKo": "둘 이상의 것이 함께 가면 자주 함께 존재한다"
+      },
+      {
+        "id": "phrasal-go-without",
+        "phrasalVerb": "go without",
+        "storyForm": "go without",
+        "context": "Butter and warm bread go together, but the children had to go without lunch.",
+        "senseId": "a30402a8030fe01ac36261a980f1d7f495783e91aa5d803653ba9c0dc3a674b5",
+        "meaningKo": "필요하거나 원하는 것 없이 지내다"
+      },
+      {
+        "id": "phrasal-get-down",
+        "phrasalVerb": "get down",
+        "storyForm": "got the hotel address down",
+        "context": "Mina got the hotel address down on a newspaper page.",
+        "senseId": "97d063221c750077291d2c2eeb2dd1658455c329eee974401000c25366c6f027",
+        "meaningKo": "무언가를 글로 적어 두다"
+      },
+      {
+        "id": "phrasal-get-together",
+        "phrasalVerb": "get together",
+        "storyForm": "get together",
+        "context": "The family planned to get together at the center.",
+        "senseId": "67ef4e27e159d7a7aa5f1b9fb7ad3b3b0688a66b88e3c274728ae30ea99bd42e",
+        "meaningKo": "사람들이 만나 함께 시간을 보내다"
+      },
+      {
+        "id": "phrasal-take-back",
+        "phrasalVerb": "take back",
+        "storyForm": "take a heavy camera back",
+        "context": "Leo had to take a heavy camera back to the store.",
+        "senseId": "4059fda45c51f578008852e9d10dbfb49422cae9e4d52a746d0537bd985cec42",
+        "meaningKo": "고장 났거나 맞지 않는 물건을 가게에 반품하다"
+      },
+      {
+        "id": "phrasal-take-down",
+        "phrasalVerb": "take down",
+        "storyForm": "took down",
+        "context": "The students took down the high birthday wall at the center.",
+        "senseId": "7e3ac893509779340fbac08406b5c9f69cc7c5b834009fb41a165e205277b3cb",
+        "meaningKo": "큰 구조물을 해체하다"
+      },
+      {
+        "id": "phrasal-come-along",
+        "phrasalVerb": "come along",
+        "storyForm": "come along",
+        "context": "Sara asked Mina to come along to the bakery.",
+        "senseId": "22ae78a034d564a5d5d4332a8730f09202a497172d3b1c2b2038e96f04118aba",
+        "meaningKo": "누군가와 함께 가다"
+      },
+      {
+        "id": "phrasal-give-out",
+        "phrasalVerb": "give out",
+        "storyForm": "gave out",
+        "context": "The artist gave out a map, a calendar, and a picture.",
+        "senseId": "3e665cd4ca59b625485ec1d084e522a1bccc132081cea4edf412b0c9f32ffe20",
+        "meaningKo": "여러 사람에게 무언가를 나누어 주다"
+      },
+      {
+        "id": "phrasal-back-out",
+        "phrasalVerb": "back out",
+        "storyForm": "back out",
+        "context": "The captain did not back out of the river trip.",
+        "senseId": "5b6cb5792d268430c5f0034df63ef555f0c91301d8adda0416e66a66c455e6a2",
+        "meaningKo": "약속이나 합의에서 빠지다"
+      },
+      {
+        "id": "phrasal-call-out",
+        "phrasalVerb": "call out",
+        "storyForm": "called out",
+        "context": "Mina called out as the wet basket fell.",
+        "senseId": "f70d0cb6ac69d1d31fc89de613368c22c2bd8e1cf09f813d839aabed84c3ba91",
+        "meaningKo": "누군가의 주의를 끌려고 큰 소리로 부르다"
+      },
+      {
+        "id": "phrasal-let-in",
+        "phrasalVerb": "let in",
+        "storyForm": "let Mina and Leo in",
+        "context": "A friendly woman opened the museum and let Mina and Leo in.",
+        "senseId": "1662f6973663236e5b7fc5ddb1839bb7c8840d97aff2c96c9c5834932bc0cf61",
+        "meaningKo": "누군가가 집이나 방 등에 들어오게 하다"
+      },
+      {
+        "id": "phrasal-let-into",
+        "phrasalVerb": "let into",
+        "storyForm": "let Mina into",
+        "context": "The woman let Mina into a family plan for the old camera.",
+        "senseId": "4e3a3fbef0950e2e0072f674cd52635954c1f4113d443e76cb852e1c5d6f5499",
+        "meaningKo": "비밀을 알려 주다"
+      },
+      {
+        "id": "phrasal-turn-down",
+        "phrasalVerb": "turn down",
+        "storyForm": "turned down",
+        "context": "Mina turned down a free hotel room and chose the center.",
+        "senseId": "adf6c678377634c83c6c8e0cb53b48682cc3a054f025c316934ed8d9f3e559a3",
+        "meaningKo": "제안이나 요청을 거절하다"
+      },
+      {
+        "id": "phrasal-start-on",
+        "phrasalVerb": "start on",
+        "storyForm": "started on",
+        "context": "At Maple House, the students started on the fair map at a circle of desks.",
+        "senseId": "449a735f6b18aa8dbc564aaca96f3ab3fc03c62a622ac6dd3ad20711847d1dba",
+        "meaningKo": "무언가를 시작해 작업하거나 처리하다"
+      },
+      {
+        "id": "phrasal-hand-down",
+        "phrasalVerb": "hand down",
+        "storyForm": "handed down",
+        "context": "Grandmother handed down her old warm coat to her young daughter.",
+        "senseId": "2f949d8ab519f72538e13ea90eb316b22362d1ce273b063190ddef384afb0607",
+        "meaningKo": "옷이나 물건을 다음 세대나 어린 사람에게 물려주다"
+      },
+      {
+        "id": "phrasal-play-up",
+        "phrasalVerb": "play up",
+        "storyForm": "play up",
+        "context": "Bored children began to play up on the clean floor.",
+        "senseId": "cbd7e3293fc94be9d28258999d3a286ff1c802bd1732911f16e235400bd7be6e",
+        "meaningKo": "아이들이 장난스럽게 말썽을 부리다"
+      },
+      {
+        "id": "phrasal-run-off",
+        "phrasalVerb": "run off",
+        "storyForm": "ran off",
+        "context": "Rain ran off the roof and crossed the ground.",
+        "senseId": "7063bc436e4d4cd3ca7774cb76dce0c86f84f6158b00668c9801576f8251552c",
+        "meaningKo": "액체가 표면이나 용기에서 흘러나가다"
+      },
+      {
+        "id": "phrasal-hold-out",
+        "phrasalVerb": "hold out",
+        "storyForm": "held out",
+        "context": "Leo held out a dry shirt for Mina.",
+        "senseId": "0836a8e3738de785ddbca865fc8cb04ab505873ba45e5fdef8dd1313501c8ad9",
+        "meaningKo": "다른 사람이 받을 수 있도록 무언가를 내밀다"
+      },
+      {
+        "id": "phrasal-hold-over",
+        "phrasalVerb": "hold over",
+        "storyForm": "held over",
+        "context": "The dinner lesson was held over for a full hour.",
+        "senseId": "7543dcee40808b7edfa96c2cebb3c00c22f8706577ec94d47bfa64f39a883598",
+        "meaningKo": "일을 나중 시간이나 날짜로 미루다"
+      },
+      {
+        "id": "phrasal-water-down",
+        "phrasalVerb": "water down",
+        "storyForm": "water down",
+        "context": "The office woman did not water down the important letter.",
+        "senseId": "2da65674e1ca1a6899ed65d0a9346bdeb9ac477d05ce3380b60ec01e99633518",
+        "meaningKo": "글이나 발언의 강도나 세부 내용을 약하게 만들다"
+      },
+      {
+        "id": "phrasal-write-off",
+        "phrasalVerb": "write off",
+        "storyForm": "write off",
+        "context": "Mina did not write off the center as a lost house.",
+        "senseId": "d069434e839fda2b34c5a8090cf8caf0342eb63f9c1733b3b395e3ee142af1c7",
+        "meaningKo": "성공하지 못할 것이라 단정하고 더는 관심을 두지 않다"
+      },
+      {
+        "id": "phrasal-sit-back",
+        "phrasalVerb": "sit back",
+        "storyForm": "sit back",
+        "context": "Daddy asked the family to sit back for a minute, and a tired guest sat the ball game out.",
+        "senseId": "b6cfa408ca47eb3b38c017f4b1aa47a1f41adbd1c0f20c2192243c88354c218f",
+        "meaningKo": "편히 기대앉아 잠시 쉬다"
+      },
+      {
+        "id": "phrasal-sit-out",
+        "phrasalVerb": "sit out",
+        "storyForm": "sat the ball game out",
+        "context": "Daddy asked the family to sit back for a minute, and a tired guest sat the ball game out.",
+        "senseId": "58dfd632d137a2bcc91becd979d400554ca9d0c2557bfb856ca05887a06a06a7",
+        "meaningKo": "어떤 활동에 잠시 참여하지 않다"
+      },
+      {
+        "id": "phrasal-pay-off",
+        "phrasalVerb": "pay off",
+        "storyForm": "pay off",
+        "context": "Their hard job began to pay off as the center became clean.",
+        "senseId": "e0a4ca9f7983de214f56019d28d206f0dbfac6063323db8163a1b4e3257df393",
+        "meaningKo": "한 일이 좋은 결과나 이익을 가져오다"
+      },
+      {
+        "id": "phrasal-grow-into",
+        "phrasalVerb": "grow into",
+        "storyForm": "grow into",
+        "context": "A nervous girl began to grow into a brave captain.",
+        "senseId": "bd55cad708956bf70f7508b4365c792718535a2a6046e55ced58fedcf9875447",
+        "meaningKo": "성장하거나 발전하여 특정한 사람이나 것이 되다"
+      },
+      {
+        "id": "phrasal-grow-on",
+        "phrasalVerb": "grow on",
+        "storyForm": "grow on",
+        "context": "The church dance began to grow on Joon.",
+        "senseId": "3d6a1145ab51aaae2ee16a1a424ea24f35efb5a2220a204ab4c00639a35c030d",
+        "meaningKo": "처음보다 점점 더 좋아지다"
+      },
+      {
+        "id": "phrasal-walk-into",
+        "phrasalVerb": "walk into",
+        "storyForm": "walked into",
+        "context": "Mina walked into a glass door and had a bad knee.",
+        "senseId": "2454242fb890ce5c51405557d906fc9624bb7d4087e416659ad94128c7430ef1",
+        "meaningKo": "걷다가 실수로 몸의 일부를 무언가에 부딪히다"
+      },
+      {
+        "id": "phrasal-wait-on",
+        "phrasalVerb": "wait on",
+        "storyForm": "wait on",
+        "context": "A college student began to wait on the hungry guests.",
+        "senseId": "35384b9b79cb657eaed2c155448ca6152b482a239ce7f9fc4877501ac2033083",
+        "meaningKo": "식당에서 손님에게 음식을 내고 시중들다"
+      },
+      {
+        "id": "phrasal-sell-out",
+        "phrasalVerb": "sell out",
+        "storyForm": "sold out",
+        "context": "The bakery sold out of cookies and fresh cake.",
+        "senseId": "99da04f6d74597a5fe25cdd7317115790fd2361b2847033d53de1f7a4a4c3547",
+        "meaningKo": "가지고 있던 물건을 모두 팔다"
+      },
+      {
+        "id": "phrasal-carry-through",
+        "phrasalVerb": "carry through",
+        "storyForm": "carry the fair through",
+        "context": "The class planned to carry the fair through.",
+        "senseId": "c0cd30992978deb6628311d829ab545ce3dbcce313c25ad5733448cee65a0e23",
+        "meaningKo": "어려움이 있어도 계획을 끝까지 실행하다"
+      },
+      {
+        "id": "phrasal-drive-off",
+        "phrasalVerb": "drive off",
+        "storyForm": "drove off",
+        "context": "Daddy got in the truck and drove off to the factory.",
+        "senseId": "65e1d90580661e4a9ab6d8cb9f702414ea63e96883271b9df8307882b1cf8a03",
+        "meaningKo": "차량을 타고 출발해 떠나다"
+      },
+      {
+        "id": "phrasal-break-into",
+        "phrasalVerb": "break into",
+        "storyForm": "broke into",
+        "context": "A happy guest broke into a dance as Joon played guitar.",
+        "senseId": "383a8f356dcdf90dc62694f900d1689c4dc046e35478dd5d61c3a202bdbed5c3",
+        "meaningKo": "갑자기 어떤 행동을 시작하다"
+      },
+      {
+        "id": "phrasal-break-off",
+        "phrasalVerb": "break off",
+        "storyForm": "broke off",
+        "context": "A tree fell, and a small arm of the tree broke off.",
+        "senseId": "bc53c07ff0c116be58e91a1d8f09cdae4226bd53da3adfd716b35e08ed02694a",
+        "meaningKo": "본체에서 부러져 떨어지다"
+      },
+      {
+        "id": "phrasal-pick-on",
+        "phrasalVerb": "pick on",
+        "storyForm": "pick on",
+        "context": "Gray began to pick on a small child, and Mina asked Gray to be kind.",
+        "senseId": "472d8a94a9b3a2048afd5f61750febfb3b2fe8a553205ee69ac3d6a655fb5ea7",
+        "meaningKo": "누군가를 계속 부당하게 대하거나 흠잡다"
+      },
+      {
+        "id": "phrasal-phone-in",
+        "phrasalVerb": "phone in",
+        "storyForm": "phoned in",
+        "context": "Sara phoned in from the hospital.",
+        "senseId": "c66e3004ea818bb935ff6e86d109507341a020f3971748cc9f8a9a2145134775",
+        "meaningKo": "직장에 전화해 메시지를 전하다"
+      },
+      {
+        "id": "phrasal-catch-on",
+        "phrasalVerb": "catch on",
+        "storyForm": "caught on",
+        "context": "Gray caught on and gave the child a friendly hand.",
+        "senseId": "965d51111eeaff0864529f0649071214cd20fc3fe9938ceb44c55f52c5d3d1ec",
+        "meaningKo": "이해하다"
+      },
+      {
+        "id": "phrasal-step-out",
+        "phrasalVerb": "step out",
+        "storyForm": "stepped out",
+        "context": "Mina stepped out to check the dangerous road.",
+        "senseId": "99a401ec27d4b81f0ac5b3e89942fdcbb133b3a71b3c4d6540a612518fcf2d50",
+        "meaningKo": "잠시 자리를 비우다"
+      },
+      {
+        "id": "phrasal-draw-in",
+        "phrasalVerb": "draw in",
+        "storyForm": "drew in",
+        "context": "She drew in cool air at the forest door.",
+        "senseId": "fda154d8c26737ee20a767e235a19c888fdb75b7b9eb2f978bc731bc85d39457",
+        "meaningKo": "공기와 같은 것을 몸에 넣다"
+      },
+      {
+        "id": "phrasal-draw-out",
+        "phrasalVerb": "draw out",
+        "storyForm": "drew out",
+        "context": "Sara drew out the quiet girl with a good language game.",
+        "senseId": "54fe70836232b12ff4740c0bee57203523c4ebae35bf306a6e2934787bca3e46",
+        "meaningKo": "편안하게 해 주어 더 많이 말하도록 이끌다"
+      },
+      {
+        "id": "phrasal-throw-off",
+        "phrasalVerb": "throw off",
+        "storyForm": "threw off",
+        "context": "The girl threw off her wet coat and gave it to her mother.",
+        "senseId": "7de6ebf3496e8496b72f511a8a5752c0213a603245865d8fc0e1dbe11e3f5fcf",
+        "meaningKo": "옷 한 벌을 재빨리 벗다"
+      },
+      {
+        "id": "phrasal-throw-up",
+        "phrasalVerb": "throw up",
+        "storyForm": "threw up",
+        "context": "Heavy rain threw up a broken door at the center.",
+        "senseId": "980f14f1e1a5b8aa57ddeca7b3f897be699143910ef927a74147d98f2178fe87",
+        "meaningKo": "뜻밖의 문제나 결과를 만들어 내다"
+      },
+      {
+        "id": "phrasal-sign-in",
+        "phrasalVerb": "sign in",
+        "storyForm": "sign in",
+        "context": "Visitors had to sign in at the desk.",
+        "senseId": "9a3811dcba397b1ce0c0a20d634306bb49782450586095597ba2cbc6838a0fed",
+        "meaningKo": "장소에 도착해 공식 명단에 이름을 적다"
       },
       {
         "id": "phrasal-sign-off",
         "phrasalVerb": "sign off",
         "storyForm": "signed off",
-        "context": "Mina signed off with her name.",
+        "context": "Mina signed off her city letter with a little flower.",
         "senseId": "dc0170cd82bf022fdb811f5a2c661a017453f893655e0b78e66c90a48c5f7947",
         "meaningKo": "편지를 끝맺다"
+      },
+      {
+        "id": "phrasal-answer-back",
+        "phrasalVerb": "answer back",
+        "storyForm": "answer back",
+        "context": "Gray did not answer back as Mina gave Gray a helpful job.",
+        "senseId": "90e33113bb00c6673efa61f162ff3304247c3692e96766d584713e5382cc01d9",
+        "meaningKo": "윗사람에게 버릇없이 대꾸하다"
+      },
+      {
+        "id": "phrasal-miss-out",
+        "phrasalVerb": "miss out",
+        "storyForm": "miss out",
+        "context": "\"The children will not miss out on the holiday dinner,\" Mina wrote on the board.",
+        "senseId": "16decc4dffcb296d89f50ace395df1ef5e6655ddfa27692fc39e98ddcc1248bd",
+        "meaningKo": "무언가를 하거나 가질 기회를 놓치다"
+      },
+      {
+        "id": "phrasal-fish-out",
+        "phrasalVerb": "fish out",
+        "storyForm": "fished a key out",
+        "context": "She fished a key out of her deep pocket.",
+        "senseId": "e21686dfc13f1b0d66fdc75b6b28f580056bae69efe82f97d175c675aefb1b7c",
+        "meaningKo": "가방이나 용기에서 물건을 찾아 꺼내다"
       },
       {
         "id": "phrasal-wind-down",
         "phrasalVerb": "wind down",
         "storyForm": "wind down",
-        "context": "Mina read a funny newspaper page to wind down.",
+        "context": "The class began to wind down with hot coffee and cookies.",
         "senseId": "4df0fdbed96e68769ef5d543bcd34da12a7bb51e81db8ff6c2206f11e882ba77",
         "meaningKo": "흥분하거나 걱정한 뒤 긴장을 풀다"
+      },
+      {
+        "id": "phrasal-wind-up",
+        "phrasalVerb": "wind up",
+        "storyForm": "wound up",
+        "context": "Leo wound up the lesson with a clever plan for the fair.",
+        "senseId": "ac33542646d16458e8860cb8ba3d9e7b916885bea0fe93a02862d2b45471abec",
+        "meaningKo": "어떤 일을 끝내다"
+      },
+      {
+        "id": "phrasal-ride-out",
+        "phrasalVerb": "ride out",
+        "storyForm": "ride out",
+        "context": "The family had to ride out the dark night at the church.",
+        "senseId": "56f1adb04a0f4020b44dc0a5886eb0ce142275e4b1b5a63a65010bb0262d8e7a",
+        "meaningKo": "어려운 시기나 상황을 큰 문제 없이 견뎌 내다"
+      },
+      {
+        "id": "phrasal-shop-around",
+        "phrasalVerb": "shop around",
+        "storyForm": "shopped around",
+        "context": "Mina and Sara shopped around for a cheap knife, glass cups, and a new plate.",
+        "senseId": "d9e554b2d4d1ad2dc085b7bbcc49c37d1aef3b7353d9a9ca1c25595210db98ac",
+        "meaningKo": "사기 전에 여러 가게를 둘러보다"
+      },
+      {
+        "id": "phrasal-cry-out",
+        "phrasalVerb": "cry out",
+        "storyForm": "cried out",
+        "context": "Joon cried out as a turtle came alive at his foot.",
+        "senseId": "b394222bbf53ee78f2bc50159b1b4d6c4d74aaea133a0a909551e51052046a84",
+        "meaningKo": "놀라거나 걱정될 때 큰 소리로 외치다"
+      },
+      {
+        "id": "phrasal-blow-up",
+        "phrasalVerb": "blow up",
+        "storyForm": "blew up",
+        "context": "The children blew up a golden balloon and a blue balloon.",
+        "senseId": "633a6cad57a7a03682833f8db7084e4382b5d81cc635df8d7e3cfa9be3b91420",
+        "meaningKo": "공기나 가스를 넣어 부풀리다"
+      },
+      {
+        "id": "phrasal-dress-up",
+        "phrasalVerb": "dress up",
+        "storyForm": "dressed up",
+        "context": "They dressed up as a captain, a doctor, a pilot, and a famous king.",
+        "senseId": "d5d44c1f6a6d62c38c15d941912f556566321ba0ea4e434e4fcb13107340f72e",
+        "meaningKo": "특별한 옷이나 의상을 차려입다"
+      },
+      {
+        "id": "phrasal-clean-out",
+        "phrasalVerb": "clean out",
+        "storyForm": "cleaned out",
+        "context": "The students cleaned out the party room and found a huge mirror.",
+        "senseId": "5d23280756bef6a11bcbb0320b02748e433e820d05e86718e127a68bae80f1a8",
+        "meaningKo": "안의 물건과 먼지를 모두 치워 깨끗이 비우다"
+      },
+      {
+        "id": "phrasal-dry-out",
+        "phrasalVerb": "dry out",
+        "storyForm": "dry out",
+        "context": "Wet paint had to dry out.",
+        "senseId": "5e22c400b3db68a4361d572cd013f55cafc8814ec347d9dce838dfa27629f3f8",
+        "meaningKo": "물기가 빠져 마르다"
+      },
+      {
+        "id": "phrasal-dry-up",
+        "phrasalVerb": "dry up",
+        "storyForm": "dry up",
+        "context": "Water in the little garden pool began to dry up.",
+        "senseId": "7f588cc5c494b5bd38e75a3664920b208d54b05824ed50f772308de78685ad00",
+        "meaningKo": "물기가 모두 빠져 완전히 마르다"
+      },
+      {
+        "id": "phrasal-ring-in",
+        "phrasalVerb": "ring in",
+        "storyForm": "ring in",
+        "context": "The church planned to ring in the new year at the fair.",
+        "senseId": "173505614ace51344420eb61143fd1d1d8612366ce4bcae1a32599d91bea45b6",
+        "meaningKo": "새해의 시작을 축하하며 종을 울리다"
+      },
+      {
+        "id": "phrasal-kick-in",
+        "phrasalVerb": "kick in",
+        "storyForm": "kick in",
+        "context": "Sara gave Joon time for his knee care to kick in.",
+        "senseId": "b5ef9b8cb66135218793aeff14fc25c6bacb37b5b1f6d26c1e68831223d7283d",
+        "meaningKo": "효과가 나타나기 시작하다"
+      },
+      {
+        "id": "phrasal-kick-out",
+        "phrasalVerb": "kick out",
+        "storyForm": "kick the guest out",
+        "context": "Daddy had to kick the guest out.",
+        "senseId": "93542111c7320d6049533f80d9514221026231574b60152249261940d542a4c4",
+        "meaningKo": "누군가를 장소나 단체에서 나가게 하다"
+      },
+      {
+        "id": "phrasal-wash-out",
+        "phrasalVerb": "wash out",
+        "storyForm": "washed the cake out",
+        "context": "Mina washed the cake out of her white shirt with soap.",
+        "senseId": "f1ac1375b3fe113852a4cfbf895ceef0789c63ecd4f80e5a23270ee7a9b1a159",
+        "meaningKo": "천에 묻은 얼룩을 씻어 내다"
+      },
+      {
+        "id": "phrasal-wash-up",
+        "phrasalVerb": "wash up",
+        "storyForm": "washed up",
+        "context": "Her mother washed up the plates, cups, bowls, and spoons.",
+        "senseId": "d65041d5d9d160e6174fcfab9f3dfc756ceb659d218b479faa6e84e9ed96d1a9",
+        "meaningKo": "식사 뒤에 접시나 컵 등을 설거지하다"
+      },
+      {
+        "id": "phrasal-pencil-in",
+        "phrasalVerb": "pencil in",
+        "storyForm": "penciled in",
+        "context": "Leo penciled in piano practice for a full hour.",
+        "senseId": "23b5c55c89115499e22c5fa8ed1c959874fdc95fc14e1bb19d48eb71ede9b3c3",
+        "meaningKo": "나중에 바뀔 수 있음을 전제로 일정을 임시로 잡다"
+      },
+      {
+        "id": "phrasal-do-over",
+        "phrasalVerb": "do over",
+        "storyForm": "do a party picture over",
+        "context": "A student had to do a party picture over on fresh paper.",
+        "senseId": "474906210c5af37c059bd39cb2b5297b09f0b617465b5975b3edd692bfc7e232",
+        "meaningKo": "처음에 잘못해서 처음부터 다시 하다"
+      },
+      {
+        "id": "phrasal-take-against",
+        "phrasalVerb": "take against",
+        "storyForm": "take against",
+        "context": "Mina did not take against Gray.",
+        "senseId": "d3f7927dc4e5ea8898541b0c841560d215cd77e8f49d4192bf0a78ab462221ca",
+        "meaningKo": "뚜렷한 이유 없이 싫어하기 시작하다"
+      },
+      {
+        "id": "phrasal-take-apart",
+        "phrasalVerb": "take apart",
+        "storyForm": "took apart",
+        "context": "Joon took apart the old radio for the science table.",
+        "senseId": "f1e9afa06bdabc4b4b64903b57fad56b1833ae37ff9aa96a210bfab97f64f9de",
+        "meaningKo": "물건을 여러 조각으로 분해하다"
+      },
+      {
+        "id": "phrasal-see-off",
+        "phrasalVerb": "see off",
+        "storyForm": "see a pilot off",
+        "context": "The family went to the station to see a pilot off.",
+        "senseId": "9452d322bd07a0a6dbb99d5ba65aaf5ed02f85430da382202c0146b6a0ae8e91",
+        "meaningKo": "작별 인사를 하려고 역이나 공항 등에 함께 가다"
+      },
+      {
+        "id": "phrasal-man-up",
+        "phrasalVerb": "man up",
+        "storyForm": "man up",
+        "context": "Mina asked Joon to man up and carry the heavy box with her.",
+        "senseId": "50d138716fe747f7bd88f7af29d278b1e548d789dea70c65b52ee2aceaa79ca8",
+        "meaningKo": "용기를 내어 어려운 상황에 맞서다"
+      },
+      {
+        "id": "phrasal-keep-back",
+        "phrasalVerb": "keep back",
+        "storyForm": "kept back",
+        "context": "The cook kept back salt, sugar, cheese, and potatoes for dinner.",
+        "senseId": "7f29c5b8667120140c3c2303cc5a6144d2185c8d03023658738c17bb8952b61b",
+        "meaningKo": "나중에 쓰려고 일부를 남겨 두다"
+      },
+      {
+        "id": "phrasal-bring-round",
+        "phrasalVerb": "bring round",
+        "storyForm": "brought the fixed radio round",
+        "context": "Leo brought the fixed radio round to Mina's house.",
+        "senseId": "a706a79e8583463fbc0d0bcc25c98d12c3fc277811ff909b727b8505bf8302a1",
+        "meaningKo": "사람이나 물건을 상대의 집으로 데려오다"
+      },
+      {
+        "id": "phrasal-push-off",
+        "phrasalVerb": "push off",
+        "storyForm": "push off",
+        "context": "The boat captain had to push off from the sea wall.",
+        "senseId": "4f89d4756a9a8bfffa69d10076e59ec4e137d7a5b448dfe7ea5ea265bdae116a",
+        "meaningKo": "장소를 떠나다"
+      },
+      {
+        "id": "phrasal-check-off",
+        "phrasalVerb": "check off",
+        "storyForm": "checked the finished jobs off",
+        "context": "Mina checked the finished jobs off in her notebook.",
+        "senseId": "6c6ba9985bea9cc900f90c08029ab89ea0f781867529080061658b63aaa87239",
+        "meaningKo": "목록의 항목에 완료 표시를 하다"
+      },
+      {
+        "id": "phrasal-sing-out",
+        "phrasalVerb": "sing out",
+        "storyForm": "sing out",
+        "context": "Sara asked the class to sing out at the piano.",
+        "senseId": "497ab3f5765fd66bdc69550d5ca7bf3a6335dccbe0da0a806da0ed083dc17e37",
+        "meaningKo": "더 큰 목소리로 노래하다"
+      },
+      {
+        "id": "phrasal-sleep-through",
+        "phrasalVerb": "sleep through",
+        "storyForm": "slept through",
+        "context": "A tired child slept through the radio call.",
+        "senseId": "95ef9390788f05e05aa5426d395c5f9dffad28da042ac1cb527b1ee3211fd189",
+        "meaningKo": "어떤 일이 일어나는 동안 깨지 않고 계속 자다"
+      },
+      {
+        "id": "phrasal-hole-up",
+        "phrasalVerb": "hole up",
+        "storyForm": "holed up",
+        "context": "A cute rabbit had holed up in a box at the shop.",
+        "senseId": "e984ab23f7aebb66e0a5da5e4880cf709eb319776d0c6d16dba8b462eba1690b",
+        "meaningKo": "특히 남의 눈을 피해 한곳에 머물다"
+      },
+      {
+        "id": "phrasal-ship-out",
+        "phrasalVerb": "ship out",
+        "storyForm": "ship out",
+        "context": "The store planned to ship out a box of toys for the fair.",
+        "senseId": "229f6a7211f763e32fff1bbee1ca4a9d05f24e5f9f5a231697dbd27028b538ec",
+        "meaningKo": "물건이나 사람을 장소에서 멀리 옮기다"
+      },
+      {
+        "id": "phrasal-farm-out",
+        "phrasalVerb": "farm out",
+        "storyForm": "farmed out",
+        "context": "The restaurant farmed out the bread job to the bakery.",
+        "senseId": "2cf2b13c921dbdb36121784e7d521259eae9ae829d87bafcd16946f3328f06e2",
+        "meaningKo": "일부 업무를 회사 밖의 사람들에게 맡기다"
+      },
+      {
+        "id": "phrasal-blow-over",
+        "phrasalVerb": "blow over",
+        "storyForm": "blow over",
+        "context": "The family sat at the center for the rain to blow over.",
+        "senseId": "fdba7e52ffa9de69faf99193397a4470bb585df2d26bbc9e1599555cd7501db2",
+        "meaningKo": "폭풍이 지나가 끝나다"
+      },
+      {
+        "id": "phrasal-dress-down",
+        "phrasalVerb": "dress down",
+        "storyForm": "dressed down",
+        "context": "The college students dressed down in clean shirts and socks.",
+        "senseId": "9f7359c25a23f0f77578206beed593bff279a470b852750e720924c141845d87",
+        "meaningKo": "평소보다 편안하고 격식 없는 옷을 입다"
+      },
+      {
+        "id": "phrasal-bear-down",
+        "phrasalVerb": "bear down",
+        "storyForm": "bear down",
+        "context": "Daddy had to bear down on a hard engine button.",
+        "senseId": "0fa06a27c3857562a351691d98620bfcba332581d037a58874a78ea8529fed12",
+        "meaningKo": "아래쪽으로 밀거나 누르다"
+      },
+      {
+        "id": "phrasal-dish-out",
+        "phrasalVerb": "dish out",
+        "storyForm": "dished out",
+        "context": "The cook dished out a fresh potato meal.",
+        "senseId": "1b8d22951c4d7093cfc8d04db82c608ba8e6cdbc1e9fb5cf1af2502e1a99a05d",
+        "meaningKo": "음식을 덜어 내다"
+      },
+      {
+        "id": "phrasal-brush-aside",
+        "phrasalVerb": "brush aside",
+        "storyForm": "brush aside",
+        "context": "Mina did not brush aside the broken roof.",
+        "senseId": "e5eed9854448cb3866115827d42c1390de32f7c178ba2c2f8aacade45e0c0e80",
+        "meaningKo": "어떤 것이 중요하거나 사실임을 인정하지 않고 무시하다"
+      },
+      {
+        "id": "phrasal-have-on",
+        "phrasalVerb": "have on",
+        "storyForm": "had on",
+        "context": "Leo had on a blue shirt with a golden star.",
+        "senseId": "e2f4cc5b6999bb81fb2d045d9b25affcf5eb3c827026f21f67cfd0576bfdd2b6",
+        "meaningKo": "특정 옷, 신발 등을 착용하다"
+      },
+      {
+        "id": "phrasal-have-round",
+        "phrasalVerb": "have round",
+        "storyForm": "had their neighbor round",
+        "context": "The family had their neighbor round for a movie.",
+        "senseId": "3a140e8aa1626f0c1a5e3afcafdfb04de8fa7c216e5d6a5c4ff58e70d43f1c5b",
+        "meaningKo": "특히 가까이 사는 사람을 집으로 초대하다"
+      },
+      {
+        "id": "phrasal-do-with",
+        "phrasalVerb": "do with",
+        "storyForm": "do with",
+        "context": "A red line in the blue bag had to do with the missing fair prize.",
+        "senseId": "6d42961fa1c77e4e5fd543ce2748063179654e628bb9e54f13c4cb6c5e10aba2",
+        "meaningKo": "누군가나 무언가와 관련이 있다"
+      },
+      {
+        "id": "phrasal-go-ahead",
+        "phrasalVerb": "go ahead",
+        "storyForm": "go ahead",
+        "context": "The class asked Mina to go ahead with the fair.",
+        "senseId": "4ec3acd8d1246023e0d1110e8f435c6d1317c602736b87b4233d03d0871a5016",
+        "meaningKo": "허락을 기다린 뒤 일을 시작하거나 계속하다"
+      },
+      {
+        "id": "phrasal-get-behind",
+        "phrasalVerb": "get behind",
+        "storyForm": "got behind",
+        "context": "The families got behind her plan.",
+        "senseId": "58e75750839e429e42bd5ebdfcfc66c06ce05e882bd66aa70d03b4fbda044ea2",
+        "meaningKo": "생각이나 계획을 지지하거나 누군가의 일을 돕다"
+      },
+      {
+        "id": "phrasal-get-onto",
+        "phrasalVerb": "get onto",
+        "storyForm": "got onto",
+        "context": "Joon got onto a city radio game and talked of Maple House.",
+        "senseId": "f2544e841df9a6ab0c915cd0d47184e2efb5d36326c875b26c273503f9b6ac25",
+        "meaningKo": "방송이나 위원회 등에 들어가다"
+      },
+      {
+        "id": "phrasal-get-up",
+        "phrasalVerb": "get up",
+        "storyForm": "get up",
+        "context": "He had to get up early and practice.",
+        "senseId": "e308f321a8fd427584a93d878f0585f86f320a664287effb764456f2f50f2572",
+        "meaningKo": "잠을 잔 뒤 침대에서 일어나다"
+      },
+      {
+        "id": "phrasal-make-into",
+        "phrasalVerb": "make into",
+        "storyForm": "made a boring room into",
+        "context": "The class made a boring room into a comfortable movie room.",
+        "senseId": "3c2dcf42e64cf4c06101d7f5907f1e8eb4a96151618ad4b0ea482cf126f036f7",
+        "meaningKo": "누군가나 무언가를 바꿔서 다른 것이 되도록 하다"
+      },
+      {
+        "id": "phrasal-think-back",
+        "phrasalVerb": "think back",
+        "storyForm": "thought back",
+        "context": "Mina thought back to the blue bag at breakfast.",
+        "senseId": "976c932eeb9f50a3f102a67874de47d9228589d00d6cd56872f05df13cbd4713",
+        "meaningKo": "과거에 있었던 일을 생각해 보다"
+      },
+      {
+        "id": "phrasal-come-away",
+        "phrasalVerb": "come away",
+        "storyForm": "came away",
+        "context": "She came away from the market with a new guess.",
+        "senseId": "093f54fa180de730af2038541040851fbafbab9a49379dfb7177d7d4b8ca1082",
+        "meaningKo": "경험 뒤에 특정 생각이나 느낌을 갖게 되다"
+      },
+      {
+        "id": "phrasal-come-back",
+        "phrasalVerb": "come back",
+        "storyForm": "came back",
+        "context": "Leo came back from the store with a present and a bookstore letter.",
+        "senseId": "c42fe00c87827021cd45dcc9ed82242312caaba5e6300467a74980aa3688e10f",
+        "meaningKo": "어떤 장소로 돌아오다"
+      },
+      {
+        "id": "phrasal-come-before",
+        "phrasalVerb": "come before",
+        "storyForm": "came before",
+        "context": "The plan came before the city board, and the board agreed.",
+        "senseId": "1f741cb69e3a7778e08b09381fb3d532b4be7ca610fd284829733ea66b4fc99b",
+        "meaningKo": "권한 있는 사람에게 검토되거나 논의되다"
+      },
+      {
+        "id": "phrasal-come-down",
+        "phrasalVerb": "come down",
+        "storyForm": "came down",
+        "context": "Heavy rain came down on the crowded street.",
+        "senseId": "d0d054c944cb217be3233839ef5033ce6d6da30146b44e57ddb1805097c919dc",
+        "meaningKo": "비나 눈 등이 특히 많이 내리다"
+      },
+      {
+        "id": "phrasal-come-for",
+        "phrasalVerb": "come for",
+        "storyForm": "came for",
+        "context": "Officer Kim came for the bag, as Gray's name was on it.",
+        "senseId": "63ce5239eecd9c6847de7683b3d12af3bab332570e8a4fc8870a62f4302b58b5",
+        "meaningKo": "누군가를 체포하기 위해 장소에 오다"
+      },
+      {
+        "id": "phrasal-come-forward",
+        "phrasalVerb": "come forward",
+        "storyForm": "came forward",
+        "context": "The honest bookstore woman came forward with Rose's blue bag.",
+        "senseId": "6c7a95ec3e853da428af34673b2b0557322f476676082f5e3c063ae27f7897e9",
+        "meaningKo": "도움이나 정보를 자진해서 제공하다"
+      },
+      {
+        "id": "phrasal-come-from",
+        "phrasalVerb": "come from",
+        "storyForm": "came from",
+        "context": "\"Look out,\" Mina cried as a big ball came from the park.",
+        "senseId": "7e5fc81794f8864c3548b19d8efc9b695f9de6f2d373c38548037be835cf01c5",
+        "meaningKo": "어떤 곳에서 오거나 비롯되다"
+      },
+      {
+        "id": "phrasal-come-in",
+        "phrasalVerb": "come in",
+        "storyForm": "came in",
+        "context": "At fair morning, Rose came in with her blue bag.",
+        "senseId": "a6bebbff277f178f9fe23b9691d9eac81191f5a279db3014addd0140c75616bb",
+        "meaningKo": "방이나 건물 같은 장소 안으로 들어오다"
+      },
+      {
+        "id": "phrasal-come-upon",
+        "phrasalVerb": "come upon",
+        "storyForm": "came upon",
+        "context": "Mina came upon a zoo ticket and a small picture in the pocket.",
+        "senseId": "0b1163d8066faef8db27578c33690f1ca97674c12c8fa90048a9ab96d5dfe2b8",
+        "meaningKo": "누군가를 우연히 만나거나 무언가를 우연히 발견하다"
+      },
+      {
+        "id": "phrasal-come-with",
+        "phrasalVerb": "come with",
+        "storyForm": "came with",
+        "context": "The new camera came with a bag.",
+        "senseId": "c8cadbba986a35b982410481839c74da363caddbecc8c3122e1d032d17bd952f",
+        "meaningKo": "물건에 다른 것이 함께 딸려 오다"
+      },
+      {
+        "id": "phrasal-want-in",
+        "phrasalVerb": "want in",
+        "storyForm": "wanted in",
+        "context": "Leo wanted in on it.",
+        "senseId": "2672ba783f57580a14dc891db43199e56fe6c2e37297c934ef6c78bdfc0a01bf",
+        "meaningKo": "상황이나 계획, 활동에 참여하고 싶어 하다"
+      },
+      {
+        "id": "phrasal-look-around",
+        "phrasalVerb": "look around",
+        "storyForm": "looked around",
+        "context": "They looked around the bookstore, looked at the names, and looked for Rose at the park.",
+        "senseId": "d590addb01bbc6561e322dcac188c039684b3cca786d77d6599080a262f431f9",
+        "meaningKo": "방이나 건물, 장소를 둘러보며 무엇이 있는지 살피다"
+      },
+      {
+        "id": "phrasal-look-at",
+        "phrasalVerb": "look at",
+        "storyForm": "looked at",
+        "context": "Mina looked at Leo, and they began their long day.",
+        "senseId": "44d9e3a08bf604285fc00e24053ddbeeecf9849a7fe7f88f9adde7d75176aab4",
+        "meaningKo": "볼 수 있도록 시선을 누군가나 무언가에 향하다"
+      },
+      {
+        "id": "phrasal-look-for",
+        "phrasalVerb": "look for",
+        "storyForm": "looked for",
+        "context": "They looked around the bookstore, looked at the names, and looked for Rose at the park.",
+        "senseId": "e6077d60ec7cabefcde417c6bd05a0df7780bc9ce23a30f1db08e7f4d2aea0df",
+        "meaningKo": "누군가나 무언가를 찾다"
+      },
+      {
+        "id": "phrasal-give-away",
+        "phrasalVerb": "give away",
+        "storyForm": "gave the game away",
+        "context": "In a ball game, Joon gave the game away with a bad kick.",
+        "senseId": "f4ecdaea2033c2bf9cc455012681ce24ca143e67d4aac613280ff06f237e121b",
+        "meaningKo": "스포츠에서, 어리석은 실수를 해서 상대가 이길 수 있도록 하다"
+      },
+      {
+        "id": "phrasal-give-back",
+        "phrasalVerb": "give back",
+        "storyForm": "gave the ball back",
+        "context": "He gave the ball back to a little boy.",
+        "senseId": "eb7c38d3d0a6b1e74c0381153d18bfa675551a6105b7eb6a961a21534a84dad6",
+        "meaningKo": "원래 주인이 가지고 있던 것을 돌려주다"
+      },
+      {
+        "id": "phrasal-work-in",
+        "phrasalVerb": "work in",
+        "storyForm": "worked in",
+        "context": "Mina worked in a blue bag line as she practiced her fair talk.",
+        "senseId": "b23ae47a56ec9c4a3c3a319ff8fc38c2c0e833bd2f6574583820a6d21d3e5e0f",
+        "meaningKo": "내용이나 생각을 자연스럽게 끼워 넣다"
+      },
+      {
+        "id": "phrasal-work-on",
+        "phrasalVerb": "work on",
+        "storyForm": "worked on",
+        "context": "Sara worked on the bookstore woman, and the woman agreed to help the center.",
+        "senseId": "e89d3f41405a998c1954471328fdb5f3efbc7e5a65061a90547e19d1b336634a",
+        "meaningKo": "생각이나 결정을 바꾸도록 계속 설득하다"
+      },
+      {
+        "id": "phrasal-call-back",
+        "phrasalVerb": "call back",
+        "storyForm": "called Mina back",
+        "context": "The office called Mina back at breakfast.",
+        "senseId": "c0819e04ab3e18d14867eae9a1fff7b98c21555369e65ba58cdbe8e646f3d833",
+        "meaningKo": "다시 전화하거나, 이전에 전화한 사람에게 전화하다"
+      },
+      {
+        "id": "phrasal-call-for",
+        "phrasalVerb": "call for",
+        "storyForm": "called for",
+        "context": "Parents called for the city to leave Maple House open at lunch.",
+        "senseId": "756aa183e7cfe849ecabd583ab716d838bf8d11272c00d695313a294c5ecd991",
+        "meaningKo": "어떤 조치를 공개적으로 요구하다"
+      },
+      {
+        "id": "phrasal-call-off",
+        "phrasalVerb": "call off",
+        "storyForm": "call off",
+        "context": "Rain came, but the class did not call off the fair.",
+        "senseId": "5179fb9507fb55a6bcdfded630f42010daa41a08b2c14afd4c85f0a894f4fa19",
+        "meaningKo": "이미 일어나고 있는 일을 멈추기로 결정하다"
+      },
+      {
+        "id": "phrasal-call-on",
+        "phrasalVerb": "call on",
+        "storyForm": "called on",
+        "context": "The captain called on the town to help.",
+        "senseId": "915f5b36e1bbf36e0a191aee3b354c972a942ebd8a5711d9db6598244b77c733",
+        "meaningKo": "사람이나 단체에 어떤 일을 하도록 공식적으로 요청하다"
+      },
+      {
+        "id": "phrasal-leave-behind",
+        "phrasalVerb": "leave behind",
+        "storyForm": "left her black bag behind",
+        "context": "Mina had left her black bag behind in the truck.",
+        "senseId": "19688d6915009d6c3feb73814b3563e6b69119ab157fc99f34b588f9492552b7",
+        "meaningKo": "사람이나 물건을 챙기지 못하고 두고 오다"
+      },
+      {
+        "id": "phrasal-put-into",
+        "phrasalVerb": "put into",
+        "storyForm": "put a full week into",
+        "context": "She put a full week into the fair.",
+        "senseId": "60bcaa424d533092d1a295889e4785f633255e3f34342427aab8474c64df01f1",
+        "meaningKo": "어떤 일을 하는 데 일정한 시간이나 노력을 들이다"
+      },
+      {
+        "id": "phrasal-put-to",
+        "phrasalVerb": "put to",
+        "storyForm": "put a plan to",
+        "context": "Leo put a plan to the family at the board.",
+        "senseId": "f0c0823d044ae412a4e54fba98973a36bbc35f0ddcf0524d674795fcc617d719",
+        "meaningKo": "계획이나 제안을 단체가 논의하고 결정하도록 내놓다"
+      },
+      {
+        "id": "phrasal-put-together",
+        "phrasalVerb": "put together",
+        "storyForm": "put together",
+        "context": "They put together a wall of family pictures.",
+        "senseId": "d6cac5e073c1d476a7fb553c14b0510eb9bc57e60b48953d62df0341a69c699f",
+        "meaningKo": "여러 부품을 결합해 무언가를 만들거나 조립하다"
+      },
+      {
+        "id": "phrasal-keep-away",
+        "phrasalVerb": "keep away",
+        "storyForm": "kept the dog away",
+        "context": "A chain kept the dog away from the vegetable bowl.",
+        "senseId": "b59ab030dbe2e394501f46a22fd73a1ac4371c96bf7e300025ba4c1a26f38307",
+        "meaningKo": "사람이나 물건이 가까이 오지 못하게 하다"
+      },
+      {
+        "id": "phrasal-keep-in",
+        "phrasalVerb": "keep in",
+        "storyForm": "kept Gray in",
+        "context": "Mina kept Gray in for a minute, and Sara asked Joon to keep off cake.",
+        "senseId": "af3ab84e05169796f62e7ccf0569a26618d7b186daf4c21ec9260d9b6bf2e303",
+        "meaningKo": "벌로 사람을 밖에 나가지 못하게 남겨 두다"
+      },
+      {
+        "id": "phrasal-keep-off",
+        "phrasalVerb": "keep off",
+        "storyForm": "keep off",
+        "context": "Mina kept Gray in for a minute, and Sara asked Joon to keep off cake.",
+        "senseId": "a3e710c7a10f8dabe3e20ae7298f27061e1adf1fa70d3835e94b671c0fe4db25",
+        "meaningKo": "특정한 음식이나 음료를 먹거나 마시지 않다"
+      },
+      {
+        "id": "phrasal-let-up",
+        "phrasalVerb": "let up",
+        "storyForm": "let up",
+        "context": "The rain let up, and bright weather brought the town to Maple House.",
+        "senseId": "15feb5eb0e354fb3fef62a6771c191d0caee3d31e777a53821e5d5df044006d1",
+        "meaningKo": "나쁘거나 불쾌한 일이 약해지거나 멈추다"
+      },
+      {
+        "id": "phrasal-talk-over",
+        "phrasalVerb": "talk over",
+        "storyForm": "talked the plan over",
+        "context": "Mina and Sara talked the plan over at the window.",
+        "senseId": "b3c4046e02b3d2e1d07444119ea961838b58d60c96fae7047f3d32073aa7b4a6",
+        "meaningKo": "문제나 계획을 논의하다"
+      },
+      {
+        "id": "phrasal-talk-up",
+        "phrasalVerb": "talk up",
+        "storyForm": "talked up",
+        "context": "The newspaper talked up the fair as a great town day.",
+        "senseId": "1661b1ce5e8d64a930a55fd1dbefe26e28145e1475bc2342550d5c85af97b119",
+        "meaningKo": "실제보다 더 좋거나 중요해 보이도록 말하다"
+      },
+      {
+        "id": "phrasal-turn-around",
+        "phrasalVerb": "turn around",
+        "storyForm": "turned around",
+        "context": "The class turned around the lunch job in a full hour.",
+        "senseId": "8f3ba32f9c364b4d6db41681d0016ac9818498368d0cbf88f7c0654e09d1695c",
+        "meaningKo": "일이나 절차를 정해진 시간 안에 끝내다"
+      },
+      {
+        "id": "phrasal-turn-in",
+        "phrasalVerb": "turn in",
+        "storyForm": "turn Gray in",
+        "context": "Mina did not turn Gray in, as Gray had not taken the bag.",
+        "senseId": "6c75d1c4a4394888452cf49c03d3e94a7544d0a41cf21482947a395d874640a6",
+        "meaningKo": "잘못한 사람을 경찰에 넘기다"
+      },
+      {
+        "id": "phrasal-turn-into",
+        "phrasalVerb": "turn into",
+        "storyForm": "turned into",
+        "context": "In a cartoon, a golden toy queen turned into a cat.",
+        "senseId": "69e88c0d4a0986ad2ac8bcffadec80193851088d5ba1fae27aa491aff06465c9",
+        "meaningKo": "마법으로 다른 것으로 변하거나 바꾸다"
+      },
+      {
+        "id": "phrasal-turn-off",
+        "phrasalVerb": "turn off",
+        "storyForm": "turned off",
+        "context": "Daddy turned off the radio as the city chose.",
+        "senseId": "1610689efba513e8c4157c10e90114f0177d4eba121fcdcb9619c08fd6e1e8e1",
+        "meaningKo": "기계나 전원을 끄다"
+      },
+      {
+        "id": "phrasal-turn-out",
+        "phrasalVerb": "turn out",
+        "storyForm": "turned out",
+        "context": "The blue bag turned out to be Rose's bag.",
+        "senseId": "153a088b7927c223c567a6a76b17ef8c6cebbe39b41ae8fffbd98bbe62c4c0d4",
+        "meaningKo": "나중에 특정한 사실로 밝혀지다"
+      },
+      {
+        "id": "phrasal-start-back",
+        "phrasalVerb": "start back",
+        "storyForm": "start back",
+        "context": "Mina wrote, \"Class will start back in autumn, and Rose will have a new job at Maple House.",
+        "senseId": "9cffbbe32c967866fd1dca6cf5f18d0f1caffd1a8c316f70d632e4064a73399b",
+        "meaningKo": "방학이나 휴식 뒤에 다시 시작하다"
+      },
+      {
+        "id": "phrasal-hand-out",
+        "phrasalVerb": "hand out",
+        "storyForm": "handed out",
+        "context": "\" Students handed out a map and showed Rose around the center.",
+        "senseId": "2f5af9a75852f5b72c1047e3452d39f46ae5fc472736c5c22618b2966fa6e384",
+        "meaningKo": "누군가에게 정보나 조언 같은 것을 주다"
+      },
+      {
+        "id": "phrasal-show-around",
+        "phrasalVerb": "show around",
+        "storyForm": "showed Rose around",
+        "context": "\" Students handed out a map and showed Rose around the center.",
+        "senseId": "48298b1ee556a5c2880faf9e33c904e69b35c13f6ec6cd134199b1313b2dd8d1",
+        "meaningKo": "처음 온 사람에게 곳곳을 안내하다"
+      },
+      {
+        "id": "phrasal-hear-about",
+        "phrasalVerb": "hear about",
+        "storyForm": "heard about",
+        "context": "Rose had heard about Maple House from her uncle, but she had not heard of Mina.",
+        "senseId": "834638c1475d1d547b7bce9b5511278eab013a08ad1d575cf829a6deafaf2c58",
+        "meaningKo": "어떤 것에 관한 소식이나 정보를 듣다"
+      },
+      {
+        "id": "phrasal-hear-of",
+        "phrasalVerb": "hear of",
+        "storyForm": "heard of",
+        "context": "Rose had heard about Maple House from her uncle, but she had not heard of Mina.",
+        "senseId": "60010a57407d4d2f2e64c7429813503e46cd3cbf8f8e4b912aba17782aeeb5f9",
+        "meaningKo": "누군가에 관한 소식을 전해 듣다"
+      },
+      {
+        "id": "phrasal-play-at",
+        "phrasalVerb": "play at",
+        "storyForm": "played at",
+        "context": "Little children played at being a pilot, a doctor, a young artist, and a king.",
+        "senseId": "00eca772608fb79e09a259967251f052dda751a20c7e164219b8e4da10148856",
+        "meaningKo": "아이들이 다른 사람이나 상황을 흉내 내며 놀다"
+      },
+      {
+        "id": "phrasal-run-around",
+        "phrasalVerb": "run around",
+        "storyForm": "ran around",
+        "context": "Parents ran around with cake, cheese, tomato sandwiches, and hot water.",
+        "senseId": "b1dd9a793906b466cf9fa5079b0f0c4fac4a91d604f8d2642ab153dc66ec3b2b",
+        "meaningKo": "여러 가지 일을 하느라 몹시 바쁘게 돌아다니다"
+      },
+      {
+        "id": "phrasal-move-up",
+        "phrasalVerb": "move up",
+        "storyForm": "move up",
+        "context": "Sara had a chance to move up to a better city job, but she chose Maple House.",
+        "senseId": "58ea2bfec1129c004dad5a1d13b6cab4c755af2dedae2b6b34a5406de94d800e",
+        "meaningKo": "더 좋은 직책이나 더 높은 단계로 올라가다"
+      },
+      {
+        "id": "phrasal-live-for",
+        "phrasalVerb": "live for",
+        "storyForm": "lived for",
+        "context": "Mina lived for days like this.",
+        "senseId": "7d675dbf5e141d6e5f2ac892ba4778799316f40671b9165c1bb8a1a66c228cd6",
+        "meaningKo": "살아갈 이유나 목표가 있다"
+      },
+      {
+        "id": "phrasal-live-out",
+        "phrasalVerb": "live out",
+        "storyForm": "live out",
+        "context": "Grandmother planned to live out her years at the park road.",
+        "senseId": "4bdc294ca94303a6ca740d88c1b5d60e7fe5df350f9b4b7ea601dd1ece1dbb34",
+        "meaningKo": "남은 삶이나 삶의 일부를 특정 장소나 상황에서 보내다"
       }
     ],
-    "storyText": "Mina woke up early in the morning. The sky was bright, and the air was warm. A family day was ready to begin at Maple House. Mina felt tired, but the park made her feel happy.\n\nMina put on a blue shirt and a red hat. In the kitchen, Daddy had bread, fruit, cheese, and milk on the table. Mina checked bread off on the lunch page. Daddy and Mina put lunch together.\n\nJoon came to the house with a black bag. Mina got on with Joon, and they laughed as they made lunch. Joon put cake in the black bag, and Mina put bread in the blue bag. Daddy put cold milk in the blue bag.\n\nA bus was at the road at Maple House. Mina and Joon carried the bags to the bus. They set out for the park with Daddy and a little dog. The city was busy, and the bus was full.\n\nAt the park, Joon put the blue bag on a bench at a tall tree. A boy and his father had a blue camera bag at the bench. The camera bag looked like the lunch bag. Daddy was at the tree and read a newspaper.\n\n\nA bus dropped Leo off at the park. Leo came with his father and put the camera bag at the bench. The camera bag was blue and big, and the lunch bag was blue and big. Leo took Mina's bag as his father called.\n\nThe dog came to Mina, and she began to look for the blue lunch bag. She found a blue bag, but it held a camera, a notebook, and a letter. Joon checked the black bag and found the cake. Their lunch was gone.\n\nMina and Joon had to get back to the park office. Daddy was with the dog, and the children carried the camera bag. A warm rain began on the road. Mina covered the letter with her red hat.\n\nAt the office, Mina went through the camera, notebook, and letter. A wet paper was in the notebook. Mina made out a name on the paper. The name was Leo.\n\nMina had to turn to the woman at the office for help. The woman called the market and gave Leo's name. A family with that name was at the market office. Mina and Joon took the camera bag and went there.\n\n\nMina and Joon came upon Leo at the market office. Leo held their blue lunch bag in his hands. His father held a map of the park. Leo looked at Mina's red hat and knew her.\n\nLeo had seen Mina around the market with Daddy. Mina knew Leo from the bakery at the market. Mina gave Leo the camera bag. Leo was happy to see his camera.\n\nMina brought up the blue bags, and Leo listened. Leo had taken Mina's lunch bag. He had found bread and milk in it. His father had called the park office.\n\nThe children worked out a plan for the bags. They talked the plan over at a table. Leo put a red name on his camera bag. Mina put a black name on her lunch bag.\n\nLeo gave the lunch bag back to Mina. Mina gave the camera bag to Leo. The cake was good in Joon's black bag. The children began to laugh as they saw the blue bags.\n\n\nThe rain ended as Mina and Joon left the market office. They got about the city in a bus. Leo and his father took a red car to the bakery. Mina and Joon planned to meet the family at the park.\n\nOn the bus, Joon looked at his hands and became quiet. The black cake bag was gone. Joon had left it at the market office or on the bus. Mina called the bus office from the market.\n\nThe bus office called Mina back in a short time. A bus woman had found the black bag and was taking it to the bakery. The cake was in the bag. Mina and Joon were at the bakery door.\n\nA young bus woman came forward with the black bag. Joon was happy and checked the cake. The bus woman put the bag in a cold room. The cake looked good.\n\nMina looked around the bakery for Leo. Leo turned up with a red pen and paper. Mina wrote on the lunch bag, Leo wrote on the camera bag, and Joon wrote on the cake bag. The bags had names.\n\n\nThe families carried on with the family day at the park. They took the bags to the old bench. Daddy and the dog were at the tree. Daddy began to laugh as he heard of Leo and the blue bags.\n\nSara came to the park with her family. Mina and Sara had not met for a year, and they caught up at lunch. Sara read the letter from the camera bag and laughed. The children sat at a long table in the garden.\n\nThe families ordered in a warm meal from the restaurant. A woman brought potatoes, fruit, and bread. The families got together at the table. Leo's father played a guitar, and a little girl began to dance.\n\nTheir long walk paid off as the bags were on the table. Mina ate a red apple, and Joon cut the cake. Leo gave the dog a small ball. The park was full of light, a guitar, and happy talk.\n\nAt the end of the day, Mina checked the names on the bags. Leo had his camera, Mina had the lunch, and Joon had the cake. The blue bags looked new with their names. The families took a picture at the tree.\n\n\nAt night, Mina looked back on the day at her desk. The blue bags had made a difficult day, but the day had a good end. Mina had a new picture of Leo's family. She put it at the clock.\n\nIn the morning, Leo brought Mina's notebook round to Maple House. Mina had left it in the camera bag at the market office. Mina gave Leo cake. They talked with Daddy in the kitchen.\n\nMina cleaned the bag out in the garden. She found a little red ball in a pocket. The dog had put the ball there at the park. Mina put water on the bag and left it in the warm air.\n\nMina wrote a short letter to the bus office and the young bus woman. She wrote of the black bag and the cake. Mina signed off with her name. Daddy took the letter to the bus office.\n\nMina read a funny newspaper page to wind down. The moon was bright at the window, and Maple House was quiet. Mina put the blue bag at the door. She went to bed, and the long day ended."
+    "storyText": "Mina woke up early in her small bedroom. The moon was white at the window, and rain made the roof wet. Her baby sister slept in a little bed with a yellow pillow. A cat sat at the door, a dog had a blue ball, and a bird ate bread from a red cup. Mina put apples, eggs, milk, cake, and ice in a black bag. Her father read a city letter at the kitchen table. \"Maple House will close down in a week,\" the letter read. Mina talked her father round, and he agreed to help. She was glad to see Leo around the park as she left the house. Leo and Mina got about the city on a bus. At Maple House, Mina turned to her family for help. Her father dropped Mina and Leo off in his old car. \"The class will finish up in the street,\" the letter read. Mina did not like that.\n\nLeo wrote on the board, \"A bad name on the city letter will trip up the plan.\" He asked the class to camp out in the garden and help with the bags at night. The bus had to slow down at the busy park road. Mina went to spy out a good room for the class. She and Leo sat at a round table to think the letter over. Mina went to see about money for the house. The long trip did Mina and Leo in. A name was missing. Mina wrote it in. Sara, her aunt, planned to go into science. She had a job at the hospital and carried a doctor bag and a map. A boy held a pen, and a girl held a flower. Their parent gave the children a picture of Maple House. In the picture, a king in a tall hat ate fish from a plate. A shoe sat at the door.\n\nGrandmother believed in God. She asked the family to help. \"We will help,\" Mina wrote. The Maple House plan was on the board. The ticket price for the family day had to go down. In a ball game at the park, Joon came on for a tired boy. Gray began to run Joon down for a bad kick. \"Come off it, Gray,\" Mina cried. The long game wore Joon out, but his strong arm helped the class. Mina went over the game rule with Gray. Mina and Joon got on, and Gray became calm. At night, the baby turned over in her bed and put a hand on the pillow. Mina drank orange juice and read the letter. Her brother ate a banana, and her sister had warm milk. There was little money, but the family had a new plan.\n\nSara had to call in a doctor for the baby. A wet bathroom floor caught Leo out, but he did not fall. He dug a garden key out with a spoon. Mina chose a blue coat to go with her red hat. A closed door kept the children from the kitchen. Leo keyed in the family names on a computer. \"Look out,\" Mina cried as a big ball came from the park. The class planned to make over the old room with clean white paint. Joon chose to play along with Gray as Gray acted like a famous captain. Mina played around with the camera picture. Blue was bad; red was good. She chose red and made a funny family picture. The picture made the baby happy, and her laugh filled the room.\n\nGray planned to put the letter over on the class as a city letter, but Mina found his name on it. Joon planned to run for class captain. The class ran into a difficult week with little money. Mina asked the family to give their gifts. At night, Mina saw the guests out at the center door. Joon ate a full cake. He went to sleep off the bad feeling from the heavy meal. The children stayed back from a small fire as Daddy cooked dinner. Grandmother stored up bread, milk, sugar, salt, and water for the new day. Grandfather put a warm blanket on the bed. Mina put the blue bag on a table and closed the door. She knew the house was old, but it was beautiful. Her family liked the quiet room, the bright clock, and the picture on the wall. Mina went to sleep with the city letter in her hand.\n\nIn the morning, the family made breakfast in the kitchen. Mina cut bread, her mother cooked eggs, and her father made coffee. The baby had a cup of milk, and the young boy had orange juice. \"My bag is on this table, and your bag is there,\" Mina wrote for Leo. \"This black bag is my bag, and that blue bag is his. They ask us for help, and our family will help their family. I will carry the letter, and you will carry the money,\" Mina wrote. A good name came to Mina: Maple House. The family left the apartment as the city day began. A bus came from the street, and Mina gave Daddy the address. Daddy knew the way to the center. Mina looked at Leo, and they began their long day.\n\n\nGrandmother took to a fast morning walk, and Grandfather walked with her. The new camera came with a bag. Mina wrote back to her aunt at the country farm. The family set to and made the center clean. At lunch, they ordered in bread, fruit, juice, and a hot meal. The job went on as the children ate. Joon took up guitar and began to practice. A plan came to Mina as she read the letter from her aunt. Daddy put in a computer at the class door. Mina put on a clean white jacket. Her brother put a soft blanket on a little bed. The class had a big job, but the children were ready.\n\nDark rain set in, but the family set out for the farm. They went for the old blue truck, not the new red car. Mina read a lesson, but it did not go in as the bus was loud and crowded. A fire bell went off at the city hospital. Black coats went out that winter, but Sara liked her old coat. Mina went through a box of clothes for the family day. A high window was hard to get at. They got back to the bus with a heavy bag. The sky was cloudy, the air was cold, and the road was wet. Mina felt tired, but Leo was excited to see the farm.\n\nThe family got in at the farm at night, and Daddy got off the job at that hour. A nurse got the dog out of the bathroom. Mina got over a cold with sleep and warm bread. She got through a long letter from her father. The children made for the garden, and a cow came to meet Mina and Leo. Mina made little of the old farm map. Leo made out a small island in the lake. Grandfather took over the camera job and asked the children to be at the bridge. A funny picture came about as Leo walked fast. A happy calm came over Mina as she saw her family.\n\nA phone call came through from Maple House. The family day was coming up, and the farm had gifts to give. Grandmother looked after a cow, a sheep, and a young animal. She looked back on a happy day in her garden at the beach. A boy and a girl looked on as Daddy fixed a bicycle. Mina looked up the boat time on the computer. The rain was strong, but her father did not give in. He did not back down from the trip. Cars began to back up on the mountain road. The family sat in the truck and listened to the radio. A bright light from a church tower helped Daddy find the road.\n\nMina and Leo worked out a short way to the center. They did not put off the trip. They kept on as rain covered the road. In the slow truck, they kept up. At the farm house, a candle made the dark kitchen bright. The family ate fresh fruit, butter, bread, and a potato meal. Mina drank cold water, and her brother had a sandwich. Her aunt gave the baby a cute toy rabbit. The cow had a white body, black hair, a long leg, and a strong foot. A turtle lived at the garden pool. Joon played guitar as the family talked. Sara read a newspaper page and helped Grandfather with his knee. The children walked to the field and the boat and sat at the lake. They slept in a comfortable room and got ready for the morning truck.\n\nThe farm was at a deep forest and a high mountain. A river crossed the field and went to the ocean. A small island was in the lake, and a boat was at the beach. Grandfather grew tomato plants, potatoes, and fresh vegetables. Grandmother fed the cow, the sheep, a bird, and a little turtle. Mina collected eggs in a basket, and Leo carried fruit in a box. Daddy fixed the truck engine and checked the map. Sara taught air, fire, earth, and water in a science lesson. The children listened and learned from her. At dinner, the family had a full plate and a cold drink. The beds were warm in the quiet night. \"The farm gift will help Maple House,\" Mina wrote.\n\n\nThe old bus was slow, and Mina had to run fast. The market was full. Gray had to turn a car away. Mina turned on her phone at the bakery. Leo turned up with a brown basket and a bottle of orange juice. They went to the city office to hand in the center letter. Wet blue paint showed up on the paper. A small child did not like the market and ran away with Mina's bag. His mother caught the child. Mina ran through the plan in a calm way. The meal price ran to their full bag of money. Mina and Leo finished that job and chose to move on to the bank job.\n\nThe market office planned to move out of the old apartment at the river. Mina held in a cry. A strong arm held up a bright bell in the round tower, and a deep bridge crossed the river. Leo brought up the family day and the blue paint. A woman asked Mina to write in her address. She booked the boat captain in at a cheap hotel. Mina and Leo took a bad road and ended up at the museum. A golden balloon at the door made the museum stand out. The artist cut down the price of a beautiful painting. Joon cut in as Mina began to pay.\n\nThe phone line cut Joon off, but Mina carried on. Daddy's truck broke down on the mountain road. Light broke through the cloudy sky and made the river bright. Mina picked out a clean box for the camera. Leo met her at the library to catch up. They ruled out the airport, the island, and the beach. Night began to close in at the old castle. A bank rule went against their plan, and the bank did not lend Mina and Leo money. Mina was angry, but Leo helped her become calm. They chose a short road to the center.\n\nMina and Leo went around the museum with a quiet guest. Butter and warm bread go together, but the children had to go without lunch. Mina got the hotel address down on a newspaper page. The family planned to get together at the center. Leo had to take a heavy camera back to the store. The students took down the high birthday wall at the center. Sara asked Mina to come along to the bakery. The artist gave out a map, a calendar, and a picture. The captain did not back out of the river trip. Mina called out as the wet basket fell. A friendly woman opened the museum and let Mina and Leo in.\n\nThe woman let Mina into a family plan for the old camera. Mina turned down a free hotel room and chose the center. The museum held a glass box, a soft bench, and a bright painting. A girl listened as the artist taught her to paint a rainbow. A boy opened a box and found a round orange. The captain carried a map and drove a toy car in a game. Mina began to dance, and Joon began to sing with his guitar. A toy plane flew in a blue ocean picture. Mina heard the bell and called Daddy. Leo bought bread, butter, and a cold drink for lunch. The cook cut fruit and made a delicious meal. The children left with a picture, a gift, and a better plan for the fair.\n\nThe market had a bakery, a bank, a bookstore, a restaurant, and a clothes shop. A hotel was at a street corner, and a church was at the town center. A visitor from a village bought a newspaper and a bottle of water. A pilot from the airport ate lunch with a boat captain. A college artist gave a castle painting for money. A factory guest carried a camera and a radio. Mina saw prices on the gifts and counted her money. The blue bag was not at the store, the office, or the museum. She felt sad, but Leo asked her to continue. They had a chance to help the center, and the missing bag did not end their plan.\n\n\nAt Maple House, the students started on the fair map at a circle of desks. Grandmother handed down her old warm coat to her young daughter. Bored children began to play up on the clean floor. Rain ran off the roof and crossed the ground. Leo held out a dry shirt for Mina. The dinner lesson was held over for a full hour. The office woman did not water down the important letter. Mina did not write off the center as a lost house. Daddy asked the family to sit back for a minute, and a tired guest sat the ball game out. The room was noisy, but the plan was clear.\n\nTheir hard job began to pay off as the center became clean. A nervous girl began to grow into a brave captain. The church dance began to grow on Joon. Mina walked into a glass door and had a bad knee. A college student began to wait on the hungry guests. The bakery sold out of cookies and fresh cake. The class planned to carry the fair through. Daddy got in the truck and drove off to the factory. A happy guest broke into a dance as Joon played guitar. A tree fell, and a small arm of the tree broke off. The rain became heavy, and the family closed the window.\n\nGray began to pick on a small child, and Mina asked Gray to be kind. Sara phoned in from the hospital. A baby was at the center for help. Gray caught on and gave the child a friendly hand. Mina stepped out to check the dangerous road. She drew in cool air at the forest door. Sara drew out the quiet girl with a good language game. The girl threw off her wet coat and gave it to her mother. Heavy rain threw up a broken door at the center. Visitors had to sign in at the desk. Mina signed off her city letter with a little flower. Gray did not answer back as Mina gave Gray a helpful job.\n\n\"The children will not miss out on the holiday dinner,\" Mina wrote on the board. She fished a key out of her deep pocket. The class began to wind down with hot coffee and cookies. Leo wound up the lesson with a clever plan for the fair. The family had to ride out the dark night at the church. Daddy sat at the old engine. Mina and Sara shopped around for a cheap knife, glass cups, and a new plate. Joon cried out as a turtle came alive at his foot. The children blew up a golden balloon and a blue balloon. They dressed up as a captain, a doctor, a pilot, and a famous king. The students cleaned out the party room and found a huge mirror. Wet paint had to dry out. They opened the window.\n\nThe rain continued, and the class did not leave. Daddy arrived with farm gifts in the truck. Mina borrowed a plate, and Leo lent her a cup. They collected bread and counted cookies. A parent covered the floor and filled a box with fresh fruit. Sara fixed Joon's knee and fed the little turtle. The family followed a line to dinner. Mina did not forget the center or lose her dream. Mina found the hard night interesting. The earth was wet, but a rainbow filled the sky as morning began. Mina was hungry and thirsty, but she felt alive. Gray gave her a healthy vegetable sandwich. His kind act made Mina glad.\n\nThe center had a basement, a bedroom, a bathroom, a kitchen, and a full party room. A high ceiling covered the room, and a new carpet covered the floor. A mirror was at the wall with a candle. A piano, a guitar, a radio, and a computer were ready. A desk held paper, pencils, a notebook, and a calendar. A coat, a shirt, socks, and shoes were dry at the fire. A bottle, a bowl, a plate, a knife, and a spoon were at the breakfast table. A flower, a plant, and a seed sat at the window. The bad weather was difficult, but the family was helpful. Their job made the old center feel new.\n\n\nWater in the little garden pool began to dry up. The church planned to ring in the new year at the fair. Sara gave Joon time for his knee care to kick in. A bad guest planned to enter a closed room. Daddy had to kick the guest out. Mina washed the cake out of her white shirt with soap. Her mother washed up the plates, cups, bowls, and spoons. Leo penciled in piano practice for a full hour. A student had to do a party picture over on fresh paper. Mina did not take against Gray. She knew a hard day made a good woman angry.\n\nJoon took apart the old radio for the science table. The family went to the station to see a pilot off. Mina asked Joon to man up and carry the heavy box with her. The cook kept back salt, sugar, cheese, and potatoes for dinner. Leo brought the fixed radio round to Mina's house. The boat captain had to push off from the sea wall. Mina checked the finished jobs off in her notebook. Sara asked the class to sing out at the piano. A tired child slept through the radio call. A cute rabbit had holed up in a box at the shop. Mina gave the rabbit a vegetable and called the farm.\n\nThe store planned to ship out a box of toys for the fair. The restaurant farmed out the bread job to the bakery. The family sat at the center for the rain to blow over. The college students dressed down in clean shirts and socks. Daddy had to bear down on a hard engine button. The cook dished out a fresh potato meal. Mina did not brush aside the broken roof. Leo had on a blue shirt with a golden star. The family had their neighbor round for a movie. A red line in the blue bag had to do with the missing fair prize. Mina began to believe that the bag came from the bookstore.\n\nThe class asked Mina to go ahead with the fair. The families got behind her plan. Joon got onto a city radio game and talked of Maple House. He had to get up early and practice. The class made a boring room into a comfortable movie room. Mina thought back to the blue bag at breakfast. She came away from the market with a new guess. Leo came back from the store with a present and a bookstore letter. The plan came before the city board, and the board agreed. Heavy rain came down on the crowded street. Officer Kim came for the bag, as Gray's name was on it. Mina asked Officer Kim to sit and read the letter.\n\nThe honest bookstore woman came forward with Rose's blue bag. The bags came from her bookstore. She had given a bag to Gray and a bag to Rose, but the names disappeared in rain. The woman was rich, and her clothes were clean. She carried a ticket, a candy box, and a letter with her address. Her shop was at the corner with a flat roof. Mina asked her to discuss the bags with Gray. They opened the bags and discovered the name change. Gray was not a bad boy, and Mina was not afraid of Gray. Officer Kim was happy and left in the city car. The sunny sky made the wet street bright. The fair went on, and the children began to laugh.\n\nThe woman gave Maple House a prize for the fair. The expensive camera came from her shop. Gray folded the blue bags and put the bags in a basket. Mina fixed a broken chain at the center door. Joon painted a rainbow on a board. Sara baked bread and added cheese to the lunch table. Daddy built a bench, and Grandfather balanced it on the flat ground. Grandmother made the carpet clean and put a blanket on the piano. The children practiced a dance, and Joon practiced guitar. A lazy cat slept at the fire as a dog began to bark. The busy room felt normal. Mina enjoyed the fair and was not afraid.\n\n\nAt fair morning, Rose came in with her blue bag. Mina came upon a zoo ticket and a small picture in the pocket. The ticket came with a map of the city. Leo wanted in on it. They looked around the bookstore, looked at the names, and looked for Rose at the park. In a ball game, Joon gave the game away with a bad kick. He gave the ball back to a little boy. Mina worked in a blue bag line as she practiced her fair talk. Sara worked on the bookstore woman, and the woman agreed to help the center.\n\nThe office called Mina back at breakfast. Parents called for the city to leave Maple House open at lunch. The fair began. Rain came, but the class did not call off the fair. The captain called on the town to help. Mina had left her black bag behind in the truck. She put a full week into the fair. Leo put a plan to the family at the board. They put together a wall of family pictures. A chain kept the dog away from the vegetable bowl. Mina kept Gray in for a minute, and Sara asked Joon to keep off cake. The rain let up, and bright weather brought the town to Maple House.\n\nMina and Sara talked the plan over at the window. The newspaper talked up the fair as a great town day. The class turned around the lunch job in a full hour. Mina did not turn Gray in, as Gray had not taken the bag. In a cartoon, a golden toy queen turned into a cat. Daddy turned off the radio as the city chose. The blue bag turned out to be Rose's bag. Mina wrote, \"Class will start back in autumn, and Rose will have a new job at Maple House.\" Students handed out a map and showed Rose around the center. Rose had heard about Maple House from her uncle, but she had not heard of Mina.\n\nLittle children played at being a pilot, a doctor, a young artist, and a king. Parents ran around with cake, cheese, tomato sandwiches, and hot water. Sara had a chance to move up to a better city job, but she chose Maple House. Mina lived for days like this. Grandmother planned to live out her years at the park road. The fair was excellent, and the center did not disappear. Children had a chance to learn, exercise, act, bake, and celebrate. The noisy room became calm as night came. The winter air was cold, but the fire burned warm. Mina greeted visitors at the door and was happy. Rose felt lonely and nervous, but she joined the class. Mina invited a polite passenger from the station. Families gathered from the town area and a city block. Joon lifted a box, and Leo pulled a table. The children beat the difficult day with a game that was easy.\n\nIn a new week, Mina sat on a bench at a high tree. Her favorite coat was warm, and a new button held it closed. A brush was in her bag, and a toy truck was in Leo's bag. Joon bit his apple and checked his tooth and mouth in a mirror. Rose delivered paper from the bookstore and put it on a board. A visitor brought a carpet, a cartoon picture, and a bottle for the basement. A visitor in a blue uniform brought a train toy from a vacation. The center bedroom had a perfect ceiling and a small window. Mina asked guests to write names and ages. She planned to discover a new language game and discuss it with Sara. The blue bags belonged at Maple House, and Maple House was in the town. The family fair changed Maple House. Mina knew the change had happened: a city had become a family. Students finished their homework at the empty desk, and Rose made a dirty board clean. Mina explained the bag change to the class. \"Maple House will depend on family help,\" she wrote.\n\nA new season came, and the garden grew rich with flowers. Sunny weather brought a holiday and a trip to the lake. In autumn, the class collected golden leaves. In winter, children made a warm camp at the center. A pilot talked of a plane, a captain talked of a boat, and Grandfather talked of the earth. The artist painted the ocean, a nurse taught healthy care, and a cook baked delicious bread. A student read a newspaper, wrote a letter, and copied a map. A girl climbed a tree, a boy kicked a ball, and children swam in the lake. A baby laughed with a cute toy, and a grandmother sang at the piano. Maple House was free, friendly, fair, and full. Mina looked at the blue bags on the wall. They were little bags, but they carried a great family dream to the world."
   },
   "approval": {
     "reviewer": "Codex-assisted prose and exhaustive automated audit",
-    "reviewedAt": "2026-08-24T09:42:14.574Z",
+    "reviewedAt": "2026-08-24T15:31:09.423Z",
     "sourceDigest": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "value": "8b51950408cda8308cdd420e5277135e01fe97c4f1870e43ee5e35c0c3afae1e"
+      "value": "c843eb1ada5489dfed2aa6a7e4236f649d6a5325e62cc2973a006f1b2d3170b6"
     }
   }
 }

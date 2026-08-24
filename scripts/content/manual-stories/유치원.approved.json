@@ -6,19 +6,27 @@
     "title": "Music in a Dark Room",
     "chapterTitles": [
       "Friday Practice",
-      "A Dark Classroom",
-      "Music from Simple Things",
-      "Practice at Home",
+      "The Power Problem",
+      "A Room Made by Hand",
+      "Practice Across Town",
       "The Saturday Show",
       "A New School Club"
     ],
     "isManual": true,
     "coverage": {
-      "mustCoverAll": false,
+      "mustCoverAll": true,
       "allowUpperLevelWords": false,
-      "coverageRate": 0.156
+      "coverageRate": 1,
+      "phrasalVerbCoverageRate": 1
     },
     "usedWords": [
+      {
+        "lemma": "say",
+        "partOfSpeech": "verb",
+        "forms": [
+          "said"
+        ]
+      },
       {
         "lemma": "by",
         "partOfSpeech": "preposition",
@@ -31,6 +39,13 @@
         "partOfSpeech": "verb",
         "forms": [
           "could"
+        ]
+      },
+      {
+        "lemma": "if",
+        "partOfSpeech": "conjunction",
+        "forms": [
+          "if"
         ]
       },
       {
@@ -62,6 +77,13 @@
         ]
       },
       {
+        "lemma": "when",
+        "partOfSpeech": "conjunction",
+        "forms": [
+          "when"
+        ]
+      },
+      {
         "lemma": "them",
         "partOfSpeech": "pronoun",
         "forms": [
@@ -69,10 +91,45 @@
         ]
       },
       {
+        "lemma": "me",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "me"
+        ]
+      },
+      {
+        "lemma": "into",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "into"
+        ]
+      },
+      {
+        "lemma": "just",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "just"
+        ]
+      },
+      {
         "lemma": "him",
         "partOfSpeech": "pronoun",
         "forms": [
           "him"
+        ]
+      },
+      {
+        "lemma": "now",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "now"
+        ]
+      },
+      {
+        "lemma": "then",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "then"
         ]
       },
       {
@@ -86,7 +143,14 @@
         "lemma": "want",
         "partOfSpeech": "verb",
         "forms": [
-          "wanted"
+          "want"
+        ]
+      },
+      {
+        "lemma": "also",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "also"
         ]
       },
       {
@@ -114,7 +178,14 @@
         "lemma": "thing",
         "partOfSpeech": "noun",
         "forms": [
-          "things"
+          "thing"
+        ]
+      },
+      {
+        "lemma": "well",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "well"
         ]
       },
       {
@@ -132,6 +203,13 @@
         ]
       },
       {
+        "lemma": "very",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "very"
+        ]
+      },
+      {
         "lemma": "back",
         "partOfSpeech": "adverb",
         "forms": [
@@ -143,6 +221,13 @@
         "partOfSpeech": "preposition",
         "forms": [
           "through"
+        ]
+      },
+      {
+        "lemma": "life",
+        "partOfSpeech": "noun",
+        "forms": [
+          "life"
         ]
       },
       {
@@ -160,10 +245,31 @@
         ]
       },
       {
+        "lemma": "may",
+        "partOfSpeech": "verb",
+        "forms": [
+          "may"
+        ]
+      },
+      {
+        "lemma": "after",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "after"
+        ]
+      },
+      {
         "lemma": "school",
         "partOfSpeech": "noun",
         "forms": [
           "school"
+        ]
+      },
+      {
+        "lemma": "need",
+        "partOfSpeech": "verb",
+        "forms": [
+          "needed"
         ]
       },
       {
@@ -181,10 +287,59 @@
         ]
       },
       {
+        "lemma": "never",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "never"
+        ]
+      },
+      {
+        "lemma": "between",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "between"
+        ]
+      },
+      {
+        "lemma": "really",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "really"
+        ]
+      },
+      {
+        "lemma": "something",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "something"
+        ]
+      },
+      {
+        "lemma": "mean",
+        "partOfSpeech": "verb",
+        "forms": [
+          "meant"
+        ]
+      },
+      {
+        "lemma": "keep",
+        "partOfSpeech": "verb",
+        "forms": [
+          "kept"
+        ]
+      },
+      {
+        "lemma": "group",
+        "partOfSpeech": "noun",
+        "forms": [
+          "group"
+        ]
+      },
+      {
         "lemma": "turn",
         "partOfSpeech": "verb",
         "forms": [
-          "turned"
+          "turn"
         ]
       },
       {
@@ -192,6 +347,13 @@
         "partOfSpeech": "noun",
         "forms": [
           "problem"
+        ]
+      },
+      {
+        "lemma": "start",
+        "partOfSpeech": "verb",
+        "forms": [
+          "start"
         ]
       },
       {
@@ -216,10 +378,45 @@
         ]
       },
       {
+        "lemma": "case",
+        "partOfSpeech": "noun",
+        "forms": [
+          "case"
+        ]
+      },
+      {
         "lemma": "right",
         "partOfSpeech": "adverb",
         "forms": [
           "right"
+        ]
+      },
+      {
+        "lemma": "question",
+        "partOfSpeech": "noun",
+        "forms": [
+          "question"
+        ]
+      },
+      {
+        "lemma": "number",
+        "partOfSpeech": "noun",
+        "forms": [
+          "number"
+        ]
+      },
+      {
+        "lemma": "always",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "always"
+        ]
+      },
+      {
+        "lemma": "point",
+        "partOfSpeech": "noun",
+        "forms": [
+          "point"
         ]
       },
       {
@@ -230,6 +427,13 @@
         ]
       },
       {
+        "lemma": "must",
+        "partOfSpeech": "verb",
+        "forms": [
+          "must"
+        ]
+      },
+      {
         "lemma": "home",
         "partOfSpeech": "noun",
         "forms": [
@@ -237,10 +441,80 @@
         ]
       },
       {
+        "lemma": "story",
+        "partOfSpeech": "noun",
+        "forms": [
+          "story"
+        ]
+      },
+      {
+        "lemma": "month",
+        "partOfSpeech": "noun",
+        "forms": [
+          "month"
+        ]
+      },
+      {
+        "lemma": "book",
+        "partOfSpeech": "noun",
+        "forms": [
+          "book"
+        ]
+      },
+      {
+        "lemma": "eye",
+        "partOfSpeech": "noun",
+        "forms": [
+          "eye"
+        ]
+      },
+      {
+        "lemma": "word",
+        "partOfSpeech": "noun",
+        "forms": [
+          "words"
+        ]
+      },
+      {
+        "lemma": "side",
+        "partOfSpeech": "noun",
+        "forms": [
+          "side"
+        ]
+      },
+      {
+        "lemma": "four",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "four"
+        ]
+      },
+      {
         "lemma": "head",
         "partOfSpeech": "verb",
         "forms": [
           "headed"
+        ]
+      },
+      {
+        "lemma": "away",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "away"
+        ]
+      },
+      {
+        "lemma": "often",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "often"
+        ]
+      },
+      {
+        "lemma": "almost",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "almost"
         ]
       },
       {
@@ -258,6 +532,27 @@
         ]
       },
       {
+        "lemma": "five",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "five"
+        ]
+      },
+      {
+        "lemma": "once",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "once"
+        ]
+      },
+      {
+        "lemma": "real",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "real"
+        ]
+      },
+      {
         "lemma": "team",
         "partOfSpeech": "noun",
         "forms": [
@@ -265,10 +560,38 @@
         ]
       },
       {
+        "lemma": "best",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "best"
+        ]
+      },
+      {
         "lemma": "idea",
         "partOfSpeech": "noun",
         "forms": [
-          "ideas"
+          "idea"
+        ]
+      },
+      {
+        "lemma": "kid",
+        "partOfSpeech": "noun",
+        "forms": [
+          "kid"
+        ]
+      },
+      {
+        "lemma": "nothing",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "nothing"
+        ]
+      },
+      {
+        "lemma": "social",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "social"
         ]
       },
       {
@@ -286,10 +609,122 @@
         ]
       },
       {
+        "lemma": "face",
+        "partOfSpeech": "noun",
+        "forms": [
+          "face"
+        ]
+      },
+      {
+        "lemma": "anything",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "anything"
+        ]
+      },
+      {
+        "lemma": "already",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "already"
+        ]
+      },
+      {
+        "lemma": "speak",
+        "partOfSpeech": "verb",
+        "forms": [
+          "speaking"
+        ]
+      },
+      {
+        "lemma": "spend",
+        "partOfSpeech": "verb",
+        "forms": [
+          "spent"
+        ]
+      },
+      {
+        "lemma": "sure",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "sure"
+        ]
+      },
+      {
+        "lemma": "history",
+        "partOfSpeech": "noun",
+        "forms": [
+          "history"
+        ]
+      },
+      {
+        "lemma": "result",
+        "partOfSpeech": "noun",
+        "forms": [
+          "result"
+        ]
+      },
+      {
+        "lemma": "reason",
+        "partOfSpeech": "noun",
+        "forms": [
+          "reason"
+        ]
+      },
+      {
+        "lemma": "win",
+        "partOfSpeech": "verb",
+        "forms": [
+          "win"
+        ]
+      },
+      {
+        "lemma": "guy",
+        "partOfSpeech": "noun",
+        "forms": [
+          "guy"
+        ]
+      },
+      {
         "lemma": "food",
         "partOfSpeech": "noun",
         "forms": [
           "food"
+        ]
+      },
+      {
+        "lemma": "moment",
+        "partOfSpeech": "noun",
+        "forms": [
+          "moment"
+        ]
+      },
+      {
+        "lemma": "remember",
+        "partOfSpeech": "verb",
+        "forms": [
+          "remember"
+        ]
+      },
+      {
+        "lemma": "maybe",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "maybe"
+        ]
+      },
+      {
+        "lemma": "everything",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "everything"
+        ]
+      },
+      {
+        "lemma": "love",
+        "partOfSpeech": "verb",
+        "forms": [
+          "love"
         ]
       },
       {
@@ -300,10 +735,31 @@
         ]
       },
       {
+        "lemma": "wait",
+        "partOfSpeech": "verb",
+        "forms": [
+          "wait"
+        ]
+      },
+      {
         "lemma": "stay",
         "partOfSpeech": "verb",
         "forms": [
-          "stayed"
+          "stay"
+        ]
+      },
+      {
+        "lemma": "someone",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "someone"
+        ]
+      },
+      {
+        "lemma": "six",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "six"
         ]
       },
       {
@@ -311,6 +767,20 @@
         "partOfSpeech": "adjective",
         "forms": [
           "late"
+        ]
+      },
+      {
+        "lemma": "sell",
+        "partOfSpeech": "verb",
+        "forms": [
+          "sold"
+        ]
+      },
+      {
+        "lemma": "role",
+        "partOfSpeech": "noun",
+        "forms": [
+          "role"
         ]
       },
       {
@@ -328,17 +798,241 @@
         ]
       },
       {
-        "lemma": "test",
+        "lemma": "heart",
+        "partOfSpeech": "noun",
+        "forms": [
+          "heart"
+        ]
+      },
+      {
+        "lemma": "leader",
+        "partOfSpeech": "noun",
+        "forms": [
+          "leader"
+        ]
+      },
+      {
+        "lemma": "mind",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mind"
+        ]
+      },
+      {
+        "lemma": "true",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "true"
+        ]
+      },
+      {
+        "lemma": "thank",
         "partOfSpeech": "verb",
         "forms": [
-          "tested"
+          "thanks"
+        ]
+      },
+      {
+        "lemma": "wear",
+        "partOfSpeech": "verb",
+        "forms": [
+          "wear"
+        ]
+      },
+      {
+        "lemma": "special",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "special"
+        ]
+      },
+      {
+        "lemma": "form",
+        "partOfSpeech": "noun",
+        "forms": [
+          "form"
+        ]
+      },
+      {
+        "lemma": "event",
+        "partOfSpeech": "noun",
+        "forms": [
+          "events"
+        ]
+      },
+      {
+        "lemma": "matter",
+        "partOfSpeech": "noun",
+        "forms": [
+          "matter"
+        ]
+      },
+      {
+        "lemma": "everyone",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "everyone"
+        ]
+      },
+      {
+        "lemma": "site",
+        "partOfSpeech": "noun",
+        "forms": [
+          "site"
+        ]
+      },
+      {
+        "lemma": "piece",
+        "partOfSpeech": "noun",
+        "forms": [
+          "piece"
+        ]
+      },
+      {
+        "lemma": "describe",
+        "partOfSpeech": "verb",
+        "forms": [
+          "describe"
+        ]
+      },
+      {
+        "lemma": "news",
+        "partOfSpeech": "noun",
+        "forms": [
+          "news"
+        ]
+      },
+      {
+        "lemma": "test",
+        "partOfSpeech": "noun",
+        "forms": [
+          "test"
+        ]
+      },
+      {
+        "lemma": "personal",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "personal"
+        ]
+      },
+      {
+        "lemma": "technology",
+        "partOfSpeech": "noun",
+        "forms": [
+          "technology"
+        ]
+      },
+      {
+        "lemma": "type",
+        "partOfSpeech": "noun",
+        "forms": [
+          "type"
+        ]
+      },
+      {
+        "lemma": "draw",
+        "partOfSpeech": "verb",
+        "forms": [
+          "draw"
+        ]
+      },
+      {
+        "lemma": "soon",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "soon"
+        ]
+      },
+      {
+        "lemma": "culture",
+        "partOfSpeech": "noun",
+        "forms": [
+          "culture"
+        ]
+      },
+      {
+        "lemma": "period",
+        "partOfSpeech": "noun",
+        "forms": [
+          "period"
+        ]
+      },
+      {
+        "lemma": "course",
+        "partOfSpeech": "noun",
+        "forms": [
+          "course"
+        ]
+      },
+      {
+        "lemma": "summer",
+        "partOfSpeech": "noun",
+        "forms": [
+          "summer"
+        ]
+      },
+      {
+        "lemma": "future",
+        "partOfSpeech": "noun",
+        "forms": [
+          "future"
+        ]
+      },
+      {
+        "lemma": "wrong",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "wrong"
+        ]
+      },
+      {
+        "lemma": "anyone",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "anyone"
+        ]
+      },
+      {
+        "lemma": "sport",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sport"
+        ]
+      },
+      {
+        "lemma": "subject",
+        "partOfSpeech": "noun",
+        "forms": [
+          "subject"
+        ]
+      },
+      {
+        "lemma": "officer",
+        "partOfSpeech": "noun",
+        "forms": [
+          "officer"
         ]
       },
       {
         "lemma": "top",
+        "partOfSpeech": "verb",
+        "forms": [
+          "topped"
+        ]
+      },
+      {
+        "lemma": "quickly",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "quickly"
+        ]
+      },
+      {
+        "lemma": "goal",
         "partOfSpeech": "noun",
         "forms": [
-          "top"
+          "goal"
         ]
       },
       {
@@ -349,10 +1043,101 @@
         ]
       },
       {
+        "lemma": "focus",
+        "partOfSpeech": "verb",
+        "forms": [
+          "focus"
+        ]
+      },
+      {
+        "lemma": "foreign",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "foreign"
+        ]
+      },
+      {
+        "lemma": "push",
+        "partOfSpeech": "verb",
+        "forms": [
+          "push"
+        ]
+      },
+      {
         "lemma": "note",
         "partOfSpeech": "verb",
         "forms": [
           "note"
+        ]
+      },
+      {
+        "lemma": "fine",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "fine"
+        ]
+      },
+      {
+        "lemma": "share",
+        "partOfSpeech": "verb",
+        "forms": [
+          "share"
+        ]
+      },
+      {
+        "lemma": "poor",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "poor"
+        ]
+      },
+      {
+        "lemma": "usually",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "usually"
+        ]
+      },
+      {
+        "lemma": "article",
+        "partOfSpeech": "noun",
+        "forms": [
+          "article"
+        ]
+      },
+      {
+        "lemma": "save",
+        "partOfSpeech": "verb",
+        "forms": [
+          "save"
+        ]
+      },
+      {
+        "lemma": "seven",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "seven"
+        ]
+      },
+      {
+        "lemma": "eight",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "eight"
+        ]
+      },
+      {
+        "lemma": "size",
+        "partOfSpeech": "noun",
+        "forms": [
+          "size"
+        ]
+      },
+      {
+        "lemma": "list",
+        "partOfSpeech": "noun",
+        "forms": [
+          "list"
         ]
       },
       {
@@ -363,10 +1148,73 @@
         ]
       },
       {
+        "lemma": "character",
+        "partOfSpeech": "noun",
+        "forms": [
+          "character"
+        ]
+      },
+      {
+        "lemma": "television",
+        "partOfSpeech": "noun",
+        "forms": [
+          "television"
+        ]
+      },
+      {
+        "lemma": "everybody",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "everybody"
+        ]
+      },
+      {
         "lemma": "message",
         "partOfSpeech": "noun",
         "forms": [
           "message"
+        ]
+      },
+      {
+        "lemma": "section",
+        "partOfSpeech": "noun",
+        "forms": [
+          "section"
+        ]
+      },
+      {
+        "lemma": "skill",
+        "partOfSpeech": "noun",
+        "forms": [
+          "skill"
+        ]
+      },
+      {
+        "lemma": "design",
+        "partOfSpeech": "noun",
+        "forms": [
+          "design"
+        ]
+      },
+      {
+        "lemma": "ten",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "ten"
+        ]
+      },
+      {
+        "lemma": "example",
+        "partOfSpeech": "noun",
+        "forms": [
+          "example"
+        ]
+      },
+      {
+        "lemma": "green",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "green"
         ]
       },
       {
@@ -377,10 +1225,101 @@
         ]
       },
       {
+        "lemma": "card",
+        "partOfSpeech": "noun",
+        "forms": [
+          "card"
+        ]
+      },
+      {
+        "lemma": "seat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "seat"
+        ]
+      },
+      {
+        "lemma": "nice",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "nice"
+        ]
+      },
+      {
+        "lemma": "spring",
+        "partOfSpeech": "noun",
+        "forms": [
+          "spring"
+        ]
+      },
+      {
+        "lemma": "imagine",
+        "partOfSpeech": "verb",
+        "forms": [
+          "imagine"
+        ]
+      },
+      {
+        "lemma": "yourself",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "yourself"
+        ]
+      },
+      {
+        "lemma": "peace",
+        "partOfSpeech": "noun",
+        "forms": [
+          "peace"
+        ]
+      },
+      {
+        "lemma": "interview",
+        "partOfSpeech": "noun",
+        "forms": [
+          "interview"
+        ]
+      },
+      {
+        "lemma": "chair",
+        "partOfSpeech": "noun",
+        "forms": [
+          "chair"
+        ]
+      },
+      {
         "lemma": "evening",
         "partOfSpeech": "noun",
         "forms": [
           "evening"
+        ]
+      },
+      {
+        "lemma": "shoulder",
+        "partOfSpeech": "noun",
+        "forms": [
+          "shoulder"
+        ]
+      },
+      {
+        "lemma": "bar",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bar"
+        ]
+      },
+      {
+        "lemma": "magazine",
+        "partOfSpeech": "noun",
+        "forms": [
+          "magazine"
+        ]
+      },
+      {
+        "lemma": "owner",
+        "partOfSpeech": "noun",
+        "forms": [
+          "owner"
         ]
       },
       {
@@ -391,10 +1330,59 @@
         ]
       },
       {
+        "lemma": "item",
+        "partOfSpeech": "noun",
+        "forms": [
+          "item"
+        ]
+      },
+      {
+        "lemma": "coach",
+        "partOfSpeech": "noun",
+        "forms": [
+          "coach"
+        ]
+      },
+      {
         "lemma": "step",
         "partOfSpeech": "verb",
         "forms": [
           "step"
+        ]
+      },
+      {
+        "lemma": "yard",
+        "partOfSpeech": "noun",
+        "forms": [
+          "yard"
+        ]
+      },
+      {
+        "lemma": "vote",
+        "partOfSpeech": "verb",
+        "forms": [
+          "voted"
+        ]
+      },
+      {
+        "lemma": "travel",
+        "partOfSpeech": "verb",
+        "forms": [
+          "travel"
+        ]
+      },
+      {
+        "lemma": "wind",
+        "partOfSpeech": "noun",
+        "forms": [
+          "wind"
+        ]
+      },
+      {
+        "lemma": "successful",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "successful"
         ]
       },
       {
@@ -405,10 +1393,108 @@
         ]
       },
       {
+        "lemma": "hurt",
+        "partOfSpeech": "verb",
+        "forms": [
+          "hurt"
+        ]
+      },
+      {
+        "lemma": "nine",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "nine"
+        ]
+      },
+      {
+        "lemma": "conversation",
+        "partOfSpeech": "noun",
+        "forms": [
+          "conversation"
+        ]
+      },
+      {
+        "lemma": "brain",
+        "partOfSpeech": "noun",
+        "forms": [
+          "brain"
+        ]
+      },
+      {
+        "lemma": "afternoon",
+        "partOfSpeech": "noun",
+        "forms": [
+          "afternoon"
+        ]
+      },
+      {
+        "lemma": "weekend",
+        "partOfSpeech": "noun",
+        "forms": [
+          "weekend"
+        ]
+      },
+      {
+        "lemma": "date",
+        "partOfSpeech": "noun",
+        "forms": [
+          "date"
+        ]
+      },
+      {
+        "lemma": "sorry",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "sorry"
+        ]
+      },
+      {
+        "lemma": "fan",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fan"
+        ]
+      },
+      {
+        "lemma": "hole",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hole"
+        ]
+      },
+      {
+        "lemma": "ship",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ship"
+        ]
+      },
+      {
+        "lemma": "introduce",
+        "partOfSpeech": "verb",
+        "forms": [
+          "introduce"
+        ]
+      },
+      {
         "lemma": "sun",
         "partOfSpeech": "noun",
         "forms": [
           "sun"
+        ]
+      },
+      {
+        "lemma": "survey",
+        "partOfSpeech": "noun",
+        "forms": [
+          "survey"
+        ]
+      },
+      {
+        "lemma": "hide",
+        "partOfSpeech": "verb",
+        "forms": [
+          "hide"
         ]
       },
       {
@@ -420,9 +1506,72 @@
       },
       {
         "lemma": "band",
+        "partOfSpeech": "noun",
+        "forms": [
+          "band"
+        ]
+      },
+      {
+        "lemma": "interested",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "interested"
+        ]
+      },
+      {
+        "lemma": "ride",
         "partOfSpeech": "verb",
         "forms": [
-          "banded"
+          "ride"
+        ]
+      },
+      {
+        "lemma": "tool",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tools"
+        ]
+      },
+      {
+        "lemma": "ear",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ear"
+        ]
+      },
+      {
+        "lemma": "jump",
+        "partOfSpeech": "verb",
+        "forms": [
+          "jump"
+        ]
+      },
+      {
+        "lemma": "until",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "until"
+        ]
+      },
+      {
+        "lemma": "baseball",
+        "partOfSpeech": "noun",
+        "forms": [
+          "baseball"
+        ]
+      },
+      {
+        "lemma": "anybody",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "anybody"
+        ]
+      },
+      {
+        "lemma": "review",
+        "partOfSpeech": "noun",
+        "forms": [
+          "review"
         ]
       },
       {
@@ -433,17 +1582,304 @@
         ]
       },
       {
+        "lemma": "grade",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grade"
+        ]
+      },
+      {
         "lemma": "smile",
+        "partOfSpeech": "noun",
+        "forms": [
+          "smile"
+        ]
+      },
+      {
+        "lemma": "bone",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bone"
+        ]
+      },
+      {
+        "lemma": "photo",
+        "partOfSpeech": "noun",
+        "forms": [
+          "photo"
+        ]
+      },
+      {
+        "lemma": "classroom",
+        "partOfSpeech": "noun",
+        "forms": [
+          "classroom"
+        ]
+      },
+      {
+        "lemma": "pair",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pair"
+        ]
+      },
+      {
+        "lemma": "birth",
+        "partOfSpeech": "noun",
+        "forms": [
+          "birth"
+        ]
+      },
+      {
+        "lemma": "bottom",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bottom"
+        ]
+      },
+      {
+        "lemma": "neck",
+        "partOfSpeech": "noun",
+        "forms": [
+          "neck"
+        ]
+      },
+      {
+        "lemma": "football",
+        "partOfSpeech": "noun",
+        "forms": [
+          "football"
+        ]
+      },
+      {
+        "lemma": "chicken",
+        "partOfSpeech": "noun",
+        "forms": [
+          "chicken"
+        ]
+      },
+      {
+        "lemma": "welcome",
         "partOfSpeech": "verb",
         "forms": [
-          "smiled"
+          "welcome"
+        ]
+      },
+      {
+        "lemma": "leaf",
+        "partOfSpeech": "noun",
+        "forms": [
+          "leaf"
+        ]
+      },
+      {
+        "lemma": "fight",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fight"
+        ]
+      },
+      {
+        "lemma": "sweet",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "sweet"
+        ]
+      },
+      {
+        "lemma": "strange",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "strange"
+        ]
+      },
+      {
+        "lemma": "farmer",
+        "partOfSpeech": "noun",
+        "forms": [
+          "farmer"
+        ]
+      },
+      {
+        "lemma": "repeat",
+        "partOfSpeech": "verb",
+        "forms": [
+          "repeat"
+        ]
+      },
+      {
+        "lemma": "carefully",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "carefully"
+        ]
+      },
+      {
+        "lemma": "mom",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mom"
+        ]
+      },
+      {
+        "lemma": "thin",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "thin"
         ]
       },
       {
         "lemma": "surprise",
+        "partOfSpeech": "noun",
+        "forms": [
+          "surprise"
+        ]
+      },
+      {
+        "lemma": "half",
+        "partOfSpeech": "noun",
+        "forms": [
+          "half"
+        ]
+      },
+      {
+        "lemma": "sight",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sight"
+        ]
+      },
+      {
+        "lemma": "code",
+        "partOfSpeech": "noun",
+        "forms": [
+          "code"
+        ]
+      },
+      {
+        "lemma": "thick",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "thick"
+        ]
+      },
+      {
+        "lemma": "nose",
+        "partOfSpeech": "noun",
+        "forms": [
+          "nose"
+        ]
+      },
+      {
+        "lemma": "dress",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dress"
+        ]
+      },
+      {
+        "lemma": "file",
+        "partOfSpeech": "noun",
+        "forms": [
+          "file"
+        ]
+      },
+      {
+        "lemma": "sick",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "sick"
+        ]
+      },
+      {
+        "lemma": "judge",
         "partOfSpeech": "verb",
         "forms": [
-          "surprising"
+          "judge"
+        ]
+      },
+      {
+        "lemma": "snow",
+        "partOfSpeech": "noun",
+        "forms": [
+          "snow"
+        ]
+      },
+      {
+        "lemma": "meat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "meat"
+        ]
+      },
+      {
+        "lemma": "correct",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "correct"
+        ]
+      },
+      {
+        "lemma": "basketball",
+        "partOfSpeech": "noun",
+        "forms": [
+          "basketball"
+        ]
+      },
+      {
+        "lemma": "dad",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dad"
+        ]
+      },
+      {
+        "lemma": "solve",
+        "partOfSpeech": "verb",
+        "forms": [
+          "solve"
+        ]
+      },
+      {
+        "lemma": "hall",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hall"
+        ]
+      },
+      {
+        "lemma": "row",
+        "partOfSpeech": "noun",
+        "forms": [
+          "row"
+        ]
+      },
+      {
+        "lemma": "smart",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "smart"
+        ]
+      },
+      {
+        "lemma": "topic",
+        "partOfSpeech": "noun",
+        "forms": [
+          "topic"
+        ]
+      },
+      {
+        "lemma": "telephone",
+        "partOfSpeech": "noun",
+        "forms": [
+          "telephone"
+        ]
+      },
+      {
+        "lemma": "pleasure",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pleasure"
         ]
       },
       {
@@ -454,10 +1890,297 @@
         ]
       },
       {
+        "lemma": "dish",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dish"
+        ]
+      },
+      {
+        "lemma": "everywhere",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "everywhere"
+        ]
+      },
+      {
+        "lemma": "terrible",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "terrible"
+        ]
+      },
+      {
+        "lemma": "careful",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "careful"
+        ]
+      },
+      {
+        "lemma": "wheel",
+        "partOfSpeech": "noun",
+        "forms": [
+          "wheel"
+        ]
+      },
+      {
+        "lemma": "cream",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cream"
+        ]
+      },
+      {
+        "lemma": "hill",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hill"
+        ]
+      },
+      {
+        "lemma": "grass",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grass"
+        ]
+      },
+      {
+        "lemma": "fishing",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fishing"
+        ]
+      },
+      {
+        "lemma": "sentence",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sentence"
+        ]
+      },
+      {
+        "lemma": "living",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "living"
+        ]
+      },
+      {
+        "lemma": "hi",
+        "partOfSpeech": "interjection",
+        "forms": [
+          "hi"
+        ]
+      },
+      {
+        "lemma": "twenty",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "twenty"
+        ]
+      },
+      {
+        "lemma": "sir",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sir"
+        ]
+      },
+      {
+        "lemma": "wash",
+        "partOfSpeech": "verb",
+        "forms": [
+          "washed"
+        ]
+      },
+      {
+        "lemma": "post",
+        "partOfSpeech": "verb",
+        "forms": [
+          "posted"
+        ]
+      },
+      {
+        "lemma": "self",
+        "partOfSpeech": "noun",
+        "forms": [
+          "self"
+        ]
+      },
+      {
+        "lemma": "bike",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bike"
+        ]
+      },
+      {
+        "lemma": "tea",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tea"
+        ]
+      },
+      {
+        "lemma": "cop",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cop"
+        ]
+      },
+      {
+        "lemma": "album",
+        "partOfSpeech": "noun",
+        "forms": [
+          "album"
+        ]
+      },
+      {
+        "lemma": "sale",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sale"
+        ]
+      },
+      {
+        "lemma": "breathe",
+        "partOfSpeech": "verb",
+        "forms": [
+          "breathed"
+        ]
+      },
+      {
         "lemma": "touch",
         "partOfSpeech": "verb",
         "forms": [
           "touched"
+        ]
+      },
+      {
+        "lemma": "fat",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "fat"
+        ]
+      },
+      {
+        "lemma": "bean",
+        "partOfSpeech": "noun",
+        "forms": [
+          "beans"
+        ]
+      },
+      {
+        "lemma": "ring",
+        "partOfSpeech": "verb",
+        "forms": [
+          "ring"
+        ]
+      },
+      {
+        "lemma": "luck",
+        "partOfSpeech": "noun",
+        "forms": [
+          "luck"
+        ]
+      },
+      {
+        "lemma": "pray",
+        "partOfSpeech": "verb",
+        "forms": [
+          "pray"
+        ]
+      },
+      {
+        "lemma": "flag",
+        "partOfSpeech": "noun",
+        "forms": [
+          "flag"
+        ]
+      },
+      {
+        "lemma": "corn",
+        "partOfSpeech": "noun",
+        "forms": [
+          "corn"
+        ]
+      },
+      {
+        "lemma": "due",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "due"
+        ]
+      },
+      {
+        "lemma": "pretty",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "pretty"
+        ]
+      },
+      {
+        "lemma": "pink",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "pink"
+        ]
+      },
+      {
+        "lemma": "poem",
+        "partOfSpeech": "noun",
+        "forms": [
+          "poem"
+        ]
+      },
+      {
+        "lemma": "mail",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mail"
+        ]
+      },
+      {
+        "lemma": "concert",
+        "partOfSpeech": "noun",
+        "forms": [
+          "concert"
+        ]
+      },
+      {
+        "lemma": "false",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "false"
+        ]
+      },
+      {
+        "lemma": "tube",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tube"
+        ]
+      },
+      {
+        "lemma": "drama",
+        "partOfSpeech": "noun",
+        "forms": [
+          "drama"
+        ]
+      },
+      {
+        "lemma": "chocolate",
+        "partOfSpeech": "noun",
+        "forms": [
+          "chocolate"
+        ]
+      },
+      {
+        "lemma": "super",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "super"
         ]
       },
       {
@@ -468,10 +2191,535 @@
         ]
       },
       {
+        "lemma": "bear",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bear"
+        ]
+      },
+      {
+        "lemma": "shopping",
+        "partOfSpeech": "noun",
+        "forms": [
+          "shopping"
+        ]
+      },
+      {
+        "lemma": "cousin",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cousin"
+        ]
+      },
+      {
+        "lemma": "rice",
+        "partOfSpeech": "noun",
+        "forms": [
+          "rice"
+        ]
+      },
+      {
+        "lemma": "tight",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "tight"
+        ]
+      },
+      {
+        "lemma": "salad",
+        "partOfSpeech": "noun",
+        "forms": [
+          "salad"
+        ]
+      },
+      {
+        "lemma": "smell",
+        "partOfSpeech": "noun",
+        "forms": [
+          "smell"
+        ]
+      },
+      {
+        "lemma": "thirty",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "thirty"
+        ]
+      },
+      {
+        "lemma": "shelf",
+        "partOfSpeech": "noun",
+        "forms": [
+          "shelf"
+        ]
+      },
+      {
+        "lemma": "fifteen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "fifteen"
+        ]
+      },
+      {
+        "lemma": "soup",
+        "partOfSpeech": "noun",
+        "forms": [
+          "soup"
+        ]
+      },
+      {
+        "lemma": "fifty",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "fifty"
+        ]
+      },
+      {
+        "lemma": "contest",
+        "partOfSpeech": "noun",
+        "forms": [
+          "contest"
+        ]
+      },
+      {
+        "lemma": "tennis",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tennis"
+        ]
+      },
+      {
+        "lemma": "girlfriend",
+        "partOfSpeech": "noun",
+        "forms": [
+          "girlfriend"
+        ]
+      },
+      {
+        "lemma": "jet",
+        "partOfSpeech": "noun",
+        "forms": [
+          "jet"
+        ]
+      },
+      {
+        "lemma": "shower",
+        "partOfSpeech": "noun",
+        "forms": [
+          "shower"
+        ]
+      },
+      {
+        "lemma": "twelve",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "twelve"
+        ]
+      },
+      {
+        "lemma": "ugly",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "ugly"
+        ]
+      },
+      {
+        "lemma": "ghost",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ghost"
+        ]
+      },
+      {
+        "lemma": "pet",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pet"
+        ]
+      },
+      {
+        "lemma": "lovely",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "lovely"
+        ]
+      },
+      {
+        "lemma": "everyday",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "everyday"
+        ]
+      },
+      {
+        "lemma": "mouse",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mouse"
+        ]
+      },
+      {
+        "lemma": "dear",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "dear"
+        ]
+      },
+      {
+        "lemma": "soccer",
+        "partOfSpeech": "noun",
+        "forms": [
+          "soccer"
+        ]
+      },
+      {
+        "lemma": "rose",
+        "partOfSpeech": "noun",
+        "forms": [
+          "rose"
+        ]
+      },
+      {
+        "lemma": "couch",
+        "partOfSpeech": "noun",
+        "forms": [
+          "couch"
+        ]
+      },
+      {
+        "lemma": "boyfriend",
+        "partOfSpeech": "noun",
+        "forms": [
+          "boyfriend"
+        ]
+      },
+      {
+        "lemma": "jeans",
+        "partOfSpeech": "noun",
+        "forms": [
+          "jeans"
+        ]
+      },
+      {
+        "lemma": "snake",
+        "partOfSpeech": "noun",
+        "forms": [
+          "snake"
+        ]
+      },
+      {
+        "lemma": "pig",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pig"
+        ]
+      },
+      {
+        "lemma": "pop",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pop"
+        ]
+      },
+      {
+        "lemma": "beef",
+        "partOfSpeech": "noun",
+        "forms": [
+          "beef"
+        ]
+      },
+      {
+        "lemma": "cloth",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cloth"
+        ]
+      },
+      {
+        "lemma": "strict",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "strict"
+        ]
+      },
+      {
+        "lemma": "rat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "rat"
+        ]
+      },
+      {
+        "lemma": "wish",
+        "partOfSpeech": "verb",
+        "forms": [
+          "wished"
+        ]
+      },
+      {
+        "lemma": "temple",
+        "partOfSpeech": "noun",
+        "forms": [
+          "temple"
+        ]
+      },
+      {
+        "lemma": "skirt",
+        "partOfSpeech": "noun",
+        "forms": [
+          "skirt"
+        ]
+      },
+      {
+        "lemma": "closed",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "closed"
+        ]
+      },
+      {
+        "lemma": "towel",
+        "partOfSpeech": "noun",
+        "forms": [
+          "towel"
+        ]
+      },
+      {
+        "lemma": "bat",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bat"
+        ]
+      },
+      {
+        "lemma": "festival",
+        "partOfSpeech": "noun",
+        "forms": [
+          "festival"
+        ]
+      },
+      {
+        "lemma": "excuse",
+        "partOfSpeech": "noun",
+        "forms": [
+          "excuse"
+        ]
+      },
+      {
+        "lemma": "forty",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "forty"
+        ]
+      },
+      {
+        "lemma": "turkey",
+        "partOfSpeech": "noun",
+        "forms": [
+          "turkey"
+        ]
+      },
+      {
+        "lemma": "doll",
+        "partOfSpeech": "noun",
+        "forms": [
+          "doll"
+        ]
+      },
+      {
+        "lemma": "handsome",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "handsome"
+        ]
+      },
+      {
+        "lemma": "sum",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sum"
+        ]
+      },
+      {
+        "lemma": "hers",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "hers"
+        ]
+      },
+      {
+        "lemma": "opera",
+        "partOfSpeech": "noun",
+        "forms": [
+          "opera"
+        ]
+      },
+      {
+        "lemma": "bath",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bath"
+        ]
+      },
+      {
+        "lemma": "pizza",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pizza"
+        ]
+      },
+      {
+        "lemma": "worry",
+        "partOfSpeech": "noun",
+        "forms": [
+          "worry"
+        ]
+      },
+      {
+        "lemma": "garbage",
+        "partOfSpeech": "noun",
+        "forms": [
+          "garbage"
+        ]
+      },
+      {
+        "lemma": "kiss",
+        "partOfSpeech": "noun",
+        "forms": [
+          "kiss"
+        ]
+      },
+      {
+        "lemma": "toilet",
+        "partOfSpeech": "noun",
+        "forms": [
+          "toilet"
+        ]
+      },
+      {
         "lemma": "drum",
         "partOfSpeech": "noun",
         "forms": [
           "drum"
+        ]
+      },
+      {
+        "lemma": "bee",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bee"
+        ]
+      },
+      {
+        "lemma": "eleven",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "eleven"
+        ]
+      },
+      {
+        "lemma": "lion",
+        "partOfSpeech": "noun",
+        "forms": [
+          "lion"
+        ]
+      },
+      {
+        "lemma": "fever",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fever"
+        ]
+      },
+      {
+        "lemma": "monkey",
+        "partOfSpeech": "noun",
+        "forms": [
+          "monkey"
+        ]
+      },
+      {
+        "lemma": "blank",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "blank"
+        ]
+      },
+      {
+        "lemma": "awake",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "awake"
+        ]
+      },
+      {
+        "lemma": "palace",
+        "partOfSpeech": "noun",
+        "forms": [
+          "palace"
+        ]
+      },
+      {
+        "lemma": "grandparent",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grandparent"
+        ]
+      },
+      {
+        "lemma": "supermarket",
+        "partOfSpeech": "noun",
+        "forms": [
+          "supermarket"
+        ]
+      },
+      {
+        "lemma": "headache",
+        "partOfSpeech": "noun",
+        "forms": [
+          "headache"
+        ]
+      },
+      {
+        "lemma": "grape",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grapes"
+        ]
+      },
+      {
+        "lemma": "sofa",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sofa"
+        ]
+      },
+      {
+        "lemma": "bucket",
+        "partOfSpeech": "noun",
+        "forms": [
+          "bucket"
+        ]
+      },
+      {
+        "lemma": "spy",
+        "partOfSpeech": "noun",
+        "forms": [
+          "spy"
+        ]
+      },
+      {
+        "lemma": "foreigner",
+        "partOfSpeech": "noun",
+        "forms": [
+          "foreigner"
+        ]
+      },
+      {
+        "lemma": "butterfly",
+        "partOfSpeech": "noun",
+        "forms": [
+          "butterfly"
         ]
       },
       {
@@ -482,6 +2730,97 @@
         ]
       },
       {
+        "lemma": "april",
+        "partOfSpeech": "noun",
+        "forms": [
+          "april"
+        ]
+      },
+      {
+        "lemma": "apron",
+        "partOfSpeech": "noun",
+        "forms": [
+          "apron"
+        ]
+      },
+      {
+        "lemma": "august",
+        "partOfSpeech": "noun",
+        "forms": [
+          "august"
+        ]
+      },
+      {
+        "lemma": "cinema",
+        "partOfSpeech": "noun",
+        "forms": [
+          "cinema"
+        ]
+      },
+      {
+        "lemma": "classmate",
+        "partOfSpeech": "noun",
+        "forms": [
+          "classmate"
+        ]
+      },
+      {
+        "lemma": "december",
+        "partOfSpeech": "noun",
+        "forms": [
+          "december"
+        ]
+      },
+      {
+        "lemma": "dictionary",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dictionary"
+        ]
+      },
+      {
+        "lemma": "dollar",
+        "partOfSpeech": "noun",
+        "forms": [
+          "dollars"
+        ]
+      },
+      {
+        "lemma": "eighteen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "eighteen"
+        ]
+      },
+      {
+        "lemma": "eighty",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "eighty"
+        ]
+      },
+      {
+        "lemma": "fairy",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fairy"
+        ]
+      },
+      {
+        "lemma": "february",
+        "partOfSpeech": "noun",
+        "forms": [
+          "february"
+        ]
+      },
+      {
+        "lemma": "fourteen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "fourteen"
+        ]
+      },
+      {
         "lemma": "friday",
         "partOfSpeech": "noun",
         "forms": [
@@ -489,10 +2828,234 @@
         ]
       },
       {
+        "lemma": "frog",
+        "partOfSpeech": "noun",
+        "forms": [
+          "frog"
+        ]
+      },
+      {
+        "lemma": "glasses",
+        "partOfSpeech": "noun",
+        "forms": [
+          "glasses"
+        ]
+      },
+      {
+        "lemma": "gold",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "gold"
+        ]
+      },
+      {
+        "lemma": "grammar",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grammar"
+        ]
+      },
+      {
+        "lemma": "grandma",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grandma"
+        ]
+      },
+      {
+        "lemma": "grandpa",
+        "partOfSpeech": "noun",
+        "forms": [
+          "grandpa"
+        ]
+      },
+      {
+        "lemma": "hamburger",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hamburgers"
+        ]
+      },
+      {
+        "lemma": "hello",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hello"
+        ]
+      },
+      {
+        "lemma": "hobby",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hobby"
+        ]
+      },
+      {
+        "lemma": "hometown",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hometown"
+        ]
+      },
+      {
+        "lemma": "hurry",
+        "partOfSpeech": "noun",
+        "forms": [
+          "hurry"
+        ]
+      },
+      {
+        "lemma": "january",
+        "partOfSpeech": "noun",
+        "forms": [
+          "january"
+        ]
+      },
+      {
+        "lemma": "july",
+        "partOfSpeech": "noun",
+        "forms": [
+          "july"
+        ]
+      },
+      {
+        "lemma": "june",
+        "partOfSpeech": "noun",
+        "forms": [
+          "june"
+        ]
+      },
+      {
+        "lemma": "lily",
+        "partOfSpeech": "noun",
+        "forms": [
+          "lily"
+        ]
+      },
+      {
+        "lemma": "march",
+        "partOfSpeech": "noun",
+        "forms": [
+          "march"
+        ]
+      },
+      {
+        "lemma": "merry",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "merry"
+        ]
+      },
+      {
+        "lemma": "mobile",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mobile"
+        ]
+      },
+      {
         "lemma": "monday",
         "partOfSpeech": "noun",
         "forms": [
           "monday"
+        ]
+      },
+      {
+        "lemma": "mum",
+        "partOfSpeech": "noun",
+        "forms": [
+          "mum"
+        ]
+      },
+      {
+        "lemma": "nineteen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "nineteen"
+        ]
+      },
+      {
+        "lemma": "ninety",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "ninety"
+        ]
+      },
+      {
+        "lemma": "november",
+        "partOfSpeech": "noun",
+        "forms": [
+          "november"
+        ]
+      },
+      {
+        "lemma": "october",
+        "partOfSpeech": "noun",
+        "forms": [
+          "october"
+        ]
+      },
+      {
+        "lemma": "own",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "own"
+        ]
+      },
+      {
+        "lemma": "pants",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pants"
+        ]
+      },
+      {
+        "lemma": "paragraph",
+        "partOfSpeech": "noun",
+        "forms": [
+          "paragraph"
+        ]
+      },
+      {
+        "lemma": "pardon",
+        "partOfSpeech": "noun",
+        "forms": [
+          "pardon"
+        ]
+      },
+      {
+        "lemma": "picnic",
+        "partOfSpeech": "noun",
+        "forms": [
+          "picnic"
+        ]
+      },
+      {
+        "lemma": "prince",
+        "partOfSpeech": "noun",
+        "forms": [
+          "prince"
+        ]
+      },
+      {
+        "lemma": "princess",
+        "partOfSpeech": "noun",
+        "forms": [
+          "princess"
+        ]
+      },
+      {
+        "lemma": "rude",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "rude"
+        ]
+      },
+      {
+        "lemma": "ruler",
+        "partOfSpeech": "noun",
+        "forms": [
+          "ruler"
         ]
       },
       {
@@ -517,10 +3080,213 @@
         ]
       },
       {
+        "lemma": "september",
+        "partOfSpeech": "noun",
+        "forms": [
+          "september"
+        ]
+      },
+      {
+        "lemma": "seventeen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "seventeen"
+        ]
+      },
+      {
+        "lemma": "seventy",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "seventy"
+        ]
+      },
+      {
+        "lemma": "shake",
+        "partOfSpeech": "verb",
+        "forms": [
+          "shook"
+        ]
+      },
+      {
+        "lemma": "sixteen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "sixteen"
+        ]
+      },
+      {
+        "lemma": "sixty",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "sixty"
+        ]
+      },
+      {
+        "lemma": "smith",
+        "partOfSpeech": "noun",
+        "forms": [
+          "smith"
+        ]
+      },
+      {
         "lemma": "some",
         "partOfSpeech": "determiner",
         "forms": [
           "some"
+        ]
+      },
+      {
+        "lemma": "spell",
+        "partOfSpeech": "noun",
+        "forms": [
+          "spell"
+        ]
+      },
+      {
+        "lemma": "subway",
+        "partOfSpeech": "noun",
+        "forms": [
+          "subway"
+        ]
+      },
+      {
+        "lemma": "sunday",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sunday"
+        ]
+      },
+      {
+        "lemma": "sunshine",
+        "partOfSpeech": "noun",
+        "forms": [
+          "sunshine"
+        ]
+      },
+      {
+        "lemma": "surf",
+        "partOfSpeech": "noun",
+        "forms": [
+          "surf"
+        ]
+      },
+      {
+        "lemma": "taxi",
+        "partOfSpeech": "noun",
+        "forms": [
+          "taxi"
+        ]
+      },
+      {
+        "lemma": "thirteen",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "thirteen"
+        ]
+      },
+      {
+        "lemma": "thursday",
+        "partOfSpeech": "noun",
+        "forms": [
+          "thursday"
+        ]
+      },
+      {
+        "lemma": "tiger",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tiger"
+        ]
+      },
+      {
+        "lemma": "trousers",
+        "partOfSpeech": "noun",
+        "forms": [
+          "trousers"
+        ]
+      },
+      {
+        "lemma": "tuesday",
+        "partOfSpeech": "noun",
+        "forms": [
+          "tuesday"
+        ]
+      },
+      {
+        "lemma": "umbrella",
+        "partOfSpeech": "noun",
+        "forms": [
+          "umbrella"
+        ]
+      },
+      {
+        "lemma": "vase",
+        "partOfSpeech": "noun",
+        "forms": [
+          "vase"
+        ]
+      },
+      {
+        "lemma": "volleyball",
+        "partOfSpeech": "noun",
+        "forms": [
+          "volleyball"
+        ]
+      },
+      {
+        "lemma": "waitress",
+        "partOfSpeech": "noun",
+        "forms": [
+          "waitress"
+        ]
+      },
+      {
+        "lemma": "wednesday",
+        "partOfSpeech": "noun",
+        "forms": [
+          "wednesday"
+        ]
+      },
+      {
+        "lemma": "cap",
+        "partOfSpeech": "verb",
+        "forms": [
+          "cap"
+        ]
+      },
+      {
+        "lemma": "shy",
+        "partOfSpeech": "verb",
+        "forms": [
+          "shy"
+        ]
+      },
+      {
+        "lemma": "bye",
+        "partOfSpeech": "interjection",
+        "forms": [
+          "bye"
+        ]
+      },
+      {
+        "lemma": "doing",
+        "partOfSpeech": "noun",
+        "forms": [
+          "doing"
+        ]
+      },
+      {
+        "lemma": "many",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "many"
+        ]
+      },
+      {
+        "lemma": "so",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "so"
         ]
       },
       {
@@ -538,10 +3304,52 @@
         ]
       },
       {
+        "lemma": "try",
+        "partOfSpeech": "verb",
+        "forms": [
+          "tried"
+        ]
+      },
+      {
+        "lemma": "state",
+        "partOfSpeech": "noun",
+        "forms": [
+          "state"
+        ]
+      },
+      {
+        "lemma": "most",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "most"
+        ]
+      },
+      {
+        "lemma": "while",
+        "partOfSpeech": "conjunction",
+        "forms": [
+          "while"
+        ]
+      },
+      {
+        "lemma": "seem",
+        "partOfSpeech": "verb",
+        "forms": [
+          "seemed"
+        ]
+      },
+      {
         "lemma": "part",
         "partOfSpeech": "noun",
         "forms": [
           "part"
+        ]
+      },
+      {
+        "lemma": "system",
+        "partOfSpeech": "noun",
+        "forms": [
+          "system"
         ]
       },
       {
@@ -552,10 +3360,115 @@
         ]
       },
       {
+        "lemma": "without",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "without"
+        ]
+      },
+      {
+        "lemma": "million",
+        "partOfSpeech": "numeral",
+        "forms": [
+          "million"
+        ]
+      },
+      {
+        "lemma": "national",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "national"
+        ]
+      },
+      {
+        "lemma": "fact",
+        "partOfSpeech": "noun",
+        "forms": [
+          "fact"
+        ]
+      },
+      {
+        "lemma": "lot",
+        "partOfSpeech": "noun",
+        "forms": [
+          "lot"
+        ]
+      },
+      {
+        "lemma": "though",
+        "partOfSpeech": "conjunction",
+        "forms": [
+          "though"
+        ]
+      },
+      {
+        "lemma": "issue",
+        "partOfSpeech": "noun",
+        "forms": [
+          "issue"
+        ]
+      },
+      {
+        "lemma": "far",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "far"
+        ]
+      },
+      {
+        "lemma": "provide",
+        "partOfSpeech": "verb",
+        "forms": [
+          "provided"
+        ]
+      },
+      {
         "lemma": "power",
         "partOfSpeech": "noun",
         "forms": [
           "power"
+        ]
+      },
+      {
+        "lemma": "among",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "among"
+        ]
+      },
+      {
+        "lemma": "ever",
+        "partOfSpeech": "adverb",
+        "forms": [
+          "ever"
+        ]
+      },
+      {
+        "lemma": "member",
+        "partOfSpeech": "noun",
+        "forms": [
+          "member"
+        ]
+      },
+      {
+        "lemma": "law",
+        "partOfSpeech": "noun",
+        "forms": [
+          "law"
+        ]
+      },
+      {
+        "lemma": "include",
+        "partOfSpeech": "verb",
+        "forms": [
+          "included"
+        ]
+      },
+      {
+        "lemma": "understand",
+        "partOfSpeech": "verb",
+        "forms": [
+          "understand"
         ]
       },
       {
@@ -564,315 +3477,2061 @@
         "forms": [
           "around"
         ]
+      },
+      {
+        "lemma": "level",
+        "partOfSpeech": "noun",
+        "forms": [
+          "level"
+        ]
+      },
+      {
+        "lemma": "allow",
+        "partOfSpeech": "verb",
+        "forms": [
+          "allowed"
+        ]
+      },
+      {
+        "lemma": "within",
+        "partOfSpeech": "preposition",
+        "forms": [
+          "within"
+        ]
+      },
+      {
+        "lemma": "low",
+        "partOfSpeech": "adjective",
+        "forms": [
+          "low"
+        ]
+      },
+      {
+        "lemma": "research",
+        "partOfSpeech": "noun",
+        "forms": [
+          "research"
+        ]
+      },
+      {
+        "lemma": "himself",
+        "partOfSpeech": "pronoun",
+        "forms": [
+          "himself"
+        ]
       }
     ],
     "usedPhrasalVerbs": [
       {
+        "id": "phrasal-live-with",
+        "phrasalVerb": "live with",
+        "storyForm": "lived with",
+        "context": "The memory of one bad school show still lived with Mina, and she did not want that again.",
+        "senseId": "43a7aba2078a7c10317396953f235a4b351d7992cb5bec4b474b49298f37fc74",
+        "meaningKo": "어떤 기억이나 생각이 오래 마음에 남다"
+      },
+      {
+        "id": "phrasal-hold-down",
+        "phrasalVerb": "hold down",
+        "storyForm": "held down",
+        "context": "Her father held down two jobs and still was at her Friday practice.",
+        "senseId": "b52f8e21de11ff6a4d44f03f8e3ca9142964370f1eb569214292b1696f3f2c42",
+        "meaningKo": "직장을 잃지 않고 계속 유지하다"
+      },
+      {
         "id": "phrasal-hold-to",
         "phrasalVerb": "hold to",
         "storyForm": "held to",
-        "context": "The children held to one good rule: the children had to listen.",
+        "context": "Mina held to one rule: the music had to be honest.",
         "senseId": "cce5baa618c3a64a1498a5ce5321fc4d591a607aef00e22214eca675e293f7e9",
         "meaningKo": "특정한 믿음이나 기준을 계속 지키다"
-      },
-      {
-        "id": "phrasal-stand-back",
-        "phrasalVerb": "stand back",
-        "storyForm": "stand back",
-        "context": "Sara asked them to stand back from the problem and hear the full music.",
-        "senseId": "7eae5d41bf547f9dea74ff2505f4d7e751ba2185589ac1c783b9eb640c1b45d1",
-        "meaningKo": "감정과 거리를 두고 상황을 객관적으로 보다"
-      },
-      {
-        "id": "phrasal-meet-with",
-        "phrasalVerb": "meet with",
-        "storyForm": "met with",
-        "context": "Ms Park met with the team at a round table.",
-        "senseId": "5627a9d913b510518dc53a4d2f51c41225fc62da9c6a396943224074af91acf8",
-        "meaningKo": "누군가와 공식적인 회의를 하다"
-      },
-      {
-        "id": "phrasal-open-out",
-        "phrasalVerb": "open out",
-        "storyForm": "opened out",
-        "context": "She opened out a large paper plan.",
-        "senseId": "026c682ec7c203fe981a474a8e6749c271b984e072f4187266f3355ff1476030",
-        "meaningKo": "접힌 것을 펼쳐 전체 모양이 보이게 하다"
-      },
-      {
-        "id": "phrasal-walk-through",
-        "phrasalVerb": "walk through",
-        "storyForm": "walked through",
-        "context": "They walked through the opening music with Ms Park.",
-        "senseId": "0829c04207c0df41e1a965031f4dc7efb881ecc6468b564e9649452289e45fab",
-        "meaningKo": "천천히 연습하거나 누군가에게 차근차근 방법을 보여 주다"
       },
       {
         "id": "phrasal-bring-back",
         "phrasalVerb": "bring back",
         "storyForm": "brought back",
-        "context": "The new order brought back a happy school memory for Ms Park.",
+        "context": "The old guitar brought back a summer memory of her grandma.",
         "senseId": "64bcb6a60b7a0ad711afe7b9b067dd3fefd9ad662717bd857c2018231e621363",
         "meaningKo": "생각이나 감정, 기억을 다시 떠올리게 하다"
-      },
-      {
-        "id": "phrasal-plan-on",
-        "phrasalVerb": "plan on",
-        "storyForm": "planned on",
-        "context": "At the end of practice, the team planned on one hour in the morning.",
-        "senseId": "0c2fde819180155e815fc451fa3ec415aa165d7adfb31a757deee4b95697a3fc",
-        "meaningKo": "무언가를 할 생각이거나 그렇게 될 것으로 예상하다"
-      },
-      {
-        "id": "phrasal-tidy-up",
-        "phrasalVerb": "tidy up",
-        "storyForm": "tidied up",
-        "context": "They tidied up the room and signed out the guitar and drum.",
-        "senseId": "0a4498d55f6e0e1fa64d12c3309eebfe9523ee660d304cebe51dd07847fb1cb5",
-        "meaningKo": "정리하다; 말끔히 다듬다"
-      },
-      {
-        "id": "phrasal-sign-out",
-        "phrasalVerb": "sign out",
-        "storyForm": "signed out",
-        "context": "They tidied up the room and signed out the guitar and drum.",
-        "senseId": "a603fea2d4f1125f6649811d9a038699e63ab09465074c36fe012630add1d874",
-        "meaningKo": "물건이나 차량을 빌렸다는 표시로 공식 명단에 이름을 쓰다"
       },
       {
         "id": "phrasal-head-off",
         "phrasalVerb": "head off",
         "storyForm": "headed off",
-        "context": "Mina and Joon headed off for home.",
+        "context": "Mina, Joon, and Sara headed off for the music room after class.",
         "senseId": "e303110047bebe4309753c40c36d43d118c34f177d6c25131e372198c2af5f8d",
         "meaningKo": "어떤 곳을 떠나거나 출발하다"
       },
       {
-        "id": "phrasal-phone-back",
-        "phrasalVerb": "phone back",
-        "storyForm": "phone back",
-        "context": "She left a message and asked the office to phone back.",
-        "senseId": "51a3ed647f54de8cb92f3129f6027d31bf6604f280e4261933c2f048ff4bc3c9",
-        "meaningKo": "다시 전화하다"
+        "id": "phrasal-black-out",
+        "phrasalVerb": "black out",
+        "storyForm": "black out",
+        "context": "Ms Park asked them to black out their home addresses on the concert form.",
+        "senseId": "de36a7912a6ed4af2aed4824aa74d5b0562457623741638c4e434e5557001ed5",
+        "meaningKo": "검게 가려서 내용이 보이거나 읽히지 않게 하다"
       },
       {
-        "id": "phrasal-step-back",
-        "phrasalVerb": "step back",
-        "storyForm": "step back",
-        "context": "Sara asked the team to step back and think.",
-        "senseId": "d969578791f3f4b6fe9ee0b8604ab7847ca45bda6062d2458a3a531d804718a2",
-        "meaningKo": "무언가를 고려하기 위해 잠시 멈추는 것"
+        "id": "phrasal-sit-around",
+        "phrasalVerb": "sit around",
+        "storyForm": "sit around",
+        "context": "Mina did not want anyone in the room to sit around with work to do.",
+        "senseId": "618613c2ab8bafca0c6eed1b035002c7dfa3351cced6657835a6af8c4f7a65e3",
+        "meaningKo": "아무것도 하지 않고 시간을 보내다"
       },
       {
-        "id": "phrasal-check-on",
-        "phrasalVerb": "check on",
-        "storyForm": "checked on",
-        "context": "Ms Park checked on the classes.",
-        "senseId": "e65d9ca2823d29017342059388af9ab9e02577e81aae4f0c08b5191f6bd2310f",
-        "meaningKo": "누군가나 무언가를 보고 그들이 안전하고 만족스럽다고 확신하다"
-      },
-      {
-        "id": "phrasal-cover-for",
-        "phrasalVerb": "cover for",
-        "storyForm": "cover for",
-        "context": "A child from that class came to cover for Sara at the office phone.",
-        "senseId": "8b14698c4a79a718cc1345e9c4124b71fe4725315dcbc8458d7c1cefd4b1a545",
-        "meaningKo": "누군가가 자리를 비운 동안 그 일을 대신하다"
-      },
-      {
-        "id": "phrasal-band-together",
-        "phrasalVerb": "band together",
-        "storyForm": "banded together",
-        "context": "The children banded together around the window.",
-        "senseId": "1d0cfa67b125f3f2743b52132aab6721c5350f179ac196dc8e20d6188715433a",
-        "meaningKo": "무언가를 이루기 위해 한데 뭉치다"
-      },
-      {
-        "id": "phrasal-fill-up",
-        "phrasalVerb": "fill up",
-        "storyForm": "filled them up",
-        "context": "The children ate bread and fruit, and the food filled them up.",
-        "senseId": "2e558ea6b0470a1e27ed6dd73b0d991b22a486a1742f8ae540e6e70c138b2bb1",
-        "meaningKo": "음식을 충분히 먹어 배부르게 하다"
-      },
-      {
-        "id": "phrasal-warm-up",
-        "phrasalVerb": "warm up",
-        "storyForm": "warmed up",
-        "context": "The sun warmed up the room.",
-        "senseId": "e31517851cd03937ae03efe0b8f223162a5bfa3f36da8a3e1dd2846bc6b6cf11",
-        "meaningKo": "따뜻해지거나 따뜻하게 하다"
-      },
-      {
-        "id": "phrasal-match-up",
-        "phrasalVerb": "match up",
-        "storyForm": "matched up",
-        "context": "The guitar and cups matched up, but the box was too loud.",
-        "senseId": "cd779e84a056e05021f45344020250ef2644e9f41c8beaddfe3d81205834df1f",
-        "meaningKo": "둘이 같거나 비슷한 특성을 지녀 서로 들어맞다"
-      },
-      {
-        "id": "phrasal-fit-in",
-        "phrasalVerb": "fit in",
-        "storyForm": "fit in",
-        "context": "Sara gave him two bells and helped him fit in.",
-        "senseId": "e4e42fde7b73b354c0d404fb6d292c488c8a56970c964fbb29c39f7392c261e9",
-        "meaningKo": "집단에 자연스럽게 어울려 받아들여지다"
-      },
-      {
-        "id": "phrasal-knock-about",
-        "phrasalVerb": "knock about",
-        "storyForm": "knocked about",
-        "context": "The team knocked about some ideas for the dark room.",
-        "senseId": "393ec34985f7246da815f7315da44a8c6c8bed2ddee430d5fb7e50ed31cc96c0",
-        "meaningKo": "아이디어를 격식 없이 자유롭게 이야기하다"
-      },
-      {
-        "id": "phrasal-mix-up",
-        "phrasalVerb": "mix up",
-        "storyForm": "mixed up",
-        "context": "Mina mixed up the opening and the ending.",
-        "senseId": "97d4f88fe4f539e126d9f16528a54b80e1c7fa52d1344a829fc40760881699e3",
-        "meaningKo": "둘 이상의 사람이나 사물을 서로 혼동하다"
-      },
-      {
-        "id": "phrasal-follow-up",
-        "phrasalVerb": "follow up",
-        "storyForm": "followed up",
-        "context": "Ms Park followed up on the new order with a slow practice.",
-        "senseId": "2a1b40688b4e66077fa834a5e7289e35880bf24a31010f0da76847656ea28ce2",
-        "meaningKo": "더 알아보거나 후속 조치를 하다"
+        "id": "phrasal-sit-for",
+        "phrasalVerb": "sit for",
+        "storyForm": "sit for",
+        "context": "Sara had to sit for the baby of her cousin that evening, but she agreed to come.",
+        "senseId": "99d9fcb76f4f25947d13adb05b8e2ad0635567523dfcdd23332ba66d4c92e49d",
+        "meaningKo": "아이를 대신 돌봐 주다"
       },
       {
         "id": "phrasal-sit-up",
         "phrasalVerb": "sit up",
         "storyForm": "sat up",
-        "context": "At home, Mina sat up late with her guitar.",
+        "context": "Mina sat up late and wrote a new opening.",
         "senseId": "eeab6559bb99f601da4975ad21653732392826a479cbd8c6dd57f9121a049019",
         "meaningKo": "평소보다 늦게까지 자지 않고 있다"
       },
       {
-        "id": "phrasal-top-up",
-        "phrasalVerb": "top up",
-        "storyForm": "top up",
-        "context": "Her mother asked her to top up the water in one cup.",
-        "senseId": "a421ab92bea9eeadd789c7db936118fed4b9216eb47e6840bcc7390318ee1127",
-        "meaningKo": "필요한 수준이 되도록 더 채우다"
+        "id": "phrasal-end-in",
+        "phrasalVerb": "end in",
+        "storyForm": "end in",
+        "context": "A month of work had to end in a successful concert.",
+        "senseId": "f33d4a3d4be2aa757f199ddca473506efa04d7750823069c97f1e0ea09be2fd0",
+        "meaningKo": "마지막에 특정한 결과로 이어지다"
       },
       {
-        "id": "phrasal-fix-up",
-        "phrasalVerb": "fix up",
-        "storyForm": "fix up",
-        "context": "Joon had to fix up the old drum.",
-        "senseId": "3936c9139d379e663bee30872359f3198d04072ab0a8d4331d72022555950fc8",
-        "meaningKo": "무언가를 청소하거나 고치거나 꾸미다"
+        "id": "phrasal-stand-aside",
+        "phrasalVerb": "stand aside",
+        "storyForm": "stood aside",
+        "context": "At the classroom door, Joon stood aside for a woman with a large drum.",
+        "senseId": "368f351057d084d439ee0728e09d6369a7dc2cc8916c9037c122424978d82006",
+        "meaningKo": "누군가가 자신을 지나가게 하기 위해 한쪽으로 이동하다"
       },
       {
-        "id": "phrasal-even-out",
-        "phrasalVerb": "even out",
-        "storyForm": "even out",
-        "context": "The videos helped the team even out the music.",
-        "senseId": "fcb6c1c4ef41e96d943f5e0997da49b3938d6faba0371b1d5d4417637fc0c005",
-        "meaningKo": "변화나 차이가 줄어들어 고르게 되다"
+        "id": "phrasal-stand-back",
+        "phrasalVerb": "stand back",
+        "storyForm": "stand back",
+        "context": "Ms Park asked the group to stand back from their personal ideas and think about the full show.",
+        "senseId": "7eae5d41bf547f9dea74ff2505f4d7e751ba2185589ac1c783b9eb640c1b45d1",
+        "meaningKo": "감정과 거리를 두고 상황을 객관적으로 보다"
       },
       {
-        "id": "phrasal-pull-up",
-        "phrasalVerb": "pull up",
-        "storyForm": "pulled up",
-        "context": "A school bus pulled up with some families.",
-        "senseId": "630a8ab52f0f2ddd0523069ad218e920b0e140a87db7032ba6fc2ad9707982e9",
-        "meaningKo": "차량이나 운전자가 멈춰 서다"
-      },
-      {
-        "id": "phrasal-hold-in",
-        "phrasalVerb": "hold in",
-        "storyForm": "held in",
-        "context": "Mina felt nervous and held in a cry.",
-        "senseId": "da858440083ab4d329b85f2165a3b73852982a936a8b15c2a1cac31f61c422d7",
-        "meaningKo": "감정을 겉으로 드러내지 않고 참다"
-      },
-      {
-        "id": "phrasal-tie-up",
-        "phrasalVerb": "tie up",
-        "storyForm": "tied up",
-        "context": "They tied up the jobs from the show.",
-        "senseId": "107b0eff0d81b01496452c64e6cde7f3d7dc38971ce25c07d90abff9c4b96250",
-        "meaningKo": "일을 끝내기 전에 남은 몇 가지를 처리하다"
-      },
-      {
-        "id": "phrasal-spread-out",
-        "phrasalVerb": "spread out",
-        "storyForm": "spread out",
-        "context": "Sara spread out the paper plan on a desk.",
-        "senseId": "b1ede80de3c34d27dbd79f10928b608e8b0ef77c5bbc0429bfa04dd4e978f19f",
-        "meaningKo": "무언가를 펼치거나 표면이나 영역에 넓게 벌려 놓다"
-      },
-      {
-        "id": "phrasal-slow-down",
-        "phrasalVerb": "slow down",
-        "storyForm": "slow down",
-        "context": "He called Mina and asked her to slow down.",
-        "senseId": "111b9ef3692c9185a6d173a531ef4851479cde9a3f90b1bc231c01b217c4aa7d",
-        "meaningKo": "속도나 활동을 늦추다"
-      },
-      {
-        "id": "phrasal-rule-out",
-        "phrasalVerb": "rule out",
-        "storyForm": "ruled out",
-        "context": "Ms Park ruled out candles because fire was dangerous.",
-        "senseId": "541663b838704cf97c408be2f807200994ec0a0f178a850f4ec6414ea6e7620e",
-        "meaningKo": "어떤 가능성을 더는 고려하지 않다"
-      },
-      {
-        "id": "phrasal-carry-on",
-        "phrasalVerb": "carry on",
-        "storyForm": "carried on",
-        "context": "New families came to the door, but the children carried on.",
-        "senseId": "09286ecf5580faa2eec6858578f7036b676c2f6b0d5b4ce58d0aae39be1e2b3d",
-        "meaningKo": "계속 뭔가를 하다"
-      },
-      {
-        "id": "phrasal-pay-off",
-        "phrasalVerb": "pay off",
-        "storyForm": "paid off",
-        "context": "The hard practice had paid off, and the dark room felt bright.",
-        "senseId": "e0a4ca9f7983de214f56019d28d206f0dbfac6063323db8163a1b4e3257df393",
-        "meaningKo": "한 일이 좋은 결과나 이익을 가져오다"
-      },
-      {
-        "id": "phrasal-turn-off",
-        "phrasalVerb": "turn off",
-        "storyForm": "turned it off",
-        "context": "Ms Park turned it off, and the children did not stop.",
-        "senseId": "1610689efba513e8c4157c10e90114f0177d4eba121fcdcb9619c08fd6e1e8e1",
-        "meaningKo": "기계나 전원을 끄다"
-      },
-      {
-        "id": "phrasal-call-in",
-        "phrasalVerb": "call in",
-        "storyForm": "called in",
-        "context": "Ms Park checked the piano and called in a piano man.",
-        "senseId": "ba3b2f36b381c17b38f76446425ba3dc4548cea8bf4fa663b0a7b2f5f2ebffbf",
-        "meaningKo": "전문가나 서비스 인력을 불러 문제를 처리하게 하다"
+        "id": "phrasal-stand-by",
+        "phrasalVerb": "stand by",
+        "storyForm": "stand by",
+        "context": "They would not stand by as the music club lost the room.",
+        "senseId": "848ff5edf9223ddb6499b08cdda0de0760af02a573ba90e6e55ec70500a71673",
+        "meaningKo": "행동해야 할 때 아무 조치도 하지 않고 지켜보다"
       },
       {
         "id": "phrasal-stand-up",
         "phrasalVerb": "stand up",
         "storyForm": "stood up",
-        "context": "The boy stood up by Mina and played at the end of the lines.",
+        "context": "Mina stood up and described her goal.",
         "senseId": "12db592a65e70c4f3825b68a38de864d1bc5078ffccd9a673920eb134179f52a",
         "meaningKo": "앉거나 누운 자세에서 몸을 일으켜 서다"
+      },
+      {
+        "id": "phrasal-meet-with",
+        "phrasalVerb": "meet with",
+        "storyForm": "met with",
+        "context": "The children met with Ms Park at a round table.",
+        "senseId": "5627a9d913b510518dc53a4d2f51c41225fc62da9c6a396943224074af91acf8",
+        "meaningKo": "누군가와 공식적인 회의를 하다"
+      },
+      {
+        "id": "phrasal-set-forth",
+        "phrasalVerb": "set forth",
+        "storyForm": "set forth",
+        "context": "They set forth for the town music shop with a list and a little money.",
+        "senseId": "46a5da2ddc654c46ab0e9d008945edf17ffad7cded8ecc1f2e150142d0de57af",
+        "meaningKo": "특히 길거나 힘든 여행을 시작하다"
+      },
+      {
+        "id": "phrasal-watch-for",
+        "phrasalVerb": "watch for",
+        "storyForm": "watched for",
+        "context": "Joon watched for the number seven bus.",
+        "senseId": "3bb55a3c154591aaa4ee3d155b4a0d5dc0101af5851007946c59f0bc71f9d357",
+        "meaningKo": "나타날 때를 놓치지 않도록 주의 깊게 기다리다"
+      },
+      {
+        "id": "phrasal-face-off",
+        "phrasalVerb": "face off",
+        "storyForm": "faced off",
+        "context": "At the shop, Mina and Joon faced off about a guitar and a drum.",
+        "senseId": "e9c0b8400fa6694ffb6b079ec52e0e00dc142010040857c4ef5d926a4e9c503e",
+        "meaningKo": "서로 맞서 경쟁하거나 다투다"
+      },
+      {
+        "id": "phrasal-add-to",
+        "phrasalVerb": "add to",
+        "storyForm": "added water to",
+        "context": "Sara added water to the cups until the notes evened out.",
+        "senseId": "73af0dc555d2cd03554d95b48fae5cd97cb4031c80e64eb8df02bec4173299ca",
+        "meaningKo": "무언가를 더해 양이나 수를 늘리다"
+      },
+      {
+        "id": "phrasal-grow-in",
+        "phrasalVerb": "grow in",
+        "storyForm": "grow in",
+        "context": "Mina began to grow in skill as she explained her idea.",
+        "senseId": "b13343596a88e96eaa0a4d4579a88899c0f20d96a6343470ce70699c6d96a7e4",
+        "meaningKo": "특정 품질이 더 많이 생기기 시작하다"
+      },
+      {
+        "id": "phrasal-open-out",
+        "phrasalVerb": "open out",
+        "storyForm": "opened out",
+        "context": "The shop man opened out a paper map of the music room.",
+        "senseId": "026c682ec7c203fe981a474a8e6749c271b984e072f4187266f3355ff1476030",
+        "meaningKo": "접힌 것을 펼쳐 전체 모양이 보이게 하다"
+      },
+      {
+        "id": "phrasal-walk-around",
+        "phrasalVerb": "walk around",
+        "storyForm": "walk around",
+        "context": "Joon wanted to walk around in tiger clothes during the opening.",
+        "senseId": "ef924693693b51889e4da1f240cac52da30c74e7595107dfad2474d43ec1ae83",
+        "meaningKo": "눈에 띄는 모습이나 행동으로 돌아다니다"
+      },
+      {
+        "id": "phrasal-walk-away",
+        "phrasalVerb": "walk away",
+        "storyForm": "walk away",
+        "context": "Mina started to walk away because the idea felt funny.",
+        "senseId": "a40d805dde1245aa8cf61140578c174320be9cbb6a72bb919c4029c9dfc2884b",
+        "meaningKo": "장소나 상황, 사람을 떠나다"
+      },
+      {
+        "id": "phrasal-walk-over",
+        "phrasalVerb": "walk over",
+        "storyForm": "walk over",
+        "context": "Ms Park told Joon not to walk over Mina or make her do his work.",
+        "senseId": "1630c997550ba3c4285a7f64cd2272fce3ac256b3cc8340399b263e440a66120",
+        "meaningKo": "상대를 존중하지 않고 함부로 대하다"
+      },
+      {
+        "id": "phrasal-walk-through",
+        "phrasalVerb": "walk through",
+        "storyForm": "walked the team through",
+        "context": "She walked the team through the music from the start to the end.",
+        "senseId": "0829c04207c0df41e1a965031f4dc7efb881ecc6468b564e9649452289e45fab",
+        "meaningKo": "천천히 연습하거나 누군가에게 차근차근 방법을 보여 주다"
+      },
+      {
+        "id": "phrasal-build-up",
+        "phrasalVerb": "build up",
+        "storyForm": "build up",
+        "context": "A healthy meal could build up the tired children.",
+        "senseId": "1d29a07607a281845033c307c6f4a09ad1c18d730f3b47b5945c5ae039496968",
+        "meaningKo": "특히 잘 먹게 해 몸을 더 크고 건강하며 튼튼하게 만들다"
+      },
+      {
+        "id": "phrasal-stay-away",
+        "phrasalVerb": "stay away",
+        "storyForm": "stay away",
+        "context": "Ms Park asked them to stay away from a broken light on the wall.",
+        "senseId": "c9fbdd09577a60b726e741dfaf9ce867e586e0a46219eea5dc18e6ebf229f541",
+        "meaningKo": "가까이 가지 않고 떨어져 있다"
+      },
+      {
+        "id": "phrasal-stay-down",
+        "phrasalVerb": "stay down",
+        "storyForm": "stayed down",
+        "context": "Sara ate bread and fruit, and the meal stayed down.",
+        "senseId": "14b9ee7c9e59a569046e58385fffa4456653c3f1f1bb45b6f75ea684fc8831bc",
+        "meaningKo": "먹은 음식이 탈 없이 위에 남아 있다"
+      },
+      {
+        "id": "phrasal-stay-off",
+        "phrasalVerb": "stay off",
+        "storyForm": "stayed off",
+        "context": "After a healthy summer, Joon had lost fat, and it stayed off.",
+        "senseId": "47f9039846cc85628b55b8ed0e5e5c6967aee375f728bc0dde746bdb5d25166a",
+        "meaningKo": "줄어든 체중이 다시 늘지 않다"
+      },
+      {
+        "id": "phrasal-plan-on",
+        "phrasalVerb": "plan on",
+        "storyForm": "planned on",
+        "context": "The group planned on practice for one hour after school.",
+        "senseId": "0c2fde819180155e815fc451fa3ec415aa165d7adfb31a757deee4b95697a3fc",
+        "meaningKo": "무언가를 할 생각이거나 그렇게 될 것으로 예상하다"
+      },
+      {
+        "id": "phrasal-cut-up",
+        "phrasalVerb": "cut up",
+        "storyForm": "cut up",
+        "context": "Sara cut up apples, bananas, and cheese for the team.",
+        "senseId": "d99765ac6ac7f98c214dc20a4853e819348669ec64fdae198f407fd2ec4b321d",
+        "meaningKo": "무언가를 여러 조각으로 자르다"
+      },
+      {
+        "id": "phrasal-drive-away",
+        "phrasalVerb": "drive away",
+        "storyForm": "drive away",
+        "context": "Bad music could drive away the families, so everyone listened carefully.",
+        "senseId": "140f45cbc99a8be64b07c333abd30bfdbbf899393597017fd62d9ebe9fdb2f73",
+        "meaningKo": "불쾌하게 만들어 떠나게 하다"
+      },
+      {
+        "id": "phrasal-drive-up",
+        "phrasalVerb": "drive up",
+        "storyForm": "drive up",
+        "context": "A late order could drive up the ticket price.",
+        "senseId": "2081d26b46b8e5746d027708bd61e28cc70d6890e01c7a419ba1ee24c54f0361",
+        "meaningKo": "가격이나 수량을 더 높은 수준으로 올리다"
+      },
+      {
+        "id": "phrasal-break-away",
+        "phrasalVerb": "break away",
+        "storyForm": "break away",
+        "context": "A little bell began to break away from the old line.",
+        "senseId": "c7c25af0238f410a93db096992de3e032ebeb1ba013ad2e3333830ead238e776",
+        "meaningKo": "어떤 것의 일부가 나머지에서 떨어져 나가다"
+      },
+      {
+        "id": "phrasal-break-out",
+        "phrasalVerb": "break out",
+        "storyForm": "broke out",
+        "context": "Sara's face broke out after she touched some old cream.",
+        "senseId": "1742e4638735de2e721250629134fb89f81109b92c198e88995bbc1eee7f49a4",
+        "meaningKo": "피부에 발진이나 반점이 생기다"
+      },
+      {
+        "id": "phrasal-pick-over",
+        "phrasalVerb": "pick over",
+        "storyForm": "picked over",
+        "context": "Mina picked over the clothes for the concert.",
+        "senseId": "605372c186f756ede2e3c59398f2f536f4bdfd20ee82d8a8cb67c91b560a9b18",
+        "meaningKo": "여러 물건을 자세히 살펴 원하는 것을 고르다"
+      },
+      {
+        "id": "phrasal-phone-back",
+        "phrasalVerb": "phone back",
+        "storyForm": "phone back",
+        "context": "Her mobile rang, and her mom asked her to phone back after practice.",
+        "senseId": "51a3ed647f54de8cb92f3129f6027d31bf6604f280e4261933c2f048ff4bc3c9",
+        "meaningKo": "다시 전화하다"
+      },
+      {
+        "id": "phrasal-cover-for",
+        "phrasalVerb": "cover for",
+        "storyForm": "cover for",
+        "context": "Sara had to cover for Joon when he went to the doctor.",
+        "senseId": "8b14698c4a79a718cc1345e9c4124b71fe4725315dcbc8458d7c1cefd4b1a545",
+        "meaningKo": "누군가가 자리를 비운 동안 그 일을 대신하다"
+      },
+      {
+        "id": "phrasal-step-back",
+        "phrasalVerb": "step back",
+        "storyForm": "step back",
+        "context": "Mina had to step back to see the full plan.",
+        "senseId": "d969578791f3f4b6fe9ee0b8604ab7847ca45bda6062d2458a3a531d804718a2",
+        "meaningKo": "한발 물러나 상황을 전체적으로 바라보다"
+      },
+      {
+        "id": "phrasal-draw-away",
+        "phrasalVerb": "draw away",
+        "storyForm": "draw away",
+        "context": "Loud music made the baby draw away from the music room door.",
+        "senseId": "f4c6dc5a5a7aef6ceb8a77acdb7e21d45729dfa64d49fcfe2bb2edb79f69263f",
+        "meaningKo": "사람이나 장소에서 멀어지다"
+      },
+      {
+        "id": "phrasal-draw-back",
+        "phrasalVerb": "draw back",
+        "storyForm": "drew a blue cloth back",
+        "context": "Ms Park drew a blue cloth back from the old piano.",
+        "senseId": "151add3259d2314fa1cc80168684b3e5fda52cb51b6875a8c0b1d221e403bd71",
+        "meaningKo": "커튼 같은 것을 당겨 열린 상태로 만들다"
+      },
+      {
+        "id": "phrasal-draw-into",
+        "phrasalVerb": "draw into",
+        "storyForm": "drew into",
+        "context": "At six, the bus drew into the school yard.",
+        "senseId": "2467c85f3d72ff76fc75afb1407e745aca7eb308345f072bebc74ee2c1f03f3d",
+        "meaningKo": "차량 등이 어떤 장소에 도착하다"
+      },
+      {
+        "id": "phrasal-close-on",
+        "phrasalVerb": "close on",
+        "storyForm": "close on",
+        "context": "On Saturday morning, the school bus began to close on a slow taxi.",
+        "senseId": "72c3b20c9051be1efba7952116b3cf8a19b589698b986ae0463f0566f7c0a187",
+        "meaningKo": "사람이나 사물 사이의 거리나 차이를 좁히다"
+      },
+      {
+        "id": "phrasal-bank-up",
+        "phrasalVerb": "bank up",
+        "storyForm": "banked up",
+        "context": "Snow had banked up at the side of the road.",
+        "senseId": "3a15981aa84eb6fbc51292921f87cde02b919a2fb8c09601f35a97739d8bd19c",
+        "meaningKo": "무언가를 더미로 만들다"
+      },
+      {
+        "id": "phrasal-throw-back",
+        "phrasalVerb": "throw back",
+        "storyForm": "threw back",
+        "context": "Mina threw back her blanket, wore jeans and a coat, ran fast, and opened the door.",
+        "senseId": "e3650c814f676b60ac6c200600f6856d65a4763ea3b8c021060ec5fd1f102e6e",
+        "meaningKo": "침대에서 일어나기 전에 이불을 재빨리 젖히다"
+      },
+      {
+        "id": "phrasal-top-up",
+        "phrasalVerb": "top up",
+        "storyForm": "topped up",
+        "context": "Sara topped up three cups with water for the show.",
+        "senseId": "a421ab92bea9eeadd789c7db936118fed4b9216eb47e6840bcc7390318ee1127",
+        "meaningKo": "필요한 수준이 되도록 더 채우다"
+      },
+      {
+        "id": "phrasal-fill-up",
+        "phrasalVerb": "fill up",
+        "storyForm": "filled Joon up",
+        "context": "Bread, eggs, and fruit filled Joon up at breakfast.",
+        "senseId": "2e558ea6b0470a1e27ed6dd73b0d991b22a486a1742f8ae540e6e70c138b2bb1",
+        "meaningKo": "음식을 충분히 먹어 배부르게 하다"
+      },
+      {
+        "id": "phrasal-drop-back",
+        "phrasalVerb": "drop back",
+        "storyForm": "drop back",
+        "context": "On the walk to school, Joon began to drop back.",
+        "senseId": "b1985c32f5293fc02d3570f57af322ef749bac5e5786643938e4fc9bdc381e12",
+        "meaningKo": "뒤로 처지다"
+      },
+      {
+        "id": "phrasal-drop-behind",
+        "phrasalVerb": "drop behind",
+        "storyForm": "dropped behind",
+        "context": "He dropped behind Mina and Sara because his drum was heavy.",
+        "senseId": "6fe5f7f7153cc64b386f9b7affd8803aa60b59e5c55a486863e018a5b36bb17a",
+        "meaningKo": "뒤처지다"
+      },
+      {
+        "id": "phrasal-drop-out",
+        "phrasalVerb": "drop out",
+        "storyForm": "dropping out",
+        "context": "He talked about dropping out of the show, but Mina asked him to wait.",
+        "senseId": "0f6edfeafef58a6e6569402d0fd8aec0c85a64ea1ae139a0f341b12ded3256d3",
+        "meaningKo": "활동이나 학교 등을 마치기 전에 그만두다"
+      },
+      {
+        "id": "phrasal-push-back",
+        "phrasalVerb": "push back",
+        "storyForm": "pushed the concert back",
+        "context": "A power problem pushed the concert back from morning to afternoon.",
+        "senseId": "1279fee6bd568c8a54e51719e4ed65bf2de43b43a4552f2bf1e1edc754513d07",
+        "meaningKo": "예정된 일을 더 늦은 시간으로 미루다"
+      },
+      {
+        "id": "phrasal-push-for",
+        "phrasalVerb": "push for",
+        "storyForm": "push for",
+        "context": "Parents began to push for a clear answer.",
+        "senseId": "23b2cee207f017b238f4f6bfe9ca6d04428700148a6a2a1c882a21ed1c1fc701",
+        "meaningKo": "원하는 결과를 얻으려고 강하게 요구하다"
+      },
+      {
+        "id": "phrasal-push-forward",
+        "phrasalVerb": "push forward",
+        "storyForm": "pushed forward",
+        "context": "Ms Park pushed forward with a new plan, even without the computer.",
+        "senseId": "b2bc0ba641ca4c17ec1e7eb6508d6b82f77f062f4df0259093d23f00046bad39",
+        "meaningKo": "반대나 어려움에도 앞으로 나아가다"
+      },
+      {
+        "id": "phrasal-push-in",
+        "phrasalVerb": "push in",
+        "storyForm": "push in",
+        "context": "A rude guy tried to push in at the office line.",
+        "senseId": "8613f59541ab636ec7cc20760c64b2848e4753c9b847f30cad668a50622c75f1",
+        "meaningKo": "먼저 기다린 사람들 앞에 부당하게 끼어들다"
+      },
+      {
+        "id": "phrasal-push-over",
+        "phrasalVerb": "push over",
+        "storyForm": "pushed a chair over",
+        "context": "His large bag pushed a chair over, and he said sorry.",
+        "senseId": "1e6b93ecc6cc8596a970cef73a9adbda2abe9ced5f7b20e21c2d07d515dd4829",
+        "meaningKo": "세게 밀어 넘어뜨리다"
+      },
+      {
+        "id": "phrasal-sign-out",
+        "phrasalVerb": "sign out",
+        "storyForm": "signed out",
+        "context": "Mina signed out a guitar, a drum, and a radio.",
+        "senseId": "a603fea2d4f1125f6649811d9a038699e63ab09465074c36fe012630add1d874",
+        "meaningKo": "물건이나 차량을 빌렸다는 표시로 공식 명단에 이름을 쓰다"
+      },
+      {
+        "id": "phrasal-check-on",
+        "phrasalVerb": "check on",
+        "storyForm": "checked on",
+        "context": "Sara checked on the young children in the dark classroom.",
+        "senseId": "e65d9ca2823d29017342059388af9ab9e02577e81aae4f0c08b5191f6bd2310f",
+        "meaningKo": "안전하거나 잘 지내는지 확인하다"
+      },
+      {
+        "id": "phrasal-laugh-at",
+        "phrasalVerb": "laugh at",
+        "storyForm": "laugh at",
+        "context": "Joon learned to laugh at being afraid of the dark.",
+        "senseId": "48f58661e39fa4b1b7443d6821a3df3d8a38e1787da2e5568a6789ce4675a88f",
+        "meaningKo": "어려움이나 두려움을 대수롭지 않게 여기다"
+      },
+      {
+        "id": "phrasal-finish-off",
+        "phrasalVerb": "finish off",
+        "storyForm": "finished off",
+        "context": "The team finished off the food and began a meeting.",
+        "senseId": "1afa2c0f1177da64fc84ba4426cda0a95717d2af5d7a9347d6459055d7beb2e8",
+        "meaningKo": "남은 것을 마저 끝내다"
+      },
+      {
+        "id": "phrasal-shake-up",
+        "phrasalVerb": "shake up",
+        "storyForm": "shook up",
+        "context": "Ms Park shook up the music club and gave the children new jobs.",
+        "senseId": "498066d14051f845c6de9c7a699dd5d2a2b8e47d355fde6d2d3cd6bbd221290f",
+        "meaningKo": "조직의 운영 방식을 크게 바꾸다"
+      },
+      {
+        "id": "phrasal-fly-into",
+        "phrasalVerb": "fly into",
+        "storyForm": "fly into",
+        "context": "Mina's cousin planned to fly into town for the show.",
+        "senseId": "c104762095d08de01592a07957eaf882d5f36e32e9d6b9d22dff1d314cf622f2",
+        "meaningKo": "비행기를 타고 어떤 곳으로 가다"
+      },
+      {
+        "id": "phrasal-fish-for",
+        "phrasalVerb": "fish for",
+        "storyForm": "fish for",
+        "context": "Her uncle went to fish for dinner at the lake.",
+        "senseId": "c3632e6b8b4cb6e7d49b9e6a223e99df77e935bea98375f13b24c4d9c87af4c5",
+        "meaningKo": "그물이나 낚싯대 등으로 물고기를 잡으려 하다"
+      },
+      {
+        "id": "phrasal-wish-for",
+        "phrasalVerb": "wish for",
+        "storyForm": "wished for",
+        "context": "Sara wished for sunshine and warm weather.",
+        "senseId": "b83aa0808a6171a18c3daba9d780e4bac1b0a6466cdad034415267f84bf7c71b",
+        "meaningKo": "무언가를 원하다"
+      },
+      {
+        "id": "phrasal-touch-down",
+        "phrasalVerb": "touch down",
+        "storyForm": "touched down",
+        "context": "A jet touched down at the airport during the rain.",
+        "senseId": "be4100c4ce4f2df9b84077b8561c2bee6de14380bdd341ee82e117982fa4b9e1",
+        "meaningKo": "항공기나 우주선이 착륙하다"
+      },
+      {
+        "id": "phrasal-sleep-away",
+        "phrasalVerb": "sleep away",
+        "storyForm": "sleep the afternoon away",
+        "context": "Joon wanted to sleep the afternoon away, but Mina kept him awake.",
+        "senseId": "23fabfe0362e4288ca7a8caf2d18006736ccd8cd5a288c6ab7681f08d4b3571d",
+        "meaningKo": "일정한 시간을 잠을 자며 보내다"
+      },
+      {
+        "id": "phrasal-sleep-on",
+        "phrasalVerb": "sleep on",
+        "storyForm": "sleep on",
+        "context": "Ms Park chose to sleep on the question of moving the concert.",
+        "senseId": "8423bffa0fe6e7ae111e36cd002c8e67c1983919315de2f2c61afbea69563b48",
+        "meaningKo": "결정을 미루고 다음 날까지 더 생각하다"
+      },
+      {
+        "id": "phrasal-fan-out",
+        "phrasalVerb": "fan out",
+        "storyForm": "fanned out",
+        "context": "Children fanned out through the hall to find candles and a radio.",
+        "senseId": "d6caa4af6f8f95810df404e8bfac5bde3fcd63b655cbbe9c1367c05bf27fc811",
+        "meaningKo": "한 무리의 사람들이 앞으로 나아가며 일렬로 퍼지다"
+      },
+      {
+        "id": "phrasal-drink-to",
+        "phrasalVerb": "drink to",
+        "storyForm": "drank to",
+        "context": "The parents drank to the future of the band with tea.",
+        "senseId": "2f4c8aab7bde85c60fc7b36cb907dd214eb38385e7a7a42123630d60911a562c",
+        "meaningKo": "누군가의 건강이나 행복, 성공을 빌며 잔을 들어 마시다"
+      },
+      {
+        "id": "phrasal-drink-up",
+        "phrasalVerb": "drink up",
+        "storyForm": "drank up",
+        "context": "Joon drank up his juice and stood.",
+        "senseId": "23621ab141c7cd5c1ae12e91b5ffad2ff6c263bb315681fa5f8e19ed402d7146",
+        "meaningKo": "음료를 다 마시다"
+      },
+      {
+        "id": "phrasal-band-together",
+        "phrasalVerb": "band together",
+        "storyForm": "banded together",
+        "context": "The class banded together around the large windows.",
+        "senseId": "1d0cfa67b125f3f2743b52132aab6721c5350f179ac196dc8e20d6188715433a",
+        "meaningKo": "무언가를 이루기 위해 한데 뭉치다"
+      },
+      {
+        "id": "phrasal-ride-up",
+        "phrasalVerb": "ride up",
+        "storyForm": "ride up",
+        "context": "Joon's shirt began to ride up as he lifted the drum.",
+        "senseId": "616e163e2e29ec8632546aab5bb19cfdb9d9f663a9989b4a61cf6d5abc540af0",
+        "meaningKo": "옷이 몸 위쪽으로 점차 말려 올라가다"
+      },
+      {
+        "id": "phrasal-warm-up",
+        "phrasalVerb": "warm up",
+        "storyForm": "warmed up",
+        "context": "The dark room warmed up with time in the afternoon sun.",
+        "senseId": "e31517851cd03937ae03efe0b8f223162a5bfa3f36da8a3e1dd2846bc6b6cf11",
+        "meaningKo": "따뜻해지거나 따뜻하게 하다"
+      },
+      {
+        "id": "phrasal-blow-down",
+        "phrasalVerb": "blow down",
+        "storyForm": "blew a small tree down",
+        "context": "Wind blew a small tree down in the yard.",
+        "senseId": "7828fd7cb580d48a11fbb61c32d04390730df449ee16093a888821a6a4cb2938",
+        "meaningKo": "바람 때문에 무언가가 넘어지다"
+      },
+      {
+        "id": "phrasal-blow-off",
+        "phrasalVerb": "blow off",
+        "storyForm": "blew Sara's cap off",
+        "context": "It also blew Sara's cap off.",
+        "senseId": "4f5ee1004c5af1fdb4edef16ae2313e8ad3a03c1972700192fbd876ec684f5f6",
+        "meaningKo": "바람 때문에 무언가가 떨어져 나가다"
+      },
+      {
+        "id": "phrasal-bone-up",
+        "phrasalVerb": "bone up",
+        "storyForm": "bone up",
+        "context": "Everyone had to bone up on a careful rule.",
+        "senseId": "a7b1e9300328650b6b389782d525ea74be7788eb1640b703423bc43c191797e6",
+        "meaningKo": "시험이나 일을 앞두고 열심히 공부하다"
+      },
+      {
+        "id": "phrasal-rain-down",
+        "phrasalVerb": "rain down",
+        "storyForm": "rained down",
+        "context": "Rain fell, and small leaves rained down on the roof.",
+        "senseId": "82c3a60a353a9d8b383465c59b27521664aa8f500fa1ea84ae8625b2fca7afee",
+        "meaningKo": "비처럼 위에서 많이 쏟아지다"
+      },
+      {
+        "id": "phrasal-dry-off",
+        "phrasalVerb": "dry off",
+        "storyForm": "dried her guitar off",
+        "context": "Mina dried her guitar off with a soft towel.",
+        "senseId": "e727edcc0ee8593a0dd948f3de247fb28c47848a55fe388fe1b4f07c6eb644ca",
+        "meaningKo": "표면의 물기를 닦아 말리다"
+      },
+      {
+        "id": "phrasal-nose-around",
+        "phrasalVerb": "nose around",
+        "storyForm": "nose around",
+        "context": "Gray began to nose around the closed office.",
+        "senseId": "8effe6a78761cc6ecfe75b32cf7cc6b250b09673ba82891d6dd8d0bd5eb1e892",
+        "meaningKo": "정보를 찾으려고 여기저기 기웃거리다"
+      },
+      {
+        "id": "phrasal-kick-around",
+        "phrasalVerb": "kick around",
+        "storyForm": "kicked around",
+        "context": "Joon and Sara kicked around the room without a plan.",
+        "senseId": "ceda1537dad56c66adbeefdd3ebf3ffeda3de42876e32f051f419098aaae205a",
+        "meaningKo": "뚜렷한 계획 없이 어떤 곳에서 시간을 보내다"
+      },
+      {
+        "id": "phrasal-match-up",
+        "phrasalVerb": "match up",
+        "storyForm": "match up",
+        "context": "Their three ideas did not match up at the start.",
+        "senseId": "cd779e84a056e05021f45344020250ef2644e9f41c8beaddfe3d81205834df1f",
+        "meaningKo": "둘이 같거나 비슷한 특성을 지녀 서로 들어맞다"
+      },
+      {
+        "id": "phrasal-grass-over",
+        "phrasalVerb": "grass over",
+        "storyForm": "grass over",
+        "context": "The school planned to grass over a dirty part of the yard.",
+        "senseId": "31bb8a9cb9c63e29d9d96bc8786aa2eb3ae8ea40a105c8a1dc2d6ccad65a6225",
+        "meaningKo": "땅의 한 구역을 잔디로 덮다"
+      },
+      {
+        "id": "phrasal-wash-off",
+        "phrasalVerb": "wash off",
+        "storyForm": "washed a blue line off",
+        "context": "Rain washed a blue line off the board.",
+        "senseId": "ce230e46162eb0ceb8891b3a717ee39af223266adc028afbbfd2b5d5f363ebb9",
+        "meaningKo": "물이나 세탁으로 표면의 때를 씻어 내다"
+      },
+      {
+        "id": "phrasal-breathe-out",
+        "phrasalVerb": "breathe out",
+        "storyForm": "breathed out",
+        "context": "Mina breathed out and began to feel calm.",
+        "senseId": "1a40a898077394d7a3f8144a4ec5df0fba691d4ab379c35f6adcc1e6036db5d0",
+        "meaningKo": "코나 입을 통해 폐에서 공기를 내보내다"
+      },
+      {
+        "id": "phrasal-toy-with",
+        "phrasalVerb": "toy with",
+        "storyForm": "toyed with",
+        "context": "Sara toyed with a gold ring when she was nervous.",
+        "senseId": "6c79294ab4ebf12b7d1e8277d89b4f71eac8ef56b8eba310e4d5ce1f2f6f434c",
+        "meaningKo": "대개 긴장해서 손가락으로 물건을 계속 만지작거리다"
+      },
+      {
+        "id": "phrasal-dig-in",
+        "phrasalVerb": "dig in",
+        "storyForm": "dug grass in",
+        "context": "The children dug grass in around a small plant.",
+        "senseId": "0a02bd51f9ac82fe6f30431541f5adb31ea812312ad525c417800217d50120f7",
+        "meaningKo": "땅을 파서 어떤 것을 흙에 섞다"
+      },
+      {
+        "id": "phrasal-dig-over",
+        "phrasalVerb": "dig over",
+        "storyForm": "dug over",
+        "context": "Mr Han dug over the wet ground and dug up an old black box.",
+        "senseId": "b0a564a6d0f66792f8639a298c4b9099c4c37305f870b3b85be9ad22eff9f2d0",
+        "meaningKo": "새 식물을 심을 준비를 하려고 땅을 파서 고르다"
+      },
+      {
+        "id": "phrasal-dig-up",
+        "phrasalVerb": "dig up",
+        "storyForm": "dug up",
+        "context": "Mr Han dug over the wet ground and dug up an old black box.",
+        "senseId": "918b2687199c378aea319229e8d756f1a69948cb7cacb9c20390b072801b2f15",
+        "meaningKo": "땅을 파서 땅 밑에서 무언가를 제거하다"
+      },
+      {
+        "id": "phrasal-shape-up",
+        "phrasalVerb": "shape up",
+        "storyForm": "shaping up",
+        "context": "The new concert plan was shaping up.",
+        "senseId": "eed9cb4514d867f8044dcfc957f0a221aedd71397735b0bb4bfee854d0d24042",
+        "meaningKo": "형태를 갖추며 진행되어 가다"
+      },
+      {
+        "id": "phrasal-strike-off",
+        "phrasalVerb": "strike off",
+        "storyForm": "struck off",
+        "context": "Mina struck off to the library with the box.",
+        "senseId": "b5d2d1e539f5b220cad4c58a9a101045de62313006c39209d7662738dfb3ac0b",
+        "meaningKo": "힘차게 특정 방향으로 출발하다"
+      },
+      {
+        "id": "phrasal-fit-in",
+        "phrasalVerb": "fit in",
+        "storyForm": "fit in",
+        "context": "A shy boy, Leo, wanted to fit in, so Sara gave him two bells.",
+        "senseId": "e4e42fde7b73b354c0d404fb6d292c488c8a56970c964fbb29c39f7392c261e9",
+        "meaningKo": "집단에 자연스럽게 어울려 받아들여지다"
+      },
+      {
+        "id": "phrasal-hit-back",
+        "phrasalVerb": "hit back",
+        "storyForm": "hit back",
+        "context": "Gray hit back when Ms Park asked about the office door.",
+        "senseId": "3b4f867843a379f6de11bdadcb2c6ad044e4d8dad837c9984e2225a17c443e9a",
+        "meaningKo": "자신을 비판한 사람에게 맞서 비판하다"
+      },
+      {
+        "id": "phrasal-fall-in",
+        "phrasalVerb": "fall in",
+        "storyForm": "fall in",
+        "context": "An old wall in the basement had started to fall in.",
+        "senseId": "fb1ef4c20dedc3ec6b1775f42b7375cb1caf9e914af5b30d7f31079932fcd020",
+        "meaningKo": "지붕이나 벽이 무너져 내리다"
+      },
+      {
+        "id": "phrasal-fall-off",
+        "phrasalVerb": "fall off",
+        "storyForm": "fallen off",
+        "context": "Ticket sales had fallen off after the power news.",
+        "senseId": "60d3834b54a9c17a23b49a783cf3637a2dccc4cedcae57fedd5098edacd5cbdb",
+        "meaningKo": "양·수준·가치가 줄어들다"
+      },
+      {
+        "id": "phrasal-roll-in",
+        "phrasalVerb": "roll in",
+        "storyForm": "roll in",
+        "context": "Still, families began to roll in from around town.",
+        "senseId": "0d38308d887234c66bf66f12040f8bf696192534ca8f92c570d6f678381929c8",
+        "meaningKo": "많은 수 또는 양으로 도달하다"
+      },
+      {
+        "id": "phrasal-stamp-out",
+        "phrasalVerb": "stamp out",
+        "storyForm": "stamped out",
+        "context": "Mr Han stamped out a small fire from a candle.",
+        "senseId": "10a19d48c53f4dc12d74795d4492359b40603883fda42d0dc120128404bed9f2",
+        "meaningKo": "발을 세게 내려서 타는 것을 멈추게 하다"
+      },
+      {
+        "id": "phrasal-tidy-up",
+        "phrasalVerb": "tidy up",
+        "storyForm": "tidied up",
+        "context": "The students tidied up the hall and spread out blankets at the windows.",
+        "senseId": "0a4498d55f6e0e1fa64d12c3309eebfe9523ee660d304cebe51dd07847fb1cb5",
+        "meaningKo": "정리하다; 말끔히 다듬다"
+      },
+      {
+        "id": "phrasal-spread-out",
+        "phrasalVerb": "spread out",
+        "storyForm": "spread out",
+        "context": "The students tidied up the hall and spread out blankets at the windows.",
+        "senseId": "b1ede80de3c34d27dbd79f10928b608e8b0ef77c5bbc0429bfa04dd4e978f19f",
+        "meaningKo": "무언가를 펼치거나 표면이나 영역에 넓게 벌려 놓다"
+      },
+      {
+        "id": "phrasal-follow-up",
+        "phrasalVerb": "follow up",
+        "storyForm": "followed up",
+        "context": "Ms Park followed up on the power news by telephone.",
+        "senseId": "2a1b40688b4e66077fa834a5e7289e35880bf24a31010f0da76847656ea28ce2",
+        "meaningKo": "더 알아보거나 후속 조치를 하다"
+      },
+      {
+        "id": "phrasal-fall-back",
+        "phrasalVerb": "fall back",
+        "storyForm": "fell back",
+        "context": "The young children fell back from the dark basement.",
+        "senseId": "29fbc54d0a0bdc3c1f851ca48268fdc92b0cbd715d8d27a9f0cf5185540d1b57",
+        "meaningKo": "뒤쪽으로 처지거나 물러나다"
+      },
+      {
+        "id": "phrasal-fall-on",
+        "phrasalVerb": "fall on",
+        "storyForm": "fell on",
+        "context": "The job of keeping the children well fell on Ms Park.",
+        "senseId": "b6b9b0f4c8b76d0585385a4912c0ff8d64e183ee89a039ad5568cb2efae44b34",
+        "meaningKo": "어떤 일이 누구의 책임으로 돌아가다"
+      },
+      {
+        "id": "phrasal-lie-down",
+        "phrasalVerb": "lie down",
+        "storyForm": "lie down",
+        "context": "She asked everyone to lie down on the blankets and listen.",
+        "senseId": "fe60cbfb4b1353cb7a8369ca10747b8e98242d36fea61edb522b8696e7463a4a",
+        "meaningKo": "눕다"
+      },
+      {
+        "id": "phrasal-count-on",
+        "phrasalVerb": "count on",
+        "storyForm": "count on",
+        "context": "They could count on her, and the room became calm.",
+        "senseId": "0c6aa4d0f56b187c80757f7c47c9eb453caed681607306fac8ee8829e73a82fe",
+        "meaningKo": "도와주거나 해낼 것이라고 믿고 의지하다"
+      },
+      {
+        "id": "phrasal-even-out",
+        "phrasalVerb": "even out",
+        "storyForm": "evened out",
+        "context": "Sara added water to the cups until the notes evened out.",
+        "senseId": "fcb6c1c4ef41e96d943f5e0997da49b3938d6faba0371b1d5d4417637fc0c005",
+        "meaningKo": "변화나 차이가 줄어들어 고르게 되다"
+      },
+      {
+        "id": "phrasal-lose-out",
+        "phrasalVerb": "lose out",
+        "storyForm": "lose out",
+        "context": "Anyone could lose out because the computer was dark, and the group did not want that.",
+        "senseId": "a6ca31dcf4a170b69f1643726070cc7f4c74420550d0a3658999cd0d6e9f8f90",
+        "meaningKo": "다른 사람이 얻는 이익이나 기회를 얻지 못하다"
+      },
+      {
+        "id": "phrasal-send-up",
+        "phrasalVerb": "send up",
+        "storyForm": "sent up",
+        "context": "Joon sent up Gray's important way of talking, and even Gray had to laugh.",
+        "senseId": "dbe06d4861a496694e9aaf4c7bdab017a561ad4d47c32ff16284148ea7891b42",
+        "meaningKo": "말투나 행동을 흉내 내어 우스꽝스럽게 만들다"
+      },
+      {
+        "id": "phrasal-fall-down",
+        "phrasalVerb": "fall down",
+        "storyForm": "fell down",
+        "context": "His trousers were not tight and fell down, and the group laughed again.",
+        "senseId": "d4496b69a6884192ce69a8494b68996bd90f3cb1649cd0f3c38aad38a7331b55",
+        "meaningKo": "옷이 헐거워 아래로 흘러내리다"
+      },
+      {
+        "id": "phrasal-fall-over",
+        "phrasalVerb": "fall over",
+        "storyForm": "fell over",
+        "context": "A tall box fell over, but the glass did not break.",
+        "senseId": "3052671469f04a6d2fa78777565a551baaeb9942c1c821110da5fef9163946f1",
+        "meaningKo": "물건이 옆으로 넘어지다"
+      },
+      {
+        "id": "phrasal-pass-by",
+        "phrasalVerb": "pass by",
+        "storyForm": "passed by",
+        "context": "A bus passed by the window as their small practice passed off well.",
+        "senseId": "a214d56e59c0536d88f2358fd539025852f7ead3d9bbf90ab85780734099a598",
+        "meaningKo": "곁을 지나가다"
+      },
+      {
+        "id": "phrasal-pass-off",
+        "phrasalVerb": "pass off",
+        "storyForm": "passed off",
+        "context": "A bus passed by the window as their small practice passed off well.",
+        "senseId": "4088b066df67ada27b9e076447e89397262abf12cce644764e756f9dc0059e4d",
+        "meaningKo": "행사가 특정한 방식으로 진행되다"
+      },
+      {
+        "id": "phrasal-pull-up",
+        "phrasalVerb": "pull up",
+        "storyForm": "pulled up",
+        "context": "A truck pulled up with boards, cloth, and tools.",
+        "senseId": "630a8ab52f0f2ddd0523069ad218e920b0e140a87db7032ba6fc2ad9707982e9",
+        "meaningKo": "차량이나 운전자가 멈춰 서다"
+      },
+      {
+        "id": "phrasal-explain-away",
+        "phrasalVerb": "explain away",
+        "storyForm": "explain away",
+        "context": "Mr Han tried to explain away the old wall as a small matter.",
+        "senseId": "417e4eb2642f9ac5486730f45e7438f8994daff95b365e6ea78972a20f9f2387",
+        "meaningKo": "대수롭지 않은 일처럼 설명해 넘기다"
+      },
+      {
+        "id": "phrasal-hit-on",
+        "phrasalVerb": "hit on",
+        "storyForm": "hit on",
+        "context": "Mina hit on a careful idea: use the bright library room.",
+        "senseId": "88ea5973611a9f722749020ebebb15f297f8bef1b928580e0f8d46217aef35e4",
+        "meaningKo": "갑자기 아이디어를 떠올리다"
+      },
+      {
+        "id": "phrasal-clear-away",
+        "phrasalVerb": "clear away",
+        "storyForm": "cleared away",
+        "context": "The students cleared away the broken boxes.",
+        "senseId": "609beb36ab0b5e62eb0635f210de3df1e1e89c8f4ec7c2fe10dcede2ae003378",
+        "meaningKo": "다 쓴 물건을 치워 자리를 정돈하다"
+      },
+      {
+        "id": "phrasal-strike-out",
+        "phrasalVerb": "strike out",
+        "storyForm": "struck out",
+        "context": "Mina struck out a dangerous line in the plan.",
+        "senseId": "8d439f398e2598f238b704602708e08d2a0055e9c918b69e814e5a560096d63f",
+        "meaningKo": "문서의 단어 위에 선을 그어 지우다"
+      },
+      {
+        "id": "phrasal-tie-up",
+        "phrasalVerb": "tie up",
+        "storyForm": "tied up",
+        "context": "Sara tied up the jobs at the end for the move.",
+        "senseId": "107b0eff0d81b01496452c64e6cde7f3d7dc38971ce25c07d90abff9c4b96250",
+        "meaningKo": "일을 끝내기 전에 남은 부분을 처리하다"
+      },
+      {
+        "id": "phrasal-cash-in",
+        "phrasalVerb": "cash in",
+        "storyForm": "cash in",
+        "context": "The library wanted to cash in on the new concert news, but it gave the room for free.",
+        "senseId": "c62b6f03d69cb26fb62c3a75663664545cca6848d141fac1941023d899197c48",
+        "meaningKo": "기회를 이용해 이익이나 이점을 얻다"
+      },
+      {
+        "id": "phrasal-mix-up",
+        "phrasalVerb": "mix up",
+        "storyForm": "mixed up",
+        "context": "Joon mixed up two bags and gave Ms Park the wrong file.",
+        "senseId": "97d4f88fe4f539e126d9f16528a54b80e1c7fa52d1344a829fc40760881699e3",
+        "meaningKo": "둘 이상의 사람이나 사물을 서로 혼동하다"
+      },
+      {
+        "id": "phrasal-knock-down",
+        "phrasalVerb": "knock down",
+        "storyForm": "knocked down",
+        "context": "The shop knocked down the price of the bells.",
+        "senseId": "7c7012683dfbe0f99fd4c1431cc58deda085664928bb0cbcefe4baf783e8a032",
+        "meaningKo": "가격이나 양을 낮추다"
+      },
+      {
+        "id": "phrasal-lock-in",
+        "phrasalVerb": "lock in",
+        "storyForm": "locked in",
+        "context": "A child was locked in the music room for one minute, and Mr Han opened the door.",
+        "senseId": "af2255aeadfb45456b86de3bde4bf6ee5e3ecc4cfec0d624a2d740400813f06d",
+        "meaningKo": "방을 두고 문을 잠그고 아무도 나갈 수 없도록 하다"
+      },
+      {
+        "id": "phrasal-round-up",
+        "phrasalVerb": "round up",
+        "storyForm": "rounded up",
+        "context": "Ms Park rounded up the students and checked the names.",
+        "senseId": "07cab048f3722f83153621469ca0e854a947799fd4308be27ba4ed503e926b96",
+        "meaningKo": "특정 목적을 위해 사람이나 동물을 한곳에 모으다"
+      },
+      {
+        "id": "phrasal-sink-in",
+        "phrasalVerb": "sink in",
+        "storyForm": "sink in",
+        "context": "The meaning of the power problem began to sink in.",
+        "senseId": "451c35ef9251375b0354391b870a0813212784474d74af03e644297b28f6f7a8",
+        "meaningKo": "완전히 이해되다"
+      },
+      {
+        "id": "phrasal-tune-in",
+        "phrasalVerb": "tune in",
+        "storyForm": "tune in",
+        "context": "Families could tune in to the radio, but they could not see the children.",
+        "senseId": "19d5555a57854608a2cbed913eabccf9a8e5cf1c47378d0da7ae90ae081fe21e",
+        "meaningKo": "특정 라디오나 텔레비전 방송을 듣거나 보다"
+      },
+      {
+        "id": "phrasal-boil-down",
+        "phrasalVerb": "boil down",
+        "storyForm": "boiled the plan down",
+        "context": "Mina boiled the plan down to one sentence: make honest music in a bright room.",
+        "senseId": "5cc50bae72c2e1421db396214a85b3a2251d72dac423027cf11e4ef28307707f",
+        "meaningKo": "글 등을 핵심 사실만 남겨 짧게 줄이다"
+      },
+      {
+        "id": "phrasal-screw-up",
+        "phrasalVerb": "screw up",
+        "storyForm": "screw up",
+        "context": "Joon was afraid that he would screw up the opening.",
+        "senseId": "54268ff059cfe99575424f0cd87b332d0a7cc19f45c9a15fdb877a6c1c0df824",
+        "meaningKo": "큰 실수를 하거나 일을 망치다"
+      },
+      {
+        "id": "phrasal-pull-over",
+        "phrasalVerb": "pull over",
+        "storyForm": "pulled over",
+        "context": "On the way to the library, the bus pulled over for a sick passenger.",
+        "senseId": "5542ffc63e4bcc6e39e7042255770e82e89a14405d948d36c90f3dd789d4beab",
+        "meaningKo": "차량을 길가에 세우다"
+      },
+      {
+        "id": "phrasal-hit-out",
+        "phrasalVerb": "hit out",
+        "storyForm": "hit out",
+        "context": "Gray hit out at the slow trip, but Mina asked him to be calm.",
+        "senseId": "c69fb9267b84be03dc56ce453117a4e61684f9c8a7fc2118f9d712a9fb196815",
+        "meaningKo": "누군가나 무언가를 매우 강하게 비판하다"
+      },
+      {
+        "id": "phrasal-clear-off",
+        "phrasalVerb": "clear off",
+        "storyForm": "clear off",
+        "context": "Ms Park told Gray to clear off if he could not be polite.",
+        "senseId": "45b4111a569baf582032921c8a83b3a990491de857a43e4a25d620a4eacf0d86",
+        "meaningKo": "빨리 자리를 떠나다"
+      },
+      {
+        "id": "phrasal-sound-off",
+        "phrasalVerb": "sound off",
+        "storyForm": "sounded off",
+        "context": "Gray chose to stay and sounded off about the late concert.",
+        "senseId": "4c35eba769ffadedf515831a1a42d5e8949d0942092cb249b080f1b5eba636bf",
+        "meaningKo": "의견을 큰 소리로, 흔히 무리하게 말하다"
+      },
+      {
+        "id": "phrasal-fit-out",
+        "phrasalVerb": "fit out",
+        "storyForm": "fitted out",
+        "context": "The library fitted out a large room with tables and seats.",
+        "senseId": "b83da3da8a17fc7ed75cc573229e59ec7cec2df55701aec1ba8909cab4bbeb59",
+        "meaningKo": "특정 용도로 쓰도록 방이나 건물에 장비를 갖추다"
+      },
+      {
+        "id": "phrasal-fix-up",
+        "phrasalVerb": "fix up",
+        "storyForm": "fixed up",
+        "context": "Mr Han fixed up the old piano.",
+        "senseId": "3936c9139d379e663bee30872359f3198d04072ab0a8d4331d72022555950fc8",
+        "meaningKo": "무언가를 청소하거나 고치거나 꾸미다"
+      },
+      {
+        "id": "phrasal-knock-about",
+        "phrasalVerb": "knock about",
+        "storyForm": "knocked about",
+        "context": "The children knocked about ideas for the opening.",
+        "senseId": "393ec34985f7246da815f7315da44a8c6c8bed2ddee430d5fb7e50ed31cc96c0",
+        "meaningKo": "아이디어를 격식 없이 자유롭게 이야기하다"
+      },
+      {
+        "id": "phrasal-knock-back",
+        "phrasalVerb": "knock back",
+        "storyForm": "knocked back",
+        "context": "Ms Park knocked back a plan that used fire.",
+        "senseId": "195329bf76842324ca3affcb3b4fa753809b825637163c8e74980836cc0e51e9",
+        "meaningKo": "사람이나 제안을 받아들이지 않고 거절하다"
+      },
+      {
+        "id": "phrasal-knock-off",
+        "phrasalVerb": "knock off",
+        "storyForm": "knocked off",
+        "context": "At five, everyone knocked off and went home.",
+        "senseId": "170f3d6d6675b727f5094222a6ffafa7120fd6450ed57221c584aa0de9190dd0",
+        "meaningKo": "일을 마치다"
+      },
+      {
+        "id": "phrasal-shout-down",
+        "phrasalVerb": "shout down",
+        "storyForm": "shout Mina down",
+        "context": "Gray tried to shout Mina down during the end talk.",
+        "senseId": "587efa3e045184c292ff3abe423780c057e86e58ce2690cc7ad70df6e55a22e6",
+        "meaningKo": "큰 소리로 상대의 말을 들리지 않게 막다"
+      },
+      {
+        "id": "phrasal-lock-out",
+        "phrasalVerb": "lock out",
+        "storyForm": "locked him out",
+        "context": "The library door locked him out when he stepped into the yard.",
+        "senseId": "79178e8d19906138f9e392fc80da29d02fa0040776326586d0913681e4ef2690",
+        "meaningKo": "문을 잠가 누군가가 방이나 건물에 들어오지 못하게 하다"
+      },
+      {
+        "id": "phrasal-string-along",
+        "phrasalVerb": "string along",
+        "storyForm": "string along",
+        "context": "He asked Sara to string along with his story, but she gave the true words.",
+        "senseId": "5beed12fbbc1dfa36f085d092865b0a41d474e245ca0e4c02c3fbe8fd3d2bff0",
+        "meaningKo": "생각이나 제안에 동의하여 따르다"
+      },
+      {
+        "id": "phrasal-bite-back",
+        "phrasalVerb": "bite back",
+        "storyForm": "bit back",
+        "context": "Gray gave Mina an angry answer, and she bit back with angry words.",
+        "senseId": "dc75d5820145dd45fff2022ab9436674f717422b84cc62b120269e828ecea784",
+        "meaningKo": "화가 나서 말이나 행동으로 맞받아치다"
+      },
+      {
+        "id": "phrasal-tune-out",
+        "phrasalVerb": "tune out",
+        "storyForm": "tuned out",
+        "context": "Joon tuned out the fight and kept practicing.",
+        "senseId": "5483553342a928190ce87bee9ff3bd208c1547a66cd2ca898ae83e0aa71cae48",
+        "meaningKo": "주의를 기울이지 않고 흘려듣다"
+      },
+      {
+        "id": "phrasal-boil-over",
+        "phrasalVerb": "boil over",
+        "storyForm": "boiled over",
+        "context": "In the kitchen, soup boiled over, so Sara closed the kitchen fire.",
+        "senseId": "31b026a3ef2455bbfa5ecce06e4de189ab1e221ef784291b129a8f7f96b4c252",
+        "meaningKo": "액체가 끓어 용기 밖으로 넘치다"
+      },
+      {
+        "id": "phrasal-boil-up",
+        "phrasalVerb": "boil up",
+        "storyForm": "boiled up",
+        "context": "Her mom boiled up fresh water and made tea.",
+        "senseId": "5e1b0f5d152acfffb2f88092dc466c1a1ee00c86937c79e815392b087fc5371f",
+        "meaningKo": "액체나 액체 속의 것을 끓을 때까지 데우다"
+      },
+      {
+        "id": "phrasal-sew-up",
+        "phrasalVerb": "sew up",
+        "storyForm": "sewed up",
+        "context": "Sara sewed up a hole in Joon's cloth bag.",
+        "senseId": "f8a092dd27f50c92da7b0993a690d9488924dce1880e9bbc19a86471fb98e162",
+        "meaningKo": "천의 구멍 등을 바느질해 수선하다"
+      },
+      {
+        "id": "phrasal-part-with",
+        "phrasalVerb": "part with",
+        "storyForm": "part with",
+        "context": "Joon did not want to part with his old drum, even when the drum cloth broke.",
+        "senseId": "5e46ee0dad24c819276a08a78cf21f9e92d2512852c49de4a8b10e7e8b73e4f3",
+        "meaningKo": "간직하고 싶지만 마지못해 남에게 내주다"
+      },
+      {
+        "id": "phrasal-force-down",
+        "phrasalVerb": "force down",
+        "storyForm": "force the price down",
+        "context": "The shop agreed to force the price down.",
+        "senseId": "6c80e99195e6834e01a876e3fa52298caf2c8e26c04cae7af7644a354d22ad5c",
+        "meaningKo": "수치나 가격 등을 억지로 낮추다"
+      },
+      {
+        "id": "phrasal-send-for",
+        "phrasalVerb": "send for",
+        "storyForm": "sent for",
+        "context": "Ms Park sent for a piano man.",
+        "senseId": "66e067f32c06c8ccb60affaf21401e652518d8621dbfd931ce0d0921848440a4",
+        "meaningKo": "자신에게 오거나 자신에게 배달될 무언가를 준비하다"
+      },
+      {
+        "id": "phrasal-send-off",
+        "phrasalVerb": "send off",
+        "storyForm": "sent Mina off",
+        "context": "She sent Mina off with the finished room form and sent Joon out to buy a chain.",
+        "senseId": "0c3b1ac825a6a776450fd812db77f87e968729693fa6d0b71811a8d08e198d58",
+        "meaningKo": "누군가가 어떤 곳으로 가도록 준비해 보내다"
+      },
+      {
+        "id": "phrasal-send-out",
+        "phrasalVerb": "send out",
+        "storyForm": "sent Joon out",
+        "context": "She sent Mina off with the finished room form and sent Joon out to buy a chain.",
+        "senseId": "1170b498bd541c84e2c8c12944932c36e725527911782c2ad9cebec8d8fd0e0c",
+        "meaningKo": "특정한 목적을 위해 누군가를 어떤 곳으로 보내다"
+      },
+      {
+        "id": "phrasal-fall-about",
+        "phrasalVerb": "fall about",
+        "storyForm": "fell about",
+        "context": "When Leo wore the tiger cap, the children fell about laughing.",
+        "senseId": "4f23208848734e52778ed083f14c7da26aeebd3c435e7966d11d8661689a90c3",
+        "meaningKo": "웃음을 참지 못하고 크게 웃다"
+      },
+      {
+        "id": "phrasal-fall-into",
+        "phrasalVerb": "fall into",
+        "storyForm": "fell into",
+        "context": "Ms Park put the class into groups that fell into music, food, and design.",
+        "senseId": "5d5a828389457bb84aba07bfdd48bf5455f4d1c222eccff1c91010f94eb62229",
+        "meaningKo": "특정 집단이나 범주에 속하거나 그 일부로 분류되다"
+      },
+      {
+        "id": "phrasal-fall-out",
+        "phrasalVerb": "fall out",
+        "storyForm": "fell out",
+        "context": "Gray and Joon fell out about the opening.",
+        "senseId": "8d58d9ee3be2b1baaee6f67bb94ffac4648f91b7426dc6f20cb66b99c08e1e8f",
+        "meaningKo": "의견 충돌로 누군가와 사이가 틀어지다"
+      },
+      {
+        "id": "phrasal-fall-to",
+        "phrasalVerb": "fall to",
+        "storyForm": "fell to",
+        "context": "The hard job fell to Mina.",
+        "senseId": "c72e804364b77e42cc8c9c9c1d2f034a24757e1818d91ae388a981fd1287d5b9",
+        "meaningKo": "특정한 일이나 의무가 누군가의 책임이 되다"
+      },
+      {
+        "id": "phrasal-report-back",
+        "phrasalVerb": "report back",
+        "storyForm": "report back",
+        "context": "She asked Gray and Joon to report back after a quiet conversation.",
+        "senseId": "f3be1b50911b8dfe3da7cb824693148aadd1d88ff8f37eaa25452bf34275f8ef",
+        "meaningKo": "돌아와 결과나 상황을 알리다"
+      },
+      {
+        "id": "phrasal-pull-away",
+        "phrasalVerb": "pull away",
+        "storyForm": "pulled away",
+        "context": "In the yard, a taxi pulled away and a truck pulled in.",
+        "senseId": "394223e5b7ea998d672f324cbea2ea71f35f2cee19603fa6d0a7f83bc83e2804",
+        "meaningKo": "차량이나 운전자가 움직이기 시작하다"
+      },
+      {
+        "id": "phrasal-pull-back",
+        "phrasalVerb": "pull back",
+        "storyForm": "pulled back",
+        "context": "The bus man pulled back from a dangerous trip.",
+        "senseId": "59a3f7fa60e8fb53bfa7a3496d0495406ec194b21d89cb606aed6be79c276b6b",
+        "meaningKo": "나쁜 결과가 예상되는 일을 하지 않기로 물러서다"
+      },
+      {
+        "id": "phrasal-pull-in",
+        "phrasalVerb": "pull in",
+        "storyForm": "pulled in",
+        "context": "In the yard, a taxi pulled away and a truck pulled in.",
+        "senseId": "824837d1e315580941ad6d9c1412f04485eb59166bb871cdefec0f791405c449",
+        "meaningKo": "차량이 어떤 곳에 들어와 멈추다"
+      },
+      {
+        "id": "phrasal-pull-into",
+        "phrasalVerb": "pull into",
+        "storyForm": "pulled into",
+        "context": "The piano man pulled into the library yard in the evening.",
+        "senseId": "ca2569ada618d9e393ce74af054e008783dc988339457f36835bd468922efaf7",
+        "meaningKo": "차량이 어떤 장소로 들어와 멈추다"
+      },
+      {
+        "id": "phrasal-return-to",
+        "phrasalVerb": "return to",
+        "storyForm": "returned to",
+        "context": "The broken piano returned to a clear note after the fix.",
+        "senseId": "db539c8681983589390541ff92c9ea3a753ad521c4ca42fd8abfddd174cdfe16",
+        "meaningKo": "이전의 상태나 행동 방식으로 돌아가다"
+      },
+      {
+        "id": "phrasal-land-in",
+        "phrasalVerb": "land in",
+        "storyForm": "landed in",
+        "context": "Mina's cousin landed in town on the evening jet.",
+        "senseId": "214575e16be31c83691b5b0d8593ff7a0d540634f8c44d2e00a9c4e47b8be4d1",
+        "meaningKo": "비행기나 배를 타고 어떤 곳에 도착하다"
+      },
+      {
+        "id": "phrasal-lie-around",
+        "phrasalVerb": "lie around",
+        "storyForm": "lying around",
+        "context": "Tools and bags were lying around the library floor.",
+        "senseId": "ed860d58fc7c88ff7bdd355287c8ebd3387c086271fa9ccdcd0ba709b629a6e4",
+        "meaningKo": "제자리에 두지 않고 아무 데나 놓여 있다"
+      },
+      {
+        "id": "phrasal-lie-back",
+        "phrasalVerb": "lie back",
+        "storyForm": "lay back",
+        "context": "A tired Joon lay back on a couch.",
+        "senseId": "dfcee4259415b67c7e9e23bb4923a5ed8e0a9019cbb6be11fd228752b9147fef",
+        "meaningKo": "몸을 뒤로 기대어 눕다"
+      },
+      {
+        "id": "phrasal-act-up",
+        "phrasalVerb": "act up",
+        "storyForm": "act up",
+        "context": "The old radio began to act up, and Mina feared for the Saturday show.",
+        "senseId": "b7d8f4e2024fbe24dcd44f8ab11ab40299f6a66cb9130b2e87d7cc536ad97c4b",
+        "meaningKo": "몸의 일부가 아프거나 장비가 말썽을 일으키기 시작하다"
+      },
+      {
+        "id": "phrasal-fear-for",
+        "phrasalVerb": "fear for",
+        "storyForm": "feared for",
+        "context": "The old radio began to act up, and Mina feared for the Saturday show.",
+        "senseId": "cb9224dbb5cd881c775decaade48ef10c788e1fcff77508f400467ca8563c59c",
+        "meaningKo": "누군가의 안전이나 안부를 걱정하다"
+      },
+      {
+        "id": "phrasal-strike-at",
+        "phrasalVerb": "strike at",
+        "storyForm": "struck at",
+        "context": "Joon struck at a baseball in the yard to clear his mind.",
+        "senseId": "b534b93bf2d2a1d7d1f7eee228ffbbefb8549662ebb861660e1d98cfe5625cdf",
+        "meaningKo": "손이나 발, 스포츠 도구로 공 등을 치거나 차려고 하다"
+      },
+      {
+        "id": "phrasal-strike-up",
+        "phrasalVerb": "strike up",
+        "storyForm": "struck up",
+        "context": "From the open window, Sara struck up quiet music on the piano.",
+        "senseId": "91eac1f4bbb26d72c1fc4ab4f048975e5941e6a438931bac6ec56acb873d9058",
+        "meaningKo": "음악 한 곡이 틀어지면 누군가 그것을 연주하기 시작하다"
+      },
+      {
+        "id": "phrasal-roll-up",
+        "phrasalVerb": "roll up",
+        "storyForm": "rolled up",
+        "context": "Mina rolled up the arms of her shirt and began her job.",
+        "senseId": "90c5b84e6b22d0a5e6609c63dff52fc9d491607128e3917e780b032ed002eddc",
+        "meaningKo": "소매나 바짓단을 여러 번 접어 짧게 올리다"
+      },
+      {
+        "id": "phrasal-fit-into",
+        "phrasalVerb": "fit into",
+        "storyForm": "fit into",
+        "context": "The boxes fit into the truck, and the band crossed over from power music to music made by hand.",
+        "senseId": "5b30286a3a471e23b0dff8242e24832515e47020c976383f3fd54d260892c357",
+        "meaningKo": "사람이나 물건을 넣을 만큼 공간이 충분하다"
+      },
+      {
+        "id": "phrasal-cross-over",
+        "phrasalVerb": "cross over",
+        "storyForm": "crossed over",
+        "context": "The boxes fit into the truck, and the band crossed over from power music to music made by hand.",
+        "senseId": "c3a8f9ad0d34d1c76d24d02ecc582ee03a767601a92f4a4a84b79976f5c5c72f",
+        "meaningKo": "이전과 다른 집단이나 유형에 속하기 시작하다"
+      },
+      {
+        "id": "phrasal-wave-through",
+        "phrasalVerb": "wave through",
+        "storyForm": "waved the truck through",
+        "context": "Mr Han waved the truck through the school door.",
+        "senseId": "e8671c3f4719cd541d29ecd2bf1bd15cfdf940c9fa9aacbf781bf6b19607cbb1",
+        "meaningKo": "손짓으로 사람이나 차량이 입구를 지나가도 된다고 알리다"
+      },
+      {
+        "id": "phrasal-remind-of",
+        "phrasalVerb": "remind of",
+        "storyForm": "reminded Mina of",
+        "context": "The dark room reminded Mina of the bad show she still remembered.",
+        "senseId": "3c5dfd716c606b705fb43acf41f91c4bbaa2c5bcc726550d81c9e69a95eb7c96",
+        "meaningKo": "비슷한 사람이나 일을 떠올리게 하다"
+      },
+      {
+        "id": "phrasal-shut-away",
+        "phrasalVerb": "shut away",
+        "storyForm": "shut a nervous child away",
+        "context": "On Friday night, Ms Park would not shut a nervous child away from the group.",
+        "senseId": "b47cda226d99b7f0d923991186385f444b993352b4baf95db955e7aeb9a13f2b",
+        "meaningKo": "누군가를 다른 사람들과 떨어진 곳에 있게 하다"
+      },
+      {
+        "id": "phrasal-shut-out",
+        "phrasalVerb": "shut out",
+        "storyForm": "shut out",
+        "context": "She shut out the loud street music by closing the windows.",
+        "senseId": "f05d9fadc9b49ab4eea02a9724175c7fa858c7d256d5ab1623183e2a67fa00ba",
+        "meaningKo": "소리나 생각 등이 들어오지 못하게 차단하다"
+      },
+      {
+        "id": "phrasal-belong-to",
+        "phrasalVerb": "belong to",
+        "storyForm": "belonged to",
+        "context": "The guitar belonged to Mina's grandfather, and the guitar music felt personal.",
+        "senseId": "b6c66b28c21d91cd1604efff989ddaed6ad88105547d47632aa6073b9bb4272d",
+        "meaningKo": "누군가의 소유이다"
+      },
+      {
+        "id": "phrasal-empty-out",
+        "phrasalVerb": "empty out",
+        "storyForm": "emptied out",
+        "context": "Students emptied out the bags and marked ticket prices down.",
+        "senseId": "52d840f027a8f7042d02c6e43ff0c60fd3436f1b36cb582ea6c11e9e456a5902",
+        "meaningKo": "내용물을 완전히 비우다"
+      },
+      {
+        "id": "phrasal-mark-down",
+        "phrasalVerb": "mark down",
+        "storyForm": "marked ticket prices down",
+        "context": "Students emptied out the bags and marked ticket prices down.",
+        "senseId": "a4b2802b39a2ef37882f100581d6a4ee91bbd1c94ec56f40da9d04a2e85b4867",
+        "meaningKo": "물건의 가격을 낮추다"
+      },
+      {
+        "id": "phrasal-branch-off",
+        "phrasalVerb": "branch off",
+        "storyForm": "branched off",
+        "context": "The road to the library branched off at a temple.",
+        "senseId": "aedf0cc2022a2bd7eea471328af3adbe9f9686fd001ac9b266debf93637b8d23",
+        "meaningKo": "큰길이나 중심 부분에서 갈라져 나가다"
+      },
+      {
+        "id": "phrasal-fix-on",
+        "phrasalVerb": "fix on",
+        "storyForm": "fixed her eyes on",
+        "context": "Mina fixed her eyes on the concert card.",
+        "senseId": "af88d86f1045c284d4c08901049c74d1bec41c2a9afb31e43ad2bac8f5a35150",
+        "meaningKo": "눈이나 시선을 누군가나 무언가에 고정하다"
+      },
+      {
+        "id": "phrasal-pour-out",
+        "phrasalVerb": "pour out",
+        "storyForm": "poured out",
+        "context": "Sara poured out her worry: would anyone come?",
+        "senseId": "0650fb70a7dab310e29a4189d081b2cfe43665cea3e0544f1e3cf39ebb85bb0b",
+        "meaningKo": "감정이나 걱정을 숨김없이 털어놓다"
+      },
+      {
+        "id": "phrasal-tear-apart",
+        "phrasalVerb": "tear apart",
+        "storyForm": "tore the old picture apart",
+        "context": "Gray tore the old picture apart, and Mina tore up a false card.",
+        "senseId": "d39f911209516d9e270c0575758e878d7acddcf5acd91b90c02422e0b2bf8f7b",
+        "meaningKo": "무언가를 조각조각 뜯어 완전히 망가뜨리다"
+      },
+      {
+        "id": "phrasal-tear-up",
+        "phrasalVerb": "tear up",
+        "storyForm": "tore up",
+        "context": "Gray tore the old picture apart, and Mina tore up a false card.",
+        "senseId": "23d0a3405854cde54db15867298597fb17f2711b427168dfff59a72ae167ab31",
+        "meaningKo": "종이나 천 등을 잡아당겨 여러 조각으로 찢다"
+      },
+      {
+        "id": "phrasal-tip-over",
+        "phrasalVerb": "tip over",
+        "storyForm": "tipped over",
+        "context": "A cup tipped over and wet the end plan.",
+        "senseId": "e1c725fc09c230fbdb927f851cfdd5a02c6a6b2cb7e5539d77a893d08950690a",
+        "meaningKo": "기울어 옆으로 넘어지다"
+      },
+      {
+        "id": "phrasal-divide-up",
+        "phrasalVerb": "divide up",
+        "storyForm": "divided up",
+        "context": "The team divided up the jobs and started again.",
+        "senseId": "30767cba1a6291772ec872ce226090ffa8fdb26f73eabddf6165eb6ef5ae02de",
+        "meaningKo": "여러 몫이나 집단으로 나누다"
+      },
+      {
+        "id": "phrasal-knock-around",
+        "phrasalVerb": "knock around",
+        "storyForm": "knocked around",
+        "context": "They knocked around a new name for the show.",
+        "senseId": "81dc7c337f4422e1aff6aec43317257578eb6833decba2cc1ca646e760a5cf54",
+        "meaningKo": "아이디어를 격식 없이 이리저리 이야기하다"
+      },
+      {
+        "id": "phrasal-shout-out",
+        "phrasalVerb": "shout out",
+        "storyForm": "shouted out",
+        "context": "Leo shouted out Music in a Dark Room, and everyone liked it.",
+        "senseId": "2ef44bae39d3f31a9eea74064050ea3a4cb61f71ff98c64af7485342a86ee3fd",
+        "meaningKo": "무언가를 갑자기 아주 큰 소리로 외치다"
+      },
+      {
+        "id": "phrasal-lock-away",
+        "phrasalVerb": "lock away",
+        "storyForm": "locked the ticket money away",
+        "context": "Ms Park locked the ticket money away in a bank box.",
+        "senseId": "70bf9c6862c1ee5eda4cf9b7a2e64c9fbc73001611e572793a844cfeb52a1abe",
+        "meaningKo": "물건을 잠금장치가 있는 곳이나 용기에 넣어 두다"
+      },
+      {
+        "id": "phrasal-dust-off",
+        "phrasalVerb": "dust off",
+        "storyForm": "dusted off",
+        "context": "Joon dusted off his jacket by the piano.",
+        "senseId": "0fd3b053830bb05102bcf14fc1dab7aaa5dce834cb4fbae74ef9b07eb36bd4db",
+        "meaningKo": "옷에 묻은 먼지나 흙을 털어 내다"
+      },
+      {
+        "id": "phrasal-weigh-in",
+        "phrasalVerb": "weigh in",
+        "storyForm": "weighed in",
+        "context": "A parent weighed in with an idea for a family conversation after the show.",
+        "senseId": "fdcbb6059a7b5c14191c9f5cd33711237d510e80c497fcef690fa023327c38be",
+        "meaningKo": "어떤 일이나 논의에 관여하다"
+      },
+      {
+        "id": "phrasal-disagree-with",
+        "phrasalVerb": "disagree with",
+        "storyForm": "disagreed with",
+        "context": "Gray disagreed with the plan because it was not honest.",
+        "senseId": "1a46ec980f6e2b06d8027e1ae189fb2ca4ca6620a7b3931d102a2787e44ece19",
+        "meaningKo": "정직하지 않거나 옳지 않다고 여겨 찬성하지 않다"
+      },
+      {
+        "id": "phrasal-hang-about",
+        "phrasalVerb": "hang about",
+        "storyForm": "hung about",
+        "context": "He hung about at the door and did nothing.",
+        "senseId": "8ebaa610a34022d342f4ca820b3b0c222fd8a5fbce39b5d79d70e67bf51aef78",
+        "meaningKo": "특별한 일 없이 머물거나 지체하다"
+      },
+      {
+        "id": "phrasal-toss-up",
+        "phrasalVerb": "toss up",
+        "storyForm": "tossed up",
+        "context": "Mina tossed up a round piece of money to choose between the two plans.",
+        "senseId": "7570c70dc1937de58f4ae371920ea1ebff44ab206dda7dae388013757e20aae0",
+        "meaningKo": "동전을 던져 결정하다"
+      },
+      {
+        "id": "phrasal-connect-up",
+        "phrasalVerb": "connect up",
+        "storyForm": "connected up",
+        "context": "Mr Han connected up the radio and the computer.",
+        "senseId": "f5e2b9837409b01302a4b568a163927d3cd991e134b899eed3c08072326a631c",
+        "meaningKo": "기기나 부품을 서로 연결하다"
+      },
+      {
+        "id": "phrasal-lay-on",
+        "phrasalVerb": "lay on",
+        "storyForm": "laid on",
+        "context": "The library laid on tea, cream, and chocolate for the visitors.",
+        "senseId": "74549d9c2ce47cc9db8c03e1d583255461582affa5fae72fac08bc50f7a22e97",
+        "meaningKo": "음식, 오락, 서비스 등을 특히 무료로 제공하다"
+      },
+      {
+        "id": "phrasal-settle-down",
+        "phrasalVerb": "settle down",
+        "storyForm": "settled down",
+        "context": "The young children settled down on a soft carpet.",
+        "senseId": "88c2e99ea42554107dc7dcea22ccb3450a2fa775a434ecdd903946048cb4145b",
+        "meaningKo": "마음을 가라앉히고 자리를 잡다"
+      },
+      {
+        "id": "phrasal-mess-up",
+        "phrasalVerb": "mess up",
+        "storyForm": "messed up",
+        "context": "Gray messed up the opening talk but did not leave.",
+        "senseId": "578b6eb238cff907ace042e442ae3efbe706a93f3303cb8745435dbf2a9bc3b9",
+        "meaningKo": "실수하거나 일을 잘못하다"
+      },
+      {
+        "id": "phrasal-hang-out",
+        "phrasalVerb": "hang out",
+        "storyForm": "hang out",
+        "context": "He liked to hang out with the band, even when he acted strong.",
+        "senseId": "0be901c8bf4c2fd4a38e39a62894c9d2f06af65d769809d8347c1ac4eb353403",
+        "meaningKo": "친구들과 어울려 시간을 보내다"
+      },
+      {
+        "id": "phrasal-lay-up",
+        "phrasalVerb": "lay up",
+        "storyForm": "laid up",
+        "context": "Joon had been laid up with a fever in January, and he remembered missing music.",
+        "senseId": "aeb9752510992d5e795aa848fa22558641db18211904e6fdf5a750593a53287a",
+        "meaningKo": "병이나 부상으로 누워 지내다"
+      },
+      {
+        "id": "phrasal-mess-with",
+        "phrasalVerb": "mess with",
+        "storyForm": "mess with",
+        "context": "Gray told Leo not to mess with Mina or make her angry.",
+        "senseId": "3fa44cd748086f3bef5c998a8e44a910666053d80fb1d9b34f9c2d1b86c6dcc4",
+        "meaningKo": "누군가를 심각하게 화나게 하거나 혼란을 주다"
+      },
+      {
+        "id": "phrasal-stick-at",
+        "phrasalVerb": "stick at",
+        "storyForm": "stuck at",
+        "context": "Leo stuck at his bell practice.",
+        "senseId": "ae092a236c6ff3d2e091dd9ebc647be87e783394683814bca35ca8a8fbadae75",
+        "meaningKo": "어렵거나 싫은 일도 포기하지 않고 계속하다"
+      },
+      {
+        "id": "phrasal-switch-on",
+        "phrasalVerb": "switch on",
+        "storyForm": "switched on",
+        "context": "Mr Han switched on the wall light.",
+        "senseId": "939fe75bbb02fac39e480b66b9accbd475bfffdd139f1d37f5f692881072c603",
+        "meaningKo": "전등이나 기계를 켜다"
+      },
+      {
+        "id": "phrasal-rise-up",
+        "phrasalVerb": "rise up",
+        "storyForm": "rise up",
+        "context": "Families began to rise up from their seats when the music started.",
+        "senseId": "485bcce1cf5b983206a95aaaa63e5af70d44ee3d47db877b53cad49af699b605",
+        "meaningKo": "일어서거나 위로 올라가다"
+      },
+      {
+        "id": "phrasal-lay-down",
+        "phrasalVerb": "lay down",
+        "storyForm": "laid down",
+        "context": "Ms Park laid down one rule: listen to the children.",
+        "senseId": "276114166992ade9ec00eb9f97c357940c9095531f7cb6f44ff373d730159767",
+        "meaningKo": "지켜야 할 규칙이나 방식을 공식적으로 정하다"
+      },
+      {
+        "id": "phrasal-hang-on",
+        "phrasalVerb": "hang on",
+        "storyForm": "hang on",
+        "context": "Gray asked everyone to hang on as he found the right card.",
+        "senseId": "6e0afbc22651bc7cc6f710f7215dc3bad8fdbd2a2a860fbec91aa17596e21df5",
+        "meaningKo": "잠깐 기다리거나 참다"
+      },
+      {
+        "id": "phrasal-stick-to",
+        "phrasalVerb": "stick to",
+        "storyForm": "stuck to",
+        "context": "The group stuck to the easy opening.",
+        "senseId": "8450c23d9b81a562ce8b70441d4bd9b46e3d19f7dc9df5214925cc301c3b04cd",
+        "meaningKo": "정한 방식이나 계획을 바꾸지 않고 지키다"
+      },
+      {
+        "id": "phrasal-hang-together",
+        "phrasalVerb": "hang together",
+        "storyForm": "hung together",
+        "context": "The guitar, piano, drum, cups, and bells hung together.",
+        "senseId": "75936e7392272dd606c3d93c9c79feff55c59f3feaaf0887b414d38d4090cbb0",
+        "meaningKo": "여러 부분이 잘 어우러져 짜임새가 있다"
+      },
+      {
+        "id": "phrasal-measure-up",
+        "phrasalVerb": "measure up",
+        "storyForm": "measure up",
+        "context": "Gray asked if his opening talk would measure up.",
+        "senseId": "54713eb7bdaa12d8c1dba6a0137b637e0f8e688c5fa50d9d2987663881bb10a1",
+        "meaningKo": "기대하거나 필요한 수준에 이르다"
+      },
+      {
+        "id": "phrasal-beat-down",
+        "phrasalVerb": "beat down",
+        "storyForm": "beat down",
+        "context": "The hot sun beat down on the library roof.",
+        "senseId": "e5d25d3cbe31101e2888b0063aa59ba1377ee35cd88579e3069d5aa84e94e82d",
+        "meaningKo": "햇볕이 강하게 내리쬐다"
+      },
+      {
+        "id": "phrasal-stick-together",
+        "phrasalVerb": "stick together",
+        "storyForm": "stuck together",
+        "context": "The children stuck together when one cup broke.",
+        "senseId": "5c2a924555977ade26d88f30a1097c89242d5f91953f890c8c1b0e64b39079ff",
+        "meaningKo": "서로 가까이 지내며 돕다"
+      },
+      {
+        "id": "phrasal-stick-with",
+        "phrasalVerb": "stick with",
+        "storyForm": "stuck with",
+        "context": "Mina stuck with the plan made by hand.",
+        "senseId": "be0529f20135cd81f48076b79c86fc0421aa3a45f47ee4e5d831020dc5188c9b",
+        "meaningKo": "바꾸지 않고 계속 사용하거나 하다"
+      },
+      {
+        "id": "phrasal-cave-in",
+        "phrasalVerb": "cave in",
+        "storyForm": "caved in",
+        "context": "The library owner wanted computer music, but she caved in after hearing the cups.",
+        "senseId": "90c09b6525e52324b3fee65040300a17086b6ddea4661f17931023d5a2e0dcd2",
+        "meaningKo": "설득을 받아 갑자기 반대를 그만두다"
+      },
+      {
+        "id": "phrasal-pin-down",
+        "phrasalVerb": "pin down",
+        "storyForm": "pinned down",
+        "context": "Sara pinned down the correct water level for the notes.",
+        "senseId": "aacc2e99fa53ee01a82e037fb0b660876e53e489e0d84a4a62348d9424ce27d9",
+        "meaningKo": "무언가를 정확히 파악하거나 설명하다"
+      },
+      {
+        "id": "phrasal-filter-out",
+        "phrasalVerb": "filter out",
+        "storyForm": "filtered the dirty part out",
+        "context": "A cloth filtered the dirty part out of the water.",
+        "senseId": "46e175f4127ba12d9c696aef3c9fa9ff890286ea38bfa246360dd34fc0c06aba",
+        "meaningKo": "필터로 원하지 않는 것을 걸러 내다"
+      },
+      {
+        "id": "phrasal-crash-out",
+        "phrasalVerb": "crash out",
+        "storyForm": "crashed out",
+        "context": "After the long practice, Joon crashed out on the couch.",
+        "senseId": "a28e3cfd1df58de16aa2dcfaf3055637bcb1d1a9b12b4ce1aeedc372618541f7",
+        "meaningKo": "매우 피곤해 갑자기 잠들다"
+      },
+      {
+        "id": "phrasal-nail-down",
+        "phrasalVerb": "nail down",
+        "storyForm": "nailed down",
+        "context": "Ms Park nailed down the Saturday order with the library owner.",
+        "senseId": "0a5c7b9d6d04950db8a8b9ebe390d5c894e4ba36816725bbcff6cef64b095719",
+        "meaningKo": "합의나 세부 사항을 확실하게 정하다"
+      },
+      {
+        "id": "phrasal-pin-up",
+        "phrasalVerb": "pin up",
+        "storyForm": "pinned up",
+        "context": "Mina pinned up photos from the dark school room.",
+        "senseId": "660d0c014b1ca0fa0f131d52d49d832790966151431c558a5b5e7e479666096d",
+        "meaningKo": "그림이나 사진을 벽에 핀으로 붙이다"
+      },
+      {
+        "id": "phrasal-tick-off",
+        "phrasalVerb": "tick off",
+        "storyForm": "ticked off",
+        "context": "Sara ticked off the finished jobs.",
+        "senseId": "f94d23aa24b370aedc0fdee55a8b7a3506b16f9393cbedd9f619bf8c30e9d53f",
+        "meaningKo": "처리한 목록 항목 옆에 체크 표시를 하다"
+      },
+      {
+        "id": "phrasal-tick-over",
+        "phrasalVerb": "tick over",
+        "storyForm": "ticked over",
+        "context": "The old radio ticked over in the corner.",
+        "senseId": "84a42b21e160665fafe156216370f4ae5100447921c4c24648155542ffc72021",
+        "meaningKo": "꾸준히 작동하지만 상태가 썩 좋지는 않다"
+      },
+      {
+        "id": "phrasal-reduce-to",
+        "phrasalVerb": "reduce to",
+        "storyForm": "reduced a cookie to",
+        "context": "Joon reduced a cookie to small pieces on his plate.",
+        "senseId": "4e4430a2523b6e0b87ede0e6bae67262ef4b76e235eada2720839ec08386fdde",
+        "meaningKo": "부수거나 으깨서 다른 형태로 만들다"
+      },
+      {
+        "id": "phrasal-lay-aside",
+        "phrasalVerb": "lay aside",
+        "storyForm": "laid the old plan aside",
+        "context": "Mina laid the old plan aside.",
+        "senseId": "a65110e751fc7c8d9a715757be5555bf0286d6007294e7d817a9ce2c1947510a",
+        "meaningKo": "다 썼거나 나중에 쓰려고 물건을 한쪽에 내려놓다"
+      },
+      {
+        "id": "phrasal-hang-around",
+        "phrasalVerb": "hang around",
+        "storyForm": "hang around",
+        "context": "Some children wanted to hang around, but Ms Park asked the children to go home.",
+        "senseId": "29f2c91b9fd249d3c92cc13b0b5e489a49456574f7dd5672f16db05d9d621b47",
+        "meaningKo": "대기하거나 아무것도 하지 않는 곳에서 시간을 보내다"
+      },
+      {
+        "id": "phrasal-beat-out",
+        "phrasalVerb": "beat out",
+        "storyForm": "beaten out",
+        "context": "The band had beaten out a music club for the library room.",
+        "senseId": "9da8f9ddea8021f70a1b834916ffc9a67400751923b66d49851a3d7d2270dbaf",
+        "meaningKo": "다른 사람도 원하는 것을 경쟁에서 이겨 차지하다"
+      },
+      {
+        "id": "phrasal-relate-to",
+        "phrasalVerb": "relate to",
+        "storyForm": "related to",
+        "context": "Their show related to real family life, and the waitress attended to the food tables.",
+        "senseId": "40a57201d02f67819b3f5ec8168c3a1b1d2fd06b809d594ba76a4062e270d1cd",
+        "meaningKo": "어떤 것에 관한 것이거나 그것과 관련되다"
+      },
+      {
+        "id": "phrasal-attend-to",
+        "phrasalVerb": "attend to",
+        "storyForm": "attended to",
+        "context": "Their show related to real family life, and the waitress attended to the food tables.",
+        "senseId": "ac282bfe89241ccf1b2220c9f37d7d093a9a53fc8e67ae1489a53abe52ab3e48",
+        "meaningKo": "손님이나 필요한 일을 살펴 돌보다"
+      },
+      {
+        "id": "phrasal-press-ahead",
+        "phrasalVerb": "press ahead",
+        "storyForm": "pressed ahead",
+        "context": "Even after a new power call, the group pressed ahead.",
+        "senseId": "38d872dc20ed13e1265c1b6d9919c0c24213695eb21eb7078fb68c43a5bbdf50",
+        "meaningKo": "어려움이나 반대에도 계획을 계속 추진하다"
+      },
+      {
+        "id": "phrasal-stick-up",
+        "phrasalVerb": "stick up",
+        "storyForm": "stuck up",
+        "context": "Leo stuck up his hand and asked to join the full band.",
+        "senseId": "c05094b602d43074f65aa9105ad6277d2a83620045cae3fda263f5c2296a27fd",
+        "meaningKo": "손이나 팔을 위로 들다"
+      },
+      {
+        "id": "phrasal-settle-into",
+        "phrasalVerb": "settle into",
+        "storyForm": "settled into",
+        "context": "He had settled into the group and was not shy now.",
+        "senseId": "84af566a26b81866be9478fc05f1a3921b670a27f233c752d95303edf245b631",
+        "meaningKo": "오래 머물기 때문에 편안한 곳에서 지내다"
+      },
+      {
+        "id": "phrasal-lift-up",
+        "phrasalVerb": "lift up",
+        "storyForm": "lifted up",
+        "context": "Joon lifted up the drum and gave Leo a seat.",
+        "senseId": "8ec2c08383898e82036e40282b659f2bdb2dcc3f2e17173dc6d4e3a46e550f6d",
+        "meaningKo": "들어 올리거나 높이다"
+      },
+      {
+        "id": "phrasal-stretch-to",
+        "phrasalVerb": "stretch to",
+        "storyForm": "stretched to",
+        "context": "Sara pulled a pink cloth, and it stretched to sixty feet.",
+        "senseId": "9b85cdfdef10d4e647cdc2f456f82be903b9022fd78b761ff96070d13600be87",
+        "meaningKo": "당겨져 특정 길이까지 늘어나다"
+      },
+      {
+        "id": "phrasal-wrap-round",
+        "phrasalVerb": "wrap round",
+        "storyForm": "wrapped the cloth round",
+        "context": "She wrapped the cloth round a bright bottle.",
+        "senseId": "d288596f06cc756d28d1b0d82ce5ea1000a3d2f585a712f1c56e519054d466ac",
+        "meaningKo": "천이나 끈 등을 다른 것의 둘레에 감다"
+      },
+      {
+        "id": "phrasal-drag-into",
+        "phrasalVerb": "drag into",
+        "storyForm": "drag Joon into",
+        "context": "Gray tried to drag Joon into a new fight.",
+        "senseId": "ac2a7bb842b48a43eab3e898f7da518f7dd15750efbccdc05cd8c8ca89895cb5",
+        "meaningKo": "누군가 원하지 않을 때 상황에 휘말리게 하다"
+      },
+      {
+        "id": "phrasal-drag-on",
+        "phrasalVerb": "drag on",
+        "storyForm": "dragged on",
+        "context": "Their talk dragged on until Ms Park stopped it.",
+        "senseId": "9f9c3f5551600d396232b65256e4105ce2bc0e37350aabb646a9f8269c2ad137",
+        "meaningKo": "바라는 것보다 오래 끌다"
+      },
+      {
+        "id": "phrasal-boot-out",
+        "phrasalVerb": "boot out",
+        "storyForm": "booted out",
+        "context": "She said that a rude member could be booted out.",
+        "senseId": "b38bc8e87648f8c76a09c472d7abc1362c71ab9778e01ae1bf87901c5dbdfe88",
+        "meaningKo": "누군가를 장소나 일, 참여하던 것에서 나가게 하다"
+      },
+      {
+        "id": "phrasal-switch-over",
+        "phrasalVerb": "switch over",
+        "storyForm": "switched the radio over",
+        "context": "Joon switched the radio over to the news.",
+        "senseId": "36feab2eb5a394e83300300fec7552522b4f778cf0209d9ae105303bd6f47fa1",
+        "meaningKo": "다른 채널이나 시스템으로 바꾸다"
+      },
+      {
+        "id": "phrasal-polish-off",
+        "phrasalVerb": "polish off",
+        "storyForm": "polished off",
+        "context": "On Saturday, the band polished off a fast pizza as the visitors arrived.",
+        "senseId": "71833a02b3c89da20b3253fafb6d7915210c11d27442c43eee9719733bc36b13",
+        "meaningKo": "음식이나 음료를 남김없이 먹거나 마시다"
+      },
+      {
+        "id": "phrasal-wipe-out",
+        "phrasalVerb": "wipe out",
+        "storyForm": "wiped out",
+        "context": "Sara wiped out the wet cups with a towel.",
+        "senseId": "1bbc6692a15ee586444fdcea8773576b27800c1bbd8044e2921297f22279d766",
+        "meaningKo": "천으로 용기나 물건의 안쪽을 닦다"
+      },
+      {
+        "id": "phrasal-rub-off",
+        "phrasalVerb": "rub off",
+        "storyForm": "rub off",
+        "context": "Mina's calm focus began to rub off on Gray.",
+        "senseId": "944c93bf3c3a0024f35306dc813a2bc0baaa71970a15d92971d9db05ef5753b4",
+        "meaningKo": "한 사람의 특성이 다른 사람에게도 영향을 주다"
+      },
+      {
+        "id": "phrasal-pitch-in",
+        "phrasalVerb": "pitch in",
+        "storyForm": "pitched in",
+        "context": "Parents pitched in with chairs and food.",
+        "senseId": "24acb383a366383f4c342ac876cd06dbfab51923645b70f7e70dbbe4619e71f2",
+        "meaningKo": "다른 사람들과 함께 일을 거들다"
+      },
+      {
+        "id": "phrasal-shrug-off",
+        "phrasalVerb": "shrug off",
+        "storyForm": "shrugged off",
+        "context": "Joon shrugged off a bad opening beat.",
+        "senseId": "d6ccd3ed168e247e325f5a082169256e19fda957ece3fa7a99d2acbea30c808f",
+        "meaningKo": "어떤 일이 걱정되거나 속상하지 않은 듯 넘기다"
+      },
+      {
+        "id": "phrasal-hook-up",
+        "phrasalVerb": "hook up",
+        "storyForm": "hooked up",
+        "context": "Mr Han hooked up the radio to a mobile phone.",
+        "senseId": "5828c5148cfd7eff6eb9445c041f0189d650cab8f078a8508897a162b012bcbc",
+        "meaningKo": "기기나 컴퓨터를 다른 기기나 시스템, 네트워크에 연결하다"
+      },
+      {
+        "id": "phrasal-weed-out",
+        "phrasalVerb": "weed out",
+        "storyForm": "weeded out",
+        "context": "Sara weeded out two false notes.",
+        "senseId": "160968eeafd6098bf16f0392fb4e7dccadb5bd51367357b0bda7ad90b88dc2e9",
+        "meaningKo": "집단이나 모음에서 적합하지 않은 것을 골라 내다"
+      },
+      {
+        "id": "phrasal-curl-up",
+        "phrasalVerb": "curl up",
+        "storyForm": "curled up",
+        "context": "A pet cat curled up at the piano.",
+        "senseId": "af51643d76808ea8e6516a3c5b7e18aef4c19345f2a2b5d7af6765661f495b82",
+        "meaningKo": "몸을 굽히고 팔다리를 가까이 모은 채 앉거나 눕다"
+      },
+      {
+        "id": "phrasal-snap-up",
+        "phrasalVerb": "snap up",
+        "storyForm": "snapped up",
+        "context": "Gray snapped up the job of welcoming a late family.",
+        "senseId": "a136e1d2781fe21906a1020a33a454d773db801fae25c4dc0620b8a4a7939b4e",
+        "meaningKo": "기회를 즉시 활용하다"
+      },
+      {
+        "id": "phrasal-spin-out",
+        "phrasalVerb": "spin out",
+        "storyForm": "spin out",
+        "context": "He did not spin out the opening talk this time.",
+        "senseId": "7045e125e9f27866b6e39713a827dda203099fd597c6939744a41da9809e7a3d",
+        "meaningKo": "필요 이상으로 오래 끌다"
+      },
+      {
+        "id": "phrasal-rub-in",
+        "phrasalVerb": "rub in",
+        "storyForm": "rubbed the butter in",
+        "context": "In the kitchen, a mom put sugar with butter, then rubbed the butter in.",
+        "senseId": "92966a2ea45489129dd85db52014e947d51d15f5a558eb9cf21fc9fbcf6cec1d",
+        "meaningKo": "손가락으로 버터 같은 재료를 밀가루 등에 섞다"
+      },
+      {
+        "id": "phrasal-rub-out",
+        "phrasalVerb": "rub out",
+        "storyForm": "rubbed out",
+        "context": "Mina rubbed out a wrong time on the board.",
+        "senseId": "8e53175121bd9b7b7c7074b2ee780684b094d17c88d43c0455df367ad12c0da9",
+        "meaningKo": "연필로 쓴 글이나 그림을 지우개로 지우다"
+      },
+      {
+        "id": "phrasal-crack-up",
+        "phrasalVerb": "crack up",
+        "storyForm": "crack up",
+        "context": "Leo's tiger cap made the little kids crack up.",
+        "senseId": "da7fdd4932908cf8f326c532862e8adfcbac2d74dccaec620057e94dbf74ab3c",
+        "meaningKo": "무언가를 보고 갑자기 크게 웃다"
+      },
+      {
+        "id": "phrasal-stack-up",
+        "phrasalVerb": "stack up",
+        "storyForm": "stacked up",
+        "context": "Parents stacked up clean plates and cups.",
+        "senseId": "831d34ba259f6853214024d74ba5889f3bcf5796c64b9aebd7dc5e7fb1f96d47",
+        "meaningKo": "차곡차곡 쌓다"
+      },
+      {
+        "id": "phrasal-peg-out",
+        "phrasalVerb": "peg out",
+        "storyForm": "pegged out",
+        "context": "Sara pegged out wet cloths in the yard.",
+        "senseId": "dba15614d72ae2fb4ada2fcd6d90e8494d6663ea0648f789075711ba2840266b",
+        "meaningKo": "젖은 옷을 빨랫줄에 집게로 고정해 말리다"
+      },
+      {
+        "id": "phrasal-profit-from",
+        "phrasalVerb": "profit from",
+        "storyForm": "profit from",
+        "context": "The library wanted to profit from the ticket sale, but it gave the money to the club.",
+        "senseId": "20018a32f2f3c884058e439ff5a2e0f6e762546810c506a6008a7330636d40fb",
+        "meaningKo": "어떤 것에서 이익을 얻다"
+      },
+      {
+        "id": "phrasal-chip-away",
+        "phrasalVerb": "chip away",
+        "storyForm": "chipped away",
+        "context": "Mr Han chipped away old paint from the window.",
+        "senseId": "31637808c2d1f8bfd86f4c4d1ab539f7cda9532e61e1c17b2560f2da3ece47ab",
+        "meaningKo": "단단한 물체에서 작은 조각을 도구에 쳐서 제거하다"
+      },
+      {
+        "id": "phrasal-swing-at",
+        "phrasalVerb": "swing at",
+        "storyForm": "swung at",
+        "context": "Joon swung at a baseball during the lunch break.",
+        "senseId": "60217bb6d221395f74c2dca3b6b099df67db2973edae742a2c24d513103f5eed",
+        "meaningKo": "손이나 도구를 휘둘러 치려고 하다"
+      },
+      {
+        "id": "phrasal-sweep-away",
+        "phrasalVerb": "sweep away",
+        "storyForm": "swept away",
+        "context": "When the band started, Mina was swept away by the music.",
+        "senseId": "4b93c52099b441e7fa036e412d40cca679d776293da913176c8871a7a9539ac7",
+        "meaningKo": "이야기나 상황, 감정 등에 완전히 빠져들다"
+      },
+      {
+        "id": "phrasal-sweep-up",
+        "phrasalVerb": "sweep up",
+        "storyForm": "swept up",
+        "context": "After the meal, Gray swept up the floor.",
+        "senseId": "9e12b7c2796b7a0fa357d1d8b3dbf4f257274f510fdc686ad61821893f0bae98",
+        "meaningKo": "빗자루로 먼지나 조각을 쓸어 모으다"
       }
     ],
-    "storyText": "On Friday, Mina carried her guitar to school. Joon had a small drum, and Sara had a box of bells. Their class planned a music show for the families. Ms Park opened the music room and asked the team to enter.\n\nThe children held to one good rule: the children had to listen. Mina played fast, but Joon played slow. Sara asked them to stand back from the problem and hear the full music. The three parts did not match.\n\nMs Park met with the team at a round table. She opened out a large paper plan. Mina wanted the guitar to be loud, and Joon wanted the drum to be loud. Sara wrote the ideas on the paper.\n\nThey walked through the opening music with Ms Park. Mina began with only her guitar, Joon came in later, and Sara played the bells at the end. The new order brought back a happy school memory for Ms Park. She smiled and asked them to play it again.\n\nAt the end of practice, the team planned on one hour in the morning. They tidied up the room and signed out the guitar and drum. Mina and Joon headed off for home. Sara stayed to check the paper plan.\n\n\nThe room was bright on Saturday morning. Mina put her guitar by the window, and Joon set the drum in the center. Sara spread out the paper plan on a desk. Families would arrive later in the day.\n\nA light on the wall went dark, and the room became dark. The radio stopped, the computer stopped, and the clock stopped. The power problem was in the full school. Mina held her guitar and did not move.\n\nMs Park called the school office, but the office did not answer. She left a message and asked the office to phone back. Joon began to laugh, but Mina was afraid the show had to end. Sara asked the team to step back and think.\n\nMs Park checked on the classes. One class had light from the sun, but the music room was dark. A child from that class came to cover for Sara at the office phone. Sara went to the window and opened it.\n\nThe team talked about the show. Mina still wanted the show, and Joon agreed. The children banded together around the window. They chose to make music with the guitar, boxes, and cups.\n\n\nThe children ate bread and fruit, and the food filled them up. Mina played the guitar, and Joon played the box with his hands. Sara filled three cups with a little water. The cups gave new notes.\n\nThe sun warmed up the room. The guitar and cups matched up, but the box was too loud. Joon put the box on a soft blanket. The drum became warm and clear.\n\nA young boy wanted to join, but he was nervous. Sara gave him two bells and helped him fit in. The boy stood up by Mina and played at the end of the lines. His small part made the music bright.\n\nThe team knocked about some ideas for the dark room. They could move to the garden, open the windows, or use candles. Ms Park ruled out candles because fire was dangerous. The garden was wet from rain.\n\nMina mixed up the opening and the ending. She stopped, laughed, and began again. Ms Park followed up on the new order with a slow practice. At lunch, their hands were tired, but the full music was ready.\n\n\nAt home, Mina sat up late with her guitar. She made a short video for Joon and Sara. Joon watched it on his phone and saw that Mina played one part too fast. He called Mina and asked her to slow down.\n\nSara practiced the cups in her kitchen. Her mother asked her to top up the water in one cup. The new note was better. Sara gave the team a video.\n\nJoon had to fix up the old drum. A small part was not strong, and the drum made bad music. His father helped with the work. Joon played a quiet beat and heard a clean note.\n\nThe videos helped the team even out the music. Mina made the fast part slow, and Sara made one note high. Joon held the beat slow. Their three homes had the same music.\n\nThat evening, Ms Park called the children and asked about the work. Mina gave her the new order. Ms Park told the children to sleep. The show was not perfect, but it was honest and ready.\n\n\nA school bus pulled up with some families. The sky was cloudy, and the school was still dark. Ms Park took the visitors to the music room. Light came from the large windows.\n\nMina, Joon, Sara, and the young boy took their places. Mina felt nervous and held in a cry. Sara touched Mina's hand. Joon counted with his hands, and the music began.\n\nThe guitar was quiet, the box drum was deep, and the cups were clear. The bells came in at the right time. New families came to the door, but the children carried on. The room became full.\n\nDuring the show, the power came back. The computer began to play loud music. Ms Park turned it off, and the children did not stop. Their music was strong, and the machine was not strong.\n\nThe bell ended the show. The families gave the children a loud, happy call. Mina looked at her team and laughed. The hard practice had paid off, and the dark room felt bright.\n\n\nOn Monday, the team took the guitar and drum back to the music room. They tied up the jobs from the show. Sara put the cups in the kitchen, and Joon folded the blanket. Mina put the paper plan on the wall.\n\nMs Park asked the class to talk about the power problem. Some children wanted music that did not depend on a computer. Mina wrote their ideas on the board. The class chose a new music club.\n\nThe children moved around the room and tested easy things. A bottle, a box, a spoon, and a bell made surprising music. The young boy taught a slow beat. Sara wrote a new plan.\n\nA family at the library heard about the club and gave the school an old piano. Ms Park checked the piano and called in a piano man. The man fixed the keys. The class chose a place for it by the window.\n\nAt the new club, Mina looked at the dark computer and smiled. The power problem had changed their music, but it had not ended it. Guitar, cups, boxes, bells, hands, and children filled the room. The team began a new practice."
+    "storyText": "The memory of one bad school show still lived with Mina, and she did not want that again. Her father held down two jobs and still was at her Friday practice. Mina held to one rule: the music had to be honest. The old guitar brought back a summer memory of her grandma. Mina, Joon, and Sara headed off for the music room after class. Ms Park asked them to black out their home addresses on the concert form. Mina did not want anyone in the room to sit around with work to do. Their group had one month to plan a show for the families.\n\nSara had to sit for the baby of her cousin that evening, but she agreed to come. Mina sat up late and wrote a new opening. A month of work had to end in a successful concert. At the classroom door, Joon stood aside for a woman with a large drum. Ms Park asked the group to stand back from their personal ideas and think about the full show. They would not stand by as the music club lost the room. Mina stood up and described her goal. Everyone listened because her words were easy and true. The room became quiet, and the team began to feel like a real band.\n\nThe children met with Ms Park at a round table. They set forth for the town music shop with a list and a little money. Joon watched for the number seven bus. At the shop, Mina and Joon faced off about a guitar and a drum. Sara added three bells to the order, and the price became large. Mina began to grow in skill as she explained her idea. The shop man opened out a paper map of the music room. He showed them a piano, a radio, and a computer on the map. The group had to choose the thing their show really needed.\n\nJoon wanted to walk around in tiger clothes during the opening. Mina started to walk away because the idea felt funny. Ms Park told Joon not to walk over Mina or make her do his work. She walked the team through the music from the start to the end. A healthy meal could build up the tired children. Ms Park asked them to stay away from a broken light on the wall. Sara ate bread and fruit, and the meal stayed down. Joon said sorry to Mina and put the tiger cap back in the box. Mina said that was fine, and their conversation became warm.\n\nAfter a healthy summer, Joon had lost fat, and it stayed off. The group planned on practice for one hour after school. Sara cut up apples, bananas, and cheese for the team. Bad music could drive away the families, so everyone listened carefully. A late order could drive up the ticket price. A little bell began to break away from the old line. Sara's face broke out after she touched some old cream. Ms Park washed her face and gave her clean water. Sara felt better, and she went to the table with a smile.\n\nMina picked over the clothes for the concert. Her mobile rang, and her mom asked her to phone back after practice. Sara had to cover for Joon when he went to the doctor. Mina had to step back to see the full plan. Loud music made the baby draw away from the music room door. Ms Park drew a blue cloth back from the old piano. At six, the bus drew into the school yard. The children put the guitar, bells, paper, and food in bags. They were tired, but their opening practice had given the band a clear character.\n\nOn Friday evening, Mina wrote ten questions for a family survey. She wanted to know the music type the town liked. Joon made a video, Sara designed a card, and Ms Park checked the spelling. The group chose a personal story for the opening and their favorite music for the end. Mina wrote the date, time, site, and ticket number on the form. The class would share the news through a magazine, a television message, and a school article. Their goal was not to be famous or rich. They wanted a careful place for a kid to learn a skill, meet a classmate, and make music.\n\nMina laughed. \"Remember me when you write the book,\" she said. She was just happy to have a role. The club was not only about a win. Music was very important, and homework was too. Mina never forgot this point. The turn was Leo's. He began speaking. In that case, he would always be ready. Members must practice, but they could enjoy it. The book had four sections about music history, and one period covered the guitar. Music was Leo's favorite subject. The children often spent almost an hour with the book. Later, someone brought a new book. Once the group began reading, anything could happen in their ideas. Maybe everything would be ready soon. A school officer came quickly with a fine message. A poor family usually saved money, but the club could save a seat for their child.\n\n\nOn Saturday morning, the school bus began to close on a slow taxi. Snow had banked up at the side of the road. Mina threw back her blanket, wore jeans and a coat, ran fast, and opened the door. Sara topped up three cups with water for the show. Bread, eggs, and fruit filled Joon up at breakfast. On the walk to school, Joon began to drop back. He dropped behind Mina and Sara because his drum was heavy. He talked about dropping out of the show, but Mina asked him to wait. They shared the drum and were at the school as one.\n\nA power problem pushed the concert back from morning to afternoon. Parents began to push for a clear answer. Ms Park pushed forward with a new plan, even without the computer. A rude guy tried to push in at the office line. His large bag pushed a chair over, and he said sorry. Mina signed out a guitar, a drum, and a radio. Sara checked on the young children in the dark classroom. Joon learned to laugh at being afraid of the dark. The team finished off the food and began a meeting. Ms Park shook up the music club and gave the children new jobs.\n\nMina's cousin planned to fly into town for the show. Her uncle went to fish for dinner at the lake. Sara wished for sunshine and warm weather. A jet touched down at the airport during the rain. Joon wanted to sleep the afternoon away, but Mina kept him awake. Ms Park chose to sleep on the question of moving the concert. Children fanned out through the hall to find candles and a radio. The parents drank to the future of the band with tea. Joon drank up his juice and stood. The class banded together around the large windows.\n\nJoon's shirt began to ride up as he lifted the drum. The dark room warmed up with time in the afternoon sun. Wind blew a small tree down in the yard. It also blew Sara's cap off. Everyone had to bone up on a careful rule. Rain fell, and small leaves rained down on the roof. Mina dried her guitar off with a soft towel. Gray began to nose around the closed office. Joon and Sara kicked around the room without a plan. Their three ideas did not match up at the start.\n\nThe school planned to grass over a dirty part of the yard. Rain washed a blue line off the board. Mina breathed out and began to feel calm. Sara toyed with a gold ring when she was nervous. The children dug grass in around a small plant. Mr Han dug over the wet ground and dug up an old black box. The new concert plan was shaping up. Mina struck off to the library with the box. A shy boy, Leo, wanted to fit in, so Sara gave him two bells. Gray hit back when Ms Park asked about the office door.\n\nAn old wall in the basement had started to fall in. Ticket sales had fallen off after the power news. Still, families began to roll in from around town. Mr Han stamped out a small fire from a candle. The students tidied up the hall and spread out blankets at the windows. Ms Park followed up on the power news by telephone. The young children fell back from the dark basement. The job of keeping the children well fell on Ms Park. She asked everyone to lie down on the blankets and listen. They could count on her, and the room became calm.\n\nThe children used easy things to test the new music. Cups held water, a box became a drum, and two spoons made a clear beat. A bottle, a dish, and a bell made new notes. Mina wrote the test results in a file. Sara took a photo of the room and posted it to the school site. Their video was watched ten times, then twenty, then fifty. A family from the library gave a message of help. The power was still gone, but the music had already started.\n\nAt the weekend, Ms Park opened a new section of the rule book. She gave a nice example and asked a child, \"Imagine yourself at peace after a show.\" A bar on an old machine held one small item. Joon's shoulder and neck began to hurt after he lifted it. Sara explained that the brain, eye, and ear help a child balance. Anybody could jump in the game, but a sick child had to sit. A student with a high grade worked with a young child as a pair. They wrote a name and birth date in the bottom row of a form. The code used a thin line for a small problem and a thick line for a large one. Gray tried to judge the children, but Ms Park asked him to solve the strange topic with them. At lunch, half the group ate meat and half ate rice. Leo had to repeat the rule because the bell was not in his sight. A surprise came when an interested boy found a toy ship at the hill. One wheel was gone. The children looked everywhere and found it by a box with living things.\n\n\nSara added water to the cups until the notes evened out. Anyone could lose out because the computer was dark, and the group did not want that. Joon sent up Gray's important way of talking, and even Gray had to laugh. His trousers were not tight and fell down, and the group laughed again. A tall box fell over, but the glass did not break. A bus passed by the window as their small practice passed off well. A truck pulled up with boards, cloth, and tools. Mr Han tried to explain away the old wall as a small matter. Mina hit on a careful idea: use the bright library room. The students cleared away the broken boxes.\n\nMina struck out a dangerous line in the plan. Sara tied up the jobs at the end for the move. The library wanted to cash in on the new concert news, but it gave the room for free. Joon mixed up two bags and gave Ms Park the wrong file. The shop knocked down the price of the bells. A child was locked in the music room for one minute, and Mr Han opened the door. Ms Park rounded up the students and checked the names. The meaning of the power problem began to sink in. Families could tune in to the radio, but they could not see the children. Mina boiled the plan down to one sentence: make honest music in a bright room.\n\nJoon was afraid that he would screw up the opening. On the way to the library, the bus pulled over for a sick passenger. Gray hit out at the slow trip, but Mina asked him to be calm. Ms Park told Gray to clear off if he could not be polite. Gray chose to stay and sounded off about the late concert. The library fitted out a large room with tables and seats. Mr Han fixed up the old piano. The children knocked about ideas for the opening. Ms Park knocked back a plan that used fire. At five, everyone knocked off and went home.\n\nGray tried to shout Mina down during the end talk. The library door locked him out when he stepped into the yard. He asked Sara to string along with his story, but she gave the true words. Gray gave Mina an angry answer, and she bit back with angry words. Joon tuned out the fight and kept practicing. In the kitchen, soup boiled over, so Sara closed the kitchen fire. Her mom boiled up fresh water and made tea. Sara sewed up a hole in Joon's cloth bag. Joon did not want to part with his old drum, even when the drum cloth broke. The shop agreed to force the price down.\n\nMs Park sent for a piano man. She sent Mina off with the finished room form and sent Joon out to buy a chain. When Leo wore the tiger cap, the children fell about laughing. Ms Park put the class into groups that fell into music, food, and design. Gray and Joon fell out about the opening. The hard job fell to Mina. She asked Gray and Joon to report back after a quiet conversation. In the yard, a taxi pulled away and a truck pulled in. The bus man pulled back from a dangerous trip. The piano man pulled into the library yard in the evening.\n\nThe broken piano returned to a clear note after the fix. Mina's cousin landed in town on the evening jet. Tools and bags were lying around the library floor. A tired Joon lay back on a couch. The old radio began to act up, and Mina feared for the Saturday show. Joon struck at a baseball in the yard to clear his mind. From the open window, Sara struck up quiet music on the piano. Mina rolled up the arms of her shirt and began her job. The boxes fit into the truck, and the band crossed over from power music to music made by hand. Mr Han waved the truck through the school door. The dark room reminded Mina of the bad show she still remembered.\n\nAt home, Mina made a list of roles for the concert. Sara would play piano, Joon would play the box drum, Leo would ring the bells, and Mina would play guitar. Gray would introduce the group and read the family survey. Ms Park would welcome the visitors and explain the power problem. A mom would give soup, salad, rice, chicken, and sweet corn. A dad would carry chairs, tables, and blankets. The easy order helped everyone understand the full plan. Mina slept with the guitar by her bed and had a dream of a bright room.\n\nThe group went shopping at the supermarket for concert things. Mina said hello to Mr Smith and asked, \"Sir, is this tube of gold paint for you?\" Mr Smith said it was hers now because the club had given money for it. The bread section had a lovely smell. Joon bought meat, rice, and a chocolate bar, and Sara bought soap for the shower and bath. A young man and his girlfriend came. A young woman and her boyfriend came. The handsome young man gave his dear girlfriend a short kiss. Gray made an excuse when a rat jumped from the garbage by the toilet. Mina had a headache, but the surprise made her laugh. The box size was on a blank page. The sum was fifteen dollars, and the shop gave the club a super bag for everyday use.\n\nAfter shopping, the group took the subway to a cinema. A foreigner from Mina's hometown held an umbrella and a pretty flag. He said hi, and Mina answered hello. His hobby was to surf, and his own video was about a princess at sea. The cinema ticket was eleven dollars for a child, thirteen for a student, seventeen for a parent, eighteen for a foreigner, and nineteen for Mr Smith. A school group had seventy tickets in the same row. Leo played spy with a ruler and hid at a large vase. Ms Park asked him to hurry because the movie was due to start. Leo said pardon, put the ruler back, and felt merry. At the door he said bye and asked the band plan for Sunday.\n\n\nOn Friday night, Ms Park would not shut a nervous child away from the group. She shut out the loud street music by closing the windows. The guitar belonged to Mina's grandfather, and the guitar music felt personal. Students emptied out the bags and marked ticket prices down. The road to the library branched off at a temple. Mina fixed her eyes on the concert card. Sara poured out her worry: would anyone come? Gray tore the old picture apart, and Mina tore up a false card. A cup tipped over and wet the end plan. The team divided up the jobs and started again.\n\nThey knocked around a new name for the show. Leo shouted out Music in a Dark Room, and everyone liked it. Ms Park locked the ticket money away in a bank box. Joon dusted off his jacket by the piano. A parent weighed in with an idea for a family conversation after the show. Gray disagreed with the plan because it was not honest. He hung about at the door and did nothing. Mina tossed up a round piece of money to choose between the two plans. Mr Han connected up the radio and the computer. The library laid on tea, cream, and chocolate for the visitors.\n\nThe young children settled down on a soft carpet. Gray messed up the opening talk but did not leave. He liked to hang out with the band, even when he acted strong. Joon had been laid up with a fever in January, and he remembered missing music. Gray told Leo not to mess with Mina or make her angry. Leo stuck at his bell practice. Mr Han switched on the wall light. Families began to rise up from their seats when the music started. Ms Park laid down one rule: listen to the children. Gray asked everyone to hang on as he found the right card.\n\nThe group stuck to the easy opening. The guitar, piano, drum, cups, and bells hung together. Gray asked if his opening talk would measure up. The hot sun beat down on the library roof. The children stuck together when one cup broke. Mina stuck with the plan made by hand. The library owner wanted computer music, but she caved in after hearing the cups. Sara pinned down the correct water level for the notes. A cloth filtered the dirty part out of the water. After the long practice, Joon crashed out on the couch.\n\nMs Park nailed down the Saturday order with the library owner. Mina pinned up photos from the dark school room. Sara ticked off the finished jobs. The old radio ticked over in the corner. Joon reduced a cookie to small pieces on his plate. Mina laid the old plan aside. Some children wanted to hang around, but Ms Park asked the children to go home. The band had beaten out a music club for the library room. Their show related to real family life, and the waitress attended to the food tables. Even after a new power call, the group pressed ahead.\n\nLeo stuck up his hand and asked to join the full band. He had settled into the group and was not shy now. Joon lifted up the drum and gave Leo a seat. Sara pulled a pink cloth, and it stretched to sixty feet. She wrapped the cloth round a bright bottle. Gray tried to drag Joon into a new fight. Their talk dragged on until Ms Park stopped it. She said that a rude member could be booted out. Joon switched the radio over to the news. The weather news said that a strong wind and heavy rain would be in town on Saturday.\n\nThe band checked the weather, the bus time, and the library phone number. Mina made sure that the center door, bathroom, and red light were easy to find. Ms Park wrote a short careful paragraph for the families. Mr Han checked the roof, windows, and floor. Sara put towels, water, and a doctor box in a box at a table. Gray practiced his opening talk without a funny line. Leo played the bells at the right moment. The bad weather was coming, but the group was ready for it.\n\nWhile the band waited, Gray got mail from a national radio club. The state music system wanted to play their video in a million homes. Most children thought a million was a lot, though Mina cared about the town families most. The power issue had traveled far from the school. Among the club members, Gray was the most surprised. He had never imagined himself on national radio. The law allowed a child video within the school system, but the music had to stay low. Gray said that good luck had changed his old self. He asked the group to pray for peace during the concert. The office was closed, but Gray himself wrote the answer and put it in the mail.\n\n\nOn Saturday, the band polished off a fast pizza as the visitors arrived. Sara wiped out the wet cups with a towel. Mina's calm focus began to rub off on Gray. Parents pitched in with chairs and food. Joon shrugged off a bad opening beat. Mr Han hooked up the radio to a mobile phone. Sara weeded out two false notes. A pet cat curled up at the piano. Gray snapped up the job of welcoming a late family. He did not spin out the opening talk this time.\n\nIn the kitchen, a mom put sugar with butter, then rubbed the butter in. Mina rubbed out a wrong time on the board. Leo's tiger cap made the little kids crack up. Parents stacked up clean plates and cups. Sara pegged out wet cloths in the yard. The library wanted to profit from the ticket sale, but it gave the money to the club. Mr Han chipped away old paint from the window. Joon swung at a baseball during the lunch break. When the band started, Mina was swept away by the music. After the meal, Gray swept up the floor.\n\nThe heavy rain arrived during the new music. Wind shook the windows, and rain fell on the roof. The power stopped, but the band did not stop. Mina played guitar, Joon held the beat, Sara played piano, and Leo rang the bells. Gray held a candle at the back wall. The visitors became quiet, and then they gave the band a loud call. A baby smiled, an old man cried, and a young girl made a video. The room was dark, but the music was warm and clear. Mina knew that the show had become something special.\n\nAfter the end note, everyone stayed in the library until the rain became light. Ms Park gave soup and tea. Families talked about school, work, healthy care, travel, sport, culture, and technology. A cop thanked them for the careful plan. A coach asked the band to play in a football game. A magazine woman wanted an interview, and a television site wanted the video. Gray answered the questions without acting like a star. He thanked Mina, Joon, Sara, Leo, Ms Park, Mr Han, and the families. The power problem had changed him.\n\nThe ticket count was ninety, and the group had sold eighty cups of tea. Ten young children, twelve parents, fourteen students, and sixteen old guests had written names on the club list. The food table had five cakes, six pizzas, seven salads, eight rice dishes, nine bowls of soup, and twenty bottles of water. A family gave thirty dollars, a factory gave forty, and the library gave fifty. The group did not care about becoming rich. The numbers meant that the school music room could open again and that the club could buy careful tools.\n\nThe children left the library late in the evening. A taxi took Sara and Leo home. Joon rode his bike with his dad, and Mina walked with her mum. The wet road was bright with the street light. Mina carried the guitar in one hand and the concert card in her bag. She was tired, but her heart felt full. At home, she put the card on a shelf by a family album. She knew she would remember the dark room through her life.\n\n\nOn Monday, the class reviewed the concert. Ms Park asked everyone to describe a best moment and a difficult moment. Mina chose the quiet moment after the power stopped. Joon chose the call from the football coach. Sara chose the young boy with the bells. Leo chose the laughing from his tiger cap. Gray chose his honest thanks at the end. The children learned that a successful show was not a perfect result. It was a group that stayed as one when something went wrong.\n\nThe class voted for a new music club. Mina became the leader, Joon became the drum coach, Sara had the piano job, Leo taught bells, and Gray had the news job. Ms Park wrote the club rules on the board. Members had to be careful, kind, correct, and on time. Not one member could fight, hide tools, or be bad to a new kid. Anyone could ask a question, share an idea, or review an answer. The rules were strict but fair. Everyone wrote a name on the page and got a small green card.\n\nThe club made a calendar for the year. January would bring a piano afternoon, February a love music evening, March a spring concert, and April a rain show. May would have a family picnic, June a guitar contest, July a beach festival, and August a summer video. September would bring a school concert, October a ghost drama, November an autumn meal, and December a winter party. Monday was for planning, Tuesday for guitar, Wednesday for piano, Thursday for drums, Friday for the full band, Saturday for a town show, and Sunday for sleep. The long calendar made the future feel real.\n\nChildren chose music from around the world. Prince music from a palace, fairy music from a forest, an opera from a city, and a poem from a village were on the list. A Korean drum, a Spanish guitar, British pop music, and a foreign dance gave the club many music types. One child brought an album, a boy brought a mobile video, and a classmate brought a dictionary for foreign words. Ms Park taught grammar through music sentences. The children learned to spell names, write paragraphs, and introduce characters. Music had become a new language course.\n\nThe club also planned food and clothes for the events. There would be pizza, hamburgers, chicken, beef, turkey, rice, beans, corn, salad, soup, chocolate, candy, grapes, and tea. Children could wear trousers, pants, jeans, a skirt, a dress, an apron, a cap, or glasses. A doll, a toy bear, a frog, a tiger, a lion, a monkey, a pig, a snake, a mouse, a butterfly, and a bee would be in the room. A rose, a lily, a leaf, and sunshine would be on the spring cards. The design group had many ideas, but it agreed not to make the room ugly or crowded.\n\nAt the opening club meeting, a girl played volleyball with a balloon, and a boy used a baseball bat like a drum. A soccer fan wore a red cap, and a tennis coach brought a bat. A basketball girl showed the way a strong beat could match a fast step. A fishing guest played a quiet note on a bottle, and a farmer used a bucket as a drum. A waitress gave juice, and a shop owner gave the club a low price. Grandma sat on a sofa, Grandpa sat in a couch, and a grandparent held a tired baby. The club welcomed everybody, from a shy kid to a smart parent.\n\nMina saw the dark computer and smiled. The power problem had seemed terrible, but it had provided a reason to change. The club now included kids from many levels, families from around town, and members from a foreign country. It allowed personal stories, social goals, careful research, and honest pleasure. Members would use technology when it helped, but they understood that music did not depend on power. The fact was easy: a bottle, a box, a spoon, a call, and a group of classmates could fill a room with life. It was the best show Mina had ever known. The children were doing the thing they loved. Mina touched the old guitar, and the new club began."
   },
   "approval": {
     "reviewer": "Codex-assisted prose and exhaustive automated audit",
-    "reviewedAt": "2026-08-24T09:42:14.657Z",
+    "reviewedAt": "2026-08-24T15:31:11.443Z",
     "sourceDigest": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "value": "c51577d1034370b566d3d2572e092f303d4bd851c1cece60b05809d0fa9087bd"
+      "value": "867dce99f9e7b076ad5a6dd62e46cb04b20fecacb5db4c642cd2921bd330603e"
     }
   }
 }

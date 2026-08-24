@@ -40,10 +40,10 @@ async function revealWakeUp(page: Page) {
 }
 
 const READER_LEVELS = [
-  { level: '기초', title: 'The Blue Bags' },
-  { level: '유치원', title: 'Music in a Dark Room' },
-  { level: '초등학교', title: 'The Lamp at Harbor Point' },
-  { level: '중학교', title: 'The Last Broadcast' },
+  { level: '기초', title: 'The Blue Bags', chapterCount: 6 },
+  { level: '유치원', title: 'Music in a Dark Room', chapterCount: 6 },
+  { level: '초등학교', title: 'The Lamp at Harbor Point', chapterCount: 13 },
+  { level: '중학교', title: 'The Last Broadcast', chapterCount: 16 },
 ] as const
 
 test('HTTP preview renders the novel-only reading flow and core learning journey', async ({
@@ -79,19 +79,21 @@ test('HTTP preview renders the novel-only reading flow and core learning journey
   await expect(storyWord).toBeFocused()
 
   const wakeUp = await revealWakeUp(page)
-  const componentButtons = wakeUp.getByRole('button', {
-    name: /^story phrasal component:/u,
+  const phrasalVerb = page.getByRole('button', {
+    name: 'story phrasal verb: woke up',
+  }).first()
+  await expect(wakeUp).toHaveClass(/story-inline-phrasal/u)
+  await expect(wakeUp).toHaveText('woke up')
+  await expect(wakeUp.locator('.story-inline-phrasal__badge')).toHaveCount(0)
+  const underline = await phrasalVerb.evaluate((element) => {
+    const style = getComputedStyle(element)
+    return {
+      line: style.textDecorationLine,
+      color: style.textDecorationColor,
+    }
   })
-  const phrasalVerb = wakeUp.locator('.story-inline-phrasal__badge')
-  await expect(componentButtons).toHaveCount(2)
-  await expect(phrasalVerb).toHaveClass(/story-inline-phrasal__badge/u)
-  await expect(phrasalVerb).toHaveText('구')
-
-  const firstComponent = componentButtons.first()
-  await firstComponent.click()
-  await expect(page.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeVisible()
-  await page.getByRole('button', { name: '닫기', exact: true }).click()
-  await expect(firstComponent).toBeFocused()
+  expect(underline.line).toContain('underline')
+  expect(underline.color).toBe('rgb(150, 59, 43)')
 
   await phrasalVerb.click()
   await expect(page.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeVisible()
@@ -116,8 +118,8 @@ test('HTTP preview renders the novel-only reading flow and core learning journey
   assertNoBrowserFailures()
 })
 
-for (const { level, title } of READER_LEVELS) {
-  test(`${level} reader shows six developed chapters with inline word and phrasal lookup`, async ({
+for (const { level, title, chapterCount } of READER_LEVELS) {
+  test(`${level} reader shows developed chapters with inline word and phrasal lookup`, async ({
     page,
   }) => {
     test.setTimeout(90_000)
@@ -135,13 +137,13 @@ for (const { level, title } of READER_LEVELS) {
       .click()
     await expect(page.getByRole('heading', { name: title, level: 2 })).toBeVisible()
 
-    for (let chapterIndex = 0; chapterIndex < 6; chapterIndex += 1) {
+    for (let chapterIndex = 0; chapterIndex < chapterCount; chapterIndex += 1) {
       await expect(page.getByText(
-        `챕터 ${chapterIndex + 1} / 6`,
+        `챕터 ${chapterIndex + 1} / ${chapterCount}`,
         { exact: true },
       )).toBeVisible()
       const paragraphs = page.locator('.story-paragraph')
-      await expect(paragraphs).toHaveCount(5)
+      expect(await paragraphs.count()).toBeGreaterThanOrEqual(5)
       const sentenceCounts = await paragraphs.evaluateAll((elements) =>
         elements.map((element) => element.textContent?.match(/[^.!?]+[.!?]+/gu)?.length ?? 0))
       expect(sentenceCounts.every((count) => count >= 2)).toBe(true)
@@ -150,8 +152,9 @@ for (const { level, title } of READER_LEVELS) {
       const wordButtons = page.getByRole('button', { name: /^story word:/u })
       expect(await wordButtons.count()).toBeGreaterThan(0)
       const phraseWrappers = page.locator('.story-inline-phrasal')
-      const phraseBadges = page.locator('.story-inline-phrasal__badge')
-      expect(await phraseBadges.count()).toBe(await phraseWrappers.count())
+      const phraseTriggers = page.getByRole('button', { name: /^story phrasal verb:/u })
+      expect(await phraseTriggers.count()).toBe(await phraseWrappers.count())
+      expect(await page.locator('.story-inline-phrasal__badge').count()).toBe(0)
 
       if (chapterIndex === 0) {
         const representativeWord = wordButtons.first()
@@ -161,8 +164,8 @@ for (const { level, title } of READER_LEVELS) {
         await expect(representativeWord).toBeFocused()
       }
 
-      if (!openedPhrasalDetail && await phraseBadges.count() > 0) {
-        const representativePhrasal = phraseBadges.first()
+      if (!openedPhrasalDetail && await phraseTriggers.count() > 0) {
+        const representativePhrasal = phraseTriggers.first()
         await representativePhrasal.click()
         await expect(page.getByRole('heading', { name: /구동사 상세$/u })).toBeVisible()
         await expect(page.getByRole('heading', { name: '본문에서의 뜻' })).toBeVisible()
@@ -173,7 +176,7 @@ for (const { level, title } of READER_LEVELS) {
       }
 
       await expectNoViewportOverflow(page)
-      if (chapterIndex < 5) {
+      if (chapterIndex < chapterCount - 1) {
         await page.getByRole('button', { name: `다음 챕터 (${chapterIndex + 2})` }).click()
       }
     }

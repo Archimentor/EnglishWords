@@ -1,7 +1,7 @@
 import type { ReaderStoryPhrasalVerbUse } from '../../domain/content/readerStory'
 import {
   entryFormStrings,
-  isInternalStoryWordCharacter,
+  hasWholeWordBoundaries,
 } from '../../domain/content/storyForms'
 import type {
   PhrasalVerbItem,
@@ -36,11 +36,6 @@ interface PositionedPhrasalMatch {
   start: number
   end: number
   use: ReaderStoryPhrasalVerbUse
-}
-
-function hasWholeWordBoundaries(text: string, start: number, length: number): boolean {
-  return !isInternalStoryWordCharacter(text[start - 1])
-    && !isInternalStoryWordCharacter(text[start + length])
 }
 
 function dictionaryMatchRank(match: WordMatch): number {
@@ -158,7 +153,6 @@ function longestWordMatchAt(
   cursor: number,
   trie: FormTrieNode,
 ): WordMatch | undefined {
-  if (isInternalStoryWordCharacter(storyText[cursor - 1])) return undefined
   let node = trie
   let offset = cursor
   let longest: WordMatch | undefined

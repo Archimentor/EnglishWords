@@ -116,6 +116,37 @@ function makeStoryCompatibleCatalog(): ContentCatalog {
   }
 }
 
+function makeCompleteApprovedStory(
+  catalog: ContentCatalog,
+  title: string,
+): StoryContent {
+  const words = catalog.wordlists.기초
+  const paragraph = words.map(({ word }) => `${word}.`).join(' ')
+  return {
+    schemaVersion: '2.0.0',
+    level: '기초',
+    title,
+    chapterTitles: Array.from({ length: 6 }, () => words[0]?.word ?? 'Mina'),
+    isManual: true,
+    coverage: {
+      mustCoverAll: true,
+      allowUpperLevelWords: false,
+      coverageRate: 1,
+      phrasalVerbCoverageRate: 0,
+    },
+    usedWords: words.map((word) => ({
+      lemma: word.lemma,
+      partOfSpeech: word.entries[0]?.partOfSpeech ?? 'word',
+      forms: [word.word],
+    })),
+    usedPhrasalVerbs: [],
+    storyText: Array.from(
+      { length: 6 },
+      () => Array.from({ length: 5 }, () => paragraph).join('\n\n'),
+    ).join('\n\n\n'),
+  }
+}
+
 function sourcesFor(sourceIds: readonly ContentSourceId[]): ContentSource[] {
   return sourceIds.map((sourceId) => {
     const source = CONTENT_SOURCES.find(({ id }) => id === sourceId)
@@ -400,12 +431,10 @@ describe('createContentGeneration', () => {
 
   it('preserves approved human stories and drafts only the missing levels', () => {
     const source = makeStoryCompatibleCatalog()
-    const initial = createContentGeneration(makeGenerationInput(source))
-    const manualStory: StoryContent = {
-      ...structuredClone(initial.catalog.stories.기초),
-      title: '사람이 최종 검수한 기초 이야기',
-      isManual: true,
-    }
+    const manualStory = makeCompleteApprovedStory(
+      source,
+      '사람이 최종 검수한 기초 이야기',
+    )
     const input = makeGenerationInput(source)
     input.approvedManualStories = {
       기초: makeApprovedManualStoryInput(manualStory),
@@ -436,12 +465,7 @@ describe('createContentGeneration', () => {
   it('loads approved inputs through the aggregate build before committing', async () => {
     const source = makeStoryCompatibleCatalog()
     const directory = await makeTemporaryDataRoot()
-    const initial = createContentGeneration(makeGenerationInput(source))
-    const manualStory: StoryContent = {
-      ...structuredClone(initial.catalog.stories.기초),
-      title: '빌드가 보존할 승인 소설',
-      isManual: true,
-    }
+    const manualStory = makeCompleteApprovedStory(source, '빌드가 보존할 승인 소설')
     const approved = { 기초: makeApprovedManualStoryInput(manualStory) }
     const manualStoryRoot = join(directory, 'canonical-manual-stories')
     const loadManualStories = vi.fn(async () => approved)
@@ -636,8 +660,7 @@ describe('createContentGeneration', () => {
 
   it('validates approval metadata copied into manual story provenance', () => {
     const source = makeStoryCompatibleCatalog()
-    const draft = createContentGeneration(makeGenerationInput(source)).catalog.stories.기초
-    const manualStory = { ...structuredClone(draft), isManual: true }
+    const manualStory = makeCompleteApprovedStory(source, '승인 메타데이터 검증 소설')
     const input = makeGenerationInput(source)
     input.approvedManualStories = {
       기초: makeApprovedManualStoryInput(manualStory),

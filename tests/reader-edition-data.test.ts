@@ -4,10 +4,11 @@ import { describe, expect, test } from 'vitest'
 import {
   auditReaderEdition,
   buildReaderEdition,
+  MAX_READER_CHAPTER_COUNT,
+  MIN_READER_CHAPTER_COUNT,
   MIN_READER_CHAPTER_PARAGRAPHS,
   MIN_READER_CHAPTER_SENTENCES,
   readerNarrativeText,
-  READER_CHAPTER_COUNT,
 } from '../src/domain/content/readerEdition'
 import {
   englishStoryVocabularyText,
@@ -35,17 +36,19 @@ function allowedWords(level: Level): WordItem[] {
     .flatMap((candidateLevel) => wordlists[candidateLevel])
 }
 
-describe('6챕터 레벨별 소설', () => {
-  test.each(LEVELS)('%s 소설은 짧은 장면 묶음이 아니라 충분한 분량의 6챕터다', (level) => {
+describe('챕터형 레벨별 소설', () => {
+  test.each(LEVELS)('%s 소설은 짧은 장면 묶음이 아니라 충분한 분량의 챕터로 구성된다', (level) => {
     const story = stories[level]
     const edition = buildReaderEdition(story, allowedWords(level))
     const audit = auditReaderEdition(edition)
+    const chapterCount = edition.chapters.length
 
-    expect(edition.chapters).toHaveLength(READER_CHAPTER_COUNT)
-    expect(story.chapterTitles).toHaveLength(READER_CHAPTER_COUNT)
-    expect(new Set(story.chapterTitles).size).toBe(READER_CHAPTER_COUNT)
-    expect(new Set(edition.chapters.map(({ text }) => text)).size).toBe(READER_CHAPTER_COUNT)
-    expect(audit.chapterCount).toBe(READER_CHAPTER_COUNT)
+    expect(chapterCount).toBeGreaterThanOrEqual(MIN_READER_CHAPTER_COUNT)
+    expect(chapterCount).toBeLessThanOrEqual(MAX_READER_CHAPTER_COUNT)
+    expect(story.chapterTitles).toHaveLength(chapterCount)
+    expect(new Set(story.chapterTitles).size).toBe(chapterCount)
+    expect(new Set(edition.chapters.map(({ text }) => text)).size).toBe(chapterCount)
+    expect(audit.chapterCount).toBe(chapterCount)
     expect(audit.paragraphCounts.every(
       (count) => count >= MIN_READER_CHAPTER_PARAGRAPHS,
     )).toBe(true)

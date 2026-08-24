@@ -316,9 +316,10 @@ export function makeStory(
     chapterTitles: Array.from({ length: 6 }, () => 'play'),
     isManual: true,
     coverage: {
-      mustCoverAll: false,
+      mustCoverAll: true,
       allowUpperLevelWords: false,
       coverageRate: 1,
+      phrasalVerbCoverageRate: 0,
     },
     usedWords: [
       {
@@ -397,6 +398,12 @@ export function makeCatalog(options: MakeCatalogOptions = {}): ContentCatalog {
       LEVELS.map((level) => [
         level,
         makeStory(level, {
+          coverage: {
+            mustCoverAll: true,
+            allowUpperLevelWords: false,
+            coverageRate: 1,
+            phrasalVerbCoverageRate: phrasalVerbs.byLevel[level].length > 0 ? 1 : 0,
+          },
           usedWords: wordlists[level].map((word) => ({
             lemma: word.lemma,
             partOfSpeech: word.entries[0]?.partOfSpeech ?? 'word',

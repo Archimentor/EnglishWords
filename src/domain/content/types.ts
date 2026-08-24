@@ -94,6 +94,7 @@ export interface StoryContent {
     mustCoverAll: boolean
     allowUpperLevelWords: false
     coverageRate: number
+    phrasalVerbCoverageRate: number
   }
   usedWords: Array<{
     lemma: string

@@ -12,7 +12,7 @@ import {
 import type { SpeechPort } from '../study/speech'
 import { StoryPhrasalVerbDetail } from './StoryPhrasalVerbDetail'
 import { StoryWordDetail } from './StoryWordDetail'
-import { tokenizeKnownWords, tokenizeStoryParagraphs } from './storyTokens'
+import { tokenizeStoryParagraphs } from './storyTokens'
 import './story.css'
 
 const EMPTY_PHRASAL_VERBS: readonly PhrasalVerbItem[] = []
@@ -140,69 +140,31 @@ export function StoryView({
       if (token.type === 'phrasalVerb') {
         const phrasalSelectionKey = `${namespace}-phrasal-${token.tokenIndex}`
         const isSelected = activeSelectedPhrasalVerb?.selectionKey === phrasalSelectionKey
-        const wordParts = tokenizeKnownWords(token.value, lookupWords)
-        const selectPhrasalVerb = (trigger: HTMLButtonElement) => {
-          selectedTriggerRef.current = trigger
-          setSelectedWord(null)
-          setSelectedPhrasalVerb({
-            story,
-            selectionKey: phrasalSelectionKey,
-            item: token.phrasalVerb,
-            context: token.phrasalUse.context,
-            meaningKo: token.phrasalUse.meaningKo,
-          })
-        }
         return (
-          <span
+          <button
+            ref={isSelected ? selectedTriggerRef : undefined}
+            type="button"
             className="story-inline-phrasal"
             key={`${namespace}-phrasal-${token.tokenIndex}`}
             data-phrasal-verb={token.phrasalVerb.phrasalVerb}
+            aria-label={`story phrasal verb: ${token.value}`}
+            aria-expanded={isSelected}
+            aria-controls={isSelected ? 'story-word-detail' : undefined}
+            title={`${token.value} 구동사 뜻 보기`}
+            onClick={(event) => {
+              selectedTriggerRef.current = event.currentTarget
+              setSelectedWord(null)
+              setSelectedPhrasalVerb({
+                story,
+                selectionKey: phrasalSelectionKey,
+                item: token.phrasalVerb,
+                context: token.phrasalUse.context,
+                meaningKo: token.phrasalUse.meaningKo,
+              })
+            }}
           >
-            <span className="story-inline-phrasal__words">
-              {wordParts.flatMap((part, partIndex) => {
-                if (part.type === 'word') {
-                  return [renderWordButton(
-                    part.value,
-                    part.word,
-                    part.entry,
-                    `${namespace}-phrasal-word-${token.tokenIndex}-${partIndex}`,
-                    `${namespace}-phrasal-word-${token.tokenIndex}-${partIndex}`,
-                  )]
-                }
-                return part.value
-                  .split(/([\p{L}\p{N}]+(?:['’~-][\p{L}\p{N}]+)*)/gu)
-                  .filter(Boolean)
-                  .map((value, textPartIndex) => /[\p{L}\p{N}]/u.test(value) ? (
-                    <button
-                      key={`${namespace}-phrasal-component-${token.tokenIndex}-${partIndex}-${textPartIndex}`}
-                      type="button"
-                      className="story-phrasal-component-button"
-                      aria-label={`story phrasal component: ${value} (${token.value})`}
-                      aria-expanded={isSelected}
-                      aria-controls={isSelected ? 'story-word-detail' : undefined}
-                      onClick={(event) => selectPhrasalVerb(event.currentTarget)}
-                    >
-                      {value}
-                    </button>
-                  ) : (
-                    <span key={`${namespace}-phrasal-text-${token.tokenIndex}-${partIndex}-${textPartIndex}`}>
-                      {value}
-                    </span>
-                  ))
-              })}
-            </span>
-            <button
-              type="button"
-              className="story-inline-phrasal__badge"
-              aria-label={`story phrasal verb: ${token.value}`}
-              aria-expanded={isSelected}
-              aria-controls={isSelected ? 'story-word-detail' : undefined}
-              title={`${token.value} 구동사 뜻 보기`}
-              onClick={(event) => selectPhrasalVerb(event.currentTarget)}
-            >
-              구
-            </button>
-          </span>
+            {token.value}
+          </button>
         )
       }
 

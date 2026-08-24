@@ -1,4 +1,9 @@
-import { auditReaderEdition, buildReaderEdition, READER_CHAPTER_COUNT } from '../readerEdition'
+import {
+  auditReaderEdition,
+  buildReaderEdition,
+  MAX_READER_CHAPTER_COUNT,
+  MIN_READER_CHAPTER_COUNT,
+} from '../readerEdition'
 import { readerPhrasalVerbMeanings } from '../phrasalMeaning'
 import { readerStoryCoverage } from '../readerStory'
 import { entryFormStrings, hasWholeWordForm } from '../storyForms'
@@ -37,6 +42,7 @@ const STORY_COVERAGE_FIELDS = [
   'mustCoverAll',
   'allowUpperLevelWords',
   'coverageRate',
+  'phrasalVerbCoverageRate',
 ] as const
 
 const STORY_USED_WORD_FIELDS = ['lemma', 'partOfSpeech', 'forms'] as const
@@ -126,12 +132,13 @@ function validateStory(
   }
   if (
     !Array.isArray(value.chapterTitles)
-    || value.chapterTitles.length !== READER_CHAPTER_COUNT
+    || value.chapterTitles.length < MIN_READER_CHAPTER_COUNT
+    || value.chapterTitles.length > MAX_READER_CHAPTER_COUNT
     || !value.chapterTitles.every(isNonBlankString)
   ) {
     issues.push(invalidCatalog(
       `${path}.chapterTitles`,
-      `chapterTitles must contain exactly ${READER_CHAPTER_COUNT} non-blank titles.`,
+      `chapterTitles must contain ${MIN_READER_CHAPTER_COUNT}-${MAX_READER_CHAPTER_COUNT} non-blank titles.`,
     ))
   }
   if (typeof value.isManual !== 'boolean') {
@@ -171,6 +178,12 @@ function validateStory(
       issues.push(invalidCatalog(
         `${path}.coverage.coverageRate`,
         'coverageRate must be a number between 0 and 1.',
+      ))
+    }
+    if (!isRate(value.coverage.phrasalVerbCoverageRate)) {
+      issues.push(invalidCatalog(
+        `${path}.coverage.phrasalVerbCoverageRate`,
+        'phrasalVerbCoverageRate must be a number between 0 and 1.',
       ))
     }
   }
@@ -253,6 +266,7 @@ export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[
   for (const [levelIndex, level] of LEVELS.entries()) {
     const story = catalog.stories[level]
     const targetWords = catalog.wordlists[level]
+    const targetPhrasalVerbs = catalog.phrasalVerbs.byLevel[level]
     const allowedPhrasalVerbs = LEVELS
       .slice(0, levelIndex + 1)
       .flatMap((allowedLevel) => catalog.phrasalVerbs.byLevel[allowedLevel])
@@ -407,7 +421,7 @@ export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[
     const coverage = readerStoryCoverage(
       story.storyText,
       targetWords,
-      allowedPhrasalVerbs.filter(({ id }) => usedPhrasalIds.has(id)),
+      targetPhrasalVerbs,
       story.usedPhrasalVerbs,
     )
     const actualCoverageRate = coverage.wordTotalCount === 0
@@ -418,6 +432,20 @@ export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[
         code: 'STORY_COVERAGE_RATE',
         path: `${path}.coverage.coverageRate`,
         message: `coverageRate must equal actual target-level prose coverage (${actualCoverageRate}).`,
+      })
+    }
+    const actualPhrasalVerbCoverageRate = coverage.phrasalVerbTotalCount === 0
+      ? 0
+      : coverage.phrasalVerbCoveredCount / coverage.phrasalVerbTotalCount
+    if (
+      Math.abs(
+        story.coverage.phrasalVerbCoverageRate - actualPhrasalVerbCoverageRate,
+      ) > 1e-12
+    ) {
+      issues.push({
+        code: 'STORY_PHRASAL_COVERAGE_RATE',
+        path: `${path}.coverage.phrasalVerbCoverageRate`,
+        message: `phrasalVerbCoverageRate must equal actual target-level prose coverage (${actualPhrasalVerbCoverageRate}).`,
       })
     }
     const actualTargetLemmas = new Set(
@@ -442,6 +470,13 @@ export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[
           message: `Metadata word "${lemma}" is not an actual target-level prose word.`,
         })
       }
+    }
+    if (story.isManual && !story.coverage.mustCoverAll) {
+      issues.push({
+        code: 'STORY_FULL_COVERAGE_REQUIRED',
+        path: `${path}.coverage.mustCoverAll`,
+        message: `Approved novel for ${level} must cover every target-level word and phrasal verb.`,
+      })
     }
     if (story.coverage.mustCoverAll) {
       for (const lemma of coverage.missingWordLemmas) {
