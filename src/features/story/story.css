@@ -1,45 +1,117 @@
 .story-inline-phrasal {
-  position: relative;
-  display: inline-block;
-  padding-block-end: 0.3em;
+  display: inline;
   white-space: nowrap;
 }
 
 .story-inline-phrasal__words {
-  display: inline;
+  box-shadow: inset 0 -0.12em 0 rgb(173 63 29 / 30%);
+  text-decoration: underline;
+  text-decoration-color: var(--color-rust);
+  text-decoration-thickness: 0.1em;
+  text-underline-offset: 0.18em;
 }
 
-.story-inline-phrasal-meaning-button {
-  position: absolute;
-  inset-inline: 0;
-  inset-block-end: 0.02em;
-  display: block;
-  width: 100%;
-  height: 0.26em;
+.story-phrasal-component-button {
+  display: inline;
   min-height: 0;
   border: 0;
-  border-block-end: 0.11em solid var(--color-rust);
-  border-radius: 0;
-  padding: 0;
+  border-radius: var(--radius-sm);
+  padding: 0 0.1em;
+  color: inherit;
   background: transparent;
-  box-shadow: none;
+  font: inherit;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.story-inline-phrasal-meaning-button:hover {
-  border-block-end-color: var(--color-rust-dark);
-  border-block-end-width: 0.15em;
-  background: transparent;
+.story-phrasal-component-button:hover,
+.story-phrasal-component-button[aria-expanded="true"] {
+  color: var(--color-rust-dark);
+  background: var(--color-rust-soft);
 }
 
-.story-inline-phrasal-meaning-button[aria-expanded="true"] {
-  border-block-end-color: var(--color-rust-dark);
-  border-block-end-width: 0.17em;
-  background: transparent;
-  box-shadow: none;
+.story-phrasal-component-button:focus-visible,
+.story-inline-phrasal__badge:focus-visible {
+  outline: 3px solid var(--color-rust);
+  outline-offset: 3px;
 }
 
-.story-inline-phrasal-meaning-button:focus-visible {
-  outline: 2px solid var(--color-rust);
-  outline-offset: 1px;
+.story-inline-phrasal__badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 1.35rem;
+  min-height: 1.35rem;
+  margin-inline-start: 0.14rem;
+  border: 1px solid var(--color-rust);
+  border-radius: 999px;
+  padding: 0.05rem;
+  color: var(--color-rust-dark);
+  background: var(--color-rust-soft);
+  font-family: var(--font-body);
+  font-size: 0.68em;
+  font-weight: 900;
+  line-height: 1;
+  vertical-align: 0.16em;
+}
+
+.story-inline-phrasal__badge:hover,
+.story-inline-phrasal__badge[aria-expanded="true"] {
+  color: white;
+  background: var(--color-rust-dark);
+}
+
+.story-reader-chapter {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.story-reader-chapter__header {
+  display: grid;
+  gap: var(--space-1);
+  max-width: var(--reading-max);
+  padding-block-end: var(--space-3);
+  border-block-end: 1px solid var(--color-line);
+}
+
+.story-reader-chapter__header p,
+.story-reader-chapter__header h3 {
+  margin: 0;
+}
+
+.story-reader-chapter__header p {
+  color: var(--color-rust-dark);
+  font-size: var(--text-sm);
+  font-weight: 800;
+}
+
+.story-reader-navigation {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  max-width: 72rem;
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid var(--color-line);
+}
+
+.story-reader-navigation button:last-child {
+  justify-self: end;
+}
+
+.story-reader-navigation span {
+  color: var(--color-ink-muted);
+  font-weight: 800;
+}
+
+@media (max-width: 35rem) {
+  .story-reader-navigation {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .story-reader-navigation span {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    justify-self: center;
+  }
 }

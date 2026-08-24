@@ -22,6 +22,7 @@
     "content:prepare:phrasals": "tsx scripts/content/preparePhrasalTranslation.ts",
     "content:propose:phrasals": "python scripts/content/translate_phrasal_glosses.py",
     "content:approve:stories": "tsx scripts/content/approveStoryDrafts.ts",
+    "content:refresh:stories": "tsx scripts/content/refreshApprovedStories.ts",
     "content:build": "tsx scripts/content/buildContent.ts",
     "check": "npm run validate:data && npm run validate:reader-story && npm run lint && npm test && npm run build && npm run verify:offline"
   },

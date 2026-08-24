@@ -310,12 +310,13 @@ export function makeStory(
   overrides: Partial<StoryContent> = {},
 ): StoryContent {
   return {
-    schemaVersion: '1.0.0',
+    schemaVersion: '2.0.0',
     level,
-    title: `${level} 대표 이야기`,
+    title: 'play',
+    chapterTitles: Array.from({ length: 6 }, () => 'play'),
     isManual: true,
     coverage: {
-      mustCoverAll: true,
+      mustCoverAll: false,
       allowUpperLevelWords: false,
       coverageRate: 1,
     },
@@ -327,9 +328,11 @@ export function makeStory(
       },
     ],
     usedPhrasalVerbs: [],
-    storyText: 'The children play together.',
-    vocabularyPracticeText: 'Mina.',
-    phrasalVerbPracticeText: 'Mina.',
+    storyText: Array.from(
+      { length: 6 },
+      () => Array.from({ length: 5 }, () => 'Mina play. Mina play. Mina play.')
+        .join('\n\n'),
+    ).join('\n\n\n'),
     ...overrides,
   }
 }
@@ -402,22 +405,30 @@ export function makeCatalog(options: MakeCatalogOptions = {}): ContentCatalog {
           usedPhrasalVerbs: phrasalVerbs.byLevel[level].map((item) => ({
             id: item.id,
             phrasalVerb: item.phrasalVerb,
-            example: item.examples[0]!,
+            storyForm: item.phrasalVerb,
+            context: `Mina ${item.phrasalVerb} ${wordlists[level][0]?.word ?? 'play'}.`,
+            senseId: 'a'.repeat(64),
+            meaningKo: item.meaningKo[0] ?? '뜻',
           })),
-          storyText: wordlists[level]
-            .map((word) => `${word.word}.`)
-            .join(' '),
-          phrasalVerbPracticeText: phrasalVerbs.byLevel[level].length === 0
-            ? 'Mina.'
-            : Array.from(
-                { length: Math.ceil(phrasalVerbs.byLevel[level].length / 5) },
-                (_, index) => [
-                  'Mina.',
-                  ...phrasalVerbs.byLevel[level]
-                    .slice(index * 5, (index + 1) * 5)
-                    .map((item) => item.examples[0]!),
-                ].join(' '),
-              ).join('\n\n'),
+          title: wordlists[level][0]?.word ?? 'Mina',
+          chapterTitles: Array.from(
+            { length: 6 },
+            () => wordlists[level][0]?.word ?? 'Mina',
+          ),
+          storyText: Array.from({ length: 6 }, (_, chapterIndex) =>
+            Array.from({ length: 5 }, (_, paragraphIndex) => {
+              const wordSentences = wordlists[level]
+                .map((word) => `${word.word}.`)
+                .join(' ')
+              const phrasalSentences = chapterIndex === 0 && paragraphIndex === 0
+                ? phrasalVerbs.byLevel[level]
+                    .map((item) => `Mina ${item.phrasalVerb} ${wordlists[level][0]?.word ?? 'play'}.`)
+                    .join(' ')
+                : ''
+              return `${wordSentences} ${phrasalSentences} ${wordSentences} ${wordSentences}`
+                .trim()
+            }).join('\n\n'),
+          ).join('\n\n\n'),
         }),
       ]),
     ) as ContentCatalog['stories'])

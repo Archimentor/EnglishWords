@@ -340,6 +340,13 @@ function AppContent({ catalogLoader, speech, now }: AppContentProps) {
     () => [...grammarReviewItemIds],
     [grammarReviewItemIds],
   )
+  const storyLookupWords = useMemo(() => {
+    if (!readyCatalog) return []
+    const selectedLevel = state.navigation.level
+    return LEVELS
+      .slice(0, LEVELS.indexOf(selectedLevel) + 1)
+      .flatMap((lookupLevel) => readyCatalog.wordlists[lookupLevel])
+  }, [readyCatalog, state.navigation.level])
 
   if (visibleCatalogState.status === 'loading') {
     return (
@@ -416,22 +423,15 @@ function AppContent({ catalogLoader, speech, now }: AppContentProps) {
     )
   } else if (navigation.section === '소설') {
     const story = catalog.stories[level]
-    const lookupLevels = story.coverage.allowUpperLevelWords
-      ? LEVELS
-      : LEVELS.slice(0, LEVELS.indexOf(level) + 1)
+    const storyPhrasalVerbs = LEVELS
+      .slice(0, LEVELS.indexOf(level) + 1)
+      .flatMap((phrasalLevel) => catalog.phrasalVerbs.byLevel[phrasalLevel])
     panel = (
       <StoryView
         story={story}
         levelWords={catalog.wordlists[level]}
-        levelPhrasalVerbs={catalog.phrasalVerbs.byLevel[level]}
-        lookupWords={lookupLevels.flatMap(
-          (lookupLevel) => catalog.wordlists[lookupLevel],
-        )}
-        phrasalLookupWords={LEVELS.flatMap(
-          (lookupLevel) => catalog.wordlists[lookupLevel],
-        )}
-        targetWordCount={WORD_TARGETS[level]}
-        targetPhrasalVerbCount={PHRASAL_VERB_TARGET}
+        levelPhrasalVerbs={storyPhrasalVerbs}
+        lookupWords={storyLookupWords}
         speech={resolvedSpeech}
       />
     )

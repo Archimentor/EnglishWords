@@ -4,72 +4,72 @@
   "outputDigest": {
     "algorithm": "sha256",
     "canonicalization": "sorted-json-v1",
-    "value": "f13fd840780934d55916b921982eaef8a83568af957f60e8b056002f9b87bf2f"
+    "value": "a4c351577be5c0fe404754b4bd516326b55939ffc7fd8c515610a94cf499ebc2"
   },
   "status": "approved-manual-stories",
   "releaseGate": "Only a validated approved manual input may set isManual=true; automated drafts remain unreleasable.",
   "stories": [
     {
       "level": "기초",
-      "lemmaCount": 500,
-      "phrasalVerbCount": 250,
-      "coverageRate": 1,
+      "lemmaCount": 160,
+      "phrasalVerbCount": 33,
+      "coverageRate": 0.32,
       "source": "approved-manual-input",
       "approval": {
-        "reviewer": "Archimentor",
-        "reviewedAt": "2026-08-20T05:59:54.887Z",
+        "reviewer": "Codex-assisted prose and exhaustive automated audit",
+        "reviewedAt": "2026-08-24T09:42:14.574Z",
         "sourceDigest": {
           "algorithm": "sha256",
           "canonicalization": "sorted-json-v1",
-          "value": "30c4dcb4fcdaf022812a9bd1affc0ba23d66b348743bd7cdf8ff8bcaf67d29df"
+          "value": "8b51950408cda8308cdd420e5277135e01fe97c4f1870e43ee5e35c0c3afae1e"
         }
       }
     },
     {
       "level": "유치원",
-      "lemmaCount": 500,
-      "phrasalVerbCount": 250,
-      "coverageRate": 1,
+      "lemmaCount": 78,
+      "phrasalVerbCount": 37,
+      "coverageRate": 0.156,
       "source": "approved-manual-input",
       "approval": {
-        "reviewer": "Archimentor",
-        "reviewedAt": "2026-08-20T05:59:54.887Z",
+        "reviewer": "Codex-assisted prose and exhaustive automated audit",
+        "reviewedAt": "2026-08-24T09:42:14.657Z",
         "sourceDigest": {
           "algorithm": "sha256",
           "canonicalization": "sorted-json-v1",
-          "value": "c315adbf7f7dacfff026ed65fb76a444b27dfe1cfdf3cc0ada5a5ea890fb9958"
+          "value": "c51577d1034370b566d3d2572e092f303d4bd851c1cece60b05809d0fa9087bd"
         }
       }
     },
     {
       "level": "초등학교",
-      "lemmaCount": 1500,
-      "phrasalVerbCount": 250,
-      "coverageRate": 1,
+      "lemmaCount": 73,
+      "phrasalVerbCount": 29,
+      "coverageRate": 0.048666666666666664,
       "source": "approved-manual-input",
       "approval": {
-        "reviewer": "Archimentor",
-        "reviewedAt": "2026-08-20T05:59:54.887Z",
+        "reviewer": "Codex-assisted prose and exhaustive automated audit",
+        "reviewedAt": "2026-08-24T10:06:33.181Z",
         "sourceDigest": {
           "algorithm": "sha256",
           "canonicalization": "sorted-json-v1",
-          "value": "4c04485e037328e8845b2444848b8a7a974cdaef5660f847cd4572e6e5cc0c8e"
+          "value": "eb8e8f1f431aabd28a2726d6547f3611f2b459ae91185ac1771bf62979a1d943"
         }
       }
     },
     {
       "level": "중학교",
-      "lemmaCount": 2500,
-      "phrasalVerbCount": 250,
-      "coverageRate": 1,
+      "lemmaCount": 22,
+      "phrasalVerbCount": 31,
+      "coverageRate": 0.0088,
       "source": "approved-manual-input",
       "approval": {
-        "reviewer": "Archimentor",
-        "reviewedAt": "2026-08-20T05:59:54.887Z",
+        "reviewer": "Codex-assisted prose and exhaustive automated audit",
+        "reviewedAt": "2026-08-24T09:42:14.727Z",
         "sourceDigest": {
           "algorithm": "sha256",
           "canonicalization": "sorted-json-v1",
-          "value": "3d74ce769c30f7214872eb9e4f536e9051deeee3e9ef903320088f8f4d62acfc"
+          "value": "d5cfefe1579e8980023c7909a0837a8aedc5206235ae8e4a343fcbd7849a652d"
         }
       }
     }

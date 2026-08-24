@@ -6,12 +6,16 @@ const SPEECH_ERROR = '발음 재생을 지원하지 않는 브라우저입니다
 
 interface StoryPhrasalVerbDetailProps {
   item: PhrasalVerbItem
+  context: string
+  meaningKo: string
   speech: SpeechPort | null
   onClose: () => void
 }
 
 export function StoryPhrasalVerbDetail({
   item,
+  context,
+  meaningKo,
   speech,
   onClose,
 }: StoryPhrasalVerbDetailProps) {
@@ -80,15 +84,10 @@ export function StoryPhrasalVerbDetail({
         </p>
       ) : null}
       <p>{`표제형: ${item.phrasalVerb}`}</p>
-      <h4>뜻</h4>
-      <ul>
-        {item.meaningKo.map((meaning) => <li key={meaning}>{meaning}</li>)}
-      </ul>
-      <h4>예문</h4>
-      <ul>
-        {item.examples.map((example) => <li key={example}>{example}</li>)}
-      </ul>
-      <p>{item.usageNotes}</p>
+      <h4>본문에서의 뜻</h4>
+      <p>{meaningKo}</p>
+      <h4>본문 문장</h4>
+      <p>{context}</p>
     </aside>
   )
 }

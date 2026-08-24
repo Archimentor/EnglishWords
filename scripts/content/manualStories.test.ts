@@ -16,9 +16,10 @@ import { DEFAULT_MANUAL_STORY_ROOT } from './paths'
 
 function storyFixture(level: Level = '기초'): StoryContent {
   return {
-    schemaVersion: '1.0.0',
+    schemaVersion: '2.0.0',
     level,
     title: '사람이 검수한 이야기',
+    chapterTitles: ['하나', '둘', '셋', '넷', '다섯', '여섯'],
     isManual: true,
     coverage: {
       mustCoverAll: false,
@@ -28,8 +29,6 @@ function storyFixture(level: Level = '기초'): StoryContent {
     usedWords: [],
     usedPhrasalVerbs: [],
     storyText: 'Mina.',
-    vocabularyPracticeText: 'Mina.',
-    phrasalVerbPracticeText: 'Mina.',
   }
 }
 
@@ -73,6 +72,11 @@ describe('approved manual story inputs', () => {
     automatedStory.isManual = false
     const automatedInput = approvedInput(automatedStory)
 
+    const upperLevelStory = storyFixture()
+    const coverage = upperLevelStory.coverage as { allowUpperLevelWords: boolean }
+    coverage.allowUpperLevelWords = true
+    const upperLevelInput = approvedInput(upperLevelStory)
+
     expect(validateApprovedManualStory(changedStory, '기초')).toContainEqual(
       expect.stringContaining('approval.sourceDigest.value'),
     )
@@ -81,6 +85,9 @@ describe('approved manual story inputs', () => {
     )
     expect(validateApprovedManualStory(automatedInput, '기초')).toContainEqual(
       expect.stringContaining('story.isManual'),
+    )
+    expect(validateApprovedManualStory(upperLevelInput, '기초')).toContainEqual(
+      expect.stringContaining('story.coverage.allowUpperLevelWords must be false'),
     )
   })
 

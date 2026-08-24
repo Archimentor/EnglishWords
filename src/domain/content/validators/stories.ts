@@ -1,10 +1,15 @@
+import { auditReaderEdition, buildReaderEdition, READER_CHAPTER_COUNT } from '../readerEdition'
+import { readerPhrasalVerbMeanings } from '../phrasalMeaning'
+import { readerStoryCoverage } from '../readerStory'
+import { entryFormStrings, hasWholeWordForm } from '../storyForms'
+import { englishStoryVocabularyText, inspectStoryVocabulary } from '../storyVocabulary'
 import { LEVELS } from '../types'
-import { hasWholeWordForm } from '../storyForms'
 import type {
   ContentCatalog,
   Level,
   ValidationIssue,
   ValidationMode,
+  WordItem,
 } from '../types'
 import {
   invalidCatalog,
@@ -20,13 +25,12 @@ const STORY_FIELDS = [
   'schemaVersion',
   'level',
   'title',
+  'chapterTitles',
   'isManual',
   'coverage',
   'usedWords',
   'usedPhrasalVerbs',
   'storyText',
-  'vocabularyPracticeText',
-  'phrasalVerbPracticeText',
 ] as const
 
 const STORY_COVERAGE_FIELDS = [
@@ -36,47 +40,16 @@ const STORY_COVERAGE_FIELDS = [
 ] as const
 
 const STORY_USED_WORD_FIELDS = ['lemma', 'partOfSpeech', 'forms'] as const
-const STORY_USED_PHRASAL_VERB_FIELDS = ['id', 'phrasalVerb', 'example'] as const
+const STORY_USED_PHRASAL_VERB_FIELDS = [
+  'id',
+  'phrasalVerb',
+  'storyForm',
+  'context',
+  'senseId',
+  'meaningKo',
+] as const
 
 const QUOTED_WORD_ENUMERATION = /[“"]\s*[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*\s*[”"]\s*,\s*[“"]/u
-
-interface StoryFormOwner {
-  level: Level
-  levelIndex: number
-  lemmas: Set<string>
-}
-
-// A fixed protagonist name is metadata rather than a lexical learning target.
-// Every other story token, including closed-class grammar and numerals, must be
-// owned by the catalog so the level boundary cannot be bypassed by a whitelist.
-const ALLOWED_NON_CATALOG_STORY_TOKENS = new Set([
-  'mina', "mina's", 'mina’s',
-])
-
-function storyTokenSet(storyText: string): Set<string> {
-  return new Set(storyText.toLowerCase().match(/[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*/gu) ?? [])
-}
-
-function storyContainsForm(storyText: string, tokens: ReadonlySet<string>, form: string): boolean {
-  const normalized = form.toLowerCase()
-  return /^[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*$/u.test(normalized)
-    ? tokens.has(normalized)
-    : hasWholeWordForm(storyText, form)
-}
-
-function isAllowedNonCatalogStoryToken(token: string): boolean {
-  return ALLOWED_NON_CATALOG_STORY_TOKENS.has(token)
-}
-
-function validatedEntryForms(value: unknown): string[] | null {
-  if (Array.isArray(value)) {
-    return value.length > 0 && value.every(isNonBlankString) ? value : null
-  }
-  if (!isRecord(value)) return null
-
-  const forms = Object.values(value)
-  return forms.length > 0 && forms.every(isNonBlankString) ? forms : null
-}
 
 function validateStoryUsedWord(
   value: unknown,
@@ -87,16 +60,15 @@ function validateStoryUsedWord(
     issues.push(invalidCatalog(path, 'Story usedWords item must be an object.'))
     return
   }
-
-  rejectAdditionalProperties(value, STORY_USED_WORD_FIELDS, path, 'story', issues)
-
+  rejectAdditionalProperties(value, STORY_USED_WORD_FIELDS, path, 'story word', issues)
   if (!isNonBlankString(value.lemma)) {
     issues.push(invalidCatalog(`${path}.lemma`, 'lemma must be a non-blank string.'))
   }
   if (!isNonBlankString(value.partOfSpeech)) {
-    issues.push(
-      invalidCatalog(`${path}.partOfSpeech`, 'partOfSpeech must be a non-blank string.'),
-    )
+    issues.push(invalidCatalog(
+      `${path}.partOfSpeech`,
+      'partOfSpeech must be a non-blank string.',
+    ))
   }
   validateNonBlankArray(value.forms, `${path}.forms`, 1, issues)
 }
@@ -110,7 +82,6 @@ function validateStoryUsedPhrasalVerb(
     issues.push(invalidCatalog(path, 'Story usedPhrasalVerbs item must be an object.'))
     return
   }
-
   rejectAdditionalProperties(
     value,
     STORY_USED_PHRASAL_VERB_FIELDS,
@@ -123,141 +94,11 @@ function validateStoryUsedPhrasalVerb(
       issues.push(invalidCatalog(`${path}.${field}`, `${field} must be a non-blank string.`))
     }
   }
-}
-
-function validateNarrativeStructure(
-  storyText: string,
-  usedWordCount: number,
-  path: string,
-  issues: ValidationIssue[],
-): void {
-  if (QUOTED_WORD_ENUMERATION.test(storyText)) {
-    issues.push({
-      code: 'STORY_WORD_ENUMERATION',
-      path,
-      message: 'A reviewed story must use vocabulary in prose, not as a quoted word list.',
-    })
-  }
-
-  // Tiny validation fixtures exercise the schema rather than release-scale prose.
-  // Real level stories contain hundreds of required lemmas, so structural checks
-  // start at 50 reviewed words and scale with the actual coverage obligation.
-  if (usedWordCount < 50) return
-
-  const paragraphs = storyText.trim().split(/\n\s*\n/u).filter((paragraph) => paragraph.trim())
-  const sentences = storyText.match(/[^.!?]+[.!?]+/gu) ?? []
-  const multiSentenceParagraphs = paragraphs.filter((paragraph) =>
-    (paragraph.match(/[.!?]+/gu) ?? []).length >= 2)
-  const minaCount = storyText.match(/\bMina\b/gu)?.length ?? 0
-  const minimumSentences = 12
-  const minimumParagraphs = 7
-  const minimumMinaMentions = Math.max(4, Math.ceil(paragraphs.length / 4))
-  const firstParagraph = paragraphs[0] ?? ''
-  const lastParagraph = paragraphs.at(-1) ?? ''
-
-  if (
-    sentences.length < minimumSentences
-    || paragraphs.length < minimumParagraphs
-    || multiSentenceParagraphs.length < Math.ceil(paragraphs.length / 2)
-    || minaCount < minimumMinaMentions
-    || !/\bMina\b/u.test(firstParagraph)
-    || !/\bMina\b/u.test(lastParagraph)
-  ) {
-    issues.push({
-      code: 'STORY_NARRATIVE_STRUCTURE',
-      path,
-      message: [
-        'A reviewed story must be connected multi-paragraph prose with Mina present from setup to resolution.',
-        `Found ${paragraphs.length} paragraphs, ${sentences.length} sentences, ${multiSentenceParagraphs.length} multi-sentence paragraphs, and ${minaCount} Mina mentions.`,
-      ].join(' '),
-    })
-  }
-}
-
-function quotedStoryPassages(text: string): string[] {
-  return [...text.matchAll(/“([^”]+)”/gu)].map((match) => match[1]!.trim())
-}
-
-function validateVocabularyPracticeStructure(
-  practiceText: string,
-  usedWordCount: number,
-  path: string,
-  issues: ValidationIssue[],
-): void {
-  if (usedWordCount < 50) return
-
-  const paragraphs = practiceText.trim().split(/\n\s*\n/u)
-    .filter((paragraph) => paragraph.trim())
-  const quotedExamples = quotedStoryPassages(practiceText)
-  const frames = paragraphs.map((paragraph) =>
-    paragraph.replace(/“[^”]+”/gu, ' ').replace(/\s+/gu, ' ').trim())
-  const sceneFrames = frames.filter((frame) => {
-    const sentenceCount = frame.match(/[^.!?]+[.!?]+/gu)?.length ?? 0
-    return sentenceCount >= 4 && /\bMina\b/u.test(frame)
-  })
-  const minimumParagraphs = Math.ceil(usedWordCount / 20)
-  const minimumQuotedExamples = Math.ceil(usedWordCount * 0.8)
-  const minimumUniqueFrames = Math.ceil(paragraphs.length / 5)
-  const uniqueFrames = new Set(frames).size
-
-  if (
-    paragraphs.length < minimumParagraphs
-    || quotedExamples.length < minimumQuotedExamples
-    || sceneFrames.length !== paragraphs.length
-    || uniqueFrames < minimumUniqueFrames
-  ) {
-    issues.push({
-      code: 'STORY_VOCABULARY_SCENE_STRUCTURE',
-      path,
-      message: [
-        'Vocabulary must appear mainly in quoted catalog examples inside varied scenes whose framing advances the story, not in generated word-list sentences.',
-        `Found ${paragraphs.length} paragraphs (${sceneFrames.length} narrative frames, ${uniqueFrames} unique frames) and ${quotedExamples.length}/${usedWordCount} quoted examples.`,
-      ].join(' '),
-    })
-  }
-}
-
-function validatePhrasalPracticeStructure(
-  practiceText: string,
-  usedPhrasalVerbs: readonly unknown[],
-  path: string,
-  issues: ValidationIssue[],
-): void {
-  const usedPhrasalVerbCount = usedPhrasalVerbs.length
-  if (usedPhrasalVerbCount < 50) return
-
-  const paragraphs = practiceText.trim().split(/\n\s*\n/u)
-    .filter((paragraph) => paragraph.trim())
-  const examples = usedPhrasalVerbs.flatMap((value) =>
-    isRecord(value) && isNonBlankString(value.example) ? [value.example] : [])
-  const minimumParagraphs = Math.ceil(usedPhrasalVerbCount / 5)
-  const frames = paragraphs.map((paragraph) => {
-    let frame = paragraph
-    for (const example of examples) frame = frame.split(`“${example}”`).join(' ')
-    return frame.replace(/\s+/gu, ' ').trim()
-  })
-  const sceneFrames = frames.filter((frame) => {
-    const sentenceCount = frame.match(/[^.!?]+[.!?]+/gu)?.length ?? 0
-    return sentenceCount >= 4 && /\bMina\b/u.test(frame)
-  })
-  const quotedExampleCount = examples.filter((example) =>
-    practiceText.includes(`“${example}”`)).length
-  const uniqueFrames = new Set(frames).size
-  const minimumUniqueFrames = Math.ceil(paragraphs.length / 5)
-  if (
-    paragraphs.length < minimumParagraphs
-    || sceneFrames.length !== paragraphs.length
-    || quotedExampleCount !== examples.length
-    || uniqueFrames < minimumUniqueFrames
-  ) {
-    issues.push({
-      code: 'STORY_PHRASAL_SCENE_STRUCTURE',
-      path,
-      message: [
-        'Phrasal verbs must appear as quoted voices inside varied, paginated scenes whose framing advances the story, not as a flat example list.',
-        `Found ${paragraphs.length} paragraphs (${sceneFrames.length} narrative frames, ${uniqueFrames} unique frames, ${quotedExampleCount}/${examples.length} quoted examples) for ${usedPhrasalVerbCount} phrasal verbs.`,
-      ].join(' '),
-    })
+  if (isNonBlankString(value.senseId) && !/^[a-f0-9]{64}$/u.test(value.senseId)) {
+    issues.push(invalidCatalog(
+      `${path}.senseId`,
+      'senseId must be a lowercase SHA-256 digest.',
+    ))
   }
 }
 
@@ -273,19 +114,25 @@ function validateStory(
     return
   }
 
-
   rejectAdditionalProperties(value, STORY_FIELDS, path, 'story', issues)
-
   if (!isNonBlankString(value.schemaVersion)) {
-    issues.push(
-      invalidCatalog(`${path}.schemaVersion`, 'schemaVersion must be a non-blank string.'),
-    )
+    issues.push(invalidCatalog(`${path}.schemaVersion`, 'schemaVersion must be non-blank.'))
   }
   if (!isLevel(value.level) || value.level !== level) {
-    issues.push(invalidCatalog(`${path}.level`, `level must match its ${level} story container.`))
+    issues.push(invalidCatalog(`${path}.level`, `level must match ${level}.`))
   }
   if (!isNonBlankString(value.title)) {
-    issues.push(invalidCatalog(`${path}.title`, 'title must be a non-blank string.'))
+    issues.push(invalidCatalog(`${path}.title`, 'title must be non-blank.'))
+  }
+  if (
+    !Array.isArray(value.chapterTitles)
+    || value.chapterTitles.length !== READER_CHAPTER_COUNT
+    || !value.chapterTitles.every(isNonBlankString)
+  ) {
+    issues.push(invalidCatalog(
+      `${path}.chapterTitles`,
+      `chapterTitles must contain exactly ${READER_CHAPTER_COUNT} non-blank titles.`,
+    ))
   }
   if (typeof value.isManual !== 'boolean') {
     issues.push(invalidCatalog(`${path}.isManual`, 'isManual must be a boolean.'))
@@ -293,7 +140,7 @@ function validateStory(
     issues.push({
       code: 'STORY_NOT_MANUAL',
       path: `${path}.isManual`,
-      message: `Story for ${level} must be manually reviewed before release.`,
+      message: `Story for ${level} must be reviewed before release.`,
     })
   }
 
@@ -304,102 +151,57 @@ function validateStory(
       value.coverage,
       STORY_COVERAGE_FIELDS,
       `${path}.coverage`,
-      'story',
+      'story coverage',
       issues,
     )
     if (typeof value.coverage.mustCoverAll !== 'boolean') {
-      issues.push(
-        invalidCatalog(`${path}.coverage.mustCoverAll`, 'mustCoverAll must be a boolean.'),
-      )
+      issues.push(invalidCatalog(
+        `${path}.coverage.mustCoverAll`,
+        'mustCoverAll must be a boolean.',
+      ))
     }
-    if (typeof value.coverage.allowUpperLevelWords !== 'boolean') {
-      issues.push(
-        invalidCatalog(
-          `${path}.coverage.allowUpperLevelWords`,
-          'allowUpperLevelWords must be a boolean.',
-        ),
-      )
+    if (value.coverage.allowUpperLevelWords !== false) {
+      issues.push({
+        code: 'STORY_UPPER_LEVEL_WORDS_ALLOWED',
+        path: `${path}.coverage.allowUpperLevelWords`,
+        message: 'Stories may use only their own and lower-level vocabulary.',
+      })
     }
     if (!isRate(value.coverage.coverageRate)) {
-      issues.push(
-        invalidCatalog(
-          `${path}.coverage.coverageRate`,
-          'coverageRate must be a number between 0 and 1.',
-        ),
-      )
+      issues.push(invalidCatalog(
+        `${path}.coverage.coverageRate`,
+        'coverageRate must be a number between 0 and 1.',
+      ))
     }
   }
 
   if (!Array.isArray(value.usedWords)) {
     issues.push(invalidCatalog(`${path}.usedWords`, 'usedWords must be an array.'))
   } else {
-    value.usedWords.forEach((word, index) =>
-      validateStoryUsedWord(word, `${path}.usedWords[${index}]`, issues),
-    )
+    value.usedWords.forEach((item, index) =>
+      validateStoryUsedWord(item, `${path}.usedWords[${index}]`, issues))
   }
-
   if (!Array.isArray(value.usedPhrasalVerbs)) {
     issues.push(invalidCatalog(
       `${path}.usedPhrasalVerbs`,
       'usedPhrasalVerbs must be an array.',
     ))
   } else {
-    value.usedPhrasalVerbs.forEach((phrasalVerb, index) =>
+    value.usedPhrasalVerbs.forEach((item, index) =>
       validateStoryUsedPhrasalVerb(
-        phrasalVerb,
+        item,
         `${path}.usedPhrasalVerbs[${index}]`,
         issues,
-      ),
-    )
+      ))
   }
-
   if (!isNonBlankString(value.storyText)) {
-    issues.push(invalidCatalog(`${path}.storyText`, 'storyText must be a non-blank string.'))
-  } else if (value.isManual === true && Array.isArray(value.usedWords)) {
-    validateNarrativeStructure(
-      value.storyText,
-      value.usedWords.length,
-      `${path}.storyText`,
-      issues,
-    )
-  }
-  if (!isNonBlankString(value.vocabularyPracticeText)) {
-    issues.push(invalidCatalog(
-      `${path}.vocabularyPracticeText`,
-      'vocabularyPracticeText must be a non-blank string.',
-    ))
-  } else if (QUOTED_WORD_ENUMERATION.test(value.vocabularyPracticeText)) {
+    issues.push(invalidCatalog(`${path}.storyText`, 'storyText must be non-blank.'))
+  } else if (QUOTED_WORD_ENUMERATION.test(value.storyText)) {
     issues.push({
       code: 'STORY_WORD_ENUMERATION',
-      path: `${path}.vocabularyPracticeText`,
-      message: 'Vocabulary practice must use complete scenes, not a quoted word list.',
+      path: `${path}.storyText`,
+      message: 'The novel must use vocabulary in prose, not as a quoted word list.',
     })
-  } else if (value.isManual === true && Array.isArray(value.usedWords)) {
-    validateVocabularyPracticeStructure(
-      value.vocabularyPracticeText,
-      value.usedWords.length,
-      `${path}.vocabularyPracticeText`,
-      issues,
-    )
-  }
-  if (!isNonBlankString(value.phrasalVerbPracticeText)) {
-    issues.push(invalidCatalog(
-      `${path}.phrasalVerbPracticeText`,
-      'phrasalVerbPracticeText must be a non-blank string.',
-    ))
-  } else if (QUOTED_WORD_ENUMERATION.test(value.phrasalVerbPracticeText)) {
-    issues.push({
-      code: 'STORY_WORD_ENUMERATION',
-      path: `${path}.phrasalVerbPracticeText`,
-      message: 'Phrasal verb practice must use complete scenes, not a quoted word list.',
-    })
-  } else if (Array.isArray(value.usedPhrasalVerbs)) {
-    validatePhrasalPracticeStructure(
-      value.phrasalVerbPracticeText,
-      value.usedPhrasalVerbs,
-      `${path}.phrasalVerbPracticeText`,
-      issues,
-    )
   }
 }
 
@@ -412,378 +214,252 @@ export function validateStories(
     issues.push(invalidCatalog('stories', 'stories must be an object keyed by level.'))
     return
   }
+  for (const level of LEVELS) validateStory(value[level], level, `stories.${level}`, mode, issues)
+}
 
-  for (const level of LEVELS) {
-    validateStory(value[level], level, `stories.${level}`, mode, issues)
-  }
+function matchingWordEntry(
+  words: readonly WordItem[],
+  lemma: string,
+  partOfSpeech: string,
+): WordItem['entries'][number] | undefined {
+  return words
+    .filter((word) => word.lemma === lemma)
+    .flatMap(({ entries }) => entries)
+    .find((entry) => entry.partOfSpeech === partOfSpeech)
+}
+
+function normalizedContext(value: string): string {
+  return value
+    .normalize('NFKC')
+    .replace(/[‘’]/gu, "'")
+    .replace(/[“”]/gu, '"')
+    .replace(/\s+/gu, ' ')
+    .trim()
+    .toLowerCase()
+}
+
+function storySentenceContexts(text: string): ReadonlySet<string> {
+  return new Set(
+    (text.match(/[^.!?]+[.!?]+|[^.!?]+$/gu) ?? [])
+      .map(normalizedContext)
+      .filter(Boolean),
+  )
 }
 
 export function validateStoryCoverage(catalog: ContentCatalog): ValidationIssue[] {
-  const value: unknown = catalog
-  if (
-    !isRecord(value)
-    || !isRecord(value.wordlists)
-    || !isRecord(value.phrasalVerbs)
-    || !isRecord(value.phrasalVerbs.byLevel)
-    || !isRecord(value.stories)
-  ) {
-    return []
-  }
-
   const issues: ValidationIssue[] = []
-  const lemmaLevels = new Map<string, number>()
-  const wordsByLemma = new Map<string, Array<Record<string, unknown>>>()
-  const formOwners = new Map<string, StoryFormOwner>()
-  const wordlists = value.wordlists
-  const phrasalVerbsByLevel = value.phrasalVerbs.byLevel
-  const stories = value.stories
+  const allCatalogWords = LEVELS.flatMap((level) => catalog.wordlists[level])
 
-  LEVELS.forEach((level, levelIndex) => {
-    const words = wordlists[level]
-    if (!Array.isArray(words)) {
-      return
-    }
-    for (const word of words) {
-      if (isRecord(word) && isNonBlankString(word.lemma) && !lemmaLevels.has(word.lemma)) {
-        lemmaLevels.set(word.lemma, levelIndex)
-      }
-      if (isRecord(word) && isNonBlankString(word.lemma) && Array.isArray(word.entries)) {
-        const candidates = wordsByLemma.get(word.lemma) ?? []
-        candidates.push(word)
-        wordsByLemma.set(word.lemma, candidates)
+  for (const [levelIndex, level] of LEVELS.entries()) {
+    const story = catalog.stories[level]
+    const targetWords = catalog.wordlists[level]
+    const allowedPhrasalVerbs = LEVELS
+      .slice(0, levelIndex + 1)
+      .flatMap((allowedLevel) => catalog.phrasalVerbs.byLevel[allowedLevel])
+    const allowedWords = LEVELS
+      .slice(0, levelIndex + 1)
+      .flatMap((allowedLevel) => catalog.wordlists[allowedLevel])
+    const path = `stories.${level}`
 
-        for (const entry of word.entries) {
-          if (!isRecord(entry)) continue
-          const forms = validatedEntryForms(entry.forms)
-          if (!forms) continue
-
-          for (const form of forms) {
-            const normalizedForm = form.toLowerCase()
-            const owner = formOwners.get(normalizedForm)
-            if (!owner || levelIndex < owner.levelIndex) {
-              formOwners.set(normalizedForm, {
-                level,
-                levelIndex,
-                lemmas: new Set([word.lemma]),
-              })
-            } else if (levelIndex === owner.levelIndex) {
-              owner.lemmas.add(word.lemma)
-            }
-          }
-        }
-      }
-    }
-  })
-
-  LEVELS.forEach((level, storyLevelIndex) => {
-    const words = wordlists[level]
-    const phrasalVerbs = phrasalVerbsByLevel[level]
-    const story = stories[level]
-    if (
-      !Array.isArray(words)
-      || !Array.isArray(phrasalVerbs)
-      || !isRecord(story)
-      || !isRecord(story.coverage)
-    ) {
-      return
-    }
-    const coverage = story.coverage
-    const storyText = isNonBlankString(story.storyText) ? story.storyText : ''
-    const vocabularyPracticeText = isNonBlankString(story.vocabularyPracticeText)
-      ? story.vocabularyPracticeText
-      : ''
-    const phrasalVerbPracticeText = isNonBlankString(story.phrasalVerbPracticeText)
-      ? story.phrasalVerbPracticeText
-      : ''
-    const readingPackageText = [
-      storyText,
-      vocabularyPracticeText,
-      phrasalVerbPracticeText,
-    ].join('\n\n')
-    const readingPackageTokens = storyTokenSet(readingPackageText)
-
-    const catalogVocabularyExamples = new Set(
-      words
-        .filter(isRecord)
-        .flatMap((word) => Array.isArray(word.entries) ? word.entries : [])
-        .filter(isRecord)
-        .flatMap((entry) => Array.isArray(entry.examples) ? entry.examples : [])
-        .filter(isNonBlankString),
-    )
-    const quotedVocabularyExamples = quotedStoryPassages(vocabularyPracticeText)
-    const unknownVocabularyExamples = quotedVocabularyExamples.filter((example) =>
-      !catalogVocabularyExamples.has(example))
-    unknownVocabularyExamples.forEach((example, index) => {
+    let edition
+    try {
+      edition = buildReaderEdition(story, allowedWords)
+    } catch (error) {
       issues.push({
-        code: 'STORY_WORD_EXAMPLE_UNKNOWN',
-        path: `stories.${level}.vocabularyPracticeText`,
-        message: `Quoted vocabulary passage ${index + 1} is not an exact ${level} catalog example: "${example}".`,
+        code: 'STORY_CHAPTER_STRUCTURE',
+        path: `${path}.storyText`,
+        message: error instanceof Error ? error.message : String(error),
       })
-    })
-    let vocabularyFrameText = vocabularyPracticeText
-    for (const example of quotedVocabularyExamples) {
-      if (catalogVocabularyExamples.has(example)) {
-        vocabularyFrameText = vocabularyFrameText.split(`“${example}”`).join(' ')
-      }
+      continue
+    }
+    const editionAudit = auditReaderEdition(edition)
+    if (editionAudit.shortChapterIndexes.length > 0) {
+      issues.push({
+        code: 'STORY_CHAPTER_TOO_SHORT',
+        path: `${path}.storyText`,
+        message: `Every chapter must contain developed prose; short chapters: ${editionAudit.shortChapterIndexes.map((index) => index + 1).join(', ')}.`,
+      })
     }
 
-    const usedPhrasalIds = new Set<string>()
-    const declaredPhrasalExamples: string[] = []
-    const phrasalsById = new Map(
-      phrasalVerbs
-        .filter((item): item is Record<string, unknown> => isRecord(item) && isNonBlankString(item.id))
-        .map((item) => [item.id as string, item]),
+    const vocabulary = inspectStoryVocabulary(
+      story.storyText,
+      allowedWords,
+      allCatalogWords,
+      story.usedPhrasalVerbs,
     )
-    if (Array.isArray(story.usedPhrasalVerbs)) {
-      story.usedPhrasalVerbs.forEach((usedPhrasalVerb, index) => {
-        if (!isRecord(usedPhrasalVerb) || !isNonBlankString(usedPhrasalVerb.id)) return
-        const path = `stories.${level}.usedPhrasalVerbs[${index}]`
-        const catalogPhrasalVerb = phrasalsById.get(usedPhrasalVerb.id)
-        if (usedPhrasalIds.has(usedPhrasalVerb.id)) {
-          issues.push({
-            code: 'STORY_PHRASAL_DUPLICATE',
-            path: `${path}.id`,
-            message: `Story for ${level} repeats phrasal verb id "${usedPhrasalVerb.id}".`,
-          })
-        }
-        usedPhrasalIds.add(usedPhrasalVerb.id)
-        if (!catalogPhrasalVerb) {
-          issues.push({
-            code: 'STORY_UNKNOWN_PHRASAL',
-            path: `${path}.id`,
-            message: `Story for ${level} uses an unknown or wrong-level phrasal verb id "${usedPhrasalVerb.id}".`,
-          })
-          return
-        }
-        if (usedPhrasalVerb.phrasalVerb !== catalogPhrasalVerb.phrasalVerb) {
-          issues.push({
-            code: 'STORY_PHRASAL_MISMATCH',
-            path: `${path}.phrasalVerb`,
-            message: `Story phrasal verb must match catalog id "${usedPhrasalVerb.id}".`,
-          })
-        }
-        if (
-          !isNonBlankString(usedPhrasalVerb.example)
-          || !Array.isArray(catalogPhrasalVerb.examples)
-          || !catalogPhrasalVerb.examples.includes(usedPhrasalVerb.example)
-        ) {
-          issues.push({
-            code: 'STORY_PHRASAL_EXAMPLE_UNKNOWN',
-            path: `${path}.example`,
-            message: `Story example for "${usedPhrasalVerb.id}" must be an exact catalog example.`,
-          })
-          return
-        }
-        declaredPhrasalExamples.push(usedPhrasalVerb.example)
-        if (!phrasalVerbPracticeText.includes(usedPhrasalVerb.example)) {
-          issues.push({
-            code: 'STORY_PHRASAL_EXAMPLE_MISSING',
-            path: `${path}.example`,
-            message: `Story for ${level} does not contain the declared use of "${usedPhrasalVerb.phrasalVerb}".`,
-          })
-        }
+    const frontMatterVocabulary = inspectStoryVocabulary(
+      englishStoryVocabularyText([story.title, ...story.chapterTitles].join('. ')),
+      allowedWords,
+      allCatalogWords,
+    )
+    for (const violation of vocabulary.violations) {
+      issues.push({
+        code: violation.catalogLevel === null
+          ? 'STORY_UNKNOWN_TEXT_WORD'
+          : 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
+        path: `${path}.storyText`,
+        message: violation.catalogLevel === null
+          ? `Novel for ${level} contains unregistered lexical token "${violation.token}".`
+          : `Novel for ${level} contains upper-level form "${violation.token}" (${violation.catalogLevel}).`,
       })
     }
-
-    let phrasalFrameText = phrasalVerbPracticeText
-    for (const example of declaredPhrasalExamples) {
-      phrasalFrameText = phrasalFrameText.split(example).join(' ')
+    for (const violation of frontMatterVocabulary.violations) {
+      issues.push({
+        code: violation.catalogLevel === null
+          ? 'STORY_UNKNOWN_TITLE_WORD'
+          : 'STORY_UPPER_LEVEL_TITLE_WORD',
+        path: `${path}.chapterTitles`,
+        message: violation.catalogLevel === null
+          ? `Novel title material for ${level} contains unregistered token "${violation.token}".`
+          : `Novel title material for ${level} contains upper-level form "${violation.token}" (${violation.catalogLevel}).`,
+      })
     }
 
     const usedLemmas = new Set<string>()
-    const usedFormEntries = new Map<string, { lemma: string; partOfSpeech: string }>()
-    if (Array.isArray(story.usedWords)) {
-      story.usedWords.forEach((usedWord, index) => {
-        if (!isRecord(usedWord) || !isNonBlankString(usedWord.lemma)) {
-          return
-        }
-        usedLemmas.add(usedWord.lemma)
-
-        const wordLevelIndex = lemmaLevels.get(usedWord.lemma)
-        if (wordLevelIndex === undefined) {
-          issues.push({
-            code: 'STORY_UNKNOWN_WORD',
-            path: `stories.${level}.usedWords[${index}].lemma`,
-            message: `Story for ${level} uses unknown lemma "${usedWord.lemma}".`,
-          })
-        } else if (
-          coverage.allowUpperLevelWords === false &&
-          wordLevelIndex > storyLevelIndex
-        ) {
-          issues.push({
-            code: 'STORY_UPPER_LEVEL_WORD',
-            path: `stories.${level}.usedWords[${index}].lemma`,
-            message: `Story for ${level} cannot use upper-level lemma "${usedWord.lemma}".`,
-          })
-        }
-
-        if (!isNonBlankString(usedWord.partOfSpeech) || !Array.isArray(usedWord.forms)) {
-          return
-        }
-        const lemma = usedWord.lemma
-        const partOfSpeech = usedWord.partOfSpeech
-
-        const candidateEntries = (wordsByLemma.get(lemma) ?? [])
-          .flatMap((word) => Array.isArray(word.entries) ? word.entries : [])
-        const entryRecords = candidateEntries.filter(isRecord)
-        if (candidateEntries.length === 0 || entryRecords.length === 0) return
-        const matchingEntry = entryRecords.find(
-          (entry) => entry.partOfSpeech === partOfSpeech,
-        )
-
-        if (!matchingEntry) {
-          if (wordLevelIndex !== undefined) {
-            issues.push({
-              code: 'STORY_POS_MISMATCH',
-              path: `stories.${level}.usedWords[${index}].partOfSpeech`,
-              message: `Story word "${lemma}" has no "${partOfSpeech}" entry.`,
-            })
-          }
-          return
-        }
-
-        const forms = validatedEntryForms(matchingEntry.forms)
-        if (!forms) return
-
-        const knownForms = new Set(
-          forms.map((form) => form.toLowerCase()),
-        )
-        usedWord.forms.forEach((form, formIndex) => {
-          if (!isNonBlankString(form)) return
-          const formPath = `stories.${level}.usedWords[${index}].forms[${formIndex}]`
-
-          if (!knownForms.has(form.toLowerCase())) {
-            issues.push({
-              code: 'STORY_FORM_UNKNOWN',
-              path: formPath,
-              message: `Story form "${form}" is not defined for ${lemma} (${partOfSpeech}).`,
-            })
-            return
-          }
-
-          const normalizedForm = form.toLowerCase()
-          const existingEntry = usedFormEntries.get(normalizedForm)
-          if (
-            existingEntry
-            && (
-              existingEntry.lemma !== lemma
-              || existingEntry.partOfSpeech !== partOfSpeech
-            )
-          ) {
-            issues.push({
-              code: 'STORY_AMBIGUOUS_FORM',
-              path: formPath,
-              message: `Story form "${form}" resolves to both ${existingEntry.lemma} (${existingEntry.partOfSpeech}) and ${lemma} (${partOfSpeech}).`,
-            })
-          } else {
-            usedFormEntries.set(normalizedForm, {
-              lemma,
-              partOfSpeech,
-            })
-          }
-
-          if (!storyContainsForm(readingPackageText, readingPackageTokens, form)) {
-            issues.push({
-              code: 'STORY_FORM_MISSING',
-              path: formPath,
-              message: `Story form "${form}" does not appear as a whole word in the ${level} story.`,
-            })
-          }
+    const duplicateLemmas = new Set<string>()
+    for (const [index, usedWord] of story.usedWords.entries()) {
+      const usedPath = `${path}.usedWords[${index}]`
+      if (usedLemmas.has(usedWord.lemma)) duplicateLemmas.add(usedWord.lemma)
+      usedLemmas.add(usedWord.lemma)
+      const entry = matchingWordEntry(allowedWords, usedWord.lemma, usedWord.partOfSpeech)
+      if (!entry) {
+        issues.push({
+          code: 'STORY_UNKNOWN_WORD',
+          path: `${usedPath}.lemma`,
+          message: `No allowed ${usedWord.partOfSpeech} entry exists for "${usedWord.lemma}".`,
         })
+        continue
+      }
+      const knownForms = new Set(entryFormStrings(entry).map((form) => form.toLowerCase()))
+      for (const [formIndex, form] of usedWord.forms.entries()) {
+        if (!knownForms.has(form.toLowerCase())) {
+          issues.push({
+            code: 'STORY_FORM_UNKNOWN',
+            path: `${usedPath}.forms[${formIndex}]`,
+            message: `Story form "${form}" is not defined for ${usedWord.lemma}.`,
+          })
+        } else if (!hasWholeWordForm(story.storyText, form)) {
+          issues.push({
+            code: 'STORY_FORM_MISSING',
+            path: `${usedPath}.forms[${formIndex}]`,
+            message: `Story form "${form}" does not occur in the novel.`,
+          })
+        }
+      }
+    }
+    for (const lemma of duplicateLemmas) {
+      issues.push({
+        code: 'STORY_WORD_DUPLICATE',
+        path: `${path}.usedWords`,
+        message: `Story repeats used-word lemma "${lemma}".`,
       })
     }
 
-    if (
-      coverage.allowUpperLevelWords === false
-      && (
-        isNonBlankString(story.storyText)
-        || isNonBlankString(story.vocabularyPracticeText)
-        || isNonBlankString(story.phrasalVerbPracticeText)
-      )
-    ) {
-      const textSections = [
-        ['storyText', storyText],
-        ['vocabularyPracticeText', vocabularyFrameText],
-        ['phrasalVerbPracticeText', phrasalFrameText],
-      ] as const
-      for (const [field, text] of textSections) {
-        const tokens = storyTokenSet(text)
-        for (const [form, owner] of [...formOwners].sort(([left], [right]) =>
-          left.localeCompare(right))) {
-          if (
-            owner.levelIndex <= storyLevelIndex
-            || !storyContainsForm(text, tokens, form)
-          ) continue
-
-          issues.push({
-            code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
-            path: `stories.${level}.${field}`,
-            message: `Story for ${level} contains upper-level form "${form}" from ${[...owner.lemmas].join(', ')} (${owner.level}).`,
-          })
-        }
-      }
-    }
-
-    const textSections = [
-      ['storyText', storyText],
-      ['vocabularyPracticeText', vocabularyFrameText],
-      ['phrasalVerbPracticeText', phrasalFrameText],
-    ] as const
-    for (const [field, text] of textSections) {
-      if (!text) continue
-      for (const token of [...storyTokenSet(text)].sort((left, right) =>
-        left.localeCompare(right))) {
-        if (formOwners.has(token) || isAllowedNonCatalogStoryToken(token)) continue
-
+    const phrasalsById = new Map(allowedPhrasalVerbs.map((item) => [item.id, item]))
+    const contextSet = storySentenceContexts(story.storyText)
+    const usedPhrasalIds = new Set<string>()
+    for (const [index, use] of story.usedPhrasalVerbs.entries()) {
+      const usePath = `${path}.usedPhrasalVerbs[${index}]`
+      if (usedPhrasalIds.has(use.id)) {
         issues.push({
-          code: 'STORY_UNKNOWN_TEXT_WORD',
-          path: `stories.${level}.${field}`,
-          message: `Story package for ${level} contains unregistered lexical token "${token}".`,
+          code: 'STORY_PHRASAL_DUPLICATE',
+          path: `${usePath}.id`,
+          message: `Novel repeats phrasal verb id "${use.id}".`,
+        })
+      }
+      usedPhrasalIds.add(use.id)
+      const item = phrasalsById.get(use.id)
+      if (!item) {
+        issues.push({
+          code: 'STORY_UNKNOWN_PHRASAL',
+          path: `${usePath}.id`,
+          message: `Novel uses an unknown or wrong-level phrasal verb id "${use.id}".`,
+        })
+        continue
+      }
+      if (use.phrasalVerb !== item.phrasalVerb) {
+        issues.push({
+          code: 'STORY_PHRASAL_MISMATCH',
+          path: `${usePath}.phrasalVerb`,
+          message: `Phrasal verb must match catalog id "${use.id}".`,
+        })
+      }
+      const readerMeaning = readerPhrasalVerbMeanings(item)[0]
+      if (!readerMeaning || use.meaningKo !== readerMeaning) {
+        issues.push({
+          code: 'STORY_PHRASAL_MEANING_MISMATCH',
+          path: `${usePath}.meaningKo`,
+          message: `Displayed Korean meaning for "${use.phrasalVerb}" must match its audited reader sense.`,
+        })
+      }
+      if (
+        !contextSet.has(normalizedContext(use.context))
+        || !hasWholeWordForm(use.context, use.storyForm)
+      ) {
+        issues.push({
+          code: 'STORY_PHRASAL_CONTEXT_MISSING',
+          path: `${usePath}.context`,
+          message: `Approved context and story form for "${use.phrasalVerb}" must occur in one exact novel sentence.`,
         })
       }
     }
 
-    if (coverage.mustCoverAll === true && Array.isArray(story.usedWords)) {
-      const requiredLemmas = new Set<string>()
-      for (const word of words) {
-        if (isRecord(word) && isNonBlankString(word.lemma)) {
-          requiredLemmas.add(word.lemma)
-        }
-      }
-
-      for (const lemma of requiredLemmas) {
-        if (!usedLemmas.has(lemma)) {
-          issues.push({
-            code: 'STORY_COVERAGE_MISSING',
-            path: `stories.${level}.usedWords`,
-            message: `Story for ${level} is missing required lemma "${lemma}".`,
-          })
-        }
-      }
-
-      for (const phrasalVerb of phrasalVerbs) {
-        if (
-          isRecord(phrasalVerb)
-          && isNonBlankString(phrasalVerb.id)
-          && !usedPhrasalIds.has(phrasalVerb.id)
-        ) {
-          issues.push({
-            code: 'STORY_PHRASAL_COVERAGE_MISSING',
-            path: `stories.${level}.usedPhrasalVerbs`,
-            message: `Story for ${level} is missing required phrasal verb "${phrasalVerb.id}".`,
-          })
-        }
-      }
-    }
-
-    if (coverage.mustCoverAll === true && coverage.coverageRate !== 1) {
+    const coverage = readerStoryCoverage(
+      story.storyText,
+      targetWords,
+      allowedPhrasalVerbs.filter(({ id }) => usedPhrasalIds.has(id)),
+      story.usedPhrasalVerbs,
+    )
+    const actualCoverageRate = coverage.wordTotalCount === 0
+      ? 0
+      : coverage.wordCoveredCount / coverage.wordTotalCount
+    if (Math.abs(story.coverage.coverageRate - actualCoverageRate) > 1e-12) {
       issues.push({
         code: 'STORY_COVERAGE_RATE',
-        path: `stories.${level}.coverage.coverageRate`,
-        message: `Story for ${level} must have coverageRate 1 when mustCoverAll is true.`,
+        path: `${path}.coverage.coverageRate`,
+        message: `coverageRate must equal actual target-level prose coverage (${actualCoverageRate}).`,
       })
     }
-  })
+    const actualTargetLemmas = new Set(
+      targetWords
+        .filter(({ id }) => !coverage.missingWordIds.includes(id))
+        .map(({ lemma }) => lemma),
+    )
+    for (const lemma of actualTargetLemmas) {
+      if (!usedLemmas.has(lemma)) {
+        issues.push({
+          code: 'STORY_USED_WORD_MISSING',
+          path: `${path}.usedWords`,
+          message: `Actual target-level prose word "${lemma}" is missing from metadata.`,
+        })
+      }
+    }
+    for (const lemma of usedLemmas) {
+      if (!actualTargetLemmas.has(lemma)) {
+        issues.push({
+          code: 'STORY_USED_WORD_EXTRA',
+          path: `${path}.usedWords`,
+          message: `Metadata word "${lemma}" is not an actual target-level prose word.`,
+        })
+      }
+    }
+    if (story.coverage.mustCoverAll) {
+      for (const lemma of coverage.missingWordLemmas) {
+        issues.push({
+          code: 'STORY_COVERAGE_MISSING',
+          path: `${path}.storyText`,
+          message: `Novel for ${level} is missing required word "${lemma}".`,
+        })
+      }
+      for (const phrasalVerb of coverage.missingPhrasalVerbs) {
+        issues.push({
+          code: 'STORY_PHRASAL_COVERAGE_MISSING',
+          path: `${path}.storyText`,
+          message: `Novel for ${level} is missing required phrasal verb "${phrasalVerb}".`,
+        })
+      }
+    }
+  }
 
   return issues
 }

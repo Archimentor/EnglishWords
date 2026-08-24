@@ -30,6 +30,18 @@ describe('validateCatalog', () => {
     expect(validateCatalog(makeCatalog(), 'development')).toEqual([])
   })
 
+  test('상위 레벨 어휘 허용 플래그를 거부한다', () => {
+    const catalog = makeCatalog()
+    const coverage = catalog.stories.기초.coverage as { allowUpperLevelWords: boolean }
+    coverage.allowUpperLevelWords = true
+
+    expect(validateCatalog(catalog, 'development')).toContainEqual({
+      code: 'STORY_UPPER_LEVEL_WORDS_ALLOWED',
+      path: 'stories.기초.coverage.allowUpperLevelWords',
+      message: 'Stories may use only their own and lower-level vocabulary.',
+    })
+  })
+
   test('뒤 레벨에서 다시 등장한 lemma를 거부한다', () => {
     const issues = validateCatalog(
       makeCatalog({ wordOverrides: { 유치원: { word: 'play', lemma: 'play' } } }),
@@ -928,7 +940,7 @@ describe('validateCatalog', () => {
     expect(validateCatalog(malformed, 'development')).toContainEqual({
       code: 'INVALID_CATALOG',
       path: 'stories.기초.schemaVersion',
-      message: 'schemaVersion must be a non-blank string.',
+      message: 'schemaVersion must be non-blank.',
     })
   })
 
@@ -1083,7 +1095,7 @@ describe('validateCatalog', () => {
     expect(validateCatalog(catalog, 'release')).toContainEqual({
       code: 'STORY_NOT_MANUAL',
       path: 'stories.기초.isManual',
-      message: 'Story for 기초 must be manually reviewed before release.',
+      message: 'Story for 기초 must be reviewed before release.',
     })
   })
 
@@ -1094,7 +1106,7 @@ describe('validateCatalog', () => {
     expect(validateCatalog(catalog, 'development')).toContainEqual({
       code: 'STORY_WORD_ENUMERATION',
       path: 'stories.기초.storyText',
-      message: 'A reviewed story must use vocabulary in prose, not as a quoted word list.',
+      message: 'The novel must use vocabulary in prose, not as a quoted word list.',
     })
   })
 
@@ -1149,73 +1161,124 @@ describe('validateCatalog', () => {
 })
 
 describe('validateStoryCoverage', () => {
-  test('기본 카탈로그의 모든 레벨 단어를 스토리가 커버한다', () => {
+  test('6챕터 본문과 실제 사용 메타데이터가 맞는 기본 카탈로그를 허용한다', () => {
     expect(validateStoryCoverage(makeCatalog())).toEqual([])
   })
 
-  test('mustCoverAll 스토리에서 빠진 lemma의 정확한 경로와 메시지를 반환한다', () => {
+  test('전체 단어 강제 모드에서는 실제 본문에 빠진 단어를 보고한다', () => {
     const catalog = makeCatalog()
-    catalog.stories.기초.usedWords = []
+    const story = catalog.stories.기초
+    story.storyText = story.storyText.replaceAll(/\bplay\b/gu, 'Mina')
+    story.usedWords = []
+    story.coverage = {
+      mustCoverAll: true,
+      allowUpperLevelWords: false,
+      coverageRate: 0,
+    }
 
     expect(validateStoryCoverage(catalog)).toContainEqual({
       code: 'STORY_COVERAGE_MISSING',
-      path: 'stories.기초.usedWords',
-      message: 'Story for 기초 is missing required lemma "play".',
+      path: 'stories.기초.storyText',
+      message: 'Novel for 기초 is missing required word "play".',
     })
   })
 
-  test('mustCoverAll 스토리는 해당 레벨 단어장의 구동사도 전부 포함해야 한다', () => {
-    const phrasalVerb = makePhrasalVerb()
-    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
-    expect(validateStoryCoverage(catalog)).toEqual([])
+  test('소설은 정확히 6챕터이고 각 챕터가 충분한 분량이어야 한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.storyText = Array.from(
+      { length: 6 },
+      () => 'Mina play.',
+    ).join('\n\n\n')
 
-    catalog.stories.기초.usedPhrasalVerbs = []
-    expect(validateStoryCoverage(catalog)).toContainEqual({
-      code: 'STORY_PHRASAL_COVERAGE_MISSING',
-      path: 'stories.기초.usedPhrasalVerbs',
-      message: `Story for 기초 is missing required phrasal verb "${phrasalVerb.id}".`,
-    })
+    expect(validateStoryCoverage(catalog)).toContainEqual(
+      expect.objectContaining({
+        code: 'STORY_CHAPTER_TOO_SHORT',
+        path: 'stories.기초.storyText',
+      }),
+    )
+
+    catalog.stories.기초.storyText = Array.from(
+      { length: 5 },
+      () => 'Mina play.',
+    ).join('\n\n\n')
+    expect(validateStoryCoverage(catalog)).toContainEqual(
+      expect.objectContaining({
+        code: 'STORY_CHAPTER_STRUCTURE',
+        path: 'stories.기초.storyText',
+      }),
+    )
   })
 
-  test('구동사 선언은 같은 레벨 카탈로그 ID·표제형·예문과 실제 장면을 모두 일치시킨다', () => {
-    const phrasalVerb = makePhrasalVerb()
-    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
-    const use = catalog.stories.기초.usedPhrasalVerbs[0]!
-    use.phrasalVerb = 'invented phrase'
-    use.example = phrasalVerb.examples[1]!
+  test('상위 레벨 소설은 하위 어휘를 허용하고 하위 소설은 상위 어휘를 거부한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.중학교.storyText += ' Mina play.'
+    catalog.stories.기초.storyText += ' Mina answer.'
+
+    const issues = validateStoryCoverage(catalog)
+    expect(issues).not.toContainEqual(expect.objectContaining({
+      code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
+      message: expect.stringContaining('"play"'),
+    }))
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
+      path: 'stories.기초.storyText',
+      message: expect.stringContaining('"answer"'),
+    }))
+  })
+
+  test('본문과 제목의 미등록 일반 어휘를 각각 거부하되 고유명사는 허용한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.storyText += ' Mina quizzacious. Mina Joon.'
+    catalog.stories.기초.chapterTitles[0] = 'play quizzacious'
+
+    const issues = validateStoryCoverage(catalog)
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'STORY_UNKNOWN_TEXT_WORD',
+      path: 'stories.기초.storyText',
+      message: expect.stringContaining('"quizzacious"'),
+    }))
+    expect(issues).toContainEqual(expect.objectContaining({
+      code: 'STORY_UNKNOWN_TITLE_WORD',
+      path: 'stories.기초.chapterTitles',
+      message: expect.stringContaining('"quizzacious"'),
+    }))
+    expect(issues).not.toContainEqual(expect.objectContaining({
+      code: 'STORY_UNKNOWN_TEXT_WORD',
+      message: expect.stringContaining('"joon"'),
+    }))
+  })
+
+  test('기록 형태는 실제 entry에 정의되고 본문에도 whole word로 나와야 한다', () => {
+    const catalog = makeCatalog()
+    catalog.wordlists.기초[0]!.entries[0]!.forms = ['play', 'played']
+    catalog.stories.기초.usedWords[0]!.forms = ['invented', 'played']
 
     expect(validateStoryCoverage(catalog)).toEqual(expect.arrayContaining([
       expect.objectContaining({
-        code: 'STORY_PHRASAL_MISMATCH',
-        path: 'stories.기초.usedPhrasalVerbs[0].phrasalVerb',
+        code: 'STORY_FORM_UNKNOWN',
+        path: 'stories.기초.usedWords[0].forms[0]',
       }),
       expect.objectContaining({
-        code: 'STORY_PHRASAL_EXAMPLE_MISSING',
-        path: 'stories.기초.usedPhrasalVerbs[0].example',
+        code: 'STORY_FORM_MISSING',
+        path: 'stories.기초.usedWords[0].forms[1]',
       }),
     ]))
   })
 
-  test('검증된 구동사 예문의 부가 어휘만 허용하고 장면 프레임의 미등록 단어는 거부한다', () => {
-    const phrasalVerb = makePhrasalVerb()
-    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
-    catalog.stories.기초.phrasalVerbPracticeText += ' Quizzacious.'
+  test('usedWords는 실제 본문에 쓰인 현재 레벨 lemma와 정확히 일치해야 한다', () => {
+    const catalog = makeCatalog()
+    catalog.stories.기초.usedWords = []
 
-    const issues = validateStoryCoverage(catalog)
-    expect(issues).not.toContainEqual(expect.objectContaining({
-      code: 'STORY_UNKNOWN_TEXT_WORD',
-      message: expect.stringContaining('wake'),
-    }))
-    expect(issues).toContainEqual({
-      code: 'STORY_UNKNOWN_TEXT_WORD',
-      path: 'stories.기초.phrasalVerbPracticeText',
-      message: 'Story package for 기초 contains unregistered lexical token "quizzacious".',
+    expect(validateStoryCoverage(catalog)).toContainEqual({
+      code: 'STORY_USED_WORD_MISSING',
+      path: 'stories.기초.usedWords',
+      message: 'Actual target-level prose word "play" is missing from metadata.',
     })
   })
 
-  test('mustCoverAll 스토리의 coverageRate가 1이 아니면 거부한다', () => {
+  test('coverageRate는 별도 카드가 아닌 실제 본문 사용률과 같아야 한다', () => {
     const catalog = makeCatalog()
-    catalog.stories.기초.coverage.coverageRate = 0.75
+    catalog.stories.기초.coverage.coverageRate = 0.5
 
     expect(validateStoryCoverage(catalog)).toContainEqual(
       expect.objectContaining({
@@ -1225,190 +1288,36 @@ describe('validateStoryCoverage', () => {
     )
   })
 
-  test('기초 스토리의 상위 레벨 단어와 알 수 없는 단어를 각 경로에서 거부한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.기초.usedWords.push(
-      { lemma: 'answer', partOfSpeech: 'noun', forms: ['answer'] },
-      { lemma: 'mystery', partOfSpeech: 'noun', forms: ['mystery'] },
-    )
+  test('구동사 선언은 누적 카탈로그·표면형·정확한 문장·문맥 뜻을 모두 검증한다', () => {
+    const phrasalVerb = makePhrasalVerb()
+    const catalog = makePhrasalCatalog([phrasalVerb], { 기초: [{ ...phrasalVerb }] })
+    const use = catalog.stories.기초.usedPhrasalVerbs[0]!
+    use.phrasalVerb = 'invented phrase'
+    use.context = 'Mina invented a different sentence.'
+    use.meaningKo = '잘못된 뜻'
 
-    expect(validateStoryCoverage(catalog)).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          code: 'STORY_UPPER_LEVEL_WORD',
-          path: 'stories.기초.usedWords[1].lemma',
-        }),
-        expect.objectContaining({
-          code: 'STORY_UNKNOWN_WORD',
-          path: 'stories.기초.usedWords[2].lemma',
-        }),
-      ]),
-    )
+    expect(validateStoryCoverage(catalog)).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        code: 'STORY_PHRASAL_MISMATCH',
+        path: 'stories.기초.usedPhrasalVerbs[0].phrasalVerb',
+      }),
+      expect.objectContaining({
+        code: 'STORY_PHRASAL_CONTEXT_MISSING',
+        path: 'stories.기초.usedPhrasalVerbs[0].context',
+      }),
+      expect.objectContaining({
+        code: 'STORY_PHRASAL_MEANING_MISMATCH',
+        path: 'stories.기초.usedPhrasalVerbs[0].meaningKo',
+      }),
+    ]))
   })
 
-  test('상위 레벨 스토리에서 하위 레벨 단어를 허용한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.중학교.usedWords.push({
-      lemma: 'play',
-      partOfSpeech: 'verb',
-      forms: ['play'],
-    })
-
-    const levelIssues = validateStoryCoverage(catalog).filter(({ code }) =>
-      ['STORY_UPPER_LEVEL_WORD', 'STORY_UNKNOWN_WORD'].includes(code),
-    )
-
-    expect(levelIssues).toEqual([])
-  })
-
-  test('usedWords의 품사는 실제 단어 entry와 정확히 일치해야 한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.기초.usedWords[0]!.partOfSpeech = 'noun'
-
-    expect(validateStoryCoverage(catalog)).toContainEqual({
-      code: 'STORY_POS_MISMATCH',
-      path: 'stories.기초.usedWords[0].partOfSpeech',
-      message: 'Story word "play" has no "noun" entry.',
-    })
-  })
-
-  test('기록 형태는 해당 entry에 정의되어야 하고 실제 본문에도 whole-word로 나와야 한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.기초.usedWords[0]!.forms = ['invented', 'play']
-    catalog.stories.기초.storyText = 'The player smiles.'
-
-    expect(validateStoryCoverage(catalog)).toEqual(
-      expect.arrayContaining([
-        {
-          code: 'STORY_FORM_UNKNOWN',
-          path: 'stories.기초.usedWords[0].forms[0]',
-          message: 'Story form "invented" is not defined for play (verb).',
-        },
-        {
-          code: 'STORY_FORM_MISSING',
-          path: 'stories.기초.usedWords[0].forms[1]',
-          message: 'Story form "play" does not appear as a whole word in the 기초 story.',
-        },
-      ]),
-    )
-  })
-
-  test('본편과 분리된 어휘 장면도 형태 커버리지와 어휘 경계를 동일하게 검증한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.기초.storyText = 'Mina.'
-    catalog.stories.기초.vocabularyPracticeText = 'Mina can play. Quizzacious.'
-
-    const issues = validateStoryCoverage(catalog)
-    expect(issues.some(({ code }) => code === 'STORY_FORM_MISSING')).toBe(false)
-    expect(issues).toContainEqual({
-      code: 'STORY_UNKNOWN_TEXT_WORD',
-      path: 'stories.기초.vocabularyPracticeText',
-      message: 'Story package for 기초 contains unregistered lexical token "can".',
-    })
-    expect(issues).toContainEqual({
-      code: 'STORY_UNKNOWN_TEXT_WORD',
-      path: 'stories.기초.vocabularyPracticeText',
-      message: 'Story package for 기초 contains unregistered lexical token "quizzacious".',
-    })
-  })
-
-  test('동일한 story form을 서로 다른 품사 entry로 중복 선언하면 거부한다', () => {
-    const catalog = makeCatalog()
-    const word = catalog.wordlists.기초[0]!
-    word.entries.push({
-      ...word.entries[0]!,
-      partOfSpeech: 'noun',
-      meanings: ['놀이'],
-    })
-    catalog.stories.기초.usedWords.push({
-      lemma: 'play',
-      partOfSpeech: 'noun',
-      forms: ['play'],
-    })
-
-    expect(validateStoryCoverage(catalog)).toContainEqual({
-      code: 'STORY_AMBIGUOUS_FORM',
-      path: 'stories.기초.usedWords[1].forms[0]',
-      message: 'Story form "play" resolves to both play (verb) and play (noun).',
-    })
-  })
-
-  test('usedWords에서 빠뜨린 상위 레벨 형태가 본문에 있으면 거부한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} answer`
-
-    expect(validateStoryCoverage(catalog)).toContainEqual({
-      code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
-      path: 'stories.기초.storyText',
-      message: 'Story for 기초 contains upper-level form "answer" from answer (초등학교).',
-    })
-  })
-
-  test('상위 레벨에 배정된 기능어도 하위 레벨 본문에서 거부한다', () => {
-    const catalog = makeCatalog({
-      wordOverrides: {
-        유치원: {
-          id: 'word-because',
-          word: 'because',
-          lemma: 'because',
-          familyId: 'family-because',
-          entryOverrides: {
-            partOfSpeech: 'conjunction',
-            forms: ['because'],
-          },
-        },
-      },
-    })
-    catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} Because.`
-
-    expect(validateStoryCoverage(catalog)).toContainEqual({
-      code: 'STORY_UPPER_LEVEL_WORD_IN_TEXT',
-      path: 'stories.기초.storyText',
-      message: 'Story for 기초 contains upper-level form "because" from because (유치원).',
-    })
-  })
-
-  test('본문에만 삽입한 미등록 lexical token을 거부한다', () => {
-    const catalog = makeCatalog()
-    catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} Quizzacious.`
-
-    expect(validateStoryCoverage(catalog)).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({
-          code: 'STORY_UNKNOWN_TEXT_WORD',
-          path: 'stories.기초.storyText',
-        }),
-      ]),
-    )
-  })
-
-  test.each(['Without', 'Might', '2026'])(
-    '미등록 문법어와 숫자 %s도 레벨 검증을 우회하지 못한다',
-    (token) => {
-      const catalog = makeCatalog()
-      catalog.stories.기초.storyText = `${catalog.stories.기초.storyText} ${token}.`
-
-      expect(validateStoryCoverage(catalog)).toContainEqual(
-        expect.objectContaining({
-          code: 'STORY_UNKNOWN_TEXT_WORD',
-          path: 'stories.기초.storyText',
-          message: expect.stringContaining(token.toLowerCase()),
-        }),
-      )
-    },
-  )
-
-  test('malformed word entry가 있어도 coverage 검증은 구조화된 이슈를 반환한다', () => {
+  test('malformed word entry가 있어도 카탈로그 검증은 구조화된 이슈를 반환한다', () => {
     const catalog = makeCatalog()
     const malformedWord = catalog.wordlists.기초[0] as unknown as { entries: unknown[] }
     malformedWord.entries = [null]
 
-    const issues = [
-      ...validateCatalog(catalog, 'development'),
-      ...validateStoryCoverage(catalog),
-    ]
-
-    expect(issues).toContainEqual(
+    expect(validateCatalog(catalog, 'development')).toContainEqual(
       expect.objectContaining({
         code: 'INVALID_CATALOG',
         path: 'wordlists.기초[0].entries[0]',

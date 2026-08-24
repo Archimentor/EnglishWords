@@ -1,189 +1,198 @@
 {
-  "기초": {
-    "words": {
-      "covered": 500,
-      "total": 500,
-      "missing": []
-    },
-    "phrasalVerbs": {
-      "covered": 250,
-      "total": 250,
-      "missing": []
-    },
-    "paragraphs": {
-      "curated": 21,
-      "reader": 101
-    },
-    "sentences": {
-      "total": 535,
-      "unique": 534,
-      "repeated": 1,
-      "repeatedRate": 0.0019,
-      "averageWords": 9.81,
-      "maxWords": 30,
-      "repeatedSamples": [
-        {
-          "sentence": "Mina smiles.",
-          "count": 2
-        }
-      ]
-    },
-    "quality": {
-      "mechanicalLabels": 0,
-      "legacyFixedFrames": 0,
-      "legacySceneClosers": 0,
-      "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 29
-    }
+  "generatedAt": "2026-08-24T10:18:52.300Z",
+  "contract": {
+    "chapterCount": 6,
+    "minimumParagraphsPerChapter": 5,
+    "minimumSentencesPerChapter": 12,
+    "separateVocabularyCards": false,
+    "separatePhrasalVerbCards": false,
+    "cumulativeVocabularyByLevel": true,
+    "properNounsAllowedAtEveryLevel": true,
+    "actualProseTokensMustBeClickable": true,
+    "phrasalMeaningsBoundToExactContext": true
   },
-  "유치원": {
-    "words": {
-      "covered": 500,
-      "total": 500,
-      "missing": []
+  "levels": [
+    {
+      "level": "기초",
+      "title": "The Blue Bags",
+      "chapters": 6,
+      "paragraphCounts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "sentenceCounts": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "averageSentenceWords": 9.5,
+      "targetWordsUsed": 160,
+      "targetWordsAvailable": 500,
+      "targetCoverageRate": 0.32,
+      "contextualPhrasalVerbs": 33,
+      "clickableWordTokens": 962,
+      "clickablePhrasalUses": 33,
+      "properNounTokens": [
+        "daddy",
+        "joon",
+        "joon's",
+        "leo",
+        "leo's",
+        "maple",
+        "mina",
+        "mina's",
+        "sara"
+      ],
+      "duplicateSentences": [],
+      "vocabularyViolations": [],
+      "unclickableTokens": [],
+      "phrasalIssues": []
     },
-    "phrasalVerbs": {
-      "covered": 250,
-      "total": 250,
-      "missing": []
+    {
+      "level": "유치원",
+      "title": "Music in a Dark Room",
+      "chapters": 6,
+      "paragraphCounts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "sentenceCounts": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "averageSentenceWords": 9.39,
+      "targetWordsUsed": 78,
+      "targetWordsAvailable": 500,
+      "targetCoverageRate": 0.156,
+      "contextualPhrasalVerbs": 37,
+      "clickableWordTokens": 976,
+      "clickablePhrasalUses": 37,
+      "properNounTokens": [
+        "friday",
+        "joon",
+        "mina",
+        "mina's",
+        "monday",
+        "ms",
+        "park",
+        "sara",
+        "saturday"
+      ],
+      "duplicateSentences": [],
+      "vocabularyViolations": [],
+      "unclickableTokens": [],
+      "phrasalIssues": []
     },
-    "paragraphs": {
-      "curated": 26,
-      "reader": 107
+    {
+      "level": "초등학교",
+      "title": "The Lamp at Harbor Point",
+      "chapters": 6,
+      "paragraphCounts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "sentenceCounts": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "averageSentenceWords": 11.61,
+      "targetWordsUsed": 73,
+      "targetWordsAvailable": 1500,
+      "targetCoverageRate": 0.048666666666666664,
+      "contextualPhrasalVerbs": 29,
+      "clickableWordTokens": 1232,
+      "clickablePhrasalUses": 29,
+      "properNounTokens": [
+        "han",
+        "harbor",
+        "joon",
+        "leo",
+        "leo's",
+        "mina",
+        "mina's",
+        "mr",
+        "park",
+        "point"
+      ],
+      "duplicateSentences": [],
+      "vocabularyViolations": [],
+      "unclickableTokens": [],
+      "phrasalIssues": []
     },
-    "sentences": {
-      "total": 603,
-      "unique": 603,
-      "repeated": 0,
-      "repeatedRate": 0,
-      "averageWords": 10.4,
-      "maxWords": 34,
-      "repeatedSamples": []
-    },
-    "quality": {
-      "mechanicalLabels": 0,
-      "legacyFixedFrames": 0,
-      "legacySceneClosers": 0,
-      "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 48
+    {
+      "level": "중학교",
+      "title": "The Last Broadcast",
+      "chapters": 6,
+      "paragraphCounts": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "sentenceCounts": [
+        20,
+        20,
+        20,
+        20,
+        20,
+        20
+      ],
+      "averageSentenceWords": 11.77,
+      "targetWordsUsed": 22,
+      "targetWordsAvailable": 2500,
+      "targetCoverageRate": 0.0088,
+      "contextualPhrasalVerbs": 31,
+      "clickableWordTokens": 1281,
+      "clickablePhrasalUses": 31,
+      "properNounTokens": [
+        "aisha",
+        "august",
+        "choi",
+        "friday",
+        "fridays",
+        "joon",
+        "june",
+        "lee",
+        "lee's",
+        "mina",
+        "monday",
+        "mr",
+        "ms",
+        "rahman",
+        "riverside",
+        "thursday",
+        "tuesday",
+        "wednesday"
+      ],
+      "duplicateSentences": [],
+      "vocabularyViolations": [],
+      "unclickableTokens": [],
+      "phrasalIssues": []
     }
-  },
-  "초등학교": {
-    "words": {
-      "covered": 1500,
-      "total": 1500,
-      "missing": []
-    },
-    "phrasalVerbs": {
-      "covered": 250,
-      "total": 250,
-      "missing": []
-    },
-    "paragraphs": {
-      "curated": 32,
-      "reader": 208
-    },
-    "sentences": {
-      "total": 1363,
-      "unique": 1361,
-      "repeated": 2,
-      "repeatedRate": 0.0015,
-      "averageWords": 9.71,
-      "maxWords": 33,
-      "repeatedSamples": [
-        {
-          "sentence": "Mrs.",
-          "count": 3
-        }
-      ]
-    },
-    "quality": {
-      "mechanicalLabels": 0,
-      "legacyFixedFrames": 0,
-      "legacySceneClosers": 0,
-      "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 17
-    }
-  },
-  "중학교": {
-    "words": {
-      "covered": 2500,
-      "total": 2500,
-      "missing": []
-    },
-    "phrasalVerbs": {
-      "covered": 250,
-      "total": 250,
-      "missing": []
-    },
-    "paragraphs": {
-      "curated": 36,
-      "reader": 281
-    },
-    "sentences": {
-      "total": 2440,
-      "unique": 2419,
-      "repeated": 21,
-      "repeatedRate": 0.0086,
-      "averageWords": 8.59,
-      "maxWords": 39,
-      "repeatedSamples": [
-        {
-          "sentence": "The move from Mr.",
-          "count": 4
-        },
-        {
-          "sentence": "With the evidence from the current evidence still open, Mina follows the investigation toward Mr.",
-          "count": 4
-        },
-        {
-          "sentence": "Before Mr.",
-          "count": 3
-        },
-        {
-          "sentence": "Mr.",
-          "count": 3
-        },
-        {
-          "sentence": "What Mina learned at the current evidence remains relevant as she prepares to examine Mr.",
-          "count": 3
-        },
-        {
-          "sentence": "Before moving from the current evidence to Mr.",
-          "count": 2
-        },
-        {
-          "sentence": "Before moving from the current evidence to Ms.",
-          "count": 2
-        },
-        {
-          "sentence": "Before the next source can answer the next question, Mina compares it with what she found at Mr.",
-          "count": 2
-        },
-        {
-          "sentence": "S.",
-          "count": 2
-        },
-        {
-          "sentence": "The evidence from Mr.",
-          "count": 2
-        },
-        {
-          "sentence": "The evidence from the current evidence raises another question before Mina turns to Mr.",
-          "count": 2
-        },
-        {
-          "sentence": "The evidence from the public library raises another question before Mina turns to Mr.",
-          "count": 2
-        }
-      ]
-    },
-    "quality": {
-      "mechanicalLabels": 0,
-      "legacyFixedFrames": 0,
-      "legacySceneClosers": 0,
-      "lowLevelUnsafeHits": [],
-      "fallbackLikeSentences": 22
-    }
-  }
+  ]
 }

@@ -1,9 +1,10 @@
 {
   "schemaVersion": "1.0.0",
   "story": {
-    "schemaVersion": "1.0.0",
+    "schemaVersion": "2.0.0",
     "level": "기초",
     "title": "승인 입력 형식 예시",
+    "chapterTitles": ["하나", "둘", "셋", "넷", "다섯", "여섯"],
     "isManual": true,
     "coverage": {
       "mustCoverAll": false,
@@ -12,9 +13,7 @@
     },
     "usedWords": [],
     "usedPhrasalVerbs": [],
-    "storyText": "Mina.",
-    "vocabularyPracticeText": "Mina.",
-    "phrasalVerbPracticeText": "Mina."
+    "storyText": "Mina.\n\n\nMina.\n\n\nMina.\n\n\nMina.\n\n\nMina.\n\n\nMina."
   },
   "approval": {
     "reviewer": "editor@example.com",
@@ -22,7 +21,7 @@
     "sourceDigest": {
       "algorithm": "sha256",
       "canonicalization": "sorted-json-v1",
-      "value": "5381a653d2bc30e0af3207414edc9f1fec85aff0ef7a2da69fe40b4a371e0bd6"
+      "value": "93bf503e7347e09c7d64ddd5255f6cc056984ded04cae568ef82820c9e18f5a0"
     }
   }
 }

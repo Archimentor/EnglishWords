@@ -20,6 +20,7 @@ import type {
 } from '../src/domain/content/types'
 import { validateCatalog, validateStoryCoverage } from '../src/domain/content/validation'
 import { hasWholeWordForm } from '../src/domain/content/storyForms'
+import { readerStoryContextualPhrasalVerbs } from '../src/domain/content/readerStory'
 
 const WORDLIST_FILES: Record<Level, string> = {
   기초: '../public/data/wordlists/기초.json',
@@ -79,13 +80,12 @@ const STORY_FIELDS = [
   'schemaVersion',
   'level',
   'title',
+  'chapterTitles',
   'isManual',
   'coverage',
   'usedWords',
   'usedPhrasalVerbs',
   'storyText',
-  'vocabularyPracticeText',
-  'phrasalVerbPracticeText',
 ] as const
 
 const PLACEHOLDER_PATTERN = /TODO|TBD|준비\s*중|placeholder|lorem ipsum/i
@@ -267,32 +267,36 @@ describe('구동사와 승인 정본 스토리 콘텐츠', () => {
     expect(byPhrase.get('lay on')?.meaningKo).toEqual(['음식, 오락, 서비스 등을 특히 무료로 제공하다'])
   })
 
-  test.each(LEVELS)('%s 승인 정본 스토리는 통합 단어장 전체를 실제 장면에서 사용한다', (level) => {
+  test.each(LEVELS)('%s 승인 정본은 자연스러운 본문에 실제로 쓴 항목만 기록한다', (level) => {
     const catalog = loadCatalog()
     const words = catalog.wordlists[level]
-    const phrasalVerbs = catalog.phrasalVerbs.byLevel[level]
+    const levelIndex = LEVELS.indexOf(level)
+    const cumulativePhrasalVerbs = LEVELS
+      .slice(0, levelIndex + 1)
+      .flatMap((candidateLevel) => catalog.phrasalVerbs.byLevel[candidateLevel])
     const story = catalog.stories[level]
+
     expect(story).toMatchObject({
-      schemaVersion: '1.0.0',
+      schemaVersion: '2.0.0',
       level,
       isManual: true,
       coverage: {
-        mustCoverAll: true,
+        mustCoverAll: false,
         allowUpperLevelWords: false,
-        coverageRate: 1,
       },
     })
-    expect(story.title).toMatch(/[가-힣]/)
-    expect(story.title.length).toBeLessThanOrEqual(20)
-    expect(story.usedWords.map(({ lemma }) => lemma)).toEqual(words.map(({ lemma }) => lemma))
-    expect(story.usedPhrasalVerbs.map(({ id }) => id))
-      .toEqual(phrasalVerbs.map(({ id }) => id))
+    expect(story.chapterTitles).toHaveLength(6)
+    expect(new Set(story.chapterTitles).size).toBe(6)
+    expect(story).not.toHaveProperty('vocabularyPracticeText')
+    expect(story).not.toHaveProperty('phrasalVerbPracticeText')
+    expect(story.usedWords.length).toBeGreaterThan(0)
+    expect(story.usedWords.length).toBeLessThan(words.length)
+    expect(story.coverage.coverageRate).toBeCloseTo(story.usedWords.length / words.length, 10)
 
     story.usedWords.forEach((usedWord) => {
       const word = words.find(({ lemma }) => lemma === usedWord.lemma)
       const hasMatchingEntry = word?.entries.some((entry) => {
         const normalizedForms = formStrings(entry.forms)
-
         return entry.partOfSpeech === usedWord.partOfSpeech
           && usedWord.forms.every((form) => normalizedForms.includes(form))
       })
@@ -300,43 +304,31 @@ describe('구동사와 승인 정본 스토리 콘텐츠', () => {
       expect(word).toBeDefined()
       expect(hasMatchingEntry).toBe(true)
       expect(usedWord.forms.length).toBeGreaterThan(0)
-      const readingPackage = [
-        story.storyText,
-        story.vocabularyPracticeText,
-        story.phrasalVerbPracticeText,
-      ].join('\n\n')
-      expect(usedWord.forms.every((form) => hasWholeWordForm(readingPackage, form))).toBe(true)
+      expect(usedWord.forms.every((form) => hasWholeWordForm(story.storyText, form))).toBe(true)
     })
 
+    const contextualUses = readerStoryContextualPhrasalVerbs(
+      story.storyText,
+      story.usedPhrasalVerbs,
+      cumulativePhrasalVerbs,
+    )
+    expect(contextualUses).toHaveLength(story.usedPhrasalVerbs.length)
     story.usedPhrasalVerbs.forEach((usedPhrasalVerb) => {
-      const phrasalVerb = phrasalVerbs.find(({ id }) => id === usedPhrasalVerb.id)
+      const phrasalVerb = cumulativePhrasalVerbs.find(({ id }) => id === usedPhrasalVerb.id)
       expect(phrasalVerb).toBeDefined()
       expect(usedPhrasalVerb.phrasalVerb).toBe(phrasalVerb?.phrasalVerb)
-      expect(phrasalVerb?.examples).toContain(usedPhrasalVerb.example)
-      expect(containsPhrasalUse(usedPhrasalVerb.example, usedPhrasalVerb.phrasalVerb)).toBe(true)
-      expect(story.phrasalVerbPracticeText).toContain(usedPhrasalVerb.example)
-      expect(story.phrasalVerbPracticeText).toContain(`“${usedPhrasalVerb.example}”`)
+      expect(usedPhrasalVerb.context).toContain(usedPhrasalVerb.storyForm)
+      expect(story.storyText).toContain(usedPhrasalVerb.context)
+      expect(usedPhrasalVerb.senseId).toMatch(/^[a-f0-9]{64}$/u)
+      expect(usedPhrasalVerb.meaningKo).toMatch(/[가-힣]/u)
     })
 
-    const paragraphs = story.storyText.trim().split(/\n\s*\n/u)
-    const sentences = story.storyText.match(/[^.!?]+[.!?]+/gu) ?? []
-    const multiSentenceParagraphs = paragraphs.filter((paragraph) =>
-      (paragraph.match(/[.!?]+/gu) ?? []).length >= 2)
-    expect(story.storyText).not.toMatch(
-      /[“"]\s*[\p{L}\p{N}]+(?:['’–-][\p{L}\p{N}]+)*\s*[”"]\s*,\s*[“"]/u,
-    )
-    expect(paragraphs[0]).toMatch(/\bMina\b/u)
-    expect(paragraphs.at(-1)).toMatch(/\bMina\b/u)
-    expect(sentences.length).toBeGreaterThanOrEqual(12)
-    expect(multiSentenceParagraphs.length).toBeGreaterThanOrEqual(Math.ceil(paragraphs.length / 2))
-    expect(story.vocabularyPracticeText.trim().split(/\n\s*\n/u).length).toBeGreaterThan(0)
-    const quotedWordExamples = [...story.vocabularyPracticeText.matchAll(/“([^”]+)”/gu)]
-    expect(quotedWordExamples.length).toBeGreaterThanOrEqual(words.length - 1)
-    const phrasalParagraphs = story.phrasalVerbPracticeText.trim().split(/\n\s*\n/u)
-    expect(phrasalParagraphs.length).toBeGreaterThanOrEqual(Math.ceil(phrasalVerbs.length / 5))
-    expect(phrasalParagraphs.every((paragraph) => /\bMina\b/u.test(paragraph))).toBe(true)
-    expect(new Set(phrasalParagraphs).size).toBe(phrasalParagraphs.length)
-
+    const chapters = story.storyText.trim().split(/\n\s*\n\s*\n/u)
+    expect(chapters).toHaveLength(6)
+    for (const chapter of chapters) {
+      expect(chapter.split(/\n\s*\n/u)).toHaveLength(5)
+      expect(chapter.match(/[^.!?]+[.!?]+/gu)?.length ?? 0).toBeGreaterThanOrEqual(12)
+    }
     expect(collectStrings(story).some((value) => PLACEHOLDER_PATTERN.test(value))).toBe(false)
   })
 
@@ -389,8 +381,8 @@ describe('수동 스토리 JSON 스키마', () => {
     expect(schema.properties?.level?.enum).toEqual(LEVELS)
     expect(schema.properties?.title?.pattern).toBe('\\S')
     expect(schema.properties?.storyText?.pattern).toBe('\\S')
-    expect(schema.properties?.vocabularyPracticeText?.pattern).toBe('\\S')
-    expect(schema.properties?.phrasalVerbPracticeText?.pattern).toBe('\\S')
+    expect(schema.properties?.chapterTitles).toMatchObject({ minItems: 6, maxItems: 6 })
+    expect(schema.properties?.chapterTitles?.items?.pattern).toBe('\\S')
     expect(schema.properties?.isManual?.type).toBe('boolean')
 
     expect(coverageSchema?.required).toEqual([
@@ -400,7 +392,7 @@ describe('수동 스토리 JSON 스키마', () => {
     ])
     expect(coverageSchema?.additionalProperties).toBe(false)
     expect(coverageSchema?.properties?.mustCoverAll?.type).toBe('boolean')
-    expect(coverageSchema?.properties?.allowUpperLevelWords?.type).toBe('boolean')
+    expect(coverageSchema?.properties?.allowUpperLevelWords?.const).toBe(false)
     expect(coverageSchema?.properties?.coverageRate).toMatchObject({
       type: 'number',
       minimum: 0,
@@ -414,10 +406,18 @@ describe('수동 스토리 JSON 스키마', () => {
     expect(usedWordSchema?.properties?.partOfSpeech?.pattern).toBe('\\S')
     expect(usedWordSchema?.properties?.forms?.minItems).toBe(1)
     expect(usedWordSchema?.properties?.forms?.items?.pattern).toBe('\\S')
-    expect(usedPhrasalVerbSchema?.required).toEqual(['id', 'phrasalVerb', 'example'])
+    expect(usedPhrasalVerbSchema?.required).toEqual([
+      'id',
+      'phrasalVerb',
+      'storyForm',
+      'context',
+      'senseId',
+      'meaningKo',
+    ])
     expect(usedPhrasalVerbSchema?.additionalProperties).toBe(false)
-    expect(usedPhrasalVerbSchema?.properties?.id?.pattern).toBe('\\S')
-    expect(usedPhrasalVerbSchema?.properties?.phrasalVerb?.pattern).toBe('\\S')
-    expect(usedPhrasalVerbSchema?.properties?.example?.pattern).toBe('\\S')
+    for (const field of ['id', 'phrasalVerb', 'storyForm', 'context', 'meaningKo'] as const) {
+      expect(usedPhrasalVerbSchema?.properties?.[field]?.pattern).toBe('\\S')
+    }
+    expect(usedPhrasalVerbSchema?.properties?.senseId?.pattern).toBe('^[a-f0-9]{64}$')
   })
 })

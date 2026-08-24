@@ -53,16 +53,15 @@ function validateStoryPayload(
     'schemaVersion',
     'level',
     'title',
+    'chapterTitles',
     'isManual',
     'coverage',
     'usedWords',
     'usedPhrasalVerbs',
     'storyText',
-    'vocabularyPracticeText',
-    'phrasalVerbPracticeText',
   ])) {
     issues.push(
-      `${path} must contain exactly schemaVersion, level, title, isManual, coverage, usedWords, usedPhrasalVerbs, storyText, vocabularyPracticeText, phrasalVerbPracticeText`,
+      `${path} must contain exactly schemaVersion, level, title, chapterTitles, isManual, coverage, usedWords, usedPhrasalVerbs, storyText`,
     )
   }
 
@@ -75,18 +74,32 @@ function validateStoryPayload(
         issues.push(`${usedPhrasalPath} must be an object`)
         return
       }
-      if (!hasExactFields(usedPhrasalVerb, ['id', 'phrasalVerb', 'example'])) {
-        issues.push(`${usedPhrasalPath} must contain exactly id, phrasalVerb, example`)
+      const fields = [
+        'id',
+        'phrasalVerb',
+        'storyForm',
+        'context',
+        'senseId',
+        'meaningKo',
+      ] as const
+      if (!hasExactFields(usedPhrasalVerb, fields)) {
+        issues.push(`${usedPhrasalPath} must contain exactly ${fields.join(', ')}`)
       }
-      for (const field of ['id', 'phrasalVerb', 'example'] as const) {
+      for (const field of fields) {
         if (!isNonBlankString(usedPhrasalVerb[field])) {
           issues.push(`${usedPhrasalPath}.${field} must be a non-blank string`)
         }
       }
+      if (
+        isNonBlankString(usedPhrasalVerb.senseId)
+        && !/^[a-f0-9]{64}$/u.test(usedPhrasalVerb.senseId)
+      ) {
+        issues.push(`${usedPhrasalPath}.senseId must be a lowercase SHA-256 digest`)
+      }
     })
   }
-  if (value.schemaVersion !== '1.0.0') {
-    issues.push(`${path}.schemaVersion must be 1.0.0`)
+  if (value.schemaVersion !== '2.0.0') {
+    issues.push(`${path}.schemaVersion must be 2.0.0`)
   }
   if (value.level !== expectedLevel) {
     issues.push(`${path}.level must match ${expectedLevel}`)
@@ -94,8 +107,15 @@ function validateStoryPayload(
   if (!isNonBlankString(value.title)) {
     issues.push(`${path}.title must be a non-blank string`)
   }
+  if (
+    !Array.isArray(value.chapterTitles)
+    || value.chapterTitles.length !== 6
+    || !value.chapterTitles.every(isNonBlankString)
+  ) {
+    issues.push(`${path}.chapterTitles must contain exactly six non-blank strings`)
+  }
   if (value.isManual !== true) {
-    issues.push(`${path}.isManual must already be true in the human-approved source`)
+    issues.push(`${path}.isManual must already be true in the approved source`)
   }
 
   if (!isRecord(value.coverage)) {
@@ -114,6 +134,8 @@ function validateStoryPayload(
     }
     if (typeof value.coverage.allowUpperLevelWords !== 'boolean') {
       issues.push(`${path}.coverage.allowUpperLevelWords must be a boolean`)
+    } else if (value.coverage.allowUpperLevelWords !== false) {
+      issues.push(`${path}.coverage.allowUpperLevelWords must be false`)
     }
     if (
       typeof value.coverage.coverageRate !== 'number'
@@ -155,12 +177,6 @@ function validateStoryPayload(
 
   if (!isNonBlankString(value.storyText)) {
     issues.push(`${path}.storyText must be a non-blank string`)
-  }
-  if (!isNonBlankString(value.vocabularyPracticeText)) {
-    issues.push(`${path}.vocabularyPracticeText must be a non-blank string`)
-  }
-  if (!isNonBlankString(value.phrasalVerbPracticeText)) {
-    issues.push(`${path}.phrasalVerbPracticeText must be a non-blank string`)
   }
   return issues
 }

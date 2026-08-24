@@ -4,11 +4,11 @@
 
 운영 사이트: [`https://archimentor.github.io/EnglishWords/`](https://archimentor.github.io/EnglishWords/)
 
-> 현재 카탈로그는 단어 5,000개(기초 500·유치원 500·초등학교 1,500·중학교 2,500), 구동사 1,000개(레벨별 250), 문법 노드 42개, 승인 소설 4개입니다. 각 레벨 읽기 패키지는 도입·갈등·전환·결말이 이어지는 본편과 접이식 일반 단어·구동사 확장 장면을 분리하면서, 그 레벨 통합 단어장 전체를 빠짐없이 사용합니다. reviewer·reviewedAt·전체 payload digest가 고정된 승인 정본(`isManual: true`)입니다.
+> 현재 카탈로그는 단어 5,000개(기초 500·유치원 500·초등학교 1,500·중학교 2,500), 구동사 1,000개(레벨별 250), 문법 노드 42개, 승인 소설 4개입니다. 각 소설은 6개의 충분한 분량을 가진 챕터로 이어지며, 별도 단어·표현 장면이나 카드는 만들지 않습니다. 본문에는 사건에 자연스럽게 필요한 단어와 구동사만 사용하고, reviewer·reviewedAt·전체 payload digest로 정본을 고정합니다.
 
 ## 제공 기능
 
-- 기초·유치원·초등학교·중학교 대시보드와 레벨별 서사형 소설·일반 단어/구동사 전체 확장 장면·통합 단어장, 완료·미완료 개별 목록
+- 기초·유치원·초등학교·중학교 대시보드와 레벨별 6챕터 소설, 활용형까지 클릭되는 누적 레벨 사전, 본문 속 `구` 표식으로 여는 문맥별 구동사 뜻, 일반 단어·구동사 통합 단어장과 완료·미완료 개별 목록
 - 품사별 뜻·형태·예문을 보존한 일반 단어와 구동사의 통합 검색 및 종류별 필터
 - A1~C1, 총 42개 문법 노드의 진단→연습→수준별 구조화 산출→재진단 흐름과 관련 카탈로그 어휘 연결
 - 상단 `학습`→레벨 선택, `퀴즈`→레벨 선택→6종 유형 선택의 명시적 진입 흐름
@@ -70,7 +70,9 @@ npm run build
 | `npm run test:watch` | 변경 감시 테스트 | 개발 중 반복 실행 |
 | `npm run lint` | 정적 코드 검사 | 오류 0개 |
 | `npm run validate:data` | 현재 카탈로그의 구조·참조 검증 | exit code 0 |
+| `npm run validate:reader-story` | 네 레벨 본편의 누적 어휘 경계·전체 클릭 가능 여부·서사 품질·구동사 예문/뜻 연결 감사 | 레벨 위반·비고유명사 클릭 누락·문맥 불일치 0개 |
 | `npm run validate:release` | 목표 수량과 소설 수동 검수 완료를 포함한 릴리스 검증 | 승인 콘텐츠 기준 exit code 0 |
+| `npm run content:refresh:stories` | 기존 단어·구동사 카탈로그를 다시 생성하지 않고 승인 소설과 provenance만 원자적으로 갱신 | 전체 카탈로그와 승인 digest 검증 후 5개 산출물 승격 |
 | `npm run content:build` | 단어·구동사·소설·provenance 전체 세대 재생성 | 승인 입력이 있는 소설은 보존하고 누락 레벨만 자동 초안으로 만든 뒤, 전체 검증을 통과한 디렉터리 세대를 함께 교체 |
 | `npm run content:fetch:phrasals` | 구동사 재현 테스트에 필요한 고정 원천 5개만 다운로드 | 각 원천의 고정 URL과 SHA-256이 모두 일치 |
 | `npm run content:approve:stories -- --reviewer=<name> --reviewed-at=<UTC ISO> --confirm-user-approved` | 사용자가 명시적으로 승인한 네 자동 초안을 단일 정본 경로에 기록 | 확인 플래그·검수자·정규 UTC 시각이 모두 있을 때만 digest-valid 승인 파일 생성 |
@@ -86,22 +88,23 @@ npm run build
 
 두 검증 모드는 역할이 다릅니다.
 
-- `development`: JSON 구조, 필수 필드, ID·레벨·워드패밀리·구동사 참조, NFKC·공백·대소문자 정규화 기준의 전역 예문 중복, 본편 서사 구조와 본편+일반 단어 장면+구동사 장면의 통합 단어장 전체 커버리지를 검사합니다. 일반 단어 장면은 검증된 카탈로그 예문을 장면 속 기록·대화로 사용하고, 구동사 장면은 해당 레벨 250개 ID·표현·정확한 카탈로그 예문을 각각 한 번 추적합니다. 감사된 예문 바깥의 서사 프레임은 카탈로그에 등록된 모든 품사의 형태를 대상으로 가장 낮은 소유 레벨을 강제하며, 고정 주인공 이름 `Mina`와 그 소유격 외 비카탈로그 토큰을 거부합니다. 현재 수량 `words=5000`, `phrasalVerbs=1000`, `grammarNodes=42`, `stories=4`로 통과합니다.
+- `development`: JSON 구조, 필수 필드, ID·레벨·워드패밀리·구동사 참조, NFKC·공백·대소문자 정규화 기준의 전역 예문 중복, 6챕터 소설 구조와 실제 본문 사용 메타데이터를 검사합니다. 기초는 기초 어휘만, 상위 레벨은 해당 레벨까지의 누적 어휘만 허용하며 고유명사만 예외로 둡니다. 구동사는 정확한 본문 형태·문장·sense ID·문맥별 한국어 뜻이 모두 일치해야 합니다.
 - `release`: 위 검사에 레벨별 정확한 목표 수량과 소설의 수동 검수 완료 플래그를 추가합니다. 단어는 기초 500, 유치원 500, 초등학교 1,500, 중학교 2,500개이며, 구동사는 레벨별 250개씩 총 1,000개여야 합니다.
 
-목표 수량과 네 소설의 승인 조건은 모두 충족합니다. `scripts/content/manual-stories/<레벨>.approved.json` 정본에는 reviewer·reviewedAt·원문 digest가 기록되어 있고, 현재 `npm run validate:release`는 exit code 0입니다. 승인 뒤 소설 본문을 수정하면 digest 검증이 실패하므로 수정본은 다시 검수·승인해야 합니다.
+`validate:reader-story`는 실제 소설 화면의 본문을 전수 조사합니다. 각 챕터의 최소 문단·문장 수, 제목을 포함한 누적 어휘 경계, 중복 문장, 평균 문장 길이, 고유명사를 제외한 모든 본문 토큰의 클릭 가능 여부를 검사합니다. 구동사는 단순 문자열 일치로 뜻을 붙이지 않고, 승인된 정확한 형태가 정확한 본문 문장 안에 있을 때만 문맥별 한국어 뜻을 연결합니다. 카탈로그 전체를 채우기 위한 자동 문장이나 별도 암기 장면은 만들지 않습니다.
 
-수동 소설 승인은 `public/data/stories`를 직접 고치는 방식이 아닙니다. 승인 입력에는 reviewer, UTC ISO reviewedAt, 정확한 `storyText` 본편·`vocabularyPracticeText` 일반 단어 장면·`phrasalVerbPracticeText` 구동사 장면·`usedWords`·`usedPhrasalVerbs`를 모두 묶은 SHA-256 source digest가 필수이며, 파일이 없는 레벨은 언제나 `isManual: false` 자동 초안으로 되돌아갑니다. 빌드는 이 메타데이터와 digest, 새 카탈로그에 대한 서사·형태·레벨·통합 커버리지를 검증하고 provenance에 `approved-manual-input` 또는 `automated-draft`를 레벨별로 기록합니다. 형식과 digest 생성 방법은 `scripts/content/manual-stories/README.md`와 `approved-story.example.json`을 따릅니다.
+`scripts/content/manual-stories/<레벨>.approved.json` 정본에는 reviewer·reviewedAt·원문 digest가 기록됩니다. 승인 뒤 소설 본문이나 문맥별 뜻을 수정하면 digest 검증이 실패하므로 수정본은 다시 검수·승인해야 합니다.
+
+수동 소설 승인은 `public/data/stories`를 직접 고치는 방식이 아닙니다. 승인 입력에는 reviewer, UTC ISO reviewedAt, 6개 `chapterTitles`, 정확한 `storyText`·`usedWords`·문맥이 결합된 `usedPhrasalVerbs`를 모두 묶는 SHA-256 source digest가 필수입니다. 파일이 없는 레벨은 언제나 `isManual: false` 자동 초안으로 되돌아갑니다. 빌드는 메타데이터와 digest, 새 카탈로그에 대한 서사·형태·레벨 경계를 검증하고 provenance에 출처를 레벨별로 기록합니다.
 
 구동사 릴리스 입력은 `scripts/content/phrasal-glosses.json` 한 파일입니다. schema v5 정본은 1,000행 전수 기계 보조 감사, 명시적 영어 정의, 예문별 출처, 미해결 교차참조 0건을 강제하며 사람 편집 승인을 주장하지 않습니다. 모델 출력은 임시 후보일 뿐이고 정본을 덮어쓸 수 없습니다.
 
-| 레벨 | 일반 단어 / 목표 | 구동사 / 목표 | 소설 읽기 패키지 통합 커버리지 |
+| 레벨 | 카탈로그 일반 단어 | 본문에 자연스럽게 사용한 해당 레벨 단어 | 문맥 검수 구동사 |
 | --- | ---: | ---: | ---: |
-| 기초 | 500 / 500 | 250 / 250 | 750 / 750 |
-| 유치원 | 500 / 500 | 250 / 250 | 750 / 750 |
-| 초등학교 | 1,500 / 1,500 | 250 / 250 | 1,750 / 1,750 |
-| 중학교 | 2,500 / 2,500 | 250 / 250 | 2,750 / 2,750 |
-| 합계 | 5,000 / 5,000 | 1,000 / 1,000 | 6,000 / 6,000 |
+| 기초 | 500 | 160 | 33 |
+| 유치원 | 500 | 78 | 37 |
+| 초등학교 | 1,500 | 73 | 29 |
+| 중학교 | 2,500 | 22 | 31 |
 
 ## 정적 배포
 
@@ -152,7 +155,7 @@ docs/superpowers/            승인된 설계와 실행 계획
 1. `public/data/wordlists`, `phrasal-verbs`, `grammar`, `stories`의 기존 스키마를 유지합니다. JSON Schema는 편집 계약 참고 자료이고, 실제 앱 로드는 TypeScript 런타임 validator가 차단합니다. `learner-state.schema.json`과 `tracker.schema.json`, `engine/*.json`, `DEVELOPMENT/*.json`은 저장·가중치·이전 계약을 실행 코드와 동기화합니다.
 2. 레벨 간 단어 중복과 워드패밀리 원형 중복을 만들지 않습니다.
 3. 구동사 전체 목록과 레벨별 참조를 함께 갱신합니다.
-4. 소설 본편의 사건 흐름과 본편+일반 단어 장면+구동사 장면의 통합 커버리지 메타데이터·실제 사용 예문을 함께 검수합니다. 모든 일반 단어와 해당 레벨 구동사 250개가 있어야 하며, 감사된 카탈로그 예문 바깥의 서사 프레임은 레벨 소유권을 지켜야 합니다.
+4. 소설은 6개 챕터의 사건 흐름, 누적 어휘 경계, 실제 사용 단어 메타데이터, 구동사의 형태·문장·sense ID·문맥별 뜻을 함께 검수합니다. 전체 카탈로그 수량을 채우기 위한 문장이나 별도 단어·표현 장면은 추가하지 않습니다.
 5. 사람의 최종 검수가 끝난 읽기 패키지만 `scripts/content/manual-stories/<레벨>.approved.json`에 reviewer·reviewedAt·source digest와 함께 기록합니다. `public/data`의 플래그만 바꾸는 것은 승인이 아닙니다.
 6. 원천 캐시가 준비된 경우 개별 산출물을 따로 덮어쓰지 말고 `npm run content:build`로 전체 세대를 검증·교체합니다.
 7. `npm run validate:data`와 `npm run check`를 통과시킵니다.

@@ -5,15 +5,16 @@ import type {
   WordEntry,
   WordItem,
 } from '../../domain/content/types'
-import { buildReaderStoryText } from '../../domain/content/readerStory'
+import { buildReaderEdition } from '../../domain/content/readerEdition'
+import {
+  readerStoryContextualPhrasalVerbs,
+} from '../../domain/content/readerStory'
 import type { SpeechPort } from '../study/speech'
-import { curatedStoryText } from './curatedStories'
 import { StoryPhrasalVerbDetail } from './StoryPhrasalVerbDetail'
 import { StoryWordDetail } from './StoryWordDetail'
 import { tokenizeKnownWords, tokenizeStoryParagraphs } from './storyTokens'
 import './story.css'
 
-const STORY_PARAGRAPH_PAGE_SIZE = 4
 const EMPTY_PHRASAL_VERBS: readonly PhrasalVerbItem[] = []
 
 interface StoryViewProps {
@@ -21,9 +22,6 @@ interface StoryViewProps {
   levelWords: readonly WordItem[]
   levelPhrasalVerbs?: readonly PhrasalVerbItem[]
   lookupWords?: readonly WordItem[]
-  phrasalLookupWords?: readonly WordItem[]
-  targetWordCount: number
-  targetPhrasalVerbCount?: number
   speech?: SpeechPort | null
 }
 
@@ -32,7 +30,6 @@ export function StoryView({
   levelWords,
   levelPhrasalVerbs = EMPTY_PHRASAL_VERBS,
   lookupWords = levelWords,
-  phrasalLookupWords = lookupWords,
   speech = null,
 }: StoryViewProps) {
   const [selectedWord, setSelectedWord] = useState<{
@@ -46,28 +43,38 @@ export function StoryView({
     story: StoryContent
     selectionKey: string
     item: PhrasalVerbItem
+    context: string
+    meaningKo: string
   } | null>(null)
   const [selectedStory, setSelectedStory] = useState(story)
-  const [visibleParagraphCount, setVisibleParagraphCount] = useState(STORY_PARAGRAPH_PAGE_SIZE)
+  const [readerChapterIndex, setReaderChapterIndex] = useState(0)
   const selectedTriggerRef = useRef<HTMLButtonElement | null>(null)
 
   if (selectedStory !== story) {
     setSelectedStory(story)
     setSelectedWord(null)
     setSelectedPhrasalVerb(null)
-    setVisibleParagraphCount(STORY_PARAGRAPH_PAGE_SIZE)
+    setReaderChapterIndex(0)
   }
 
-  const curatedText = curatedStoryText(story)
+  const readerEdition = useMemo(
+    () => buildReaderEdition(story, lookupWords),
+    [lookupWords, story],
+  )
+  const readerChapter = readerEdition.chapters[readerChapterIndex]!
+
   const displayStoryText = useMemo(
-    () => buildReaderStoryText(
-      curatedText,
-      story.level,
-      levelWords,
+    () => readerChapter.text.trim(),
+    [readerChapter.text],
+  )
+
+  const contextualPhrasalVerbs = useMemo(
+    () => readerStoryContextualPhrasalVerbs(
+      displayStoryText,
+      story.usedPhrasalVerbs,
       levelPhrasalVerbs,
-      lookupWords,
     ),
-    [curatedText, levelPhrasalVerbs, levelWords, lookupWords, story.level],
+    [displayStoryText, levelPhrasalVerbs, story.usedPhrasalVerbs],
   )
 
   const readingParagraphs = useMemo(() => {
@@ -76,20 +83,17 @@ export function StoryView({
       displayStoryText,
       story.usedWords,
       lookupWords,
-      levelPhrasalVerbs,
+      contextualPhrasalVerbs,
     ).map((tokens) => tokens.map((token) => ({
       ...token,
       tokenIndex: tokenIndex++,
     })))
-  }, [displayStoryText, levelPhrasalVerbs, lookupWords, story.usedWords])
+  }, [contextualPhrasalVerbs, displayStoryText, lookupWords, story.usedWords])
 
   const activeSelectedWord = selectedWord?.story === story ? selectedWord : null
   const activeSelectedPhrasalVerb = selectedPhrasalVerb?.story === story
     ? selectedPhrasalVerb
     : null
-  const paragraphLimit = Math.min(visibleParagraphCount, readingParagraphs.length)
-  const visibleReadingParagraphs = readingParagraphs.slice(0, paragraphLimit)
-
   function closeDetail() {
     setSelectedWord(null)
     setSelectedPhrasalVerb(null)
@@ -124,58 +128,80 @@ export function StoryView({
     )
   }
 
-  function renderTokens(tokens: (typeof readingParagraphs)[number]) {
+  function renderTokens(
+    tokens: (typeof readingParagraphs)[number],
+    namespace = 'narrative',
+  ) {
     return tokens.map((token) => {
       if (token.type === 'text') {
-        return <span key={`text-${token.tokenIndex}`}>{token.value}</span>
+        return <span key={`${namespace}-text-${token.tokenIndex}`}>{token.value}</span>
       }
 
       if (token.type === 'phrasalVerb') {
-        const phrasalSelectionKey = `phrasal-${token.tokenIndex}`
+        const phrasalSelectionKey = `${namespace}-phrasal-${token.tokenIndex}`
         const isSelected = activeSelectedPhrasalVerb?.selectionKey === phrasalSelectionKey
-        const wordParts = tokenizeKnownWords(token.value, phrasalLookupWords)
+        const wordParts = tokenizeKnownWords(token.value, lookupWords)
+        const selectPhrasalVerb = (trigger: HTMLButtonElement) => {
+          selectedTriggerRef.current = trigger
+          setSelectedWord(null)
+          setSelectedPhrasalVerb({
+            story,
+            selectionKey: phrasalSelectionKey,
+            item: token.phrasalVerb,
+            context: token.phrasalUse.context,
+            meaningKo: token.phrasalUse.meaningKo,
+          })
+        }
         return (
           <span
             className="story-inline-phrasal"
-            key={`phrasal-${token.tokenIndex}`}
+            key={`${namespace}-phrasal-${token.tokenIndex}`}
             data-phrasal-verb={token.phrasalVerb.phrasalVerb}
           >
             <span className="story-inline-phrasal__words">
-              {wordParts.map((part, partIndex) => {
-                if (part.type !== 'word') {
-                  return (
-                    <span key={`phrasal-text-${token.tokenIndex}-${partIndex}`}>
-                      {part.value}
-                    </span>
-                  )
+              {wordParts.flatMap((part, partIndex) => {
+                if (part.type === 'word') {
+                  return [renderWordButton(
+                    part.value,
+                    part.word,
+                    part.entry,
+                    `${namespace}-phrasal-word-${token.tokenIndex}-${partIndex}`,
+                    `${namespace}-phrasal-word-${token.tokenIndex}-${partIndex}`,
+                  )]
                 }
-                return renderWordButton(
-                  part.value,
-                  part.word,
-                  part.entry,
-                  `phrasal-word-${token.tokenIndex}-${partIndex}`,
-                  `phrasal-word-${token.tokenIndex}-${partIndex}`,
-                )
+                return part.value
+                  .split(/([\p{L}\p{N}]+(?:['’~-][\p{L}\p{N}]+)*)/gu)
+                  .filter(Boolean)
+                  .map((value, textPartIndex) => /[\p{L}\p{N}]/u.test(value) ? (
+                    <button
+                      key={`${namespace}-phrasal-component-${token.tokenIndex}-${partIndex}-${textPartIndex}`}
+                      type="button"
+                      className="story-phrasal-component-button"
+                      aria-label={`story phrasal component: ${value} (${token.value})`}
+                      aria-expanded={isSelected}
+                      aria-controls={isSelected ? 'story-word-detail' : undefined}
+                      onClick={(event) => selectPhrasalVerb(event.currentTarget)}
+                    >
+                      {value}
+                    </button>
+                  ) : (
+                    <span key={`${namespace}-phrasal-text-${token.tokenIndex}-${partIndex}-${textPartIndex}`}>
+                      {value}
+                    </span>
+                  ))
               })}
             </span>
             <button
-              ref={isSelected ? selectedTriggerRef : undefined}
               type="button"
-              className="story-inline-phrasal-meaning-button"
+              className="story-inline-phrasal__badge"
               aria-label={`story phrasal verb: ${token.value}`}
               aria-expanded={isSelected}
               aria-controls={isSelected ? 'story-word-detail' : undefined}
               title={`${token.value} 구동사 뜻 보기`}
-              onClick={(event) => {
-                selectedTriggerRef.current = event.currentTarget
-                setSelectedWord(null)
-                setSelectedPhrasalVerb({
-                  story,
-                  selectionKey: phrasalSelectionKey,
-                  item: token.phrasalVerb,
-                })
-              }}
-            />
+              onClick={(event) => selectPhrasalVerb(event.currentTarget)}
+            >
+              구
+            </button>
           </span>
         )
       }
@@ -184,10 +210,16 @@ export function StoryView({
         token.value,
         token.word,
         token.entry,
-        `word-${token.tokenIndex}`,
-        `word-${token.tokenIndex}`,
+        `${namespace}-word-${token.tokenIndex}`,
+        `${namespace}-word-${token.tokenIndex}`,
       )
     })
+  }
+
+  function moveReaderChapter(nextIndex: number) {
+    setSelectedWord(null)
+    setSelectedPhrasalVerb(null)
+    setReaderChapterIndex(nextIndex)
   }
 
   return (
@@ -203,28 +235,48 @@ export function StoryView({
     >
       <header className="feature-header">
         <p>{story.level}</p>
-        <h2 id="story-title">{story.title}</h2>
+        <h2 id="story-title">{readerEdition.title}</h2>
       </header>
 
       <div className="story-reading-layout">
         <div className="story-reading-column">
-          <div className="story-body">
-            {visibleReadingParagraphs.map((tokens, paragraphIndex) => (
-              <section className="story-phrasal-scene" key={`paragraph-${paragraphIndex}`}>
-                <p className="story-paragraph">{renderTokens(tokens)}</p>
-              </section>
-            ))}
-          </div>
-          {paragraphLimit < readingParagraphs.length ? (
+          <section
+            className="story-reader-chapter"
+            aria-labelledby={`${readerChapter.id}-title`}
+          >
+            <header className="story-reader-chapter__header">
+              <p>{`챕터 ${readerChapterIndex + 1} / ${readerEdition.chapters.length}`}</p>
+              <h3 id={`${readerChapter.id}-title`}>{readerChapter.title}</h3>
+            </header>
+            <div className="story-body">
+              {readingParagraphs.map((tokens, paragraphIndex) => (
+                <p className="story-paragraph" key={`paragraph-${paragraphIndex}`}>
+                  {renderTokens(tokens)}
+                </p>
+              ))}
+            </div>
+          </section>
+          <nav className="story-reader-navigation" aria-label="소설 챕터 이동">
             <button
-              className="button button--secondary story-load-more"
+              className="button button--secondary"
               type="button"
-              onClick={() => setVisibleParagraphCount((count) =>
-                count + STORY_PARAGRAPH_PAGE_SIZE)}
+              disabled={readerChapterIndex === 0}
+              onClick={() => moveReaderChapter(readerChapterIndex - 1)}
             >
-              {`다음 이야기 보기 (${readingParagraphs.length - paragraphLimit}개 문단 남음)`}
+              이전 챕터
             </button>
-          ) : null}
+            <span>{`${readerChapterIndex + 1} / ${readerEdition.chapters.length}`}</span>
+            <button
+              className="button button--secondary"
+              type="button"
+              disabled={readerChapterIndex === readerEdition.chapters.length - 1}
+              onClick={() => moveReaderChapter(readerChapterIndex + 1)}
+            >
+              {readerChapterIndex === readerEdition.chapters.length - 1
+                ? '소설 읽기 완료'
+                : `다음 챕터 (${readerChapterIndex + 2})`}
+            </button>
+          </nav>
         </div>
 
         {activeSelectedWord ? (
@@ -240,6 +292,8 @@ export function StoryView({
           <StoryPhrasalVerbDetail
             key={`${story.level}-${activeSelectedPhrasalVerb.selectionKey}`}
             item={activeSelectedPhrasalVerb.item}
+            context={activeSelectedPhrasalVerb.context}
+            meaningKo={activeSelectedPhrasalVerb.meaningKo}
             speech={speech}
             onClose={closeDetail}
           />

@@ -378,7 +378,7 @@ describe('loadCatalog', () => {
     expect(error.message).toContain(String(error.issues?.length))
   })
 
-  it('rejects a catalog when a story omits a required lemma', async () => {
+  it('rejects a catalog when actual prose metadata omits a used lemma', async () => {
     const catalog = makeCatalog()
     catalog.stories.기초.usedWords = []
     const { fetcher } = makeFetcher(catalog)
@@ -389,7 +389,7 @@ describe('loadCatalog', () => {
     expect(error.issues).toEqual(
       expect.arrayContaining([
         expect.objectContaining({
-          code: 'STORY_COVERAGE_MISSING',
+          code: 'STORY_USED_WORD_MISSING',
           path: 'stories.기초.usedWords',
         }),
       ]),

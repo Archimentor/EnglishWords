@@ -123,20 +123,16 @@ test('복구 원본에 단독 surrogate가 있어도 손실 없는 UTF-16 다운
     .toEqual([0xff, 0xfe, 0x00, 0xd8])
 })
 
-test('허용된 상위 레벨 소설 단어를 실제 단어 entry로 연결한다', async () => {
+test('상위 레벨 소설은 하위 레벨 단어를 실제 단어 entry로 연결한다', async () => {
   const user = userEvent.setup()
   const catalog = makeAppCatalog()
-  const story = catalog.stories.기초
-  const answer = catalog.wordlists.초등학교.find(({ lemma }) => lemma === 'answer')
-  if (!answer) throw new Error('Expected upper-level answer fixture')
+  const story = catalog.stories.유치원
+  const baby = catalog.wordlists.기초.find(({ lemma }) => lemma === 'baby')
+  if (!baby) throw new Error('Expected lower-level baby fixture')
 
-  story.coverage.allowUpperLevelWords = true
-  story.usedWords.push({
-    lemma: answer.lemma,
-    partOfSpeech: answer.entries[0]!.partOfSpeech,
-    forms: ['answer'],
-  })
-  story.storyText = `${story.storyText} answer`
+  const chapters = story.storyText.split(/\n\s*\n\s*\n/u)
+  chapters[0] = `${chapters[0]} baby.`
+  story.storyText = chapters.join('\n\n\n')
 
   render(
     <App
@@ -147,12 +143,13 @@ test('허용된 상위 레벨 소설 단어를 실제 단어 entry로 연결한�
   )
 
   await screen.findByRole('heading', { name: '기초 학습 대시보드' })
+  await user.click(screen.getByRole('button', { name: '유치원' }))
   await user.click(screen.getByRole('button', { name: '소설' }))
-  const answerToken = screen.getByRole('button', { name: 'story word: answer' })
-  expect(answerToken).toBeInTheDocument()
-  await user.click(answerToken)
+  const babyToken = screen.getByRole('button', { name: 'story word: baby' })
+  expect(babyToken).toBeInTheDocument()
+  await user.click(babyToken)
   expect(
-    screen.getByRole('heading', { name: 'answer 단어 상세' }),
+    screen.getByRole('heading', { name: 'baby 단어 상세' }),
   ).toBeInTheDocument()
 })
 
@@ -389,7 +386,7 @@ test('대시보드에서 단어장·문법·소설·학습·퀴즈 화면을 실
   await user.click(screen.getByRole('button', { name: '기초' }))
   await user.click(screen.getByRole('button', { name: '소설' }))
   const story = screen.getByRole('article')
-  expect(within(story).getByRole('heading', { name: '기초 대표 이야기' })).toBeInTheDocument()
+  expect(within(story).getByRole('heading', { name: 'baby', level: 2 })).toBeInTheDocument()
   expect(within(story).queryByText('실제 소설 본문 커버리지')).not.toBeInTheDocument()
   expect(within(story).queryByText('전체 학습 단어')).not.toBeInTheDocument()
   expect(within(story).queryByText('전체 학습 구동사')).not.toBeInTheDocument()
@@ -647,7 +644,7 @@ test('저장 실패 후에도 화면 상태를 유지하고 경고를 닫을 수
   await screen.findByRole('heading', { name: '기초 학습 대시보드' })
 
   await user.click(screen.getByRole('button', { name: '소설' }))
-  expect(screen.getByRole('heading', { name: '기초 대표 이야기' })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: 'baby', level: 2 })).toBeInTheDocument()
   expect(screen.getByRole('status')).toHaveTextContent(
     /학습 상태를 저장하지 못했습니다.*현재 탭에서만/u,
   )
@@ -655,7 +652,7 @@ test('저장 실패 후에도 화면 상태를 유지하고 경고를 닫을 수
   expect(
     screen.queryByText(/학습 상태를 저장하지 못했습니다/u),
   ).not.toBeInTheDocument()
-  expect(screen.getByRole('heading', { name: '기초 대표 이야기' })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: 'baby', level: 2 })).toBeInTheDocument()
 })
 
 test('손상 상태 경고는 로딩과 독립적으로 표시하고 닫을 수 있다', async () => {

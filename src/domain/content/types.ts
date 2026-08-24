@@ -88,10 +88,11 @@ export interface StoryContent {
   schemaVersion: string
   level: Level
   title: string
+  chapterTitles: string[]
   isManual: boolean
   coverage: {
     mustCoverAll: boolean
-    allowUpperLevelWords: boolean
+    allowUpperLevelWords: false
     coverageRate: number
   }
   usedWords: Array<{
@@ -102,11 +103,12 @@ export interface StoryContent {
   usedPhrasalVerbs: Array<{
     id: string
     phrasalVerb: string
-    example: string
+    storyForm: string
+    context: string
+    senseId: string
+    meaningKo: string
   }>
   storyText: string
-  vocabularyPracticeText: string
-  phrasalVerbPracticeText: string
 }
 
 export interface GrammarRule {

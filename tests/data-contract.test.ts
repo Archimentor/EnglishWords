@@ -89,7 +89,7 @@ describe('data catalog contract', () => {
       .map((level) => ({
         code: 'STORY_NOT_MANUAL' as const,
         path: `stories.${level}.isManual`,
-        message: `Story for ${level} must be manually reviewed before release.`,
+        message: `Story for ${level} must be reviewed before release.`,
       }))
 
     expect(issues).toEqual(expectedIssues)
@@ -129,7 +129,7 @@ describe('data catalog contract', () => {
       expect(issues).toEqual(LEVELS.map((level) => ({
         code: 'STORY_NOT_MANUAL',
         path: `stories.${level}.isManual`,
-        message: `Story for ${level} must be manually reviewed before release.`,
+        message: `Story for ${level} must be reviewed before release.`,
       })))
 
       await expect(

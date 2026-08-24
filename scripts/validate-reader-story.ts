@@ -1,257 +1,286 @@
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { readFile, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
+
+import { readerPhrasalVerbMeanings } from '../src/domain/content/phrasalMeaning'
+import { auditReaderEdition, buildReaderEdition } from '../src/domain/content/readerEdition'
 import {
-  buildReaderStoryText,
+  readerStoryContextualPhrasalVerbs,
   readerStoryCoverage,
 } from '../src/domain/content/readerStory'
-import type {
-  Level,
-  PhrasalVerbItem,
-  StoryContent,
-  WordItem,
-} from '../src/domain/content/types'
+import {
+  englishStoryVocabularyText,
+  inspectStoryVocabulary,
+  storyProperNounTokens,
+  storyVocabularyTokens,
+} from '../src/domain/content/storyVocabulary'
 import { LEVELS } from '../src/domain/content/types'
-import { curatedStoryText } from '../src/features/story/curatedStories'
+import type { Level, PhrasalVerbItem } from '../src/domain/content/types'
+import { tokenizeStory } from '../src/features/story/storyTokens'
+import { readCatalogFromDisk } from './catalog-files'
 
-const WORD_TARGETS: Readonly<Record<Level, number>> = {
-  기초: 500,
-  유치원: 500,
-  초등학교: 1_500,
-  중학교: 2_500,
+interface GlossRow {
+  phrase: string
+  senseId: string
 }
-const PHRASAL_TARGET = 250
+
+interface GlossRegistry {
+  glosses: GlossRow[]
+}
+
+interface LevelAudit {
+  level: Level
+  title: string
+  chapters: number
+  paragraphCounts: number[]
+  sentenceCounts: number[]
+  averageSentenceWords: number
+  targetWordsUsed: number
+  targetWordsAvailable: number
+  targetCoverageRate: number
+  contextualPhrasalVerbs: number
+  clickableWordTokens: number
+  clickablePhrasalUses: number
+  properNounTokens: string[]
+  duplicateSentences: string[]
+  vocabularyViolations: string[]
+  unclickableTokens: string[]
+  phrasalIssues: string[]
+}
+
+const DATA_ROOT = resolve('public/data')
 const REPORT_PATH = resolve('public/data/DEVELOPMENT/reader-story-coverage.json')
-const MAX_REPEATED_SENTENCE_RATE = 0.2
-const MAX_AVERAGE_SENTENCE_WORDS: Readonly<Record<Level, number>> = {
-  기초: 15,
-  유치원: 18,
-  초등학교: 24,
-  중학교: 32,
-}
-const MECHANICAL_LABEL = /\b(?:Trail step|Story page|Garden record|Archive file)\s+\d+\s*:/giu
-const LEGACY_FIXED_FRAME = /\b(?:Before Mina leaves the place, the blue bird notices a small note nearby|A little farther on, Mina finds a folded paper beside the red path|Before the page turns again, the storybook shows Mina, Joon, and Sara a few short lines|Before leaving the area, Mina finds another bundle connected to the garden’s history|Before moving to the next source, Mina reviews another set of Riverside records beside her timeline)\b/gu
-const LEGACY_SCENE_CLOSER = /with “[A-Za-z][A-Za-z'’-]*” still in mind\./gu
-const LOW_LEVEL_BANNED: Readonly<Record<Level, readonly string[]>> = {
-  기초: ['abortion', 'adultery', 'army', 'arson', 'brothel', 'election', 'executioner', 'fraud', 'gun', 'jail', 'murder', 'parliament', 'pistol', 'poison', 'porn', 'prison', 'prostitute', 'rifle', 'riot', 'sex', 'suicide', 'terrorism', 'war', 'weapon'],
-  유치원: ['abortion', 'adultery', 'army', 'arson', 'brothel', 'executioner', 'fraud', 'gun', 'jail', 'murder', 'parliament', 'pistol', 'poison', 'porn', 'prison', 'prostitute', 'rifle', 'riot', 'sex', 'suicide', 'terrorism', 'weapon'],
-  초등학교: ['abortion', 'adultery', 'brothel', 'dildo', 'executioner', 'porn', 'prostitute', 'semen', 'sperm', 'suicide'],
-  중학교: [],
+const MIN_AVERAGE_SENTENCE_WORDS: Readonly<Record<Level, number>> = {
+  기초: 6,
+  유치원: 7,
+  초등학교: 9,
+  중학교: 10,
 }
 
-interface RepeatedSentenceSample {
-  sentence: string
-  count: number
+function normalizedSentence(value: string): string {
+  return value.normalize('NFKC').replace(/\s+/gu, ' ').trim().toLowerCase()
 }
 
-interface LevelReport {
-  words: { covered: number; total: number; missing: string[] }
-  phrasalVerbs: { covered: number; total: number; missing: string[] }
-  paragraphs: { curated: number; reader: number }
-  sentences: {
-    total: number
-    unique: number
-    repeated: number
-    repeatedRate: number
-    averageWords: number
-    maxWords: number
-    repeatedSamples: RepeatedSentenceSample[]
-  }
-  quality: {
-    mechanicalLabels: number
-    legacyFixedFrames: number
-    legacySceneClosers: number
-    lowLevelUnsafeHits: string[]
-    fallbackLikeSentences: number
-  }
+function storySentences(text: string): string[] {
+  return (text.match(/[^.!?]+[.!?]+/gu) ?? [])
+    .map((sentence) => sentence.trim())
+    .filter(Boolean)
 }
 
-async function readJson<T>(path: string): Promise<T> {
-  return JSON.parse(await readFile(resolve(path), 'utf8')) as T
-}
-
-function sentences(text: string): string[] {
-  return text.match(/[^.!?]+[.!?]+/gu)?.map((sentence) => sentence.trim()) ?? []
-}
-
-function paragraphCount(text: string): number {
-  return text.split(/\n\s*\n/u).filter((paragraph) => paragraph.trim()).length
-}
-
-function sentenceWordCount(sentence: string): number {
-  return sentence.match(/[A-Za-z]+(?:['’~-][A-Za-z]+)*/gu)?.length ?? 0
-}
-
-function repeatedSentenceSamples(values: readonly string[]): RepeatedSentenceSample[] {
+function duplicateSentences(text: string): string[] {
   const counts = new Map<string, number>()
-  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1)
-  return [...counts]
+  for (const sentence of storySentences(text)) {
+    const normalized = normalizedSentence(sentence)
+    counts.set(normalized, (counts.get(normalized) ?? 0) + 1)
+  }
+  return [...counts.entries()]
     .filter(([, count]) => count > 1)
-    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0]))
-    .slice(0, 12)
-    .map(([sentence, count]) => ({ sentence, count }))
+    .map(([sentence]) => sentence)
 }
 
-function bannedHits(level: Level, text: string): string[] {
-  const lower = text.toLowerCase()
-  return LOW_LEVEL_BANNED[level]
-    .filter((term) => new RegExp(`\\b${term}\\b`, 'u').test(lower))
+function lexicalBase(value: string): string {
+  return value.replace(/[‘’]/gu, "'").replace(/'s$/u, '')
 }
 
-function fallbackLikeSentenceCount(values: readonly string[]): number {
-  return values.filter((sentence) =>
-    /[“”]/u.test(sentence)
-    && /\b(?:uses?|shows?|includes?|mentions?|marked?|reference|label|expression|line|record|note|page|card)\b/iu.test(sentence),
-  ).length
+function unclickableStoryTokens(
+  text: string,
+  tokens: ReturnType<typeof tokenizeStory>,
+): string[] {
+  const properNouns = storyProperNounTokens(text)
+  const unclickable = new Set<string>()
+  for (const token of tokens) {
+    if (token.type !== 'text') continue
+    for (const lexical of storyVocabularyTokens(token.value)) {
+      if (
+        properNouns.has(lexical.normalized)
+        || properNouns.has(lexicalBase(lexical.normalized))
+      ) {
+        continue
+      }
+      unclickable.add(lexical.normalized)
+    }
+  }
+  return [...unclickable].sort()
 }
 
-let failed = false
-const report = {} as Record<Level, LevelReport>
-const wordlists = {} as Record<Level, WordItem[]>
-
-for (const level of LEVELS) {
-  wordlists[level] = await readJson<WordItem[]>(`public/data/wordlists/${level}.json`)
-}
-
-for (const level of LEVELS) {
-  const words = wordlists[level]
-  const [phrasalVerbs, story] = await Promise.all([
-    readJson<PhrasalVerbItem[]>(`public/data/phrasal-verbs/by-level/${level}.json`),
-    readJson<StoryContent>(`public/data/stories/${level}.json`),
-  ])
-  const allowedWords = LEVELS
+function phrasalCatalogForLevel(
+  level: Level,
+  byLevel: Readonly<Record<Level, readonly PhrasalVerbItem[]>>,
+): PhrasalVerbItem[] {
+  return LEVELS
     .slice(0, LEVELS.indexOf(level) + 1)
-    .flatMap((lookupLevel) => wordlists[lookupLevel])
-
-  if (words.length !== WORD_TARGETS[level]) {
-    console.error(`[reader-story] ${level}: word catalog ${words.length} != target ${WORD_TARGETS[level]}`)
-    failed = true
-  }
-  if (phrasalVerbs.length !== PHRASAL_TARGET) {
-    console.error(`[reader-story] ${level}: phrasal catalog ${phrasalVerbs.length} != target ${PHRASAL_TARGET}`)
-    failed = true
-  }
-
-  const baseText = curatedStoryText(story)
-  const readerText = buildReaderStoryText(
-    baseText,
-    level,
-    words,
-    phrasalVerbs,
-    allowedWords,
-  )
-  const coverage = readerStoryCoverage(readerText, words, phrasalVerbs)
-  const readerSentences = sentences(readerText)
-  const uniqueSentenceCount = new Set(readerSentences).size
-  const repeated = readerSentences.length - uniqueSentenceCount
-  const repeatedRate = readerSentences.length > 0 ? repeated / readerSentences.length : 0
-  const wordCounts = readerSentences.map(sentenceWordCount)
-  const averageWords = wordCounts.length > 0
-    ? wordCounts.reduce((sum, count) => sum + count, 0) / wordCounts.length
-    : 0
-  const maxWords = Math.max(0, ...wordCounts)
-  const mechanicalLabels = readerText.match(MECHANICAL_LABEL)?.length ?? 0
-  const legacyFixedFrames = readerText.match(LEGACY_FIXED_FRAME)?.length ?? 0
-  const legacySceneClosers = readerText.match(LEGACY_SCENE_CLOSER)?.length ?? 0
-  const unsafeHits = bannedHits(level, readerText)
-  const fallbackLikeSentences = fallbackLikeSentenceCount(readerSentences)
-
-  report[level] = {
-    words: {
-      covered: coverage.wordCoveredCount,
-      total: coverage.wordTotalCount,
-      missing: coverage.missingWordLemmas,
-    },
-    phrasalVerbs: {
-      covered: coverage.phrasalVerbCoveredCount,
-      total: coverage.phrasalVerbTotalCount,
-      missing: coverage.missingPhrasalVerbs,
-    },
-    paragraphs: {
-      curated: paragraphCount(baseText),
-      reader: paragraphCount(readerText),
-    },
-    sentences: {
-      total: readerSentences.length,
-      unique: uniqueSentenceCount,
-      repeated,
-      repeatedRate: Number(repeatedRate.toFixed(4)),
-      averageWords: Number(averageWords.toFixed(2)),
-      maxWords,
-      repeatedSamples: repeatedSentenceSamples(readerSentences),
-    },
-    quality: {
-      mechanicalLabels,
-      legacyFixedFrames,
-      legacySceneClosers,
-      lowLevelUnsafeHits: unsafeHits,
-      fallbackLikeSentences,
-    },
-  }
-
-  console.log([
-    `[reader-story] ${level}`,
-    `words=${coverage.wordCoveredCount}/${coverage.wordTotalCount}`,
-    `phrasals=${coverage.phrasalVerbCoveredCount}/${coverage.phrasalVerbTotalCount}`,
-    `paragraphs=${paragraphCount(readerText)}`,
-    `sentences=${readerSentences.length}`,
-    `repeated=${repeated} (${(repeatedRate * 100).toFixed(1)}%)`,
-    `avgWords=${averageWords.toFixed(1)}`,
-    `fallbackLike=${fallbackLikeSentences}`,
-    `legacyFrames=${legacyFixedFrames + legacySceneClosers}`,
-  ].join(' '))
-
-  if (coverage.missingWordIds.length > 0) {
-    console.error(
-      `[reader-story] ${level}: missing words (${coverage.missingWordIds.length}) ${coverage.missingWordLemmas.slice(0, 40).join(', ')}`,
-    )
-    failed = true
-  }
-  if (coverage.missingPhrasalVerbIds.length > 0) {
-    console.error(
-      `[reader-story] ${level}: missing phrasals (${coverage.missingPhrasalVerbIds.length}) ${coverage.missingPhrasalVerbs.slice(0, 40).join(', ')}`,
-    )
-    failed = true
-  }
-  if (mechanicalLabels > 0) {
-    console.error(`[reader-story] ${level}: found ${mechanicalLabels} mechanical scene labels.`)
-    failed = true
-  }
-  if (legacyFixedFrames > 0 || legacySceneClosers > 0) {
-    console.error(
-      `[reader-story] ${level}: found ${legacyFixedFrames} legacy fixed openings and ${legacySceneClosers} legacy scene closers.`,
-    )
-    failed = true
-  }
-  if (repeatedRate > MAX_REPEATED_SENTENCE_RATE) {
-    console.error(
-      `[reader-story] ${level}: repeated sentence rate ${(repeatedRate * 100).toFixed(1)}% exceeds ${(MAX_REPEATED_SENTENCE_RATE * 100).toFixed(0)}%.`,
-    )
-    failed = true
-  }
-  if (averageWords > MAX_AVERAGE_SENTENCE_WORDS[level]) {
-    console.error(
-      `[reader-story] ${level}: average sentence length ${averageWords.toFixed(1)} exceeds ${MAX_AVERAGE_SENTENCE_WORDS[level]} words.`,
-    )
-    failed = true
-  }
-  if (unsafeHits.length > 0) {
-    console.error(`[reader-story] ${level}: unsafe level terms remain: ${unsafeHits.join(', ')}.`)
-    failed = true
-  }
-
-  const baseFirstParagraph = baseText.split(/\n\s*\n/u).find(Boolean)?.trim() ?? ''
-  const baseLastParagraph = baseText.split(/\n\s*\n/u).filter(Boolean).at(-1)?.trim() ?? ''
-  if (!readerText.startsWith(baseFirstParagraph) || !readerText.endsWith(baseLastParagraph)) {
-    console.error(`[reader-story] ${level}: curated opening or resolution was displaced.`)
-    failed = true
-  }
+    .flatMap((candidate) => byLevel[candidate])
 }
 
-await mkdir(resolve('public/data/DEVELOPMENT'), { recursive: true })
-await writeFile(REPORT_PATH, `${JSON.stringify(report, null, 2)}\n`, 'utf8')
+async function main(): Promise<void> {
+  const [catalog, glossRegistry] = await Promise.all([
+    readCatalogFromDisk(DATA_ROOT),
+    readFile(resolve('scripts/content/phrasal-glosses.json'), 'utf8')
+      .then((value) => JSON.parse(value) as GlossRegistry),
+  ])
+  const allWords = LEVELS.flatMap((level) => catalog.wordlists[level])
+  const glossesByPhrase = new Map(glossRegistry.glosses.map((row) => [row.phrase, row]))
+  const audits: LevelAudit[] = []
+  const failures: string[] = []
 
-if (failed) {
+  for (const level of LEVELS) {
+    const levelIndex = LEVELS.indexOf(level)
+    const story = catalog.stories[level]
+    const targetWords = catalog.wordlists[level]
+    const allowedWords = LEVELS
+      .slice(0, levelIndex + 1)
+      .flatMap((candidate) => catalog.wordlists[candidate])
+    const allowedPhrasals = phrasalCatalogForLevel(level, catalog.phrasalVerbs.byLevel)
+    const edition = buildReaderEdition(story, allowedWords)
+    const chapterAudit = auditReaderEdition(edition)
+    const vocabulary = inspectStoryVocabulary(
+      story.storyText,
+      allowedWords,
+      allWords,
+      story.usedPhrasalVerbs,
+    )
+    const frontMatterVocabulary = inspectStoryVocabulary(
+      englishStoryVocabularyText([story.title, ...story.chapterTitles].join('. ')),
+      allowedWords,
+      allWords,
+    )
+    const contextualPhrasals = readerStoryContextualPhrasalVerbs(
+      story.storyText,
+      story.usedPhrasalVerbs,
+      allowedPhrasals,
+    )
+    const storyTokens = tokenizeStory(
+      story.storyText,
+      story.usedWords,
+      allowedWords,
+      contextualPhrasals,
+    )
+    const unclickableTokens = unclickableStoryTokens(story.storyText, storyTokens)
+    const coverage = readerStoryCoverage(
+      story.storyText,
+      targetWords,
+      allowedPhrasals.filter(({ id }) =>
+        story.usedPhrasalVerbs.some((use) => use.id === id)),
+      story.usedPhrasalVerbs,
+    )
+    const sentences = storySentences(story.storyText)
+    const averageSentenceWords = sentences.length === 0
+      ? 0
+      : storyVocabularyTokens(story.storyText).length / sentences.length
+    const repeated = duplicateSentences(story.storyText)
+    const catalogById = new Map(allowedPhrasals.map((item) => [item.id, item]))
+    const phrasalIssues: string[] = []
+
+    for (const use of story.usedPhrasalVerbs) {
+      const item = catalogById.get(use.id)
+      const gloss = glossesByPhrase.get(use.phrasalVerb)
+      if (!item) {
+        phrasalIssues.push(`${use.phrasalVerb}: not in cumulative level catalog`)
+        continue
+      }
+      if (!gloss || gloss.senseId !== use.senseId) {
+        phrasalIssues.push(`${use.phrasalVerb}: senseId does not match sense registry`)
+      }
+      if (readerPhrasalVerbMeanings(item)[0] !== use.meaningKo) {
+        phrasalIssues.push(`${use.phrasalVerb}: displayed Korean meaning is stale`)
+      }
+      if (!contextualPhrasals.some((candidate) =>
+        candidate.item.id === use.id
+        && candidate.form === use.storyForm
+        && candidate.context === use.context
+        && candidate.meaningKo === use.meaningKo)) {
+        phrasalIssues.push(`${use.phrasalVerb}: exact form/context is not clickable`)
+      }
+    }
+
+    const targetCoverageRate = coverage.wordTotalCount === 0
+      ? 0
+      : coverage.wordCoveredCount / coverage.wordTotalCount
+    const levelFailures = [
+      ...(chapterAudit.shortChapterIndexes.length > 0
+        ? [`short chapters ${chapterAudit.shortChapterIndexes.map((index) => index + 1).join(', ')}`]
+        : []),
+      ...(vocabulary.violations.length > 0
+        ? [`vocabulary violations ${vocabulary.violations.map(({ token }) => token).join(', ')}`]
+        : []),
+      ...(frontMatterVocabulary.violations.length > 0
+        ? [`title violations ${frontMatterVocabulary.violations.map(({ token }) => token).join(', ')}`]
+        : []),
+      ...(unclickableTokens.length > 0
+        ? [`unclickable tokens ${unclickableTokens.join(', ')}`]
+        : []),
+      ...(contextualPhrasals.length !== story.usedPhrasalVerbs.length
+        ? ['not every recorded phrasal use resolves in the displayed prose']
+        : []),
+      ...(phrasalIssues.length > 0 ? phrasalIssues : []),
+      ...(repeated.length > 0 ? [`duplicate sentences ${repeated.join(' | ')}`] : []),
+      ...(averageSentenceWords < MIN_AVERAGE_SENTENCE_WORDS[level]
+        ? [`average sentence length ${averageSentenceWords.toFixed(2)} is too short`]
+        : []),
+      ...(Math.abs(story.coverage.coverageRate - targetCoverageRate) > 1e-12
+        ? ['stored target coverage rate does not match displayed prose']
+        : []),
+      ...(story.coverage.allowUpperLevelWords !== false
+        ? ['upper-level words are allowed by metadata']
+        : []),
+      ...(story.coverage.mustCoverAll
+        ? ['mustCoverAll would force a catalog list into the novel']
+        : []),
+    ]
+    failures.push(...levelFailures.map((failure) => `${level}: ${failure}`))
+    audits.push({
+      level,
+      title: story.title,
+      chapters: chapterAudit.chapterCount,
+      paragraphCounts: chapterAudit.paragraphCounts,
+      sentenceCounts: chapterAudit.sentenceCounts,
+      averageSentenceWords: Number(averageSentenceWords.toFixed(2)),
+      targetWordsUsed: coverage.wordCoveredCount,
+      targetWordsAvailable: coverage.wordTotalCount,
+      targetCoverageRate,
+      contextualPhrasalVerbs: contextualPhrasals.length,
+      clickableWordTokens: storyTokens.filter(({ type }) => type === 'word').length,
+      clickablePhrasalUses: storyTokens.filter(({ type }) => type === 'phrasalVerb').length,
+      properNounTokens: [...storyProperNounTokens(story.storyText)].sort(),
+      duplicateSentences: repeated,
+      vocabularyViolations: [
+        ...vocabulary.violations.map(({ token }) => token),
+        ...frontMatterVocabulary.violations.map(({ token }) => token),
+      ],
+      unclickableTokens,
+      phrasalIssues,
+    })
+  }
+
+  await writeFile(REPORT_PATH, `${JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    contract: {
+      chapterCount: 6,
+      minimumParagraphsPerChapter: 5,
+      minimumSentencesPerChapter: 12,
+      separateVocabularyCards: false,
+      separatePhrasalVerbCards: false,
+      cumulativeVocabularyByLevel: true,
+      properNounsAllowedAtEveryLevel: true,
+      actualProseTokensMustBeClickable: true,
+      phrasalMeaningsBoundToExactContext: true,
+    },
+    levels: audits,
+  }, null, 2)}\n`, 'utf8')
+
+  if (failures.length > 0) throw new Error(failures.join('\n'))
+  for (const audit of audits) {
+    console.log(
+      `${audit.level}: ${audit.chapters} chapters, `
+      + `${audit.sentenceCounts.reduce((sum, count) => sum + count, 0)} sentences, `
+      + `${audit.targetWordsUsed}/${audit.targetWordsAvailable} target words, `
+      + `${audit.contextualPhrasalVerbs} contextual phrasal verbs, `
+      + `${audit.unclickableTokens.length} unclickable tokens`,
+    )
+  }
+  console.log(`Reader-story audit passed. Report: ${REPORT_PATH}`)
+}
+
+void main().catch((error) => {
+  console.error(error instanceof Error ? error.message : String(error))
   process.exitCode = 1
-} else {
-  console.log('[reader-story] PASS: coverage and narrative quality gates passed for every displayed reader story.')
-}
+})

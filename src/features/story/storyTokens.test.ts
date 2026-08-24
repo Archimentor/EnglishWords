@@ -20,7 +20,27 @@ test('tokenizes a long story once while preserving complete paragraph boundaries
   expect(paragraphs.flat().some((token) => token.value.includes('\u0000'))).toBe(false)
 })
 
-test('keeps a phrasal verb intact before matching its component words', () => {
+test('사전에 등록된 활용형은 usedWords에 기본형만 있어도 클릭 가능한 단어로 만든다', () => {
+  const word = makeWord({
+    entryOverrides: {
+      forms: ['play', 'plays', 'played', 'playing'],
+    },
+  })
+  const story = makeStory('기초', {
+    storyText: 'Mina played while Joon was playing.',
+    usedWords: [{ lemma: 'play', partOfSpeech: 'verb', forms: ['play'] }],
+  })
+
+  expect(tokenizeStory(story.storyText, story.usedWords, [word])).toEqual([
+    { type: 'text', value: 'Mina ' },
+    expect.objectContaining({ type: 'word', value: 'played', word }),
+    { type: 'text', value: ' while Joon was ' },
+    expect.objectContaining({ type: 'word', value: 'playing', word }),
+    { type: 'text', value: '.' },
+  ])
+})
+
+test('marks only the exact approved sentence as a contextual phrasal verb', () => {
   const wake = makeWord({
     id: 'word-wake',
     word: 'wake',
@@ -36,7 +56,13 @@ test('keeps a phrasal verb intact before matching its component words', () => {
     entryOverrides: { forms: ['up'] },
   })
   const phrasal = makePhrasalVerb()
-  const storyText = 'I wake up early.'
+  const storyText = 'I wake up early. Later, I wake up slowly.'
+  const phrasalUse = {
+    item: phrasal,
+    form: 'wake up',
+    context: 'I wake up early.',
+    meaningKo: '잠에서 깨다',
+  }
 
   expect(tokenizeStory(
     storyText,
@@ -45,11 +71,20 @@ test('keeps a phrasal verb intact before matching its component words', () => {
       { lemma: 'up', partOfSpeech: 'verb', forms: ['up'] },
     ],
     [wake, up],
-    [phrasal],
+    [phrasalUse],
   )).toEqual([
     { type: 'text', value: 'I ' },
-    { type: 'phrasalVerb', value: 'wake up', phrasalVerb: phrasal },
-    { type: 'text', value: ' early.' },
+    {
+      type: 'phrasalVerb',
+      value: 'wake up',
+      phrasalVerb: phrasal,
+      phrasalUse,
+    },
+    { type: 'text', value: ' early. Later, I ' },
+    expect.objectContaining({ type: 'word', value: 'wake', word: wake }),
+    { type: 'text', value: ' ' },
+    expect.objectContaining({ type: 'word', value: 'up', word: up }),
+    { type: 'text', value: ' slowly.' },
   ])
 })
 

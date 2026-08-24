@@ -2,19 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://english-words.local/schema/story.schema.json",
   "title": "StoryContent",
-  "description": "한 학습 레벨의 서사형 본편과 일반 단어·구동사 전체 확장 장면 콘텐츠 계약",
+  "description": "한 학습 레벨의 6개 챕터 소설 본문과 본문 내 단어·구동사 결합 계약",
   "type": "object",
   "required": [
     "schemaVersion",
     "level",
     "title",
+    "chapterTitles",
     "isManual",
     "coverage",
     "usedWords",
     "usedPhrasalVerbs",
-    "storyText",
-    "vocabularyPracticeText",
-    "phrasalVerbPracticeText"
+    "storyText"
   ],
   "properties": {
     "schemaVersion": {
@@ -29,6 +28,15 @@
       "type": "string",
       "pattern": "\\S"
     },
+    "chapterTitles": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "string",
+        "pattern": "\\S"
+      }
+    },
     "isManual": {
       "type": "boolean"
     },
@@ -40,7 +48,7 @@
           "type": "boolean"
         },
         "allowUpperLevelWords": {
-          "type": "boolean"
+          "const": false
         },
         "coverageRate": {
           "type": "number",
@@ -81,7 +89,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "phrasalVerb", "example"],
+        "required": ["id", "phrasalVerb", "storyForm", "context", "senseId", "meaningKo"],
         "properties": {
           "id": {
             "type": "string",
@@ -91,7 +99,19 @@
             "type": "string",
             "pattern": "\\S"
           },
-          "example": {
+          "storyForm": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "context": {
+            "type": "string",
+            "pattern": "\\S"
+          },
+          "senseId": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "meaningKo": {
             "type": "string",
             "pattern": "\\S"
           }
@@ -100,14 +120,6 @@
       }
     },
     "storyText": {
-      "type": "string",
-      "pattern": "\\S"
-    },
-    "vocabularyPracticeText": {
-      "type": "string",
-      "pattern": "\\S"
-    },
-    "phrasalVerbPracticeText": {
       "type": "string",
       "pattern": "\\S"
     }

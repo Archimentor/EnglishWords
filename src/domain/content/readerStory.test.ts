@@ -1,26 +1,39 @@
-import { buildReaderStoryText, readerStoryCoverage } from './readerStory'
-import type { PhrasalVerbItem, WordItem } from './types'
+import { expect, test } from 'vitest'
+
+import {
+  buildReaderStoryText,
+  readerStoryContextualPhrasalVerbs,
+  readerStoryCoverage,
+  readerStoryPhrasalVerbs,
+} from './readerStory'
+import { inspectStoryVocabulary } from './storyVocabulary'
+import type { Level, PhrasalVerbItem, StoryContent, WordItem } from './types'
+
+const TEST_SENSE_ID = 'a'.repeat(64)
 
 function word(
-  id: string,
   lemma: string,
-  partOfSpeech: string,
-  examples: string[],
+  options: {
+    id?: string
+    level?: Level
+    partOfSpeech?: string
+    forms?: string[]
+  } = {},
 ): WordItem {
   return {
-    id,
+    id: options.id ?? `word-${lemma}`,
     word: lemma,
     lemma,
-    level: '기초',
-    familyId: `${id}-family`,
+    level: options.level ?? '기초',
+    familyId: `${options.id ?? lemma}-family`,
     isFamilyHead: true,
     difficulty: 'veryEasy',
     entries: [{
-      partOfSpeech,
-      forms: [lemma],
+      partOfSpeech: options.partOfSpeech ?? 'noun',
+      forms: options.forms ?? [lemma],
       meanings: ['테스트'],
       ipa: '/test/',
-      examples,
+      examples: [],
     }],
   }
 }
@@ -38,86 +51,115 @@ function phrasal(
     phrasalVerb,
     ipa: '/test/',
     levelHint: '기초',
-    meaningKo: ['테스트'],
+    meaningKo: ['돌보다'],
     examples,
     partOfSpeech: 'phrasalVerb',
-    usageNotes: '',
+    usageNotes: '등록된 본문 문맥에 맞는 뜻만 표시합니다.',
     difficulty: 'veryEasy',
   }
 }
 
-test('실제 표시 본문에 누락 단어와 구동사를 자연스러운 원천 예문으로 보충하고 완결 문단을 보존한다', () => {
-  const words = [
-    word('ball', 'ball', 'noun', ['The red ball is near the tree.']),
-    word('lantern', 'lantern', 'noun', ['A lantern shines beside the gate.']),
-  ]
+function contextualUse(
+  item: PhrasalVerbItem,
+  context: string,
+  storyForm = item.phrasalVerb,
+): StoryContent['usedPhrasalVerbs'][number] {
+  return {
+    id: item.id,
+    phrasalVerb: item.phrasalVerb,
+    storyForm,
+    context,
+    senseId: TEST_SENSE_ID,
+    meaningKo: '돌보다',
+  }
+}
+
+const ALLOWED_WORDS = [
+  word('a'),
+  word('be', { forms: ['be', 'is'] }),
+  word('happy', { partOfSpeech: 'adjective' }),
+  word('have', { forms: ['have', 'has'], partOfSpeech: 'verb' }),
+  word('look', { partOfSpeech: 'verb' }),
+  word('after'),
+  word('map'),
+  word('story'),
+]
+
+test('표시 소설은 승인 본문을 그대로 보존하고 별도 암기 문장을 덧붙이지 않는다', () => {
+  const base = 'Mina has a map.\n\nMina is happy.'
+
+  const text = buildReaderStoryText(base, '기초', ALLOWED_WORDS)
+
+  expect(text).toBe(base)
+  expect(inspectStoryVocabulary(text, ALLOWED_WORDS).violations).toEqual([])
+})
+
+test('누적 하위 어휘와 고유명사는 허용하지만 상위 일반 단어는 거부한다', () => {
+  expect(() => buildReaderStoryText(
+    'Mina has a story.',
+    '유치원',
+    ALLOWED_WORDS,
+  )).not.toThrow()
+  expect(() => buildReaderStoryText(
+    'Mina discovered a story.',
+    '유치원',
+    ALLOWED_WORDS,
+  )).toThrow(/disallowed token\(s\): discovered/u)
+})
+
+test('구성어가 허용 범위 안에 있는 구동사만 후보로 삼는다', () => {
   const phrasals = [
-    phrasal('look-after', 'look after', ['We look after the little bird together.']),
+    phrasal('look-after', 'look after', ['Mina will look after Joon.']),
+    phrasal('wake-up', 'wake up', ['Mina will wake up.']),
   ]
-  const base = 'Mina has a red ball.\n\nShe follows a small map.\n\nMina smiles at home.'
 
-  const text = buildReaderStoryText(base, '기초', words, phrasals)
-  const coverage = readerStoryCoverage(text, words, phrasals)
-
-  expect(text).toContain('A lantern shines beside the gate.')
-  expect(text).toContain('We look after the little bird together.')
-  expect(text).toMatch(/^Mina has a red ball\./u)
-  expect(text).toMatch(/Mina smiles at home\.$/u)
-  expect(text).not.toMatch(/\b(?:Trail step|Story page|Garden record|Archive file)\s+\d+\s*:/iu)
-  expect(coverage.missingWordIds).toEqual([])
-  expect(coverage.missingPhrasalVerbIds).toEqual([])
+  expect(readerStoryPhrasalVerbs(phrasals, ALLOWED_WORDS)
+    .map(({ phrasalVerb }) => phrasalVerb)).toEqual(['look after'])
 })
 
-test('저학년에서 위험한 원천 예문은 그대로 삽입하지 않고 안전한 직접 문장을 사용한다', () => {
-  const words = [
-    word('garden', 'garden', 'noun', ['The garden is open today.']),
-    word('signal', 'signal', 'noun', ['The army followed the signal during the war.']),
-  ]
-  const base = 'Mina walks in the garden.\n\nShe finds a note.\n\nMina goes home.'
+test('구동사는 정확한 본문 문장·표면형·문맥 뜻이 함께 맞을 때만 연결한다', () => {
+  const item = phrasal('look-after', 'look after', [
+    'Mina will look after Joon.',
+    'Sara can look after the bird.',
+  ])
+  const context = 'Mina will look after Joon.'
+  const use = contextualUse(item, context)
 
-  const text = buildReaderStoryText(base, '기초', words, [])
-  const coverage = readerStoryCoverage(text, words, [])
-
-  expect(text).toContain('signal')
-  expect(text).not.toMatch(/\barmy\b|\bwar\b/iu)
-  expect(text).not.toMatch(/[“”]\s*signal\s*[“”]/iu)
-  expect(coverage.missingWordIds).toEqual([])
+  expect(readerStoryContextualPhrasalVerbs(context, [use], [item])).toEqual([{
+    item,
+    form: 'look after',
+    context,
+    meaningKo: '돌보다',
+  }])
+  expect(readerStoryContextualPhrasalVerbs(
+    'Mina will look after a map.',
+    [use],
+    [item],
+  )).toEqual([])
 })
 
-test('위험한 원천 예문이 여러 개여도 메타 학습문장 대신 장면 안의 직접 문장으로 분산한다', () => {
-  const words = [
-    word('signal-a', 'signal', 'noun', ['The army followed the signal during the war.']),
-    word('marker-a', 'marker', 'noun', ['The army carried the marker during the war.']),
-    word('token-a', 'token', 'noun', ['The army found the token during the war.']),
-    word('symbol-a', 'symbol', 'noun', ['The army copied the symbol during the war.']),
-  ]
-  const base = 'Mina starts with a map.\n\nShe follows the path.\n\nMina arrives home.'
+test('문장 안에 없는 표면형이나 불완전한 sense ID는 구동사 뜻을 열지 않는다', () => {
+  const item = phrasal('look-after', 'look after', ['Mina will look after Joon.'])
+  const context = item.examples[0]!
+  const wrongForm = contextualUse(item, context, 'looked after')
+  const wrongSense = { ...contextualUse(item, context), senseId: 'not-a-digest' }
 
-  const text = buildReaderStoryText(base, '기초', words, [])
-  const metaSentences = text.match(/[^.!?]+[.!?]+/gu)?.filter((sentence) =>
-    /[“”]/u.test(sentence)
-    && /\b(?:word|sentence|page|card|label|expression|record|note)\b/iu.test(sentence)) ?? []
-
-  expect(metaSentences).toEqual([])
-  expect(text).not.toMatch(/\barmy\b|\bwar\b/iu)
-  expect(readerStoryCoverage(text, words, []).missingWordIds).toEqual([])
+  expect(readerStoryContextualPhrasalVerbs(context, [wrongForm], [item])).toEqual([])
+  expect(readerStoryContextualPhrasalVerbs(context, [wrongSense], [item])).toEqual([])
 })
 
-test('삽입 장면은 고정 프레임 대신 앞뒤 사건의 위치를 연결한다', () => {
-  const words = [
-    word('lantern', 'lantern', 'noun', ['A lantern shines beside the gate.']),
-  ]
-  const base = [
-    'Mina leaves the bakery and walks toward the river.',
-    'At the bridge, the little bird finds a blue feather.',
-    'Mina reaches the old house before sunset.',
-  ].join('\n\n')
+test('커버리지는 별도 카드가 아니라 실제 본문에 나타난 항목만 센다', () => {
+  const map = ALLOWED_WORDS.find(({ lemma }) => lemma === 'map')!
+  const item = phrasal('look-after', 'look after', ['Mina will look after Joon.'])
+  const context = 'Mina will look after Joon.'
+  const coverage = readerStoryCoverage(
+    `Mina has a map. ${context}`,
+    [map],
+    [item],
+    [contextualUse(item, context)],
+  )
 
-  const text = buildReaderStoryText(base, '기초', words, [])
-  const lanternParagraph = text.split(/\n\s*\n/u).find((paragraph) => paragraph.includes('lantern')) ?? ''
-
-  expect(lanternParagraph).toContain('A lantern shines beside the gate.')
-  expect(lanternParagraph).toMatch(/(?:bakery|river|bridge|old house)/u)
-  expect(text).not.toMatch(/Before Mina leaves the place|A little farther on, Mina finds a folded paper/u)
-  expect(text).not.toMatch(/with “[A-Za-z]+” still in mind/u)
+  expect(coverage.wordCoveredCount).toBe(1)
+  expect(coverage.phrasalVerbCoveredCount).toBe(1)
+  expect(coverage.missingPhrasalVerbs).toEqual([])
 })
