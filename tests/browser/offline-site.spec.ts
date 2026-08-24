@@ -25,15 +25,15 @@ async function expectNoViewportOverflow(page: Page): Promise<void> {
   expect(overflowing).toEqual([])
 }
 
-async function revealFirstInlinePhrasal(page: Page) {
-  const phrasalVerb = page.getByRole('button', { name: /^story phrasal verb:/u }).first()
-  for (let index = 0; index < 20 && await phrasalVerb.count() === 0; index += 1) {
+async function revealWakeUp(page: Page) {
+  const wrapper = page.locator('[data-phrasal-verb="wake up"]').first()
+  for (let index = 0; index < 20 && await wrapper.count() === 0; index += 1) {
     const loadMore = page.getByRole('button', { name: /다음 이야기 보기/u })
     if (await loadMore.count() === 0) break
     await loadMore.click()
   }
-  await expect(phrasalVerb).toBeVisible()
-  return phrasalVerb
+  await expect(wrapper).toBeVisible()
+  return wrapper
 }
 
 test('HTTP preview renders the novel-only story and core learning journey', async ({ page }) => {
@@ -65,10 +65,22 @@ test('HTTP preview renders the novel-only story and core learning journey', asyn
   await closeStoryDetail.click()
   await expect(storyWord).toBeFocused()
 
-  const phrasalVerb = await revealFirstInlinePhrasal(page)
-  await expect(phrasalVerb).toHaveClass(/story-inline-phrasal-button/u)
+  const wakeUp = await revealWakeUp(page)
+  const wakeWord = wakeUp.getByRole('button', { name: 'story word: wake' })
+  const upWord = wakeUp.getByRole('button', { name: 'story word: up' })
+  const phrasalVerb = wakeUp.getByRole('button', { name: 'story phrasal verb: wake up' })
+  await expect(wakeWord).toBeVisible()
+  await expect(upWord).toBeVisible()
+  await expect(phrasalVerb).toBeVisible()
+  await expect(phrasalVerb).toHaveClass(/story-inline-phrasal-meaning-button/u)
+
+  await wakeWord.click()
+  await expect(page.getByRole('heading', { name: 'wake 단어 상세' })).toBeVisible()
+  await page.getByRole('button', { name: '닫기', exact: true }).click()
+  await expect(wakeWord).toBeFocused()
+
   await phrasalVerb.click()
-  await expect(page.getByRole('heading', { name: /구동사 상세$/u })).toBeVisible()
+  await expect(page.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeVisible()
   await page.getByRole('button', { name: '닫기', exact: true }).click()
   await expect(phrasalVerb).toBeFocused()
 
