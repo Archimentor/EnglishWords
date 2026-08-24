@@ -427,6 +427,9 @@ function AppContent({ catalogLoader, speech, now }: AppContentProps) {
         lookupWords={lookupLevels.flatMap(
           (lookupLevel) => catalog.wordlists[lookupLevel],
         )}
+        phrasalLookupWords={LEVELS.flatMap(
+          (lookupLevel) => catalog.wordlists[lookupLevel],
+        )}
         targetWordCount={WORD_TARGETS[level]}
         targetPhrasalVerbCount={PHRASAL_VERB_TARGET}
         speech={resolvedSpeech}
