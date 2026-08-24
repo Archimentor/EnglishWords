@@ -1,4 +1,4 @@
-import { makeStory, makeWord } from '../../test/fixtures'
+import { makePhrasalVerb, makeStory, makeWord } from '../../test/fixtures'
 import { tokenizeStory, tokenizeStoryParagraphs } from './storyTokens'
 
 test('tokenizes a long story once while preserving complete paragraph boundaries', () => {
@@ -18,6 +18,39 @@ test('tokenizes a long story once while preserving complete paragraph boundaries
     expect.objectContaining({ type: 'word', value: 'played' }),
   ]))
   expect(paragraphs.flat().some((token) => token.value.includes('\u0000'))).toBe(false)
+})
+
+test('keeps a phrasal verb intact before matching its component words', () => {
+  const wake = makeWord({
+    id: 'word-wake',
+    word: 'wake',
+    lemma: 'wake',
+    familyId: 'family-wake',
+    entryOverrides: { forms: ['wake'] },
+  })
+  const up = makeWord({
+    id: 'word-up',
+    word: 'up',
+    lemma: 'up',
+    familyId: 'family-up',
+    entryOverrides: { forms: ['up'] },
+  })
+  const phrasal = makePhrasalVerb()
+  const storyText = 'I wake up early.'
+
+  expect(tokenizeStory(
+    storyText,
+    [
+      { lemma: 'wake', partOfSpeech: 'verb', forms: ['wake'] },
+      { lemma: 'up', partOfSpeech: 'verb', forms: ['up'] },
+    ],
+    [wake, up],
+    [phrasal],
+  )).toEqual([
+    { type: 'text', value: 'I ' },
+    { type: 'phrasalVerb', value: 'wake up', phrasalVerb: phrasal },
+    { type: 'text', value: ' early.' },
+  ])
 })
 
 test('uses the longest recorded surface form while preserving surrounding text', () => {
