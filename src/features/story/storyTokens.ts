@@ -92,6 +92,44 @@ function resolveRecordedWordForms(
   return [...recordedForms.values()]
 }
 
+function dictionaryMatchRank(match: RecordedMatch): number {
+  if (!match.word) return 3
+  if (match.word.lemma.toLowerCase() === match.normalized) return 0
+  if (match.word.word.toLowerCase() === match.normalized) return 1
+  return 2
+}
+
+function resolveDictionaryWordForms(words: readonly WordItem[]): RecordedMatch[] {
+  const byForm = new Map<string, RecordedMatch>()
+
+  for (const word of words) {
+    for (const entry of word.entries) {
+      for (const form of entryFormStrings(entry)) {
+        const trimmed = form.trim()
+        if (!trimmed || /\s/u.test(trimmed)) continue
+        const normalized = trimmed.toLowerCase()
+        const candidate: RecordedMatch = {
+          kind: 'word',
+          form: trimmed,
+          normalized,
+          word,
+          entry,
+        }
+        const existing = byForm.get(normalized)
+        if (!existing || dictionaryMatchRank(candidate) < dictionaryMatchRank(existing)) {
+          byForm.set(normalized, candidate)
+        }
+      }
+    }
+  }
+
+  return [...byForm.values()].sort(
+    (left, right) =>
+      right.form.length - left.form.length
+      || left.normalized.localeCompare(right.normalized),
+  )
+}
+
 function resolvePhrasalVerbForms(
   phrasalVerbs: readonly PhrasalVerbItem[],
 ): RecordedMatch[] {
@@ -186,19 +224,10 @@ function longestMatchAt(
   return longestMatch
 }
 
-/**
- * Splits a story into verbatim text and clickable learning forms.
- * Matching is case-insensitive and whole-word only. The longest match wins,
- * so a multi-word phrasal verb is kept intact instead of being split into
- * separate clickable word tokens.
- */
-export function tokenizeStory(
+function tokenizeMatches(
   storyText: string,
-  usedWords: StoryContent['usedWords'],
-  levelWords: readonly WordItem[],
-  phrasalVerbs: readonly PhrasalVerbItem[] = [],
+  matches: readonly RecordedMatch[],
 ): StoryToken[] {
-  const matches = resolveRecordedMatches(usedWords, levelWords, phrasalVerbs)
   const formTrie = buildFormTrie(matches)
   const normalizedStory = storyText.toLowerCase()
   const tokens: StoryToken[] = []
@@ -242,6 +271,36 @@ export function tokenizeStory(
   }
 
   return tokens.length > 0 ? tokens : [{ type: 'text', value: storyText }]
+}
+
+/**
+ * Splits a story into verbatim text and clickable learning forms.
+ * Matching is case-insensitive and whole-word only. The longest match wins,
+ * so a multi-word phrasal verb is kept intact at the outer story-token layer.
+ */
+export function tokenizeStory(
+  storyText: string,
+  usedWords: StoryContent['usedWords'],
+  levelWords: readonly WordItem[],
+  phrasalVerbs: readonly PhrasalVerbItem[] = [],
+): StoryToken[] {
+  return tokenizeMatches(
+    storyText,
+    resolveRecordedMatches(usedWords, levelWords, phrasalVerbs),
+  )
+}
+
+/**
+ * Resolves individual dictionary words without requiring story.usedWords.
+ * This is used only inside an already-recognized phrasal verb so each
+ * component can keep its own word meaning while the phrase has a second
+ * whole-expression interaction layer.
+ */
+export function tokenizeKnownWords(
+  text: string,
+  words: readonly WordItem[],
+): StoryToken[] {
+  return tokenizeMatches(text, resolveDictionaryWordForms(words))
 }
 
 const STORY_PARAGRAPH_SEPARATOR = '\u0000'
