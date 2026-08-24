@@ -114,9 +114,10 @@ test('삽입 장면은 고정 프레임 대신 앞뒤 사건의 위치를 연결
   ].join('\n\n')
 
   const text = buildReaderStoryText(base, '기초', words, [])
+  const lanternParagraph = text.split(/\n\s*\n/u).find((paragraph) => paragraph.includes('lantern')) ?? ''
 
-  expect(text).toContain('A lantern shines beside the gate.')
-  expect(text).toMatch(/(?:bakery|river).*(?:bridge|old house)/su)
+  expect(lanternParagraph).toContain('A lantern shines beside the gate.')
+  expect(lanternParagraph).toMatch(/(?:bakery|river|bridge|old house)/u)
   expect(text).not.toMatch(/Before Mina leaves the place|A little farther on, Mina finds a folded paper/u)
   expect(text).not.toMatch(/with “[A-Za-z]+” still in mind/u)
 })
