@@ -44,12 +44,42 @@ test('배포 소설은 기존 확장 예문 대신 재작성 본문을 보여준
   expect(screen.getByText(/Mina opens the letter/u)).toBeVisible()
 })
 
-test('구동사는 본문에서 하나의 붉은 밑줄 버튼으로 상세를 연다', async () => {
+test('구동사 안의 단어는 초록 밑줄로 따로 누르고 아래 붉은 밑줄은 구동사 상세를 연다', async () => {
   const user = userEvent.setup()
   const phrasalVerb = makePhrasalVerb()
+  const wake = makeWord({
+    id: 'word-wake',
+    word: 'wake',
+    lemma: 'wake',
+    familyId: 'family-wake',
+    entryOverrides: {
+      partOfSpeech: 'verb',
+      forms: ['wake'],
+      meanings: ['깨다'],
+      ipa: '/weɪk/',
+      examples: ['I wake early.'],
+    },
+  })
+  const up = makeWord({
+    id: 'word-up',
+    word: 'up',
+    lemma: 'up',
+    familyId: 'family-up',
+    entryOverrides: {
+      partOfSpeech: 'adverb',
+      forms: ['up'],
+      meanings: ['위로'],
+      ipa: '/ʌp/',
+      examples: ['Look up.'],
+    },
+  })
   const story = makeStory('기초', {
     title: '구동사 테스트',
-    storyText: 'I wake up early. The children play together.',
+    storyText: 'I wake up early.',
+    usedWords: [
+      { lemma: 'wake', partOfSpeech: 'verb', forms: ['wake'] },
+      { lemma: 'up', partOfSpeech: 'adverb', forms: ['up'] },
+    ],
     usedPhrasalVerbs: [{
       id: phrasalVerb.id,
       phrasalVerb: phrasalVerb.phrasalVerb,
@@ -60,25 +90,43 @@ test('구동사는 본문에서 하나의 붉은 밑줄 버튼으로 상세를 �
   render(
     <StoryView
       story={story}
-      levelWords={[makeWord()]}
+      levelWords={[wake, up]}
       levelPhrasalVerbs={[phrasalVerb]}
       targetWordCount={500}
       targetPhrasalVerbCount={250}
     />,
   )
 
-  const trigger = screen.getByRole('button', { name: 'story phrasal verb: wake up' })
-  expect(trigger).toHaveClass('story-inline-phrasal-button')
-  expect(trigger).toHaveTextContent('wake up')
-  expect(screen.queryByText('전체 학습 구동사')).not.toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: 'story word: wake' })).not.toBeInTheDocument()
-  expect(screen.queryByRole('button', { name: 'story word: up' })).not.toBeInTheDocument()
+  const phrase = document.querySelector('[data-phrasal-verb="wake up"]')
+  expect(phrase).not.toBeNull()
+  const wakeTrigger = within(phrase as HTMLElement).getByRole('button', { name: 'story word: wake' })
+  const upTrigger = within(phrase as HTMLElement).getByRole('button', { name: 'story word: up' })
+  const phrasalTrigger = within(phrase as HTMLElement).getByRole('button', {
+    name: 'story phrasal verb: wake up',
+  })
 
-  await user.click(trigger)
+  expect(wakeTrigger).toHaveClass('story-word-button')
+  expect(upTrigger).toHaveClass('story-word-button')
+  expect(phrasalTrigger).toHaveClass('story-inline-phrasal-meaning-button')
+  expect(screen.queryByText('전체 학습 구동사')).not.toBeInTheDocument()
+
+  await user.click(wakeTrigger)
+  expect(screen.getByRole('heading', { name: 'wake 단어 상세' })).toBeInTheDocument()
+  expect(screen.getByText('깨다')).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: '닫기' }))
+  expect(wakeTrigger).toHaveFocus()
+
+  await user.click(upTrigger)
+  expect(screen.getByRole('heading', { name: 'up 단어 상세' })).toBeInTheDocument()
+  expect(screen.getByText('위로')).toBeInTheDocument()
+  await user.click(screen.getByRole('button', { name: '닫기' }))
+  expect(upTrigger).toHaveFocus()
+
+  await user.click(phrasalTrigger)
   expect(screen.getByRole('heading', { name: 'wake up 구동사 상세' })).toBeInTheDocument()
   expect(screen.getByText('잠에서 깨다')).toBeInTheDocument()
   await user.click(screen.getByRole('button', { name: '닫기' }))
-  expect(trigger).toHaveFocus()
+  expect(phrasalTrigger).toHaveFocus()
 })
 
 test('스토리 메타데이터 상태는 소설 화면에 표시하지 않는다', () => {
